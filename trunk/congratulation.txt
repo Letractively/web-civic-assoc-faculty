@@ -3,4 +3,4 @@ Ak toto èítaš, tak sa ti podarilo správne nakonfigurova svn :)
 Dopíš sem nieèo a sprav commit.
 
 
-#Mne sa to uz podarilo //Matej...
+#Mne sa to uz podarilo //Matej
