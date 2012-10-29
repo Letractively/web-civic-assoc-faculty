@@ -55,13 +55,13 @@ $config = array(
             'rules'     => 'trim|required|xss_clean|numeric'
         ),
         array(
-            'field'     => 'postcode_id',
-            'label'     => 'lang:label_postcode_id',
+            'field'     => 'postcode',
+            'label'     => 'lang:label_postcode',
             'rules'     => 'trim|required|xss_clean|numeric'
         ),
         array(
-            'field'     => 'degree_year_id',
-            'label'     => 'lang:label_degree_id',
+            'field'     => 'degree_year',
+            'label'     => 'lang:label_degree',
             'rules'     => 'trim|required|xss_clean|numeric'
         )
     ),
