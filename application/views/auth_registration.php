@@ -29,7 +29,7 @@
     </div>
     <div class="inputitem">
         <label for="study_program_id" class="<?= $error['study_program_id'] ?>"><?= $this->lang->line('label_study_program_id') ?></label>
-        <?= form_dropdown(set_value('study_program_id')) ?>
+        <?= form_dropdown('program', $programs,set_value('study_program_id')) ?>
     </div>
     <div class="inputitem">
         <label for="degree_id" class="<?= $error['degree_id'] ?>"><?= $this->lang->line('label_degree_id') ?></label>
@@ -40,11 +40,11 @@
         <?= form_dropdown(set_value('place_of_birth_id')) ?>
     </div>
     <div class="inputitem">
-        <label for="postcode_id" class="<?= $error['postcode_id'] ?>"><?= $this->lang->line('label_postcode_id') ?></label>
-        <?= form_dropdown(set_value('postcode_id')) ?>
+        <label for="postcode" class="<?= $error['postcode'] ?>"><?= $this->lang->line('label_postcode') ?></label>
+        <?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => ''.$error['postcode']), set_value('postcode')) ?>
     </div>
     <div class="inputitem">
-        <label for="degree_year_id" class="<?= $error['degree_year_id'] ?>"><?= $this->lang->line('label_degree_year_id') ?></label>
+        <label for="degree_year" class="<?= $error['degree_year'] ?>"><?= $this->lang->line('label_degree_year') ?></label>
         <?= form_dropdown(set_value('degree_year_id')) ?>
     </div>
     <div class="inputitem">

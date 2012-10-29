@@ -4,7 +4,9 @@ class MDegrees extends CI_Model
 {
     public function all()
     {
-        $q = $this->db->get('degrees');
+        $q = $this->db->query(" SELECT * 
+                                FROM mdegrees
+                              ");
         return $q->result();
     }
 }

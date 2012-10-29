@@ -4,7 +4,9 @@ class MStudy_programs extends CI_Model
 {
     public function all()
     {
-        $q = $this->db->get('study_programs');
+        $q = $this->db->query(" SELECT * 
+                                FROM study_programs
+                              ");
         return $q->result();
     }
 }

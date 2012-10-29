@@ -10,8 +10,8 @@ $lang['label_phone']                =   'Telefónne číslo';
 $lang['label_study_program_id']     =   'Štúdijný program';
 $lang['label_degree_id']            =   'Titul';
 $lang['label_place_of_birth_id']    =   'Miesto narodenia';
-$lang['label_postcode_id']          =   'PSČ';
-$lang['label_degree_year_id']       =   'Rok ukončenia na fakulte';
+$lang['label_postcode']             =   'PSČ';
+$lang['label_degree_year']          =   'Rok ukončenia na fakulte';
 
 $lang['button_register']            =   'Registruj';
 
