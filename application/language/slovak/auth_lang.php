@@ -20,6 +20,7 @@ $lang['label_project_category_2']   =   '2';
 $lang['label_project_category_3']   =   '3';
 $lang['label_project_category_4']   =   '4';
 $lang['label_project_category_5']   =   '5';
+$lang['label_project_category_6']   =   '6';
 
 $lang['button_register']            =   'Registruj';
 

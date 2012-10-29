@@ -73,32 +73,37 @@ $config = array(
             'field'     => 'vs',
             'label'     => 'lang:label_vs',
             'rules'     => 'trim|required|integer|min_length[4]|max_length[10]'
-        )/*,
+        ),
         array(
             'field'     => 'project_category_1',
-            'label'     => 'lang:label_project__category_1',
-            'rules'     => 'trim|required|integer'
+            'label'     => 'lang:label_project_category_1',
+            'rules'     => 'trim|integer'
         ),
         array(
             'field'     => 'project_category_2',
             'label'     => 'lang:label_project_category_2',
-            'rules'     => 'trim|required|integer'
+            'rules'     => 'trim|integer'
         ),
         array(
             'field'     => 'project_category_3',
             'label'     => 'lang:label_project_category_3',
-            'rules'     => 'trim|required|integer'
+            'rules'     => 'trim|integer'
         ),
         array(
             'field'     => 'project_category_4',
             'label'     => 'lang:label_project_category_4',
-            'rules'     => 'trim|required|integer'
+            'rules'     => 'trim|integer'
         ),
         array(
             'field'     => 'project_category_5',
             'label'     => 'lang:label_project_category_5',
-            'rules'     => 'trim|required|integer'
-        )*/
+            'rules'     => 'trim|integer'
+        ),
+        array(
+            'field'     => 'project_category_6',
+            'label'     => 'lang:label_project_category_6',
+            'rules'     => 'trim|integer'
+        )
     ),
     'auth/login'                 => array(
         array(

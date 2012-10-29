@@ -1,6 +1,6 @@
 <div class="errors">
-		<?php echo validation_errors(); ?>
-	</div>
+    <?php echo validation_errors(); ?>
+</div>
 
 <?= form_open("auth/registration") ?>
     <div class="inputitem">
@@ -62,7 +62,32 @@
     </div>
 
     <div class="inputitem">
+        <label for="project_category_1" class=" <?= $error['project_category_1'] ?>"><?= $this->lang->line('label_project_category_1') ?></label>
+        <?= form_input(array('name' => 'project_category_1', 'id' => 'project_category_1', 'size'=> 1, 'class'=>''.$error['project_category_1']), set_value('project_category_1')) ?>
+    </div>
+    <div class="inputitem">
+        <label for="project_category_2" class=" <?= $error['project_category_2'] ?>"><?= $this->lang->line('label_project_category_2') ?></label>
+        <?= form_input(array('name' => 'project_category_2', 'id' => 'project_category_2', 'size'=> 1, 'class'=>''.$error['project_category_2']), set_value('project_category_2')) ?>
+    </div>
+    <div class="inputitem">
+        <label for="project_category_3" class=" <?= $error['project_category_3'] ?>"><?= $this->lang->line('label_project_category_3') ?></label>
+        <?= form_input(array('name' => 'project_category_3', 'id' => 'project_category_3', 'size'=> 1, 'class'=>''.$error['project_category_3']), set_value('project_category_3')) ?>
+    </div>
+    <div class="inputitem">
+        <label for="project_category_4" class=" <?= $error['project_category_4'] ?>"><?= $this->lang->line('label_project_category_4') ?></label>
+        <?= form_input(array('name' => 'project_category_4', 'id' => 'project_category_4', 'size'=> 1, 'class'=>''.$error['project_category_4']), set_value('project_category_4')) ?>
+    </div>
+    <div class="inputitem">
+        <label for="project_category_5" class=" <?= $error['project_category_5'] ?>"><?= $this->lang->line('label_project_category_5') ?></label>
+        <?= form_input(array('name' => 'project_category_5', 'id' => 'project_category_5', 'size'=> 1, 'class'=>''.$error['project_category_5']), set_value('project_category_5')) ?>
+    </div>
+    <div class="inputitem">
+        <label for="project_category_6" class=" <?= $error['project_category_6'] ?>"><?= $this->lang->line('label_project_category_6') ?></label>
+        <?= form_input(array('name' => 'project_category_6', 'id' => 'project_category_6', 'size'=> 1, 'class'=>''.$error['project_category_6']), set_value('project_category_6')) ?>
+    </div>
+    
+
+    <div class="inputitem">
         <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_register')) ?>
     </div>
 <?= form_close() ?>
-

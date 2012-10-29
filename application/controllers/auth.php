@@ -37,11 +37,10 @@ class Auth extends MY_Controller
                // $this->form_validation->set_error_delimiters('<p class="validation_error">', '</p>'); 
                 if( $this->musers->check_login($this->input->post('email')) == TRUE )
                 {
-                    $id = $this->musers->{$this->router->method}();
-                    if(  $id != '' )
+                    if(  $this->musers->{$this->router->method}() == TRUE )
                     {   
                         echo 'success<br />';
-                        echo $id->user_id;
+                        //echo $id->user_id;
                         //redirect na show_message view s hlaskou success
                     }
                     else{ echo 'error1';/* redirect na show_message view s hlaskou DB add error*/}
@@ -55,7 +54,8 @@ class Auth extends MY_Controller
             'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
                                                                             'email', 'phone', 'study_program_id', 'degree_id', 
                                                                             'place_of_birth_id', 'postcode', 'degree_year',
-                                                                            'vs','total_sum')
+                                                                            'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
+                                                                            'project_category_5', 'project_category_6')
                                                                     ),
             'programs'      => $this->recompile_into_array($this->mstudy_programs->all(), 'study_program_id', 'study_program_name'),
             'degrees'       => $this->recompile_into_array($this->mdegrees->all(), 'degree_id', 'degree_name'),
