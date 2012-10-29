@@ -7,7 +7,7 @@ $config = array(
         array(
             'field'     => 'name',
             'label'     => 'lang:label_name',
-            'rules'     => 'trim|xss_clean'
+            'rules'     => 'trim|required|xss_clean'
         ),
         array(
             'field'     => 'surname',
@@ -67,38 +67,38 @@ $config = array(
         array(
             'field'     => 'total_sum',
             'label'     => 'lang:label_total_tum',
-            'rules'     => 'trim|required|xss_clean|decimal'
+            'rules'     => 'trim|required|xss_clean|numeric'
         ),
         array(
             'field'     => 'vs',
             'label'     => 'lang:label_vs',
             'rules'     => 'trim|required|integer|min_length[4]|max_length[10]'
-        ),
+        )/*,
         array(
-            'field'     => 'category_one',
-            'label'     => 'lang:label_category_one',
+            'field'     => 'project_category_1',
+            'label'     => 'lang:label_project__category_1',
             'rules'     => 'trim|required|integer'
         ),
         array(
-            'field'     => 'category_two',
-            'label'     => 'lang:label_category_two',
+            'field'     => 'project_category_2',
+            'label'     => 'lang:label_project_category_2',
             'rules'     => 'trim|required|integer'
         ),
         array(
-            'field'     => 'category_three',
-            'label'     => 'lang:label_category_three',
+            'field'     => 'project_category_3',
+            'label'     => 'lang:label_project_category_3',
             'rules'     => 'trim|required|integer'
         ),
         array(
-            'field'     => 'category_four',
-            'label'     => 'lang:label_category_four',
+            'field'     => 'project_category_4',
+            'label'     => 'lang:label_project_category_4',
             'rules'     => 'trim|required|integer'
         ),
         array(
-            'field'     => 'category_five',
-            'label'     => 'lang:label_category_five',
+            'field'     => 'project_category_5',
+            'label'     => 'lang:label_project_category_5',
             'rules'     => 'trim|required|integer'
-        )
+        )*/
     ),
     'auth/login'                 => array(
         array(
