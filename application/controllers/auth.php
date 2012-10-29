@@ -39,18 +39,23 @@ class Auth extends MY_Controller
                 {
                     if( $this->musers->{$this->router->method}() == TRUE )
                     {
-                        //redirect na show_message view
+                        //redirect na show_message view s hlaskou success
+                        redirect('http://www.sme.sk');
                     }
-          
+                    else{/* redirect na show_message view s hlaskou DB add error*/}
                 }
-            }else
-                        echo 'Daco sa porantalo<br /><br />';
+                else{/*redirect na show_message view s hlaskou error*/}
+            }
+            else{/*redirect na show_message view s hlaskou error*/}           
         }
         
-        //array_debug($this->mstudy_programs->all());
-        
         $data = array(
-            'error'         => $this->form_validation->form_required(array('name','surname','username', 'password', 'password_again', 'email', 'phone','study_program_id', 'degree_id', 'place_of_birth_id', 'postcode', 'degree_year')),
+            'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
+                                                                            'email', 'phone', 'study_program_id', 'degree_id', 
+                                                                            'place_of_birth_id', 'postcode', 'degree_year', 'total_sum',
+                                                                            'category_one', 'category_two', '','category_three','category_four',
+                                                                            'category_five', 'vs')
+                                                                    ),
             'programs'      => $this->recompile_into_array($this->mstudy_programs->all(), 'study_program_id', 'study_program_name'),
             'degrees'       => $this->recompile_into_array($this->mdegrees->all(), 'degree_id', 'degree_name'),
             'places'        => $this->recompile_into_array($this->mplaces->all(), 'place_of_birth_id', 'place_of_birth_name'),
