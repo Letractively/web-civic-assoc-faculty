@@ -29,7 +29,7 @@
     </div>
     <div class="inputitem">
         <label for="study_program_id" class="<?= $error['study_program_id'] ?>"><?= $this->lang->line('label_study_program_id') ?></label>
-        <?= form_dropdown('program', $programs,set_value('study_program_id')) ?>
+        <?= form_dropdown('program', $programs, set_value('study_program_id')) ?>
     </div>
     <div class="inputitem">
         <label for="degree_id" class="<?= $error['degree_id'] ?>"><?= $this->lang->line('label_degree_id') ?></label>
@@ -37,7 +37,7 @@
     </div>
     <div class="inputitem">
         <label for="place_of_birth_id" class="<?= $error['place_of_birth_id'] ?>"><?= $this->lang->line('label_place_of_birth_id') ?></label>
-        <?= form_dropdown(set_value('place_of_birth_id')) ?>
+        <?= form_dropdown('place', $places, set_value('place_of_birth_id')) ?>
     </div>
     <div class="inputitem">
         <label for="postcode" class="<?= $error['postcode'] ?>"><?= $this->lang->line('label_postcode') ?></label>

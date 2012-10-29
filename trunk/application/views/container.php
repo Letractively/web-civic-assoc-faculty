@@ -12,7 +12,7 @@
     </head>
     <body>
         <?php
-            $this->load->view($view);
+           $this->load->view($view);
         ?>
     </body>
 </html> 
