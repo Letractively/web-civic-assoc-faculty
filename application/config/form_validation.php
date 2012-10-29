@@ -63,11 +63,16 @@ $config = array(
             'field'     => 'degree_year',
             'label'     => 'lang:label_degree',
             'rules'     => 'trim|required|xss_clean|numeric'
-        )/*,
+        ),
         array(
             'field'     => 'total_sum',
             'label'     => 'lang:label_total_tum',
             'rules'     => 'trim|required|xss_clean|decimal'
+        ),
+        array(
+            'field'     => 'vs',
+            'label'     => 'lang:label_vs',
+            'rules'     => 'trim|required|integer|min_length[4]|max_length[10]'
         ),
         array(
             'field'     => 'category_one',
@@ -93,12 +98,7 @@ $config = array(
             'field'     => 'category_five',
             'label'     => 'lang:label_category_five',
             'rules'     => 'trim|required|integer'
-        ),
-        array(
-            'field'     => 'vs',
-            'label'     => 'lang:label_vs',
-            'rules'     => 'trim|required|integer|min_length[4]|max_length[10]'
-        )*/
+        )
     ),
     'auth/login'                 => array(
         array(
