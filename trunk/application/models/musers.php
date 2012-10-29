@@ -37,29 +37,31 @@ class MUsers extends CI_Model
                             ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$row->user_id."')
                          ");
         
-        /*$p_categories_ratios = array();
+        $p_categories_ratios = array();
         
-        for($i = 5; $i <=1; $i++)
+        for($i = 1; $i <=6; $i++)
         {
             if( $this->input->post('project_category_'.$i) != '' )
-            {
-                array_push($p_categories_ratios, $this->input->post('project_category_'.$i));
-            }
-        }*/
+                $p_categories_ratios[$i] = $this->input->post('project_category_'.$i);
+            else
+                $p_categories_ratios[$i] = 0;
+        }
         
-        //$this->insert_into_fin_redistributes($q->user_id, $p_categories_ratios);
-        /*$this->db->query("  INSERT INTO fin_redistributes
-                            (fin_redistribute_user_id, fin_redistribute_project_category_id, fin_redistribute_ratio)
-                            VALUES
-                            ('".$q->user_id."','".."','".$this->input->post('')."')
-                         ");*/   
-        
-        return $q->last_row();
+        return $this->insert_into_fin_redistributes($row->user_id, $p_categories_ratios);
     }
     
     private function insert_into_fin_redistributes($user_id, $array)
     {
-        echo 'bic';
+        foreach($array as $key => $value)
+        {
+            $this->db->query("  INSERT INTO fin_redistributes
+                                (fin_redistribute_user_id, fin_redistribute_project_category_id, fin_redistribute_ratio)
+                                VALUES
+                                ('".$user_id."','".$key."','".$value."')
+                             ");
+        }
+        
+        return TRUE;
     }
 }
 
