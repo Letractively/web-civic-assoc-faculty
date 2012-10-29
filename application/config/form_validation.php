@@ -15,6 +15,11 @@ $config = array(
             'rules'     => 'trim|required|xss_clean'
         ),
         array(
+            'field'     => 'username',
+            'label'     => 'lang:label_username',
+            'rules'     => 'trim|required|xss_clean'
+        ),
+        array(
             'field'     => 'password',
             'label'     => 'lang:label_password',
             'rules'     => 'trim|required|xss_clean|min_length[6]'

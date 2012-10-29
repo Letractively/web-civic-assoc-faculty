@@ -8,6 +8,10 @@
         <?= form_input(array('name' => 'surname', 'id' => 'surname', 'class' => ''.$error['surname']), set_value('surname')) ?>
     </div>
     <div class="inputitem">
+        <label for="username" class="<?= $error['username'] ?>"><?= $this->lang->line('label_username') ?></label>
+        <?= form_input(array('name' => 'username', 'id' => 'username', 'class' => ''.$error['username']), set_value('username')) ?>
+    </div>
+    <div class="inputitem">
         <label for="password" class="<?= $error['password'] ?>"><?= $this->lang->line('label_password') ?></label>
         <?= form_password(array('name' => 'password', 'id' => 'password', 'class' => ''.$error['password']), set_value('password')) ?>
     </div>
@@ -25,23 +29,23 @@
     </div>
     <div class="inputitem">
         <label for="study_program_id" class="<?= $error['study_program_id'] ?>"><?= $this->lang->line('label_study_program_id') ?></label>
-        <?= form_dropdown('study_program', $programs, set_value('study_program_id'), 'id="study_program"') ?>
+        <?= form_dropdown(set_value('study_program_id')) ?>
     </div>
     <div class="inputitem">
         <label for="degree_id" class="<?= $error['degree_id'] ?>"><?= $this->lang->line('label_degree_id') ?></label>
-        <?= form_dropdown('degree', $degrees, set_value('degree_id'), 'id="degree"') ?>
+        <?= form_dropdown('degree', $degrees, set_value('degree_id')) ?>
     </div>
     <div class="inputitem">
         <label for="place_of_birth_id" class="<?= $error['place_of_birth_id'] ?>"><?= $this->lang->line('label_place_of_birth_id') ?></label>
-        <?= form_dropdown('place_of_birth', $places, set_value('place_of_birth_id'),'id="places"') ?>
+        <?= form_dropdown(set_value('place_of_birth_id')) ?>
     </div>
     <div class="inputitem">
         <label for="postcode_id" class="<?= $error['postcode_id'] ?>"><?= $this->lang->line('label_postcode_id') ?></label>
-        <?= form_dropdown('postcode', $postcodes, set_value('postcode_id'), 'id="postcodes"') ?>
+        <?= form_dropdown(set_value('postcode_id')) ?>
     </div>
     <div class="inputitem">
         <label for="degree_year_id" class="<?= $error['degree_year_id'] ?>"><?= $this->lang->line('label_degree_year_id') ?></label>
-        <?= form_dropdown('year', $years, set_value('degree_year_id'), 'id="degree_year"') ?>
+        <?= form_dropdown(set_value('degree_year_id')) ?>
     </div>
     <div class="inputitem">
         <?= form_submit(array('name' => 'submit'), $this->lang->line('button_register')) ?>
