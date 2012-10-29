@@ -37,8 +37,7 @@ class Auth extends MY_Controller
                 
                 if( $this->musers->check_login($this->input->post('email')) == TRUE )
                 {
-                    $user_id = $this->musers->{$this->router->method}(); //ID daneho pouzivatela
-                    if( $user_id != '' )
+                    if( $this->musers->{$this->router->method}() == TRUE )
                     {   
                         echo 'success<br />';
                         //redirect na show_message view s hlaskou success
@@ -51,15 +50,11 @@ class Auth extends MY_Controller
         }
         
         $data = array(
-            /*'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
+            'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
                                                                             'email', 'phone', 'study_program_id', 'degree_id', 
                                                                             'place_of_birth_id', 'postcode', 'degree_year', 'total_sum',
                                                                             'category_one', 'category_two', '','category_three','category_four',
                                                                             'category_five', 'vs')
-                                                                    ),*/
-            'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
-                                                                            'email', 'phone', 'study_program_id', 'degree_id', 
-                                                                            'place_of_birth_id', 'postcode', 'degree_year')
                                                                     ),
             'programs'      => $this->recompile_into_array($this->mstudy_programs->all(), 'study_program_id', 'study_program_name'),
             'degrees'       => $this->recompile_into_array($this->mdegrees->all(), 'degree_id', 'degree_name'),

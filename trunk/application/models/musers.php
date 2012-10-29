@@ -28,7 +28,13 @@ class MUsers extends CI_Model
                              '".$this->input->post('postcode')."','".$this->input->post('degree_year')."')
                          ");
         $q = $this->db->query("SELECT user_id FROM users");
-        return $q->last_row();
+        
+        $this->db->query("  INSERT INTO payments
+                            (payment_vs, payment_total_sum, payment_user_id)
+                            VALUES
+                            ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$q->user_id."')
+                         ");
+        return TRUE;
     }
 }
 

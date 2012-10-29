@@ -13,6 +13,14 @@ $lang['label_place_of_birth_id']    =   'Miesto narodenia';
 $lang['label_postcode']             =   'PSČ';
 $lang['label_degree_year']          =   'Rok ukončenia na fakulte';
 
+$lang['label_total_tum']            =   'Suma, ktorú posielate';
+$lang['label_vs']                   =   'Variabilný symbol';
+$lang['label_category_one']         =   '1';
+$lang['label_category_two']         =   '2';
+$lang['label_category_three']       =   '3';
+$lang['label_category_four']        =   '4';
+$lang['label_category_five']        =   '5';
+
 $lang['button_register']            =   'Registruj';
 
 /* End of file auth_lang.php */
