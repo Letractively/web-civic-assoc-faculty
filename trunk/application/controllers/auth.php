@@ -18,7 +18,7 @@ class Auth extends MY_Controller
     public function index()
     {
         $data = array( 
-            'omg'       => 'omfglol'
+            'view'       => "{$this->router->class}"
         );
         
         $this->load->view('container', array_merge($this->data, $data)); 
