@@ -16,16 +16,17 @@ class MUsers extends CI_Model
             return TRUE;
     }
        
-    public function registration()
+    public function registration($param)
     {
+        
         $this->db->query("  INSERT INTO users 
                             (user_name, user_surname, user_username, user_password, user_email, user_phone,
                             user_study_program_id, user_degree_id, user_place_of_birth_id, user_postcode, user_degree_year)
                             VALUES
-                            ('".$this->input->post('name')."','".$this->input->post('surname')."','".$this->input->post('username')."',
-                             '".sha1($this->input->post('password'))."','".$this->input->post('email')."','".$this->input->post('phone')."',
-                             '".$this->input->post('study_program_id')."','".$this->input->post('degree_id')."','".$this->input->post('place_of_birth_id')."',
-                             '".$this->input->post('postcode')."','".$this->input->post('degree_year')."')
+                            ('".$param['name']."','".$param['surname']."','".$param['username']."',
+                             '".sha1($param['password'])."','".$param['email']."','".$param['phone']."',
+                             '".$param['study_program_id']."','".$param['degree_id']."','".$param['place_of_birth_id']."',
+                             '".$param['postcode']."','".$param['degree_year']."')
                          ");
         $q = $this->db->query("SELECT user_id FROM users");
         

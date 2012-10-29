@@ -34,13 +34,11 @@ class Auth extends MY_Controller
         {
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") == TRUE )
             {
-               // $this->form_validation->set_error_delimiters('<p class="validation_error">', '</p>'); 
                 if( $this->musers->check_login($this->input->post('email')) == TRUE )
                 {
-                    if(  $this->musers->{$this->router->method}() == TRUE )
+                    if(  $this->musers->registration( $this->input->post() ) == TRUE )
                     {   
                         echo 'success<br />';
-                        //echo $id->user_id;
                         //redirect na show_message view s hlaskou success
                     }
                     else{ echo 'error1';/* redirect na show_message view s hlaskou DB add error*/}
