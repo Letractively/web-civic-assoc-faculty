@@ -40,16 +40,20 @@ class Auth extends MY_Controller
                     if( $this->musers->{$this->router->method}() == TRUE )
                     {
                         //redirect na show_message view
-                    }                     
+                    }
+          
                 }
-            }
+            }else
+                        echo 'Daco sa porantalo<br /><br />';
         }
+        
+        //array_debug($this->mstudy_programs->all());
         
         $data = array(
             'error'         => $this->form_validation->form_required(array('name','surname','username', 'password', 'password_again', 'email', 'phone','study_program_id', 'degree_id', 'place_of_birth_id', 'postcode', 'degree_year')),
-            //'programs'      => $this->recompile_into_array($this->mstudy_programs->all(), 'study_program_id', 'study_program_name'),
-            //'degrees'       => $this->recompile_into_array($this->mdegrees->all(), 'degree_id', 'degree_name'),
-            //'places'        => $this->mplaces->all(),
+            'programs'      => $this->recompile_into_array($this->mstudy_programs->all(), 'study_program_id', 'study_program_name'),
+            'degrees'       => $this->recompile_into_array($this->mdegrees->all(), 'degree_id', 'degree_name'),
+            'places'        => $this->recompile_into_array($this->mplaces->all(), 'place_of_birth_id', 'place_of_birth_name'),
         );
         
         $this->load->view('container', array_merge($this->data, $data)); 

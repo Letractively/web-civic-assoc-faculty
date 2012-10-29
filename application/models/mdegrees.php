@@ -5,7 +5,7 @@ class MDegrees extends CI_Model
     public function all()
     {
         $q = $this->db->query(" SELECT * 
-                                FROM mdegrees
+                                FROM degrees
                               ");
         return $q->result();
     }

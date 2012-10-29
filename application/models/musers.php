@@ -15,24 +15,20 @@ class MUsers extends CI_Model
         else
             return TRUE;
     }
-    
+       
     public function registration()
     {
-        $data = array(
-            'user_name'                 => $this->input->post('name'),
-            'user_surname'              => $this->input->post('surname'),
-            'user_username'             => $this->input->post('username'),
-            'user_password'             => $this->input->post('password'),
-            'user_email'                => $this->input->post('email'),
-            'user_phone'                => $this->input->post('phone'),
-            'user_study_program_id'     => $this->input->post('study_program_id'),
-            'user_degree_id'            => $this->input->post('degree_id'),
-            'user_place_of_birth_id'    => $this->input->post('place_of_birth_id'),
-            'user_postcode_id'          => $this->input->post('postcode_id'),
-            'user_degree_year_id'       => $this->input->post('degree_year_id')
-        );
+        $this->db->query("  INSERT INTO users 
+                            (user_name, user_surname, user_username, user_password, user_email, user_phone,
+                            user_study_program_id, user_degree_id, user_place_of_birth_id, user_postcode, user_degree_year)
+                            VALUES
+                            ('".$this->input->post('name')."','".$this->input->post('surname')."','".$this->input->post('username')."',
+                             '".sha1($this->input->post('password'))."','".$this->input->post('email')."','".$this->input->post('phone')."',
+                             '".$this->input->post('study_program_id')."','".$this->input->post('degree_id')."','".$this->input->post('place_of_birth_id')."',
+                             '".$this->input->post('postcode')."','".$this->input->post('degree_year')."')
+                         ");
         
-        return $this->insert('musers', $data);
+        return TRUE;
     }
 }
 

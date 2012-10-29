@@ -2,7 +2,13 @@
 
 class MPlaces extends CI_Model
 {
-    public function all(){}
+    public function all()
+    {
+        $q = $this->db->query(" SELECT * 
+                                FROM place_of_births
+                              ");
+        return $q->result();
+    }
 }
 
 /* End of file places.php */
