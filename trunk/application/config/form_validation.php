@@ -3,11 +3,11 @@
 $CI =& get_instance();
 
 $config = array(
-    'auth/registrattion'                    => array(
+    'auth/registration'                    => array(
         array(
             'field'     => 'name',
             'label'     => 'lang:label_name',
-            'rules'     => 'trim|required|xss_clean'
+            'rules'     => 'trim|xss_clean'
         ),
         array(
             'field'     => 'surname',
@@ -63,7 +63,7 @@ $config = array(
             'field'     => 'degree_year',
             'label'     => 'lang:label_degree',
             'rules'     => 'trim|required|xss_clean|numeric'
-        ),
+        )/*,
         array(
             'field'     => 'total_sum',
             'label'     => 'lang:label_total_tum',
@@ -98,7 +98,7 @@ $config = array(
             'field'     => 'vs',
             'label'     => 'lang:label_vs',
             'rules'     => 'trim|required|integer|min_length[4]|max_length[10]'
-        )
+        )*/
     ),
     'auth/login'                 => array(
         array(

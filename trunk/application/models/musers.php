@@ -6,7 +6,7 @@ class MUsers extends CI_Model
     public function check_login( $email )
     {
         $q = $this->db->query(" SELECT user_email 
-                                FROM musers 
+                                FROM users 
                                 WHERE user_email='".$email."'
                               ");
         
@@ -27,8 +27,8 @@ class MUsers extends CI_Model
                              '".$this->input->post('study_program_id')."','".$this->input->post('degree_id')."','".$this->input->post('place_of_birth_id')."',
                              '".$this->input->post('postcode')."','".$this->input->post('degree_year')."')
                          ");
-        
-        return TRUE;
+        $q = $this->db->query("SELECT user_id FROM users");
+        return $q->last_row();
     }
 }
 

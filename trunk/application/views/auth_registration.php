@@ -29,15 +29,15 @@
     </div>
     <div class="inputitem">
         <label for="study_program_id" class="<?= $error['study_program_id'] ?>"><?= $this->lang->line('label_study_program_id') ?></label>
-        <?= form_dropdown('program', $programs, set_value('study_program_id')) ?>
+        <?= form_dropdown('study_program_id', $programs, set_value('study_program_id')) ?>
     </div>
     <div class="inputitem">
         <label for="degree_id" class="<?= $error['degree_id'] ?>"><?= $this->lang->line('label_degree_id') ?></label>
-        <?= form_dropdown('degree', $degrees, set_value('degree_id')) ?>
+        <?= form_dropdown('degree_id', $degrees, set_value('degree_id')) ?>
     </div>
     <div class="inputitem">
         <label for="place_of_birth_id" class="<?= $error['place_of_birth_id'] ?>"><?= $this->lang->line('label_place_of_birth_id') ?></label>
-        <?= form_dropdown('place', $places, set_value('place_of_birth_id')) ?>
+        <?= form_dropdown('place_of_birth_id', $places, set_value('place_of_birth_id')) ?>
     </div>
     <div class="inputitem">
         <label for="postcode" class="<?= $error['postcode'] ?>"><?= $this->lang->line('label_postcode') ?></label>
@@ -45,9 +45,9 @@
     </div>
     <div class="inputitem">
         <label for="degree_year" class="<?= $error['degree_year'] ?>"><?= $this->lang->line('label_degree_year') ?></label>
-        <?= form_dropdown(set_value('degree_year_id')) ?>
+        <?= form_dropdown('degree_year', $years, set_value('degree_year_id')) ?>
     </div>
     <div class="inputitem">
-        <?= form_submit(array('name' => 'submit'), $this->lang->line('button_register')) ?>
+        <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_register')) ?>
     </div>
 <?= form_close() ?>

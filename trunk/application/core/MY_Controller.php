@@ -36,6 +36,19 @@ abstract class MY_Controller extends CI_Controller
         
         return $result;
     }
+    
+    protected function generate_years($back, $forward)
+    {
+        $result = array();
+        $gen_year_start = 2012-$back;
+        
+        for($i = 1; $i <= $back+$forward; $i++)
+        {
+            $result[$i] = $gen_year_start++;
+        }
+        
+        return $result;
+    }
 }
 // END Sub-Controller class
 
