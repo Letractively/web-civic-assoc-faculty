@@ -48,15 +48,15 @@ class Auth extends MY_Controller
         }
         
         $data = array(
-            'error'         => $this->form_validation->form_required(array('name','surname', 'password', 'password_again', 'email', 'phone','study_program_id', 'degree_id', 'place_of_birth_id', 'postcode_id', 'degree_year_id')),
-            'programs'      => $this->mstudy_programs->all(),
-            'degrees'       => $this->mdegrees->all(),
-            'places'        => $this->mplaces->all(),
-            'postcodes'     => $this->mpostcodes->all(),
-            'years'         => $this->myears->all(),
+            'error'         => $this->form_validation->form_required(array('name','surname','username', 'password', 'password_again', 'email', 'phone','study_program_id', 'degree_id', 'place_of_birth_id', 'postcode_id', 'degree_year_id')),
+            //'programs'      => $this->mstudy_programs->all(),
+            'degrees'       => $this->recompile_into_array($this->mdegrees->all(), 'degree_id', 'degree_name'),
+            //'places'        => $this->mplaces->all(),
+           // 'postcodes'     => $this->mpostcodes->all(),
+            //'years'         => $this->myears->all(),
         );
         
-        array_debug($degrees);
+        //array_debug($degrees);
         
         $this->load->view('container', array_merge($this->data, $data)); 
     }

@@ -24,6 +24,18 @@ abstract class MY_Controller extends CI_Controller
         $this->lang->load('default', $this->language);
         $this->lang->load("{$this->router->class}", $this->language);
     }
+    
+    protected function recompile_into_array($array, $key, $value)
+    {
+        $result = array();
+        
+        foreach ($array as $obj) 
+        {
+            $result[$obj->$key]   =   $obj->$value;
+        }
+        
+        return $result;
+    }
 }
 // END Sub-Controller class
 

@@ -12,7 +12,6 @@
     </head>
     <body>
         <?php
-            echo $view.'<br />';
             $this->load->view($view);
         ?>
     </body>

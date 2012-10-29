@@ -2,6 +2,7 @@
 
 $lang['label_name']                 =   'Meno';
 $lang['label_surname']              =   'Priezvisko';
+$lang['label_username']             =   'Nick';
 $lang['label_password']             =   'Heslo';
 $lang['label_password_again']       =   'Heslo znovu';
 $lang['label_email']                =   'Email';

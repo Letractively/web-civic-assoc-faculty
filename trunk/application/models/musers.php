@@ -21,6 +21,7 @@ class MUsers extends CI_Model
         $data = array(
             'user_name'                 => $this->input->post('name'),
             'user_surname'              => $this->input->post('surname'),
+            'user_username'             => $this->input->post('username'),
             'user_password'             => $this->input->post('password'),
             'user_email'                => $this->input->post('email'),
             'user_phone'                => $this->input->post('phone'),
