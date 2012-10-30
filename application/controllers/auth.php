@@ -58,7 +58,7 @@ class Auth extends MY_Controller
             'programs'      => $this->recompile_into_array($this->mstudy_programs->all(), 'study_program_id', 'study_program_name'),
             'degrees'       => $this->recompile_into_array($this->mdegrees->all(), 'degree_id', 'degree_name'),
             'places'        => $this->recompile_into_array($this->mplaces->all(), 'place_of_birth_id', 'place_of_birth_name'),
-            'years'         => $this->generate_years(60,50)
+            'years'         => $this->generate_years(60,2012,50)
        );
         
         $this->load->view('container', array_merge($this->data, $data)); 
