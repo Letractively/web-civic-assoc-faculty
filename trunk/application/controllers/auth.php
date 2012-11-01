@@ -41,7 +41,8 @@ class Auth extends MY_Controller
                     );
                     if(  $this->musers->registration( $this->input->post(), $params  ) == TRUE )
                     {   
-                        echo 'success<br />';
+                        redirect('show_message/index/'.$this->lang->line('success_registration'));
+                        //echo 'success<br />';
                         //redirect na show_message view s hlaskou success
                     }
                     else{ echo 'error1';/* redirect na show_message view s hlaskou DB add error*/}

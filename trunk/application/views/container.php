@@ -11,7 +11,7 @@
         <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
     </head>
     <body>
-        <?php
+        <?php               
            $this->load->view($view);
         ?>
     </body>
