@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MStudy_programs extends CI_Model
+class MStudy_programs extends MY_Model
 {
     public function all()
     {

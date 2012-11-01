@@ -23,6 +23,7 @@ abstract class MY_Controller extends CI_Controller
     {
         $this->lang->load('default', $this->language);
         $this->lang->load("{$this->router->class}", $this->language);
+        $this->lang->load('db_message',$this->language);
     }
     
     protected function recompile_into_array($array, $key, $value)
