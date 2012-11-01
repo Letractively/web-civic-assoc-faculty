@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MPlaces extends CI_Model
+class MPlaces extends MY_Model
 {
     public function all()
     {

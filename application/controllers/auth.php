@@ -36,7 +36,10 @@ class Auth extends MY_Controller
             {
                 if( $this->musers->check_login($this->input->post('email')) == TRUE )
                 {
-                    if(  $this->musers->registration( $this->input->post() ) == TRUE )
+                    $params = array(
+                        'event'     =>    $this->lang->line('add_user_system') 
+                    );
+                    if(  $this->musers->registration( $this->input->post(), $params  ) == TRUE )
                     {   
                         echo 'success<br />';
                         //redirect na show_message view s hlaskou success

@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MUsers extends CI_Model
+class MUsers extends MY_Model
 {
     
     public function check_login( $email )
@@ -16,7 +16,7 @@ class MUsers extends CI_Model
             return TRUE;
     }
        
-    public function registration($param)
+    public function registration($param, $logger)
     {
         
         $this->db->query("  INSERT INTO users 
@@ -28,6 +28,7 @@ class MUsers extends CI_Model
                              '".$param['study_program_id']."','".$param['degree_id']."','".$param['place_of_birth_id']."',
                              '".$param['postcode']."','".$param['degree_year']."')
                          ");
+        $this->logger($logger);
         $q = $this->db->query("SELECT user_id FROM users");
         
         $row = $q->last_row();
