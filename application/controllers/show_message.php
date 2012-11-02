@@ -7,7 +7,7 @@ class Show_message extends MY_Controller
         $this->load->model('musers');
         
         $data = array(
-            'view'              => "{$this->router->class}",
+            'view'              => "{$this->router->class}_view",
             'title' 		=> 'Homepage'   //Title na aktualnej stranke
         );
             

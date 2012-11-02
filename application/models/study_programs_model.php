@@ -1,9 +1,17 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MStudy_programs extends MY_Model
+class Study_programs_model extends MY_Model
 {
     public function all()
     {
+        /*
+        * all
+        * 
+        * Funkcia vrati vsetky polozky z databazy
+        * 
+        * @access      public
+        * @return      array of objects
+        */
         $q = $this->db->query(" SELECT * 
                                 FROM study_programs
                               ");
