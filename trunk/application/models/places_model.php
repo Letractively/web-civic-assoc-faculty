@@ -1,7 +1,15 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MPlaces extends MY_Model
+class Places_model extends MY_Model
 {
+    /*
+     * all
+     * 
+     * Funkcia vrati vsetky polozky z databazy
+     * 
+     * @access      public
+     * @return      array of objects
+     */
     public function all()
     {
         $q = $this->db->query(" SELECT * 

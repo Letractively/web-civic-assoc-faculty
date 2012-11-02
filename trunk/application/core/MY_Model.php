@@ -2,11 +2,27 @@
 
 class MY_Model extends CI_Model
 {
+    /*
+     * Constructor
+     * 
+     * @access      private
+     * @return      void
+     */
     public function __construct()
     {
 	parent::__construct();
     }
     
+    /*
+     * logger
+     * 
+     * Funkcia vykonava logovanie udalosti, ktore sa stali s databazou do jednej
+     * samostatnej tabulky v databaze
+     * 
+     * @access      public
+     * @param       array
+     * @return      void
+     */
     protected function logger($params)
     {
         if(in_array('user_id', $params))

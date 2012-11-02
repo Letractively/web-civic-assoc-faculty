@@ -1,9 +1,17 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MUsers extends MY_Model
+class Users_model extends MY_Model
 {
-    
-    public function check_login( $email )
+    /*
+     * check_unique_email
+     * 
+     * Funkcia strontroluje ci sa uz dany email nenachadza v databaze
+     * 
+     * @access      public
+     * @param       string
+     * @return      boolean
+     */
+    public function check_unique_email( $email )
     {
         $q = $this->db->query(" SELECT user_email 
                                 FROM users 
@@ -16,6 +24,19 @@ class MUsers extends MY_Model
             return TRUE;
     }
        
+    /*
+     * registration
+     * 
+     * Funkcia registruje navstevnika stranky do systemu obcianskeho
+     * zdruzenia a zaradi ho na listinu schvalovania administratorom, ktory ho
+     * schvali manualne ked pride platba. Taktiez prerozdeli jeho peniaze medzi
+     * kategorie tak ako si on zelal
+     * 
+     * @access      public
+     * @param       array
+     * @param       array
+     * @return      boolean
+     */
     public function registration($param, $logger)
     {
         
@@ -52,6 +73,17 @@ class MUsers extends MY_Model
         return $this->insert_into_fin_redistributes($row->user_id, $p_categories_ratios);
     }
     
+    /*
+     * insert_into_fin_redistributes
+     * 
+     * Funkcia zaeviduje poziadavku navstevnika ako maju byt prerozdelene jeho
+     * peniaze
+     * 
+     * @access      private
+     * @param       integer
+     * @param       array
+     * @return      boolean
+     */
     private function insert_into_fin_redistributes($user_id, $array)
     {
         foreach($array as $key => $value)

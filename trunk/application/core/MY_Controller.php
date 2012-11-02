@@ -5,20 +5,42 @@ abstract class MY_Controller extends CI_Controller
     protected $data 			= array();
     public $language                    = '';
 
+    /*
+     * Constructor
+     * 
+     * Toto je konstruktor, ktory sa zavola po nacitani aplikacie, ked sa spusti
+     * tak najprv zavola konstruktor jej nadradenej classy (CI_Controller)
+     * 
+     * @access      private
+     * 
+     */
     public function __construct()
     {
 	parent::__construct();
         
+        $data = array(
+            'view'  => $this->router->class.'_'.$this->router->method.'_view',
+	);
+        
+        $this->data = array_merge($this->data, $data);
         $this->load_languages();
     }
     
-    public function index()
-    {
-        $data = array(
-            'view'  => $this->router->class,
-	);
-    }
-    
+    /*
+     * load_languages
+     * 
+     * Tato funkcia nacita vsetky potrebne language files z priecinku language
+     * prvy load je default lang file, ktory obsahuje jazykove polozky, ktore su
+     * dostupne skrz celu aplikacie v hociktorom controllery,modely alebo view
+     * Druhy loaduje lang file daneho controllera, ktory obsahuje jazykove 
+     * polozky, ktore su dostupne len v danom controllery(vo vsetkych metodach 
+     * daneho controllera)
+     * Treti lang file zabezpecuje nacitanie databazovych hlasok, ktore su 
+     * dostupne, skrz celu aplikaciu, sluzia na logovanie udalosti do databazy
+     * 
+     * @access      public
+     * @return      void
+     */
     protected function load_languages()
     {
         $this->lang->load('default', $this->language);
@@ -26,6 +48,19 @@ abstract class MY_Controller extends CI_Controller
         $this->lang->load('db_message',$this->language);
     }
     
+    /*
+     * recompile_into_array
+     * 
+     * Tato funkcia prerobi vstupne pole objektov na pole kluc => hodnota, ktore
+     * sa pouziva v comboboxe na view (form_dropdown()). Pricom kluc je zvacsa
+     * daka ciselna hodnota (integer - ID z DB).
+     * 
+     * @access      public
+     * @param       array
+     * @param       mixed
+     * @param       mixed
+     * @return      array
+     */
     protected function recompile_into_array($array, $key, $value)
     {
         $result = array();
@@ -38,6 +73,18 @@ abstract class MY_Controller extends CI_Controller
         return $result;
     }
     
+    /*
+     * generate_years
+     * 
+     * Tato funkcia sluzi na vygenerovanie rokov v urcitom casovom useku. Aky
+     * velky bude tento casovy usek, zalezi od vstupnych parametrov
+     * 
+     * @access      public
+     * @param       integer
+     * @param       integer
+     * @param       integer
+     * @return      array
+     */
     protected function generate_years($back, $default, $forward)
     {
         $result = array();
@@ -51,7 +98,6 @@ abstract class MY_Controller extends CI_Controller
         return $result;
     }
 }
-// END Sub-Controller class
 
 /* End of file MY_Controller.php */
 /* Location: ./application/core/MY_Controller.php */
