@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class   Auth extends MY_Controller
+class Auth extends MY_Controller
 {
  
     /*
@@ -9,12 +9,12 @@ class   Auth extends MY_Controller
      * @return      void
      * 
      */
-    function __construct() {
+    function __construct() 
+    {
         parent::__construct();
         $this->load->model('users_model');
         
         $data = array(
-            
             'title' 		=> 'Homepage'   //Title na aktualnej stranke
         );
             
