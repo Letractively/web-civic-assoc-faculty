@@ -40,6 +40,20 @@ class Excursion_events extends MY_Controller
         
     }
     
+    public function book()
+    {
+        
+    }
+    
+    public function lecturers($excursion_id = 0)
+    {
+        
+    }
+    
+    public function lecturer_times($user_id)
+    {
+        
+    }
     
 }
 
