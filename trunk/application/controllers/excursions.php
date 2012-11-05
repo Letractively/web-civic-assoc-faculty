@@ -19,6 +19,11 @@ class Excursions extends MY_Controller
             
         $this->data = array_merge($this->data, $data);
     }
+            
+    public function add()
+    {
+        
+    }
     
     /*
      * index
@@ -27,11 +32,6 @@ class Excursions extends MY_Controller
      * 
      */
     public function index($from = '', $to = '')
-    {
-        
-    }
-        
-    public function add()
     {
         
     }

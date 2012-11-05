@@ -30,12 +30,12 @@ class Project_categories extends MY_Controller
         
     }
     
-    public function detail($project_category_id)
+    public function add()
     {
         
     }
     
-    public function add()
+    public function detail($project_category_id)
     {
         
     }
