@@ -49,21 +49,20 @@ class Auth extends MY_Controller
      */
     public function registration()
     {
-        $this->load->model('study_programs_model');
-        $this->load->model('degrees_model');
+        $this->load->model('selecter');
+        $this->load->model('inserter');
         $this->load->model('places_model');
-        $this->load->model('project_categories_model');
         
         if( $this->input->post('submit') )
         {
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") == TRUE )
             {
-                if( $this->musers->check_unique_email($this->input->post('email')) == TRUE )
+                if( $this->users_model->check_unique_email($this->input->post('email')) == TRUE )
                 {
                     $params = array(
                         'event'     =>    $this->lang->line('add_user_system') 
                     );
-                    if(  $this->musers->registration( $this->input->post(), $params  ) == TRUE )
+                    if(  $this->inserter->registration( $this->input->post(), $params  ) == TRUE )
                     {   
                         redirect('show_message/index/'.$this->lang->line('success_registration'));
                         //echo 'success<br />';
@@ -83,9 +82,9 @@ class Auth extends MY_Controller
                                                                             'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
                                                                             'project_category_5', 'project_category_6')
                                                                     ),
-            'numb_proj_cat' => $this->project_categories_model->count_project_categories(),
-            'programs'      => $this->recompile_into_array($this->study_programs_model->all(), 'study_program_id', 'study_program_name'),
-            'degrees'       => $this->recompile_into_array($this->degrees_model->all(), 'degree_id', 'degree_name'),
+            'numb_proj_cat' => $this->selecter->count_project_categories(),
+            'programs'      => $this->recompile_into_array($this->selecter->get_study_programs(), 'study_program_id', 'study_program_name'),
+            'degrees'       => $this->recompile_into_array($this->selecter->get_degrees(), 'degree_id', 'degree_name'),
             'places'        => $this->recompile_into_array($this->places_model->all(), 'place_of_birth_id', 'place_of_birth_name'),
             'years'         => $this->generate_years(60, 2012, 50)
        );
