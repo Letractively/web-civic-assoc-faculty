@@ -37,5 +37,15 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
+/*
+ * USER ROLES
+ */
+
+define('ROLE_ADMIN', 1);
+define('ROLE_OZ_MEMBER', 2);
+define('ROLE_EX_MEMBER', 3);
+define('ROLE_LECTURER', 4);
+
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
