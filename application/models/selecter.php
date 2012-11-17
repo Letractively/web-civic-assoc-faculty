@@ -29,8 +29,8 @@ class Selecter extends MY_Model
      */
     public function get_degrees()
     {
-        $q = $this->db->query(" SELECT * 
-                                FROM degrees
+        $q = $this->db->query(" SELECT d.degree_id
+                                FROM degrees d
                               ");
         return $q->result();
     }
