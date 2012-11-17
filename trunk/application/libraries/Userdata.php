@@ -44,4 +44,12 @@ class Userdata
 
 		return ( @$admin ) ? $admin : FALSE;
 	}
+        
+        public function get_role( $user_id )
+        {
+            $query =    $this->CI->db->query("  SELECT user_role
+                                                FROM users
+                                                WHERE user_id = '".$user_id."'");
+            return $query->row()->user_role;   
+        }
 }

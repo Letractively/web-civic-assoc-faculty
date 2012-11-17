@@ -30,17 +30,17 @@ class Auth extends MY_Controller
     public function index()
     {      
         //$this->session->set_userdata( array('user' => 3, 'logged_in' => TRUE) );
-        
+        $this->load->model('selecter');
+        $this->load->model('inserter');
         /*if($this->userdata->is_logged())
         {
             $logged = 'YES';
         }else{$logged = 'BITCH';}*/
         
         $data = array( 
-            'view'       => "{$this->router->class}_view",
-            //'logged'    => $logged
+            'view'       => "{$this->router->class}_view",    
         );
-        
+
         $this->load->view('container', array_merge($this->data, $data)); 
     }
     
