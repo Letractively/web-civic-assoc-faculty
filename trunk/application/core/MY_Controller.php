@@ -108,6 +108,23 @@ abstract class MY_Controller extends CI_Controller
         
         return $result;
     }
+    
+    protected function add( $method, $redirect )
+    {
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
+        
+        $this->load->model('inserter');
+        
+        if( $this->input->post('submit') )
+        {
+            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
+            {
+                $this->inserter->$method( $this->input->post() );
+                redirect( $redirect );
+            }
+        }
+    }
 }
 
 /* End of file MY_Controller.php */
