@@ -2,7 +2,16 @@
 
 class Selecter extends MY_Model
 {
-     /*
+    public function get_user( $param )
+    {
+        $q = $this->db->query(" SELECT user_id, user_role
+                                FROM users
+                                WHERE user_email = '".$param['email']."' AND
+                                      user_password = '".sha1($param['password'])."'
+                              ");   
+        return $q->row();
+    }
+    /*
         * get_study_programs
         * 
         * Funkcia vrati vsetky polozky z databazy

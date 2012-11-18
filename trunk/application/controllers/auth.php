@@ -12,7 +12,6 @@ class Auth extends MY_Controller
     function __construct() 
     {
         parent::__construct();
-        $this->load->model('users_model');
         
         $data = array(
             'title' 		=> 'Homepage'   //Title na aktualnej stranke
@@ -65,20 +64,16 @@ class Auth extends MY_Controller
         {
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") == TRUE )
             {
-                if( $this->users_model->check_unique_email($this->input->post('email')) == TRUE )
-                {
-                    $params = array(
-                        'event'     =>    $this->lang->line('add_user_system') 
-                    );
-                    if(  $this->inserter->registration( $this->input->post(), $params  ) == TRUE )
-                    {   
-                        redirect('show_message/index/'.$this->lang->line('success_registration'));
-                        //echo 'success<br />';
-                        //redirect na show_message view s hlaskou success
-                    }
-                    else{ echo 'error1';/* redirect na show_message view s hlaskou DB add error*/}
+                $params = array(
+                    'event'     =>    $this->lang->line('add_user_system') 
+                );
+                if(  $this->inserter->registration( $this->input->post(), $params  ) == TRUE )
+                {   
+                    redirect('show_message/index/'.$this->lang->line('success_registration'));
+                    //echo 'success<br />';
+                    //redirect na show_message view s hlaskou success
                 }
-                else{ echo 'error2';/*redirect na show_message view s hlaskou error*/}
+                else{ echo 'error1';/* redirect na show_message view s hlaskou DB add error*/}
             }
             else{ echo 'error3';/*redirect na show_message view s hlaskou error*/}          
         }
@@ -90,11 +85,12 @@ class Auth extends MY_Controller
                                                                             'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
                                                                             'project_category_5', 'project_category_6')
                                                                     ),
-            'numb_proj_cat' => $this->selecter->count_project_categories(),
-            'programs'      => $this->recompile_into_array($this->selecter->get_study_programs(), 'study_program_id', 'study_program_name'),
-            'degrees'       => $this->recompile_into_array($this->selecter->get_degrees(), 'degree_id', 'degree_name'),
-            'places'        => $this->recompile_into_array($this->places_model->all(), 'place_of_birth_id', 'place_of_birth_name'),
-            'years'         => $this->generate_years(60, 2012, 50)
+            'numb_proj_cat'     => $this->selecter->count_project_categories(),
+            'programs'          => $this->recompile_into_array($this->selecter->get_study_programs(), 'study_program_id', 'study_program_name'),
+            'degrees'           => $this->recompile_into_array($this->selecter->get_degrees(), 'degree_id', 'degree_name'),
+            'places'            => $this->recompile_into_array($this->places_model->all(), 'place_of_birth_id', 'place_of_birth_name'),
+            'years'             => $this->generate_years(60, 2012, 50),
+            'title' 		=> $this->lang->line('title_registration')   //Title na aktualnej stranke
        );
         
         $this->load->view('container', array_merge($this->data, $data)); 
@@ -110,7 +106,18 @@ class Auth extends MY_Controller
      */
     public function login()
     {
-        
+        if( $this->input->post('submit') )
+        {
+            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
+            {
+                $user_obj = $this->selecter->get_user( $this->input->post() );
+                if( $user_obj != '' )
+                {
+                    $this->session->set_userdata( array('user' => $user_obj->user_id, 'logged_in' => TRUE) );
+                    if( $user_obj->user_role == 1 )
+                }
+            }
+        }
     }
     
     /*
