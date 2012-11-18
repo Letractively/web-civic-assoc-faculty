@@ -167,6 +167,20 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean'
         )
     ),
+    'event_categories/add'          => array(
+        array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'
+        )
+    ),
+    'event_categories/edit'          => array(
+        array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'
+        )
+    ),
     'events/add'                    => array(
             array(
                 'field'     => 'event_category_id',
