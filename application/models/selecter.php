@@ -2,7 +2,7 @@
 
 class Selecter extends MY_Model
 {
-    public function get_user( $param )
+    public function get_login( $param )
     {
         $q = $this->db->query(" SELECT user_id, user_role
                                 FROM users

@@ -105,7 +105,7 @@ class Auth extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
                 {
-                    $user_obj = $this->selecter->get_user( $this->input->post() );
+                    $user_obj = $this->selecter->get_login( $this->input->post() );
                     if( $user_obj != '' )
                     {
                         $this->session->set_userdata( array('user' => $user_obj->user_id, 'logged_in' => TRUE, 'user_role' => $user_obj->user_role) );

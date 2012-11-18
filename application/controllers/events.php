@@ -31,6 +31,7 @@ class Events extends MY_Controller
             $this->load->model('selecter');
             
             $data = array(
+                'view'      => "{$this->router->class}_view",
                 'events'      => $this->selecter->get_events( $event_id )
             );
             $this->load->view('container', array_merge($this->data, $data));
@@ -39,7 +40,7 @@ class Events extends MY_Controller
         public function newest( $event_id = 0 )
         {
             $data = array(
-                'view'      => 'events_view'
+                'view'      => "{$this->router->class}_view",
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
@@ -47,7 +48,7 @@ class Events extends MY_Controller
         public function prior( $event_id = 0 )
         {
             $data = array(
-                'view'      => 'events_view'
+                'view'      => "{$this->router->class}_view",
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
