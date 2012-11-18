@@ -36,7 +36,7 @@
     </div>
     <div class="inputitem">
         <label for="study_program_id" class="<?= $error['study_program_id'] ?>"><?= $this->lang->line('label_study_program_id') ?></label>
-        <?= form_dropdown('study_program_id', $programs, set_value('study_program_id')) ?>
+        <?= form_dropdown('study_program_id', $study_programs, set_value('study_program_id')) ?>
     </div>
     <div class="inputitem">
         <label for="degree_id" class="<?= $error['degree_id'] ?>"><?= $this->lang->line('label_degree_id') ?></label>

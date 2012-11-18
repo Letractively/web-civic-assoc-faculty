@@ -77,12 +77,12 @@ class Auth extends MY_Controller
         $data = array(
             'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
                                                                             'email', 'phone', 'study_program_id', 'degree_id', 
-                                                                            'place_of_birth_id', 'postcode', 'degree_year',
+                                                                            'place_of_birth', 'postcode', 'degree_year',
                                                                             'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
                                                                             'project_category_5', 'project_category_6')
                                                                     ),
             'numb_proj_cat'     => $this->selecter->count_project_categories(),
-            'programs'          => $this->recompile_into_array($this->selecter->get_study_programs(), 'study_program_id', 'study_program_name'),
+            'study_programs'          => $this->recompile_into_array($this->selecter->get_study_programs(), 'study_program_id', 'study_program_name'),
             'degrees'           => $this->recompile_into_array($this->selecter->get_degrees(), 'degree_id', 'degree_name'),          
             'years'             => $this->generate_years(60, 2012, 50),
             'title' 		=> $this->lang->line('title_registration')   //Title na aktualnej stranke
