@@ -28,16 +28,13 @@ class Auth extends MY_Controller
      */
     public function index()
     {      
-        //$this->session->set_userdata( array('user' => 3, 'logged_in' => TRUE) );
         $this->load->model('selecter');
         $this->load->model('inserter');
-        /*if($this->userdata->is_logged())
-        {
-            $logged = 'YES';
-        }else{$logged = 'BITCH';}*/
         
         $data = array( 
-            'view'       => "{$this->router->class}_view",    
+            'view'       => "{$this->router->class}_view",
+            'posts'      => $this->selecter->get_posts(),
+            'events'     => $this->selecter->get_events()
         );
 
         $this->load->view('container', array_merge($this->data, $data)); 
