@@ -129,6 +129,44 @@ $config = array(
             'rules'     => 'trim|required|xss_clean'
         )
     ),
+    'degrees/add'                   => array(
+            array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'  
+            ),
+            array(
+                 'field'     => 'grade',
+                'label'     => 'lang:label_grade',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            )
+    ),
+    'degrees/edit'                  => array(
+           array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'  
+            ),
+            array(
+                'field'     => 'grade',
+                'label'     => 'lang:label_grade',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            )
+    ),
+    'email_types/add'               => array(
+        array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'
+        )
+    ),
+    'email_types/edit'               => array(
+        array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'
+        )
+    ),
     'events/add'                    => array(
             array(
                 'field'     => 'event_category_id',
