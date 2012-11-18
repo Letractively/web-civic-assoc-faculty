@@ -15,8 +15,8 @@ $config = array(
             'rules'     => 'trim|required|xss_clean'
         ),
         array(
-            'field'     => 'username',
-            'label'     => 'lang:label_username',
+            'field'     => 'login',
+            'label'     => 'lang:label_login',
             'rules'     => 'trim|required|xss_clean'
         ),
         array(
@@ -105,7 +105,7 @@ $config = array(
             'rules'     => 'trim|integer'
         )
     ),
-    'auth/login'                 => array(
+    'auth/login'                    => array(
         array(
             'field'     => 'email',
             'label'     => 'lang:label_email',
@@ -117,6 +117,82 @@ $config = array(
             'rules'     => 'required|trim|xss_clean'
         )
     ),
+    'correspondence/index'          => array(
+        array(
+            'field'     => 'correspondence_subject',
+            'label'     => 'lang:label_correspondence_subject',
+            'rules'     => 'required|trim|xss_clean'
+        ),
+        array(
+            'field'     => 'correspondence_content',
+            'label'     => 'lang:label_correspondence_content',
+            'rules'     => 'trim|required|xss_clean'
+        )
+    ),
+    'events/add'                    => array(
+            array(
+                'field'     => 'event_category_id',
+                'label'     => 'lang:label_event_category_id',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'priority',
+                'label'     => 'lang:label_prioriy',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'from',
+                'label'     => 'lang:label_from',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'to',
+                'label'     => 'lang:label_to',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'about',
+                'label'     => 'lang:label_about',
+                'rules'     => 'trim|required|xss_clean'
+            )
+    ),
+    'events/edit'                    => array(
+            array(
+                'field'     => 'event_category_id',
+                'label'     => 'lang:label_event_category_id',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'priority',
+                'label'     => 'lang:label_prioriy',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'from',
+                'label'     => 'lang:label_from',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'to',
+                'label'     => 'lang:label_to',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'about',
+                'label'     => 'lang:label_about',
+                'rules'     => 'trim|required|xss_clean'
+            )
+    )
 );
 
 /* End of file form_validation.php */
