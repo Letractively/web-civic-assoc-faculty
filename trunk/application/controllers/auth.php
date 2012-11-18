@@ -113,11 +113,13 @@ class Auth extends MY_Controller
                 $user_obj = $this->selecter->get_user( $this->input->post() );
                 if( $user_obj != '' )
                 {
-                    $this->session->set_userdata( array('user' => $user_obj->user_id, 'logged_in' => TRUE) );
+                    $this->session->set_userdata( array('user' => $user_obj->user_id, 'logged_in' => TRUE, 'user_role' => $user_obj->user_role) );
                     if( $user_obj->user_role == 1 )
+                        $this->session->set_userdata( array('admin' => TRUE) );
                 }
             }
         }
+        redirect('auth');
     }
     
     /*
@@ -130,7 +132,10 @@ class Auth extends MY_Controller
      */
     public function logout()
     {
-        
+        $this->session->unset_userdata('logged_in');
+        $this->session->unset_userdata('admin');
+	$this->session->unset_userdata('user');
+	redirect(base_url());
     }
     
 }

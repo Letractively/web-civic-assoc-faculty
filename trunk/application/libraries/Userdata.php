@@ -40,7 +40,7 @@ class Userdata
 		$logged_in = $this->CI->session->userdata('logged_in');
 
 		if( $logged_in )
-			$admin = $this->CI->session->userdata('is_admin');
+			$admin = $this->CI->session->userdata('admin');
 
 		return ( @$admin ) ? $admin : FALSE;
 	}
