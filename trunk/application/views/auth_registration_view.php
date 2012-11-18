@@ -43,8 +43,8 @@
         <?= form_dropdown('degree_id', $degrees, set_value('degree_id')) ?>
     </div>
     <div class="inputitem">
-        <label for="place_of_birth_id" class="<?= $error['place_of_birth_id'] ?>"><?= $this->lang->line('label_place_of_birth_id') ?></label>
-        <?= form_dropdown('place_of_birth_id', $places, set_value('place_of_birth_id')) ?>
+        <label for="place_of_birth" class="<?= $error['place_of_birth'] ?>"><?= $this->lang->line('label_place_of_birth') ?></label>
+        <?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => ''.$error['place_of_birth']), set_value('place_of_birth')) ?>
     </div>
     <div class="inputitem">
         <label for="postcode" class="<?= $error['postcode'] ?>"><?= $this->lang->line('label_postcode') ?></label>

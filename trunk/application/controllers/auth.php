@@ -55,7 +55,6 @@ class Auth extends MY_Controller
     {
         $this->load->model('selecter');
         $this->load->model('inserter');
-        $this->load->model('places_model');
         
         if( $this->input->post('submit') )
         {
@@ -84,8 +83,7 @@ class Auth extends MY_Controller
                                                                     ),
             'numb_proj_cat'     => $this->selecter->count_project_categories(),
             'programs'          => $this->recompile_into_array($this->selecter->get_study_programs(), 'study_program_id', 'study_program_name'),
-            'degrees'           => $this->recompile_into_array($this->selecter->get_degrees(), 'degree_id', 'degree_name'),
-            'places'            => $this->recompile_into_array($this->places_model->all(), 'place_of_birth_id', 'place_of_birth_name'),
+            'degrees'           => $this->recompile_into_array($this->selecter->get_degrees(), 'degree_id', 'degree_name'),          
             'years'             => $this->generate_years(60, 2012, 50),
             'title' 		=> $this->lang->line('title_registration')   //Title na aktualnej stranke
        );
