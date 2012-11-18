@@ -49,11 +49,15 @@ class Degrees extends MY_Controller
                 
             $this->load->view('container', array_merge($this->data, $data));*/
             
-            parent::add('add_degree', $this->router->class);
+            parent::add('add_degree', $this->router->class, $this->router->method);
+            
+            $this->load->model('selecter');
             
             $data = array(
-                'view'              => "{$this->router->class}_view"
+                'view'              => "{$this->router->class}_view",
+                'degrees'           => $this->selecter->get_degrees()
             );
+                
             $this->load->view('container', array_merge($this->data, $data));
         }
         

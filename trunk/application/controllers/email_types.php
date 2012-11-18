@@ -43,7 +43,7 @@ class Email_types extends MY_Controller
     
     public function add()
     {
-        $this->load->model('inserter');
+        /*$this->load->model('inserter');
         
         if( $this->input->post('submit') )
         {
@@ -52,12 +52,16 @@ class Email_types extends MY_Controller
                 $this->inserter->add_email_type( $this->input->post() );
                 redirect('email_types');
             }
-        }
+        }*/
+        
+        parent::add('add_email_type', $this->router->class, $this->router->method);
+        
+        $this->load->model('selecter');
         
         $data = array(
-            'view'      => "{$this->router->class}_view"
+            'view'              => "{$this->router->class}_view",
+            'email_types'       => $this->selecter->get_email_types()
         );
-            
         $this->load->view('container', array_merge($this->data, $data));
     }
     

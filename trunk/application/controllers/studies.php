@@ -33,7 +33,15 @@ class Studies extends MY_Controller
     
     public function add()
     {
+        parent::add('add_study_program', $this->router->class, $this->router->method);
         
+        $this->load->model('selecter');
+        
+        $data = array(
+            'view'              => "{$this->router->class}_view",
+            'study_programs'    => $this->selecter->get_study_programs()
+        );
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
     public function edit($study_id)
