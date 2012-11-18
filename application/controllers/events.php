@@ -68,7 +68,7 @@ class Events extends MY_Controller
             if( !$this->userdata->is_admin() )
                 redirect(base_url());
 
-            $this->load->model('inserter');
+            /*$this->load->model('inserter');
 
             if( $this->input->post('submit') )
             {
@@ -77,7 +77,11 @@ class Events extends MY_Controller
                     $this->inserter->add_event( $this->input->post() );
                     redirect('events/index');
                 }
-            }
+            }*/
+            
+            parent::add('add_event', $this->router->class, $this->router->method);
+            
+            $this->load->model('selecter');
 
             $data = array(
                 'event_categories'      => $this->selecter->get_event_categories(),

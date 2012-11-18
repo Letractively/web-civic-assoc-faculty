@@ -109,7 +109,7 @@ abstract class MY_Controller extends CI_Controller
         return $result;
     }
     
-    protected function add( $method, $redirect )
+    protected function add( $method, $class_valid, $method_valid )
     {
         if( !$this->userdata->is_admin() )
             redirect(base_url());
@@ -118,10 +118,27 @@ abstract class MY_Controller extends CI_Controller
         
         if( $this->input->post('submit') )
         {
-            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
+            if( $this->form_validation->run("{$class_valid}/{$method_valid}") )
             {
                 $this->inserter->$method( $this->input->post() );
-                redirect( $redirect );
+                redirect( $class_valid );
+            }
+        }
+    }
+    
+    protected function add_param( $method, $param, $class_valid, $method_valid )
+    {
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
+        
+        $this->load->model('inserter');
+        
+        if( $this->input->post('submit') )
+        {
+            if( $this->form_validation->run("{$class_valid}/{$method_valid}") )
+            {
+                $this->inserter->$method( $param, $this->input->post() );
+                redirect( $class_valid );
             }
         }
     }

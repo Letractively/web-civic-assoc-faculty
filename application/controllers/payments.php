@@ -13,8 +13,11 @@ class Payments extends MY_Controller
     {
         parent::__construct();
         
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
+        
         $data = array(
-            'title' 		=> ''   //Title na aktualnej stranke
+            'title' 		=> 'Platby'   //Title na aktualnej stranke
         );
             
         $this->data = array_merge($this->data, $data);
@@ -39,6 +42,18 @@ class Payments extends MY_Controller
     public function nopaid($pay_id = 0)
     {
         
+    }
+    
+    public function add()
+    {
+        parent::add('add_payments', $this->router->class, $this->router->method);
+        
+        $this->load->model('selecter');
+        
+        $data = array(
+            'view'              => "{$this->router->class}_view"
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
     }
     
     public function edit($pay_id)

@@ -43,7 +43,7 @@ class Event_categories extends MY_Controller
     
     public function add()
     {
-        $this->load->model('inserter');
+        /*$this->load->model('inserter');
         
         if( $this->input->post('submit') )
         {
@@ -52,11 +52,17 @@ class Event_categories extends MY_Controller
                 $this->inserter->add_event_category( $this->input->post() );
                 redirect("{$this->router->class}");
             }
-        }
+        }*/
+        
+        parent::add('add_event_category', $this->router->class, $this->router->method);
+        
+        $this->load->model('selecter');
         
         $data = array(
-            'view'              => "{$this->router->class}_view"
+            'view'              => "{$this->router->class}_view",
+            'event_categories'  => $this->selecter->get_event_categories()        
         );
+            
         $this->load->view('container', array_merge($this->data, $data));   
     }
     

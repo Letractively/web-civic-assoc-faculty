@@ -50,7 +50,9 @@ class Posts extends MY_Controller
     
     public function add()
     {
+        parent::add('add_post', $this->router->class, $this->router->method);
         
+        $this->load->view('container', $this->data);
     }
     
     public function edit( $post_id )
