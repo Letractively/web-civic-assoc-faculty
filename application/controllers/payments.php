@@ -17,7 +17,8 @@ class Payments extends MY_Controller
             redirect(base_url());
         
         $data = array(
-            'title' 		=> 'Platby'   //Title na aktualnej stranke
+            'title' 		=> 'Platby',   //Title na aktualnej stranke
+            'view'              => "{$this->router->class}_view"
         );
             
         $this->data = array_merge($this->data, $data);
@@ -31,7 +32,7 @@ class Payments extends MY_Controller
      */
     public function index($pay_id = 0)
     {
-        
+        $this->load->view('container', $this->data); 
     }
     
     public function paid($pay_id = 0)
@@ -48,17 +49,14 @@ class Payments extends MY_Controller
     {
         parent::add('add_payments', $this->router->class, $this->router->method);
         
-        $this->load->model('selecter');
-        
-        $data = array(
-            'view'              => "{$this->router->class}_view"
-        );
-        $this->load->view('container', array_merge($this->data, $data)); 
+        $this->load->view('container', $this->data); 
     }
     
     public function edit($pay_id)
     {
+        parent::edit('edit_payments', $pay_id, $this->router->class, $this->router->method);
         
+        $this->load->view('container', $this->data); 
     }
     
     public function delete($pay_id)

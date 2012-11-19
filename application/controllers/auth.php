@@ -65,7 +65,7 @@ class Auth extends MY_Controller
                     );
                     if(  $this->inserter->registration( $this->input->post(), $params  ) == TRUE )
                     {   
-                        redirect('show_message/index/'.$this->lang->line('success_registration'));
+                        //redirect('show_message/index/'.$this->lang->line('success_registration'));
                         //echo 'success<br />';
                         //redirect na show_message view s hlaskou success
                     }

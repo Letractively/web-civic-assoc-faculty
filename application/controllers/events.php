@@ -31,8 +31,7 @@ class Events extends MY_Controller
             $this->load->model('selecter');
             
             $data = array(
-                'view'      => "{$this->router->class}_view",
-                'events'      => $this->selecter->get_events( $event_id )
+                'view'      => "{$this->router->class}_view"
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
@@ -55,36 +54,14 @@ class Events extends MY_Controller
 
         public function detail( $event_id )
         {
-            $this->load->model('selecter');
-            
-            $data = array(
-                'event_detail'      => $this->selecter->get_event_detail( $event_id )
-            );
-            $this->load->view('container', array_merge($this->data, $data));
+            $this->load->view('container', $this->data );
         }
 
         public function add()
-        {
-            if( !$this->userdata->is_admin() )
-                redirect(base_url());
-
-            /*$this->load->model('inserter');
-
-            if( $this->input->post('submit') )
-            {
-                if( $this->form_validation("{$this->router->class}/{$this->router->method}") )
-                {
-                    $this->inserter->add_event( $this->input->post() );
-                    redirect('events/index');
-                }
-            }*/
-            
+        {            
             parent::add('add_event', $this->router->class, $this->router->method);
             
-            $this->load->model('selecter');
-
             $data = array(
-                'event_categories'      => $this->selecter->get_event_categories(),
                 'priorities'            => $this->generate_priorities(5)
             );
 
@@ -93,22 +70,9 @@ class Events extends MY_Controller
 
         public function edit( $event_id )
         {        
-            if( !$this->userdata->is_admin() )
-                    redirect(base_url());
-
-            $this->load->model('updater');
-
-            if( $this->input->post('submit') )
-            {
-                if( $this->form_validation("{$this->router->class}/{$this->router->method}") )
-                {
-                    $this->updater->edit_event( $event_id, $this->input->post() );
-                    redirect('events/index');
-                }
-            }
+            parent::edit('edit_event', $event_id, $this->router->class, $this->router->method);
 
             $data = array(
-                'event_categories'      => $this->selecter->get_event_categories(),
                 'priorities'            => $this->generate_priorities(5)
             );
 
