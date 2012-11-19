@@ -78,7 +78,36 @@ class Projects extends MY_Controller
 
         public function delete( $project_id )
         {
-
+            if( $project_id == '')
+                redirect ('404');
+            
+            parent::delete('remove_project', $project_id, $this->router->class);
+            
+            $data = array(
+              'view'            => 'confirm_view',
+              'type'            => 'delete',
+              'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+              'method'          => $this->router->class.'/'.$project_id
+            );
+            
+            $this->load->view('container', array_merge($this->data, $data));
+        }
+        
+        public function delete_project_item( $project_id, $project_item_id)
+        {
+            if( $project_id == '')
+                redirect ('404');
+            
+            parent::delete_param('remove_project_item', $project_id,$project_item_id, $this->router->class);
+            
+            $data = array(
+              'view'            => 'confirm_view',
+              'type'            => 'delete',
+              'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+              'method'          => $this->router->class.'/'.$project_id.'/'.$project_item_id
+            );
+            
+            $this->load->view('container', array_merge($this->data, $data));
         }
 }
 

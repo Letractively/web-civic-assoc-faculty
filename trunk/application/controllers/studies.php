@@ -48,7 +48,19 @@ class Studies extends MY_Controller
     
     public function delete( $study_id )
     {
-        
+        if( $study_id == '')
+                redirect ('404');
+            
+        parent::delete('remove_study_program', $study_id, $this->router->class);
+            
+        $data = array(
+            'view'            => 'confirm_view',
+            'type'            => 'delete',
+            'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+            'method'          => $this->router->class.'/'.$study_id
+        );
+            
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
 }

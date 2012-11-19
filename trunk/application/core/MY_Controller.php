@@ -156,6 +156,42 @@ abstract class MY_Controller extends CI_Controller
                 redirect( $class_valid );
         }
     }
+    
+    protected function delete( $method, $id, $class_valid )
+    {
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
+        
+        $action = $this->input->post('submit_action');
+        
+        $this->load->model('deleter');
+        
+        if( $action == $this->lang->line('confirm_yes') )
+        {
+            $this->$method($id);
+            redirect($class_valid);
+        }
+        elseif( $action == $this->lang->line('confirm_no') )
+            redirect($class_valid);
+    }
+    
+    protected function delete_param( $method, $id, $param, $class_valid )
+    {
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
+        
+        $action = $this->input->post('submit_action');
+        
+        $this->load->model('deleter');
+        
+        if( $action == $this->lang->line('confirm_yes') )
+        {
+            $this->$method($id, $param);
+            redirect($class_valid.'/'.$param);
+        }
+        elseif( $action == $this->lang->line('confirm_no') )
+            redirect($class_valid.'/'.$param);
+    }
 }
 
 /* End of file MY_Controller.php */

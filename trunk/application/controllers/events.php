@@ -81,12 +81,19 @@ class Events extends MY_Controller
 
         public function delete( $event_id )
         {
-            if( !$this->userdata->is_admin() )
-                redirect(base_url());
-
-            $this->load->model('deleter');
-            $this->deleter->remove_event( $event_id );
-            redirect('events/index');                
+            if( $event_id == '')
+                redirect ('404');
+            
+            parent::delete('remove_event', $event_id, $this->router->class);
+            
+            $data = array(
+              'view'            => 'confirm_view',
+              'type'            => 'delete',
+              'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+              'method'          => $this->router->class.'/'.$event_id
+            );
+            
+            $this->load->view('container', array_merge($this->data, $data));            
         }
 }
 
