@@ -51,7 +51,19 @@ class Email_types extends MY_Controller
     
     public function delete($email_type_id)
     {
-        
+        if( $email_type_id == '')
+                redirect ('404');
+            
+        parent::delete('remove_email_type', $email_type_id, $this->router->class);
+            
+        $data = array(
+            'view'            => 'confirm_view',
+            'type'            => 'delete',
+            'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+            'method'          => $this->router->class.'/'.$email_type_id
+        );
+            
+        $this->load->view('container', array_merge($this->data, $data));
     }
 }
 

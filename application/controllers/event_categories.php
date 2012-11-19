@@ -51,7 +51,19 @@ class Event_categories extends MY_Controller
     
     public function delete($event_category_id)
     {
-        
+        if( $event_category_id == '')
+                redirect ('404');
+            
+        parent::delete('remove_event_category', $event_category_id, $this->router->class);
+            
+        $data = array(
+            'view'            => 'confirm_view',
+            'type'            => 'delete',
+            'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+            'method'          => $this->router->class.'/'.$event_category_id
+        );
+            
+        $this->load->view('container', array_merge($this->data, $data)); 
     }
     
 }

@@ -55,7 +55,19 @@ class Posts extends MY_Controller
     
     public function delete( $post_id )
     {
-        
+        if( $post_id == '')
+                redirect ('404');
+            
+        parent::delete('remove_post', $post_id, $this->router->class);
+            
+        $data = array(
+            'view'            => 'confirm_view',
+            'type'            => 'delete',
+            'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+            'method'          => $this->router->class.'/'.$post_id
+        );
+            
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
     public function modifiers( $post_id )

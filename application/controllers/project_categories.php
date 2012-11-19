@@ -58,7 +58,19 @@ class Project_categories extends MY_Controller
     
     public function delete( $project_category_id )
     {
-        
+        if( $project_category_id == '')
+                redirect ('404');
+            
+        parent::delete('remove_project_category', $project_category_id, $this->router->class);
+            
+        $data = array(
+            'view'            => 'confirm_view',
+            'type'            => 'delete',
+            'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+            'method'          => $this->router->class.'/'.$project_category_id
+        );
+            
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
 }

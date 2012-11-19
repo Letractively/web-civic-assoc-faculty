@@ -1,7 +1,6 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+    $message = new Message();
+    $message->generate_message( $type, $this->lang->line('confirm_'.$type.'_question'), 
+                                $method, $this->lang->line('confirm_'.$type.'_title'), 
+                                $langs);
 ?>

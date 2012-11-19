@@ -59,9 +59,21 @@ class Payments extends MY_Controller
         $this->load->view('container', $this->data); 
     }
     
-    public function delete($pay_id)
+    public function delete( $pay_id )
     {
-        
+        if( $pay_id == '')
+                redirect ('404');
+            
+        parent::delete('remove_payments', $pay_id, $this->router->class);
+            
+        $data = array(
+            'view'            => 'confirm_view',
+            'type'            => 'delete',
+            'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+            'method'          => $this->router->class.'/'.$pay_id
+        );
+            
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
 }
