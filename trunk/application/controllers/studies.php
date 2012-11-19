@@ -14,7 +14,8 @@ class Studies extends MY_Controller
         parent::__construct();
         
         $data = array(
-            'title' 		=> ''   //Title na aktualnej stranke
+            'title' 		=> 'Štúdijné programy',   //Title na aktualnej stranke
+            'view'              => "{$this->router->class}_view"
         );
             
         $this->data = array_merge($this->data, $data);
@@ -28,28 +29,24 @@ class Studies extends MY_Controller
      */
     public function index()
     {
-        
+        $this->load->view('container', $this->data);
     }
     
     public function add()
     {
         parent::add('add_study_program', $this->router->class, $this->router->method);
         
-        $this->load->model('selecter');
-        
-        $data = array(
-            'view'              => "{$this->router->class}_view",
-            'study_programs'    => $this->selecter->get_study_programs()
-        );
-        $this->load->view('container', array_merge($this->data, $data));
+        $this->load->view('container', $this->data);
     }
     
-    public function edit($study_id)
+    public function edit( $study_id )
     {
+        parent::edit('edit_study_program', $study_id, $this->router->class, $this->router->method);
         
+        $this->load->view('container', $this->data);
     }
     
-    public function delete($study_id)
+    public function delete( $study_id )
     {
         
     }

@@ -27,11 +27,8 @@ class Posts extends MY_Controller
      */
     public function index()
     {
-        $this->load->model('selecter');
-        
         $data = array(
-            'view'      => "{$this->router->class}_view",
-            'posts'     => $this->selecter->get_posts()
+            'view'      => "{$this->router->class}_view"
         );
         
         $this->load->view('container', array_merge($this->data, $data));
@@ -39,13 +36,7 @@ class Posts extends MY_Controller
     
     public function detail( $post_id )
     {
-        $this->load->model('selecter');
-        
-        $data = array(
-            'post_detail'   => $this->selecter->get_post_detail( $post_id )
-        );
-        
-        $this->load->view('container', array_merge($this->data, $data));
+        $this->load->view('container', $this->data);
     }
     
     public function add()
@@ -57,7 +48,9 @@ class Posts extends MY_Controller
     
     public function edit( $post_id )
     {
+        parent::edit('edit_posts', $post_id, $this->router->class, $this->router->method);
         
+        $this->load->view('container', $this->data);
     }
     
     public function delete( $post_id )

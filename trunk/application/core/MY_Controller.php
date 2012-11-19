@@ -126,7 +126,7 @@ abstract class MY_Controller extends CI_Controller
         }
     }
     
-    protected function add_param( $method, $param, $class_valid, $method_valid )
+    protected function add_param( $method, $id, $class_valid, $method_valid )
     {
         if( !$this->userdata->is_admin() )
             redirect(base_url());
@@ -137,9 +137,23 @@ abstract class MY_Controller extends CI_Controller
         {
             if( $this->form_validation->run("{$class_valid}/{$method_valid}") )
             {
-                $this->inserter->$method( $param, $this->input->post() );
+                $this->inserter->$method( $id, $this->input->post() );
                 redirect( $class_valid );
             }
+        }
+    }
+    
+    protected function edit( $method, $id, $class_valid, $method_valid )
+    {
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
+        
+        $this->load->model('updater');
+        
+        if( $this->form_validation->run("{$class_valid}/{$method_valid}") )
+        {
+            $this->updater->$method( $id, $this->input->post() );
+                redirect( $class_valid );
         }
     }
 }

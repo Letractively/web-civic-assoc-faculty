@@ -17,7 +17,8 @@ class Email_types extends MY_Controller
                 redirect(base_url());
         
         $data = array(
-            'title' 		=> 'Typy emailov'   //Title na aktualnej stranke
+            'title' 		=> 'Typy emailov',   //Title na aktualnej stranke
+            'view'          => "{$this->router->class}_view"
         );
             
         $this->data = array_merge($this->data, $data);
@@ -30,59 +31,22 @@ class Email_types extends MY_Controller
      * 
      */
     public function index()
-    {
-        $this->load->model('selecter');
-        
-        $data = array(
-            'view'          => "{$this->router->class}_view",
-            'email_types'   => $this->selecter->get_email_types()
-        );
-            
-        $this->load->view('container', array_merge($this->data, $data));
+    {            
+        $this->load->view('container', $this->data);
     }
     
     public function add()
-    {
-        $this->load->model('inserter');
-        
-        /*if( $this->input->post('submit') )
-        {
-            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
-            {
-                $this->inserter->add_email_type( $this->input->post() );
-                redirect('email_types');
-            }
-        }*/
-        
+    {        
         parent::add('add_email_type', $this->router->class, $this->router->method);
         
-        $this->load->model('selecter');
-        
-        $data = array(
-            'view'              => "{$this->router->class}_view",
-            'email_types'       => $this->selecter->get_email_types()
-        );
-        $this->load->view('container', array_merge($this->data, $data));
+        $this->load->view('container', $this->data);
     }
     
     public function edit($email_type_id)
     {
-        $this->load->model('updater');
-        
-        if( $this->input->post('submit') )
-        {
-            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
-            {
-                $this->inserter->edit_email_type( $email_type_id, $this->input->post() );
-                redirect('email_types');
-            }
-        }
-        
-        $data = array(
-            'view'      => "{$this->router->class}_view"
-        );
+        parent::edit('edit_email_type', $email_type_id, $this->router->class, $this->router->method);
             
-        $this->load->view('container', array_merge($this->data, $data));
+        $this->load->view('container', $this->data);
     }
     
     public function delete($email_type_id)

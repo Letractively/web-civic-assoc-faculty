@@ -2,19 +2,6 @@
 
 class Inserter extends MY_Model
 {
-    /*
-     * registration
-     * 
-     * Funkcia registruje navstevnika stranky do systemu obcianskeho
-     * zdruzenia a zaradi ho na listinu schvalovania administratorom, ktory ho
-     * schvali manualne ked pride platba. Taktiez prerozdeli jeho peniaze medzi
-     * kategorie tak ako si on zelal
-     * 
-     * @access      public
-     * @param       array
-     * @param       array
-     * @return      boolean
-     */
     public function registration($param, $logger)
     {
         

@@ -150,7 +150,7 @@ $config = array(
             array(
                 'field'     => 'grade',
                 'label'     => 'lang:label_grade',
-                'rules'     => 'trim|required|xss_clean|numeric'
+                'rules'     => 'trim|required|xss_clean|integer'
             )
     ),
     'email_types/add'               => array(
@@ -267,6 +267,28 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean|numeric'
             )
     ),
+    'payments/edit'                      => array(
+            array(
+                'field'     => 'vs',
+                'label'     => 'lang:label_vs',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'user_id',
+                'label'     => 'lang:label_user_id',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'total_sum',
+                'label'     => 'lang:label_total_sum',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'paid_sum',
+                'label'     => 'lang:label_paid_sum',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            )
+    ),
     'posts/add'                             => array(
             array(
                 'field'     => 'title',
@@ -279,7 +301,19 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean'
             )
     ),
-    'project_categories/detail'             => array(
+    'posts/edit'                             => array(
+            array(
+                'field'     => 'title',
+                'label'     => 'lang:label_subject',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'content',
+                'label'     => 'lang:label_content',
+                'rules'     => 'trim|required|xss_clean'
+            )
+    ),
+    'project_categories/detail'              => array(
             array(
                 'field'     => 'from',
                 'label'     => 'lang:label_from',
@@ -308,7 +342,56 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean|numeric'
             )
     ),
+    'project_categories/edit'                => array(
+            array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'cash',
+                'label'     => 'lang:label_capital',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            )
+    ),
     'projects/add'                          => array(
+            array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'about',
+                'label'     => 'lang:label_about',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'priority',
+                'label'     => 'lang:label_priority',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'project_category_id',
+                'label'     => 'lang:label_project_category_id',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'booked_cash',
+                'label'     => 'lang:label_booked_cash',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'from',
+                'label'     => 'lang:label_from',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'to',
+                'label'     => 'lang:label_to',
+                'rules'     => 'trim|required|xss_clean'
+            )
+    ),
+    'projects/edit'                          => array(
             array(
                 'field'     => 'name',
                 'label'     => 'lang:label_name',
@@ -367,7 +450,36 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean'
             )
     ),
+    'projects/edit_project_item'                 => array(
+            array(
+                'field'     => 'name',
+                'label'     => 'lang:label_item',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'price',
+                'label'     => 'lang:label_price',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'user',
+                'label'     => 'lang:label_user',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'date',
+                'label'     => 'lang:label_date',
+                'rules'     => 'trim|required|xss_clean'
+            )
+    ),
     'studies/add'                               => array(
+            array(
+                'field'     => 'name',
+                'label'     => 'lang:label_name',
+                'rules'     => 'trim|required|xss_clean'
+            )
+    ),
+    'studies/edit'                               => array(
             array(
                 'field'     => 'name',
                 'label'     => 'lang:label_name',
