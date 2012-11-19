@@ -3,7 +3,7 @@
 $CI =& get_instance();
 
 $config = array(
-    'auth/registration'                    => array(
+    'auth/registration'                   => array(
         array(
             'field'     => 'name',
             'label'     => 'lang:label_name',

@@ -240,7 +240,7 @@ class Grid
 			var td_confirm = document.createElement('td');
 			td_confirm.appendChild( createConfirmButton('uprav', 'edit') );
 			var td_cancel = document.createElement('td');
-			td_cancel.appendChild( createCancelButton('zruš') );
+			td_cancel.appendChild( createCancelButton('zruï¿½') );
 			row.appendChild(td_confirm);
 			row.appendChild(td_cancel);
 			
@@ -267,7 +267,7 @@ class Grid
 			var td_confirm = document.createElement('td');
 			td_confirm.appendChild( createConfirmButton('pridaj', 'add') );
 			var td_cancel = document.createElement('td');
-			td_cancel.appendChild( createCancelButton('zruš') );
+			td_cancel.appendChild( createCancelButton('zruï¿½') );
 			row.appendChild(td_confirm);
 			row.appendChild(td_cancel);
 			

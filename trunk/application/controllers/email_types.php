@@ -43,9 +43,9 @@ class Email_types extends MY_Controller
     
     public function add()
     {
-        /*$this->load->model('inserter');
+        $this->load->model('inserter');
         
-        if( $this->input->post('submit') )
+        /*if( $this->input->post('submit') )
         {
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
