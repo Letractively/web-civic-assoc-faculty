@@ -160,10 +160,6 @@ class Selecter extends MY_Model
             return $q->result();
     }
         
-    public function get_nopaid_payments($user_id)
-    {
-        
-    }
     
     public function get_event_detail($event_id)
     {
@@ -192,28 +188,7 @@ class Selecter extends MY_Model
                                ");
         return $q->result();
     }
-    
-    public function get_excursion_events($user_id)
-    {
-        
-    }
    
-    
-    //public function get_excursion_events($excursion_id){}
-    public function get_excursion_event_free($excursion_event_id)
-    {
-        
-    }
-    
-    public function get_excursion_detail($excursion_id)
-    {
-        
-    }
-      
-    public function get_excursion_event_detail($ex_event_id)
-    {
-        
-    }
     
     public function get_lecturers()
     {
@@ -252,39 +227,160 @@ class Selecter extends MY_Model
     
     public function get_post_detail($post_id)
     {
-        
+             $q = $this->db->query("SELECT p.post_title, p.post_content, p.post_author_id, 
+                                           p.post_date, pm.post_modifie_author_id, pm.post_modifie_date
+                                    FROM post_modifies pm
+                                    JOIN posts p ON (pm.post_modifie_post_id=p.post_id)
+                                    WHERE p.post_id=$post_id
+                                     ");
+             return $q->result();
     }
     
     public function get_post_modifiers($post_id)
     {
-        
+            $q = $this->db->query(" SELECT u.user_id, u.user_name, u.user_surname, pm_p.post_modifie_date
+                                    FROM users u
+                                    JOIN
+                                     (SELECT *
+                                       FROM post_modifies pm
+                                       JOIN posts p ON (pm.post_modifie_post_id=p.post_id)) pm_p 
+                                       ON (u.user_id=pm_p.post_modifie_author_id)
+                                    WHERE pm_p.post_id=$post_id
+                                     ");
+             return $q->result();
     }
     
     public function get_projects($cat_id)
     {
-        
-    }
-    
-    public function get_category_detail($cat_id)
-    {
-            $q = $this->db->query(" SELECT project_category_name, project_category_cash, transaktion_cash_from, transaction_cash_to
-                                    FROM email_types
+            $q = $this->db->query(" SELECT p.project_id, p.project_name,
+                                           p.project_booked_cash, 
+                                           sum(pi.project_item_price) AS project_spended_cash,
+                                           p.project_date_from, p.project_date_to
+                                    FROM project_items pi
+                                    JOIN projects p ON (pi.project_item_project_id=p.project_id)
+                                    WHERE p.project_project_category_id=$cat_id
                                   ");
             return $q->result();
     }
     
+    public function get_category_detail($cat_id)
+    {
+            
+    }
+    
     public function get_project_items($project_id)
     {
-        
+            $q = $this->db->query(" SELECT piu.project_item_name, piu.project_item_price,piu.user_id, piu.user_name, piu.user_surname, piu.project_item_date
+                                    FROM projects p
+                                    JOIN
+                                     (SELECT *
+                                      FROM project_items pi
+                                      JOIN users u ON (pi.project_item_user_id=u.user_id)) piu
+                                      ON (p.project_id=piu.project_item_project_id)
+                                    WHERE p.project_id=$project_id
+                                  ");
+            return $q->result();
     }
     
     public function get_project_detail($project_id)
     {
+            $q = $this->db->query(" SELECT p.project_name, p.project_about, p.project_priority, 
+                                           p.project_project_category_id, p.project_booked_cash, 
+                                           sum(pi.project_item_price) AS project_spended_cash,
+                                           p.project_date_from, p.project_date_to
+                                    FROM project_items pi
+                                    JOIN projects p ON (pi.project_item_project_id=p.project_id)
+                                    WHERE project_id=$project_id
+                                  ");
+            return $q->result();
+    }
+    
+    public function get_project_categories_total_cash()
+    {
+            $q = $this->db->query(" SELECT sum(project_category_cash)
+                                    FROM project_categories
+                                  ");
+            return $q->result();
+    }
+    
+    public function get_payments($user_id)
+    {
+        if($user_id==0){
+            $q = $this->db->query(" SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                          p.payment_paid_sum, p.payment_paid_time
+                                    FROM payments p
+                                    JOIN users u ON (p.payment_user_id=u.user_id)
+                                   
+                                  ");
+            return $q->result();
+        }   
+        else {
+        $q = $this->db->query(" SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                          p.payment_paid_sum, p.payment_paid_time
+                                    FROM payments p
+                                    JOIN users u ON (p.payment_user_id=u.user_id)
+                                    WHERE u.user_id=$user_id
+                                  ");
+            return $q->result();
+        }
+    }
+    
+     public function get_payments_lastpaid($user_id)
+    {
+            $q = $this->db->query("
+                                    SELECT p.payment_paid_sum, p.payment_paid_time, p.payment_total_sum  
+                                      FROM payments p
+                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                       WHERE u.user_id=$user_id 
+                                      ORDER BY p.payment_paid_time DESC
+                                   
+                                  ");
+            return $q->row(1);
+    }
+    
+    public function get_payments_nopaid($user_id)
+    {
+            $q = $this->db->query("
+                                    SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                          p.payment_paid_sum, p.payment_paid_time
+                                      FROM payments p
+                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                       WHERE u.user_id=$user_id AND p.payment_paid_sum<p.payment_total_sum
+                                      ORDER BY p.payment_paid_time DESC
+                                   
+                                  ");
+            return $q->result();
+    }
+    
+    public function get_payments_paid($user_id)
+    {
+         $q = $this->db->query("
+                                    SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                          p.payment_paid_sum, p.payment_paid_time
+                                      FROM payments p
+                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                       WHERE (u.user_id=$user_id) AND (p.payment_paid_sum>=p.payment_total_sum)
+                                      ORDER BY p.payment_paid_time DESC
+                                   
+                                  ");
+            return $q->result();
+    }
+    
+    public function get_transactions($pr_cat_id)
+    {
         
     }
     
-   
-    
+    public function get_user_detail($user_id)
+    {
+        $q = $this->db->query(" SELECT *
+                                FROM users u
+                                JOIN study_programs sp ON (u.study_program_id=sp.study_program_id) 
+                                JOIN degrees d ON (u.degree_id=d.degree_id)
+                                WHERE u.user_id=$user_id       
+                               ");
+        return $q->result();
+    }
 }
 
 /* End of file selecter.php */
