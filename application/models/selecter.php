@@ -130,15 +130,6 @@ class Selecter extends MY_Model
             return $q->result();
     }
     
-    public function get_user_detail($user_id)
-    {
-            $q = $this->db->query(" SELECT *
-                                    FROM users
-                                    WHERE user_id=$user_id
-                                  ");
-            return $q->result();
-    }
-    
     public function get_user($study_ids, $degrees, $degree_years)
     {
             $q = $this->db->query(" 
