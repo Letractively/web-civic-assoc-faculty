@@ -31,9 +31,6 @@ class Degrees extends MY_Controller
         
         public function delete( $degree_id )
         {   
-            if( $degree_id == '')
-                redirect ('404');
-            
             parent::delete('remove_degree', $degree_id, $this->router->class);
             
             $data = array(

@@ -31,7 +31,7 @@ class Users extends MY_Controller
         
     }
     
-    public function detail($user_id)
+    public function detail( $user_id )
     {
         
     }
@@ -41,14 +41,23 @@ class Users extends MY_Controller
         
     }
     
-    public function edit($user_id)
+    public function edit( $user_id )
     {
         
     }
     
-    public function delete($user_id)
+    public function delete( $user_id )
     {
+        parent::delete('remove_user', $user_id, $this->router->class);
         
+        $data = array(
+            'view'            => 'confirm_view',
+            'type'            => 'delete',
+            'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+            'method'          => $this->router->class.'/'.$user_id
+        );
+            
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
 }

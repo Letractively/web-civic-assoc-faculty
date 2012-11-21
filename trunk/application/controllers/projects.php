@@ -78,9 +78,6 @@ class Projects extends MY_Controller
 
         public function delete( $project_id )
         {
-            if( $project_id == '')
-                redirect ('404');
-            
             parent::delete('remove_project', $project_id, $this->router->class);
             
             $data = array(

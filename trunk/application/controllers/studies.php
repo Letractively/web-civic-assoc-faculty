@@ -48,9 +48,6 @@ class Studies extends MY_Controller
     
     public function delete( $study_id )
     {
-        if( $study_id == '')
-                redirect ('404');
-            
         parent::delete('remove_study_program', $study_id, $this->router->class);
             
         $data = array(
