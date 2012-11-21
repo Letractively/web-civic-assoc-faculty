@@ -33,8 +33,7 @@ class Auth extends MY_Controller
 
             $data = array( 
                 'view'       => "{$this->router->class}_view",
-                'posts'      => $this->selecter->get_posts(),
-                'events'     => $this->selecter->get_events()
+                'posts'      => $this->selecter->get_posts()
             );
 
             $this->load->view('container', array_merge($this->data, $data)); 
