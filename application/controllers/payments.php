@@ -61,9 +61,6 @@ class Payments extends MY_Controller
     
     public function delete( $pay_id )
     {
-        if( $pay_id == '')
-                redirect ('404');
-            
         parent::delete('remove_payments', $pay_id, $this->router->class);
             
         $data = array(

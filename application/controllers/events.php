@@ -81,9 +81,6 @@ class Events extends MY_Controller
 
         public function delete( $event_id )
         {
-            if( $event_id == '')
-                redirect ('404');
-            
             parent::delete('remove_event', $event_id, $this->router->class);
             
             $data = array(
