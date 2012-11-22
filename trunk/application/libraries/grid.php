@@ -168,30 +168,6 @@ class Grid
 			elem.appendChild(combobox);
 		}
 		
-		function createTextbox(name)
-		{
-			var textbox = document.createElement('input');
-			textbox.setAttribute('type','text');
-			textbox.setAttribute('name',name);
-			return textbox;
-		}
-		
-		function createCombobox(name,dataSource)
-		{
-			var combobox = document.createElement('select');
-			for (var i = 0; i < dataSource.length; ++i)
-			{
-				var option = document.createElement('option');
-				option.setAttribute('value',dataSource[i][0]);
-				if (i == 0)
-					option.setAttribute('selected','selected');
-				option.innerHTML = dataSource[i][1];
-				combobox.appendChild(option);
-			}
-			combobox.setAttribute('name',name);
-			return combobox;
-		}
-		
 		function removeElement(elem_id)
 		{
 			var elem = document.getElementById(elem_id);
@@ -238,42 +214,18 @@ class Grid
 
 			var row = document.getElementById('row'+id);
 			var td_confirm = document.createElement('td');
-			td_confirm.appendChild( createConfirmButton('uprav', 'edit') );
+			td_confirm.appendChild( createConfirmButton('potvrď', 'edit') );
 			var td_cancel = document.createElement('td');
-			td_cancel.appendChild( createCancelButton('zru�') );
+			td_cancel.appendChild( createCancelButton('zruš') );
 			row.appendChild(td_confirm);
 			row.appendChild(td_cancel);
 			
-			document.getElementById('grid_form').setAttribute('action', editURL+'/'+id);
+			if (id == 0)
+				document.getElementById('grid_form').setAttribute('action', addURL);
+			else
+				document.getElementById('grid_form').setAttribute('action', editURL+'/'+id);
 		}
 		
-		function addRowForInserting()
-		{
-			removeAllButtons();
-			var row = document.getElementById('row0');
-			
-			for (var col in cols)
-			{
-				var new_cell = document.createElement('td');
-				new_cell.setAttribute('id',col+'0');
-				if (cols[col] == 'textbox')
-					new_cell.appendChild(createTextbox(col));
-				else if (cols[col] == 'combobox')
-					new_cell.appendChild(createCombobox(col, combobox_dataSources[col]));
-
-				row.appendChild(new_cell);
-			}
-			
-			var td_confirm = document.createElement('td');
-			td_confirm.appendChild( createConfirmButton('pridaj', 'add') );
-			var td_cancel = document.createElement('td');
-			td_cancel.appendChild( createCancelButton('zru�') );
-			row.appendChild(td_confirm);
-			row.appendChild(td_cancel);
-			
-			document.getElementById('grid_table').appendChild(row);
-			document.getElementById('grid_form').setAttribute('action', addURL);
-		}
 	</script>
 	<?php
 	}
@@ -283,13 +235,13 @@ class Grid
 		$this->genjs();
 		
 		echo '<form id="grid_form" action="" method="get">'."\n";
-		echo '<table id="grid_table" border="1">'."\n";
+		echo '<table id="grid_table" border="0" class="grid_table">'."\n";
 		
-		echo '<tr>'."\n";
+		echo '<tr class="grid_header">'."\n";
 		foreach ($this->headCols as $key => $head)
 		{
 			if ($this->headCols[$key]->visible == true)
-				echo '<th>'.$head->text.'</th>';
+				echo '<th class="grid_header_cell">'.$head->text.'</th>';
 		}
 		echo '</tr>'."\n";
 		
@@ -297,21 +249,21 @@ class Grid
 		{
 			if ($row->visible == true)
 			{
-				echo '<tr id="row'.$unique_key.'">'."\n";
+				echo '<tr id="row'.$unique_key.'" class="grid_row">'."\n";
 				foreach ($row->cells as $index => $cell)
 				{
 					if ($this->headCols[$index]->visible == true)
-						echo '<td id="'.$index.$row->cells[$this->unique].'">'.$cell.'</td>';
+						echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell">'.$cell.'</td>';
 				}
 				if ($this->edit_url != "" && $row->editable == true)
 				{
 					if ($this->edit_mode == "internal")
-						echo '<td id="edit'.$unique_key.'btn"><div onclick="changeToForm('.$unique_key.')">edit</div></td>';
+						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><img class="aaa" src="../../assets/img/edit.png" alt="edit" onclick="changeToForm('.$unique_key.')" /></td>';
 					else if ($this->edit_mode == "external")
-						echo '<td id="edit'.$unique_key.'btn"><a href="'.$this->edit_url.'/'.$unique_key.'">edit</a></td>';
+						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->edit_url.'/'.$unique_key.'"><img src="../../assets/img/edit.png" alt="edit" /></a></td>';
 				}
 				if ($this->remove_url != "" && $row->removable == true)
-					echo '<td id="delete'.$unique_key.'btn"><a href="'.$this->remove_url.'/'.$unique_key.'">remove</a></td>';
+					echo '<td id="delete'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->remove_url.'/'.$unique_key.'"><img src="../../assets/img/delete.png" alt="delete" /></a></td>';
 				echo '</tr>'."\n";
 			}
 		}
@@ -319,12 +271,18 @@ class Grid
 		if ($this->add_url != "")
 		{
 			echo '<tr id="row0">'."\n";
+			foreach ($row->cells as $index => $cell)
+			{
+				if ($this->headCols[$index]->visible == true)
+					echo '<td id="'.$index.'0"></td>';
+			}
 			if ($this->add_mode == "internal")
-				echo '<td id="addbtn"><div onclick="addRowForInserting()">add</div></td>';
+				echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="../../assets/img/add.png" alt="add" /></div></td>';
 			else if ($this->add_mode == "external")
-				echo '<td id="addbtn"><a href="'.$this->add_url.'">add</div></td>';
+				echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.$this->add_url.'"><img src="../../assets/img/add.png" alt="add" /></a></td>';
 			echo '</tr>'."\n";
 		}
+		
 		echo '</table>'."\n";
 		echo '</form>'."\n";
 	}

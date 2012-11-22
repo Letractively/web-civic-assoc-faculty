@@ -7,6 +7,7 @@ class Test extends MY_Controller {
 		parent::__construct();
 		$this->load->library('grid');
 		$this->load->helper('url');
+		$this->load->model('selecter');
 		
 		$data = array(
             'title' 		=> 'Homepage'   //Title na aktualnej stranke
@@ -18,8 +19,7 @@ class Test extends MY_Controller {
 	public function index()
 	{
         $data = array( 
-            'view'       => "{$this->router->class}_view",
-			'users' => $this->db->query("SELECT * from users")->result()
+            'view'       => "{$this->router->class}_view"
         );
         
         $this->load->view('container', array_merge($this->data, $data));
