@@ -9,3 +9,60 @@
 root { 
     display: block;
 }
+
+.grid_table {
+	border-collapse: separate;
+	border-spacing: 0px 0px
+}
+
+.grid_header {
+	height: 36px;
+	background-color: #B2B2F0;
+	font-size: large;
+}
+
+.grid_header_cell {
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+.grid_header_cell:first-child {
+	border-left: 1px solid black;
+}
+
+.grid_row {
+	height: 28px;
+}
+
+.grid_cell {
+	background-color: #E0F0FF;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+.grid_cell:first-child {
+	border-left: 1px solid black;
+}
+
+.grid_row_btn_cell img {
+	margin-left: 10px;
+	margin-top: 2px;
+	width: 20px;
+	height: 20px;
+}
+
+.grid_add_btn_cell > div {
+	background-color: #e8e8e8;
+	border-radius: 5px;
+}
+
+.grid_add_btn_cell img {
+	margin-top: 4px;
+	width: 20px;
+	height: 20px;
+}
