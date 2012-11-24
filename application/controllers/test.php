@@ -29,8 +29,16 @@ class Test extends MY_Controller {
 	{
 		if ($this->input->get('operation_add'))
 		{
-			unset($_GET['operation_add']);
-			$this->db->insert('users', $_GET);
+			$data = array(
+				'user_postcode' => $_GET['user_postcode'],
+				'user_study_program_id' => $_GET['study_program_name'],
+				'user_degree_id' => $_GET['degree_name'],
+				'user_role' => 0,
+				'user_name' => $_GET['user_name'],
+				'user_surname' => $_GET['user_surname'],
+				'user_email' => $_GET['user_email']
+			);
+			$this->db->insert('users', $data);
 		}
 		redirect('/test', 'refresh');
 	}
@@ -39,15 +47,24 @@ class Test extends MY_Controller {
 	{
 		if ($this->input->get('operation_edit'))
 		{
-			unset($_GET['operation_edit']);
+			$data = array(
+				'user_postcode' => $_GET['user_postcode'],
+				'user_study_program_id' => $_GET['study_program_name'],
+				'user_degree_id' => $_GET['degree_name'],
+				'user_role' => 0,
+				'user_name' => $_GET['user_name'],
+				'user_surname' => $_GET['user_surname'],
+				'user_email' => $_GET['user_email']
+			);
 			$this->db->where('user_id', $id);
-			$this->db->update('users', $_GET); 
+			$this->db->update('users', $data); 
 		}
 		redirect('/test', 'refresh');
 	}
 	
 	public function delete($id)
 	{
+		$this->db->delete('users', array('user_id' => $id)); 
 		redirect('/test', 'refresh');
 	}
 }
