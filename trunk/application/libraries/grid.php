@@ -146,6 +146,7 @@ class Grid
 			textbox.setAttribute('type','text');
 			textbox.setAttribute('value',old_val);
 			textbox.setAttribute('name',name);
+			textbox.setAttribute('class','grid_form_elem');
 			elem.appendChild(textbox);
 		}
 		
@@ -165,6 +166,7 @@ class Grid
 				combobox.appendChild(option);
 			}
 			combobox.setAttribute('name',name);
+			combobox.setAttribute('class','grid_form_elem');
 			elem.appendChild(combobox);
 		}
 		
@@ -186,18 +188,25 @@ class Grid
 		
 		function createConfirmButton(text, operation)
 		{
-			var new_confirm = document.createElement('input');
+			var new_confirm = document.createElement('button');
 			new_confirm.setAttribute('type','submit');
 			new_confirm.setAttribute('name','operation_'+operation);
-			new_confirm.setAttribute('value',text);
+			new_confirm.setAttribute('value','operation_'+operation);
+			var new_img = document.createElement('img');
+			new_img.setAttribute('src','../../assets/img/confirm.png');
+			new_img.setAttribute('alt',text);
+			new_confirm.appendChild(new_img);
 			return new_confirm;
 		}
 		
 		function createCancelButton(text)
 		{
-			var new_cancel = document.createElement('span');
+			var new_cancel = document.createElement('div');
 			new_cancel.setAttribute('onclick','document.location.reload(true);');
-			new_cancel.innerHTML = text;
+			var new_img = document.createElement('img');
+			new_img.setAttribute('src','../../assets/img/cancel.png');
+			new_img.setAttribute('alt',text);
+			new_cancel.appendChild(new_img);
 			return new_cancel;
 		}
 		
@@ -210,18 +219,27 @@ class Grid
 					changeToTextbox(col, col+id);
 				else if (cols[col] == 'combobox')
 					changeToCombobox(col, col+id, combobox_dataSources[col]);
+				document.getElementById(col+id).setAttribute('class','grid_cell_editing');
 			}
 
 			var row = document.getElementById('row'+id);
 			var td_confirm = document.createElement('td');
-			td_confirm.appendChild( createConfirmButton('potvrď', 'edit') );
+			td_confirm.setAttribute('class','grid_row_btn_cell');
+			if (id == 0)
+				td_confirm.appendChild( createConfirmButton('potvrď', 'add') );
+			else
+				td_confirm.appendChild( createConfirmButton('potvrď', 'edit') );
 			var td_cancel = document.createElement('td');
+			td_cancel.setAttribute('class','grid_row_btn_cell');
 			td_cancel.appendChild( createCancelButton('zruš') );
 			row.appendChild(td_confirm);
 			row.appendChild(td_cancel);
 			
 			if (id == 0)
+			{
+				document.getElementById('row0').setAttribute('class','grid_row');
 				document.getElementById('grid_form').setAttribute('action', addURL);
+			}
 			else
 				document.getElementById('grid_form').setAttribute('action', editURL+'/'+id);
 		}
