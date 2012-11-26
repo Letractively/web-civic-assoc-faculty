@@ -128,8 +128,8 @@ abstract class MY_Controller extends CI_Controller
     
     protected function add_param( $method, $id, $class_valid, $method_valid )
     {
-        if( !$this->userdata->is_admin() )
-            redirect(base_url());
+        /*if( !$this->userdata->is_admin() )
+            redirect(base_url());*/
         
         $this->load->model('inserter');
         
@@ -145,8 +145,8 @@ abstract class MY_Controller extends CI_Controller
     
     protected function edit( $method, $id, $class_valid, $method_valid )
     {
-        if( !$this->userdata->is_admin() )
-            redirect(base_url());
+        /*if( !$this->userdata->is_admin() )
+            redirect(base_url());*/
         
         $this->load->model('updater');
         
