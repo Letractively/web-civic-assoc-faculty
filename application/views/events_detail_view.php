@@ -1,7 +1,6 @@
-<!--
-    kategoria
-    ?????????
--->
+<?php
+    array_debug($this->selecter->get_event_detail(1));
+?>
 
 <div class="event_title">
     <?= auto_typography($event_id->title) ?>  
