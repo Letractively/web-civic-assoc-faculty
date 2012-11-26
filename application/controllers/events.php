@@ -60,8 +60,10 @@ class Events extends MY_Controller
         public function add()
         {            
             parent::add('add_event', $this->router->class, $this->router->method);
-            
+
             $data = array(
+                'error'                 => $this->form_validation->form_required(array( 'event_categories_id','priority','event_name',
+                                                                                        'from','to','about')),
                 'priorities'            => $this->generate_priorities(5)
             );
 
