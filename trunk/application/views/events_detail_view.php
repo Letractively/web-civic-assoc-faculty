@@ -1,24 +1,25 @@
 <?php
-    array_debug($this->selecter->get_event_detail(1));
+    $obj = $this->selecter->get_event_detail(1);
+    array_debug($obj);
 ?>
-
+Kategoria: <?= $obj[0]->event_category ?>
 <div class="event_title">
-    <?= auto_typography($event_id->title) ?>  
+    <?= $obj[0]->event_name ?>
 </div>
 <div class="event_body">
-    <?= auto_typography($event_id->body) ?>  
+    <?= $obj[0]->event_about ?>  
 </div>
 <div class="event_time">
     <span>Kedy:</span>
-    <?= auto_typography($event_id->from) ?>  
-    <?= auto_typography($event_id->to) ?>  
+    <?= $obj[0]->event_from ?>  
+    <?= $obj[0]->event_to ?>  
 </div>
 <div class="event_priority">
     <span>Priorita:</span>
-    <?= $event_id->prior ?>  
+    <?= $obj[0]->event_priority ?>   
 </div>
 <div class="event_add_info">
     <span>Pridal:</span>
-    <?= $event_id->user_id ?>,
-    <?= $event_id->time ?>
+    <?= $obj[0]->event_author_id ?> ,
+    <?= $obj[0]->event_created ?> 
 </div>
