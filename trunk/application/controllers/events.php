@@ -14,7 +14,7 @@ class Events extends MY_Controller
             parent::__construct();
 
             $data = array(
-                'title' 		=> ''   //Title na aktualnej stranke
+                'title' 		=> 'Udalosti'   //Title na aktualnej stranke
             );
 
             $this->data = array_merge($this->data, $data);
