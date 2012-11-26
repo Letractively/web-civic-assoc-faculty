@@ -131,7 +131,7 @@ abstract class MY_Controller extends CI_Controller
     {
         /*if( !$this->userdata->is_admin() )
             redirect(base_url());*/
-        
+        $this->load->model('selecter');
         $this->load->model('inserter');
         
         if( $this->input->post('submit') )
@@ -150,21 +150,22 @@ abstract class MY_Controller extends CI_Controller
             redirect(base_url());*/
         
         $this->load->model('updater');
+        $this->load->model('selecter');
         
         if( $this->form_validation->run("{$class_valid}/{$method_valid}") )
         {
             $this->updater->$method( $id, $this->input->post() );
                 redirect( $class_valid );
-        }
+        }  
     }
     
     protected function delete( $method, $id, $class_valid )
     {
-        if( $id == '')
+        /*if( $id == '')
             redirect ('404');
         
         if( !$this->userdata->is_admin() )
-            redirect(base_url());
+            redirect(base_url());*/
         
         $action = $this->input->post('submit_action');
         

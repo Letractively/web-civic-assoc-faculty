@@ -74,9 +74,15 @@ class Events extends MY_Controller
         public function edit( $event_id )
         {        
             parent::edit('edit_event', $event_id, $this->router->class, $this->router->method);
-
+            
+            
+            
             $data = array(
-                'priorities'            => $this->generate_priorities(5)
+                'error'                 => $this->form_validation->form_required(array( 'event_categories_id','priority','event_name',
+                                                                                        'from','to','about')),
+                'priorities'            => $this->generate_priorities(5),
+                'event_id' 		=> $event_id
+                
             );
 
             $this->load->view('container', array_merge($this->data, $data));
