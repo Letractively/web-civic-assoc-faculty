@@ -6,19 +6,19 @@
 </div>
 <?= form_open("events/add") ?>
     <div class="inputitem">
-        <label for="event_categories_id" class="<?= $error['event_categories_id'] ?>"><?= $this->lang->line('label_event_categories_id') ?></label>
-        <?= form_dropdown('event_categories_id', $event_categories, set_value('event_categories_id')) ?>
+        <label for="event_categories_id" class="<?= $error['event_categories_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label>
+        <?= gen_dropdown('event_categories_id', set_value('event_categories_id'),$this->selecter->get_event_categories(),'event_category_id','event_category_name'); ?>     
     </div>
 
  <!--generovat prioritu-->
     <div class="inputitem">
-        <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priorityr') ?></label>
-        <?= form_dropdown('priority', $prior, set_value('priority_id')) ?>
+        <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label>
+        <?= form_dropdown('priority', $priorities, set_value('priority_id')) ?>
     </div>
  <!--end-->
  
     <div class="inputitem">
-        <label for="event_name" class="<?= $error['event_name'] ?>"><?= $this->lang->line('label_event_name') ?></label>
+        <label for="event_name" class="<?= $error['event_name'] ?>"><?= $this->lang->line('label_name') ?></label>
         <?= form_input(array('name' => 'event_name', 'id' => 'event_name', 'class' => ''.$error['event_name']), set_value('event_name')) ?>
     </div>
  

@@ -115,6 +115,7 @@ abstract class MY_Controller extends CI_Controller
             redirect(base_url());*/
         
         $this->load->model('inserter');
+        $this->load->model('selecter');
         
         if( $this->input->post('submit') )
         {
