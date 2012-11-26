@@ -154,17 +154,19 @@ class Selecter extends MY_Model
     
     public function get_event_detail($event_id)
     {
-        $q = $this->db->query(" SELECT eec.event_event_category_id AS event_category_id, eec.event_category_name AS event_category, 
-                                       eec.event_name, eec.event_about,
+        $q = $this->db->query(" SELECT eec.event_event_category_id AS event_category_id, 
+		                       ec.event_category_name AS event_category, 
+	                               eec.event_name, eec.event_about,
                                        eec.event_from, eec.event_to,
-                                       eec.event_priority, eec.event_author_id,
-                                       u.user_name||' '||u.user_surname AS event_author, eec.event_created
-                                FROM users u
-                                JOIN
-                                (SELECT *
-                                 FROM events e
-                                 JOIN event_categories ec ON (e.event_event_category_id=ec.event_category_id)) eec ON (u.user_id=eec.event_author_id)
-                                 WHERE eec.event_id=$event_id");
+		                       eec.event_priority, eec.event_author_id,
+		                       eec.user_name||' '||eec.user_surname AS event_author, eec.event_created
+                                FROM event_categories ec
+	                         JOIN
+		                  (SELECT *
+		                   FROM events e
+		                   LEFT OUTER JOIN users u ON (e.event_author_id=u.user_id)) eec 
+                                  ON (ec.event_category_id=eec.event_event_category_id)
+                                WHERE eec.event_id=$event_id;");
         return $q->result();
     }
     
@@ -256,7 +258,15 @@ class Selecter extends MY_Model
     
     public function get_category_detail($cat_id)
     {
-            
+         $q = $this->db->query(" SELECT project_category_name, project_category_cash, 
+                                        SUM(fct1.fin_category_transaction_cash) AS transaction_cash_from,
+                                        SUM(fct2.fin_category_transaction_cash) AS transaction_cash_to
+                                 FROM project_categories pc
+                                 JOIN fin_category_transactions fct1 ON (pc.project_category_id=fct1.fin_category_transaction_cat_from_id)
+                                 JOIN fin_category_transactions fct2 ON (pc.project_category_id=fct2.fin_category_transaction_cat_to_id)
+                                 WHERE project_category_id=$cat_id       
+                                  ");
+            return $q->result();   
     }
     
     public function get_project_items($project_id)
@@ -359,7 +369,9 @@ class Selecter extends MY_Model
     
     public function get_transactions($pr_cat_id)
     {
-        
+        $q = $this->db->query(" 
+                              ");
+            return $q->result();
     }
     
     public function get_user_detail($user_id)
