@@ -7,7 +7,7 @@
         <label for="event_categories_id" class="<?= $error['event_categories_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label>
         <?= gen_dropdown('event_categories_id', set_value('event_categories_id'),$this->selecter->get_event_categories(),'event_category_id','event_category_name'); ?>     
     </div>
-
+ <!--dropdown robis takto ako je hore gen_dropdown, to co su tie parametre uvidis ked si otvoris danu funkciu-->
  <!--generovat prioritu-->
     <div class="inputitem">
         <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label>

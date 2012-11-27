@@ -33,7 +33,7 @@
 
     <div class="inputitem">
         <label for="degrees_id" class="<?= $error['degrees_id'] ?>"><?= $this->lang->line('label_degrees_id') ?></label>
-        <?= gen_dropdown('degrees_id', set_value('degrees_id',$field->user_degrees_id),$this->selecter->get_event_categories(),'degrees_id','degrees_id'); ?>     
+        <?= gen_dropdown('degrees_id', set_value('degrees_id',$field->user_degrees_id),$this->selecter->get_degrees(),'degrees_id','degrees_id'); ?>     
     </div>
  
  
