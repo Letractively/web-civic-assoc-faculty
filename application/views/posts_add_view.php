@@ -1,7 +1,21 @@
-<?php
+<div class="errors">
+    <?php echo validation_errors();      
+    //array_debug($programs) ?>
+</div>
+<?= form_open("posts/add") ?>
+   
+    <div class="inputitem">
+        <label for="subject" class="<?= $error['subject'] ?>"><?= $this->lang->line('label_subject') ?></label>
+        <?= form_input(array('name' => 'subject', 'id' => 'subject', 'class' => ''.$error['subject']), set_value('subject')) ?>
+    </div>
+ 
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+    <div class="inputitem">
+        <label for="content" class="<?= $error['content'] ?>"><?= $this->lang->line('label_content') ?></label>
+        <?= form_textarea(array('name' => 'content', 'id' => 'content', 'class' => ''.$error['content']), set_value('content')) ?>
+    </div>  
+
+    <div class="inputitem">
+        <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_add_post')) ?>
+    </div>
+<?= form_close() ?>
