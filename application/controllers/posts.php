@@ -43,14 +43,26 @@ class Posts extends MY_Controller
     {
         parent::add('add_post', $this->router->class, $this->router->method);
         
-        $this->load->view('container', $this->data);
+        $data = array(
+            'error'         => $this->form_validation->form_required(array('title','content'))
+        );
+        
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
     public function edit( $post_id )
     {
         parent::edit('edit_posts', $post_id, $this->router->class, $this->router->method);
         
-        $this->load->view('container', $this->data);
+        $this->load->model('selecter');
+        
+        
+        $data = array(
+            'post_id'       => $post_id,
+            'error'         => $this->form_validation->form_required(array('title','content'))
+        );
+        
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
     public function delete( $post_id )

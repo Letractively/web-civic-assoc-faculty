@@ -7,8 +7,8 @@
 <?= form_open("project/edit") ?>
 
     <div class="inputitem">
-        <label for="project_name" class="<?= $error['project_name'] ?>"><?= $this->lang->line('project_name') ?></label>
-        <?= form_input(array('name' => 'project_name', 'id' => 'project_name', 'class' => ''.$error['project_name']), set_value('project_name', $field->project_name)) ?>
+        <label for="project_name" class="<?= $error['name'] ?>"><?= $this->lang->line('project_name') ?></label>
+        <?= form_input(array('name' => 'project_name', 'id' => 'project_name', 'class' => ''.$error['name']), set_value('project_name', $field->project_name)) ?>
     </div>
 
     <div class="inputitem">
@@ -19,12 +19,12 @@
  <!--generovat prioritu-->
     <div class="inputitem">
         <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label>
-        <?= form_dropdown('priority', $priorities, set_value('priority_id', $field->event_priority)) ?>
+        <?= form_dropdown('priority', $priorities, set_value('priority_id', $field->project_priority)) ?>
     </div>
  <!--end-->
  
     <div class="inputitem">
-        <label for="project_categories_id" class="<?= $error['project_categories_id'] ?>"><?= $this->lang->line('label_project_category_id') ?></label>
+        <label for="project_categories_id" class="<?= $error['project_category_id'] ?>"><?= $this->lang->line('label_project_category_id') ?></label>
         <?= gen_dropdown('project_categories_id', set_value('project_categories_id', $field->project_project_category_id),$this->selecter->get_project_categories(),'project_category_id','project_category_name'); ?>
     </div>
     
@@ -36,12 +36,12 @@
 <!--od -> do-->
     <div class="inputitem">
         <label for="from" class="<?= $error['from'] ?>"><?= $this->lang->line('label_from') ?></label>
-        <?= form_input(array('name' => 'from', 'id' => 'from', 'class' => ''.$error['from']), set_value('from', $field->project_from)) ?>
+        <?= form_input(array('name' => 'from', 'id' => 'from', 'class' => ''.$error['from']), set_value('from', $field->project_date_from)) ?>
     </div>
  
     <div class="inputitem">
         <label for="to" class="<?= $error['to'] ?>"><?= $this->lang->line('label_to') ?></label>
-        <?= form_input(array('name' => 'to', 'id' => 'to', 'class' => ''.$error['to']), set_value('to', $field->project_to)) ?>
+        <?= form_input(array('name' => 'to', 'id' => 'to', 'class' => ''.$error['to']), set_value('to', $field->project_date_to)) ?>
     </div>
 <!--end-->
 
