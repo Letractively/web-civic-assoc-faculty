@@ -13,5 +13,8 @@ $lang['label_price']                        = 'cena';
 $lang['label_user']                         = 'osoba';
 $lang['label_date']                         = 'kedy';
 
+$lang['button_add_project']                   = 'Pridaj';
+$lang['button_edit_project']                  = 'Uprav';
+
 /* End of file projects_lang.php */
 /* Location: ./application/language/slovak/projects_lang.php */
