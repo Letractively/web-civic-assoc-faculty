@@ -1,7 +1,7 @@
 <div class="errors">
     <?php 
         echo validation_errors();  
-        $field 			= $this->selecter->id($event_id,'events','event_id');
+        $field = $this->selecter->id($event_id,'events','event_id');
     ?>
 </div>
 <?= form_open("events/edit") ?>

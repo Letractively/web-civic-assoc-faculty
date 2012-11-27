@@ -1,13 +1,11 @@
 <div class="errors">
-    <?php echo validation_errors();     
-    
+    <?php echo validation_errors();         
     //array_debug($programs) ?>
-
 </div>
 <?= form_open("correspondence/review") ?>
     <div class="inputitem">
-        <label for="title" class="<?= $error['title'] ?>"><?= $this->lang->line('label_title') ?></label>
-        <?= form_input(array('name' => 'title', 'id' => 'title', 'class' => ''.$error['title']), set_value('title')) ?>
+        <label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label>
+        <?= form_input(array('name' => 'name', 'id' => 'name', 'class' => ''.$error['name']), set_value('name')) ?>
     </div>
 
     <div class="inputitem">
@@ -16,8 +14,8 @@
     </div>
 
     <div class="inputitem">
-        <label for="email_types_id" class="<?= $error['email_types_id'] ?>"><?= $this->lang->line('label_email_types_id') ?></label>
-        <?= form_dropdown('email_types_id', $email_types, set_value('email_types_id')) ?>
+        <label for="email_type_id" class="<?= $error['email_type_id'] ?>"><?= $this->lang->line('label_email_type_id') ?></label>
+        <?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name') ?>
     </div>
 
     <div class="inputitem">

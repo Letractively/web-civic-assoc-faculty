@@ -1,5 +1,6 @@
 <?php
     $obj = $this->selecter->get_event_detail(1);
+    array_debug($obj);
 ?>
 Kategoria: <?= $obj[0]->event_category ?>
 <div class="event_title">
