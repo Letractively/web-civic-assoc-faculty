@@ -5,8 +5,8 @@
 <?= form_open("posts/add") ?>
    
     <div class="inputitem">
-        <label for="subject" class="<?= $error['subject'] ?>"><?= $this->lang->line('label_subject') ?></label>
-        <?= form_input(array('name' => 'subject', 'id' => 'subject', 'class' => ''.$error['subject']), set_value('subject')) ?>
+        <label for="title" class="<?= $error['title'] ?>"><?= $this->lang->line('label_subject') ?></label>
+        <?= form_input(array('name' => 'title', 'id' => 'title', 'class' => ''.$error['title']), set_value('title')) ?>
     </div>
  
 

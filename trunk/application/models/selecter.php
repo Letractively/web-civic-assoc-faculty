@@ -186,7 +186,7 @@ class Selecter extends MY_Model
 
         public function get_events($cat_id)
         {
-            $q = $this->db->query("SELECT e.event_name, e.event_from, e.event_to
+            $q = $this->db->query("SELECT e.event_id, e.event_name, e.event_from, e.event_to
                                    FROM events e
                                    JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                    WHERE ec.event_category_id = '".$cat_id."'

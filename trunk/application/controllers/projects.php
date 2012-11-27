@@ -39,7 +39,13 @@ class Projects extends MY_Controller
         {
             parent::add('add_project', $this->router->class, $this->router->method);
 
-            $this->load->view('container', $this->data); 
+            $data = array(
+                'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
+                                                                                'booked_cash', 'from', 'to')),
+                'priorities'            => $this->generate_priorities(5)
+            );
+            
+            $this->load->view('container', array_merge($this->data, $data)); 
         }
 
         public function add_project_item( $project_id )
@@ -57,7 +63,14 @@ class Projects extends MY_Controller
         {
             parent::edit('edit_project', $project_id, $this->router->class, $this->router->method);
 
-            $this->load->view('container', $this->data); 
+            $data = array(
+                'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
+                                                                                'booked_cash', 'from', 'to')),
+                'project_id'            => $project_id,
+                'priorities'            => $this->generate_priorities(5)
+            );
+            
+            $this->load->view('container', array_merge($this->data, $data)); 
         }
 
         public function edit_project_item( $project_id )

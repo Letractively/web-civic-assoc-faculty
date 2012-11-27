@@ -146,6 +146,9 @@ abstract class MY_Controller extends CI_Controller
     
     protected function edit( $method, $id, $class_valid, $method_valid )
     {
+        if( $id == '')
+            redirect ('404');
+        
         /*if( !$this->userdata->is_admin() )
             redirect(base_url());*/
         
@@ -161,10 +164,10 @@ abstract class MY_Controller extends CI_Controller
     
     protected function delete( $method, $id, $class_valid )
     {
-        /*if( $id == '')
+        if( $id == '')
             redirect ('404');
         
-        if( !$this->userdata->is_admin() )
+        /*if( !$this->userdata->is_admin() )
             redirect(base_url());*/
         
         $action = $this->input->post('submit_action');
