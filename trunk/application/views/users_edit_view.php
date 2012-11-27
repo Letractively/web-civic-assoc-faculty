@@ -1,8 +1,10 @@
 <div class="errors">
-    <?php echo validation_errors();      
-    //array_debug($programs) ?>
+    <?php 
+        echo validation_errors();  
+        $field = $this->selecter->id($user_id,'users','user_id');
+    ?>
 </div>
-<?= form_open("users/add") ?>
+<?= form_open("users/edit") ?>
  
     <div class="inputitem">
         <label for="username" class="<?= $error['username'] ?>"><?= $this->lang->line('label_username') ?></label>
