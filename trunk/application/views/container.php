@@ -11,8 +11,16 @@
         <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
     </head>
     <body>
-        <?php               
-           $this->load->view($view);
-        ?>
+        <div>//wrapper
+            <div> //header
+               <?= $this->load->view('header_view') ?>
+            </div>
+            <div> //content
+                <?= $this->load->view('content_view') ?>
+            </div>
+            <div> //footer
+                <?= $this->load->view('footer_view') ?>
+            </div>
+        </div>
     </body>
 </html> 
