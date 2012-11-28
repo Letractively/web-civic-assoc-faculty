@@ -13,8 +13,9 @@ class Email_types extends MY_Controller
     {
         parent::__construct();
         
-        if( !$this->userdata->is_admin() )
-                redirect(base_url());
+        /*if( !$this->userdata->is_admin() )
+                redirect(base_url());*/
+        $this->load->model('selecter');
         
         $data = array(
             'title' 		=> 'Typy emailov',   //Title na aktualnej stranke

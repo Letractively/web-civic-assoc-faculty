@@ -12,9 +12,10 @@ class Correspondence extends MY_Controller
         function __construct() 
         {
             parent::__construct();
-
-            if( !$this->userdata->is_admin() )
-                redirect(base_url());
+            $this->load->model('selecter');
+            
+            /*if( !$this->userdata->is_admin() )
+                redirect(base_url());*/
 
             $data = array(
                 'title' 		=> ''   //Title na aktualnej stranke
@@ -23,9 +24,13 @@ class Correspondence extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
+        /*
+         *  Index
+         * 
+         * 
+         */
         public function index()
         {
-            $this->load->model('selecter');
 
             if( $this->input->post('submit') )
             {
@@ -37,7 +42,7 @@ class Correspondence extends MY_Controller
 
             $data = array( 
                 'view'          => "{$this->router->class}_view",
-                'email_types'   => $this->selecter->get_email_types()
+                'error'         => $this->form_validation->form_required(array('email_type_id','correspondence_subject','correspondence_content'))
             );
 
             $this->load->view('container', array_merge($this->data, $data)); 
