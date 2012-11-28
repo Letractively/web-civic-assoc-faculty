@@ -32,7 +32,7 @@ class Events extends MY_Controller
             
             $data = array(
                 'view'      => "{$this->router->class}_view",
-                //'event_id'  => $event_id
+                'event_id'  => $event_id
             );
             $this->load->view('container', array_merge($this->data, $data));
         }

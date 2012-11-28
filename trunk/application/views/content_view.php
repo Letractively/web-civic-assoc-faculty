@@ -2,5 +2,5 @@
     
 </div>
 <div> //main content
-    <?= $this->load->view($view) ?>
+    <?= $this->load->view($view); ?>
 </div>

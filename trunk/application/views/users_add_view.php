@@ -1,78 +1,42 @@
 <div class="errors">
-    <?php echo validation_errors();     
-    
+    <?php echo validation_errors();      
     //array_debug($programs) ?>
-
 </div>
-
 <?= form_open("users/add") ?>
-    <div class="inputitem">
-        <label for="role" class="<?= $error['role'] ?>"><?= $this->lang->line('label_role') ?></label>
-        <?= form_checkbox('role', $role, set_value('role'))?>
-    </div>
-
+ 
     <div class="inputitem">
         <label for="username" class="<?= $error['username'] ?>"><?= $this->lang->line('label_username') ?></label>
         <?= form_input(array('name' => 'username', 'id' => 'username', 'class' => ''.$error['username']), set_value('username')) ?>
     </div>
+
     <div class="inputitem">
         <label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label>
         <?= form_input(array('name' => 'name', 'id' => 'name', 'class' => ''.$error['name']), set_value('name')) ?>
     </div>
+ 
     <div class="inputitem">
         <label for="surname" class="<?= $error['surname'] ?>"><?= $this->lang->line('label_surname') ?></label>
         <?= form_input(array('name' => 'surname', 'id' => 'surname', 'class' => ''.$error['surname']), set_value('surname')) ?>
     </div>
+
     <div class="inputitem">
         <label for="password" class="<?= $error['password'] ?>"><?= $this->lang->line('label_password') ?></label>
         <?= form_password(array('name' => 'password', 'id' => 'password', 'class' => ''.$error['password']), set_value('password')) ?>
     </div>
+ 
     <div class="inputitem">
         <label for="email" class="<?= $error['email'] ?>"><?= $this->lang->line('label_email') ?></label>
         <?= form_input(array('name' => 'email', 'id' => 'email', 'class' => ''.$error['email']), set_value('email')) ?>
     </div>
-    <div class="inputitem">
-        <label for="phone" class="<?= $error['phone'] ?>"><?= $this->lang->line('label_phone') ?></label>
-        <?= form_input(array('name' => 'phone', 'id' => 'phone', 'class' => ''.$error['phone']), set_value('phone')) ?>
-    </div>
-    <div class="inputitem">
-        <label for="study_program_id" class="<?= $error['study_program_id'] ?>"><?= $this->lang->line('label_study_program_id') ?></label>
-        <?= form_dropdown('study_program_id', $study_programs, set_value('study_program_id')) ?>
-    </div>
-    <div class="inputitem">
-        <label for="degree_id" class="<?= $error['degree_id'] ?>"><?= $this->lang->line('label_degree_id') ?></label>
-        <?= form_dropdown('degree_id', $degrees, set_value('degree_id')) ?>
-    </div>
-    <div class="inputitem">
-        <label for="place_of_birth" class="<?= $error['place_of_birth'] ?>"><?= $this->lang->line('label_place_of_birth') ?></label>
-        <?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => ''.$error['place_of_birth']), set_value('place_of_birth')) ?>
-    </div>
-    <div class="inputitem">
-        <label for="postcode" class="<?= $error['postcode'] ?>"><?= $this->lang->line('label_postcode') ?></label>
-        <?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => ''.$error['postcode']), set_value('postcode')) ?>
-    </div>
-    <div class="inputitem">
-        <label for="degree_year" class="<?= $error['degree_year'] ?>"><?= $this->lang->line('label_degree_year') ?></label>
-        <?= form_dropdown('degree_year', $years, set_value('degree_year_id')) ?>
-    </div>
-    <div class="inputitem">
-        <label for="vs" class=" <?= $error['vs'] ?>"><?= $this->lang->line('label_vs') ?></label>
-        <?= form_input(array('name' => 'vs', 'id' => 'vs', 'class'=>''.$error['vs']), set_value('vs')) ?>
-    </div>
-
-    <?php
-        for($i = 1; $i <= $numb_proj_cat; $i++)
-        {
-            echo '<div class="inputitem">';
-                echo '<label for="project_category_'.$i.'class="' .$error['project_category_'.$i].'">';
-                    echo $this->lang->line('label_project_category_'.$i);
-                echo '</label>';
-                echo form_input(array('name' => 'project_category_'.$i, 'id' => 'project_category_'.$i, 'size'=> 1, 'class'=>''.$error['project_category_'.$i]), set_value('project_category_'.$i));
-            echo '</div>';
-        }
-    ?>
 
     <div class="inputitem">
-        <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_add')) ?>
+        <label for="degrees_id" class="<?= $error['degrees_id'] ?>"><?= $this->lang->line('label_degrees_id') ?></label>
+        <?= gen_dropdown('degrees_id', set_value('degrees_id'),$this->selecter->get_event_categories(),'degrees_id','degrees_id'); ?>     
+    </div>
+ 
+ 
+
+    <div class="inputitem">
+        <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_add_event')) ?>
     </div>
 <?= form_close() ?>
