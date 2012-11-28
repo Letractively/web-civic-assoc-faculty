@@ -45,9 +45,30 @@
     </div>
 <!--end-->
 
-   
+    <?php
+        $this->load->library('grid');
+
+        $grid = new Grid();
+
+        array_debug($this->selecter->get_project_items(1));
+
+        $grid->bind($this->selecter->get_project_items(1), 'project_id');
+
+        $grid->add_url = "{$this->router->class}/add";
+        $grid->edit_url = "{$this->router->class}/edit";
+        $grid->remove_url = "{$this->router->class}/delete";
+
+        $grid->header('project_id')->editable = false;
+
+
+        $grid->display();
+    ?>
 
     <div class="inputitem">
         <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_edit_project')) ?>
+    </div>
+    
+    <div class="inputitem">
+        <?= form_submit(array('type'=>'close', 'name' => 'close'), $this->lang->line('button_close_project')) ?>
     </div>
 <?= form_close() ?>
