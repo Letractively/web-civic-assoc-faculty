@@ -56,7 +56,13 @@ class Events extends MY_Controller
         public function detail( $event_id )
         {
             $this->load->model('selecter');
-            $this->load->view('container', $this->data );
+            
+            $data = array(
+                'event_id'      => $event_id
+            );
+            
+            
+            $this->load->view('container', array_merge($this->data, $data) );
         }
 
         public function add()

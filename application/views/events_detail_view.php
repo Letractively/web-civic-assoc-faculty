@@ -1,8 +1,11 @@
 <?php
-    $obj = $this->selecter->get_event_detail(1);
-    array_debug($obj);
+    $obj = $this->selecter->get_event_detail($event_id);
+    
+    $date = datetime($obj[0]->event_created, FALSE);
+    $time = time_withou_seconds(datetime($obj[0]->event_created, TRUE));
+    
 ?>
-Kategoria: <?= $obj[0]->event_category ?>
+Kategoria: <?= anchor('events/index/'.$obj[0]->event_category_id, $obj[0]->event_category); ?>
 <div class="event_title">
     <?= $obj[0]->event_name ?>
 </div>
@@ -20,6 +23,8 @@ Kategoria: <?= $obj[0]->event_category ?>
 </div>
 <div class="event_add_info">
     <span>Pridal:</span>
-    <?= $obj[0]->event_author_id ?> ,
-    <?= $obj[0]->event_created ?> 
+    <?= $obj[0]->event_author ?> ,
+    <?= $date.' '.$time; ?>
 </div>
+
+<?=anchor('events/edit/'.$event_id, $this->lang->line('button_edit_event') ); ?>
