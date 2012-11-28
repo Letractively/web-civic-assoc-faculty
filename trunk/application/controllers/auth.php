@@ -32,8 +32,7 @@ class Auth extends MY_Controller
             $this->load->model('inserter');
 
             $data = array( 
-                'view'       => "{$this->router->class}_view",
-                'posts'      => $this->selecter->get_posts()
+                'view'       => "{$this->router->class}_view"
             );
 
             $this->load->view('container', array_merge($this->data, $data)); 
@@ -59,31 +58,23 @@ class Auth extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") == TRUE )
                 {
-                    $params = array(
-                        'event'     =>    $this->lang->line('add_user_system') 
-                    );
-                    if(  $this->inserter->registration( $this->input->post(), $params  ) == TRUE )
+                    if(  $this->inserter->add_register( $this->input->post(), $this->selecter->count_project_categories() ) == TRUE )
                     {   
                         //redirect('show_message/index/'.$this->lang->line('success_registration'));
                         //echo 'success<br />';
                         //redirect na show_message view s hlaskou success
-                    }
-                    else{ echo 'error1';/* redirect na show_message view s hlaskou DB add error*/}
-                }
-                else{ echo 'error3';/*redirect na show_message view s hlaskou error*/}          
+                    }       
+                }      
             }
 
             $data = array(
-                'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
+                'error'                 => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
                                                                                 'email', 'phone', 'study_program_id', 'degree_id', 
                                                                                 'place_of_birth', 'postcode', 'degree_year',
-                                                                                'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
-                                                                                'project_category_5', 'project_category_6')
-                                                                        ),
-                'numb_proj_cat'     => $this->selecter->count_project_categories(),
-                'study_programs'          => $this->recompile_into_array($this->selecter->get_study_programs(), 'study_program_id', 'study_program_name'),
-                'degrees'           => $this->recompile_into_array($this->selecter->get_degrees(), 'degree_id', 'degree_name'),          
-                'years'             => $this->generate_years(60, 2012, 50),
+                                                                                'vs','total_sum')
+                                                                                ),
+                'numb_proj_cat'         => $this->selecter->count_project_categories(),        
+                'years'                 => $this->generate_years(60, 2012, 50),
                 'title' 		=> $this->lang->line('title_registration')   //Title na aktualnej stranke
            );
 

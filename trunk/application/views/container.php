@@ -11,14 +11,14 @@
         <link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
     </head>
     <body>
-        <div>//wrapper
-            <div> //header
+        <div> <!-- wrapper -->
+            <div> <!-- header -->
                <?= $this->load->view('header_view') ?>
             </div>
-            <div> //content
+            <div> <!-- content -->
                 <?= $this->load->view('content_view', $view) ?>
             </div>
-            <div> //footer
+            <div> <!-- footer -->
                 <?= $this->load->view('footer_view') ?>
             </div>
         </div>

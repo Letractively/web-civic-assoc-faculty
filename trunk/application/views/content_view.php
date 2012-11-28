@@ -1,6 +1,6 @@
-<div>//navigation
+<div> <!-- navigation -->
     
 </div>
-<div> //main content
+<div> <!-- main content -->
     <?= $this->load->view($view); ?>
 </div>

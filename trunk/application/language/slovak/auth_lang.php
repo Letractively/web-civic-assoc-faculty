@@ -16,14 +16,11 @@ $lang['label_degree_year']          =   'Rok ukončenia na fakulte';
 
 $lang['label_total_tum']            =   'Suma, ktorú posielate';
 $lang['label_vs']                   =   'Variabilný symbol';
-$lang['label_project_category_1']   =   '1';
-$lang['label_project_category_2']   =   '2';
-$lang['label_project_category_3']   =   '3';
-$lang['label_project_category_4']   =   '4';
-$lang['label_project_category_5']   =   '5';
-$lang['label_project_category_6']   =   '6';
+$lang['table_th_category']          =   'Kategória';
+$lang['table_th_ratio']             =   'Pomer';
 
 $lang['button_register']            =   'Registruj';
+
 
 /* End of file auth_lang.php */
 /* Location: ./application/language/slovak/auth_lang.php */
