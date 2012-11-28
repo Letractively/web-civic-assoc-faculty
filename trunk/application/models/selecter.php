@@ -172,8 +172,9 @@ class Selecter extends MY_Model
     }
     
     
-    public function get_cat_events($cat_id)
+    public function get_events($cat_id)
     {
+       if($cat_id !=0){
         $q = $this->db->query("SELECT e.event_name, e.event_from, e.event_to
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
@@ -181,18 +182,18 @@ class Selecter extends MY_Model
                                ORDER BY e.event_priority
                                ");
         return $q->result();
-    }
+        }
     
-    public function get_events()
-    {
-        $q = $this->db->query("SELECT *
+        else
+        {
+         $q = $this->db->query("SELECT e.event_name, e.event_from, e.event_to, ec.event_category_name
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
-                               ORDER BY e.event_created DESC
+                               ORDER BY e.event_priority
                                ");
-        return $q->result();
+         return $q->result();
+       }
     }
-   
     
     public function get_lecturers()
     {
