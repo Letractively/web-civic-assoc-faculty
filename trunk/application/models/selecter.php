@@ -89,6 +89,7 @@ class Selecter extends MY_Model
     {
             $q = $this->db->query(" SELECT *
                                     FROM email_types
+                                    ORDER BY d.degree_id
                                   ");
             return $q->result();
     }
