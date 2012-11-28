@@ -3,7 +3,7 @@
     
     $grid = new Grid();
     
-    array_debug($this->selecter->get_events(1));
+   // array_debug($this->selecter->get_events(1));
     
     $grid->bind($this->selecter->get_events(1), 'event_id');
     

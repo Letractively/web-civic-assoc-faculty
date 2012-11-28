@@ -39,6 +39,16 @@ class Users extends MY_Controller
     public function add()
     {
         
+        $this->load->model('selecter');
+        $data = array(
+            'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
+                                                                                'email', 'phone', 'study_program_id', 'degree_id', 
+                                                                                'place_of_birth', 'postcode', 'degree_year',
+                                                                                'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
+                                                                                'project_category_5', 'project_category_6')
+                                                                        )
+        );
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
     public function edit( $user_id )

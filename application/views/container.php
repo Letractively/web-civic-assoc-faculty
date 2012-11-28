@@ -16,7 +16,7 @@
                <?= $this->load->view('header_view') ?>
             </div>
             <div> //content
-                <?= $this->load->view('content_view') ?>
+                <?= $this->load->view('content_view', $view) ?>
             </div>
             <div> //footer
                 <?= $this->load->view('footer_view') ?>
