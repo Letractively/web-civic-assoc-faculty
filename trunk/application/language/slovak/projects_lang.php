@@ -15,6 +15,7 @@ $lang['label_date']                         = 'kedy';
 
 $lang['button_add_project']                   = 'Pridaj';
 $lang['button_edit_project']                  = 'Uprav';
+$lang['button_close_project']                  = 'Uzatvor';
 
 /* End of file projects_lang.php */
 /* Location: ./application/language/slovak/projects_lang.php */
