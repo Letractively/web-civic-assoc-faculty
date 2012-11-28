@@ -1,7 +1,10 @@
-<?php
+<div class="errors">
+    <?php echo validation_errors();     
+    
+    //array_debug($programs) ?>
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+</div>
+
+<?= form_open("io/export") ?>
+
+<?= form_close() ?>
