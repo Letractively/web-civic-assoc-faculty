@@ -3,7 +3,7 @@
     
     $grid = new Grid();
     
-    //array_debug($this->selecter->->get_email_types());
+    //array_debug($this->selecter->get_email_types());
     
     $grid->bind($this->selecter->get_email_types(), 'email_type_id');
     
