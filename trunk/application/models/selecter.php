@@ -171,13 +171,23 @@ class Selecter extends MY_Model
     }
     
     
-    public function get_events($cat_id)
+    public function get_cat_events($cat_id)
     {
         $q = $this->db->query("SELECT e.event_name, e.event_from, e.event_to
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
                                ORDER BY e.event_priority
+                               ");
+        return $q->result();
+    }
+    
+    public function get_events()
+    {
+        $q = $this->db->query("SELECT *
+                               FROM events e
+                               JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
+                               ORDER BY e.event_created DESC
                                ");
         return $q->result();
     }
@@ -212,7 +222,7 @@ class Selecter extends MY_Model
              $q = $this->db->query("SELECT p.post_title, p.post_content, p.post_author_id, 
                                            p.post_date, pm.post_modifie_author_id, pm.post_modifie_date
                                     FROM posts p
-                                    JOIN post_modifies pm ON (p.post_modifie_post_id=pm.post_id)
+                                    JOIN post_modifies pm ON (p.post_id=pm.post_modifie_post_id)
                                     ORDER BY p.post_date
                                      ");
              return $q->result();
