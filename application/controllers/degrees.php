@@ -18,7 +18,8 @@ class Degrees extends MY_Controller
         }
 
         public function index()
-        {             
+        {    
+            $this->load->model('selecter');
             $this->load->view('container', $this->data);
         }
         

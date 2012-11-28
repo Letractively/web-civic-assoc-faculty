@@ -5,7 +5,7 @@
     
     //array_debug($this->selecter->get_events(1));
     
-    $grid->bind($this->selecter->get_users($study_ids, $degrees, $degree_years),'study_ids', 'degrees', 'degree_years');
+    $grid->bind($this->selecter->get_user($study_ids, $degrees, $degree_years),'study_ids', 'degrees', 'degree_years');
     
     $grid->add_url = "{$this->router->class}/add";
     $grid->edit_url = "{$this->router->class}/edit";
