@@ -19,7 +19,7 @@ class Deleter extends MY_Model
     {
         $this->db->query("DELETE FROM email_types WHERE email_type_id=$e_type_id");
         if($this->db->affected_rows()>0){
-          $this->db->query("UPDATE user_email_evindece SET user_email_evindece_email_type_id=NULL WHERE user_email_evindece_email_type_id=$e_type_id");
+          $this->db->query("UPDATE user_email_evidence SET user_email_evidence_email_type_id=NULL WHERE user_email_evidence_email_type_id=$e_type_id");
             return TRUE;
         }
         else{ return FALSE; }
@@ -181,7 +181,7 @@ class Deleter extends MY_Model
         if($this->db->affected_rows()>0){
           $this->db->query("UPDATE users
                             SET user_study_program_id=NULL 
-                            WHERE user_study_program_id=$pr_cat_id");
+                            WHERE user_study_program_id=$study_pr_id");
           return TRUE;
         }
         else{ return FALSE; }
@@ -189,13 +189,23 @@ class Deleter extends MY_Model
     
      public function remove_user($user_id)
     {
+      //  $tmp = $this->db->query("SELECT user_name, user_surname, user_email, user_birth_date
+      //                           FROM users
+      //                          WHERE user_id=$user_id");
         $this->db->query("DELETE FROM users WHERE user_id=$user_id");
+        
         if($this->db->affected_rows()>0){
+        
+          $this->db->query("INSERT INTO user_cleans (user_clean_date) VALUES (CURRENT_TIMESTAMP)");
+          $id= $this->db->insert_id();
+         // $this->db->query("INSERT INTO deleted_users (deleted_user_user_clean_id, deleted_user_name, deleted_user_surname_deleted_user_email, deleted_user_birth_day)
+          //                  VALUES ($id, '".$tmp['user_name']."', '".$tmp['user_surname']."', '".$tmp['user_email']."', '".$tmp['birth_date']."')");
+          
           $this->db->query("UPDATE payments
                             SET payment_user_id=NULL 
                             WHERE payment_user_id=$user_id");
           $this->db->query("UPDATE fin_redistributes
-                            SET fin_redistribute_use_id=NULL 
+                            SET fin_redistribute_user_id=NULL 
                             WHERE fin_redistribute_user_id=$user_id");
           $this->db->query("UPDATE user_email_evidence
                             SET user_email_evidence_user_id=NULL 
@@ -211,7 +221,7 @@ class Deleter extends MY_Model
                             WHERE project_item_user_id=$user_id");
           $this->db->query("UPDATE history_paids
                             SET history_paids_user_id=NULL 
-                            WHERE history_paid_user_id=$user_id");
+                            WHERE history_paids_user_id=$user_id");
           $this->db->query("UPDATE booked_excursions
                             SET booked_excursion_user_id=NULL 
                             WHERE booked_excursion_user_id=$user_id");
@@ -220,7 +230,7 @@ class Deleter extends MY_Model
                             WHERE excursion_time_lecturer_id=$user_id");
           $this->db->query("UPDATE posts
                             SET post_author_id=NULL 
-                            WHERE poat_author_id=$user_id");
+                            WHERE post_author_id=$user_id");
           $this->db->query("UPDATE database_logs
                             SET database_log_user_id=NULL 
                             WHERE database_log_user_id=$user_id");
