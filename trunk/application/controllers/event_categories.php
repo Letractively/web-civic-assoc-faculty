@@ -13,8 +13,10 @@ class Event_categories extends MY_Controller
     {
         parent::__construct();
         
-        if( !$this->userdata->is_admin() )
-                redirect(base_url());
+        /*if( !$this->userdata->is_admin() )
+                redirect(base_url());*/
+        
+        $this->load->model('selecter');
         
         $data = array(
             'title' 		=> 'Kategórie udalostí',   //Title na aktualnej stranke
@@ -32,7 +34,7 @@ class Event_categories extends MY_Controller
      */
     public function index()
     {       
-        $this->load->view('container', array_merge($this->data, $data));   
+        $this->load->view('container', $this->data);   
     }
     
     public function add()
