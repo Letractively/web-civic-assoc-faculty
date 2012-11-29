@@ -51,10 +51,14 @@ class Grid
 	public $edit_mode = "internal";
 	public $remove_url = "";
 
-	public function __construct()
-	{
-	}
-	
+	/*
+	 * bind
+	 * 
+	 * Metóda napĺňa grid dátami.
+	 * 
+	 * @param table Dvojrozmerné pole dát vo formáte array of object alebo array of array. V prípade array of array musí mať pole nižšej úrovne indexy ako string, ktoré zároveň definujú názvy stĺpcov gridu.
+	 * @param unique_key Názov stĺpca, ktorý obsahuje IDčko záznamu.
+	 */
 	public function bind($table, $unique_key) // ocakava array of object alebo array of array
 	{	
 		if (count($table) == 0) return;
@@ -67,6 +71,7 @@ class Grid
 		foreach ($row as $key => $value)
 			$this->headCols[$key] = new Col($key);
 		
+		
 		foreach ($table as $table_row)
 		{
 			$row = new Row;
@@ -78,17 +83,35 @@ class Grid
 		}
 	}
 	
+	/*
+	 * header
+	 * 
+	 * Metóda vracia atribúty vybraného stĺpca gridu.
+	 *
+	 * @param head_id Názov stĺpca.
+	 *
+	 * @return Objekt ktorý obsahuje atribúty stĺpca.
+	 */
 	public function header($head_id)
 	{
 		return $this->headCols[$head_id];
 	}
 	
+	/*
+	 * row
+	 * 
+	 * Metóda vracia atribúty vybraného riadka gridu.
+	 *
+	 * @param unique_key IDčko záznamu.
+	 *
+	 * @return Objekt ktorý obsahuje atribúty riadku.
+	 */
 	public function row($unique_key)
 	{
 		return $this->rows[$unique_key];
 	}
 	
-	public function genjs()
+	private function genjs()
 	{ ?>
 	<script type="text/javascript" charset="UTF-8">
 		var ids = [<?php
@@ -248,6 +271,12 @@ class Grid
 	<?php
 	}
 	
+	/*
+	 * display
+	 * 
+	 * Metóda zobrazuje grid s vopred nastavenými atribútami.
+	 *
+	 */
 	public function display()
 	{
 		$this->genjs();
@@ -286,6 +315,7 @@ class Grid
 			}
 		}
 		
+		if (count($this->rows) != 0)
 		if ($this->add_url != "")
 		{
 			echo '<tr id="row0">'."\n";
