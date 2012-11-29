@@ -13,8 +13,10 @@ class Payments extends MY_Controller
     {
         parent::__construct();
         
-        if( !$this->userdata->is_admin() )
-            redirect(base_url());
+        /*if( !$this->userdata->is_admin() )
+            redirect(base_url());*/
+        
+         $this->load->model('selecter');
         
         $data = array(
             'title' 		=> 'Platby',   //Title na aktualnej stranke
@@ -32,17 +34,26 @@ class Payments extends MY_Controller
      */
     public function index($pay_id = 0)
     {
-        $this->load->view('container', $this->data); 
+        $data = array(
+            'flag'      => 0
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
     }
     
     public function paid($pay_id = 0)
     {
-        
+        $data = array(
+            'flag'      => 1
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
     }
     
     public function nopaid($pay_id = 0)
     {
-        
+        $data = array(
+            'flag'      => 2
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
     }
     
     public function add()
