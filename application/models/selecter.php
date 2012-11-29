@@ -338,8 +338,8 @@ class Selecter extends MY_Model
     }
     
      public function get_payments_lastpaid($user_id)
-    {
-            $q = $this->db->query("
+     {
+         $q = $this->db->query("
                                     SELECT p.payment_paid_sum, p.payment_paid_time, p.payment_total_sum  
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)
@@ -352,7 +352,19 @@ class Selecter extends MY_Model
     
     public function get_payments_nopaid($user_id)
     {
+        if($user_id==0){
             $q = $this->db->query("
+                                    SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                          p.payment_paid_sum, p.payment_paid_time
+                                      FROM payments p
+                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                       WHERE p.payment_paid_sum<p.payment_total_sum
+                                      ORDER BY p.payment_paid_time DESC
+                                   
+                                  ");
+        } 
+        else{
+        $q = $this->db->query("
                                     SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time
                                       FROM payments p
@@ -361,12 +373,25 @@ class Selecter extends MY_Model
                                       ORDER BY p.payment_paid_time DESC
                                    
                                   ");
+        }
             return $q->result();
     }
     
     public function get_payments_paid($user_id)
     {
-         $q = $this->db->query("
+        if($user_id==0){
+            $q = $this->db->query("
+                                    SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                          p.payment_paid_sum, p.payment_paid_time
+                                      FROM payments p
+                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                       WHERE p.payment_paid_sum>=p.payment_total_sum
+                                      ORDER BY p.payment_paid_time DESC
+                                   
+                                  ");
+        }
+        else{
+        $q = $this->db->query("
                                     SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time
                                       FROM payments p
@@ -375,6 +400,7 @@ class Selecter extends MY_Model
                                       ORDER BY p.payment_paid_time DESC
                                    
                                   ");
+        }
             return $q->result();
     }
     
