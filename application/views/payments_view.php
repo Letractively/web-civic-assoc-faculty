@@ -26,15 +26,8 @@
         $grid->bind($this->selecter->get_payments_nopaid($pay_id), 'payment_id');
         $grid->header('payments_id')->editable = false;
     }
-    
-    
-    
     $grid->add_url = "{$this->router->class}/add";
     $grid->edit_url = "{$this->router->class}/edit";
     $grid->remove_url = "{$this->router->class}/delete";
-    
-    
-    
-	
     $grid->display();
 ?>

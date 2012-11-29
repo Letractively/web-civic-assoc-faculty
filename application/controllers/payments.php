@@ -35,7 +35,8 @@ class Payments extends MY_Controller
     public function index($pay_id = 0)
     {
         $data = array(
-            'flag'      => 0
+            'flag'      => 0,
+            'pay_id'    => $pay_id
         );
         $this->load->view('container', array_merge($this->data, $data)); 
     }
@@ -43,7 +44,8 @@ class Payments extends MY_Controller
     public function paid($pay_id = 0)
     {
         $data = array(
-            'flag'      => 1
+            'flag'      => 1,
+            'pay_id'    => $pay_id
         );
         $this->load->view('container', array_merge($this->data, $data)); 
     }
@@ -51,7 +53,8 @@ class Payments extends MY_Controller
     public function nopaid($pay_id = 0)
     {
         $data = array(
-            'flag'      => 2
+            'flag'      => 2,
+            'pay_id'    => $pay_id
         );
         $this->load->view('container', array_merge($this->data, $data)); 
     }
