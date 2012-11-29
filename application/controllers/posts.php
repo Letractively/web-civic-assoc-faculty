@@ -37,6 +37,10 @@ class Posts extends MY_Controller
     
     public function detail( $post_id )
     {
+        $this->load->model('selecter');
+        $data = array(
+            'post_id'       => $post_id
+        );
         $this->load->view('container', $this->data);
     }
     
