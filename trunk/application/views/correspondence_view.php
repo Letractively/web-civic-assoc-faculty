@@ -12,24 +12,38 @@
 		new Pair('degree_year','rok ukončenia')
 	];
 	
-	var filter_types_options = new Array(); // nahrad konstanty udajmi z databazy
+	var filter_types_options = new Array();
+	
 	filter_types_options['study'] = [
-		new Pair(0,'ain'),
-		new Pair(2,'in'),
-		new Pair(5,'fyz'),
-		new Pair(8,'mat')
-	];
+	<?php
+		$study_programs = $this->selecter->get_study_programs();
+		$first = true;
+		foreach ($study_programs as $study_program)
+		{
+			if ($first == false) echo ','."\n";
+			echo "new Pair('$study_program->study_program_id', '$study_program->study_program_name')";
+			$first = false;
+		}
+	?> ];
+	
 	filter_types_options['grade'] = [
 		new Pair(1,'1. stupen'),
 		new Pair(2,'2. stupen'),
 		new Pair(3,'3. stupen')
 	];
-	filter_types_options['degree_year'] = [
-		new Pair(1990,'1990'),
-		new Pair(1991,'1991'),
-		new Pair(1992,'1992')
-	];
 	
+	filter_types_options['degree_year'] = [
+	<?php
+		$first = true;
+		foreach($years as $index => $value)
+		{
+			if ($first == false) echo ','."\n";
+			echo "new Pair($index, '$value')";
+			$first = false;
+		}
+	?>
+	];
+
 	function createCombobox(name, options)
 	{
 		var new_combo = document.createElement('select');
@@ -38,7 +52,7 @@
 		for (var i = 0; i < options.length; ++i)
 		{
 			var new_option = document.createElement('option');
-			new_option.setAttribute('name', options[i].id);
+			new_option.setAttribute('value', options[i].id);
 			new_option.innerHTML = options[i].value;
 			new_combo.appendChild(new_option);
 		}
@@ -60,7 +74,7 @@
 		for (var i = 0; i < options.length; ++i)
 		{
 			var new_option = document.createElement('option');
-			new_option.setAttribute('name', options[i].id);
+			new_option.setAttribute('value', options[i].id);
 			new_option.innerHTML = options[i].value;
 			combobox.appendChild(new_option);
 		}
@@ -83,7 +97,7 @@
 		
 		var new_filter_type = createCombobox('', filter_types);
 		new_filter_type.setAttribute('class', 'filter_type');
-		new_filter_type.setAttribute('onchange', 'changeComboboxOptions(this.parentNode.childNodes[1], this.options[this.selectedIndex].getAttribute("name"), filter_types_options[ this.options[this.selectedIndex].getAttribute("name") ])');
+		new_filter_type.setAttribute('onchange', 'changeComboboxOptions(this.parentNode.childNodes[1], this.options[this.selectedIndex].getAttribute("value"), filter_types_options[ this.options[this.selectedIndex].getAttribute("value") ])');
 		
 		var new_filter_value = createCombobox('study[]', filter_types_options['study']);
 		new_filter_value.setAttribute('class', 'filter_value');

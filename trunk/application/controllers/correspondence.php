@@ -41,6 +41,7 @@ class Correspondence extends MY_Controller
             }
 
             $data = array( 
+				'years' => $this->generate_years(60, 2012, 50),
                 'view'          => "{$this->router->class}_view",
                 'error'         => $this->form_validation->form_required(array('email_type_id','correspondence_subject','correspondence_content'))
             );
