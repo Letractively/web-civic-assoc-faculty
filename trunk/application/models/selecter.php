@@ -223,7 +223,7 @@ class Selecter extends MY_Model
              $q = $this->db->query("SELECT p.post_title, p.post_content, p.post_author_id, 
                                            p.post_date, pm.post_modifie_author_id, pm.post_modifie_date
                                     FROM posts p
-                                    JOIN post_modifies pm ON (p.post_id=pm.post_modifie_post_id)
+                                    LEFT JOIN post_modifies pm ON (p.post_id=pm.post_modifie_post_id)
                                     ORDER BY p.post_date
                                      ");
              return $q->result();
