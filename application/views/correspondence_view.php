@@ -1,55 +1,107 @@
-<script type="text/javascript" charset="UTF-8">
+﻿<script type="text/javascript" charset="UTF-8">
 
-	function FilterType(name,text)
+	function Pair(id,value)
 	{
-		this.name = name;
-		this.text = text;
-	}
-	
-	function Option(id,value)
-	{
-		this.id = name;
-		this.value = text;
+		this.id = id;
+		this.value = value;
 	}
 	
 	var filter_types = [
-		new FilterType('study','odbor'),
-		new FilterType('grade','stupe� vzdelania'),
-		new FilterType('degree_year','rok ukon�enia')
+		new Pair('study','odbor'),
+		new Pair('grade','stupeň vzdelania'),
+		new Pair('degree_year','rok ukončenia')
 	];
 	
-	var filter_types_options = new Array();
+	var filter_types_options = new Array(); // nahrad konstanty udajmi z databazy
 	filter_types_options['study'] = [
-		new Option(0,'ain'),
-		new Option(2,'in'),
-		new Option(5,'fyz'),
-		new Option(8,'mat')
+		new Pair(0,'ain'),
+		new Pair(2,'in'),
+		new Pair(5,'fyz'),
+		new Pair(8,'mat')
 	];
 	filter_types_options['grade'] = [
-		new Option(1,'1. stupen'),
-		new Option(2,'2. stupen'),
-		new Option(3,'3. stupen')
+		new Pair(1,'1. stupen'),
+		new Pair(2,'2. stupen'),
+		new Pair(3,'3. stupen')
 	];
 	filter_types_options['degree_year'] = [
-		new Option(1990,'1990'),
-		new Option(1991,'1991'),
-		new Option(1992,'1992')
+		new Pair(1990,'1990'),
+		new Pair(1991,'1991'),
+		new Pair(1992,'1992')
 	];
-
-	function changeFilterType(id)
+	
+	function createCombobox(name, options)
 	{
+		var new_combo = document.createElement('select');
+		if (name != '') new_combo.setAttribute('name', name);
+		
+		for (var i = 0; i < options.length; ++i)
+		{
+			var new_option = document.createElement('option');
+			new_option.setAttribute('name', options[i].id);
+			new_option.innerHTML = options[i].value;
+			new_combo.appendChild(new_option);
+		}
+		
+		return new_combo;
 	}
 	
 	function removeAllChild(elem)
 	{
+		while (elem.childNodes.length > 0)
+			elem.removeChild(elem.childNodes[0]);
+	}
+	
+	function changeComboboxOptions(combobox, name, options)
+	{
+		removeAllChild(combobox);
+		combobox.setAttribute('name', name+'[]');
+			
+		for (var i = 0; i < options.length; ++i)
+		{
+			var new_option = document.createElement('option');
+			new_option.setAttribute('name', options[i].id);
+			new_option.innerHTML = options[i].value;
+			combobox.appendChild(new_option);
+		}
+	}
+	
+	function createActiveText(text)
+	{
+		var new_label = document.createElement('span');
+		new_label.setAttribute('onclick', 'removeFilterItem(this)');
+		new_label.innerHTML = text;
+		return new_label;
 	}
 	
 	function addFilterItem()
 	{
+		var root = document.getElementById('filter');
+		
+		var new_filter_elem = document.createElement('div');
+		new_filter_elem.setAttribute('class', 'filter_row');
+		
+		var new_filter_type = createCombobox('', filter_types);
+		new_filter_type.setAttribute('class', 'filter_type');
+		new_filter_type.setAttribute('onchange', 'changeComboboxOptions(this.parentNode.childNodes[1], this.options[this.selectedIndex].getAttribute("name"), filter_types_options[ this.options[this.selectedIndex].getAttribute("name") ])');
+		
+		var new_filter_value = createCombobox('study[]', filter_types_options['study']);
+		new_filter_value.setAttribute('class', 'filter_value');
+		
+		var new_filter_remove = createActiveText('zmaž');
+		new_filter_remove.setAttribute('class', 'filter_remove');
+		
+		new_filter_elem.appendChild(new_filter_type);
+		new_filter_elem.appendChild(new_filter_value);
+		new_filter_elem.appendChild(new_filter_remove);
+		
+		//root.appendChild(new_filter_elem);
+		root.insertBefore(new_filter_elem, document.getElementById('btn_add'));
 	}
 	
 	function removeFilterItem(elem)
 	{
+		elem.parentNode.parentNode.removeChild(elem.parentNode);
 	}
 
 </script>
@@ -76,6 +128,10 @@
         <label for="email_type_id" class="<?= $error['email_type_id'] ?>"><?= $this->lang->line('label_email_type_id') ?></label>
         <?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name'); ?>
     </div>
+	
+	<div id="filter" class="inputitem">
+		<div id="btn_add" onclick="addFilterItem()">pridaj</div>
+	</div>
 
     <div class="inputitem">
         <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_correspondence')) ?>
