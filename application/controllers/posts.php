@@ -27,6 +27,7 @@ class Posts extends MY_Controller
      */
     public function index()
     {
+        $this->load->model('selecter');
         $data = array(
             'view'      => "{$this->router->class}_view"
         );
