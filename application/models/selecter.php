@@ -220,7 +220,7 @@ class Selecter extends MY_Model
     
     public function get_posts()
     {
-             $q = $this->db->query("SELECT p.post_title, p.post_content, p.post_author_id, 
+             $q = $this->db->query("SELECT p.post_id, p.post_title, p.post_content, p.post_author_id, 
                                            p.post_date, pm.post_modifie_author_id, pm.post_modifie_date
                                     FROM posts p
                                     LEFT JOIN post_modifies pm ON (p.post_id=pm.post_modifie_post_id)
