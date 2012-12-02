@@ -33,7 +33,12 @@ class Users extends MY_Controller
     
     public function detail( $user_id )
     {
+        $this->load->model('selecter');
+        $data = array(
+            'user_id'      => $user_id
+        );
         
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
     public function add()

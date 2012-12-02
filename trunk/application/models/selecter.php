@@ -420,8 +420,8 @@ class Selecter extends MY_Model
     {
         $q = $this->db->query(" SELECT *
                                 FROM users u
-                                JOIN study_programs sp ON (u.study_program_id=sp.study_program_id) 
-                                JOIN degrees d ON (u.degree_id=d.degree_id)
+                                JOIN study_programs sp ON (u.user_study_program_id=sp.study_program_id) 
+                                JOIN degrees d ON (u.user_degree_id=d.degree_id)
                                 WHERE u.user_id=$user_id       
                                ");
         return $q->result();
