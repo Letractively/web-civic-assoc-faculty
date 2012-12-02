@@ -5,7 +5,7 @@ class Degrees extends MY_Controller
         function __construct() 
         {
             parent::__construct();
-
+            $this->load->model('selecter');
             /*if( !$this->userdata->is_admin() )
                 redirect(base_url());*/
             
@@ -38,7 +38,8 @@ class Degrees extends MY_Controller
               'view'            => 'confirm_view',
               'type'            => 'delete',
               'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-              'method'          => $this->router->class.'/'.$degree_id
+              'method'          => $this->router->class.'/'.$degree_id,
+              'degree_id'       => $degree_id
             );
             
             $this->load->view('container', array_merge($this->data, $data));
@@ -48,6 +49,10 @@ class Degrees extends MY_Controller
         {
             parent::edit('edit_degree', $degree_id, $this->router->class, $this->router->method);
             
-            $this->load->view('container', $this->data);
+            $data = array(
+                'degree_id'       => $degree_id
+            );
+            
+            $this->load->view('container', array_merge($this->data, $data));
         }
 }

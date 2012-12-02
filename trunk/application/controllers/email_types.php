@@ -46,8 +46,11 @@ class Email_types extends MY_Controller
     public function edit( $email_type_id )
     {
         parent::edit('edit_email_type', $email_type_id, $this->router->class, $this->router->method);
-            
-        $this->load->view('container', $this->data);
+        
+        $data = array(
+            'email_type_id'   => $email_type_id
+        );
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
     public function delete( $email_type_id )
@@ -58,7 +61,8 @@ class Email_types extends MY_Controller
             'view'            => 'confirm_view',
             'type'            => 'delete',
             'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-            'method'          => $this->router->class.'/'.$email_type_id
+            'method'          => $this->router->class.'/'.$email_type_id,
+            'email_type_id'   => $email_type_id
         );
             
         $this->load->view('container', array_merge($this->data, $data));

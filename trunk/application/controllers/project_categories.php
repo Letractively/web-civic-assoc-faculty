@@ -11,7 +11,7 @@ class Project_categories extends MY_Controller
     function __construct() 
     {
         parent::__construct();
-        
+        $this->load->model('selecter');
         $data = array(
             'title' 		=> 'Kategórie projektov',   //Title na aktualnej stranke
             'view'              => "{$this->router->class}_view"
@@ -43,7 +43,8 @@ class Project_categories extends MY_Controller
         parent::add('add_transaction', $this->router->class, $this->router->method);
         
         $data = array(
-            'view'              => "{$this->router->class}_{$this->router->method}_view"
+            'view'              => "{$this->router->class}_{$this->router->method}_view",
+            'project_category_id'   => $project_category_id
         );
             
         $this->load->view('container', array_merge($this->data, $data));
