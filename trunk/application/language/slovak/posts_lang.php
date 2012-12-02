@@ -1,7 +1,11 @@
 <?php
 
-$lang['label_subject']                   =   'Nadpis';
-$lang['label_content']                   =   'Obsah príspevku';
+$lang['label_subject']                      =   'Nadpis';
+$lang['label_content']                      =   'Obsah príspevku';
+
+$lang['last_update']                        =   'Posledná úprava';
+$lang['added_by']                           =   'Pridal';
+$lang['created_by']                         =   'Vytvoril';
 
 $lang['button_add_post']               = 'Vytvoriť';
 $lang['button_edit_post']               = 'Uprav';

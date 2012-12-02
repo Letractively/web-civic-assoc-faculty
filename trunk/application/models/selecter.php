@@ -2,6 +2,16 @@
 
 class Selecter extends MY_Model
 {
+    /************NEODSTRANOVAT!!!!!!!*******matej********/
+    public function id($id, $table, $column)
+    {
+        $q = $this->db->query(" SELECT * 
+                                FROM $table
+                                WHERE $column = $id
+                              ");
+        return $q->row();
+    }
+    
     public function get_login( $param )
     {
         $q = $this->db->query(" SELECT user_id, user_role
@@ -237,9 +247,13 @@ class Selecter extends MY_Model
     public function get_post_detail($post_id)
     {
              $q = $this->db->query("SELECT p.post_title, p.post_content, p.post_author_id, 
-                                           p.post_date, pm.post_modifie_author_id, pm.post_modifie_date
+                                           p.post_date, pm.post_modifie_author_id, pm.post_modifie_date,
+                                           u.user_name as author_name, u.user_surname as author_surname,
+                                           us.user_name as modifie_name, us.user_surname as modifie_surname
                                     FROM post_modifies pm
                                     JOIN posts p ON (pm.post_modifie_post_id=p.post_id)
+                                    JOIN users u ON (p.post_author_id = u.user_id)
+                                    LEFT JOIN users us ON (pm.post_modifie_author_id = us.user_id)
                                     WHERE p.post_id=$post_id
                                      ");
              return $q->result();
@@ -247,7 +261,7 @@ class Selecter extends MY_Model
     
     public function get_post_modifiers($post_id)
     {
-            $q = $this->db->query(" SELECT u.user_id, u.user_name, u.user_surname, pm_p.post_modifie_date
+            $q = $this->db->query(" SELECT u.user_id, u.user_name, u.user_surname, pm_p.post_modifie_date,pm_p.post_modifie_id
                                     FROM users u
                                     JOIN
                                      (SELECT *
@@ -324,16 +338,15 @@ class Selecter extends MY_Model
     {
         if($user_id==0){
             $q = $this->db->query(" SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
-                                          p.payment_paid_sum, p.payment_paid_time
+                                          p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     JOIN users u ON (p.payment_user_id=u.user_id)
-                                   
                                   ");
             return $q->result();
         }   
         else {
         $q = $this->db->query(" SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
-                                          p.payment_paid_sum, p.payment_paid_time
+                                          p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     JOIN users u ON (p.payment_user_id=u.user_id)
                                     WHERE u.user_id=$user_id
@@ -360,7 +373,7 @@ class Selecter extends MY_Model
         if($user_id==0){
             $q = $this->db->query("
                                     SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
-                                          p.payment_paid_sum, p.payment_paid_time
+                                          p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE p.payment_paid_sum<p.payment_total_sum
@@ -371,7 +384,7 @@ class Selecter extends MY_Model
         else{
         $q = $this->db->query("
                                     SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
-                                          p.payment_paid_sum, p.payment_paid_time
+                                          p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE u.user_id=$user_id AND p.payment_paid_sum<p.payment_total_sum
@@ -387,7 +400,7 @@ class Selecter extends MY_Model
         if($user_id==0){
             $q = $this->db->query("
                                     SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
-                                          p.payment_paid_sum, p.payment_paid_time
+                                          p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE p.payment_paid_sum>=p.payment_total_sum
@@ -398,7 +411,7 @@ class Selecter extends MY_Model
         else{
         $q = $this->db->query("
                                     SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
-                                          p.payment_paid_sum, p.payment_paid_time
+                                          p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE (u.user_id=$user_id) AND (p.payment_paid_sum>=p.payment_total_sum)

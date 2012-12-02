@@ -12,5 +12,8 @@ $lang['confirm_yes']                    =   'Áno';
 $lang['confirm_no']                     =   'Nie';
 $lang['confirm_ok']                     =   'Ok';
 
+$lang['delete_item']                    =   'Zmazať';
+$lang['edit_item']                      =   'Upraviť';
+
 /* End of file default_lang.php */
 /* Location: ./application/language/slovak/default_lang.php */
