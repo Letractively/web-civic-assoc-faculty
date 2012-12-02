@@ -17,27 +17,23 @@
             <?= $o->post_content ?>  
         </div>
 
-        <div class="post_add_info">
-            <span>Pridal:</span>
-            <?php 
-                echo $o->author_name.' '.$o->author_surname.', ';
-                echo $o->post_date;
-            ?> 
-        </div>
-
-        <div class="post_modifie_info">
-            <?php 
-                if($o->post_modifie_author_id == TRUE || $o->post_modifie_date == TRUE)
-                {
-                    echo '<span>Posledná úprava:</span>';
+        
+        <?php
+            if($o->post_modifie_author_id == TRUE || $o->post_modifie_date == TRUE)
+            {
+                echo '<div class="post_modifie_info">';
+                    echo '<span>'.$this->lang->line('last_update').':</span>';
                     echo $o->modifier_name.' '.$o->modifier_surname.', ';
-                }
-                if($o->post_modifie_date)
-                {
                     echo datetime($o->post_modifie_date, FALSE).' '.time_withou_seconds(datetime($o->post_modifie_date, TRUE));
-                } 
-            ?> 
-        </div>
-<?
+                echo '</div>';
+            }
+            else
+            {
+                echo '<div class="post_add_info">';
+                    echo '<span>'.$this->lang->line('added_by').':</span>';
+                    echo $o->author_name.' '.$o->author_surname.', ';
+                    echo $o->post_date;
+                echo '</div>';
+            }
     }
 ?>

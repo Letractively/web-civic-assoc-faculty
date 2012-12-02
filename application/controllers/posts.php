@@ -38,10 +38,11 @@ class Posts extends MY_Controller
     public function detail( $post_id )
     {
         $this->load->model('selecter');
+        
         $data = array(
             'post_id'       => $post_id
         );
-        $this->load->view('container', $this->data);
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
     public function add()
@@ -86,7 +87,12 @@ class Posts extends MY_Controller
     
     public function modifiers( $post_id )
     {
+        $this->load->model('selecter');
         
+        $data = array(
+            'post_id'       => $post_id
+        );
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
 }
