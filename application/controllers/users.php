@@ -28,7 +28,7 @@ class Users extends MY_Controller
      */
     public function index()
     {
-        
+        $this->load->view('container', $this->data);
     }
     
     public function detail( $user_id )
@@ -58,7 +58,10 @@ class Users extends MY_Controller
     
     public function edit( $user_id )
     {
-        
+        $data = array(
+            'user_id'   => $user_id
+        );
+        $this->load->view('container', array_merge($this->data, $data));
     }
     
     public function delete( $user_id )

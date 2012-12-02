@@ -11,7 +11,8 @@ class Projects extends MY_Controller
         function __construct() 
         {
             parent::__construct();
-
+            $this->load->model('selecter');
+            
             $data = array(
                 'title' 		=> ''   //Title na aktualnej stranke
             );
@@ -27,12 +28,15 @@ class Projects extends MY_Controller
          */
         public function index()
         {
-
+            $this->load->view('container', $this->data);
         }
 
         public function detail($project_id)
         {
-
+            $data = array(
+                'project_id'   => $project_id
+            );
+            $this->load->view('container', array_merge($this->data, $data));
         }
 
         public function add()
@@ -53,7 +57,8 @@ class Projects extends MY_Controller
             parent::add_param('add_project_item', $project_id, $this->router->class, $this->router->method);
 
             $data = array(
-                'view'              => "{$this->router->class}_edit_view"
+                'view'              => "{$this->router->class}_edit_view",
+                'project_id'        => $project_id
             );
 
             $this->load->view('container', array_merge($this->data, $data)); 
@@ -78,7 +83,8 @@ class Projects extends MY_Controller
             parent::edit('edit_project_item', $project_id, $this->router->class, $this->router->method);
 
             $data = array(
-                'view'              => "{$this->router->class}_edit_view"
+                'view'              => "{$this->router->class}_edit_view",
+                'project_id'        => $project_id
             );
 
             $this->load->view('container', array_merge($this->data, $data)); 
@@ -86,7 +92,11 @@ class Projects extends MY_Controller
         
         public function edit_project_closed( $project_id )
         {
-            // What code will be here? 
+            $data = array(
+                'project_id'        => $project_id
+            );
+
+            $this->load->view('container', array_merge($this->data, $data)); 
         }
 
         public function delete( $project_id )
@@ -97,7 +107,8 @@ class Projects extends MY_Controller
               'view'            => 'confirm_view',
               'type'            => 'delete',
               'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-              'method'          => $this->router->class.'/'.$project_id
+              'method'          => $this->router->class.'/'.$project_id,
+              'project_id'      => $project_id
             );
             
             $this->load->view('container', array_merge($this->data, $data));

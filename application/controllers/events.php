@@ -12,7 +12,7 @@ class Events extends MY_Controller
         function __construct() 
         {
             parent::__construct();
-
+            $this->load->model('selecter');
             $data = array(
                 'title' 		=> 'Udalosti'   //Title na aktualnej stranke
             );
@@ -41,6 +41,7 @@ class Events extends MY_Controller
         {
             $data = array(
                 'view'      => "{$this->router->class}_view",
+                'event_id'      => $event_id
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
@@ -49,6 +50,7 @@ class Events extends MY_Controller
         {
             $data = array(
                 'view'      => "{$this->router->class}_view",
+                'event_id'      => $event_id
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
@@ -100,10 +102,11 @@ class Events extends MY_Controller
             parent::delete('remove_event', $event_id, $this->router->class);
             
             $data = array(
-              'view'            => 'confirm_view',
-              'type'            => 'delete',
-              'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-              'method'          => $this->router->class.'/'.$event_id
+                'view'            => 'confirm_view',
+                'type'            => 'delete',
+                'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+                'method'          => $this->router->class.'/'.$event_id,
+                'event_id'      => $event_id
             );
             
             $this->load->view('container', array_merge($this->data, $data));            

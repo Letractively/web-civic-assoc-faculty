@@ -12,7 +12,6 @@ class Event_categories extends MY_Controller
     function __construct() 
     {
         parent::__construct();
-        
         /*if( !$this->userdata->is_admin() )
                 redirect(base_url());*/
         
@@ -47,8 +46,11 @@ class Event_categories extends MY_Controller
     public function edit( $event_category_id )
     {
         parent::edit('edit_event_category', $event_category_id, $this->router->class, $this->router->method);
-               
-        $this->load->view('container', $this->data);   
+        
+        $data = array(
+            'event_category_id' => $event_category_id
+        );
+        $this->load->view('container', array_merge($this->data, $data));   
     }
     
     public function delete( $event_category_id )
@@ -59,7 +61,8 @@ class Event_categories extends MY_Controller
             'view'            => 'confirm_view',
             'type'            => 'delete',
             'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-            'method'          => $this->router->class.'/'.$event_category_id
+            'method'          => $this->router->class.'/'.$event_category_id,
+            'event_category_id' => $event_category_id
         );
             
         $this->load->view('container', array_merge($this->data, $data)); 
