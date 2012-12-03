@@ -143,7 +143,8 @@ class Selecter extends MY_Model
     public function get_user($study_ids, $degrees, $degree_years)
     {
             $q = $this->db->query(" 
-                                    SELECT tab.user_name, tab.user_surname, tab.degree_name AS user_degree, 
+                                    SELECT tab.user_id, tab.user_name, tab.user_surname, 
+                                           tab.degree_name AS user_degree, 
                                            tab.study_program_name AS user_study_program, 
                                            uee.user_email_evidence_date, tab.user_email
                                     FROM user_email_evidence uee
@@ -184,7 +185,7 @@ class Selecter extends MY_Model
     public function get_events($cat_id)
     {
        if($cat_id !=0){
-        $q = $this->db->query("SELECT e.event_name, e.event_from, e.event_to
+        $q = $this->db->query("SELECT e.event_name, e.event_from, e.event_to, e.event_id
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
@@ -195,7 +196,8 @@ class Selecter extends MY_Model
     
         else
         {
-         $q = $this->db->query("SELECT e.event_name, e.event_from, e.event_to, ec.event_category_name
+         $q = $this->db->query("SELECT e.event_name, e.event_from, e.event_to, 
+                                       ec.event_category_name, e.event_id
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority
@@ -206,7 +208,7 @@ class Selecter extends MY_Model
     
     public function get_lecturers()
     {
-            $q = $this->db->query(" SELECT user_id, user_name||' '||user_surname AS user_name
+            $q = $this->db->query(" SELECT user_id, user_name, user_surname
                                     FROM users
                                     WHERE user_role=4
                                   ");
@@ -215,7 +217,8 @@ class Selecter extends MY_Model
     
     public function get_lecturer_times($ex_event_id,$user_id)
     {
-            $q = $this->db->query(" SELECT e.excursion_time_from, e.excursion_time_to
+            $q = $this->db->query(" SELECT e.excursion_time_from, e.excursion_time_to, 
+                                           e.excursion_time_id
                                     FROM users u
                                     JOIN
                                      (SELECT *
@@ -261,7 +264,8 @@ class Selecter extends MY_Model
     
     public function get_post_modifiers($post_id)
     {
-            $q = $this->db->query(" SELECT u.user_id, u.user_name, u.user_surname, pm_p.post_modifie_date,pm_p.post_modifie_id
+            $q = $this->db->query(" SELECT u.user_id, u.user_name, u.user_surname, 
+                                           pm_p.post_modifie_date,pm_p.post_modifie_id
                                     FROM users u
                                     JOIN
                                      (SELECT *
@@ -301,7 +305,9 @@ class Selecter extends MY_Model
     
     public function get_project_items($project_id)
     {
-            $q = $this->db->query(" SELECT piu.project_item_name, piu.project_item_price,piu.user_id, piu.user_name, piu.user_surname, piu.project_item_date
+            $q = $this->db->query(" SELECT piu.project_item_name, piu.project_item_price,
+                                           piu.user_id, piu.user_name, piu.user_surname, 
+                                           piu.project_item_date, piu.project_item_id
                                     FROM projects p
                                     JOIN
                                      (SELECT *
@@ -358,7 +364,8 @@ class Selecter extends MY_Model
      public function get_payments_lastpaid($user_id)
      {
          $q = $this->db->query("
-                                    SELECT p.payment_paid_sum, p.payment_paid_time, p.payment_total_sum  
+                                    SELECT p.payment_paid_sum, p.payment_paid_time, 
+                                           p.payment_total_sum, p.payment_id
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE u.user_id=$user_id 
@@ -424,9 +431,33 @@ class Selecter extends MY_Model
     
     public function get_transactions($pr_cat_id)
     {
-        $q = $this->db->query(" 
-                              ");
-            return $q->result();
+        $q1 = $this->db->query("(SELECT 
+                                       tmp.project_category_name AS fin_category_transaction_from, ppc.project_category_name AS fin_category_transaction_to,
+                                       tmp.category_transaction_cash
+                                FROM
+                                (SELECT *, SUM(fct.fin_category_transaction_cash) AS category_transaction_cash
+                                FROM fin_category_transactions fct
+                                LEFT JOIN project_categories pc 
+                                     ON (fct.fin_category_transaction_cat_from_id=pc.project_category_id)
+                                
+                                WHERE pc.project_category_id=$pr_cat_id
+                                    GROUP BY fct.fin_category_transaction_cat_to_id) tmp
+                                    JOIN project_categories ppc ON (tmp.fin_category_transaction_cat_to_id=ppc.project_category_id))
+                             UNION
+                                  ( SELECT  
+                                       ppc.project_category_name AS fin_category_transaction_to, tmp.project_category_name AS fin_category_transaction_from,
+                                       tmp.category_transaction_cash
+                                FROM
+                                (SELECT *, SUM(fct.fin_category_transaction_cash) AS category_transaction_cash
+                                FROM fin_category_transactions fct
+                                LEFT JOIN project_categories pc 
+                                     ON (fct.fin_category_transaction_cat_to_id=pc.project_category_id)
+                                WHERE pc.project_category_id=$pr_cat_id
+                                    GROUP BY fct.fin_category_transaction_cat_from_id) tmp
+                                    JOIN project_categories ppc ON (tmp.fin_category_transaction_cat_from_id=ppc.project_category_id))");
+     
+   
+            return $q1->result();
     }
     
     public function get_user_detail($user_id)
