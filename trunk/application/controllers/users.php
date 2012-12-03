@@ -50,7 +50,7 @@ class Users extends MY_Controller
                                                                                 'email', 'phone', 'study_program_id', 'degree_id', 
                                                                                 'place_of_birth', 'postcode', 'degree_year',
                                                                                 'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
-                                                                                'project_category_5', 'project_category_6')
+                                                                                'project_category_5', 'project_category_6','oz_member','ex_member','lecturer','degrees_id','vs_box')
                                                                         )
         );
         $this->load->view('container', array_merge($this->data, $data));

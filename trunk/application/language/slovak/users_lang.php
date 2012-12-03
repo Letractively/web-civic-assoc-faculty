@@ -9,12 +9,19 @@ $lang['label_email']                =   'Email';
 $lang['label_phone']                =   'Telefónne číslo';
 $lang['label_study_program_id']     =   'Štúdijný program';
 $lang['label_degree_id']            =   'Titul';
+$lang['label_degree']               =   'Dosiahnutý titul';
 $lang['label_place_of_birth']       =   'Miesto narodenia';
 $lang['label_postcode']             =   'PSČ';
-$lang['label_degree_year']          =   'Rok ukončenia na fakulte';
+$lang['label_degree_year_id']          =   'Rok ukončenia na fakulte';
 $lang['label_role']                 =   'Rola';
 
+$lang['label_oz_member']            =   'člen';
+$lang['label_ex_member']            =   'návštevník exkurzie';
+$lang['label_lecturer']             =   'prednášajúci';
+
+$lang['label_vs_box']               =   'Pre úhradu členského zakliknúť';
 $lang['label_vs']                   =   'Variabilný symbol';
+
 $lang['label_project_category_1']   =   '1';
 $lang['label_project_category_2']   =   '2';
 $lang['label_project_category_3']   =   '3';
