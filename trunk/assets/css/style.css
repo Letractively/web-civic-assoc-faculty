@@ -6,6 +6,9 @@
         Purpose of the stylesheet follows.
 */
 
+
+/**** GRID CSS ****/
+
 root { 
     display: block;
 }
@@ -97,4 +100,195 @@ root {
 	margin-top: 4px;
 	width: 20px;
 	height: 20px;
+}
+
+.inputitem label.error {
+color: #e21313;
+}
+
+.inputitem .input.error {
+border: 1px solid #e21313;
+}
+
+
+/******* WEB DESIGN CSS *******/
+
+/** Telo **/
+body {
+	/* background-color: #fecc78; */
+	background-image: url(../img/papyrus.jpg); 
+	background-attachment: fixed;
+	background-position: center;
+	background-size: 103% 108%;
+	background-repeat: no-repeat;
+	margin: 0;
+	padding: 0;
+}
+
+/** Hlavicka **/
+#header {
+	width: 960px;
+	height: auto;
+	border-color: black;
+	border-width: 4px;
+	border-style: solid;
+	border-bottom: none;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 25px;
+	border-top-right-radius: 50px;
+	background-color: white;
+}
+
+#header p {
+	margin: 0;
+}
+
+#logo {
+	height: 100px;
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	margin: 5px 0px 0px 5px;
+}
+
+#panel {
+	width: 960px;
+	height: 128px;
+	background-image: url(../img/panel.png);
+	background-repeat: repeat-x;
+	border-color: black;
+	border-top-width: 2px;
+	border-top-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-width: solid;
+}
+
+#panel .left {
+	width: 128px;
+	height: 128px;
+	display: inline-block;
+	background-image: url(../img/logo_uk.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#panel .center {
+	width: 686px; 
+	height: 128px;
+	display: inline-block;	
+}
+
+#panel .right {
+	width: 128px;
+	height: 128px;
+	float: right;
+	background-image: url(../img/logo_fmfi.png);
+	background-repeat: no-repeat;
+	background-position: center;	
+}
+
+#panel .panel_center_nadpis1 {
+	display: inline-block;
+	width: 500px;
+}
+
+#main_navigation {
+	/*height: 40px;*/
+	margin-right: 0;
+	padding-right: 0;
+   background-image: url(images/linear_bg_2.png);
+   background-repeat: repeat-x;
+   background: -webkit-linear-gradient(top, black, #880d0d); /* Safari 5.1+ ; Chrome 10+ */
+   background: -moz-linear-gradient(top, black, #880d0d); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(top, black, #880d0d); /* IE 10 */
+   background: -o-linear-gradient(top, black, #880d0d); /* Opera 11.10+ */
+}
+
+#secondary_navigation {
+	height: 40px;
+   background-image: url(images/linear_bg_2.png);
+   background-repeat: repeat-x;
+   background: -webkit-linear-gradient(top, #fecc78, #880d0d); /* Safari 5.1+ ; Chrome 10+ */
+   background: -moz-linear-gradient(top, #fecc78, #880d0d); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(top, #fecc78, #880d0d); /* IE 10 */
+   background: -o-linear-gradient(top, #fecc78, #880d0d); /* Opera 11.10+ */
+}
+
+#navigation a {
+	width: 150px;
+	display: inline-block;
+	margin: auto 0 auto 0;
+	padding: 8px 0 8px 0;
+	text-align: center;
+}
+
+#main_navigation a:hover {
+	background: -webkit-linear-gradient(top, black, #880d0d, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
+   background: -moz-linear-gradient(top, black, #880d0d, #fecc78); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(top, black, #880d0d, #fecc78); /* IE 10 */
+   background: -o-linear-gradient(top, black, #880d0d, #fecc78); /* Opera 11.10+ */
+}
+
+/** Obsah **/
+#content {
+	width: 960px;
+	height: auto;
+	border-color: black;
+	border-style: solid;
+	border-width: 4px;
+	border-top: none;
+	border-bottom: none;
+	margin: 0px auto 0px auto;
+	background-color: white;
+	padding: 15px 0 25px 0;
+}
+
+.content_title {
+	margin: 0px 0px 10px 25px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.inputitem {
+	text-align: center;	
+}
+
+.label {	
+	width: 200px;
+	margin: 2px 0 2px 0;
+	text-align: center;
+	display: inline-block;
+	text-align: right;
+}
+
+.box {
+	width: 200px;
+	margin: 2px 0 2px 0;
+	display: inline-block;
+	text-align: left;
+}
+
+/** Paticka **/
+#footer {
+	width: 960px;
+	height: 55px;
+	color: white;
+	background-color: #880d0d;
+   background-image: url(images/linear_bg_2.png);
+   background-repeat: repeat-x;
+   background: -webkit-linear-gradient(top, #880d0d, black); /* Safari 5.1+ ; Chrome 10+ */
+   background: -moz-linear-gradient(top, #880d0d, black); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(top, #880d0d, black); /* IE 10 */
+   background: -o-linear-gradient(top, #880d0d, black); /* Opera 11.10+ */
+  	border-color: black;
+	border-width: 4px;
+	border-style: solid;
+	border-top-width: 2px; 
+	border-bottom-left-radius: 50px;
+	text-align: right;
+	margin: 0px auto 25px auto;
+}
+
+.copyright {
+	margin-right: 50px;
 }
