@@ -1,5 +1,5 @@
 <?php
-    $obj = $this->selecter->get_user_detail($user_id);
+    $obj = $this->selecter->get_user_detail(1);
     array_debug($obj);
 ?>
 <div class="user_role">
@@ -40,5 +40,5 @@ PSČ:
 </div>
 
 <?php
-    if(get_payments_lastpaid($user_id))
+    if(get_payments_lastpaid(1))
 ?>

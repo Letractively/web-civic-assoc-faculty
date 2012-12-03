@@ -1,7 +1,10 @@
-<?php
+<div class="errors">
+    <?php 
+        echo validation_errors();     
+     ?>
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+</div>
+<?= form_open("users") ?>
+
+<?= form_close()?>
+
