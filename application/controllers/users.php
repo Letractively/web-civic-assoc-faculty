@@ -43,7 +43,6 @@ class Users extends MY_Controller
     
     public function add()
     {
-        
         $this->load->model('selecter');
         $data = array(
             'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
@@ -51,9 +50,13 @@ class Users extends MY_Controller
                                                                                 'place_of_birth', 'postcode', 'degree_year',
                                                                                 'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
                                                                                 'project_category_5', 'project_category_6','oz_member','ex_member','lecturer','degrees_id','vs_box')
-                                                                        )
+                                                                        ),
+            'numb_proj_cat'         => $this->selecter->count_project_categories(),        
+                'years'                 => $this->generate_years(60, 2012, 50),
+                'title' 		=> $this->lang->line('title_add_user') 
         );
         $this->load->view('container', array_merge($this->data, $data));
+        
     }
     
     public function edit( $user_id )
