@@ -72,12 +72,12 @@
             echo '<tr><th>'.$this->lang->line('table_th_category').'</th><th>'.$this->lang->line('table_th_ratio').'</th></tr>';
             foreach($obj as $o)
             {
-                echo '<tr><div class="inputitem">';
+                echo '<tr>';
                      echo '<td><label for="project_category_'.$i.'">';
                          echo $o->project_category_name;
                      echo '</label></td>';
                      echo '<td>'.form_input(array('name' => 'project_category_'.$i, 'id' => 'project_category_'.$i, 'size'=> 1 ), set_value('project_category_'.$i)).'</td>';
-                echo '</div></tr>';
+                echo '</tr>';
                 $i++;
             }
        echo '</table>';
