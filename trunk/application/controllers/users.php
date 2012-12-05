@@ -12,7 +12,7 @@ class Users extends MY_Controller
     function __construct() 
     {
         parent::__construct();
-        
+        $this->load->model('selecter');
         $data = array(
             'title' 		=> ''   //Title na aktualnej stranke
         );
