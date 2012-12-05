@@ -29,7 +29,8 @@ class Users extends MY_Controller
     public function index()
     {
         $data = array(
-            'view'      => $this->router->class.'_view'
+            'flag'              => 0,
+            'view'              => $this->router->class.'_view'
         );
         $this->load->view('container', array_merge($this->data, $data));
     }
@@ -82,6 +83,33 @@ class Users extends MY_Controller
         );
             
         $this->load->view('container', array_merge($this->data, $data));
+    }
+    
+    public function members()
+    {
+        $data = array(
+            'flag'              => 1,
+            'view'              => "{$this->router->class}_view"
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
+    }
+    
+    public function visitors()
+    {
+        $data = array(
+            'flag'              => 2,
+            'view'              => "{$this->router->class}_view"
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
+    }
+    
+    public function lecturers()
+    {
+        $data = array(
+            'flag'              => 3,
+            'view'              => "{$this->router->class}_view"
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
     }
     
 }
