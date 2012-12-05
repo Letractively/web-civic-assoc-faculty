@@ -2,7 +2,7 @@
 
 class Inserter extends MY_Model
 {
-    public function registration($param, $logger)
+    public function registration($param, $categories)
     {
         
         $this->db->query("  INSERT INTO users 
@@ -14,7 +14,7 @@ class Inserter extends MY_Model
                              '".$param['study_program_id']."','".$param['degree_id']."','".$param['place_of_birth']."',
                              '".$param['postcode']."','".$param['degree_year']."')
                          ");
-        $this->logger($logger);
+        
         $q = $this->db->query("SELECT user_id FROM users");
         
         $row = $q->last_row();
@@ -27,7 +27,7 @@ class Inserter extends MY_Model
         
         $p_categories_ratios = array();
         
-        for($i = 1; $i <=6; $i++)
+        for($i = 1; $i <= $categories; $i++)
         {
             if( $this->input->post('project_category_'.$i) != '' )
                 $p_categories_ratios[$i] = $this->input->post('project_category_'.$i);

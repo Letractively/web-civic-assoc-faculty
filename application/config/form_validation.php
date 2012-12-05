@@ -15,8 +15,8 @@ $config = array(
             'rules'     => 'trim|required|xss_clean'
         ),
         array(
-            'field'     => 'login',
-            'label'     => 'lang:label_login',
+            'field'     => 'username',
+            'label'     => 'lang:label_username',
             'rules'     => 'trim|required|xss_clean'
         ),
         array(
@@ -50,9 +50,9 @@ $config = array(
             'rules'     => 'trim|required|xss_clean|numeric'
         ),
         array(
-            'field'     => 'place_of_birth_id',
-            'label'     => 'lang:label_place_of_birth_id',
-            'rules'     => 'trim|required|xss_clean|numeric'
+            'field'     => 'place_of_birth',
+            'label'     => 'lang:label_place_of_birth',
+            'rules'     => 'trim|required|xss_clean'
         ),
         array(
             'field'     => 'postcode',

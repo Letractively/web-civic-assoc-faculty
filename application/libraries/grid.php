@@ -61,7 +61,7 @@ class Grid
 	 */
 	public function bind($table, $unique_key) // ocakava array of object alebo array of array
 	{	
-		if (count($table) == 0) return;
+		if (count($table) == 0) return false;
 		$this->unique = $unique_key;
 		
 		if (is_object($table[0]))
@@ -81,6 +81,8 @@ class Grid
 				$row->cells[$key] = $value;
 			$this->rows[$table_row[$unique_key]] = $row;
 		}
+		
+		return true;
 	}
 	
 	/*
