@@ -1,6 +1,5 @@
 <div id="header">
-	<div id="logo">
-	
+	<div id="logo"> 
 	</div>
 	<div id="panel">
 		<p class="left"> </p>
