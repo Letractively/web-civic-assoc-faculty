@@ -4,11 +4,10 @@ class Show_message extends MY_Controller
 {
     function __construct() {
         parent::__construct();
-        $this->load->model('musers');
         
         $data = array(
             'view'              => "{$this->router->class}_view",
-            'title' 		=> 'Homepage'   //Title na aktualnej stranke
+            'title'             => $this->lang->line('title')
         );
             
         $this->data = array_merge($this->data, $data);
@@ -17,7 +16,7 @@ class Show_message extends MY_Controller
     public function index( $url )
     {
         $data = array( 
-            'message'       => $url
+            'message'       => $this->lang->line($url)
         );
         
         $this->load->view('container', array_merge($this->data, $data)); 

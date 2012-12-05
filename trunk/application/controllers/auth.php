@@ -58,11 +58,9 @@ class Auth extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") == TRUE )
                 {
-                    if(  $this->inserter->add_register( $this->input->post(), $this->selecter->count_project_categories() ) == TRUE )
+                    if(  $this->inserter->registration( $this->input->post(), $this->selecter->count_project_categories() ) == TRUE )
                     {   
-                        //redirect('show_message/index/'.$this->lang->line('success_registration'));
-                        //echo 'success<br />';
-                        //redirect na show_message view s hlaskou success
+                        redirect('show_message/index/success_registration');
                     }       
                 }      
             }
