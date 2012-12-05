@@ -114,7 +114,7 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
-        public function delete_project_item( $project_id, $project_item_id)
+        public function delete_project_item( $project_id, $project_item_id)  //vymazat project?id
         {
             if( $project_id == '')
                 redirect ('404');

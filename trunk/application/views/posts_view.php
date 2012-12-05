@@ -19,11 +19,11 @@
 
         
         <?php
-            if($o->post_modifie_author_id == TRUE || $o->post_modifie_date == TRUE)
+            if($o->post_modifie_author_id == TRUE && $o->post_modifie_date == TRUE)
             {
                 echo '<div class="post_modifie_info">';
                     echo '<span>'.$this->lang->line('last_update').':</span>';
-                    echo anchor('users/detail/'.$o->post_author_id, $o->modifier_name.' '.$o->modifier_surname).', ';
+                    echo anchor('users/detail/'.$o->post_modifie_author_id, $o->modifier_name.' '.$o->modifier_surname).', ';
                     echo datetime($o->post_modifie_date, FALSE).' '.time_withou_seconds(datetime($o->post_modifie_date, TRUE));
                 echo '</div>';
             }
@@ -31,7 +31,7 @@
             {
                 echo '<div class="post_add_info">';
                     echo '<span>'.$this->lang->line('added_by').':</span>';
-                    echo anchor('users/detail/'.$o->post_modifie_author_id, $o->author_name.' '.$o->author_surname).', ';
+                    echo anchor('users/detail/'.$o->post_author_id, $o->author_name.' '.$o->author_surname).', ';
                     echo $o->post_date;
                 echo '</div>';
             }
