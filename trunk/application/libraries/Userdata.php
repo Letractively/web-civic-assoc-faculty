@@ -32,7 +32,7 @@ class Userdata
 		if( $logged_in )
 			$user_id = $this->CI->session->userdata('user');
 
-		return ( @$user_id > 1 ) ? $user_id : FALSE;
+		return ( @$user_id > 0 ) ? $user_id : FALSE;
 	}
 	
 	public function is_admin()

@@ -47,6 +47,8 @@ class Users extends MY_Controller
     
     public function add()
     {
+        if( !$this->userdata->is_admin() )
+            redirect(base_url ());
         $this->load->model('selecter');
         $data = array(
             'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
@@ -65,6 +67,9 @@ class Users extends MY_Controller
     
     public function edit( $user_id )
     {
+        if( $user_id == '')
+            redirect('404');
+        
         $data = array(
             'user_id'   => $user_id
         );
