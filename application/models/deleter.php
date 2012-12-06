@@ -124,7 +124,7 @@ class Deleter extends MY_Model
         if($this->db->affected_rows()>0){
           $this->db->query("UPDATE post_modifies
                             SET post_modifie_post_id=NULL 
-                            WHERE post-modifie_post_id=$post_id");  
+                            WHERE post_modifie_post_id=$post_id");  
           return TRUE;
         }
         else{ return FALSE; }

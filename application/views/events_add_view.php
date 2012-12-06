@@ -4,8 +4,8 @@
 </div>
 <?= form_open("events/add") ?>
     <div class="inputitem">
-        <label for="event_categories_id" class="<?= $error['event_categories_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label>
-        <?= gen_dropdown('event_categories_id', set_value('event_categories_id'),$this->selecter->get_event_categories(),'event_category_id','event_category_name'); ?>     
+        <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label>
+        <?= gen_dropdown('event_category_id', set_value('event_category_id'),$this->selecter->get_event_categories(),'event_category_id','event_category_name'); ?>     
     </div>
  <!--dropdown robis takto ako je hore gen_dropdown, to co su tie parametre uvidis ked si otvoris danu funkciu-->
  <!--generovat prioritu-->
@@ -16,8 +16,8 @@
  <!--end-->
  
     <div class="inputitem">
-        <label for="event_name" class="<?= $error['event_name'] ?>"><?= $this->lang->line('label_name') ?></label>
-        <?= form_input(array('name' => 'event_name', 'id' => 'event_name', 'class' => ''.$error['event_name']), set_value('event_name')) ?>
+        <label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label>
+        <?= form_input(array('name' => 'name', 'id' => 'name', 'class' => ''.$error['name']), set_value('name')) ?>
     </div>
  
 <!--od -> do-->

@@ -6,20 +6,22 @@ class Show_message extends MY_Controller
         parent::__construct();
         
         $data = array(
-            'view'              => "{$this->router->class}_view",
-            'title'             => $this->lang->line('title')
+            'view'              => "confirm_view",
+            'type'              => 'inform',
+            'langs'             => $this->lang->line('confirm_ok'),
+            'method'            => ''
         );
             
         $this->data = array_merge($this->data, $data);
     }
     
-    public function index( $url )
+    public function index($url)
     {
-        $data = array( 
-            'message'       => $this->lang->line($url)
-        );
-        
-        $this->load->view('container', array_merge($this->data, $data)); 
+        echo $url;
+        //$data = array(
+        //    'm_text'    => $this->lang->line($url)
+        //);
+        //$this->load->view('container', array_merge($this->data, $data)); 
     }
 }
 

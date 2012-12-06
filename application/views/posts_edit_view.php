@@ -4,7 +4,7 @@
         $field = $this->selecter->id($post_id,'posts','post_id');
     ?>
 </div>
-<?= form_open("posts/edit") ?>
+<?= form_open("posts/edit/".$post_id) ?>
     
     <div class="inputitem">
         <label for="title" class="<?= $error['title'] ?>"><?= $this->lang->line('label_subject') ?></label>

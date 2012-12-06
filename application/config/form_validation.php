@@ -163,7 +163,7 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean'
             ),
             array(
-                'field'     => 'event_name',
+                'field'     => 'name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'
             ),
@@ -202,12 +202,12 @@ $config = array(
             array(
                 'field'     => 'from',
                 'label'     => 'lang:label_from',
-                'rules'     => 'trim|required|xss_clean|numeric'
+                'rules'     => 'trim|required|xss_clean'
             ),
             array(
                 'field'     => 'to',
                 'label'     => 'lang:label_to',
-                'rules'     => 'trim|required|xss_clean|numeric'
+                'rules'     => 'trim|required|xss_clean'
             ),
             array(
                 'field'     => 'about',
@@ -275,6 +275,11 @@ $config = array(
             array(
                 'field'     => 'title',
                 'label'     => 'lang:label_subject',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
+                'field'     => 'priority',
+                'label'     => 'lang:label_priority',
                 'rules'     => 'trim|required|xss_clean'
             ),
             array(

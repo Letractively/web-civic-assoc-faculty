@@ -2,6 +2,7 @@
 
 $lang['label_subject']                      =   'Nadpis';
 $lang['label_content']                      =   'Obsah príspevku';
+$lang['label_priority']                     =   'Priorita';
 
 $lang['last_update']                        =   'Posledná úprava';
 $lang['added_by']                           =   'Pridal';

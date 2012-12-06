@@ -11,23 +11,35 @@
     </div>
  
 <?php
+    $empty = 0;
     if( $flag == 0 )
     {
-        $grid->bind($this->selecter->get_payments($pay_id), 'payment_id');
-        $grid->header('payment_id')->editable = false;
+        if( !$grid->bind($this->selecter->get_payments($pay_id), 'payment_id') )
+            $empty = 1;
+        else
+            $grid->header('payment_id')->editable = false;
     }
     elseif ( $flag == 1 ) 
     {
-        $grid->bind($this->selecter->get_payments_paid($pay_id), 'payment_id');
-        $grid->header('payment_id')->editable = false;
+        if( !$grid->bind($this->selecter->get_payments_paid($pay_id), 'payment_id') )
+            $empty = 1;
+        else
+            $grid->header('payment_id')->editable = false;
     }
     elseif( $flag == 2 )
     {
-        $grid->bind($this->selecter->get_payments_nopaid($pay_id), 'payment_id');
-        $grid->header('payment_id')->editable = false;
+        if( !$grid->bind($this->selecter->get_payments_nopaid($pay_id), 'payment_id') )
+            $empty = 1;
+        else
+            $grid->header('payment_id')->editable = false;
     }
-    $grid->add_url = "{$this->router->class}/add";
-    $grid->edit_url = "{$this->router->class}/edit";
-    $grid->remove_url = "{$this->router->class}/delete";
-    $grid->display();
+    
+    if($empty == 0)
+    {
+        $grid->add_url = "{$this->router->class}/add";
+        $grid->edit_url = "{$this->router->class}/edit";
+        $grid->remove_url = "{$this->router->class}/delete";
+        $grid->display();
+    }
+    
 ?>
