@@ -87,7 +87,7 @@ $config = array(
             'rules'     => 'required|trim|xss_clean'
         )
     ),
-    'correspondence/index'          => array(
+    'correspondence'          => array(
         array(
             'field'     => 'correspondence_subject',
             'label'     => 'lang:label_correspondence_subject',

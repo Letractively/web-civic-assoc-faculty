@@ -12,6 +12,72 @@ class Selecter extends MY_Model
         return $q->row();
     }
     
+    /*
+     *  Funkcia vytvori filtracne podmienky pre correspondence
+     */
+    public function filter_users_in_correspondence( $param )
+    {
+        //array_debug($param);
+        $this->db           ->select('u.user_id, u.user_email')
+                            ->from('users u');
+        
+        //Generator pre where podmienky na studijny program
+        if( isset($param['study']) )
+        {
+            if ( count($param['study']) > 1)
+            {
+                $studies = array();
+                foreach ($param['study'] as $key => $value) 
+                {
+                    array_push($studies, $value);
+                }
+                $this->db->where_in('u.user_study_program_id', $studies);
+            }
+            else
+                $this->db->where('u.user_study_program_id', $param['study'][0]);
+        }
+        
+        //Generator pre where podmienky na stupen studia
+        if( isset($param['grade']) )
+        {
+            $this->db->join('degrees d', 'u.user_degree_id = d.degree_id');
+            if ( count($param['grade']) > 1)
+            {
+                $grades = array();
+                foreach ($param['grade'] as $key => $value) 
+                {
+                    array_push($grades, $value);
+                }
+                $this->db->where_in('d.degree_grade', $grades);
+            }
+            else
+                $this->db->where('d.degree_grade', $param['grade'][0]);
+        }
+        
+        //Generator pre where podmienky na rok ukoncenia studia
+        if( isset($param['degree_year']) )
+        {
+            if ( count($param['degree_year']) > 1)
+            {
+                $degrees = array();
+                foreach ($param['degree_year'] as $key => $value) 
+                {
+                    array_push($degrees, $value);
+                }
+                $this->db->where_in('u.user_degree_year', $degrees);
+            }
+            else
+                $this->db->where_in('u.user_degree_year', $param['degree_year'][0]);     
+        }
+        
+        $query = $this->db->get();
+	
+        $result = $query->result();
+	$query->free_result();
+        
+        return $result;
+    }
+    
     public function get_login( $param )
     {
         $q = $this->db->query(" SELECT user_id, user_role
@@ -21,6 +87,8 @@ class Selecter extends MY_Model
                               ");   
         return $q->row();
     }
+    /*******************************************************/
+    
     /*
         * get_study_programs
         * 
