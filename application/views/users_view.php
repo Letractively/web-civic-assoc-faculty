@@ -1,10 +1,8 @@
 <div class="errors">
     <?php 
-        echo validation_errors();     
+        $obj = $this->selecter->get_users($role);
+        array_debug($obj);
      ?>
-
 </div>
-<?= form_open("users") ?>
 
-<?= form_close()?>
 
