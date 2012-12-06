@@ -20,6 +20,7 @@ abstract class MY_Controller extends CI_Controller
         
         $data = array(
             'view'  => $this->router->class.'_'.$this->router->method.'_view',
+            'error'   => $this->form_validation->form_required(array('username', 'password')) 
 	);
         
         $this->data = array_merge($this->data, $data);

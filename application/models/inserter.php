@@ -4,12 +4,12 @@ class Inserter extends MY_Model
 {
     public function registration($param, $categories)
     {
-        
+        //array_debug($param);
         $this->db->query("  INSERT INTO users 
-                            (user_name, user_surname, user_username, user_password, user_email, user_phone,
+                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
                             user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
                             VALUES
-                            ('".$param['name']."','".$param['surname']."','".$param['username']."',
+                            ('".$param['name']."','".$param['surname']."',1,'".$param['username']."',
                              '".sha1($param['password'])."','".$param['email']."','".$param['phone']."',
                              '".$param['study_program_id']."','".$param['degree_id']."','".$param['place_of_birth']."',
                              '".$param['postcode']."','".$param['degree_year']."')
@@ -18,7 +18,7 @@ class Inserter extends MY_Model
         $q = $this->db->query("SELECT user_id FROM users");
         
         $row = $q->last_row();
-        
+        //array_debug($row);
         $this->db->query("  INSERT INTO payments
                             (payment_vs, payment_total_sum, payment_user_id)
                             VALUES
@@ -60,7 +60,7 @@ class Inserter extends MY_Model
                              ");
         }
         
-        return TRUE;
+        //return TRUE;
     }
    
     public function add_degree($values)

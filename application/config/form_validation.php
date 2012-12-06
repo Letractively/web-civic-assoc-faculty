@@ -77,8 +77,8 @@ $config = array(
     ),
     'auth/login'                    => array(
         array(
-            'field'     => 'email',
-            'label'     => 'lang:label_email',
+            'field'     => 'username',
+            'label'     => 'lang:labelusername',
             'rules'     => 'required|trim|xss_clean'
         ),
         array(
