@@ -35,10 +35,10 @@
 	filter_types_options['degree_year'] = [
 	<?php
 		$first = true;
-		foreach($years as $index => $value)
+		foreach(array_reverse($years) as $index => $value)
 		{
 			if ($first == false) echo ','."\n";
-			echo "new Pair($index, '$value')";
+			echo "new Pair($value, '$value')";
 			$first = false;
 		}
 	?>
@@ -127,10 +127,10 @@
     <?php echo validation_errors();         
     //array_debug($programs) ?>
 </div>
-<?= form_open("correspondence/review") ?>
+<?= form_open("correspondence") ?>
     <div class="inputitem">
         <label for="correspondence_subject" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_correspondence_subject') ?></label>
-        <?= form_input(array('name' => 'name', 'id' => 'correspondence_subject', 'class' => ''.$error['correspondence_subject']), set_value('correspondence_subject')) ?>
+        <?= form_input(array('name' => 'correspondence_subject', 'id' => 'correspondence_subject', 'class' => ''.$error['correspondence_subject']), set_value('correspondence_subject')) ?>
     </div>
 
     <div class="inputitem">
@@ -139,12 +139,12 @@
     </div>
 
     <div class="inputitem">
-        <label for="email_type_id" class="<?= $error['email_type_id'] ?>"><?= $this->lang->line('label_email_type_id') ?></label>
+        <label for="email_type_id"><?= $this->lang->line('label_email_type_id') ?></label>
         <?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name'); ?>
     </div>
 	
 	<div id="filter" class="inputitem">
-		<div id="btn_add" onclick="addFilterItem()">pridaj</div>
+		<div id="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
 	</div>
 
     <div class="inputitem">

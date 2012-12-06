@@ -50,6 +50,9 @@ class Users extends MY_Controller
         if( !$this->userdata->is_admin() )
             redirect(base_url ());
         $this->load->model('selecter');
+        
+        parent::add('add_user', $this->router->class, $this->router->method);
+        
         $data = array(
             'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
                                                                                 'email', 'phone', 'study_program_id', 'degree_id', 
@@ -78,13 +81,19 @@ class Users extends MY_Controller
     
     public function delete( $user_id )
     {
+        if( !$this->userdata->is_admin() )
+            redirect(base_url ());
+        
+        if( $user_id == '')
+            redirect('404');
+        
         parent::delete('remove_user', $user_id, $this->router->class);
         
         $data = array(
             'view'            => 'confirm_view',
             'type'            => 'delete',
             'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-            'method'          => $this->router->class.'/'.$user_id
+            'method'          => $this->router->class.'/'.$this->router->method.'/'.$user_id
         );
             
         $this->load->view('container', array_merge($this->data, $data));
