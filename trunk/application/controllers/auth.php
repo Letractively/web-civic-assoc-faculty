@@ -32,7 +32,7 @@ class Auth extends MY_Controller
             $this->load->model('inserter');
 
             $data = array( 
-                'view'       => "{$this->router->class}_view"
+                'view'       => "{$this->router->class}_view"  
             );
 
             $this->load->view('container', array_merge($this->data, $data)); 
@@ -89,6 +89,8 @@ class Auth extends MY_Controller
          */
         public function login()
         {
+            
+            $this->load->model('selecter');
             if( $this->input->post('submit') )
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
@@ -98,7 +100,7 @@ class Auth extends MY_Controller
                     {
                         $this->session->set_userdata( array('user' => $user_obj->user_id, 'logged_in' => TRUE, 'user_role' => $user_obj->user_role) );
                         if( $user_obj->user_role == 1 )
-                            $this->session->set_userdata( array('admin' => TRUE) );
+                            $this->session->set_userdata( array('admin' => TRUE) );     
                     }
                 }
             }

@@ -52,4 +52,12 @@ class Userdata
                                                 WHERE user_id = '".$user_id."'");
             return $query->row()->user_role;   
         }
+        
+        public function full_name( $user_id )
+        {
+            $query =    $this->CI->db->query("  SELECT CONCAT(CONCAT(user_name,' '),user_surname) as name
+                                                FROM users
+                                                WHERE user_id = '".$user_id."'");
+            return $query->row()->name;   
+        }
 }
