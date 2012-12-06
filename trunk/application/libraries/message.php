@@ -76,9 +76,16 @@ class Message
                 $this->set_title($title);
                 $this->set_image($type);
                 $this->set_text($text);
-                echo '<form accept-charset="utf-8" method="post" action="'.base_url().$suffix.'">';
+                if( $type == 'inform')
+                {
                     $this->generate_buttons($type);
-                echo '</form>';
+                }
+                else
+                {
+                    echo '<form accept-charset="utf-8" method="post" action="'.base_url().$suffix.'">';
+                        $this->generate_buttons($type);
+                    echo '</form>';
+                }
             echo '</div>';
         }
 }

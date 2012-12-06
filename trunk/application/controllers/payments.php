@@ -33,7 +33,7 @@ class Payments extends MY_Controller
      * 
      */
     public function index($pay_id = 0)
-    {
+    {   
         $data = array(
             'flag'      => 0,
             'pay_id'    => $pay_id
@@ -81,7 +81,7 @@ class Payments extends MY_Controller
             'view'            => 'confirm_view',
             'type'            => 'delete',
             'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-            'method'          => $this->router->class.'/'.$pay_id
+            'method'          => $this->router->class.'/'.$this->router->method.'/'.$pay_id
         );
             
         $this->load->view('container', array_merge($this->data, $data));

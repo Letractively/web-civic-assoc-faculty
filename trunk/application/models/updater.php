@@ -26,7 +26,7 @@ class Updater extends MY_Model
     public function edit_event($ev_id, $values)
     {
         $this->db->query("UPDATE events 
-                          SET event_event_category_id='".$values['event_cat_id']."', 
+                          SET event_event_category_id='".$values['event_category_id']."', 
                               event_priority='".$values['priority']."', 
                               event_name='".$values['name']."',
                               event_from='".$values['from']."', 
@@ -40,7 +40,7 @@ class Updater extends MY_Model
       else{ return FALSE;}
     }
     
-    public function edit_event_category($ev_cat_id,$values)
+    public function edit_event_category($ev_cat_id, $values)
     {
         $this->db->query("UPDATE event_categories
                           SET event_category_name='".$values."'

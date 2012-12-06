@@ -143,10 +143,15 @@
         <?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name'); ?>
     </div>
 	
-	<div id="filter" class="inputitem">
-		<div id="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
-	</div>
-
+    <div id="filter" class="inputitem">
+        <div id="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
+    </div>
+    
+    <span id="hideShow"><?= $this->lang->line('correspondence_review'); ?></span>
+    <div>
+        TU BUDE GRID
+    </div>
+    
     <div class="inputitem">
         <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_correspondence')) ?>
     </div>

@@ -68,11 +68,13 @@ class Events extends MY_Controller
         }
 
         public function add()
-        {            
+        {   
+            if( !$this->userdata->is_admin() )
+                redirect (base_url());
             parent::add('add_event', $this->router->class, $this->router->method);
 
             $data = array(
-                'error'                 => $this->form_validation->form_required(array( 'event_categories_id','priority','event_name',
+                'error'                 => $this->form_validation->form_required(array( 'event_category_id','priority','name',
                                                                                         'from','to','about')),
                 'priorities'            => $this->generate_priorities(5)
             );
@@ -81,13 +83,15 @@ class Events extends MY_Controller
         }
 
         public function edit( $event_id )
-        {        
+        {   
+            if( !$this->userdata->is_admin() )
+                redirect (base_url());
             parent::edit('edit_event', $event_id, $this->router->class, $this->router->method);
             
             
             
             $data = array(
-                'error'                 => $this->form_validation->form_required(array( 'event_categories_id','priority','event_name',
+                'error'                 => $this->form_validation->form_required(array( 'event_category_id','priority','name',
                                                                                         'from','to','about')),
                 'priorities'            => $this->generate_priorities(5),
                 'event_id' 		=> $event_id
@@ -99,13 +103,15 @@ class Events extends MY_Controller
 
         public function delete( $event_id )
         {
+            if( !$this->userdata->is_admin() )
+                redirect (base_url());
             parent::delete('remove_event', $event_id, $this->router->class);
             
             $data = array(
                 'view'            => 'confirm_view',
                 'type'            => 'delete',
                 'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-                'method'          => $this->router->class.'/'.$event_id,
+                'method'          => $this->router->class.'/'.$this->router->method.'/'.$event_id,
                 'event_id'      => $event_id
             );
             

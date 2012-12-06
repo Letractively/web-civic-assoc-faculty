@@ -102,7 +102,7 @@ class Inserter extends MY_Model
     public function add_event($values)
     {
          $this->db->query("INSERT INTO events
-                           (event_category_id, event_priority, event_name, event_from, event_to, event_about)
+                           (event_event_category_id, event_priority, event_name, event_from, event_to, event_about)
                            VALUES ('".$values['event_category_id']."','".$values['priority']."','".$values['name']."',
                                    '".$values['from']."', '".$values['to']."','".$values['about']."')
                          ");

@@ -59,7 +59,7 @@ class Auth extends MY_Controller
                 {
                     if(  $this->inserter->registration( $this->input->post(), $this->selecter->count_project_categories() ) == TRUE )
                     {   
-                        redirect('show_message/index/success_registration');
+                        //redirect('http://www.sme.sk');
                     }       
                 }      
             }

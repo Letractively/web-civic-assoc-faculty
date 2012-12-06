@@ -4,10 +4,10 @@
         $field = $this->selecter->id($event_id,'events','event_id');
     ?>
 </div>
-<?= form_open("events/edit") ?>
+<?= form_open("events/edit/".$event_id) ?>
     <div class="inputitem">
-        <label for="event_categories_id" class="<?= $error['event_categories_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label>
-        <?= gen_dropdown('event_categories_id', set_value('event_categories_id', $field->event_event_category_id),$this->selecter->get_event_categories(),'event_category_id','event_category_name'); ?>
+        <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label>
+        <?= gen_dropdown('event_category_id', set_value('event_category_id', $field->event_event_category_id),$this->selecter->get_event_categories(),'event_category_id','event_category_name'); ?>
     </div>
 
  <!--generovat prioritu-->
@@ -18,8 +18,8 @@
  <!--end-->
  
     <div class="inputitem">
-        <label for="event_name" class="<?= $error['event_name'] ?>"><?= $this->lang->line('label_name') ?></label>
-        <?= form_input(array('name' => 'event_name', 'id' => 'event_name', 'class' => ''.$error['event_name']), set_value('event_name', $field->event_name)) ?>
+        <label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label>
+        <?= form_input(array('name' => 'name', 'id' => 'name', 'class' => ''.$error['name']), set_value('name', $field->event_name)) ?>
     </div>
  
 <!--od -> do-->

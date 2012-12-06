@@ -17,7 +17,6 @@ class Selecter extends MY_Model
      */
     public function filter_users_in_correspondence( $param )
     {
-        //array_debug($param);
         $this->db           ->select('u.user_id, u.user_email')
                             ->from('users u');
         

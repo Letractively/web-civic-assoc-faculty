@@ -58,10 +58,10 @@ class Event_categories extends MY_Controller
         parent::delete('remove_event_category', $event_category_id, $this->router->class);
             
         $data = array(
-            'view'            => 'confirm_view',
-            'type'            => 'delete',
-            'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-            'method'          => $this->router->class.'/'.$event_category_id,
+            'view'              => 'confirm_view',
+            'type'              => 'delete',
+            'langs'             => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
+            'method'            => $this->router->class.'/'.$event_category_id,
             'event_category_id' => $event_category_id
         );
             
