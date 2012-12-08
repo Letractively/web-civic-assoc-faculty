@@ -4,6 +4,7 @@
         $field = $this->selecter->id($post_id,'posts','post_id');
     ?>
 </div>
+<?= js_insert_bbcode('posts/edit', 'textarea'); ?>
 <?= form_open("posts/edit/".$post_id) ?>
     
     <div class="inputitem">
@@ -11,9 +12,17 @@
         <?= form_input(array('name' => 'title', 'id' => 'title', 'class' => ''.$error['title']), set_value('title', $field->post_title)) ?>
     </div>
 
+    <div>
+        <?php
+            foreach($buttons as $i)
+            {
+                echo $i;
+            }
+        ?>
+    </div> 
     <div class="inputitem">
         <label for="content" class="<?= $error['content'] ?>"><?= $this->lang->line('label_content') ?></label>
-        <?= form_textarea(array('name' => 'content', 'id' => 'content', 'class' => ''.$error['content']), set_value('content', $field->post_content)) ?>
+        <?= form_textarea(array('name' => 'content', 'id' => 'textarea', 'class' => ''.$error['content']), set_value('content', $field->post_content)) ?>
     </div>
 
     <div class="inputitem">

@@ -52,7 +52,8 @@ class Posts extends MY_Controller
         parent::add('add_post', $this->router->class, $this->router->method);
         
         $data = array(
-            'error'         => $this->form_validation->form_required(array('title','content','priority'))
+            'error'         => $this->form_validation->form_required(array('title','content','priority')),
+            'buttons'       => get_bbcode_buttons()
         );
         
         $this->load->view('container', array_merge($this->data, $data));
@@ -71,7 +72,8 @@ class Posts extends MY_Controller
         
         $data = array(
             'post_id'       => $post_id,
-            'error'         => $this->form_validation->form_required(array('title','content','priority'))
+            'error'         => $this->form_validation->form_required(array('title','content','priority')),
+            'buttons'       => get_bbcode_buttons()
         );
         
         $this->load->view('container', array_merge($this->data, $data));

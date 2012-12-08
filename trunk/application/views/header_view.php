@@ -20,10 +20,10 @@
             <?php endif; ?>
         </div>
 	<div id="panel">
-		<p class="left"> </p>
+		<p class="left" > </p>
 		<p class="center"> </p>
-		<p class="right"> </p>
-	</div>
+		<p class="right"> </p
+        </div>
 	<div id="navigation">
 		<div id="main_navigation"> <!-- //main navigation -->
 			<p>
