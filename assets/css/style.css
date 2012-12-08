@@ -7,7 +7,7 @@
 */
 
 
-/**** GRID CSS ****/
+/*************** GRID CSS **************/
 
 root { 
     display: block;
@@ -111,9 +111,9 @@ border: 1px solid #e21313;
 }
 
 
-/******* WEB DESIGN CSS *******/
+/************** WEB DESIGN CSS **************/
 
-/** Telo **/
+/****** Telo ******/
 body {
 	/* background-color: #fecc78; */
 	background-image: url(../img/papyrus.jpg); 
@@ -121,34 +121,72 @@ body {
 	background-position: center;
 	background-size: 103% 108%;
 	background-repeat: no-repeat;
+	overflow-y: scroll;
 	margin: 0;
 	padding: 0;
 }
 
-/** Hlavicka **/
+/****** Hlavicka ******/
 #header {
 	width: 960px;
-	height: auto;
+	height: 320px;
 	border-color: black;
 	border-width: 4px;
 	border-style: solid;
 	border-bottom: none;
-	margin-right: auto;
-	margin-left: auto;
-	margin-top: 25px;
+	margin: 25px auto 0px auto;
 	border-top-right-radius: 50px;
 	background-color: white;
+	padding: 0;
 }
 
-#header p {
+#header #logo {
+	height: 110px;
+	width: 300px;
 	margin: 0;
+	float: left;
 }
 
-#logo {
+#header #logo #logo_position {
 	height: 100px;
+	width: 280px;
 	background-image: url(../img/logo.png);
 	background-repeat: no-repeat;
-	margin: 5px 0px 0px 5px;
+	margin: 5px 0px 0px 15px; 	
+}
+
+#header #loginBar {
+	height: 110px;
+	width: 660px;
+	float: left;
+}
+
+#header #login_table {
+	float: right;
+	margin: 10px 15px 0px 10px;
+}
+
+#header #login_table #login {
+	font-size: 18px;
+	font-family: "Arial";
+	font-weight: bold;
+}
+
+#header #login_table #login_table_label {
+	text-align: right;
+	width: 50px;
+}
+
+#header .input {
+	border: 2px solid black;
+	border-radius: 55px;
+	height: 20px;
+	width: 150px;
+	padding: 0px 10px;
+}
+
+.input:focus {
+	outline: none;
 }
 
 #panel {
@@ -161,39 +199,61 @@ body {
 	border-top-style: solid;
 	border-bottom-width: 2px;
 	border-bottom-width: solid;
+	float: left;
 }
 
-#panel .left {
+#panel #left {
 	width: 128px;
 	height: 128px;
-	display: inline-block;
+	float: left;
 	background-image: url(../img/logo_uk.png);
 	background-repeat: no-repeat;
 	background-position: center;
+	margin: 0;
+	padding: 0;
 }
 
-#panel .center {
-	width: 686px; 
+#panel #center {
+	width: 704px; 
 	height: 128px;
-	display: inline-block;	
+	float: left;
 }
 
-#panel .right {
+#panel #right {
 	width: 128px;
 	height: 128px;
-	float: right;
+	float: left;
 	background-image: url(../img/logo_fmfi.png);
 	background-repeat: no-repeat;
 	background-position: center;	
 }
 
-#panel .panel_center_nadpis1 {
-	display: inline-block;
-	width: 500px;
+#panel #center #headline {
+	width: 704px;
+	height: 98px;
+	margin-top: 10px;
+	margin-bottom: 25px;
+}
+
+#panel #center .headline1 {
+	color: #fecc78;
+	margin: 0px 30px 0px 30px;
+	font-family: "Arial Black";
+	font-size: 35px; 
+}
+
+#panel #center .headline2 {
+	color: #fecc78;
+	margin: 0px 30px 0px 30px;
+	font-size: 20px; 
+}
+
+#navigation {
+	width: 960px;
+	float: left;
 }
 
 #main_navigation {
-	/*height: 40px;*/
 	margin-right: 0;
 	padding-right: 0;
    background-image: url(images/linear_bg_2.png);
@@ -229,8 +289,9 @@ body {
    background: -o-linear-gradient(top, black, #880d0d, #fecc78); /* Opera 11.10+ */
 }
 
-/** Obsah **/
+/****** Obsah ******/
 #content {
+	clear: both;
 	width: 960px;
 	height: auto;
 	border-color: black;
@@ -268,7 +329,7 @@ body {
 	text-align: left;
 }
 
-/** Paticka **/
+/****** Paticka ******/
 #footer {
 	width: 960px;
 	height: 55px;
@@ -292,3 +353,8 @@ body {
 .copyright {
 	margin-right: 50px;
 }
+
+/****************************************/
+
+
+/***************************************/
