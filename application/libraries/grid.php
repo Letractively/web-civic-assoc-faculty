@@ -24,10 +24,22 @@ class Component
 			$this->data[] = $item;
 		}
 	}
+	
+	public function set_textbox()
+	{
+		$this->type = 'textbox';
+	}
+	
+	public function set_combobox($datasource, $id, $value)
+	{
+		$this->type = 'combobox';
+		$this->bind($datasource, $id, $value);
+	}
 }
 
 class Col
 {
+	public $anchor;
 	public $text;
 	public $editable = true;
 	public $visible = true;
@@ -37,6 +49,13 @@ class Col
 	{
 		$this->text = $text;
 		$this->component = new Component();
+		$this->anchor = null;
+	}
+	
+	public function set_anchor($controller, $id)
+	{
+		$this->anchor['controller'] = $controller;
+		$this->anchor['id'] = $id;
 	}
 }
 
@@ -283,7 +302,7 @@ class Grid
 	{
 		$this->genjs();
 		
-		echo '<form id="grid_form" action="" method="get">'."\n";
+		echo '<form id="grid_form" action="" method="post">'."\n";
 		echo '<table id="grid_table" border="0" class="grid_table">'."\n";
 		
 		echo '<tr class="grid_header">'."\n";
@@ -302,7 +321,12 @@ class Grid
 				foreach ($row->cells as $index => $cell)
 				{
 					if ($this->headCols[$index]->visible == true)
-						echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell">'.$cell.'</td>';
+					{
+						if ($this->headCols[$index]->anchor)
+							echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell"><a href="'.$this->headCols[$index]->anchor['controller'].'/'.$row->cells[ $this->headCols[$index]->anchor['id'] ].'">'.$cell.'</td>';
+						else
+							echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell">'.$cell.'</td>';
+					}
 				}
 				if ($this->edit_url != "" && $row->editable == true)
 				{
