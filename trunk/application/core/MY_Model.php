@@ -39,5 +39,17 @@ class MY_Model extends CI_Model
                                 ");
             return TRUE;
         }
+        
+        public function exists($table, $column, $id)
+        {
+            $q = $this->db->query("  SELECT $column
+                                FROM $table
+                                WHERE $column = $id
+                                ");
+            if ($q->num_rows() > 0)
+                return TRUE;
+            else
+                return FALSE;
+        }
 
 }

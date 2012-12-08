@@ -251,24 +251,24 @@ class Selecter extends MY_Model
     
     public function get_events($cat_id)
     {
-       if($cat_id !=0){
-        $q = $this->db->query("SELECT   e.event_id, e.event_name, e.event_from, e.event_to
+       if($cat_id != 0){
+        $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to
                                         ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
-                               ORDER BY e.event_priority
+                               ORDER BY e.event_priority DESC, e.event_created DESC
                                ");
         return $q->result();
         }
     
         else
         {
-         $q = $this->db->query("SELECT  e.event_id, e.event_name, e.event_from, e.event_to,
+         $q = $this->db->query("SELECT  e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
                                         ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
-                               ORDER BY e.event_priority
+                               ORDER BY e.event_priority DESC, e.event_created DESC
                                ");
          return $q->result();
        }

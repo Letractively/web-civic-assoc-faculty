@@ -1,7 +1,7 @@
 <?php
     $obj = $this->selecter->get_user_detail($user_id);
     echo validation_errors();
-    
+    array_debug($obj);  
 ?>
 <?php
     if($obj[0]->user_role == 2){
@@ -44,7 +44,7 @@
         
         echo '<div class="inputitem">
                 <label for="degree_id" class="'.$error['degree_id'].'">'.$this->lang->line('label_degree_id').'</label>'.
-                gen_dropdown('degree_id', set_value('degree_id', $obj[0]->degree_id),$this->selecter->get_degrees(),'degree_id','degree_name')
+                gen_dropdown('degree_id', set_value('degree_id', 37),$this->selecter->get_degrees(),'degree_id','degree_name')
               .'</div>';
         
         echo '<div class="inputitem">
