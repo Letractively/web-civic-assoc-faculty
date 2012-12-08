@@ -2,7 +2,7 @@
 
 class Events extends MY_Controller
 {
-    
+        private $priorits = 5;
         /*
          * Constructor
          * 
@@ -31,8 +31,9 @@ class Events extends MY_Controller
             $this->load->model('selecter');
             
             $data = array(
-                'view'      => "{$this->router->class}_view",
-                'event_id'  => $event_id
+                'view'                  => "{$this->router->class}_view",
+                'event_id'              => $event_id,
+                'priorities'            => $this->generate_priorities($this->priorits)
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
@@ -76,7 +77,7 @@ class Events extends MY_Controller
             $data = array(
                 'error'                 => $this->form_validation->form_required(array( 'event_category_id','priority','name',
                                                                                         'from','to','about')),
-                'priorities'            => $this->generate_priorities(5),
+                'priorities'            => $this->generate_priorities($this->priorits),
                 'buttons'       => get_bbcode_buttons()
             );
 
@@ -94,7 +95,7 @@ class Events extends MY_Controller
             $data = array(
                 'error'                 => $this->form_validation->form_required(array( 'event_category_id','priority','name',
                                                                                         'from','to','about')),
-                'priorities'            => $this->generate_priorities(5),
+                'priorities'            => $this->generate_priorities($this->priorits),
                 'event_id' 		=> $event_id,
                 'buttons'       => get_bbcode_buttons()
                 

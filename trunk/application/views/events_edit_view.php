@@ -14,7 +14,7 @@
  <!--generovat prioritu-->
     <div class="inputitem">
         <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label>
-        <?= form_dropdown('priority', $priorities, set_value('priority_id', $field->event_priority)) ?>
+        <?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value'); ?>
     </div>
  <!--end-->
  

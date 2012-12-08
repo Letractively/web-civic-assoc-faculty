@@ -104,7 +104,8 @@ abstract class MY_Controller extends CI_Controller
         $result = array();
         for($i = 1; $i <= $how_much; $i++)
         {
-            $result[$i] = $i;
+            $result[$i]['id'] = $i;
+            $result[$i]['value'] = $i;
         }
         
         return $result;
