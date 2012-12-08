@@ -2,7 +2,9 @@
 
 class Users extends MY_Controller
 {
-    
+    private $start_offset = 60;
+    private $actual_year = 2012;
+    private $end_offset = 50;
     /*
      * Constructor
      * 
@@ -61,7 +63,7 @@ class Users extends MY_Controller
                                                                                 'project_category_5', 'project_category_6','oz_member','ex_member','lecturer','degrees_id','vs_box')
                                                                         ),
             'numb_proj_cat'         => $this->selecter->count_project_categories(),        
-                'years'                 => $this->generate_years(60, 2012, 50),
+                'years'                 => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset),
                 'title' 		=> $this->lang->line('title_add_user') 
         );
         $this->load->view('container', array_merge($this->data, $data));
@@ -74,7 +76,14 @@ class Users extends MY_Controller
             redirect('404');
         
         $data = array(
-            'user_id'   => $user_id
+            'user_id'   => $user_id,
+            'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
+                                                                                'email', 'phone', 'study_program_id', 'degree_id', 
+                                                                                'place_of_birth', 'postcode', 'degree_year',
+                                                                                'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
+                                                                                'project_category_5', 'project_category_6','oz_member','ex_member','lecturer','degrees_id','vs_box')
+                                                                        ),
+            'years'                 => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset)
         );
         $this->load->view('container', array_merge($this->data, $data));
     }

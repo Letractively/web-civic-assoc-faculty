@@ -1,6 +1,7 @@
 <?php
-    $obj = $this->selecter->get_user_detail($user_id,'users','$user_id');
+    $obj = $this->selecter->get_user_detail($user_id);
     echo validation_errors();
+    
 ?>
 <?php
     if($obj[0]->user_role == 2){
@@ -68,7 +69,7 @@
         
         echo '<div class="inputitem">
                 <label for="postcode" class="'.$error['postcode'].'">'.$this->lang->line('label_postcode').'</label>'.
-                form_input(array('name' => 'vs', 'id' => 'vs', 'class' => ''.$error['vs']), set_value('vs'), set_value('vs', $obj[0]->user_vs))
+                form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => ''.$error['postcode']), set_value('postcode', $obj[0]->user_postcode))
               .'</div>';
         
         echo '<div class="inputitem">'.

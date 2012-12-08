@@ -19,7 +19,8 @@ class Test extends MY_Controller {
 	public function index()
 	{
         $data = array( 
-            'view'       => "{$this->router->class}_view"
+            'view'       => "{$this->router->class}_view",
+            'users' => $this->db->query("SELECT * from users")->result()
         );
         
         $this->load->view('container', array_merge($this->data, $data));
