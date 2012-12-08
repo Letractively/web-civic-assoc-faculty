@@ -27,44 +27,44 @@ class Test extends MY_Controller {
 	
 	public function add()
 	{
-		if ($this->input->get('operation_add'))
+		if ($this->input->post('operation_add'))
 		{
 			$data = array(
-				'user_postcode' => $_GET['user_postcode'],
-				'user_study_program_id' => $_GET['study_program_name'],
-				'user_degree_id' => $_GET['degree_name'],
-				'user_role' => 0,
-				'user_name' => $_GET['user_name'],
-				'user_surname' => $_GET['user_surname'],
-				'user_email' => $_GET['user_email']
+				'degree_name' => $_POST['degree_name'],
+				'degree_grade' => $_POST['degree_grade']
 			);
-			$this->db->insert('users', $data);
+			$this->db->insert('degrees', $data);
 		}
 		redirect('/test', 'refresh');
 	}
 	
 	public function edit($id)
 	{
-		if ($this->input->get('operation_edit'))
+		if ($this->input->post('operation_edit'))
 		{
 			$data = array(
-				'user_postcode' => $_GET['user_postcode'],
-				'user_study_program_id' => $_GET['study_program_name'],
-				'user_degree_id' => $_GET['degree_name'],
-				'user_role' => 0,
-				'user_name' => $_GET['user_name'],
-				'user_surname' => $_GET['user_surname'],
-				'user_email' => $_GET['user_email']
+				'degree_name' => $_POST['degree_name'],
+				'degree_grade' => $_POST['degree_grade']
 			);
-			$this->db->where('user_id', $id);
-			$this->db->update('users', $data); 
+			$this->db->where('degree_id', $id);
+			$this->db->update('degrees', $data); 
 		}
 		redirect('/test', 'refresh');
 	}
 	
 	public function delete($id)
 	{
-		$this->db->delete('users', array('user_id' => $id)); 
+		$this->db->delete('degrees', array('degree_id' => $id)); 
 		redirect('/test', 'refresh');
+	}
+	
+	public function detail($id)
+	{
+		$data = array( 
+            'view'       => "test_detail_view",
+			'id' => $id
+        );
+ 
+        $this->load->view('container', array_merge($this->data, $data));
 	}
 }

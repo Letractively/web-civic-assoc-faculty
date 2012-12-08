@@ -115,7 +115,7 @@ class Selecter extends MY_Model
      */
     public function get_degrees()
     {
-        $q = $this->db->query(" SELECT d.degree_id, d.degree_name
+        $q = $this->db->query(" SELECT d.degree_id, d.degree_name, d.degree_grade
                                 FROM degrees d
                               ");
         return $q->result();
