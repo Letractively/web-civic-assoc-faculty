@@ -12,7 +12,7 @@ Kategoria: <?= anchor('events/index/'.$obj[0]->event_category_id, $obj[0]->event
     <?= $obj[0]->event_name ?>
 </div>
 <div class="event_body">
-    <?= $obj[0]->event_about ?>  
+    <?= parse_bbcode($obj[0]->event_about) ?>  
 </div>
 <div class="event_time">
     <span>Kedy:</span>

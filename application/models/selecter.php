@@ -329,6 +329,7 @@ class Selecter extends MY_Model
              return $q->result();
     }
     
+    
     public function get_post_modifiers($post_id)
     {
             $q = $this->db->query(" SELECT u.user_id, u.user_name, u.user_surname, 

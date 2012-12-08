@@ -13,7 +13,7 @@
 </div>
 
 <div class="post_content">
-    <?= $obj[0]->post_content ?>  
+    <?= parse_bbcode($obj[0]->post_content) ?>  
 </div>
 
 <div class="post_add_info">

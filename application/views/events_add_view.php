@@ -2,6 +2,7 @@
     <?php echo validation_errors();      
     //array_debug($programs) ?>
 </div>
+<?= js_insert_bbcode('events/add', 'textarea'); ?>
 <?= form_open("events/add") ?>
     <div class="inputitem">
         <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label>
@@ -31,10 +32,17 @@
         <?= form_input(array('name' => 'to', 'id' => 'to', 'class' => ''.$error['to']), set_value('to')) ?>
     </div>
 <!--end-->
-
+    <div>
+        <?php
+            foreach($buttons as $i)
+            {
+                echo $i;
+            }
+        ?>
+    </div>  
     <div class="inputitem">
         <label for="about" class="<?= $error['about'] ?>"><?= $this->lang->line('label_about') ?></label>
-        <?= form_textarea(array('name' => 'about', 'id' => 'about', 'class' => ''.$error['about']), set_value('about')) ?>
+        <?= form_textarea(array('name' => 'about', 'id' => 'textarea', 'class' => ''.$error['about']), set_value('about')) ?>
     </div>
 
     

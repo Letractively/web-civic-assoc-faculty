@@ -14,7 +14,7 @@
         </div>
 
         <div class="post_content">
-            <?= $o->post_content ?>  
+            <?= parse_bbcode($o->post_content) ?>  
         </div>
 
         

@@ -76,7 +76,8 @@ class Events extends MY_Controller
             $data = array(
                 'error'                 => $this->form_validation->form_required(array( 'event_category_id','priority','name',
                                                                                         'from','to','about')),
-                'priorities'            => $this->generate_priorities(5)
+                'priorities'            => $this->generate_priorities(5),
+                'buttons'       => get_bbcode_buttons()
             );
 
             $this->load->view('container', array_merge($this->data, $data));
@@ -94,7 +95,8 @@ class Events extends MY_Controller
                 'error'                 => $this->form_validation->form_required(array( 'event_category_id','priority','name',
                                                                                         'from','to','about')),
                 'priorities'            => $this->generate_priorities(5),
-                'event_id' 		=> $event_id
+                'event_id' 		=> $event_id,
+                'buttons'       => get_bbcode_buttons()
                 
             );
 
