@@ -88,6 +88,9 @@ class Events extends MY_Controller
         {   
             if( !$this->userdata->is_admin() )
                 redirect (base_url());
+            
+           if(!$this->selecter->exists('events','event_id',$event_id))
+                redirect (base_url());
             parent::edit('edit_event', $event_id, $this->router->class, $this->router->method);
             
             

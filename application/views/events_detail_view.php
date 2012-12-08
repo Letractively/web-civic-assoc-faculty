@@ -7,7 +7,7 @@
     $time = time_withou_seconds(datetime($obj[0]->event_created, TRUE));
     
 ?>
-Kategoria: <?= anchor('events/index/'.$obj[0]->event_category_id, $obj[0]->event_category); ?>
+<?= $this->lang->line('label_event_category_id').': '; ?> <?= anchor('events/index/'.$obj[0]->event_category_id, $obj[0]->event_category); ?>
 <div class="event_title">
     <?= $obj[0]->event_name ?>
 </div>
@@ -15,16 +15,17 @@ Kategoria: <?= anchor('events/index/'.$obj[0]->event_category_id, $obj[0]->event
     <?= parse_bbcode($obj[0]->event_about) ?>  
 </div>
 <div class="event_time">
-    <span>Kedy:</span>
-    <?= $obj[0]->event_from ?>  
-    <?= $obj[0]->event_to ?>  
+    <span><?= $this->lang->line('event_date'); ?></span>
+    <?= datetime($obj[0]->event_from, FALSE).' '.time_withou_seconds(datetime($obj[0]->event_from, TRUE)) ?>  
+    <?php echo '-'; ?>
+    <?= datetime($obj[0]->event_to, FALSE).' '.time_withou_seconds(datetime($obj[0]->event_to, TRUE)) ?>  
 </div>
 <div class="event_priority">
-    <span>Priorita:</span>
-    <?= $obj[0]->event_priority ?>   
+    <span><?= $this->lang->line('label_priority').': ' ?></span>
+    <?= $obj[0]->event_priority ?> 
 </div>
 <div class="event_add_info">
-    <span>Pridal:</span>
+    <span><?= $this->lang->line('event_author'); ?></span>
     <?= $obj[0]->event_author ?> ,
     <?= $date.' '.$time; ?>
 </div>

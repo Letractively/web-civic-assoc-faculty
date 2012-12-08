@@ -50,3 +50,8 @@ function time_withou_seconds($input)
     $time = explode(' ', $input);
     return substr($time[1], 0, strlen($time[1])-3);
 }
+
+function perex_from_content($input)
+{
+    return parse_bbcode(substr($input, 0, 165));
+}

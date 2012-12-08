@@ -9,6 +9,9 @@ $lang['label_about']                    = 'Popis';
 
 $lang['back_to_event_categories']       = 'späť na kategórie udalostí';
 
+$lang['event_date']                     = 'Kedy: ';
+$lang['event_author']                   = 'Pridal: ';
+
 $lang['button_add_event']               = 'Pridaj';
 $lang['button_edit_event']               = 'Upraviť';
 
