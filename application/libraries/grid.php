@@ -254,15 +254,33 @@ class Grid
 			return new_cancel;
 		}
 		
+		function removeAllChildsIfExist(td_id)
+		{
+			var elem = document.getElementById(td_id);
+			if ( elem.hasChildNodes() && (elem.firstChild.nodeName != '#text') )
+			{
+				var text = elem.firstChild.innerHTML;
+				while ( elem.childNodes.length > 0 )
+					elem.removeChild( elem.firstChild );   
+				elem.innerHTML = text;
+			}
+		}
+		
 		function changeToForm(id)
 		{
 			removeAllButtons();
 			for (var col in cols)
 			{
 				if (cols[col] == 'textbox')
+				{
+					removeAllChildsIfExist(col+id);
 					changeToTextbox(col, col+id);
+				}
 				else if (cols[col] == 'combobox')
+				{
+					removeAllChildsIfExist(col+id);
 					changeToCombobox(col, col+id, combobox_dataSources[col]);
+				}
 				document.getElementById(col+id).setAttribute('class','grid_cell_editing');
 			}
 
@@ -323,7 +341,7 @@ class Grid
 					if ($this->headCols[$index]->visible == true)
 					{
 						if ($this->headCols[$index]->anchor)
-							echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell"><a href="'.$this->headCols[$index]->anchor['controller'].'/'.$row->cells[ $this->headCols[$index]->anchor['id'] ].'">'.$cell.'</td>';
+							echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell"><a href="'.$this->headCols[$index]->anchor['controller'].'/'.$row->cells[ $this->headCols[$index]->anchor['id'] ].'">'.$cell.'</a></td>';
 						else
 							echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell">'.$cell.'</td>';
 					}
