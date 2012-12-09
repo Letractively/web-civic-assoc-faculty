@@ -56,7 +56,19 @@ function gen_dropdown($name, $id_selected, $data, $id_index, $value_index)
 	
 	return form_dropdown($name, $options, $id_selected);
 }
+function year($date){
+    $input 		= explode(' ', $date);
+    $date 		= explode('.', $input[0]);
+    $output 	= "{$date[2]}";
+    return $output;
+}
 
+function day_month($date){
+    $input 		= explode(' ', $date);
+    $date 		= explode('.', $input[0]);
+    $output 	= "{$date[1]}.{$date[0]}";
+    return $output;
+}
 /*
  * datetime
  * 
