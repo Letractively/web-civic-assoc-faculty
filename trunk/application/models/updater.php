@@ -29,8 +29,8 @@ class Updater extends MY_Model
                           SET event_event_category_id='".$values['event_category_id']."', 
                               event_priority='".$values['priority']."', 
                               event_name='".$values['name']."',
-                              event_from='".$values['from']."', 
-                              event_to='".$values['to']."', 
+                              event_from='".format_date($values['from']).' '.$values['from_time'].':00'."', 
+                              event_to='".format_date($values['to']).' '.$values['to_time'].':00'."', 
                               event_about='".$values['about']."'
                           WHERE event_id=$ev_id");
         
@@ -83,13 +83,17 @@ class Updater extends MY_Model
      public function edit_post($post_id, $values)
     {
         $this->db->query("UPDATE posts
-                          SET post_title='".$values['title']."',
+                          SET post_priority='".$values['priority']."',
+                              post_title='".$values['title']."',
                               post_content='".$values['content']."'
                           WHERE post_id=$post_id
                               ");
         
       if($this->db->affected_rows()>0){ 
-        return TRUE;
+        $this->db->query("INSERT INTO post_modifies
+                          (post_modifie_post_id, post_modifie_author_id)
+                          VALUES ('".$post_id."','".$this->session->userdata('user')."')
+                        "); 
       }
       else{ return FALSE;}
     }

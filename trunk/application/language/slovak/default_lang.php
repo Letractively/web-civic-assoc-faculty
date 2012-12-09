@@ -17,6 +17,9 @@ $lang['edit_item']                      =   'Upraviť';
 
 $lang['button_login']                   =   'Login';
 $lang['button_logout']                  =   'Logout';
+$lang['button_add_event']               =   'Pridať';
+$lang['button_edit_event']              =   'Upraviť';
+$lang['button_delete_event']            =   'Zmazať';
 
 $lang['label_login']                    =   'Username';
 $lang['label_password']                 =   'Heslo';

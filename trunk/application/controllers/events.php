@@ -2,11 +2,10 @@
 
 class Events extends MY_Controller
 {
-        private $priorits = 5;
         /*
-         * Constructor
+         * __construct
          * 
-         * @return      void
+         * Konštruktor triedy
          * 
          */
         function __construct() 
@@ -23,41 +22,72 @@ class Events extends MY_Controller
         /*
          * index
          * 
-         * @return      void
+         * default index metoda, ktora sa vola primarne
          * 
+         * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
          */
-        public function index( $event_id = 0 )
+        public function index( $event_cat_id = 0 )
         {
             $this->load->model('selecter');
             
             $data = array(
-                'view'                  => "{$this->router->class}_view",
-                'event_id'              => $event_id,
-                'priorities'            => $this->generate_priorities($this->priorits)
+                'view'              => "{$this->router->class}_view",
+                'event_cat_id'      => $event_cat_id,
+                'flag'              => 0
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        public function newest( $event_id = 0 )
+        /*
+         * newest
+         * 
+         * Funkcia vyfiltruje eventy od najnovsich po najstarsie
+         * 
+         * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
+         * 
+         */
+        public function newest( $event_cat_id = 0 )
+        {
+            $this->load->model('selecter');
+            
+            $data = array(
+                'view'              => "{$this->router->class}_view",
+                'event_cat_id'      => $event_cat_id,
+                'flag'              => 1
+            );
+            $this->load->view('container', array_merge($this->data, $data));
+        }
+
+        /*
+         * prior
+         * 
+         * Funkcia vyfiltruje eventy od najviac prioritnych po najmenej priritne
+         * 
+         * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
+         * 
+         */
+        public function prior( $event_cat_id = 0 )
         {
             $data = array(
-                'view'      => "{$this->router->class}_view",
-                'event_id'      => $event_id
+                'view'              => "{$this->router->class}_view",
+                'event_cat_id'      => $event_cat_id,
+                'flag'              => 2
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        public function prior( $event_id = 0 )
-        {
-            $data = array(
-                'view'      => "{$this->router->class}_view",
-                'event_id'      => $event_id
-            );
-            $this->load->view('container', array_merge($this->data, $data));
-        }
-
+        /*
+         * detail
+         * 
+         * Funkcia zobrazi detail daneho eventu
+         * 
+         * @param event_id ID eventu ktoreho detail sa ma zobrazit
+         * 
+         */
         public function detail( $event_id )
         {
+            if( $event_id == '')
+                redirect(base_url ());
             $this->load->model('selecter');
             
             $data = array(
@@ -68,6 +98,12 @@ class Events extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data) );
         }
 
+        /*
+         * add
+         * 
+         * Funkcia prida novy event do DB
+         * 
+         */
         public function add()
         {   
             if( !$this->userdata->is_admin() )
@@ -84,6 +120,14 @@ class Events extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
+        /*
+         * edit
+         * 
+         * Funkcia zedituje konkretny event
+         * 
+         * @param event_id ID eventu ktory sa ma upravit
+         * 
+         */
         public function edit( $event_id )
         {   
             if( !$this->userdata->is_admin() )
@@ -107,6 +151,14 @@ class Events extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
+        /*
+         * delete
+         * 
+         * Funkcia vymaze dany event z DB
+         * 
+         * @param event_id ID eventu ktory sa ma vymazat
+         * 
+         */
         public function delete( $event_id )
         {
             if( !$this->userdata->is_admin() )

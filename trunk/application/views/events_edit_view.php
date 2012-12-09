@@ -26,12 +26,14 @@
 <!--od -> do-->
     <div class="inputitem">
         <label for="from" class="<?= $error['from'] ?>"><?= $this->lang->line('label_from') ?></label>
-        <?= form_input(array('name' => 'from', 'id' => 'from', 'class' => ''.$error['from']), set_value('from', $field->event_from)) ?>
+        <?= form_input(array('name' => 'from', 'id' => 'from', 'class' => ''.$error['from'], 'maxlength' => 10, 'size' => 10), set_value('from', datetime($field->event_from, FALSE))) ?>
+        <?= form_input(array('name' => 'from_time', 'maxlength' => 5, 'size' => 5), set_value('from_time',  time_withou_seconds(datetime($field->event_from, TRUE)))); ?>
     </div>
  
     <div class="inputitem">
         <label for="to" class="<?= $error['to'] ?>"><?= $this->lang->line('label_to') ?></label>
-        <?= form_input(array('name' => 'to', 'id' => 'to', 'class' => ''.$error['to']), set_value('to', $field->event_to)) ?>
+        <?= form_input(array('name' => 'to', 'id' => 'to', 'class' => ''.$error['to'], 'maxlength' => 10, 'size' => 10), set_value('to',  datetime($field->event_to, FALSE))) ?>
+        <?= form_input(array('name' => 'to_time', 'maxlength' => 5, 'size' => 5), set_value('to_time', time_withou_seconds(datetime($field->event_to, TRUE)))); ?>
     </div>
 <!--end-->
     <div>

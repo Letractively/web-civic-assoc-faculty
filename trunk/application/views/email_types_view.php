@@ -12,7 +12,8 @@
         $grid->remove_url = "{$this->router->class}/delete";
 
         $grid->header('email_type_id')->editable = false;
-
+        $grid->header('email_type_id')->visible = false;
+        $grid->header('email_type_name')->text = $this->lang->line('label_name');
 
         $grid->display();
     }

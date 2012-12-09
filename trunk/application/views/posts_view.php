@@ -1,7 +1,7 @@
 <?php
     $obj = $this->selecter->get_posts();
     
-    array_debug($obj);
+    //array_debug($obj);
     
     //$date = datetime($o->post_modifie_date, FALSE);
     //$time = time_withou_seconds(datetime($o->post_modifie_date, TRUE));
@@ -14,7 +14,7 @@
         </div>
 
         <div class="post_content">
-            <?= parse_bbcode($o->post_content) ?>  
+            <?= perex_from_content($o->post_content) ?>  
         </div>
 
         
