@@ -12,7 +12,7 @@
 </div>
 <?php
     
-    if( $flag == 1 )
+    if( $flag == 0 )
     {
         if( !$grid->bind($this->selecter->get_payments_nopaid(0), 'payment_id') )
         {
@@ -27,7 +27,7 @@
             //$grid->header('user_study_program')->text = $this->lang->line('label_date');
         }          
     }
-    elseif ( $flag == 2 ) 
+    elseif ( $flag == 1 ) 
     {
         if( !$grid->bind($this->selecter->get_excursions_for_visitor(0) ,'user_id') )
         {
@@ -42,7 +42,7 @@
             
         }
     }
-    elseif( $flag == 3 )
+    elseif( $flag == 2 )
     {
         if( !$grid->bind($this->selecter->get_excursions_for_lecturer(0),'user_id') )
         {
@@ -54,7 +54,7 @@
             $grid->header('user_degree')->text = $this->lang->line('label_degree');
         }
     }
-    elseif( $flag == 4 )
+    elseif( $flag == 3 )
     {
         if( !$grid->bind($this->selecter->get_users(2),'user_id') )
         {
