@@ -36,15 +36,30 @@
         echo anchor('users/edit/'.$obj[0]->user_id,$this->lang->line('edit_item'));
         
         $lp = $this->selecter->get_payments_lastpaid($user_id);
-        
-        echo '<br />Vdatabaze'.$lp ->payment_paid_time."<br />";
-        echo 'Teraz'.date('Y-m-d');
-        
-        if(date('Y-m-d') <  $lp ->payment_paid_time){
-            echo 'Členstvo platné do: '.$lp ->payment_paid_time;
+        $date = datetime($lp->payment_paid_time, FALSE);
+        //array_debug($lp);
+
+      
+        if(date('Y+1-m-d') <  $lp->payment_paid_time){
+            echo '<br />Členstvo platné do: '.$dm = day_month($date).'.'.$year = year($date)+1;
         }
         else{
-            echo 'Buuuu';
+            echo '<br />Členské vypršalo: '.$dm = day_month($date).'.'.$year = year($date)+1;
+            echo '<br />V prípade neúhrady registrácia platná do: 31.12.'.$year = year($date)+1;
+            
+            echo form_open('payments/add');
+                $pay= $this->selecter->get_payments($user_id);
+                echo '<div class="inputitem">';
+                echo    '<label for="vs">'.$this->lang->line('label_vs').'</label>';
+                echo    form_input(array('name' => 'vs', 'id' => 'vs', ), set_value('vs', $pay[0] -> payment_vs));
+                echo '</div>';
+                
+                echo '<div class="inputitem">';
+                echo    '<label for="total_sum">'.$this->lang->line('label_total_sum').'</label>';
+                echo    form_input(array('name' => 'total_sum', 'id' => 'total_sum', ), set_value('total_sum', 5)).'€';
+                echo '</div>';
+                
+            echo form_close();
         }
         
   
