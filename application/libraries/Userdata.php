@@ -2,11 +2,25 @@
 
 class Userdata
 {
+        /*
+         * __construct
+         * 
+         * Konstruktor
+         * 
+         */
         public function __construct()
         {
             $this->CI =& get_instance();
         }
         
+        /*
+         * roles
+         * 
+         * Funkcia vrati vsetky pouzivatelske role pouzivane v aplikacii
+         * 
+         * @param all ak je true tak nastavi aj default rolu na 0-ty index
+         * @return array of array
+         */
         public function roles( $all = TRUE )
 	{	
 		$this->roles = array(
@@ -25,6 +39,14 @@ class Userdata
 		return $this->roles;
 	}
         
+        /*
+         * is_logged
+         * 
+         * Funkcia vrati boolean ci je alebo nieje prihlaseny pouzivatel
+         * 
+         * @return boolean
+         * 
+         */
         public function is_logged()
 	{
 		$logged_in = $this->CI->session->userdata('logged_in');
@@ -35,6 +57,14 @@ class Userdata
 		return ( @$user_id > 0 ) ? $user_id : FALSE;
 	}
 	
+        /*
+         * is_admin
+         * 
+         * Funkcia vrati boolean ci je alebo nieje prihlaseny pouzivatel admin
+         * 
+         * @return boolean
+         * 
+         */
 	public function is_admin()
 	{
 		$logged_in = $this->CI->session->userdata('logged_in');
@@ -45,6 +75,15 @@ class Userdata
 		return ( @$admin ) ? $admin : FALSE;
 	}
         
+        /*
+         * get_role 
+         * 
+         * Funkcia vrati pozivatelsku rolu pouzivatela z jeho ID
+         * 
+         * @param user_id ID pouzivatela
+         * @return integer
+         * 
+         */
         public function get_role( $user_id )
         {
             $query =    $this->CI->db->query("  SELECT user_role
@@ -53,6 +92,15 @@ class Userdata
             return $query->row()->user_role;   
         }
         
+        /*
+         * full_name
+         * 
+         * Funkcia vrati cele meno pouzivatela na zaklade jeho id
+         * 
+         * @param user_id ID pouzivatela ktoreho meno ma vratit
+         * @return string
+         * 
+         */
         public function full_name( $user_id )
         {
             $query =    $this->CI->db->query("  SELECT CONCAT(CONCAT(user_name,' '),user_surname) as name

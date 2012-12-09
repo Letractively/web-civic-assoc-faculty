@@ -11,7 +11,10 @@
         <label for="title" class="<?= $error['title'] ?>"><?= $this->lang->line('label_subject') ?></label>
         <?= form_input(array('name' => 'title', 'id' => 'title', 'class' => ''.$error['title']), set_value('title')) ?>
     </div>
- 
+    <div class="inputitem">
+        <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label>
+        <?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value'); ?>
+    </div>
     <div>
         <?php
             foreach($buttons as $i)

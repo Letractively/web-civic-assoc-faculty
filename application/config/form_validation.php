@@ -266,6 +266,11 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean'
             ),
             array(
+                'field'     => 'priority',
+                'label'     => 'lang:label_priority',
+                'rules'     => 'trim|required|xss_clean'
+            ),
+            array(
                 'field'     => 'content',
                 'label'     => 'lang:label_content',
                 'rules'     => 'trim|required|xss_clean'

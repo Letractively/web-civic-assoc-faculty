@@ -236,8 +236,8 @@ class Selecter extends MY_Model
 		                       ec.event_category_name AS event_category, 
 	                               eec.event_name, eec.event_about,
                                        eec.event_from, eec.event_to,
-		                       eec.event_priority, eec.event_author_id,
-		                       eec.user_name||' '||eec.user_surname AS event_author, eec.event_created
+		                       eec.event_priority,
+		                       CONCAT(CONCAT(eec.user_name,' '),eec.user_surname) AS event_author, eec.event_created
                                 FROM event_categories ec
 	                         JOIN
 		                  (SELECT *
@@ -252,7 +252,7 @@ class Selecter extends MY_Model
     public function get_events($cat_id)
     {
        if($cat_id != 0){
-        $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to
+        $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
                                         ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
@@ -269,6 +269,56 @@ class Selecter extends MY_Model
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority DESC, e.event_created DESC
+                               ");
+         return $q->result();
+       }
+    }
+    
+    public function get_events_newest($cat_id)
+    {
+       if($cat_id != 0){
+        $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
+                                        ec.event_category_name, event_priority
+                               FROM events e
+                               JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
+                               WHERE ec.event_category_id = '".$cat_id."'
+                               ORDER BY e.event_created DESC
+                               ");
+        return $q->result();
+        }
+    
+        else
+        {
+         $q = $this->db->query("SELECT  e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
+                                        ec.event_category_name, event_priority
+                               FROM events e
+                               JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
+                               ORDER BY e.event_created DESC
+                               ");
+         return $q->result();
+       }
+    }
+    
+    public function get_events_prior($cat_id)
+    {
+       if($cat_id != 0){
+        $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
+                                        ec.event_category_name, event_priority
+                               FROM events e
+                               JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
+                               WHERE ec.event_category_id = '".$cat_id."'
+                               ORDER BY e.event_priority DESC, e.event_name ASC
+                               ");
+        return $q->result();
+        }
+    
+        else
+        {
+         $q = $this->db->query("SELECT  e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
+                                        ec.event_category_name, event_priority
+                               FROM events e
+                               JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
+                               ORDER BY e.event_priority DESC, e.event_name ASC
                                ");
          return $q->result();
        }
@@ -307,10 +357,14 @@ class Selecter extends MY_Model
                                            us.user_surname as author_surname
                                     FROM (SELECT *
                                           FROM posts p
-                                          LEFT JOIN post_modifies pm ON (p.post_id=pm.post_modifie_post_id)) ppm
-                                          LEFT JOIN users u ON (ppm.post_modifie_author_id=u.user_id)
-                                          LEFT JOIN users us ON(ppm.post_author_id = us.user_id)
+                                          LEFT JOIN post_modifies pm ON (p.post_id=pm.post_modifie_post_id)
+                                          ORDER BY pm.post_modifie_date DESC
+                                          ) ppm
+                                    LEFT JOIN users u ON (ppm.post_modifie_author_id=u.user_id)
+                                    LEFT JOIN users us ON(ppm.post_author_id = us.user_id)
+                                    GROUP BY ppm.post_id
                                     ORDER BY ppm.post_date
+                                    
                                      ");
              return $q->result();
     }
@@ -321,13 +375,14 @@ class Selecter extends MY_Model
                                            p.post_date, pm.post_modifie_author_id, pm.post_modifie_date,
                                            u.user_name as author_name, u.user_surname as author_surname,
                                            us.user_name as modifie_name, us.user_surname as modifie_surname
-                                    FROM post_modifies pm
-                                    JOIN posts p ON (pm.post_modifie_post_id=p.post_id)
+                                    FROM  posts p
+                                    LEFT JOIN post_modifies pm ON (p.post_id = pm.post_modifie_post_id)
                                     JOIN users u ON (p.post_author_id = u.user_id)
                                     LEFT JOIN users us ON (pm.post_modifie_author_id = us.user_id)
                                     WHERE p.post_id=$post_id
+                                    ORDER BY pm.post_modifie_date DESC
                                      ");
-             return $q->result();
+             return $q->row();
     }
     
     
@@ -412,7 +467,7 @@ class Selecter extends MY_Model
     public function get_payments($user_id)
     {
         if($user_id==0){
-            $q = $this->db->query(" SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+            $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     JOIN users u ON (p.payment_user_id=u.user_id)
@@ -420,7 +475,7 @@ class Selecter extends MY_Model
             return $q->result();
         }   
         else {
-        $q = $this->db->query(" SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+        $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     JOIN users u ON (p.payment_user_id=u.user_id)
@@ -448,7 +503,7 @@ class Selecter extends MY_Model
     {
         if($user_id==0){
             $q = $this->db->query("
-                                    SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)
@@ -459,7 +514,7 @@ class Selecter extends MY_Model
         } 
         else{
         $q = $this->db->query("
-                                    SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)
@@ -475,7 +530,7 @@ class Selecter extends MY_Model
     {
         if($user_id==0){
             $q = $this->db->query("
-                                    SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)
@@ -486,7 +541,7 @@ class Selecter extends MY_Model
         }
         else{
         $q = $this->db->query("
-                                    SELECT u.user_name, u.user_surname, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       JOIN users u ON (p.payment_user_id=u.user_id)

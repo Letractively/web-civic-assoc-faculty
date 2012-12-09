@@ -4,9 +4,9 @@ class Auth extends MY_Controller
 {
  
         /*
-         * Constructor
+         * __construct
          * 
-         * @return      void
+         * Konštruktor triedy
          * 
          */
         function __construct() 
@@ -23,7 +23,7 @@ class Auth extends MY_Controller
         /*
          * index
          * 
-         * @return      void
+         * default index metoda, ktora sa vola primarne
          * 
          */
         public function index()
@@ -45,8 +45,6 @@ class Auth extends MY_Controller
          * schvali manualne ked pride platba. Taktiez prerozdeli jeho peniaze medzi
          * kategorie tak ako si on zelal
          * 
-         * @access      public
-         * @return      void
          */
         public function registration()
         {
@@ -82,9 +80,7 @@ class Auth extends MY_Controller
          * login
          * 
          * Funkcia prihlasi navstevnika stranky do aplikacie
-         * 
-         * @access      public
-         * @return      void         
+         *    
          */
         public function login()
         {
@@ -111,8 +107,6 @@ class Auth extends MY_Controller
          * 
          * Funkcia odhlasi pouzivatela z aplikacie
          * 
-         * @access      public
-         * @return      void
          */
         public function logout()
         {

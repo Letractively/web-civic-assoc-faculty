@@ -102,9 +102,9 @@ class Inserter extends MY_Model
     public function add_event($values)
     {
          $this->db->query("INSERT INTO events
-                           (event_event_category_id, event_priority, event_name, event_from, event_to, event_about)
-                           VALUES ('".$values['event_category_id']."','".$values['priority']."','".$values['name']."',
-                                   '".$values['from']."', '".$values['to']."','".$values['about']."')
+                           (event_author_id, event_event_category_id, event_priority, event_name, event_from, event_to, event_about)
+                           VALUES ('".$this->session->userdata('user')."','".$values['event_category_id']."','".$values['priority']."','".$values['name']."',
+                                   '".format_date($values['from']).' '.$values['from_time'].':00'."', '".format_date($values['to']).' '.$values['to_time'].':00'."','".$values['about']."')
                          ");
      if($this->db->affected_rows()>0){ 
         return TRUE;
@@ -176,8 +176,8 @@ class Inserter extends MY_Model
     public function add_post($values)
     {
         $this->db->query("INSERT INTO posts
-                           ( post_title, post_content)
-                           VALUES ('".$values['title']."','".$values['content']."')
+                           ( post_priority, post_title, post_author_id, post_content)
+                           VALUES ('".$values['priority']."','".$values['title']."','".$this->session->userdata('user')."','".$values['content']."')
                          ");
       if($this->db->affected_rows()>0){ 
         return TRUE;
