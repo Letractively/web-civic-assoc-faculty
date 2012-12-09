@@ -1,16 +1,17 @@
 <?php
-    $obj = $this->selecter->get_category_detail(1);
+    $obj = $this->selecter->get_category_detail($project_category_id);
     array_debug($obj);
 ?>
-Kategoria: 
+
 <div class="project_category_name">
-    <?= $obj[0]->project_category_name ?>  
+    <?= $this->lang->line('pr_cat_label').': '.$obj->project_category_name ?>  
 </div>
-Štatistiky:
+
+<?= $this->lang->line('pr_cat_stats'); ?>
 <div class="project_category_cash">
-    Súčasný stav:<?= $obj[0]->project_category_cash ?> 
-    Presun sem:<?= $obj[0]->transaction_cash_from ?>
-    presun preč:<?= $obj[0]->transaction_cash_to ?>
+    <?= $this->lang->line('pr_cat_cur_state'); ?>:<?= $obj->project_category_cash ?> <br />
+    <?= $this->lang->line('pr_cat_move_from'); ?>:<?= $obj->transaction_cash_from ?> <br />
+    <?= $this->lang->line('pr_cat_move_to'); ?>:<?= $obj->transaction_cash_to ?>
 </div>
 Transakcie
 <div class="errors">

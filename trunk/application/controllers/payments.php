@@ -108,7 +108,10 @@ class Payments extends MY_Controller
         {
             parent::edit('edit_payments', $pay_id, $this->router->class, $this->router->method);
 
-            $this->load->view('container', $this->data); 
+            $data = array(
+                'pay_id'    => $pay_id
+            );
+            $this->load->view('container', array_merge($this->data, $data)); 
         }
 
         /*

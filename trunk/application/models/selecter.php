@@ -425,7 +425,7 @@ class Selecter extends MY_Model
                                  JOIN fin_category_transactions fct2 ON (pc.project_category_id=fct2.fin_category_transaction_cat_to_id)
                                  WHERE project_category_id=$cat_id       
                                   ");
-            return $q->result();   
+            return $q->row();   
     }
     
     public function get_project_items($project_id)
@@ -459,15 +459,15 @@ class Selecter extends MY_Model
     
     public function get_project_categories_total_cash()
     {
-            $q = $this->db->query(" SELECT sum(project_category_cash)
+            $q = $this->db->query(" SELECT sum(project_category_cash) AS total_sum
                                     FROM project_categories
                                   ");
-            return $q->result();
+            return $q->row()->total_sum;
     }
     
     public function get_payments($user_id)
     {
-        if($user_id==0){
+        if($user_id == 0){
             $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
@@ -480,7 +480,7 @@ class Selecter extends MY_Model
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     JOIN users u ON (p.payment_user_id=u.user_id)
-                                    WHERE u.user_id=$user_id
+                                    WHERE u.user_id = $user_id
                                   ");
             return $q->result();
         }

@@ -10,6 +10,8 @@ $this->load->library('grid');
     $grid->remove_url = "{$this->router->class}/delete";
     
     $grid->header('study_program_id')->editable = false;
-    	
+    $grid->header('study_program_id')->visible = false;
+    $grid->header('study_program_name')->text = $this->lang->line('label_name');
+    
     $grid->display();
 ?>
