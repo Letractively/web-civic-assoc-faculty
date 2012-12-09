@@ -52,7 +52,7 @@ class Correspondence extends MY_Controller
         
         public function send_email( $post_params )
         {
-            $users = $this->selecter->filter_users_in_correspondence( $post_params );
+            $users = $this->selecter->get_users_filter( $post_params );
             $ids = array();
             foreach ($users as $user) 
             {
@@ -66,10 +66,10 @@ class Correspondence extends MY_Controller
         public function review()
         {
             $data = array(
-
+				'get' => $_GET
             );
 
-            $this->load->view('container', array_merge($this->data, $data)); 
+            $this->load->view('container', array_merge($this->data, $data));
         }
 }
 

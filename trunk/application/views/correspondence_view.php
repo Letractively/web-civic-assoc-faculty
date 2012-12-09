@@ -1,19 +1,26 @@
 ﻿<script type="text/javascript" charset="UTF-8">
 
+	// datova struktura
 	function Pair(id,value)
 	{
 		this.id = id;
 		this.value = value;
 	}
 	
+	var review_url = '<?=$this->router->class?>/review';
+	
+	// typy filtrov, kluc, hodnota
 	var filter_types = [
 		new Pair('study','odbor'),
 		new Pair('grade','stupeň vzdelania'),
 		new Pair('degree_year','rok ukončenia')
 	];
 	
+	// kazdemu riadku filtra sem pribudne 
 	var filter_types_options = new Array();
 	
+	// z databazy sa javascriptu vygeneruju mozne studijne programy
+	// aby ich js vedel pouzit v danom type filtra
 	filter_types_options['study'] = [
 	<?php
 		$study_programs = $this->selecter->get_study_programs();
@@ -26,12 +33,14 @@
 		}
 	?> ];
 	
+	// natvrdo stupne vzdelania
 	filter_types_options['grade'] = [
 		new Pair(1,'1. stupen'),
 		new Pair(2,'2. stupen'),
 		new Pair(3,'3. stupen')
 	];
 	
+	// z php naplna roky ukoncenia
 	filter_types_options['degree_year'] = [
 	<?php
 		$first = true;
@@ -78,8 +87,10 @@
 			new_option.innerHTML = options[i].value;
 			combobox.appendChild(new_option);
 		}
+		refreshReviewLink()
 	}
 	
+	// vytvara klikaci text, ktory vie zmazat cely riadok filtra
 	function createActiveText(text)
 	{
 		var new_label = document.createElement('span');
@@ -88,6 +99,7 @@
 		return new_label;
 	}
 	
+	// vytvara cely novy riadok filtra
 	function addFilterItem()
 	{
 		var root = document.getElementById('filter');
@@ -101,6 +113,7 @@
 		
 		var new_filter_value = createCombobox('study[]', filter_types_options['study']);
 		new_filter_value.setAttribute('class', 'filter_value');
+		new_filter_value.setAttribute('onchange', 'refreshReviewLink()');
 		
 		var new_filter_remove = createActiveText('zmaž');
 		new_filter_remove.setAttribute('class', 'filter_remove');
@@ -109,13 +122,40 @@
 		new_filter_elem.appendChild(new_filter_value);
 		new_filter_elem.appendChild(new_filter_remove);
 		
-		//root.appendChild(new_filter_elem);
 		root.insertBefore(new_filter_elem, document.getElementById('btn_add'));
+		refreshReviewLink()
 	}
 	
+	// maze riadok filtra
 	function removeFilterItem(elem)
 	{
 		elem.parentNode.parentNode.removeChild(elem.parentNode);
+		refreshReviewLink()
+	}
+	
+	// refresuje link na zobrazenie zoznamu userov, resp. generuje link pre GET
+	function refreshReviewLink()
+	{
+		var url = review_url;
+		
+		var filter = document.getElementById('filter').getElementsByTagName('div');
+		var first = true;
+		for (var i = 0; i < filter.length; ++i)
+		{
+			if (filter[i].hasAttribute('class') && (filter[i].getAttribute('class') == 'filter_row') )
+			{
+				var combo_sec = filter[i].getElementsByTagName('select')[1];
+				var type = combo_sec.getAttribute('name');
+				var val = combo_sec.childNodes[combo_sec.selectedIndex].value;
+				if (first) url += '?';
+				else url += '&';
+				url += type+'='+val;
+				first = false;
+			}
+		}
+		
+		var link = document.getElementById('review');
+		link.setAttribute('href',url);
 	}
 
 </script>
@@ -147,10 +187,7 @@
         <div id="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
     </div>
     
-    <span id="hideShow"><?= $this->lang->line('correspondence_review'); ?></span>
-    <div>
-        TU BUDE GRID
-    </div>
+    <div><a id="review" href="<?=$this->router->class?>/review" target="_blank"><?= $this->lang->line('correspondence_review'); ?></a></div>
     
     <div class="inputitem">
         <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_correspondence')) ?>
