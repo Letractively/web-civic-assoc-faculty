@@ -11,5 +11,9 @@ $lang['payment_all']                =   'Všetky';
 $lang['payment_paid']               =   'Zaplatené';
 $lang['payment_nopaid']             =   'Nezaplatené';
 
+$lang['paid']						=   'uhradená';
+$lang['partly_paid']				=   'čiastočne uhradená';
+$lang['nopaid']						=   'neuhradená';
+
 /* End of file payments_lang.php */
 /* Location: ./application/language/slovak/payments_lang.php */

@@ -30,11 +30,12 @@ class Test extends MY_Controller {
 	{
 		if ($this->input->post('operation_add'))
 		{
-			$data = array(
-				'degree_name' => $_POST['degree_name'],
-				'degree_grade' => $_POST['degree_grade']
-			);
-			$this->db->insert('degrees', $data);
+			unset($_POST['operation_add']);
+			$val = $_POST['degree_name'];
+			unset($_POST['degree_name']);
+			$_POST['user_degree_id'] = $val;
+			
+			$this->db->insert('users', $_POST);
 		}
 		redirect('/test', 'refresh');
 	}
@@ -43,19 +44,20 @@ class Test extends MY_Controller {
 	{
 		if ($this->input->post('operation_edit'))
 		{
-			$data = array(
-				'degree_name' => $_POST['degree_name'],
-				'degree_grade' => $_POST['degree_grade']
-			);
-			$this->db->where('degree_id', $id);
-			$this->db->update('degrees', $data); 
+			unset($_POST['operation_edit']);
+			$val = $_POST['degree_name'];
+			unset($_POST['degree_name']);
+			$_POST['user_degree_id'] = $val;
+			
+			$this->db->where('user_id', $id);
+			$this->db->update('users', $_POST); 
 		}
 		redirect('/test', 'refresh');
 	}
 	
 	public function delete($id)
 	{
-		$this->db->delete('degrees', array('degree_id' => $id)); 
+		$this->db->delete('users', array('user_id' => $id)); 
 		redirect('/test', 'refresh');
 	}
 	
