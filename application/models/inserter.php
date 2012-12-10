@@ -78,10 +78,12 @@ class Inserter extends MY_Model
     
     public function add_email_log($email_typ_id, $user_ids)
     {
-       $this->db->query("INSERT INTO user_email_evidence
-                           (user_email_evidence_email_type_id, user_email_evidence_user_id)
-                           VALUES ('".$email_typ_id."'')
+       foreach($user_ids as $user_id){
+         $this->db->query("INSERT INTO user_email_evidence
+                           (user_email_evidence_email_type_id, user_email_evidence_user_id, user_email_evidence_date)
+                           VALUES ('".$email_typ_id."','".$user_id."', NOW())
                          ");
+       }
       if($this->db->affected_rows()>0){ 
         return TRUE;
       }
