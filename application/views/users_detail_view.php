@@ -37,7 +37,7 @@
         
         $lp = $this->selecter->get_payments_lastpaid($user_id);
         $date = datetime($lp->payment_paid_time, FALSE);
-        //array_debug($lp);
+        array_debug($lp);
 
       
         if(date('Y+1-m-d') <  $lp->payment_paid_time){
