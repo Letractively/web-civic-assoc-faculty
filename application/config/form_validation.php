@@ -125,14 +125,14 @@ $config = array(
     ),
     'email_types/add'               => array(
         array(
-                'field'     => 'name',
+                'field'     => 'email_type_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'
         )
     ),
     'email_types/edit'               => array(
         array(
-                'field'     => 'name',
+                'field'     => 'email_type_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'
         )
