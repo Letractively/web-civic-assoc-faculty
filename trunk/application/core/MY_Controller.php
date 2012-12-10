@@ -123,10 +123,11 @@ abstract class MY_Controller extends CI_Controller
             {
                 $this->load->model('inserter');
                 $this->inserter->$method( $this->input->post() );
-                array_debug($this->input->post());
+               // array_debug($this->input->post());
+                redirect( $this->router->class );
             }
         }
-        redirect( $this->router->class );
+        
     }
     
     protected function add_param( $method, $id, $class_valid, $method_valid )

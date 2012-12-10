@@ -51,10 +51,10 @@ class Users extends MY_Controller
     {
         if( !$this->userdata->is_admin() )
             redirect(base_url ());
+       
         $this->load->model('selecter');
         
         parent::add('add_user', $this->router->class, $this->router->method);
-        
         $data = array(
             'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
                                                                                 'email', 'phone', 'study_program_id', 'degree_id', 
