@@ -471,7 +471,7 @@ class Selecter extends MY_Model
             $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
-                                    JOIN users u ON (p.payment_user_id=u.user_id)
+                                    LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                   ");
             return $q->result();
         }   
@@ -479,7 +479,7 @@ class Selecter extends MY_Model
         $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
-                                    JOIN users u ON (p.payment_user_id=u.user_id)
+                                    LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                     WHERE u.user_id = $user_id
                                   ");
             return $q->result();
@@ -492,7 +492,7 @@ class Selecter extends MY_Model
                                     SELECT p.payment_paid_sum, p.payment_paid_time, 
                                            p.payment_total_sum, p.payment_id
                                       FROM payments p
-                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                      LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE u.user_id=$user_id 
                                       ORDER BY p.payment_paid_time DESC
                                    
@@ -507,7 +507,7 @@ class Selecter extends MY_Model
                                     SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
-                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                      LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE p.payment_paid_sum<p.payment_total_sum
                                       ORDER BY p.payment_paid_time DESC
                                    
@@ -518,7 +518,7 @@ class Selecter extends MY_Model
                                     SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
-                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                      LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE u.user_id=$user_id AND p.payment_paid_sum<p.payment_total_sum
                                       ORDER BY p.payment_paid_time DESC
                                    
@@ -534,7 +534,7 @@ class Selecter extends MY_Model
                                     SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
-                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                      LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE p.payment_paid_sum>=p.payment_total_sum
                                       ORDER BY p.payment_paid_time DESC
                                    
@@ -545,7 +545,7 @@ class Selecter extends MY_Model
                                     SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
-                                      JOIN users u ON (p.payment_user_id=u.user_id)
+                                      LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE (u.user_id=$user_id) AND (p.payment_paid_sum>=p.payment_total_sum)
                                       ORDER BY p.payment_paid_time DESC
                                    
