@@ -14,7 +14,7 @@ class Auth extends MY_Controller
             parent::__construct();
 
             $data = array(
-                'title' 		=> 'Homepage'   //Title na aktualnej stranke
+                'title' 		=> $this->lang->line('title')   //Title na aktualnej stranke
             );
 
             $this->data = array_merge($this->data, $data);

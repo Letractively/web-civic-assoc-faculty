@@ -1,5 +1,6 @@
 <?php
 
+$lang['title']                  = 'Kategórie projektov';
 $lang['label_from']             = 'Odkiaľ';
 $lang['label_to']               = 'Kam';
 $lang['label_name']             = 'Názov';

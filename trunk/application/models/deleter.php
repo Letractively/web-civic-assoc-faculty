@@ -151,7 +151,7 @@ class Deleter extends MY_Model
                             WHERE project_project_category_id=$pr_cat_id");
           $this->db->query("UPDATE history_paids
                             SET history_paids_project_category_id=NULL 
-                            WHERE history_paid_project_category_id=$pr_cat_id");
+                            WHERE history_paids_project_category_id=$pr_cat_id");
           $this->db->query("UPDATE fin_category_transactions
                             SET fin_category_transaction_cat_from_id=NULL 
                             WHERE fin_category_transaction_cat_from_id=$pr_cat_id");

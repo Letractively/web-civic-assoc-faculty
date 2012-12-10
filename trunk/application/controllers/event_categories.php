@@ -18,8 +18,8 @@ class Event_categories extends MY_Controller
             $this->load->model('selecter');
 
             $data = array(
-                'title' 		=> 'Kategórie udalostí',   //Title na aktualnej stranke
-                'view'              => "{$this->router->class}_view"
+                'title' 		=> $this->lang->line('title'),   //Title na aktualnej stranke
+                'view'                  => "{$this->router->class}_view"
             );
 
             $this->data = array_merge($this->data, $data);
@@ -44,9 +44,7 @@ class Event_categories extends MY_Controller
          */
         public function add()
         {        
-            parent::add('add_event_category', $this->router->class, $this->router->method);
-
-            $this->load->view('container', $this->data);   
+            parent::add('add_event_category', 'operation_add'); 
         }
 
         /*
@@ -59,12 +57,7 @@ class Event_categories extends MY_Controller
          */
         public function edit( $event_category_id )
         {
-            parent::edit('edit_event_category', $event_category_id, $this->router->class, $this->router->method);
-
-            $data = array(
-                'event_category_id' => $event_category_id
-            );
-            $this->load->view('container', array_merge($this->data, $data));   
+            parent::edit('edit_event_category', $event_category_id, 'operation_edit'); 
         }
 
         /*
@@ -83,7 +76,7 @@ class Event_categories extends MY_Controller
                 'view'              => 'confirm_view',
                 'type'              => 'delete',
                 'langs'             => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-                'method'            => $this->router->class.'/'.$event_category_id,
+                'method'            => $this->router->class.'/'.$this->router->method.'/'.$event_category_id,
                 'event_category_id' => $event_category_id
             );
 

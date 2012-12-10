@@ -18,7 +18,7 @@ class Correspondence extends MY_Controller
                 redirect(base_url());
 
             $data = array(
-                'title' 		=> ''   //Title na aktualnej stranke
+                'title' 		=> $this->lang->line('title')   //Title na aktualnej stranke
             );
 
             $this->data = array_merge($this->data, $data);

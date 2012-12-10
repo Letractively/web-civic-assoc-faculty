@@ -13,7 +13,7 @@ class Project_categories extends MY_Controller
             parent::__construct();
             $this->load->model('selecter');
             $data = array(
-                'title' 		=> 'Kategórie projektov',   //Title na aktualnej stranke
+                'title' 		=> $this->lang->line('title'),   //Title na aktualnej stranke
                 'view'              => "{$this->router->class}_view"
             );
 
@@ -39,9 +39,7 @@ class Project_categories extends MY_Controller
          */
         public function add()
         {
-            parent::add('add_project_category', $this->router->class, $this->router->method);
-
-            $this->load->view('container', $this->data); 
+            parent::add('add_project_category', 'operation_add');
         }
 
         /*
@@ -67,9 +65,7 @@ class Project_categories extends MY_Controller
 
         public function edit( $project_category_id )
         {
-            parent::edit('edit_project_category', $project_category_id, $this->router->class, $this->router->method);
-
-            $this->load->view('container', $this->data); 
+            parent::edit('edit_project_category', $project_category_id, 'operation_edit');
         }
 
         public function delete( $project_category_id )
@@ -80,7 +76,7 @@ class Project_categories extends MY_Controller
                 'view'            => 'confirm_view',
                 'type'            => 'delete',
                 'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-                'method'          => $this->router->class.'/'.$project_category_id
+                'method'          => $this->router->class.'/'.$this->router->method.'/'.$project_category_id
             );
 
             $this->load->view('container', array_merge($this->data, $data));
