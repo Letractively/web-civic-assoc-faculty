@@ -101,24 +101,24 @@ $config = array(
     ),
     'degrees/add'                   => array(
             array(
-                'field'     => 'name',
+                'field'     => 'degree_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'  
             ),
             array(
-                 'field'     => 'grade',
+                 'field'     => 'degree_grade',
                 'label'     => 'lang:label_grade',
                 'rules'     => 'trim|required|xss_clean|numeric'
             )
     ),
     'degrees/edit'                  => array(
            array(
-                'field'     => 'name',
+                'field'     => 'degree_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'  
             ),
             array(
-                'field'     => 'grade',
+                'field'     => 'degree_grade',
                 'label'     => 'lang:label_grade',
                 'rules'     => 'trim|required|xss_clean|integer'
             )

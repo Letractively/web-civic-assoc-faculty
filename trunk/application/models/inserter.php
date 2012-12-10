@@ -65,9 +65,10 @@ class Inserter extends MY_Model
    
     public function add_degree($values)
     {
+        array_debug($values);
         $this->db->query("INSERT INTO degrees
-                          (degree_name,degree_grade)
-                          VALUES ('".$values['name']."','".$values['grade']."')
+                          (degree_name, degree_grade)
+                          VALUES ('".$values['degree_name']."','".$values['degree_grade']."')
                         "); 
       if($this->db->affected_rows()>0){ 
         return TRUE;

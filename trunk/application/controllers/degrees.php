@@ -17,10 +17,9 @@ class Degrees extends MY_Controller
                 redirect(base_url());
             
             $data = array(
-                'title'             => 'Tituly',   //Title na aktualnej stranke
-                'view'              => "{$this->router->class}_view"
+                'title' 		=> $this->lang->line('title')   //Title na aktualnej stranke
             );
-
+            
             $this->data = array_merge($this->data, $data);
         }
 
@@ -33,7 +32,11 @@ class Degrees extends MY_Controller
         public function index()
         {    
             $this->load->model('selecter');
-            $this->load->view('container', $this->data);
+            
+            $data = array(
+                'view'              => "{$this->router->class}_view"
+            );
+            $this->load->view('container', array_merge($this->data, $data));
         }
         
         /*
@@ -43,10 +46,8 @@ class Degrees extends MY_Controller
          * 
          */
         public function add()
-        {            
-            parent::add('add_degree', $this->router->class, $this->router->method);
-                            
-            $this->load->view('container', $this->data);
+        {         
+            parent::add('add_degree', 'operation_add');
         }
         
         /*
@@ -65,7 +66,7 @@ class Degrees extends MY_Controller
               'view'            => 'confirm_view',
               'type'            => 'delete',
               'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-              'method'          => $this->router->class.'/'.$degree_id,
+              'method'          => $this->router->class.'/'.$this->router->method.'/'.$degree_id,
               'degree_id'       => $degree_id
             );
             
@@ -82,12 +83,6 @@ class Degrees extends MY_Controller
          */
         public function edit( $degree_id )
         {
-            parent::edit('edit_degree', $degree_id, $this->router->class, $this->router->method);
-            
-            $data = array(
-                'degree_id'       => $degree_id
-            );
-            
-            $this->load->view('container', array_merge($this->data, $data));
+           parent::edit('edit_degree', $degree_id, 'operation_edit');
         }
 }

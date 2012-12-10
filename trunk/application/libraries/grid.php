@@ -237,7 +237,7 @@ class Grid
 			new_confirm.setAttribute('name','operation_'+operation);
 			new_confirm.setAttribute('value','operation_'+operation);
 			var new_img = document.createElement('img');
-			new_img.setAttribute('src','../../assets/img/confirm.png');
+			new_img.setAttribute('src','assets/img/confirm.png');
 			new_img.setAttribute('alt',text);
 			new_confirm.appendChild(new_img);
 			return new_confirm;
@@ -248,7 +248,7 @@ class Grid
 			var new_cancel = document.createElement('div');
 			new_cancel.setAttribute('onclick','document.location.reload(true);');
 			var new_img = document.createElement('img');
-			new_img.setAttribute('src','../../assets/img/cancel.png');
+			new_img.setAttribute('src','assets/img/cancel.png');
 			new_img.setAttribute('alt',text);
 			new_cancel.appendChild(new_img);
 			return new_cancel;
@@ -349,12 +349,12 @@ class Grid
 				if ($this->edit_url != "" && $row->editable == true)
 				{
 					if ($this->edit_mode == "internal")
-						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><img class="aaa" src="../../assets/img/edit.png" alt="edit" onclick="changeToForm('.$unique_key.')" /></td>';
+						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><img class="aaa" src="assets/img/edit.png" alt="edit" onclick="changeToForm('.$unique_key.')" /></td>';
 					else if ($this->edit_mode == "external")
-						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->edit_url.'/'.$unique_key.'"><img src="../../assets/img/edit.png" alt="edit" /></a></td>';
+						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->edit_url.'/'.$unique_key.'"><img src="assets/img/edit.png" alt="edit" /></a></td>';
 				}
 				if ($this->remove_url != "" && $row->removable == true)
-					echo '<td id="delete'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->remove_url.'/'.$unique_key.'"><img src="../../assets/img/delete.png" alt="delete" /></a></td>';
+					echo '<td id="delete'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->remove_url.'/'.$unique_key.'"><img src="assets/img/delete.png" alt="delete" /></a></td>';
 				echo '</tr>'."\n";
 			}
 		}
@@ -369,9 +369,9 @@ class Grid
 					echo '<td id="'.$index.'0"></td>';
 			}
 			if ($this->add_mode == "internal")
-				echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="../../assets/img/add.png" alt="add" /></div></td>';
+				echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="assets/img/add.png" alt="add" /></div></td>';
 			else if ($this->add_mode == "external")
-				echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.$this->add_url.'"><img src="../../assets/img/add.png" alt="add" /></a></td>';
+				echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.$this->add_url.'"><img src="assets/img/add.png" alt="add" /></a></td>';
 			echo '</tr>'."\n";
 		}
 		

@@ -6,7 +6,7 @@ class Pages extends MY_Controller
         /*
          * __construct
          * 
-         * Konštruktor triedy
+         * Konstruktor triedy
          * 
          */
         function __construct() 
