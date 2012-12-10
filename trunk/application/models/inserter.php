@@ -92,7 +92,7 @@ class Inserter extends MY_Model
     {
         $this->db->query("INSERT INTO email_types
                            (email_type_name)
-                           VALUES ('".$values['name']."')
+                           VALUES ('".$values['email_type_name']."')
                          ");
       if($this->db->affected_rows()>0){ 
         return TRUE;

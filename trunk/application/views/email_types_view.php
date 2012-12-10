@@ -3,8 +3,6 @@
     
     $grid = new Grid();
     
-    //array_debug($this->selecter->get_email_types());
-    
     if( $grid->bind($this->selecter->get_email_types(), 'email_type_id') )
     {
         $grid->add_url = "{$this->router->class}/add";

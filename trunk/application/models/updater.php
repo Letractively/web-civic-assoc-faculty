@@ -15,7 +15,7 @@ class Updater extends MY_Model
     
     public function edit_email_type($e_type_id, $values)
     {
-          $this->db->query("UPDATE email_types SET email_type_name='".$values['name']."'
+          $this->db->query("UPDATE email_types SET email_type_name='".$values['email_type_name']."'
                             WHERE email_type_id=$e_type_id");
       if($this->db->affected_rows()>0){
         return TRUE;
