@@ -167,29 +167,31 @@
     <?php echo validation_errors();         
     //array_debug($programs) ?>
 </div>
-<?= form_open("correspondence") ?>
-    <div class="inputitem">
-        <label for="correspondence_subject" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_correspondence_subject') ?></label>
-        <?= form_input(array('name' => 'correspondence_subject', 'id' => 'correspondence_subject', 'class' => ''.$error['correspondence_subject']), set_value('correspondence_subject')) ?>
-    </div>
+<div id="form_wrapper">
+	<?= form_open("correspondence") ?>
+		<div class="inputitem">
+			 <p class="label"> <label for="correspondence_subject" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_correspondence_subject') ?></label> </p>
+			<?= form_input(array('name' => 'correspondence_subject', 'id' => 'correspondence_subject', 'class' => 'input_data'.$error['correspondence_subject']), set_value('correspondence_subject')) ?>
+		</div>
 
-    <div class="inputitem">
-        <label for="correspondence_content" class="<?= $error['correspondence_content'] ?>"><?= $this->lang->line('label_correspondence_content') ?></label>
-        <?= form_textarea(array('name' => 'correspondence_content', 'id' => 'correspondence_content', 'class' => ''.$error['correspondence_content']), set_value('correspondence_content')) ?>
-    </div>
+		<div class="inputitem">
+			<p class="label"> <label for="correspondence_content" class="<?= $error['correspondence_content'] ?>"><?= $this->lang->line('label_correspondence_content') ?></label> </p>
+			<?= form_textarea(array('name' => 'correspondence_content', 'id' => 'correspondence_content', 'class' => 'textarea_data'.$error['correspondence_content']), set_value('correspondence_content')) ?>
+		</div>
 
-    <div class="inputitem">
-        <label for="email_type_id"><?= $this->lang->line('label_email_type_id') ?></label>
-        <?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name'); ?>
-    </div>
-	
-    <div id="filter" class="inputitem">
-        <div id="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
-    </div>
-    
-    <div><a id="review" href="<?=$this->router->class?>/review" target="_blank"><?= $this->lang->line('correspondence_review'); ?></a></div>
-    
-    <div class="inputitem">
-        <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_correspondence')) ?>
-    </div>
-<?= form_close() ?>
+		<div class="inputitem">
+			<p class="label"> <label for="email_type_id"><?= $this->lang->line('label_email_type_id') ?></label> </p>
+			<?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name'); ?>
+		</div>
+		
+		<div id="filter" class="inputitem">
+			<div id="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
+		</div>
+		
+		<div id="link"><a id="review" href="<?=$this->router->class?>/review" target="_blank"><?= $this->lang->line('correspondence_review'); ?></a></div>
+		
+		<div class="inputitem">
+			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit' ), $this->lang->line('button_correspondence')) ?>
+		</div>
+	<?= form_close() ?>
+</div>

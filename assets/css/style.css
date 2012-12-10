@@ -121,7 +121,10 @@ body {
 	background-position: center;
 	background-size: 103% 108%;
 	background-repeat: no-repeat;
+	font-family: "Arial";
 	overflow-y: scroll;
+	height: 100% !important;
+	max-height: 100%;
 	margin: 0;
 	padding: 0;
 }
@@ -129,7 +132,7 @@ body {
 /****** Hlavicka ******/
 #header {
 	width: 960px;
-	height: 320px;
+	height: 335px;
 	border-color: black;
 	border-width: 4px;
 	border-style: solid;
@@ -140,44 +143,44 @@ body {
 	padding: 0;
 }
 
-#header #logo {
-	height: 110px;
+#logo {
+	height: 130px;
 	width: 300px;
 	margin: 0;
 	float: left;
 }
 
-#header #logo #logo_position {
+#logo #logo_position {
 	height: 100px;
 	width: 280px;
 	background-image: url(../img/logo.png);
 	background-repeat: no-repeat;
-	margin: 5px 0px 0px 15px; 	
+	margin: 20px 0px 0px 30px; 	
 }
 
-#header #loginBar {
-	height: 110px;
+#loginBar {
+	height: 130px;
 	width: 660px;
 	float: left;
 }
 
-#header #login_table {
+#login_table {
 	float: right;
 	margin: 10px 15px 0px 10px;
 }
 
-#header #login_table #login {
+#login_table #login {
 	font-size: 18px;
 	font-family: "Arial";
 	font-weight: bold;
 }
 
-#header #login_table #login_table_label {
+#login_table #login_table_label {
 	text-align: right;
 	width: 50px;
 }
 
-#header .input {
+.input {
 	border: 2px solid black;
 	border-radius: 55px;
 	height: 20px;
@@ -187,6 +190,56 @@ body {
 
 .input:focus {
 	outline: none;
+}
+
+#login_table #registration {
+	font-size: 15px;
+	font-weight: bold;
+	padding-left: 90px;
+}
+
+#login_table #registration a {
+	text-decoration: none;
+	color: Blue;
+}
+
+#logout_table {
+	float: right;
+	width: 250px;
+	margin: 10px 15px 0px 40px;
+}
+
+#logout_table #logout_table_sign {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#logout_table #logout_table_name {
+	font-size: 18px;
+	font-family: "Comic Sans MS";
+	font-weight: bolder;;
+	padding-left: 50px;		
+}
+
+#logout_table #logout_table_name a {
+	text-decoration: none;
+	color: black;	
+}
+
+#logout_table #logout_table_button {
+	border: 1px solid black;
+	background-color: #880d0d;
+	border-radius: 35px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+}
+
+#logout_table #logout_table_button a {
+	text-decoration: none;
+	font-size: 16px;
+	color: white;
+	display: block;
 }
 
 #panel {
@@ -292,6 +345,7 @@ body {
 /****** Obsah ******/
 #content {
 	clear: both;
+	overflow-x: hidden;
 	width: 960px;
 	height: auto;
 	border-color: black;
@@ -301,36 +355,122 @@ body {
 	border-bottom: none;
 	margin: 0px auto 0px auto;
 	background-color: white;
-	padding: 15px 0 25px 0;
 }
 
 .content_title {
-	margin: 0px 0px 10px 25px;
+	margin: 15px 50px 10px 50px;
 	font-size: 25px;
 	font-weight: bold;
+	/* border: 1px solid black; */
 }
 
+#form_wrapper {
+	/* border: 1px solid black; */
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 25px;
+	margin-top: 25px;
+	padding: 15px;
+}
+
+/** Vstupne udaje **/
 .inputitem {
-	text-align: center;	
+	margin: 10px 0px 2px 0px;		
 }
 
 .label {	
-	width: 200px;
-	margin: 2px 0 2px 0;
-	text-align: center;
-	display: inline-block;
-	text-align: right;
+	font-weight: bold;
+	margin: 0px;
 }
 
-.box {
-	width: 200px;
-	margin: 2px 0 2px 0;
-	display: inline-block;
-	text-align: left;
+.input_data {
+	width: 250px;
+	height: 20px;
+	border-radius: 5px;
+	padding: 0px 10px;
+	font-size: 15px;
+}
+
+.input_data_date {
+	width: 100px;
+	height: 20px;
+	border-radius: 5px;
+	padding: 0px 10px;
+	font-size: 15px;	
+}
+
+.input_data_time {
+	width: 50px;
+	height: 20px;
+	border-radius: 5px;
+	padding: 0px 10px;
+	font-size: 15px;
+}
+
+.input_data_reg {
+	border: solid 1px black;
+	height: 20px;
+	border-radius: 15px;
+	padding: 0px 10px;
+	text-align: center;
+}
+
+.textarea_data {
+	max-width: 350px;
+	max-height: 170px;
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-size: 15px;
+}
+
+/** Tlacidla **/
+.button_submit {
+	width: 150px;
+	height: 30px;
+	border-radius: 25px;
+	border: 2px solid black;
+	font-family: "Arial Black";
+	background-color: silver;	
+}
+
+.button_submit:hover {
+	background-color: #880d0d;
+   background-image: url(images/linear_bg_2.png);
+   background-repeat: repeat-x;
+   background: -webkit-linear-gradient(top, #880d0d, #fecc78, #880d0d); /* Safari 5.1+ ; Chrome 10+ */
+   background: -moz-linear-gradient(top, #880d0d, #fecc78, #880d0d); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(top, #880d0d, #fecc78, #880d0d); /* IE 10 */
+   background: -o-linear-gradient(top, #880d0d, #fecc78, #880d0d); /* Opera 11.10+ */	background-color: grey;
+	font-family: "Arial black";
+}
+
+#btn_add {
+	width: 75px;
+	height: 20px;
+	border: 1px solid black;
+	background-color: silver;
+	text-align: center;
+	border-radius: 10px;
+	margin: 5px 0px;
+}
+
+/** Odkazy **/
+#link a {
+	display: block;
+	width: 150px;
+	font-family: "Comic Sans MS";
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid black;
+	border-radius: 25px;
+	background-color: silver;
+	color: black;
 }
 
 /****** Paticka ******/
 #footer {
+	/*clear: both;*/
 	width: 960px;
 	height: 55px;
 	color: white;
@@ -354,7 +494,23 @@ body {
 	margin-right: 50px;
 }
 
-/****************************************/
+/****** Rusenie zltych ramikov v Google CHROME ******/
+.input_data:focus {
+	outline: none;
+}
 
+.input_data_date:focus {
+	outline: none;
+}
 
-/***************************************/
+.input_data_time:focus {
+	outline: none;
+}
+
+.input_data_reg:focus {
+	outline: none;
+}
+
+.textarea_data:focus {
+	outline: none;
+}

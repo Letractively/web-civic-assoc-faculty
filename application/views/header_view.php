@@ -16,14 +16,17 @@
 					<td> <?= form_password(array('type' => 'password', 'id' => 'password', 'name' => 'password', 'class' => 'input'.$error['password']), set_value('password')); ?> </td>
 					<td> <?= form_submit(array('name' => 'submit', 'class' => 'loginBtn'), $this->lang->line("button_login")); ?> </td>
 				</tr>
+				<tr> <td colspan="3" id="registration"> <?= anchor('auth/registration', 'REGISTRÁCIA'); ?> </td> </tr>
 				<?= form_close(); ?>
 			<?php else: ?>
-					<strong><?= $this->lang->line('logged_in'); ?>: </strong>
+				<table id="logout_table">
+					<tr> <td id="logout_table_sign"> <?= $this->lang->line('logged_in'); ?>: </td> </tr>
 					<?php 
-						$uid = $this->session->userdata('user');
-						echo anchor('users/detail/'.$uid, $this->userdata->full_name($uid));
-						echo anchor('auth/logout', $this->lang->line('button_logout') ); 
-					?>
+						$uid = $this->session->userdata('user'); ?>
+						<tr> <td id="logout_table_name"> <?php echo anchor('users/detail/'.$uid, $this->userdata->full_name($uid)); ?> </td> </tr>
+						<tr> <td id="logout_table_button"> <?php echo anchor('auth/logout', $this->lang->line('button_logout') );
+					?> </td> </tr>
+				</table>
 			<?php endif; ?>
 		</table>
 	</div>
@@ -41,7 +44,6 @@
 		<div id="main_navigation"> <!-- //main navigation -->
 			<?= anchor('', 'DOMOV'); ?>
 			<?= anchor('test', 'GRID'); ?>
-			<?= anchor('auth/registration', 'REGISTRACIA'); ?>
 		</div>
 		<div id="secondary_navigation"> <!-- //secondary navigation -->
 			<?= anchor('http://devilpage.cz', 'Web page Man Utd'); ?>
