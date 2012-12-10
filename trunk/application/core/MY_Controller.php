@@ -25,24 +25,9 @@ abstract class MY_Controller extends CI_Controller
 	);
         
         $this->data = array_merge($this->data, $data);
-        $this->load();
-    }
-    
-    /*
-     * load
-     * 
-     * Loader dodatocnych veci, ktore su potrebne pre beh aplikacie
-     * 
-     */
-    protected function load()
-    {
-        //Custom config load
-        $this->config->load('custom_config');
-        
         $this->load_languages();
     }
-
-
+    
     /*
      * load_languages
      * 
