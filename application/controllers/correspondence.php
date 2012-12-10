@@ -60,13 +60,13 @@ class Correspondence extends MY_Controller
                 send_email($user->user_email, $post_params['correspondence_subject'], $post_params['correspondence_content']);
             }
             
-            return $this->inserter->add_email_log($post_params['email_type_id'], $ids);
+           // return $this->inserter->add_email_log($post_params['email_type_id'], $ids);
         }
 
         public function review()
         {
             $data = array(
-				'get' => $_GET
+		'get' => $_GET
             );
 
             $this->load->view('container', array_merge($this->data, $data));

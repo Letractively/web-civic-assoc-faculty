@@ -188,8 +188,8 @@
 			<div id="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
 		</div>
 		
-		<div id="link"><a id="review" href="<?=$this->router->class?>/review" target="_blank"><?= $this->lang->line('correspondence_review'); ?></a></div>
-		
+		<div id="link"><?= anchor($this->router->class.'/review', $this->lang->line('correspondence_review'), 'id="review", target="_blank"'); ?></div>
+                
 		<div class="inputitem">
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit' ), $this->lang->line('button_correspondence')) ?>
 		</div>
