@@ -48,6 +48,8 @@ class Auth extends MY_Controller
          */
         public function registration()
         {
+            if( $this->userdata->is_logged() )
+                redirect(base_url ());
             $this->load->model('selecter');
             $this->load->model('inserter');
 
