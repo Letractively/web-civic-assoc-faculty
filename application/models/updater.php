@@ -43,10 +43,10 @@ class Updater extends MY_Model
     public function edit_event_category($ev_cat_id, $values)
     {
         $this->db->query("UPDATE event_categories
-                          SET event_category_name='".$values."'
+                          SET event_category_name='".$values['event_category_name']."'
                           WHERE event_category_id=$ev_cat_id");
         
-      if($this->db->affected_rows()>0){ 
+      if($this->db->affected_rows() > 0){ 
         return TRUE;
       }
       else{ return FALSE;}
@@ -120,8 +120,8 @@ class Updater extends MY_Model
     public function edit_project_category($pr_cat_id, $values)
     {
         $this->db->query("UPDATE project_categories
-                          SET project_category_name='".$values['name']."',
-                              project_category_cash='".$values['cash']."'
+                          SET project_category_name='".$values['project_category_name']."',
+                              project_category_cash='".$values['project_category_cash']."'
                           WHERE project_category_id=$pr_cat_id
                               ");
         
@@ -156,7 +156,7 @@ class Updater extends MY_Model
     
     public function edit_study_program($study_pr_id, $values)
     {
-          $this->db->query("UPDATE study_programs SET study_program_name='".$values['name']."'
+          $this->db->query("UPDATE study_programs SET study_program_name='".$values['study_program_name']."'
                             WHERE study_program_id=$study_pr_id");
       if($this->db->affected_rows()>0){
         return TRUE;

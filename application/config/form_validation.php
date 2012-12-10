@@ -139,14 +139,14 @@ $config = array(
     ),
     'event_categories/add'          => array(
         array(
-                'field'     => 'name',
+                'field'     => 'event_category_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'
         )
     ),
     'event_categories/edit'          => array(
         array(
-                'field'     => 'name',
+                'field'     => 'event_category_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'
         )
@@ -312,26 +312,26 @@ $config = array(
     ),
     'project_categories/add'                => array(
             array(
-                'field'     => 'name',
+                'field'     => 'project_category_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'
             ),
             array(
-                'field'     => 'cash',
+                'field'     => 'project_category_cash',
                 'label'     => 'lang:label_capital',
-                'rules'     => 'trim|required|xss_clean|numeric'
+                'rules'     => 'trim|xss_clean|numeric'
             )
     ),
     'project_categories/edit'                => array(
             array(
-                'field'     => 'name',
+                'field'     => 'project_category_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'
             ),
             array(
-                'field'     => 'cash',
+                'field'     => 'project_category_cash',
                 'label'     => 'lang:label_capital',
-                'rules'     => 'trim|required|xss_clean|numeric'
+                'rules'     => 'trim|xss_clean|numeric'
             )
     ),
     'projects/add'                          => array(
@@ -454,14 +454,14 @@ $config = array(
     ),
     'studies/add'                               => array(
             array(
-                'field'     => 'name',
+                'field'     => 'study_program_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'
             )
     ),
     'studies/edit'                               => array(
             array(
-                'field'     => 'name',
+                'field'     => 'study_program_name',
                 'label'     => 'lang:label_name',
                 'rules'     => 'trim|required|xss_clean'
             )

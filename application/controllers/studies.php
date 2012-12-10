@@ -14,7 +14,7 @@ class Studies extends MY_Controller
             parent::__construct();
             $this->load->model('selecter');
             $data = array(
-                'title' 		=> 'Štúdijné programy',   //Title na aktualnej stranke
+                'title' 		=> $this->lang->line('title'),   //Title na aktualnej stranke
                 'view'              => "{$this->router->class}_view"
             );
 
@@ -29,7 +29,6 @@ class Studies extends MY_Controller
          */
         public function index()
         {
-            $this->load->model('selecter');
             $this->load->view('container', $this->data);
         }
 
@@ -41,10 +40,7 @@ class Studies extends MY_Controller
          */
         public function add()
         {
-            parent::add('add_study_program', $this->router->class, $this->router->method);
-            $this->load->model('selecter');
-
-            $this->load->view('container', $this->data);
+            parent::add('add_study_program', 'operation_add');
         }
 
         /*
@@ -57,12 +53,7 @@ class Studies extends MY_Controller
          */
         public function edit( $study_id )
         {
-            parent::edit('edit_study_program', $study_id, $this->router->class, $this->router->method);
-
-            $data = array(
-                'study_id'   => $study_id
-            );
-            $this->load->view('container', array_merge($this->data, $data));
+            parent::edit('edit_study_program', $study_id, 'operation_edit');
         }
 
         /*
@@ -81,7 +72,7 @@ class Studies extends MY_Controller
                 'view'            => 'confirm_view',
                 'type'            => 'delete',
                 'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-                'method'          => $this->router->class.'/'.$study_id
+                'method'          => $this->router->class.'/'.$this->router->method.'/'.$study_id
             );
 
             $this->load->view('container', array_merge($this->data, $data));

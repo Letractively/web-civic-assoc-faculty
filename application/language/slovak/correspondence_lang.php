@@ -1,4 +1,7 @@
 <?php
+
+$lang['title']                          = 'Hromadná korešpondencia';
+
 $lang['label_email_type_id']            = 'Typ';
 $lang['label_correspondence_subject']   = 'Predmet';
 $lang['label_correspondence_content']   = 'Telo';

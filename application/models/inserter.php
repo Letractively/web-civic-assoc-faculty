@@ -117,7 +117,7 @@ class Inserter extends MY_Model
     {
         $this->db->query("INSERT INTO event_categories
                            ( event_category_name)
-                           VALUES ('".$values['name']."')
+                           VALUES ('".$values['event_category_name']."')
                          ");
       if($this->db->affected_rows()>0){ 
         return TRUE;
@@ -202,7 +202,7 @@ class Inserter extends MY_Model
     {
         $this->db->query("INSERT INTO project_categories
                            ( project_category_name, project_category_cash)
-                           VALUES ('".$values['name']."','".$values['cash']."')
+                           VALUES ('".$values['project_category_name']."','".$values['project_category_cash']."')
                          ");
        if($this->db->affected_rows()>0){ 
         return TRUE;
@@ -231,7 +231,7 @@ class Inserter extends MY_Model
     {
         $this->db->query("INSERT INTO study_programs
                            (study_program_name)
-                           VALUES ($values)
+                           VALUES ('".$values['study_program_name']."')
                          ");
      if($this->db->affected_rows()>0){ 
         return TRUE;

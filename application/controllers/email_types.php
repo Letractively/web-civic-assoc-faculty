@@ -18,7 +18,7 @@ class Email_types extends MY_Controller
             $this->load->model('selecter');
 
             $data = array(
-                'title' 		=> 'Typy emailov',   //Title na aktualnej stranke
+                'title' 		=> $this->lang->line('title'),   //Title na aktualnej stranke
                 'view'          => "{$this->router->class}_view"
             );
 

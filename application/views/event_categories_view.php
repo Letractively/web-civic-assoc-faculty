@@ -13,8 +13,6 @@
 
         $grid->header('event_category_id')->editable = false;
         $grid->header('event_category_id')->visible = false;
-        $grid->header('event_category_name')->component->type = "combobox";
-        $grid->header('event_category_name')->component->bind( $this->selecter->get_event_categories(), "event_category_id", "event_category_name");
         $grid->header('event_category_name')->text = $this->lang->line('label_name');
         
         $grid->display();

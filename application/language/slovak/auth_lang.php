@@ -1,5 +1,7 @@
 <?php
 
+$lang['title']                      =   'Homepage';
+
 $lang['title_registration']         =   'Registrácia';
 $lang['label_name']                 =   'Meno';
 $lang['label_surname']              =   'Priezvisko';
