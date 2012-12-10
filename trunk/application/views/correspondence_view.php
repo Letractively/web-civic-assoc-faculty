@@ -160,8 +160,7 @@
 
 </script>
 
-<?php
-?>
+<?php // echo js_insert_bbcode("{$this->router->class}/index", 'textarea'); ?>
 
 <div class="errors">
     <?php echo validation_errors();         
@@ -173,10 +172,18 @@
 			 <p class="label"> <label for="correspondence_subject" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_correspondence_subject') ?></label> </p>
 			<?= form_input(array('name' => 'correspondence_subject', 'id' => 'correspondence_subject', 'class' => 'input_data'.$error['correspondence_subject']), set_value('correspondence_subject')) ?>
 		</div>
-
+    
+                <div>
+                    <?php
+                     /*   foreach($buttons as $i)
+                        {
+                            echo $i;
+                        }*/
+                    ?>
+                </div>  
 		<div class="inputitem">
 			<p class="label"> <label for="correspondence_content" class="<?= $error['correspondence_content'] ?>"><?= $this->lang->line('label_correspondence_content') ?></label> </p>
-			<?= form_textarea(array('name' => 'correspondence_content', 'id' => 'correspondence_content', 'class' => 'textarea_data'.$error['correspondence_content']), set_value('correspondence_content')) ?>
+			<?= form_textarea(array('name' => 'correspondence_content', 'id' => 'textarea', 'class' => 'textarea_data'.$error['correspondence_content']), set_value('correspondence_content')) ?>
 		</div>
 
 		<div class="inputitem">

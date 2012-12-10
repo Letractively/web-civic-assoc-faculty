@@ -36,15 +36,18 @@ class Correspondence extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}") )
                 {
-                    if ($this->send_email( $this->input->post() ) ){}
-                        //pekna hlaska
+                    if ($this->send_email( $this->input->post() ) )
+                    {
+                        redirect('show_message/index/success_correspondence');
+                    }
                 }
             }
 
             $data = array( 
 		'years'         => $this->generate_years(60, 2012, 50),
                 'view'          => "{$this->router->class}_view",
-                'error'         => $this->form_validation->form_required(array('correspondence_subject','correspondence_content'))
+                'error'         => $this->form_validation->form_required(array('correspondence_subject','correspondence_content')),
+               // 'buttons'       => get_bbcode_buttons()
             );
 
             $this->load->view('container', array_merge($this->data, $data)); 
@@ -54,13 +57,22 @@ class Correspondence extends MY_Controller
         {
             $users = $this->selecter->get_users_filter( $post_params );
             $ids = array();
+            $this->load->library('email');
+            $logged_user_id = $this->session->userdata('user');
             foreach ($users as $user) 
             {
                 array_push($ids, $user->user_id);
-                send_email($user->user_email, $post_params['correspondence_subject'], $post_params['correspondence_content']);
+               
+                /*$config['mailtype'] = 'html';
+                $this->email->initialize($config);*/
+                $this->email->from( $this->config->item('server_email'), $this->userdata->full_name($logged_user_id) );
+                $this->email->to($user->user_email);
+                $this->email->subject($post_params['correspondence_subject']);
+                $this->email->message( parse_bbcode($post_params['correspondence_content']) );
+                $this->email->send();
             }
-            
-           // return $this->inserter->add_email_log($post_params['email_type_id'], $ids);
+            return TRUE;
+            //return $this->inserter->add_email_log($post_params['email_type_id'], $ids);
         }
 
         public function review()
