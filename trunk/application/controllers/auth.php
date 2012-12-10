@@ -55,9 +55,9 @@ class Auth extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") == TRUE )
                 {
-                    if(  $this->inserter->registration( $this->input->post(), $this->selecter->count_project_categories() ) == TRUE )
+                    if(  $this->inserter->add_register( $this->input->post(), $this->selecter->count_project_categories() ) == TRUE )
                     {   
-                        //redirect('http://www.sme.sk');
+                        redirect('show_message/index/success_registration');
                     }       
                 }      
             }

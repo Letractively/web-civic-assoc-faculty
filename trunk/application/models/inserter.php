@@ -2,42 +2,6 @@
 
 class Inserter extends MY_Model
 {
-    public function registration($param, $categories)
-    {
-        //array_debug($param);
-        $this->db->query("  INSERT INTO users 
-                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
-                            user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
-                            VALUES
-                            ('".$param['name']."','".$param['surname']."',1,'".$param['username']."',
-                             '".sha1($param['password'])."','".$param['email']."','".$param['phone']."',
-                             '".$param['study_program_id']."','".$param['degree_id']."','".$param['place_of_birth']."',
-                             '".$param['postcode']."','".$param['degree_year']."')
-                         ");
-        
-        $q = $this->db->query("SELECT user_id FROM users");
-        
-        $row = $q->last_row();
-        //array_debug($row);
-        $this->db->query("  INSERT INTO payments
-                            (payment_vs, payment_total_sum, payment_user_id)
-                            VALUES
-                            ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$row->user_id."')
-                         ");
-        
-        $p_categories_ratios = array();
-        
-        for($i = 1; $i <= $categories; $i++)
-        {
-            if( $this->input->post('project_category_'.$i) != '' )
-                $p_categories_ratios[$i] = $this->input->post('project_category_'.$i);
-            else
-                $p_categories_ratios[$i] = 0;
-        }
-        
-        return $this->insert_into_fin_redistributes($row->user_id, $p_categories_ratios);
-    }
-    
     /*
      * insert_into_fin_redistributes
      * 
@@ -60,7 +24,7 @@ class Inserter extends MY_Model
                              ");
         }
         
-        //return TRUE;
+        return TRUE;
     }
    
     public function add_degree($values)
@@ -224,9 +188,37 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
-    public function add_register($values)
+    public function add_register($param, $categories)
     {
+        $this->db->query("  INSERT INTO users 
+                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
+                            user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
+                            VALUES
+                            ('".$param['name']."','".$param['surname']."',1,'".$param['username']."',
+                             '".sha1($param['password'])."','".$param['email']."','".$param['phone']."',
+                             '".$param['study_program_id']."','".$param['degree_id']."','".$param['place_of_birth']."',
+                             '".$param['postcode']."','".$param['degree_year']."')
+                         ");
         
+        $row = $this->db->insert_id();
+
+        $this->db->query("  INSERT INTO payments
+                            (payment_vs, payment_total_sum, payment_user_id)
+                            VALUES
+                            ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$row."')
+                         ");
+        
+        $p_categories_ratios = array();
+        
+        for($i = 1; $i <= $categories; $i++)
+        {
+            if( $this->input->post('project_category_'.$i) != '' )
+                $p_categories_ratios[$i] = $this->input->post('project_category_'.$i);
+            else
+                $p_categories_ratios[$i] = 0;
+        }
+        
+        return $this->insert_into_fin_redistributes($row, $p_categories_ratios);
     }
     
     public function add_study_program($values)
