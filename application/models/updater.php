@@ -4,11 +4,11 @@ class Updater extends MY_Model
 {
     public function edit_degree($degree_id, $values)
     {
-        $this->db->query("UPDATE degrees SET degree_name='".$values['name']."',
-                                              degree_grade='".$values['grade']."'
+        $this->db->query("UPDATE degrees SET degree_name='".$values['degree_name']."',
+                                              degree_grade='".$values['degree_grade']."'
                           WHERE degree_id=$degree_id");
       if($this->db->affected_rows()>0){
-      return TRUE;
+        return TRUE;
       }
       else{ return FALSE;}
     }

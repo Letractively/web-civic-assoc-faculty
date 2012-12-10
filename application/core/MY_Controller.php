@@ -112,22 +112,21 @@ abstract class MY_Controller extends CI_Controller
         return $result;
     }
     
-    protected function add( $method, $class_valid, $method_valid )
+    protected function add( $method, $submit = 'submit')
     {
         /*if( !$this->userdata->is_admin() )
             redirect(base_url());*/
-        
-        $this->load->model('inserter');
-        $this->load->model('selecter');
-        
-        if( $this->input->post('submit') )
+
+        if( $this->input->post($submit) )
         {
-            if( $this->form_validation->run("{$class_valid}/{$method_valid}") )
+            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
+                $this->load->model('inserter');
                 $this->inserter->$method( $this->input->post() );
-                redirect( $class_valid );
+                
             }
         }
+       redirect( $this->router->class );
     }
     
     protected function add_param( $method, $id, $class_valid, $method_valid )
@@ -147,7 +146,7 @@ abstract class MY_Controller extends CI_Controller
         }
     }
     
-    protected function edit( $method, $id, $class_valid, $method_valid )
+    protected function edit( $method, $id, $submit = 'submit' )
     {
         if( $id == '')
             redirect ('404');
@@ -155,16 +154,19 @@ abstract class MY_Controller extends CI_Controller
         /*if( !$this->userdata->is_admin() )
             redirect(base_url());*/
         
-        $this->load->model('updater');
-        $this->load->model('selecter');
-        
-        if( $this->form_validation->run("{$class_valid}/{$method_valid}") )
-        {
-            $this->updater->$method( $id, $this->input->post() );
-                redirect( $class_valid );
-        }  
+        if ( $this->input->post($submit) )
+	{
+            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
+            {
+                $this->load->model('updater');
+                $this->updater->$method( $id, $this->input->post() );
+                    redirect( $this->router->class );
+            }
+            else
+                redirect( $this->router->class );
+        }
     }
-    
+
     protected function delete( $method, $id, $class_valid )
     {
         if( $id == '')

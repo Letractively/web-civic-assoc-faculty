@@ -1,5 +1,7 @@
 <?php
 
+$lang['title']              =   'Tituly';
+
 $lang['label_name']         =   'Názov';
 $lang['label_grade']        =   'Stupeň';
 
