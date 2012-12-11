@@ -19,7 +19,9 @@
             $grid->header('user_id')->editable = false;
             $grid->header('user_id')->visible = false;
             $grid->header('user_name')->text = $this->lang->line('label_name');
+			$grid->header('user_name')->set_anchor("{$this->router->class}/detail", "user_id");
             $grid->header('user_surname')->text = $this->lang->line('label_surname'); 
+			$grid->header('user_surname')->set_anchor("{$this->router->class}/detail", "user_id");
             $grid->header('user_email')->text = $this->lang->line('label_email'); 
             $grid->header('user_degree')->text = $this->lang->line('label_degree'); 
             $grid->header('user_study_program')->text = $this->lang->line('label_study_program');
@@ -34,7 +36,9 @@
             $grid->header('user_id')->editable = false;
             $grid->header('user_id')->visible = false;
             $grid->header('user_name')->text = $this->lang->line('label_name');
+			$grid->header('user_name')->set_anchor("{$this->router->class}/detail", "user_id");
             $grid->header('user_surname')->text = $this->lang->line('label_surname'); 
+			$grid->header('user_surname')->set_anchor("{$this->router->class}/detail", "user_id");
             $grid->header('user_email')->text = $this->lang->line('label_email'); 
 //            $grid->header('user_degree')->text = $this->lang->line('label_paid_sum'); 
 //            $grid->header('user_study_program')->text = $this->lang->line('label_date');
@@ -49,7 +53,9 @@
             $grid->header('user_id')->editable = false;
             $grid->header('user_id')->visible = false;
             $grid->header('user_name')->text = $this->lang->line('label_name');
+			$grid->header('user_name')->set_anchor("{$this->router->class}/detail", "user_id");
             $grid->header('user_surname')->text = $this->lang->line('label_surname'); 
+			$grid->header('user_surname')->set_anchor("{$this->router->class}/detail", "user_id");
             $grid->header('user_email')->text = $this->lang->line('label_email'); 
             $grid->header('user_degree')->text = $this->lang->line('label_degree');
         }
@@ -61,7 +67,9 @@
             $grid->header('user_id')->editable = false;
             $grid->header('user_id')->visible = false;
             $grid->header('user_name')->text = $this->lang->line('label_name');
+			$grid->header('user_name')->set_anchor("{$this->router->class}/detail", "user_id");
             $grid->header('user_surname')->text = $this->lang->line('label_vs'); 
+			$grid->header('user_surname')->set_anchor("{$this->router->class}/detail", "user_id");
             $grid->header('user_email')->text = $this->lang->line('label_surname');    
         }
     }

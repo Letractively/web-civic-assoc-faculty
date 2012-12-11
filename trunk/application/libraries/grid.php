@@ -82,6 +82,11 @@ class Col
 		$this->options['id'] = $id;
 	}
 	
+	/*
+	* set_datetime
+	* 
+	* Metóda nastavuje formátovanie dátumu. V prípade, že text nezodpovedá dátumu, nezobrazí sa nič.
+	*/
 	public function set_datetime()
 	{
 		$this->type = 'datetime';
@@ -397,7 +402,9 @@ class Grid
 					{
 						echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell">';
 						if ($this->headCols[$index]->type == 'anchor') // ak to ma byt link
+						{
 							echo '<a href="'.$this->headCols[$index]->options['controller'].'/'.$row->cells[ $this->headCols[$index]->options['id'] ].'">'.$cell.'</a>';
+						}
 						else if ($this->headCols[$index]->type == 'datetime') // ak to ma byt formatovany datum a cas
 						{
 							$date = date_create_from_format('Y-m-d H:i:s', $cell);

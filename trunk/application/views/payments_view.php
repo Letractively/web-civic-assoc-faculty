@@ -42,6 +42,7 @@
             $grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
             $grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
             $grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
+			$grid->header('payment_paid_time')->set_datetime();
             $grid->display();
         }
     }
@@ -56,6 +57,7 @@
             $grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
             $grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
             $grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
+			$grid->header('payment_paid_time')->set_datetime();
             $grid->add_url = "{$this->router->class}/add";
             $grid->edit_url = "{$this->router->class}/edit";
             $grid->remove_url = "{$this->router->class}/delete";
