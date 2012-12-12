@@ -403,7 +403,7 @@ class Grid
 						echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell">';
 						if ($this->headCols[$index]->type == 'anchor') // ak to ma byt link
 						{
-							echo '<a href="'.$this->headCols[$index]->options['controller'].'/'.$row->cells[ $this->headCols[$index]->options['id'] ].'">'.$cell.'</a>';
+							echo '<a href="'.base_url().$this->headCols[$index]->options['controller'].'/'.$row->cells[ $this->headCols[$index]->options['id'] ].'">'.$cell.'</a>';
 						}
 						else if ($this->headCols[$index]->type == 'datetime') // ak to ma byt formatovany datum a cas
 						{

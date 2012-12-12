@@ -57,8 +57,8 @@ class Auth extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") == TRUE )
                 {
-                    if(  $this->inserter->add_register( $this->input->post(), $this->selecter->count_project_categories() ) == TRUE )
-                    {   
+                    if(  $this->inserter->add_register( $this->input->post() ) == TRUE )
+                    {
                         redirect('show_message/index/success_registration');
                     }       
                 }      
@@ -69,8 +69,7 @@ class Auth extends MY_Controller
                                                                                 'email', 'phone', 'study_program_id', 'degree_id', 
                                                                                 'place_of_birth', 'postcode', 'degree_year',
                                                                                 'vs','total_sum')
-                                                                                ),
-                'numb_proj_cat'         => $this->selecter->count_project_categories(),        
+                                                                                ),     
                 'years'                 => $this->generate_years(60, 2012, 50),
                 'title' 		=> $this->lang->line('title_registration')   //Title na aktualnej stranke
            );

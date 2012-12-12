@@ -67,18 +67,17 @@
 		<?php
 		   $obj = $this->selecter->get_project_categories();
 		   
-		   $i = 1;
 		   echo '<table class="inputitem">';
 				echo '<tr><th>'.$this->lang->line('table_th_category').'</th><th>'.$this->lang->line('table_th_ratio').'</th></tr>';
 				foreach($obj as $o)
 				{
+					$cat_id = $o->project_category_id;
 					echo '<tr>';
-						 echo '<td> <label for="project_category_'.$i.'">';
+						 echo '<td> <label for="categories['.$cat_id.']">';
 							 echo $o->project_category_name;
 						 echo '</label></td>';
-						 echo '<td>'.form_input(array('name' => 'project_category_'.$i, 'id' => 'project_category_'.$i, 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$i)).'</td>';
+						 echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => '1', 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$cat_id)).'</td>';
 					echo '</tr>';
-					$i++;
 				}
 		   echo '</table>';
 		?>

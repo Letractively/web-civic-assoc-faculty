@@ -57,23 +57,6 @@ class Selecter extends MY_Model
     }
     
     /*
-     * count_project_categories
-     * 
-     * Funkcia vrati pocet projektovych kategorii z databazy. Nevyhnutne pre
-     * vygenerovanie spravneho poctu form_input na formulari
-     * 
-     * @access      public
-     * @return      integer
-     */
-    public function count_project_categories()
-    {
-            $q = $this->db->query(" SELECT project_category_id
-                                    FROM project_categories
-                                  ");
-            return $q->num_rows();
-    }
-    
-    /*
      * get_project_categories
      * 
      * Funkcia vrati vsetky polozky z databazy
@@ -468,7 +451,7 @@ class Selecter extends MY_Model
     public function get_payments($user_id)
     {
         if($user_id == 0){
-            $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
+            $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -476,7 +459,7 @@ class Selecter extends MY_Model
             return $q->result();
         }   
         else {
-        $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
+        $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -504,7 +487,7 @@ class Selecter extends MY_Model
     {
         if($user_id==0){
             $q = $this->db->query("
-                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -515,7 +498,7 @@ class Selecter extends MY_Model
         } 
         else{
         $q = $this->db->query("
-                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -531,7 +514,7 @@ class Selecter extends MY_Model
     {
         if($user_id==0){
             $q = $this->db->query("
-                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -542,7 +525,7 @@ class Selecter extends MY_Model
         }
         else{
         $q = $this->db->query("
-                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS name, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
