@@ -36,8 +36,11 @@
         $grid->header('event_category_name')->visible   = false;
         $grid->header('event_priority')->visible        = false;
         
+		$grid->header('event_name')->set_anchor('events/detail', 'event_id');
         $grid->header('event_name')->text   = $this->lang->line('label_name');
+		$grid->header('event_from')->set_datetime();
         $grid->header('event_from')->text   = $this->lang->line('label_from');
+		$grid->header('event_to')->set_datetime();
         $grid->header('event_to')->text     = $this->lang->line('label_to');
         
         $grid->display();

@@ -1,9 +1,39 @@
+<!--<link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.min.css" />-->
+<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css"></link>
+<script src="../../../assets/js/calendar/dhtmlxcalendar.js"></script>
+<script type="text/javascript">
+	window.onload = function()
+	{
+		var calendar = new dhtmlXCalendarObject(["from","to"]);
+		calendar.setDateFormat("%d.%m.%Y %H:%i");
+		dhtmlXCalendarObject.prototype.langData["sk"] =
+		{
+			//date format
+			dateformat: '%d.%m.%Y',
+			//full names of months
+			monthesFNames: ["Január","Február","Marec","Apríl","Máj","Jún","Júl","August","September","Október","November","December"],
+			//shortened names of months
+			monthesSNames: ["Jan","Feb","Mar","Apr","Máj","Jún","Júl","Aug","Sep","Okt","Nov","Dec"],
+			//full names of days
+			daysFNames: ["Nedeľa","Pondelok","Útorok","Streda","Štvrtok","Piatok","Sobota"],
+			//shortened names of days
+			daysSNames: ["Ne","Po","Ut","St","Št","Pi","So"],
+			//starting day of a week. Number from 1(Monday) to 7(Sunday)
+			weekstart: 1
+		}
+		calendar.loadUserLanguage("sk");
+		calendar.setSkin('omega');
+		//calendar.attachObj("from");
+	};
+</script>
+
 <div class="errors">
     <?php echo validation_errors();      
     //array_debug($programs) ?>
 </div>
 <?= js_insert_bbcode('events/add', 'textarea'); ?>
-<?= form_open("events/add") ?>
+<?= form_open("events/add", array('onload' => 'initCalendar()')) ?>
     <div class="inputitem">
         <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label>
         <?= gen_dropdown('event_category_id', set_value('event_category_id'),$this->selecter->get_event_categories(),'event_category_id','event_category_name'); ?>     
@@ -24,14 +54,12 @@
 <!--od -> do-->
     <div class="inputitem">
         <label for="from" class="<?= $error['from'] ?>"><?= $this->lang->line('label_from') ?></label>
-        <?= form_input(array('name' => 'from', 'id' => 'from', 'class' => ''.$error['from'], 'maxlength' => 10, 'size' => 10), set_value('from')) ?>
-        <?= form_input(array('name' => 'from_time', 'maxlength' => 5, 'size' => 5), set_value('from_time','00:00')); ?>
+        <?= form_input(array('name' => 'from', 'id' => 'from', 'class' => ''.$error['from'], 'maxlength' => 16, 'size' => 16), set_value('from')) ?>
     </div>
  
     <div class="inputitem">
         <label for="to" class="<?= $error['to'] ?>"><?= $this->lang->line('label_to') ?></label>
-        <?= form_input(array('name' => 'to', 'id' => 'to', 'class' => ''.$error['to'], 'maxlength' => 10, 'size' => 10), set_value('to')) ?>
-        <?= form_input(array('name' => 'to_time', 'maxlength' => 5, 'size' => 5), set_value('to_time','00:00')); ?>
+        <?= form_input(array('name' => 'to', 'id' => 'to', 'class' => ''.$error['to'], 'maxlength' => 16, 'size' => 16), set_value('to')) ?>
     </div>
 <!--end-->
     <div>
