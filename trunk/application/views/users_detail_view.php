@@ -2,6 +2,18 @@
     $obj = $this->selecter->get_user_detail($user_id);
     array_debug($obj);
 ?>
+
+<script>
+function zobrazSkryj(idecko){
+el=document.getElementById(idecko).style; 
+el.display=(el.display == 'block')?'none':'block';
+}
+</script>
+<style>
+.skryvany {display: none}
+</style>
+
+
 <?php
     if($obj[0]->user_role == 2){
         echo 'člen';
@@ -38,28 +50,37 @@
         $lp = $this->selecter->get_payments_lastpaid($user_id);
         $date = datetime($lp->payment_paid_time, FALSE);
         array_debug($lp);
-
+        
+        if($lp->payment_paid_time == NULL){
+            echo 'Musíte uhradiť členský poplatok 5€';
+        }
       
-        if(date('Y+1-m-d') <  $lp->payment_paid_time){
+        else if(date('Y+1-m-d') <  $lp->payment_paid_time){
             echo '<br />Členstvo platné do: '.$dm = day_month($date).'.'.$year = year($date)+1;
         }
         else{
             echo '<br />Členské vypršalo: '.$dm = day_month($date).'.'.$year = year($date)+1;
             echo '<br />V prípade neúhrady registrácia platná do: 31.12.'.$year = year($date)+1;
-            
-            echo form_open('payments/add');
-                $pay= $this->selecter->get_payments($user_id);
-                echo '<div class="inputitem">';
-                echo    '<label for="vs">'.$this->lang->line('label_vs').'</label>';
-                echo    form_input(array('name' => 'vs', 'id' => 'vs', ), set_value('vs', $pay[0] -> payment_vs));
-                echo '</div>';
-                
-                echo '<div class="inputitem">';
-                echo    '<label for="total_sum">'.$this->lang->line('label_total_sum').'</label>';
-                echo    form_input(array('name' => 'total_sum', 'id' => 'total_sum', ), set_value('total_sum', 5)).'€';
-                echo '</div>';
-                
-            echo form_close();
+            echo '<br />';
+            echo '<a style="cursor: pointer; text-decoration: underline;" onclick="zobrazSkryj(\'oddil1\')">Uhradiť</a>';
+            echo '<div id="oddil1" class="skryvany">';
+                echo form_open('payments/add');
+                    $pay= $this->selecter->get_payments($user_id);
+                    echo '<div class="inputitem">';
+                    echo    '<label for="vs">'.$this->lang->line('label_vs').'</label>';
+                    echo    form_input(array('name' => 'vs', 'id' => 'vs', ), set_value('vs', $pay[0] -> payment_vs));
+                    echo '</div>';
+
+                    echo '<div class="inputitem">';
+                    echo    '<label for="total_sum">'.$this->lang->line('label_total_sum').'</label>';
+                    echo    form_input(array('name' => 'total_sum', 'id' => 'total_sum', ), set_value('total_sum', 5)).'€';
+                    echo '</div>';
+
+                    echo '<div class="inputitem">';
+                    echo    form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_add'));
+                    echo '</div>';
+                echo form_close();
+            echo '</div>';
         }
         
   
