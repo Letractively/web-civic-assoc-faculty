@@ -1,33 +1,39 @@
 <?php
-    $obj = $this->selecter->get_project_detail(1);
+    $obj = $this->selecter->get_project_detail($project_id);
     array_debug($obj);
 ?>
-Projekt:
+
 <div class="project_name">
-    <?= $obj[0]->project_name ?>
+    Projekt: <?= $obj[0]->project_name ?>
 </div>
 
 <div class="project_about">
     <?= $obj[0]->project_about ?>  
 </div>
-Priorita:
 <div class="project_priority">
-    <?= $obj[0]->project_priority ?>  
+    Priorita:<?= $obj[0]->project_priority ?>  
 </div>
-Rozpočet:
+
 <div class="project_booked_cash">
-    <?= $obj[0]->project_booked_cash ?> ,
+   Rozpočet:
+     <?= $obj[0]->project_booked_cash ?> ,
     minuté 
     <?= $obj[0]->project_spended_cash ?> ,
     ostáva 
-    <?= $obj[0]->TO_DO____________________ ?> 
+    <?php
+    echo $obj[0]->project_booked_cash - $obj[0]->project_spended_cash;
+    ?> 
 </div>
-Trvanie:
+
 <div class="post_modifie_info">
+    Trvanie:
     od:
-    <?= $obj[0]->project_date_from ?> 
-    do:
-    <?= $obj[0]->project_date_to ?> 
+    <?php 
+        echo datetime($obj[0]->project_date_from, FALSE).' '.time_withou_seconds(datetime($obj[0]->project_date_from, TRUE));
+        echo '-';
+        echo datetime($obj[0]->project_date_to, FALSE).' '.time_withou_seconds(datetime($obj[0]->project_date_to, TRUE));
+    ?>
+   
 </div>
 
 <?php
@@ -36,8 +42,7 @@ Trvanie:
     $grid = new Grid();
     
     //array_debug($this->selecter->get_project_items(1));
-    
-    $grid->bind($this->selecter->get_project_items(1), 'project_id');
+    $grid->bind($this->selecter->get_project_items($project_id), 'project_id');
     	
     $grid->display();
 
