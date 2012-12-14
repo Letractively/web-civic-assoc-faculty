@@ -1,18 +1,15 @@
 <div class="errors">
     <?php echo validation_errors();      
-    $checked = FALSE;
-    $role = 5;
     ?>
 </div>
 <script language="JavaScript">
 //here you place the ids of every element you want.
-var ids=new Array('a1','a2','a3');
-
+var ids=new Array('a1','a2','a3','a4');
 function switchid(id){	
 	hideallids();
 	showdiv(id);
 }
-
+hidediv(ch);
 function hideallids(){
 	//loop through the array and hide each element by id
 	for (var i=0;i<ids.length;i++){
@@ -57,19 +54,20 @@ function showdiv(id) {
             <input type="radio" value="2" name="myRadio" onclick="javascript:switchid('a2');"/><br />
         <label for="lecturer" class="<?= $error['lecturer'] ?>"><?= $this->lang->line('label_lecturer') ?></label>
             <input type="radio" value="3" name="myRadio" onclick="javascript:switchid('a3');"/><br />
+        <label for="admin" class="<?= $error['admin'] ?>"><?= $this->lang->line('label_admin') ?></label>
+            <input type="radio" value="4" name="myRadio" onclick="javascript:switchid('a4');"/><br />
 
 <hr/>
 
 	<div id='a1' style="display:block;">
             <?= form_open("users/add")?>
                 <div class="inputitem">
+                    <?= form_hidden(array('name' => 'role', 'id' => 'role', 'class' => ''.$error['role']), set_value('role',2)) ?>
+                </div>
+            
+                <div class="inputitem">
                     <label for="username" class="<?= $error['username'] ?>"><?= $this->lang->line('label_username') ?></label>
-                    <?= form_hidden(array('name' => 'username', 'id' => 'username', 'class' => ''.$error['username']), set_value('username')) ?>
-                    <?php 
-                        if ($role = 2) {
-                        echo '<input type="" name="username" value="" />';
-                        }
-                    ?>
+                    <?= form_input(array('name' => 'username', 'id' => 'username', 'class' => ''.$error['username']), set_value('username')) ?>    
                 </div>
 
                 <div class="inputitem">
@@ -119,12 +117,12 @@ function showdiv(id) {
                     <label for="degree_year" class="<?= $error['degree_year'] ?>"><?= $this->lang->line('label_degree_year') ?></label>
                     <?= form_dropdown('degree_year', $years, set_value('degree_year_id')) ?>
                 </div>
-
+         
                 <div class="inputitem">
                     <label for="vs_box" class="<?= $error['vs_box'] ?>"><?= $this->lang->line('label_vs_box') ?></label>
-                    <?= form_checkbox() ?>
+                    <input name="tb_choice1" type="checkbox" checked="yes"  />
                 </div>
-                <div class="inputitem">
+                <div >
                     <label for="vs" class="<?= $error['vs'] ?>"><?= $this->lang->line('label_vs') ?></label>
                     <?= form_input(array('name' => 'vs', 'id' => 'vs', 'class' => ''.$error['vs']), set_value('vs')) ?>
                 </div>
@@ -156,6 +154,11 @@ function showdiv(id) {
 
 	<div id='a2' style="display:none;">
             <?= form_open("users/add")?>
+                
+                <div class="inputitem">
+                    <?= form_hidden(array('name' => 'role', 'id' => 'role', 'class' => ''.$error['role']), set_value('role',3)) ?>
+                </div>
+            
 		<div class="inputitem">
                     <label for="username" class="<?= $error['username'] ?>"><?= $this->lang->line('label_username') ?></label>
                     <?= form_input(array('name' => 'username', 'id' => 'username', 'class' => ''.$error['username']), set_value('username')) ?>
@@ -193,6 +196,10 @@ function showdiv(id) {
 
 	<div id='a3' style="display:none;">
             <?= form_open("users/add")?>
+                <div class="inputitem">
+                    <?= form_hidden(array('name' => 'role', 'id' => 'role', 'class' => ''.$error['role']), set_value('role',4)) ?>
+                </div>
+            
 		<div class="inputitem">
                     <label for="username" class="<?= $error['username'] ?>"><?= $this->lang->line('label_username') ?></label>
                     <?= form_input(array('name' => 'username', 'id' => 'username', 'class' => ''.$error['username']), set_value('username')) ?>
@@ -235,5 +242,40 @@ function showdiv(id) {
                     <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_add')) ?>
                 </div>
             <?= form_close() ?>
-	</div>
+        </div>
 
+        <div id='a4' style="display:none;">
+                <div class="inputitem">
+                    <?= form_hidden(array('name' => 'role', 'id' => 'role', 'class' => ''.$error['role']), set_value('role',1)) ?>
+                </div>
+            
+		<div class="inputitem">
+                    <label for="username" class="<?= $error['username'] ?>"><?= $this->lang->line('label_username') ?></label>
+                    <?= form_input(array('name' => 'username', 'id' => 'username', 'class' => ''.$error['username']), set_value('username')) ?>
+                </div>
+
+                <div class="inputitem">
+                    <label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label>
+                    <?= form_input(array('name' => 'name', 'id' => 'name', 'class' => ''.$error['name']), set_value('name')) ?>
+                </div>
+
+                <div class="inputitem">
+                    <label for="surname" class="<?= $error['surname'] ?>"><?= $this->lang->line('label_surname') ?></label>
+                    <?= form_input(array('name' => 'surname', 'id' => 'surname', 'class' => ''.$error['surname']), set_value('surname')) ?>
+                </div>
+
+                <div class="inputitem">
+                    <label for="password" class="<?= $error['password'] ?>"><?= $this->lang->line('label_password') ?></label>
+                    <?= form_password(array('name' => 'password', 'id' => 'password', 'class' => ''.$error['password']), set_value('password')) ?>
+                </div>
+
+                <div class="inputitem">
+                    <label for="email" class="<?= $error['email'] ?>"><?= $this->lang->line('label_email') ?></label>
+                    <?= form_input(array('name' => 'email', 'id' => 'email', 'class' => ''.$error['email']), set_value('email')) ?>
+                </div>
+            
+                <div class="inputitem">
+                    <?= form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_add')) ?>
+                </div>
+            <?= form_close() ?>
+	</div>
