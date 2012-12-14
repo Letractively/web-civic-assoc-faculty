@@ -53,6 +53,26 @@ el.display=(el.display == 'block')?'none':'block';
         
         if($lp->payment_paid_time == NULL){
             echo 'Musíte uhradiť členský poplatok 5€';
+            echo '<br />';
+            echo '<a style="cursor: pointer; text-decoration: underline;" onclick="zobrazSkryj(\'oddil1\')">Uhradiť</a>';
+            echo '<div id="oddil1" class="skryvany">';
+                echo form_open('payments/add');
+                    $pay= $this->selecter->get_payments($user_id);
+                    echo '<div class="inputitem">';
+                    echo    '<label for="vs">'.$this->lang->line('label_vs').'</label>';
+                    echo    form_input(array('name' => 'vs', 'id' => 'vs', ), set_value('vs', $pay[0] -> payment_vs));
+                    echo '</div>';
+
+                    echo '<div class="inputitem">';
+                    echo    '<label for="total_sum">'.$this->lang->line('label_total_sum').'</label>';
+                    echo    form_input(array('name' => 'total_sum', 'id' => 'total_sum', ), set_value('total_sum', 5)).'€';
+                    echo '</div>';
+
+                    echo '<div class="inputitem">';
+                    echo    form_submit(array('type'=>'submit', 'name' => 'submit'), $this->lang->line('button_add'));
+                    echo '</div>';
+                echo form_close();
+            echo '</div>';
         }
       
         else if(date('Y+1-m-d') <  $lp->payment_paid_time){
