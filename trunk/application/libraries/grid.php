@@ -92,6 +92,12 @@ class Col
 		$this->type = 'datetime';
 		$this->options = null;
 	}
+        
+        public function set_date()
+	{
+		$this->type = 'date';
+		$this->options = null;
+	}
 }
 
 /*

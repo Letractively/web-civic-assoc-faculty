@@ -389,7 +389,7 @@ class Selecter extends MY_Model
     {
             $q = $this->db->query(" SELECT  p.project_name, p.project_booked_cash, p.project_date_from, 
                                             p.project_date_to, sum(pi.project_item_price) AS project_spended_cash,
-                                            pi.project_item_id
+                                            pi.project_item_id, p.project_id
                                     FROM project_items pi
                                     JOIN projects p ON (pi.project_item_project_id = p.project_id)
                                     WHERE p.project_project_category_id = $cat_id
