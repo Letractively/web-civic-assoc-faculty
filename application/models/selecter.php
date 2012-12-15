@@ -380,20 +380,20 @@ class Selecter extends MY_Model
                                        FROM post_modifies pm
                                        JOIN posts p ON (pm.post_modifie_post_id=p.post_id)) pm_p 
                                        ON (u.user_id=pm_p.post_modifie_author_id)
-                                    WHERE pm_p.post_id=$post_id
+                                    WHERE pm_p.post_id = $post_id
                                      ");
              return $q->result();
     }
     
     public function get_projects($cat_id)
     {
-            $q = $this->db->query(" SELECT p.project_id, p.project_name,
-                                           p.project_booked_cash, 
-                                           sum(pi.project_item_price) AS project_spended_cash,
-                                           p.project_date_from, p.project_date_to
+            $q = $this->db->query(" SELECT  p.project_name, p.project_booked_cash, p.project_date_from, 
+                                            p.project_date_to, sum(pi.project_item_price) AS project_spended_cash,
+                                            pi.project_item_id
                                     FROM project_items pi
-                                    JOIN projects p ON (pi.project_item_project_id=p.project_id)
-                                    WHERE p.project_project_category_id=$cat_id
+                                    JOIN projects p ON (pi.project_item_project_id = p.project_id)
+                                    WHERE p.project_project_category_id = $cat_id
+                                    GROUP BY p.project_id
                                   ");
             return $q->result();
     }
@@ -541,7 +541,7 @@ class Selecter extends MY_Model
     {
         $q1 = $this->db->query("(SELECT 
                                        tmp.project_category_name AS fin_category_transaction_from, ppc.project_category_name AS fin_category_transaction_to,
-                                       tmp.category_transaction_cash
+                                       tmp.category_transaction_cash, tmp.project_category_id, tmp.fin_category_transaction_id
                                 FROM
                                 (SELECT *, SUM(fct.fin_category_transaction_cash) AS category_transaction_cash
                                 FROM fin_category_transactions fct
@@ -554,7 +554,7 @@ class Selecter extends MY_Model
                              UNION
                                   ( SELECT  
                                        ppc.project_category_name AS fin_category_transaction_to, tmp.project_category_name AS fin_category_transaction_from,
-                                       tmp.category_transaction_cash
+                                       tmp.category_transaction_cash, tmp.project_category_id, tmp.fin_category_transaction_id
                                 FROM
                                 (SELECT *, SUM(fct.fin_category_transaction_cash) AS category_transaction_cash
                                 FROM fin_category_transactions fct
