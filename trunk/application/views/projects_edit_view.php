@@ -34,14 +34,18 @@
     </div>
  
 <!--od -> do-->
+    <?php
+        $from = datetime($field[0]->project_date_from, FALSE);
+        $to = datetime($field[0]->project_date_to, FALSE);
+    ?>
     <div class="inputitem">
         <label for="from" class="<?= $error['from'] ?>"><?= $this->lang->line('label_from') ?></label>
-        <?= form_input(array('name' => 'from', 'id' => 'from', 'class' => ''.$error['from']), set_value('from', $field[0]->project_date_from)) ?>
+        <?= form_input(array('name' => 'from', 'id' => 'from', 'class' => ''.$error['from']), set_value('from', $from)) ?>
     </div>
  
     <div class="inputitem">
         <label for="to" class="<?= $error['to'] ?>"><?= $this->lang->line('label_to') ?></label>
-        <?= form_input(array('name' => 'to', 'id' => 'to', 'class' => ''.$error['to']), set_value('to', $field[0]->project_date_to)) ?>
+        <?= form_input(array('name' => 'to', 'id' => 'to', 'class' => ''.$error['to']), set_value('to', $to)) ?>
     </div>
 <!--end-->
 
@@ -49,7 +53,7 @@
         $this->load->library('grid');
         
         $grid = new Grid();
-        $grid->bind($this->selecter->get_project_items($project_id), 'user_id');
+        $grid->bind($this->selecter->get_project_items($project_id), 'project_id');
         
         
         $grid->add_url = "{$this->router->class}/add";
