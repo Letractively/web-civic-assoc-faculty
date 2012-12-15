@@ -14,7 +14,7 @@ class Projects extends MY_Controller
             $this->load->model('selecter');
             
             $data = array(
-                'title' 		=> ''   //Title na aktualnej stranke
+                'title' 		=> 'Projekty'   //Title na aktualnej stranke
             );
 
             $this->data = array_merge($this->data, $data);
@@ -33,8 +33,10 @@ class Projects extends MY_Controller
 
         public function detail($project_id)
         {
+            $errors = array_merge($this->data['error'], array('to' => '', 'cash' => ''));
             $data = array(
-                'project_id'   => $project_id
+                'project_id'   => $project_id,
+                'error'                 => $errors
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
@@ -45,7 +47,7 @@ class Projects extends MY_Controller
 
             $data = array(
                 'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
-                                                                                'booked_cash', 'from', 'to')),
+                                                                                'booked_cash', 'from', 'to','password','username')),
                 'priorities'            => $this->generate_priorities(5)
             );
             
@@ -70,7 +72,7 @@ class Projects extends MY_Controller
 
             $data = array(
                 'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
-                                                                                'booked_cash', 'from', 'to')),
+                                                                                'booked_cash', 'from', 'to','password','username')),
                 'project_id'            => $project_id,
                 'priorities'            => $this->generate_priorities(5)
             );
