@@ -8,6 +8,10 @@ $lang['last_update']                        =   'Posledná úprava';
 $lang['added_by']                           =   'Pridal';
 $lang['created_by']                         =   'Vytvoril';
 
+$lang['user_name']                        =   'Meno';
+$lang['user_surname']                           =   'Priezvisko';
+$lang['label_post_date']                         =   'Kedy';
+
 $lang['button_add_post']               = 'Vytvoriť';
 $lang['button_edit_post']               = 'Uprav';
 
