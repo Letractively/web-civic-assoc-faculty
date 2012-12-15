@@ -67,6 +67,12 @@ class Project_categories extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
+        /*
+         * add_transaction
+         * 
+         * Metoda prida novu transakciu do databazy
+         * 
+         */
         public function add_transaction()
         {
             parent::add('add_transaction', $this->router->class, $this->router->method);
