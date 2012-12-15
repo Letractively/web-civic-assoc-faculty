@@ -19,6 +19,7 @@
     $grid->header('project_category_name')->text = $this->lang->line('label_name');
     $grid->header('project_category_cash')->text = $this->lang->line('label_capital');
     
+    $grid->header('project_category_name')->set_anchor('project_categories/detail', 'project_category_id');
 	
     $grid->display();
 ?>
