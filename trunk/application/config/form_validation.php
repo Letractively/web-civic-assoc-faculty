@@ -295,11 +295,6 @@ $config = array(
     ),
     'project_categories/detail'              => array(
             array(
-                'field'     => 'from',
-                'label'     => 'lang:label_from',
-                'rules'     => 'trim|required|xss_clean|numeric'
-            ),
-            array(
                 'field'     => 'to',
                 'label'     => 'lang:label_to',
                 'rules'     => 'trim|required|xss_clean|numeric'

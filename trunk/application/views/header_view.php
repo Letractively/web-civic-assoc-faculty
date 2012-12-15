@@ -9,7 +9,7 @@
                                 <tr> <td colspan="3" id="login"> Prihlasovanie </td> </tr>
                                 <tr> 
                                     <td id="login_table_label"> 
-                                        <label for="username" class="<?= $error['username'] ?>"><?= $this->lang->line('label_username') ?> </label> 
+                                        <label for="username" class="<?= $error['username'] ?>"><?= $this->lang->line('label_login') ?> </label> 
                                     </td>
                                     <td colspan="2"> <?= form_input(array('type' => 'text','id' => 'username', 'name' => 'username', 'class' => 'input'.$error['username']), set_value('username')); ?> </td>
                                     </tr>

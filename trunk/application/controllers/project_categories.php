@@ -11,6 +11,8 @@ class Project_categories extends MY_Controller
         function __construct() 
         {
             parent::__construct();
+            if( !$this->session->userdata('admin') )
+                redirect(base_url ());
             $this->load->model('selecter');
             $data = array(
                 'title' 		=> $this->lang->line('title'),   //Title na aktualnej stranke
@@ -53,14 +55,25 @@ class Project_categories extends MY_Controller
         {
             if( $project_category_id == '')
                 redirect('404');
-            parent::add('add_transaction', $this->router->class, $this->router->method);
-
+            
+            $errors = array_merge($this->data['error'], array('to' => '', 'cash' => ''));
+            
             $data = array(
                 'view'                  => "{$this->router->class}_{$this->router->method}_view",
-                'project_category_id'   => $project_category_id
+                'project_category_id'   => $project_category_id,
+                'error'                 => $errors
             );
-
+                
             $this->load->view('container', array_merge($this->data, $data));
+        }
+        
+        public function add_transaction()
+        {
+            parent::add('add_transaction', $this->router->class, $this->router->method);
+            $data = array(
+                'view'                  => "{$this->router->class}_{$this->router->method}_view"
+            );
+            array_merge($this->data, $data);
         }
 
         public function edit( $project_category_id )

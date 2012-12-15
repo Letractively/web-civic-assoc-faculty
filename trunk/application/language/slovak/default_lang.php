@@ -21,7 +21,7 @@ $lang['button_add_event']               =   'Pridať';
 $lang['button_edit_event']              =   'Upraviť';
 $lang['button_delete_event']            =   'Zmazať';
 
-$lang['label_login']                    =   'Username';
+$lang['label_login']                    =   'Nick';
 $lang['label_password']                 =   'Heslo';
 
 $lang['logged_in']                      =   'Si prihlásený ako';
