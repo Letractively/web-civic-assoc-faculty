@@ -1,8 +1,21 @@
 <?php
     $obj = $this->selecter->get_user_detail($user_id);
     echo validation_errors();
-    array_debug($obj);  
+    //array_debug($obj);  
 ?>
+        <script type="text/javascript">
+              function showhide_div(theID){
+                   if (document.getElementById("fmCheck"+theID).checked == true){
+                       document.getElementById("div"+theID).style.display = "block";
+                   }
+                   else{
+                      document.getElementById("div"+theID).style.display = "none";
+                   }
+              }
+           </script> 
+
+
+
 <?php
     if($obj[0]->user_role == 2){
         echo 'člen';
@@ -63,11 +76,16 @@
               .'</div>';
         
         echo '<div class="inputitem">
-                <label for="vs_box" class="'.$error['vs_box'].'">'.$this->lang->line('label_vs_box').'</label>'.
-                form_checkbox()
+                <label for="vs_box" class="'.$error['vs_box'].'">'.$this->lang->line('label_vs_box').'</label>
+                <input type="checkbox" checked="yes" name="fmCheck1" id="fmCheck1" onclick="showhide_div(1);" />
+              </div>';
+
+        echo '<div class="inputitem" id="div1">
+                <label for="vs" class="'.$error['vs'].'">'.$this->lang->line('label_vs').'</label>'.
+                form_input(array('name' => 'vs', 'id' => 'vs', 'class' => ''.$error['vs']), set_value('vs', $obj[0]->user_postcode))
               .'</div>';
         
-        echo '<div class="inputitem">
+        echo '<div class="inputitem>
                 <label for="postcode" class="'.$error['postcode'].'">'.$this->lang->line('label_postcode').'</label>'.
                 form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => ''.$error['postcode']), set_value('postcode', $obj[0]->user_postcode))
               .'</div>';
