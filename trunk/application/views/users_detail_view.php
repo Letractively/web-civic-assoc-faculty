@@ -1,6 +1,6 @@
 <?php
     $obj = $this->selecter->get_user_detail($user_id);
-    array_debug($obj);
+    //array_debug($obj);
 ?>
 
 <script>
