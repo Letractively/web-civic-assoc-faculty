@@ -52,13 +52,20 @@ class Component
 */
 class Col
 {
-	public $type; // co sa ma spachat alebo ako sa ma zobrazit text podliehajuci tomuto stlpcu (text, anchor, datetime)
-	public $options; // podrobnejsie nastavenia typu
+	public $type; // co sa ma spachat alebo ako sa ma zobrazit text podliehajuci tomuto stlpcu (text, anchor, datetime, numformat)
+	public $options; // podrobnejsie nastavenia typu zobrazenia (napr. anchor ma url, datetime ma formatting string, ...)
 	public $text; // string, ktory sa zobrazuje v hlavicke stlpca (tento text sa neodosiela do formulara, tam ide id-cko)
 	public $editable = true;
 	public $visible = true;
 	public $component; // atributy pre komponent: Component
 	
+	/*
+	* contructor
+	* 
+	* Vytvára stĺpec gridu a inicializuje ho na predvolené nastavenia.
+	* 
+	* @param text Text, ktorý sa zobrazuje v hlavičke stĺpca.
+	*/
 	public function __construct($text)
 	{
 		$this->text = $text;
@@ -86,17 +93,48 @@ class Col
 	* set_datetime
 	* 
 	* Metóda nastavuje formátovanie dátumu. V prípade, že text nezodpovedá dátumu, nezobrazí sa nič.
+	*
+	* @param inputFormat Formátovací reťazec, podľa ktorého sa parsuje string na vytvorenie štruktúry datetime.
+	* @param outputFormat Formátovací reťazec, podľa ktorého sa formátuje čas a dátum na výstupe.
+	*
+	* @link Bližšie informácie o formátovacích značkách na http://php.net/manual/en/function.date.php @endlink
 	*/
-	public function set_datetime()
+	public function set_datetime($inputFormat = "Y-m-d H:i:s", $outputFormat = "d.m.Y")
 	{
 		$this->type = 'datetime';
-		$this->options = null;
+		$this->options['inputFormat'] = $inputFormat;
+		$this->options['outputFormat'] = $outputFormat;
 	}
-        
-        public function set_date()
+	
+	/*
+	* set_format
+	* 
+	* Metóda nastavuje formátovanie čísla. V prípade nevalidného formátovacieho reťazca na pri display zobrazí varovanie.
+	*
+	* @param format Formátovací reťazec, podľa ktorého sa formátuje číslo.
+	*
+	* @code
+	*	Syntax: set_numformat( {<desatinnych_miest>:<desatinna_bodka>:<separator_tisiciek>} )
+	*	Default: desatinnych_miest = 0	desatinna_bodka = ","	separator_tisiciek = ""
+	*
+	*	Number: 12345.6789
+	*
+	*	set_numformat('Suma {2:.: } EUR')	--> Suma 12 345.68 EUR
+	*	set_numformat('Suma {2:.:} EUR')	--> Suma 12345.68 EUR
+	*	set_numformat('Suma {2:.} EUR')		--> Suma 12345.68 EUR
+	*	set_numformat('Suma {2:: } EUR')	--> Suma 12 345,68 EUR
+	*	set_numformat('Suma {2:} EUR')		--> Suma 12345,68 EUR
+	*	set_numformat('Suma {2} EUR')		--> Suma 12345,68 EUR
+	*	set_numformat('Suma {:: } EUR')		--> Suma 12 346 EUR
+	*	set_numformat('Suma {} EUR')		--> Suma 12346 EUR
+	*	set_numformat('Suma EUR')			--> Suma EUR
+	*	set_numformat('{}')					--> 12346
+	* @endcode
+	*/
+	public function set_numformat($format)
 	{
-		$this->type = 'date';
-		$this->options = null;
+		$this->type = 'numformat';
+		$this->options['format'] = $format;
 	}
 }
 
@@ -299,7 +337,7 @@ class Grid
 			new_confirm.setAttribute('name','operation_'+operation);
 			new_confirm.setAttribute('value','operation_'+operation);
 			var new_img = document.createElement('img');
-			new_img.setAttribute('src','assets/img/confirm.png');
+			new_img.setAttribute('src','<?=base_url()?>../assets/img/confirm.png');
 			new_img.setAttribute('alt',text);
 			new_confirm.appendChild(new_img);
 			return new_confirm;
@@ -311,7 +349,7 @@ class Grid
 			var new_cancel = document.createElement('div');
 			new_cancel.setAttribute('onclick','document.location.reload(true);');
 			var new_img = document.createElement('img');
-			new_img.setAttribute('src','assets/img/cancel.png');
+			new_img.setAttribute('src','<?=base_url()?>../assets/img/cancel.png');
 			new_img.setAttribute('alt',text);
 			new_cancel.appendChild(new_img);
 			return new_cancel;
@@ -374,6 +412,81 @@ class Grid
 	<?php
 	}
 	
+	private function get_formatted_number($format, $number)
+	{
+		$ERROR = "Neplatné formátovanie";
+		
+		$strBefore = '';
+		$strAfter = '';
+		$wasFormat = false;
+		$inFormat = false;
+		$buffer = '';
+		$waitFor = 'decimal';
+		
+		$decimal = '';
+		$decMark = '';
+		$thousandMark = '';
+		
+		for ($i = 0; $i < strlen($format); ++$i)
+		{
+			$chr = $format[$i]; // ziska znak
+			if (!$inFormat) // ak NIE je medzi {}, tj nie je vo formatovacej casti
+			{
+				if ($chr == '}')
+					return $ERROR;
+				else if ($chr == '{') // ak prave nacitany znak znamena zaciatok formatovacej casti
+				{
+					if ($wasFormat) return $ERROR; // ak uz raz bolo formatovanie, vrati error
+					$inFormat = true; // nastavi ze je vnutri formatovacej casti
+				}
+				else // ak nacitany znak je odlisny od vrchnych
+				{
+					if ($wasFormat) $strAfter .= $chr;
+					else $strBefore .= $chr;
+				}
+			}
+			else // ak je medzi formatovacimi znackami, tj JE vo formatovacej casti
+			{
+				if ($chr == '{')
+					return $ERROR;
+				else if ($chr == '}') // ak prave nacitany znak znamena koniec formatovacej casti
+				{
+					$wasFormat = true; // nastavi ze bolo uz nejake formatovanie
+					$inFormat = false; // nastavi ze uz dalej nie je vo formatovacej casti
+				}
+				else if ($chr == ':')
+				{
+					if ($waitFor == 'decimal') $waitFor = 'decMark';
+					else if ($waitFor == 'decMark') $waitFor = 'thousandMark';
+					else return $ERROR;
+				}
+				else if ($waitFor == 'decimal')
+				{
+					if (is_numeric($chr))
+						$decimal .= $chr;
+					else if ($chr == ' ');
+					else return $ERROR;
+				}
+				else
+				{
+					if ($waitFor == 'decMark')
+					{
+						$decMark .= $chr;
+					}
+					else if ($waitFor == 'thousandMark')
+					{
+						$thousandMark .= $chr;
+					}
+					else return $ERROR;
+				}
+			}
+		}
+		if ($decimal == '') $decimal = 0;
+		if ($decMark == '') $decMark = ',';
+		
+		return $strBefore.number_format($number, $decimal, $decMark, $thousandMark).$strAfter;
+	}
+	
 	/*
 	 * display
 	 * 
@@ -413,8 +526,12 @@ class Grid
 						}
 						else if ($this->headCols[$index]->type == 'datetime') // ak to ma byt formatovany datum a cas
 						{
-							$date = date_create_from_format('Y-m-d H:i:s', $cell);
-							if ($date) echo $date->format('d.m.Y');
+							$date = date_create_from_format($this->headCols[$index]->options['inputFormat'], $cell);
+							if ($date) echo $date->format($this->headCols[$index]->options['outputFormat']);
+						}
+						else if ($this->headCols[$index]->type == 'numformat')
+						{
+							echo $this->get_formatted_number($this->headCols[$index]->options['format'], $cell);
 						}
 						else // ak to ma byt iba cisty text (alebo nejaky iny nedefinovany typ)
 							echo $cell;
@@ -424,12 +541,12 @@ class Grid
 				if ($this->edit_url != "" && $row->editable == true) // ak mame zadany controller na edit a dany riadok je editovatelny - zobrazi tlacitko edit
 				{
 					if ($this->edit_mode == "internal") // ak sa ma pouzit editacia v gride
-						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><img class="aaa" src="assets/img/edit.png" alt="edit" onclick="changeToForm('.$unique_key.')" /></td>';
+						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><img class="aaa" src="'.base_url().'../assets/img/edit.png" alt="edit" onclick="changeToForm('.$unique_key.')" /></td>';
 					else if ($this->edit_mode == "external") // ak sa ma pouzit editacia na vlastnom forme
-						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->edit_url.'/'.$unique_key.'"><img src="assets/img/edit.png" alt="edit" /></a></td>';
+						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->edit_url.'/'.$unique_key.'"><img src="'.base_url().'../assets/img/edit.png" alt="edit" /></a></td>';
 				}
 				if ($this->remove_url != "" && $row->removable == true) // ak mame zadany controller na delete a dany riadok je mazatelny - zobrazi tlacitko delete
-					echo '<td id="delete'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->remove_url.'/'.$unique_key.'"><img src="assets/img/delete.png" alt="delete" /></a></td>';
+					echo '<td id="delete'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->remove_url.'/'.$unique_key.'"><img src="'.base_url().'../assets/img/delete.png" alt="delete" /></a></td>';
 				echo '</tr>'."\n";
 			}
 		}
@@ -445,9 +562,9 @@ class Grid
 					echo '<td id="'.$index.'0"></td>';
 			}
 			if ($this->add_mode == "internal")
-				echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="assets/img/add.png" alt="add" /></div></td>';
+				echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="'.base_url().'../assets/img/add.png" alt="add" /></div></td>';
 			else if ($this->add_mode == "external")
-				echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.$this->add_url.'"><img src="assets/img/add.png" alt="add" /></a></td>';
+				echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.$this->add_url.'"><img src="'.base_url().'../assets/img/add.png" alt="add" /></a></td>';
 			echo '</tr>'."\n";
 		}
 		

@@ -68,24 +68,19 @@ Transakcie
    
     //array_debug($this->selecter->get_projects($project_category_id));
     
-   if(  $grid1->bind($this->selecter->get_projects($project_category_id), 'project_item_id') )
+   if(  $grid1->bind($this->selecter->get_projects($project_category_id), 'project_id') )
    {
-    
-    $grid1->header('project_item_id')->editable = false;
-    $grid1->header('project_id')->editable = false;
-    
-    $grid1->header('project_item_id')->visible = false;
-    $grid1->header('project_id')->visible = false;
-    
-    $grid1->header('project_name')->text = $this->lang->line('label_name');
-    $grid1->header('project_booked_cash')->text = $this->lang->line('label_capital');
-    $grid1->header('project_spended_cash')->text = $this->lang->line('label_spend');
-    $grid1->header('project_date_from')->text = $this->lang->line('label_date_from');
-    $grid1->header('project_date_to')->text = $this->lang->line('label_date_to');
-    
-    $grid1->header('project_name')->set_anchor('projects/detail', 'project_id');
-    
-    	
-    $grid1->display();
+		$grid1->header('project_id')->editable = false;
+		$grid1->header('project_id')->visible = false;
+
+		$grid1->header('project_name')->text = $this->lang->line('label_name');
+		$grid1->header('project_booked_cash')->text = $this->lang->line('label_capital');
+		$grid1->header('project_spended_cash')->text = $this->lang->line('label_spend');
+		$grid1->header('project_date_from')->text = $this->lang->line('label_date_from');
+		$grid1->header('project_date_to')->text = $this->lang->line('label_date_to');
+
+		$grid1->header('project_name')->set_anchor('projects/detail', 'project_id');
+
+		$grid1->display();
    }
 ?>
