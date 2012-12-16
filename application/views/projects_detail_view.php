@@ -41,16 +41,16 @@
     
     $grid = new Grid();
     
-    //array_debug($this->selecter->get_project_items(1));
-    $grid->bind($this->selecter->get_project_items($project_id), 'project_id');
-    
-    $grid->add_url = "{$this->router->class}/add";
-    $grid->edit_url = "{$this->router->class}/edit";
-    $grid->remove_url = "{$this->router->class}/delete";
+    //array_debug($this->selecter->get_project_items($project_id));
+    if( $grid->bind($this->selecter->get_project_items($project_id), 'project_id') )
+    {
+        $grid->add_url = "{$this->router->class}/add";
+        $grid->edit_url = "{$this->router->class}/edit";
+        $grid->remove_url = "{$this->router->class}/delete";
 
-    $grid->header('project_id')->editable = false;
-	
-    $grid->display();
+        $grid->header('project_id')->editable = false;
 
+        $grid->display();
+    }
 
 ?>

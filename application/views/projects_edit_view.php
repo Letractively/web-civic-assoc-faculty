@@ -53,17 +53,17 @@
         $this->load->library('grid');
         
         $grid = new Grid();
-        $grid->bind($this->selecter->get_project_items($project_id), 'project_id');
-        
-        
-        $grid->add_url = "{$this->router->class}/add";
-        $grid->edit_url = "{$this->router->class}/edit";
-        $grid->remove_url = "{$this->router->class}/delete";
+        if( $grid->bind($this->selecter->get_project_items($project_id), 'project_id') )
+        {
+            $grid->add_url = "{$this->router->class}/add";
+            $grid->edit_url = "{$this->router->class}/edit";
+            $grid->remove_url = "{$this->router->class}/delete";
 
-        $grid->header('project_id')->editable = false;
+            $grid->header('project_id')->editable = false;
 
 
-        $grid->display();
+            $grid->display();
+        }
     ?>
 
     <div class="inputitem">
