@@ -107,25 +107,25 @@ el.display=(el.display == 'block')?'none':'block';
     }
     else if ($obj[0]->user_role == 3){
         echo anchor('users/edit/'.$obj[0]->user_id,$this->lang->line('edit_item'));  
-        echo '<br /><br />Prihlásenia na exkurzie:<br />';
-        
-        $ex = $this->selecter->get_excursions_for_visitor($user_id);
-        foreach ($ex as $e){
-            echo anchor('excursion_event/detail/'.$e->excursion_event_id, $e->excursion_event_name).', ';
-            echo $e->booked_excursion_number_of_visitors.'<br />';
-        }
+//        echo '<br /><br />Prihlásenia na exkurzie:<br />';
+//        
+//        $ex = $this->selecter->get_excursions_for_visitor($user_id);
+//        foreach ($ex as $e){
+//            echo anchor('excursion_event/detail/'.$e->excursion_event_id, $e->excursion_event_name).', ';
+//            echo $e->booked_excursion_number_of_visitors.'<br />';
+//        }
     }
     else if ($obj[0]->user_role == 4){
         echo '<div class="user_email">Titul: '.$obj[0]->degree_name.'</div> <br />';
         
         echo anchor('users/edit/'.$obj[0]->user_id,$this->lang->line('edit_item'));  
-        echo '<br /><br />Registrované prednášky:<br />';
-        
-        $lect = $this->selecter->get_excursions_for_lecturer($user_id);
-        foreach ($lect as $l){
-            echo anchor('excursion_event/detail/'.$l->excursion_event_id, $l->excursion_event_name).', ';
-            echo $l->excursion_time_from.'-'.$l->excursion_time_to.'<br />';
-        }
+//        echo '<br /><br />Registrované prednášky:<br />';
+//        
+//        $lect = $this->selecter->get_excursions_for_lecturer($user_id);
+//        foreach ($lect as $l){
+//            echo anchor('excursion_event/detail/'.$l->excursion_event_id, $l->excursion_event_name).', ';
+//            echo $l->excursion_time_from.'-'.$l->excursion_time_to.'<br />';
+//        }
     }    
     
 ?>
