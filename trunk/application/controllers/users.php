@@ -16,7 +16,7 @@ class Users extends MY_Controller
         parent::__construct();
         $this->load->model('selecter');
         $data = array(
-            'title' 		=> ''   //Title na aktualnej stranke
+            'title' 		=> 'Užívatelia'   //Title na aktualnej stranke
         );
             
         $this->data = array_merge($this->data, $data);
