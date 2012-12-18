@@ -5,7 +5,7 @@
     ?>
 </div>
 <?= js_insert_bbcode('events/edit', 'textarea'); ?>
-<div id="form_wrapper">
+<div id="content_wrapper">
 	<?= form_open("events/edit/".$event_id) ?>
 		<div class="inputitem">
 			<p class="label"> <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label> </p>
@@ -37,16 +37,15 @@
 			<?= form_input(array('name' => 'to_time', 'maxlength' => 5, 'size' => 5, 'class' => 'input_data_time'), set_value('to_time', time_withou_seconds(datetime($field->event_to, TRUE)))); ?>
 		</div>
 	<!--end-->
-		<div>
-			<?php
-				foreach($buttons as $i)
-				{
-					echo $i;
-				}
-			?>
-		</div>  
 		<div class="inputitem">
 			<p class="label"> <label for="about" class="<?= $error['about'] ?>"><?= $this->lang->line('label_about') ?></label> </p>
+			<div>
+				<?php foreach($buttons as $i)
+					{
+						echo $i;
+					}
+				?>
+			</div>
 			<?= form_textarea(array('name' => 'about', 'id' => 'textarea', 'class' => 'textarea_data'.$error['about']), set_value('about', $field->event_about)) ?>
 		</div>
 

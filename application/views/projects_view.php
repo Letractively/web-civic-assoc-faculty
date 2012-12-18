@@ -1,9 +1,10 @@
+<div id="content_wrapper">  
    <div class="inputitem">
-        <!--<label for="project_category_id" class="<?= $error['project_category_id'] ?>"><?= $this->lang->line('label_project_category_id') ?></label>-->
+        <p class="label"> <?= $error['project_category_id'] ?>"><?= $this->lang->line('label_project_category_id') ?> </p>
         <?= gen_dropdown('project_category_id', set_value('project_category_id'),$this->selecter->get_project_categories(),'project_category_id','project_category_name'); ?> 
    </div>
 
-<?php
+	<?php
         $this->load->library('grid');
 
         $grid = new Grid();
@@ -21,3 +22,4 @@
 
         $grid->display();
     ?>
+</div>

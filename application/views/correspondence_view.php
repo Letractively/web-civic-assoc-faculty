@@ -166,7 +166,7 @@
     <?php echo validation_errors();         
     //array_debug($programs) ?>
 </div>
-<div id="form_wrapper">
+<div id="content_wrapper">
 	<?= form_open("correspondence") ?>
 		<div class="inputitem">
 			 <p class="label"> <label for="correspondence_subject" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_correspondence_subject') ?></label> </p>
@@ -192,10 +192,10 @@
 		</div>
 		
 		<div id="filter" class="inputitem">
-			<div id="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
+			<div class="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
 		</div>
 		
-		<div id="link"><?= anchor($this->router->class.'/review', $this->lang->line('correspondence_review'), 'id="review", target="_blank"'); ?></div>
+		<div class="link_button"><?= anchor($this->router->class.'/review', $this->lang->line('correspondence_review'), 'id="review", target="_blank"'); ?></div>
                 
 		<div class="inputitem">
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit' ), $this->lang->line('button_correspondence')) ?>

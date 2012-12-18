@@ -4,7 +4,7 @@
      ?>
 </div>
 
-<div id="form_wrapper">
+<div id="content_wrapper">
 	<?= form_open("auth/registration") ?>
 		<div class="inputitem">
 			<p class="label"> <label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label> </p>
