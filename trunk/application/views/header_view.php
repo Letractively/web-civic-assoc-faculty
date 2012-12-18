@@ -25,10 +25,10 @@
 			</table>
 		<?php else: ?>
             <table id="logout_table">  
-				<tr> <td class="logout_table_sign"> <?= $this->lang->line('logged_in'); ?>: </td> </tr>
+				<tr> <td id="logout_table_sign"> <?= $this->lang->line('logged_in'); ?>: </td> </tr>
 					<?php $uid = $this->session->userdata('user'); ?>
-				<tr> <td class="logout_table_name"> <?php echo anchor('users/detail/'.$uid, $this->userdata->full_name($uid)); ?> </td> </tr>
-				<tr> <td class="logout_table_button"> <?php echo anchor('auth/logout', $this->lang->line('button_logout') ); ?> </td> </tr>
+				<tr> <td id="logout_table_name"> <?php echo anchor('users/detail/'.$uid, $this->userdata->full_name($uid)); ?> </td> </tr>
+				<tr> <td id="logout_table_button"> <?php echo anchor('auth/logout', $this->lang->line('button_logout') ); ?> </td> </tr>
 			</table>
 		<?php endif; ?>
 	</div>
@@ -44,7 +44,7 @@
 	</div>
 	<div id="navigation">
 		<div id="main_navigation"> <!-- //main navigation -->
-			<?= anchor('', 'DOMOV'); ?>
+			<?= anchor('auth', 'DOMOV'); ?>
 			<?= anchor('test', 'GRID'); ?>
 		</div>
 		<div id="secondary_navigation"> <!-- //secondary navigation -->

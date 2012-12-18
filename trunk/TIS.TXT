@@ -1,0 +1,44 @@
+Pri commite nedávam container.php, config.php a htacces
+
+Formuláre ktoré sú spravené:
+	- header_view, content_view, footer_View
+	- auth_registration_view
+	- correspondence_view
+	- events_add_view
+	- events_edit_view
+	- events_detail_view
+	- posts_add_view
+	- posts_edit_view
+	- projects_add_view
+	- projects_detail_view
+	- projects_edit_view
+	- 
+
+
+Poznámky:
+	- GRID-y preformátova do contentu
+	- DOROBI:
+		- confirm_view
+		- auth_view - spravi vyzualizáciu
+		- correspodence_review_view -> GRID
+		- degrees_view -> GRID
+		- email_types_view -> GRID
+		- events_view -> GRID
+		- payments_view -> GRID
+		- post_modifiers_view -> GRID
+		- project_categories_add/edit/detail - nie sú controllery
+		- project_detail_view -> GRID
+		- project_edit_view - pozriet sa na tlacidla preco sa nechcu zobrazit ako v events_detail_view + GRID
+		- studies_view -> GRID
+		- users_view -> GRID
+	- excursions nie sú spravené vôbec
+	- io/import-export nefunkèné
+	- posts_detail_view - samé errory
+	- post_edit_view - errory vo formuláry
+	- post_view - ako to vôbec chceme zobrazova (konzultácie)
+	- projects_view - error chyba: Unable to load the requested file: projects_index_view.php a oddrbe to cele CSS
+
+	- show_message a show_message_view - neviem kde to najst
+	- test_detail_view, test_view neviem co ma byt
+	- users nefunguje nic, ani add/edit/detail
+		

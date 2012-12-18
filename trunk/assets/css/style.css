@@ -180,7 +180,7 @@ body {
 	width: 50px;
 }
 
-.input {
+#login_table .input {
 	border: 2px solid black;
 	border-radius: 55px;
 	height: 20px;
@@ -190,6 +190,15 @@ body {
 
 .input:focus {
 	outline: none;
+}
+
+#login_table .loginBtn {
+	border: 1px solid black;
+	border-radius: 5px;
+	height: 25px;
+	padding: 0px 10px;
+	background-color:silver;
+	font-weight: bold;
 }
 
 #login_table #registration {
@@ -209,24 +218,24 @@ body {
 	margin: 10px 15px 0px 40px;
 }
 
-#logout_table .logout_table_sign {
+#logout_table #logout_table_sign {
 	font-size: 18px;
 	font-weight: bold;
 }
 
-#logout_table .logout_table_name {
+#logout_table #logout_table_name {
 	font-size: 18px;
 	font-family: "Comic Sans MS";
 	font-weight: bolder;;
 	padding-left: 50px;		
 }
 
-#logout_table .logout_table_name a {
+#logout_table #logout_table_name a {
 	text-decoration: none;
-	color: black;	
+	color: black;
 }
 
-#logout_table .logout_table_button {
+#logout_table #logout_table_button {
 	border: 1px solid black;
 	background-color: #880d0d;
 	border-radius: 35px;
@@ -235,7 +244,7 @@ body {
 	font-weight: bold;
 }
 
-#logout_table .logout_table_button a {
+#logout_table #logout_table_button a {
 	text-decoration: none;
 	font-size: 16px;
 	color: white;
@@ -328,10 +337,9 @@ body {
 }
 
 #navigation a {
-	width: 150px;
 	display: inline-block;
 	margin: auto 0 auto 0;
-	padding: 8px 0 8px 0;
+	padding: 8px 25px 8px 25px;
 	text-align: center;
 }
 
@@ -340,6 +348,13 @@ body {
    background: -moz-linear-gradient(top, black, #880d0d, #fecc78); /* Firefox 3.6+ */
    background: -ms-linear-gradient(top, black, #880d0d, #fecc78); /* IE 10 */
    background: -o-linear-gradient(top, black, #880d0d, #fecc78); /* Opera 11.10+ */
+}
+
+#main_navigation a:??? {
+	background: -webkit-linear-gradient(top, black, #fecc78, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
+   background: -moz-linear-gradient(top, black, #fecc78, #fecc78); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(top, black, #fecc78, #fecc78); /* IE 10 */
+   background: -o-linear-gradient(top, black, #fecc78, #fecc78); /* Opera 11.10+ */	
 }
 
 /****** Obsah ******/
@@ -361,17 +376,20 @@ body {
 	margin: 15px 50px 10px 50px;
 	font-size: 25px;
 	font-weight: bold;
-	/* border: 1px solid black; */
 }
 
-#form_wrapper {
+#content_wrapper {
 	/* border: 1px solid black; */
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 25px;
+	margin-bottom: 35px;
 	margin-top: 25px;
 	padding: 15px;
+	/*box-shadow: 10px 10px 50px black;*/
+	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
+	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
+	box-shadow: 5px 5px 20px 10px #2e2e2e;	 
 }
 
 /** Vstupne udaje **/
@@ -408,10 +426,18 @@ body {
 	font-size: 15px;
 }
 
+.input_data_date_time {
+	width: 115px;
+	height: 20px;
+	border-radius: 5px;
+	padding: 0px 10px;
+	font-size: 15px;
+}
+
 .input_data_reg {
 	border: solid 1px black;
 	height: 20px;
-	border-radius: 15px;
+	border-radius: 7px;
 	padding: 0px 10px;
 	text-align: center;
 }
@@ -445,8 +471,8 @@ body {
 	font-family: "Arial black";
 }
 
-#btn_add {
-	width: 75px;
+.btn_add {
+	width: 120px;
 	height: 20px;
 	border: 1px solid black;
 	background-color: silver;
@@ -455,10 +481,60 @@ body {
 	margin: 5px 0px;
 }
 
+.button_edit {
+	width: 120px;
+	height: 20px;
+	display: inline-block;
+	border: 1px solid black;
+	background-color: silver;
+	text-align: center;
+	border-radius: 10px;
+	margin: 5px 5px;
+}
+
+.button_edit1 {
+	width: 120px;
+	height: 20px;
+	display: inline-block;
+	border: 1px solid black;
+	background-color: silver;
+	text-align: center;
+	border-radius: 10px;
+	margin: 5px 5px;
+	font-size: 16px;
+	font-weight: bolder;		
+}
+
+.button_delete {
+	width: 120px;
+	height: 20px;
+	display: inline-block;
+	border: 1px solid black;
+	background-color: silver;
+	text-align: center;
+	border-radius: 10px;
+	margin: 5px 5px;
+}
+
+.button_close {
+	width: 120px;
+	height: 20px;
+	display: inline-block;
+	border: 1px solid black;
+	background-color: silver;
+	text-align: center;
+	border-radius: 10px;
+	margin: 5px 5px;
+	font-size: 16px;
+	font-weight: bolder;
+	color: red;
+}
+
 /** Odkazy **/
-#link a {
+.link_button a {
 	display: block;
 	width: 150px;
+	margin-top: 10px;
 	font-family: "Comic Sans MS";
 	text-decoration: none;
 	text-align: center;
@@ -466,6 +542,27 @@ body {
 	border-radius: 25px;
 	background-color: silver;
 	color: black;
+}
+
+.link_text a {
+	text-decoration: none;
+	color: blue;
+}
+
+.button_edit a {
+	text-decoration: none;
+	color: black;
+	display: block;
+	font-size: 16px;
+	font-weight: bolder;
+}
+
+.button_delete a {
+	text-decoration: none;
+	color: red;
+	display: block;
+	font-size: 16px;
+	font-weight: bolder;
 }
 
 /****** Paticka ******/
@@ -494,6 +591,70 @@ body {
 	margin-right: 50px;
 }
 
+/****** Event detail view ******/
+.event_category {
+	margin: 5px 0px;
+	font-weight: bolder;
+	font-size: 18px;	
+}
+
+.event_title {
+	margin: 5px 0px 5px 10px;
+	font-size: 22px;
+	font-family: "Arial Black";
+}
+
+.event_body {
+	margin: 5px 0px 5px 10px;
+}
+
+.event_time {
+	margin: 5px 0px 5px 10px;
+}
+
+.event_priority {
+	margin: 5px 0px 5px 10px;
+}
+
+.event_add_info {
+	margin: 5px 0px 5px 10px;
+}
+
+.event_label {
+	font-size: 18px;
+	font-weight: bolder;
+}
+
+/****** Project detail view ******/
+.project_name {
+	margin: 5px 0px;
+	font-weight: bolder;
+	font-size: 18px;
+	color: blue;
+}
+
+.project_about {
+	margin: 5px 0px 5px 10px;	
+}
+
+.project_priority {
+	margin: 5px 0px 5px 10px;	
+}
+
+.project_booked_cash {
+	margin: 5px 0px 5px 10px;	
+}
+
+.post_modifie_info {
+	margin: 5px 0px 5px 10px;	
+}
+
+.project_label {
+	font-size: 18px;
+	font-weight: bolder;
+	color: black;
+}
+
 /****** Rusenie zltych ramikov v Google CHROME ******/
 .input_data:focus {
 	outline: none;
@@ -512,5 +673,9 @@ body {
 }
 
 .textarea_data:focus {
+	outline: none;
+}
+
+.input_data_date_time {
 	outline: none;
 }
