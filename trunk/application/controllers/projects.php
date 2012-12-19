@@ -28,7 +28,10 @@ class Projects extends MY_Controller
          */
         public function index()
         {
-            $this->load->view('container', $this->data);
+            $data = array(
+                'view'              => "{$this->router->class}_view",
+            );
+            $this->load->view('container', array_merge($this->data, $data));
         }
 
         public function detail($project_id)
