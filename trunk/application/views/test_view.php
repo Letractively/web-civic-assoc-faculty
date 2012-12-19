@@ -33,7 +33,7 @@
 		$grid->display();
 	}
 	
-	$grid2 = new Grid();
+	/*$grid2 = new Grid();
 
 	if ( $grid2->bind($foods, 'food_id') )
 	{
@@ -42,5 +42,5 @@
 		$grid2->header('food_date')->set_datetime('Y-m-d H-i', 'd.m.Y');
 		
 		$grid2->display();
-	}
+	}*/
 ?>
