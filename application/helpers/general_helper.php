@@ -42,7 +42,7 @@ function array_debug($arr, $return = false)
  * @param value_index value ktora prislucha danemu key
  * @return form_dropdown menu
  *  
- */
+ *//*
 function gen_dropdown($name, $id_selected, $data, $id_index, $value_index)
 {
 	$options = array();
@@ -55,7 +55,25 @@ function gen_dropdown($name, $id_selected, $data, $id_index, $value_index)
 	}
 	
 	return form_dropdown($name, $options, $id_selected);
+}*/
+
+function gen_dropdown($name, $id_selected, $data, $id_index, $value_index, $css_class = '')
+{
+	$options = array();
+	
+	foreach ($data as $val)
+	{
+		if (is_object($val))
+			$val = get_object_vars($val);
+		$options[$val[$id_index]] = $val[$value_index];
+	}
+	
+	$css = 'class="'.$css_class.'"';
+	if ($css_class != '')
+		return form_dropdown($name, $options, $id_selected, $css);
+	else return form_dropdown($name, $options, $id_selected);
 }
+
 function year($date){
     $input 		= explode(' ', $date);
     $date 		= explode('.', $input[0]);
