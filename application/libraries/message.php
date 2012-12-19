@@ -84,10 +84,10 @@ class Message
         {
             switch ($type) {
                 case 'delete':
-                    echo '<img src="'.base_url().'assets/img/confirm_delete.png" id="confirm_image" />';
+                    echo '<img src="'.base_url().'../assets/img/confirm_delete.png" id="confirm_image" />';
                     break;
                 case 'inform':
-                    echo '<img src="'.base_url().'assets/img/confirm_inform.png" id="confirm_image" />';
+                    echo '<img src="'.base_url().'../assets/img/confirm_inform.png" id="confirm_image" />';
                     break;
             }
         }
@@ -134,22 +134,24 @@ class Message
         public function generate_message( $type, $text, $suffix, $title, $langs )
         {
             $this->set_class($suffix);
-            echo '<div id="confirm_message">';
-            $this->load_lang($langs);
-            
-                $this->set_title($title);
-                $this->set_image($type);
-                $this->set_text($text);
-                if( $type == 'inform')
-                {
-                    $this->generate_buttons($type);
-                }
-                else
-                {
-                    echo '<form accept-charset="utf-8" method="post" action="'.base_url().$suffix.'">';
-                        $this->generate_buttons($type);
-                    echo '</form>';
-                }
-            echo '</div>';
+			echo '<div id=content_wrapper>';
+				echo '<div id="confirm_message">';
+				$this->load_lang($langs);
+				
+					$this->set_title($title);
+					$this->set_image($type);
+					$this->set_text($text);
+					if( $type == 'inform')
+					{
+						$this->generate_buttons($type);
+					}
+					else
+					{
+						echo '<form accept-charset="utf-8" method="post" action="'.base_url().$suffix.'">';
+							$this->generate_buttons($type);
+						echo '</form>';
+					}
+				echo '</div>';
+			echo '</div>';
         }
 }

@@ -348,6 +348,13 @@ body {
    background: -o-linear-gradient(top, black, #880d0d, #fecc78); /* Opera 11.10+ */
 }
 
+#main_navigation a:active {
+	background: -webkit-linear-gradient(top, black, #fecc78, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
+   background: -moz-linear-gradient(top, black, #fecc78, #fecc78); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(top, black, #fecc78, #fecc78); /* IE 10 */
+   background: -o-linear-gradient(top, black, #fecc78, #fecc78); /* Opera 11.10+ */
+}
+
 #main_navigation a:??? {
 	background: -webkit-linear-gradient(top, black, #fecc78, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
    background: -moz-linear-gradient(top, black, #fecc78, #fecc78); /* Firefox 3.6+ */
@@ -441,11 +448,17 @@ body {
 }
 
 .textarea_data {
+	min-width: 350px;
 	max-width: 350px;
+	min-height: 170px;
 	max-height: 170px;
 	border-radius: 5px;
 	padding: 5px 10px;
 	font-size: 15px;
+	border-left: solid 2px gray;
+	border-top: solid 2px gray;
+	border-bottom: solid 2px silver;
+	border-right: solid 2px silver;
 }
 
 /** Tlacidla **/
@@ -545,6 +558,10 @@ body {
 .link_text a {
 	text-decoration: none;
 	color: blue;
+}
+
+.link_text a:hover {
+	text-decoration: underline;
 }
 
 .button_edit a {
@@ -651,6 +668,17 @@ body {
 	font-size: 18px;
 	font-weight: bolder;
 	color: black;
+}
+
+/****** Message graphic ******/
+#confirm_message {
+	
+}
+
+.message_image {
+	background-image: url(../img/confirm_inform.png);
+	background-repeat: no-repeat;
+	height: 60px;
 }
 
 /****** Rusenie zltych ramikov v Google CHROME ******/
