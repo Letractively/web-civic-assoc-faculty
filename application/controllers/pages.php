@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Pages extends MY_Controller
 {
@@ -22,6 +22,18 @@ class Pages extends MY_Controller
          */
         public function index($view)
         {
-			$this->load->view($this->router->class.'_'.$view.'_'.'view');
+			$data = array( 
+                'view' => $this->router->class.'_'.$view.'_'.'view',
+            );
+			
+			switch ($view)
+			{
+				case 'rules': $data['title'] = 'Stanovy'; break;
+				case 'contact': $data['title'] = 'Kontakt'; break;
+				case 'about': $data['title'] = 'O nás'; break;
+				default: $data['title'] = ''; break;
+			}
+			
+			$this->load->view('container', array_merge($this->data, $data));
         }
 }

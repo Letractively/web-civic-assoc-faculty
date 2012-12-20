@@ -45,7 +45,7 @@
 	<div id="navigation">
 		<div id="main_navigation"> <!-- //main navigation -->
 		<?php $sender = $this->router->class; ?>
-			<?= anchor('auth', 'DOMOV', $sender == 'auth' ? array('class' => 'selected') : null); ?>
+			<?= anchor('auth', 'DOMOV', ($sender == 'auth' || $sender == 'pages') ? array('class' => 'selected') : null); ?>
 			<?= anchor('projects', 'PROJEKTY', $sender == 'projects' ? array('class' => 'selected') : null); ?>
 			<?= anchor('events', 'UDALOSTI', $sender == 'events' ? array('class' => 'selected') : null); ?>
 			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>
@@ -55,9 +55,9 @@
 		</div>
 		<?php if ( ($sender == 'auth') || ($sender == 'pages') ) { ?>
 		<div id="secondary_navigation"> <!-- //secondary navigation -->
-			<?= anchor('pages/rules', 'Stanovy'); ?>
-			<?= anchor('pages/about', 'O nás'); ?>
-			<?= anchor('pages/contact', 'Kontakt'); ?>	
+			<?= anchor('pages/index/rules', 'Stanovy', $view == 'pages_rules_view' ? array('class' => 'selected') : null); ?>
+			<?= anchor('pages/index/about', 'O nás', $view == 'pages_about_view' ? array('class' => 'selected') : null); ?>
+			<?= anchor('pages/index/contact', 'Kontakt', $view == 'pages_contact_view' ? array('class' => 'selected') : null); ?>	
 		</div>
 		<?php } else if ($sender == 'management') { ?>
 		<div id="secondary_navigation"> <!-- //secondary navigation -->
