@@ -79,4 +79,8 @@
 		<div class="inputitem">
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_add_event')) ?>
 		</div>
+        <?php
+            echo anchor('events/', $this->lang->line('to_events'));
+        ?>
 </div>
+

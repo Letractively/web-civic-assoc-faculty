@@ -38,5 +38,7 @@
 			echo '<p class="button_delete">'; echo anchor('events/delete/'.$event_id, $this->lang->line('button_delete_event') ); echo '</p>';
 		}
 			
-	?>
+	
+            echo anchor('events/', $this->lang->line('to_events'));
+        ?>
 </div>
