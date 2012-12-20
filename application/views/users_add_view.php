@@ -245,6 +245,7 @@ function showdiv(id) {
         </div>
 
         <div id='a4' style="display:none;">
+            <?= form_open("users/add")?>
                 <div class="inputitem">
                     <?= form_hidden(array('name' => 'role', 'id' => 'role', 'class' => ''.$error['role']), set_value('role',1)) ?>
                 </div>
@@ -279,3 +280,6 @@ function showdiv(id) {
                 </div>
             <?= form_close() ?>
 	</div>
+<?php
+    echo anchor('users/', $this->lang->line('to_users'));
+?>
