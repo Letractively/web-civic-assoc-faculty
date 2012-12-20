@@ -18,5 +18,7 @@ $lang['button_edit_post']               = 'Uprav';
 $lang['detail']               = 'Detail príspevku';
 $lang['add_post']               = 'Pridať nový príspevok';
 
+$lang['to_posts']      = 'Späť na články';
+
 /* End of file posts_lang.php */
 /* Location: ./application/language/slovak/posts_lang.php */
