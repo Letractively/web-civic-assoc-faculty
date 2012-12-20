@@ -1,6 +1,6 @@
-<?php
+﻿<?php
     $obj = $this->selecter->get_post_detail($post_id);
-    array_debug($obj);
+    //array_debug($obj);
 ?>
 
 <div class="post_title">
@@ -30,4 +30,7 @@
         <?= anchor('users/detail/'.$obj->post_modifie_author_id, $obj->modifie_name.' '.$obj->modifie_surname) ?>,
         <?= datetime($obj->post_modifie_date, FALSE).' '. time_withou_seconds(datetime($obj->post_modifie_date, TRUE)) ?> 
     </div>
+	<div>
+		<span><?= anchor('posts/modifiers/'.$post_id, "Zobraziť históriu modifikácií") ?></span>
+	</div>
 <?php endif; ?>

@@ -13,7 +13,7 @@ class Posts extends MY_Controller
             parent::__construct();
 
             $data = array(
-                'title' 		=> 'Aktuality'   //Title na aktualnej stranke
+                'title' 		=> 'Články'   //Title na aktualnej stranke
             );
 
             $this->data = array_merge($this->data, $data);
