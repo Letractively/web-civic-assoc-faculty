@@ -127,6 +127,6 @@ el.display=(el.display == 'block')?'none':'block';
 //            echo $l->excursion_time_from.'-'.$l->excursion_time_to.'<br />';
 //        }
     }    
-    
+    echo anchor('users/', $this->lang->line('to_users'));
 ?>
 

@@ -91,7 +91,3 @@
         $grid->display();
    
 ?>
-<!--ak flag je 0 tak zavolas get_payments_nopad(0)
-flag1 = get_excursions_for_visitor(0)
-flag2 = get_excursions_for_lecturer(0)
-flag3 = get_users(2)-->

@@ -192,5 +192,7 @@
         
         echo form_close();
     }    
-    
+ 
+    echo anchor('users/', $this->lang->line('to_users'));
+       
 ?>
