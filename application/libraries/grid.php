@@ -543,10 +543,10 @@ class Grid
 					if ($this->edit_mode == "internal") // ak sa ma pouzit editacia v gride
 						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><img class="aaa" src="'.base_url().'../assets/img/edit.png" alt="edit" onclick="changeToForm('.$unique_key.')" /></td>';
 					else if ($this->edit_mode == "external") // ak sa ma pouzit editacia na vlastnom forme
-						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->edit_url.'/'.$unique_key.'"><img src="'.base_url().'../assets/img/edit.png" alt="edit" /></a></td>';
+						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.base_url().$this->edit_url.'/'.$unique_key.'"><img src="'.base_url().'../assets/img/edit.png" alt="edit" /></a></td>';
 				}
 				if ($this->remove_url != "" && $row->removable == true) // ak mame zadany controller na delete a dany riadok je mazatelny - zobrazi tlacitko delete
-					echo '<td id="delete'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.$this->remove_url.'/'.$unique_key.'"><img src="'.base_url().'../assets/img/delete.png" alt="delete" /></a></td>';
+					echo '<td id="delete'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.base_url().$this->remove_url.'/'.$unique_key.'"><img src="'.base_url().'../assets/img/delete.png" alt="delete" /></a></td>';
 				echo '</tr>'."\n";
 			}
 		}
@@ -564,7 +564,7 @@ class Grid
 			if ($this->add_mode == "internal")
 				echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="'.base_url().'../assets/img/add.png" alt="add" /></div></td>';
 			else if ($this->add_mode == "external")
-				echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.$this->add_url.'"><img src="'.base_url().'../assets/img/add.png" alt="add" /></a></td>';
+				echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.base_url().$this->add_url.'"><img src="'.base_url().'../assets/img/add.png" alt="add" /></a></td>';
 			echo '</tr>'."\n";
 		}
 		

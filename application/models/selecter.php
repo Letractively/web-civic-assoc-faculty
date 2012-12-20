@@ -114,7 +114,16 @@ class Selecter extends MY_Model
      */
     public function get_users($role)
     {
-            $q = $this->db->query(" SELECT ud.user_id, ud.user_name, ud.user_surname, ud.user_email, sp.study_program_name, ud.degree_name, ud.user_postcode 
+			if ($role == 0)
+				$q = $this->db->query(" SELECT ud.user_id, ud.user_name, ud.user_surname, ud.user_email, ud.user_phone, ud.user_degree_year, sp.study_program_name, ud.degree_name, ud.user_postcode 
+                                    FROM study_programs sp
+                                    JOIN 
+                                       (SELECT *
+                                        FROM users u
+                                        JOIN degrees d ON (u.user_degree_id=d.degree_id)) ud ON (sp.study_program_id=ud.user_study_program_id)
+                                  ");
+			else
+				$q = $this->db->query(" SELECT ud.user_id, ud.user_name, ud.user_surname, ud.user_email, ud.user_phone, ud.user_degree_year, sp.study_program_name, ud.degree_name, ud.user_postcode 
                                     FROM study_programs sp
                                     JOIN 
                                        (SELECT *
