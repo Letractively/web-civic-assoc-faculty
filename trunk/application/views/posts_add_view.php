@@ -28,9 +28,17 @@
 			</div> 
 			<?= form_textarea(array('name' => 'content', 'id' => 'textarea', 'class' => 'textarea_data'.$error['content']), set_value('content')) ?>
 		</div>  
-
+    
+                <div class="inputitem">
+                        <p class="label"><label for="content" class="<?= $error['content'] ?>"><?=$this->lang->line('published')?></label> </p>
+			<?= form_checkbox(array('name' => 'post_published', 'class' => 'post_published')) ?>
+		</div>
+    
 		<div class="inputitem">
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_add_post')) ?>
 		</div>
 	<?= form_close() ?>
+        <?php
+            echo anchor('posts/', $this->lang->line('to_posts'));
+        ?>
 </div>

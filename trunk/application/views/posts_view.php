@@ -36,4 +36,6 @@
                 echo '</div>';
             }
     }
+    
+    echo anchor('posts/add', $this->lang->line('add_post'));
 ?>
