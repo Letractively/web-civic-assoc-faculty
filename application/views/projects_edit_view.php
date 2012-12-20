@@ -74,4 +74,7 @@
 			<?= form_submit(array('type'=>'submit', 'name' => 'close', 'class' => 'button_close'), $this->lang->line('button_close_project')) ?>
 		</div>
 	<?= form_close() ?>
+        <?php
+            echo anchor('projects/', $this->lang->line('to_projects'));
+        ?>
 </div>
