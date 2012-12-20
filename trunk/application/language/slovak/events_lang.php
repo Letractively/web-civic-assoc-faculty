@@ -8,7 +8,8 @@ $lang['label_to']                       = 'Do';
 $lang['label_about']                    = 'Popis';
 
 $lang['back_to_event_categories']       = 'späť na kategórie udalostí';
-$lang['anchor_add']       				= 'Pridať novú udalosť';
+$lang['to_event_categories']            = 'Kategórie udalostí';
+$lang['anchor_add']       		= 'Pridať novú udalosť';
 
 $lang['event_date']                     = 'Kedy: ';
 $lang['event_author']                   = 'Pridal: ';
