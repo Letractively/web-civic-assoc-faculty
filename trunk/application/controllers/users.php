@@ -62,7 +62,7 @@ class Users extends MY_Controller
                                                                                 'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
                                                                                 'project_category_5', 'project_category_6','oz_member','ex_member','lecturer','admin','degrees_id','vs_box','role')
                                                                         ),
-            'numb_proj_cat'         => $this->selecter->count_project_categories(),        
+//            'numb_proj_cat'         => $this->selecter->count_project_categories(),        
                 'years'                 => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset),
                 'title' 		=> $this->lang->line('title_add_user') 
         );
