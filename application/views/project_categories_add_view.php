@@ -2,7 +2,7 @@
     <?php echo validation_errors();      
     //array_debug($programs) ?>
 </div>
-<?= form_open("events/add") ?>
+<?= form_open("project_categories/add") ?>
    
     <div class="inputitem">
         <label for="event_name" class="<?= $error['event_name'] ?>"><?= $this->lang->line('label_name') ?></label>

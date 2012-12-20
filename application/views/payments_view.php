@@ -19,14 +19,19 @@
         {
             $grid->header('payment_id')->editable = false;
             $grid->header('payment_id')->visible = false;
-			$grid->header('user_id')->visible = false;
-			$grid->header('user_name')->set_anchor('users/detail', 'user_id');
+            $grid->header('user_name')->editable = false;
+            $grid->header('payment_vs')->editable = false;
+            $grid->header('payment_total_sum')->editable = false;
+            $grid->header('payment_paid_time')->editable = false;
+            
+            $grid->header('user_id')->visible = false;
+            $grid->header('user_name')->set_anchor('users/detail', 'user_id');
             $grid->header('user_name')->text = $this->lang->line('label_user_id');
             $grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
             $grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
             $grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
             $grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
-			$grid->header('payment_paid_time')->set_datetime();
+            $grid->header('payment_paid_time')->set_datetime();
             $grid->add_url = "{$this->router->class}/add";
             $grid->edit_url = "{$this->router->class}/edit";
             $grid->remove_url = "{$this->router->class}/delete";
