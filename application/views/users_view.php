@@ -84,7 +84,9 @@
 //        $grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
         
         $grid->add_url = "{$this->router->class}/add";
+		$grid->add_mode = "external";
         $grid->edit_url = "{$this->router->class}/edit";
+		$grid->edit_mode = "external";
         $grid->remove_url = "{$this->router->class}/delete";
         $grid->display();
    
