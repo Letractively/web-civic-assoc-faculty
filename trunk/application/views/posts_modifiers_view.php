@@ -11,4 +11,6 @@
     $grid->header('user_surname')->text = $this->lang->line('user_surname');
     $grid->header('post_modifie_date')->text = $this->lang->line('label_post_date');
     $grid->display();
+    
+    echo anchor('posts/detail/'.$post_id, $this->lang->line('detail'));
 ?>
