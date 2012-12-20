@@ -32,6 +32,7 @@ $lang['label_project_category_6']   =   '6';
 
 $lang['button_add']            =   'Pridaj';
 $lang['button_edit']            =   'Uprav';
+$lang['to_users']      = 'Späť na členov';
 
 /* End of file auth_lang.php */
 /* Location: ./application/language/slovak/auth_lang.php */
