@@ -362,6 +362,10 @@ body {
    background: -o-linear-gradient(top, black, #fecc78, #fecc78); /* Opera 11.10+ */	
 }
 
+.selected {
+	color: white;
+}
+
 /****** Obsah ******/
 #content {
 	clear: both;
