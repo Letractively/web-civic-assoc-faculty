@@ -18,4 +18,5 @@
         $grid->display();
     }
      
+    echo anchor('events/', $this->lang->line('to_events'));
 ?>

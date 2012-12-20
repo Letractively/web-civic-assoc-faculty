@@ -50,4 +50,5 @@
         echo anchor('events/', $this->lang->line('back_to_event_categories'));
 	
 	echo anchor('events/add', $this->lang->line('anchor_add'));
+        echo anchor('event_categories/', $this->lang->line('to_event_categories'));
 ?>
