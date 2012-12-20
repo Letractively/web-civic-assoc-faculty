@@ -49,4 +49,7 @@
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_add_project')) ?>
 		</div>
 	<?= form_close() ?>
+    <?php
+        echo anchor('projects/', $this->lang->line('to_projects'));
+    ?>
 </div>

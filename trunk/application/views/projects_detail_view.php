@@ -55,4 +55,7 @@
 		}
 
 	?>
+    <?php
+        echo anchor('projects/', $this->lang->line('to_projects'));
+    ?>
 </div>
