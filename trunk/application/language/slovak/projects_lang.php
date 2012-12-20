@@ -5,6 +5,7 @@ $lang['label_about']                        = 'Popis';
 $lang['label_priority']                     = 'Priorita';
 $lang['label_project_category_id']          = 'Kategória';
 $lang['label_booked_cash']                  = 'Rozpočet';
+$lang['label_spended_cash']                 = 'Minuté';
 $lang['label_from']                         = 'Od';
 $lang['label_to']                           = 'Do';
 

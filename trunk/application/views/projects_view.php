@@ -13,9 +13,21 @@
         $grid = new Grid();
 
         $grid->bind($this->selecter->get_projects(1), 'project_id');
+		$grid->header('project_id')->visible = false;
+		$grid->header('project_item_id')->visible = false;
 
+		$grid->header('project_name')->text = $this->lang->line('label_name');
+		$grid->header('project_booked_cash')->text =  $this->lang->line('label_booked_cash');
+		$grid->header('project_date_from')->text = $this->lang->line('label_from');
+		$grid->header('project_date_from')->set_datetime('Y-m-d');
+		$grid->header('project_date_to')->text =  $this->lang->line('label_to');
+		$grid->header('project_date_to')->set_datetime('Y-m-d');
+		$grid->header('project_spended_cash')->text =  $this->lang->line('label_spended_cash');
+		
         $grid->add_url = "{$this->router->class}/add";
+		$grid->add_mode = "external";
         $grid->edit_url = "{$this->router->class}/edit";
+		$grid->edit_mode = "external";
         $grid->remove_url = "{$this->router->class}/delete";
 
         $grid->header('project_id')->editable = false;

@@ -42,10 +42,12 @@
         $grid->header('event_from')->text   = $this->lang->line('label_from');
 		$grid->header('event_to')->set_datetime();
         $grid->header('event_to')->text     = $this->lang->line('label_to');
-        
+		
         $grid->display();
     }
      
     if($event_cat_id != 0)
         echo anchor('events/', $this->lang->line('back_to_event_categories'));
+	
+	echo anchor('events/add', $this->lang->line('anchor_add'));
 ?>
