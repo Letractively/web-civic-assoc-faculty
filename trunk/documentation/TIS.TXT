@@ -30,7 +30,7 @@ Poznámky:
 		- project_add_view - kalendar
 		- project_edit_view - grid, fix tlaèítka CSS
 		- project_detail - grid + tlaèidlá + tlaèidlá CSS
-		- project_view - fix, nejde vobec
+		- project_view - fix, nejde výber kategórie	
 		- users_add - fix nejde vobec
 		- users_edit - fix nejde vobec
 	

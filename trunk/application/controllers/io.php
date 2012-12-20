@@ -27,10 +27,10 @@ class Io extends MY_Controller
     
     public function export()
     {
-        //$this->load->dbutil();
-        //$query = $this->db->query("SELECT * from users");
-        //echo $this->dbutil->csv_from_result($query); 
-       // $this->load->view('container', $this->data);
+		//$this->load->dbutil();
+		//$query = $this->db->query("SELECT * from users");
+		//echo $this->dbutil->csv_from_result($query); 
+		// $this->load->view('container', $this->data);
     }
 }
 

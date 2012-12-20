@@ -50,7 +50,7 @@
 			<?= anchor('events', 'UDALOSTI', $sender == 'events' ? array('class' => 'selected') : null); ?>
 			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>
 			<?= anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null); ?>
-			<?= anchor('management', 'SPRÁVA', $sender == 'management' ? array('class' => 'selected') : null); ?>
+			<?= anchor('administration', 'SPRÁVA', $sender == 'administration' ? array('class' => 'selected') : null); ?>
 			<?= anchor('test', 'TEST', $sender == 'test' ? array('class' => 'selected') : null); ?>
 		</div>
 		<?php if ( ($sender == 'auth') || ($sender == 'pages') ) { ?>
@@ -59,11 +59,14 @@
 			<?= anchor('pages/index/about', 'O nás', $view == 'pages_about_view' ? array('class' => 'selected') : null); ?>
 			<?= anchor('pages/index/contact', 'Kontakt', $view == 'pages_contact_view' ? array('class' => 'selected') : null); ?>	
 		</div>
-		<?php } else if ($sender == 'management') { ?>
+		<?php } else if (in_array($sender, array('administration', 'degrees', 'studies', 'email_types', 'payments', 'io_export', 'correspondence'))) { ?>
 		<div id="secondary_navigation"> <!-- //secondary navigation -->
-			<?= anchor('http://devilpage.cz', 'Web page Man Utd'); ?>
-			<?= anchor('http://sme.sk', 'SME'); ?>
-			<?= anchor('http://topky.sk', 'TOPKY'); ?>	
+			<?= anchor('degrees', 'Tituly', $sender == 'degrees' ? array('class' => 'selected') : null); ?>
+			<?= anchor('studies', 'Študijné programy', $sender == 'studies' ? array('class' => 'selected') : null); ?>
+			<?= anchor('email_types', 'E-mail typy', $sender == 'email_types' ? array('class' => 'selected') : null); ?>
+			<?= anchor('payments', 'Platby', $sender == 'payments' ? array('class' => 'selected') : null); ?>
+			<?= anchor('io_export', 'Export', $sender == 'io_export' ? array('class' => 'selected') : null); ?>
+			<?= anchor('correspondence', 'Korešpondencia', $sender == 'correspondence' ? array('class' => 'selected') : null); ?>
 		</div>
 		<?php } ?>
 	</div>
