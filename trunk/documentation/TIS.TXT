@@ -20,19 +20,22 @@ Poznámky:
 	- GRID-y design + fix editu dátumov a súm
 
 	- DOROBI:
-		- auth_view - vyrobi
-		- events_view - prida linky na add a kategorie udalosti
+		OK - pridat anchor spat -projects,payments... vsade z add edit a detail
+		
+		OK - auth_view - POSTS ako to pred tym
+		OK - events_view - anchor na event_cat 
+
+		OK - payments_view - editovatelne iba suma k úhrade
+		OK - posts_modifiers_view - anchor na post detail aj s id na ktorom som bol
+
+		HADAM OK- posts - fix add, edit + dorobi checkbox "zverejnit", pridat do view anchor na add
+		
 		- io_export - vyrobi
-		- payments_view - fix, vsetko sa da editovat - nema sa dat, nejde edit, add userov vybrat z comboboxu
-		- posts_modifiers_view - fix
-		- posts - fix add, edit + dorobi checkbox "zverejnit"
-		- project_categories_detail - dorobi grid + link na zmaz
-		- project_add_view - kalendar
-		- project_edit_view - grid, fix tlaèítka CSS
-		- project_detail - grid + tlaèidlá + tlaèidlá CSS
+		- project_categories_detail - dorobi grid + link na zmaz - stefan
+		- project_edit_view - grid, fix tlaèítka CSS -stefan
+		- project_detail - grid + tlaèidlá + tlaèidlá CSS -stefan
+		
 		- project_view - fix, nejde vıber kategórie	
-		- users_add - fix nejde vobec
-		- users_edit - fix nejde vobec
 	
 	- OVERI:
 		- project_categories_detail - transakcie
