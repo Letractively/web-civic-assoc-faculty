@@ -1,4 +1,3 @@
-<!--<link rel="stylesheet" type="text/css" media="all" href="jsDatePick_ltr.min.css" />-->
 <link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
 <link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css"></link>
 <script src="../../../assets/js/calendar/dhtmlxcalendar.js"></script>
