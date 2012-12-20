@@ -17,5 +17,20 @@
         else
             break;
     }
+    
+    $counter = 0;
+    foreach ($this->selecter->get_posts() as $post) 
+    {
+        if($counter < 3)
+        {
+            echo '<div class="event" id='.$post->post_id.'>';
+                echo $post->post_title.'<br />';
+                echo perex_from_content($post->post_content).'...<br />';
+            echo '</div>'; 
+            $counter++;
+        }
+        else
+            break;
+    }
    
 ?>
