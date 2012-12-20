@@ -17,6 +17,7 @@
 		$grid->header('project_item_id')->visible = false;
 
 		$grid->header('project_name')->text = $this->lang->line('label_name');
+		$grid->header('project_name')->set_anchor("{$this->router->class}/detail", 'project_id');
 		$grid->header('project_booked_cash')->text =  $this->lang->line('label_booked_cash');
 		$grid->header('project_date_from')->text = $this->lang->line('label_from');
 		$grid->header('project_date_from')->set_datetime('Y-m-d');

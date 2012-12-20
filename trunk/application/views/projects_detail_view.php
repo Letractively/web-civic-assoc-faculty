@@ -1,6 +1,6 @@
 <?php
     $obj = $this->selecter->get_project_detail($project_id);
-    array_debug($obj);
+    //array_debug($obj);
 ?>
 
 <div id="content_wrapper">

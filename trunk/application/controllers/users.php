@@ -111,7 +111,7 @@ class Users extends MY_Controller
     public function members()
     {
         $data = array(
-            'flag'              => 1,
+            'flag'              => ROLE_OZ_MEMBER,
             'view'              => "{$this->router->class}_view"
         );
         $this->load->view('container', array_merge($this->data, $data)); 
@@ -120,7 +120,7 @@ class Users extends MY_Controller
     public function visitors()
     {
         $data = array(
-            'flag'              => 2,
+            'flag'              => ROLE_EX_MEMBER,
             'view'              => "{$this->router->class}_view"
         );
         $this->load->view('container', array_merge($this->data, $data)); 
@@ -129,7 +129,16 @@ class Users extends MY_Controller
     public function lecturers()
     {
         $data = array(
-            'flag'              => 3,
+            'flag'              => ROLE_LECTURER,
+            'view'              => "{$this->router->class}_view"
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
+    }
+	
+	public function admins()
+    {
+        $data = array(
+            'flag'              => ROLE_ADMIN,
             'view'              => "{$this->router->class}_view"
         );
         $this->load->view('container', array_merge($this->data, $data)); 
