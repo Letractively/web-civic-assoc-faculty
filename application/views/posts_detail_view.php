@@ -34,3 +34,7 @@
 		<span><?= anchor('posts/modifiers/'.$post_id, "Zobraziť históriu modifikácií") ?></span>
 	</div>
 <?php endif; ?>
+<?php
+        echo anchor('posts/', $this->lang->line('to_posts'));
+   
+?>
