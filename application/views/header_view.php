@@ -44,13 +44,27 @@
 	</div>
 	<div id="navigation">
 		<div id="main_navigation"> <!-- //main navigation -->
-			<?= anchor('auth', 'DOMOV'); ?>
-			<?= anchor('test', 'GRID'); ?>
+		<?php $sender = $this->router->class; ?>
+			<?= anchor('auth', 'DOMOV', $sender == 'auth' ? array('class' => 'selected') : null); ?>
+			<?= anchor('projects', 'PROJEKTY', $sender == 'projects' ? array('class' => 'selected') : null); ?>
+			<?= anchor('events', 'UDALOSTI', $sender == 'events' ? array('class' => 'selected') : null); ?>
+			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>
+			<?= anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null); ?>
+			<?= anchor('management', 'SPRÁVA', $sender == 'management' ? array('class' => 'selected') : null); ?>
+			<?= anchor('test', 'TEST', $sender == 'test' ? array('class' => 'selected') : null); ?>
 		</div>
+		<?php if ( ($sender == 'auth') || ($sender == 'pages') ) { ?>
+		<div id="secondary_navigation"> <!-- //secondary navigation -->
+			<?= anchor('pages/rules', 'Stanovy'); ?>
+			<?= anchor('pages/about', 'O nás'); ?>
+			<?= anchor('pages/contact', 'Kontakt'); ?>	
+		</div>
+		<?php } else if ($sender == 'management') { ?>
 		<div id="secondary_navigation"> <!-- //secondary navigation -->
 			<?= anchor('http://devilpage.cz', 'Web page Man Utd'); ?>
 			<?= anchor('http://sme.sk', 'SME'); ?>
 			<?= anchor('http://topky.sk', 'TOPKY'); ?>	
 		</div>
+		<?php } ?>
 	</div>
 </div>
