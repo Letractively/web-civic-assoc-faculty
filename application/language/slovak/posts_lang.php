@@ -11,10 +11,12 @@ $lang['created_by']                         =   'Vytvoril';
 $lang['user_name']                        =   'Meno';
 $lang['user_surname']                           =   'Priezvisko';
 $lang['label_post_date']                         =   'Kedy';
+$lang['published']                      ='Zverejnený';
 
 $lang['button_add_post']               = 'Vytvoriť';
 $lang['button_edit_post']               = 'Uprav';
 $lang['detail']               = 'Detail príspevku';
+$lang['add_post']               = 'Pridať nový príspevok';
 
 /* End of file posts_lang.php */
 /* Location: ./application/language/slovak/posts_lang.php */
