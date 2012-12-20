@@ -14,6 +14,7 @@ $lang['label_post_date']                         =   'Kedy';
 
 $lang['button_add_post']               = 'Vytvoriť';
 $lang['button_edit_post']               = 'Uprav';
+$lang['detail']               = 'Detail príspevku';
 
 /* End of file posts_lang.php */
 /* Location: ./application/language/slovak/posts_lang.php */
