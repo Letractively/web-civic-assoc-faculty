@@ -1,3 +1,32 @@
+﻿<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css"></link>
+<script src="../../../assets/js/calendar/dhtmlxcalendar.js"></script>
+<script type="text/javascript">
+	window.onload = function()
+	{
+		var calendar = new dhtmlXCalendarObject(["from","to"]);
+		calendar.setDateFormat("%d.%m.%Y %H:%i");
+		dhtmlXCalendarObject.prototype.langData["sk"] =
+		{
+			//date format
+			dateformat: '%d.%m.%Y',
+			//full names of months
+			monthesFNames: ["Január","Február","Marec","Apríl","Máj","Jún","Júl","August","September","Október","November","December"],
+			//shortened names of months
+			monthesSNames: ["Jan","Feb","Mar","Apr","Máj","Jún","Júl","Aug","Sep","Okt","Nov","Dec"],
+			//full names of days
+			daysFNames: ["Nedeľa","Pondelok","Útorok","Streda","Štvrtok","Piatok","Sobota"],
+			//shortened names of days
+			daysSNames: ["Ne","Po","Ut","St","Št","Pi","So"],
+			//starting day of a week. Number from 1(Monday) to 7(Sunday)
+			weekstart: 1
+		}
+		calendar.loadUserLanguage("sk");
+		calendar.setSkin('omega');
+		//calendar.attachObj("from");
+	};
+</script>
+
 <div class="errors">
     <?php 
         echo validation_errors();  
@@ -27,14 +56,12 @@
 	<!--od -> do-->
 		<div class="inputitem">
 			<p class="label"> <label for="from" class="<?= $error['from'] ?>"><?= $this->lang->line('label_from') ?></label> </p>
-			<?= form_input(array('name' => 'from', 'id' => 'from', 'class' => 'input_data_date'.$error['from'], 'maxlength' => 10, 'size' => 10), set_value('from', datetime($field->event_from, FALSE))) ?>
-			<?= form_input(array('name' => 'from_time', 'maxlength' => 5, 'size' => 5, 'class' => 'input_data_time'), set_value('from_time',  time_withou_seconds(datetime($field->event_from, TRUE)))); ?>
+			<?= form_input(array('name' => 'from', 'id' => 'from', 'class' => 'input_data_date_time'.$error['from'], 'maxlength' => 16, 'size' => 16), set_value('from', date_create_from_format('Y-m-d H:i:s', $field->event_from)->format('d.m.Y H:i') )) ?>
 		</div>
 	 
 		<div class="inputitem">
 			<p class="label"> <label for="to" class="<?= $error['to'] ?>"><?= $this->lang->line('label_to') ?></label> </p>
-			<?= form_input(array('name' => 'to', 'id' => 'to', 'class' => 'input_data_date'.$error['to'], 'maxlength' => 10, 'size' => 10), set_value('to',  datetime($field->event_to, FALSE))) ?>
-			<?= form_input(array('name' => 'to_time', 'maxlength' => 5, 'size' => 5, 'class' => 'input_data_time'), set_value('to_time', time_withou_seconds(datetime($field->event_to, TRUE)))); ?>
+			<?= form_input(array('name' => 'to', 'id' => 'to', 'class' => 'input_data_date_time'.$error['to'], 'maxlength' => 16, 'size' => 16), set_value('to', date_create_from_format('Y-m-d H:i:s', $field->event_to)->format('d.m.Y H:i') )) ?>
 		</div>
 	<!--end-->
 		<div class="inputitem">
