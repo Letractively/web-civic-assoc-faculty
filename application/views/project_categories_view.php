@@ -1,4 +1,4 @@
- <?= $this->lang->line('label_together').': '.$this->selecter->get_project_categories_total_cash(); ?>
+﻿ <?= $this->lang->line('label_together').': '.$this->selecter->get_project_categories_total_cash(); ?>
 
 <?php
     $this->load->library('grid');
@@ -22,4 +22,6 @@
     $grid->header('project_category_name')->set_anchor('project_categories/detail', 'project_category_id');
 	
     $grid->display();
+	
+	echo anchor(base_url()."projects", $this->lang->line('anchor_back'));
 ?>

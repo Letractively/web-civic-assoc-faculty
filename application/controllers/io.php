@@ -14,7 +14,7 @@ class Io extends MY_Controller
         parent::__construct();
         
         $data = array(
-            'title' 		=> ''   //Title na aktualnej stranke
+            'title' 		=> 'Export'   //Title na aktualnej stranke
         );
             
         $this->data = array_merge($this->data, $data);
@@ -27,10 +27,11 @@ class Io extends MY_Controller
     
     public function export()
     {
-		//$this->load->dbutil();
-		//$query = $this->db->query("SELECT * from users");
-		//echo $this->dbutil->csv_from_result($query); 
-		// $this->load->view('container', $this->data);
+		$data = array(
+			'view'              => "{$this->router->class}_{$this->router->method}_view",
+		);
+		
+		$this->load->view('container', array_merge($this->data, $data));
     }
 }
 
