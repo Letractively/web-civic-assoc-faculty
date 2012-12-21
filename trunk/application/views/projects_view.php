@@ -2,7 +2,8 @@
    
    <div class="inputitem">
         <!--<p class="label"> <?//= $error['project_id'] ?>"><?//= $this->lang->line('label_project_id') ?> </p>-->
-        <?= gen_dropdown('project_category_id', set_value('project_category_id'),$this->selecter->get_project_categories(),'project_category_id','project_category_name'); ?> 
+        <?= gen_dropdown('project_category_id', set_value('project_category_id'),$this->selecter->get_project_categories(),'project_category_id','project_category_name'); ?>
+		<?= anchor('project_categories', $this->lang->line('anchor_project_categories')); ?>
    </div>
 
 	<?php

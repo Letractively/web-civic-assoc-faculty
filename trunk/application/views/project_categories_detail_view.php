@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     $obj = $this->selecter->get_category_detail($project_category_id);
     //array_debug($obj);
 ?>
@@ -72,6 +72,7 @@ Transakcie
    {
 		$grid1->header('project_id')->editable = false;
 		$grid1->header('project_id')->visible = false;
+		$grid1->header('project_item_id')->visible = false;
 
 		$grid1->header('project_name')->text = $this->lang->line('label_name');
 		$grid1->header('project_booked_cash')->text = $this->lang->line('label_capital');
@@ -84,3 +85,4 @@ Transakcie
 		$grid1->display();
    }
 ?>
+	<?= anchor("projects_categories/delete/$project_category_id", 'Zmazať') ?>

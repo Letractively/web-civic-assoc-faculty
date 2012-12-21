@@ -423,15 +423,11 @@ class Selecter extends MY_Model
     public function get_project_items($project_id)
     {
             $q = $this->db->query(" SELECT piu.project_item_name, piu.project_item_price,
-                                           piu.user_id, piu.user_name, piu.user_surname, 
+                                           u.user_id, u.user_name, u.user_surname, 
                                            piu.project_item_date, piu.project_item_id
-                                    FROM projects p
-                                    JOIN
-                                     (SELECT *
-                                      FROM project_items pi
-                                      JOIN users u ON (pi.project_item_user_id=u.user_id)) piu
-                                      ON (p.project_id=piu.project_item_project_id)
-                                    WHERE p.project_id=$project_id
+                                    FROM project_items piu
+                                    JOIN users u on (piu.project_item_user_id = u.user_id)
+                                    WHERE piu.project_item_project_id=$project_id
                                   ");
             return $q->result();
     }

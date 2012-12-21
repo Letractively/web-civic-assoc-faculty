@@ -39,23 +39,21 @@
 
 	<?php
 		$this->load->library('grid');
-		
+			
 		$grid = new Grid();
-		
-		//array_debug($this->selecter->get_project_items($project_id));
-		if( $grid->bind($this->selecter->get_project_items($project_id), 'project_id') )
-		{
-			$grid->add_url = "{$this->router->class}/add";
-			$grid->edit_url = "{$this->router->class}/edit";
-			$grid->remove_url = "{$this->router->class}/delete";
 
-			$grid->header('project_id')->editable = false;
+		if( $grid->bind($this->selecter->get_project_items($project_id), 'project_item_id') )
+		{
+			$grid->header('project_item_id')->visible = false;
+			$grid->header('user_id')->visible = false;
+			$grid->header('project_item_date')->set_datetime('Y-m-d');
 
 			$grid->display();
 		}
-
 	?>
     <?php
+		echo anchor("projects/edit/{$project_id}", $this->lang->line('anchor_edit_project'));
+		echo anchor("projects/delete/{$project_id}", $this->lang->line('anchor_delete_project'));
         echo anchor('projects/', $this->lang->line('to_projects'));
     ?>
 </div>
