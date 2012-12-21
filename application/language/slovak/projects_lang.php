@@ -1,5 +1,7 @@
 <?php
 
+$lang['anchor_project_categories']          = 'Kategórie projektov';
+
 $lang['label_name']                         = 'Názov projektu';
 $lang['label_about']                        = 'Popis';
 $lang['label_priority']                     = 'Priorita';
@@ -13,6 +15,9 @@ $lang['label_item']                         = 'Položka';
 $lang['label_price']                        = 'cena';
 $lang['label_user']                         = 'osoba';
 $lang['label_date']                         = 'kedy';
+
+$lang['anchor_edit_project']                  = 'Upraviť';
+$lang['anchor_delete_project']                = 'Zmazať';
 
 $lang['button_add_project']                   = 'Pridaj';
 $lang['button_edit_project']                  = 'Uprav';

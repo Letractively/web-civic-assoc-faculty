@@ -1,3 +1,33 @@
+﻿<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css"></link>
+<script src="../../../assets/js/calendar/dhtmlxcalendar.js"></script>
+<script type="text/javascript">
+	window.onload = function()
+	{
+		var calendar = new dhtmlXCalendarObject(["from","to"]);
+		calendar.setDateFormat("%d.%m.%Y");
+		dhtmlXCalendarObject.prototype.langData["sk"] =
+		{
+			//date format
+			dateformat: '%d.%m.%Y',
+			//full names of months
+			monthesFNames: ["Január","Február","Marec","Apríl","Máj","Jún","Júl","August","September","Október","November","December"],
+			//shortened names of months
+			monthesSNames: ["Jan","Feb","Mar","Apr","Máj","Jún","Júl","Aug","Sep","Okt","Nov","Dec"],
+			//full names of days
+			daysFNames: ["Nedeľa","Pondelok","Útorok","Streda","Štvrtok","Piatok","Sobota"],
+			//shortened names of days
+			daysSNames: ["Ne","Po","Ut","St","Št","Pi","So"],
+			//starting day of a week. Number from 1(Monday) to 7(Sunday)
+			weekstart: 1
+		}
+		calendar.loadUserLanguage("sk");
+		calendar.setSkin('omega');
+		calendar.hideTime();
+		//calendar.attachObj("from");
+	};
+</script>
+
 <div class="errors">
     <?php 
         echo validation_errors();  
@@ -55,14 +85,40 @@
 			$this->load->library('grid');
 			
 			$grid = new Grid();
-			if( $grid->bind($this->selecter->get_project_items($project_id), 'project_id') )
+			
+			$items_object = $this->selecter->get_project_items($project_id);
+			$items = array();
+			foreach ($items_object as $item_object)
+			{
+				$item = get_object_vars($item_object);
+				$item['user_fullname'] = $item['user_name'].' '.$item['user_surname'];
+				$items[] = $item;
+			}
+			
+			$users_object = $this->selecter->get_users(ROLE_ADMIN);
+			$users = array();
+			foreach ($users_object as $user_object)
+			{
+				$user = get_object_vars($user_object);
+				$user['user_fullname'] = $user['user_name'].' '.$user['user_surname'];
+				$users[] = $user;
+			}
+			
+			if( $grid->bind($items, 'project_item_id') )
 			{
 				$grid->add_url = "{$this->router->class}/add";
 				$grid->edit_url = "{$this->router->class}/edit";
 				$grid->remove_url = "{$this->router->class}/delete";
 
-				$grid->header('project_id')->editable = false;
-
+				$grid->header('project_item_id')->visible = false;
+				$grid->header('user_id')->visible = false;
+				$grid->header('user_name')->visible = false;
+				$grid->header('user_surname')->visible = false;
+				$grid->header('project_item_date')->editable = false;
+				$grid->header('project_item_date')->set_datetime('Y-m-d');
+				$grid->header('project_item_price')->set_numformat('{2:,: } EUR');
+				$grid->header('user_fullname')->component->type = 'combobox';
+				$grid->header('user_fullname')->component->bind($users, 'user_id', 'user_fullname');
 
 				$grid->display();
 			}

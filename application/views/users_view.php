@@ -17,13 +17,16 @@
 	foreach ($users_objects as $user)
 		$users[] = get_object_vars($user);
 	
-	//array_debug($this->selecter->get_payments_nopaid($users[1]['user_id']));
-	
 	switch ($flag)
 	{
 	case ROLE_OZ_MEMBER: // prvych n neuhradenych platieb
-		/*for ($i = 0; $i < count($users); ++$i);
-			$users[$i]['nopaid_payments'] = count($this->selecter->get_payments_nopaid($users[$i]['user_id']));*/
+		for ($i = 0; $i < count($users); ++$i)
+		{
+			$users[$i]['nopaid_payments'] = 0;
+			$payments = $this->selecter->get_payments_nopaid($users[$i]['user_id']);
+			foreach($payments as $p)
+				$users[$i]['nopaid_payments'] += $p->payment_total_sum;
+		}
 		break;
 	case ROLE_EX_MEMBER: // prvych n udalosti
 		break;
@@ -31,9 +34,20 @@
 		break;
 	}
 	
+	//array_debug($users);
+	
 	if( $grid->bind($users, 'user_id') )
 	{
-		$grid->header('user_id')->visible = false;
+		$grid->all_cols_visible(false);
+		$grid->header('user_name')->visible = true;
+		$grid->header('user_surname')->visible = true;
+		$grid->header('user_name')->set_anchor('users/detail', 'user_id');
+		$grid->header('user_surname')->set_anchor('users/detail', 'user_id');
+		$grid->header('user_email')->visible = true;
+		if ($flag == ROLE_OZ_MEMBER) $grid->header('user_phone')->visible = true;
+		if ($flag == ROLE_OZ_MEMBER) $grid->header('study_program_name')->visible = true;
+		if ($flag == ROLE_OZ_MEMBER) $grid->header('user_degree_year')->visible = true;
+		if (in_array($flag, array(ROLE_OZ_MEMBER, ROLE_LECTURER))) $grid->header('degree_name')->visible = true;
 		
 		$grid->add_url = "users/add";
 		$grid->edit_url = "users/edit";

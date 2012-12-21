@@ -219,6 +219,19 @@ class Grid
 	}
 	
 	/*
+	 * all_cols_visible
+	 * 
+	 * Metóda nastaví príslušnú viditelnosť pre všetky stĺpce gridu.
+	 *
+	 * @param state true/false.
+	 */
+	public function all_cols_visible($state)
+	{
+		foreach ($this->headCols as $col)
+			$col->visible = $state;
+	}
+	
+	/*
 	 * genjs
 	 * 
 	 * Metóda je volaná automaticky metódou display(). Jej úlohou je vygenerovať javascript, ktorý grid používa na add a edit priamo v gride.

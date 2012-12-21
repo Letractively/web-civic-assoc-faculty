@@ -15,7 +15,11 @@ DOROBI:
 	- message - CSS
 	- error hlášky - CSS
 	- navigacia - CSS
-
+	- project_edit_view - CSS
+	- project_edit_view - CSS
+	- project_detail - CSS
+	- project_categories_detail - CSS
+	
 Poznámky:
 	- GRID-y design + fix editu dátumov a súm
 
@@ -31,11 +35,7 @@ Poznámky:
 		HADAM OK- posts - fix add, edit + dorobi checkbox "zverejnit", pridat do view anchor na add
 		
 		- io_export - vyrobi
-		- project_categories_detail - dorobi grid + link na zmaz - stefan
-		- project_edit_view - grid, fix tlaèítka CSS -stefan
-		- project_detail - grid + tlaèidlá + tlaèidlá CSS -stefan
-		
 		- project_view - fix, nejde vıber kategórie	
 	
 	- OVERI:
-		- project_categories_detail - transakcie
+		
