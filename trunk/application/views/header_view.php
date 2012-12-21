@@ -46,7 +46,7 @@
 		<div id="main_navigation"> <!-- //main navigation -->
 		<?php $sender = $this->router->class; ?>
 			<?= anchor('auth', 'DOMOV', ($sender == 'auth' || $sender == 'pages') ? array('class' => 'selected') : null); ?>
-			<?= anchor('projects', 'PROJEKTY', $sender == 'projects' ? array('class' => 'selected') : null); ?>
+			<?= anchor('projects', 'PROJEKTY', in_array($sender, array('projects', 'project_categories')) ? array('class' => 'selected') : null); ?>
 			<?= anchor('events', 'UDALOSTI', $sender == 'events' ? array('class' => 'selected') : null); ?>
 			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>
 			<?= anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null); ?>
@@ -59,13 +59,13 @@
 			<?= anchor('pages/index/about', 'O nás', $view == 'pages_about_view' ? array('class' => 'selected') : null); ?>
 			<?= anchor('pages/index/contact', 'Kontakt', $view == 'pages_contact_view' ? array('class' => 'selected') : null); ?>	
 		</div>
-		<?php } else if (in_array($sender, array('administration', 'degrees', 'studies', 'email_types', 'payments', 'io_export', 'correspondence'))) { ?>
+		<?php } else if (in_array($sender, array('administration', 'degrees', 'studies', 'email_types', 'payments', 'io', 'correspondence'))) { ?>
 		<div id="secondary_navigation"> <!-- //secondary navigation -->
 			<?= anchor('degrees', 'Tituly', $sender == 'degrees' ? array('class' => 'selected') : null); ?>
 			<?= anchor('studies', 'Študijné programy', $sender == 'studies' ? array('class' => 'selected') : null); ?>
 			<?= anchor('email_types', 'E-mail typy', $sender == 'email_types' ? array('class' => 'selected') : null); ?>
 			<?= anchor('payments', 'Platby', $sender == 'payments' ? array('class' => 'selected') : null); ?>
-			<?= anchor('io_export', 'Export', $sender == 'io_export' ? array('class' => 'selected') : null); ?>
+			<?= anchor('io/export', 'Export', $sender == 'io' ? array('class' => 'selected') : null); ?>
 			<?= anchor('correspondence', 'Korešpondencia', $sender == 'correspondence' ? array('class' => 'selected') : null); ?>
 		</div>
 		<?php } ?>

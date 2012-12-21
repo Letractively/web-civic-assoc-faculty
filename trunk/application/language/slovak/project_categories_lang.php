@@ -21,5 +21,7 @@ $lang['pr_cat_move_to']         = 'Presun preč';
 
 $lang['btn_add_trans']          = 'Vykonaj transakciu';
 
+$lang['anchor_back']          = 'Návrat na projekty';
+
 /* End of file project_categories_lang.php */
 /* Location: ./application/language/slovak/project_categories_lang.php */
