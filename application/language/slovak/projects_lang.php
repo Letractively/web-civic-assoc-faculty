@@ -17,6 +17,9 @@ $lang['label_item']                         = 'Položka';
 $lang['label_price']                        = 'cena';
 $lang['label_user']                         = 'osoba';
 $lang['label_date']                         = 'kedy';
+$lang['label_fullname']                     = 'Meno a priezvisko';
+$lang['label_user_name']                    = 'Meno';
+$lang['label_user_surname']                 = 'priezvisko';
 
 $lang['anchor_edit_project']                  = 'Upraviť';
 $lang['anchor_delete_project']                = 'Zmazať';

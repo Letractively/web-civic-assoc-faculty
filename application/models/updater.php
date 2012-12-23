@@ -7,7 +7,7 @@ class Updater extends MY_Model
         $this->db->query("UPDATE degrees SET degree_name='".$values['degree_name']."',
                                               degree_grade='".$values['degree_grade']."'
                           WHERE degree_id=$degree_id");
-      if($this->db->affected_rows()>0){
+      if($this->db->affected_rows() > 0){
         return TRUE;
       }
       else{ return FALSE;}
@@ -67,10 +67,7 @@ class Updater extends MY_Model
     public function edit_payments($payment_id, $values)
     {
         $this->db->query("UPDATE payments
-                          SET payment_vs='".$values['vs']."',
-                              payment_user_id='".$values['user_id']."',
-                              payment_total_sum='".$values['total_sum']."',
-                              payment_paid_sum='".$values['paid_sum']."'
+                          SET payment_paid_sum='".$values['payment_paid_sum']."'
                           WHERE payment_id=$payment_id
                               ");
         

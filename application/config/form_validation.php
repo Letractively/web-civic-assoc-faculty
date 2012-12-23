@@ -217,44 +217,29 @@ $config = array(
     ),
     'payments/add'                      => array(
             array(
-                'field'     => 'vs',
+                'field'     => 'payment_vs',
                 'label'     => 'lang:label_vs',
                 'rules'     => 'trim|required|xss_clean|numeric'
             ),
             array(
-                'field'     => 'user_id',
+                'field'     => 'user_name',
                 'label'     => 'lang:label_user_id',
                 'rules'     => 'trim|required|xss_clean|numeric'
             ),
             array(
-                'field'     => 'total_sum',
+                'field'     => 'payment_total_sum',
                 'label'     => 'lang:label_total_sum',
                 'rules'     => 'trim|required|xss_clean|numeric'
             ),
             array(
-                'field'     => 'paid_sum',
+                'field'     => 'payment_paid_sum',
                 'label'     => 'lang:label_paid_sum',
                 'rules'     => 'trim|required|xss_clean|numeric'
             )
     ),
     'payments/edit'                      => array(
             array(
-                'field'     => 'vs',
-                'label'     => 'lang:label_vs',
-                'rules'     => 'trim|required|xss_clean|numeric'
-            ),
-            array(
-                'field'     => 'user_id',
-                'label'     => 'lang:label_user_id',
-                'rules'     => 'trim|required|xss_clean|numeric'
-            ),
-            array(
-                'field'     => 'total_sum',
-                'label'     => 'lang:label_total_sum',
-                'rules'     => 'trim|required|xss_clean|numeric'
-            ),
-            array(
-                'field'     => 'paid_sum',
+                'field'     => 'payment_paid_sum',
                 'label'     => 'lang:label_paid_sum',
                 'rules'     => 'trim|required|xss_clean|numeric'
             )

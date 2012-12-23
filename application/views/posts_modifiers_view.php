@@ -10,6 +10,7 @@
     $grid->header('user_name')->text = $this->lang->line('user_name');
     $grid->header('user_surname')->text = $this->lang->line('user_surname');
     $grid->header('post_modifie_date')->text = $this->lang->line('label_post_date');
+    $grid->header('post_modifie_date')->set_datetime('Y-m-d H:i:s', 'd.m.Y H:i');
     $grid->display();
     
     echo anchor('posts/detail/'.$post_id, $this->lang->line('detail'));

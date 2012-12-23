@@ -49,6 +49,15 @@
 		if ($flag == ROLE_OZ_MEMBER) $grid->header('user_degree_year')->visible = true;
 		if (in_array($flag, array(ROLE_OZ_MEMBER, ROLE_LECTURER))) $grid->header('degree_name')->visible = true;
 		
+                $grid->header('user_name')->text = $this->lang->line('label_name');
+                $grid->header('user_surname')->text = $this->lang->line('label_surname');
+                $grid->header('user_email')->text = $this->lang->line('label_email');
+                $grid->header('user_phone')->text = $this->lang->line('label_phone');
+                $grid->header('study_program_name')->text = $this->lang->line('label_study_program_id');
+                $grid->header('user_degree_year')->text = $this->lang->line('label_degree_year');
+                $grid->header('degree_name')->text = $this->lang->line('label_degree_id');
+                
+                
 		$grid->add_url = "users/add";
 		$grid->edit_url = "users/edit";
 		$grid->remove_url = "users/delete";
