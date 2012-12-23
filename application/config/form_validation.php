@@ -390,46 +390,36 @@ $config = array(
     ),
     'projects/add_project_item'                 => array(
             array(
-                'field'     => 'name',
+                'field'     => 'project_item_name',
                 'label'     => 'lang:label_item',
                 'rules'     => 'trim|required|xss_clean'
             ),
             array(
-                'field'     => 'price',
+                'field'     => 'project_item_price',
                 'label'     => 'lang:label_price',
                 'rules'     => 'trim|required|xss_clean|numeric'
             ),
             array(
-                'field'     => 'user',
+                'field'     => 'user_fullname',
                 'label'     => 'lang:label_user',
                 'rules'     => 'trim|required|xss_clean|numeric'
-            ),
-            array(
-                'field'     => 'date',
-                'label'     => 'lang:label_date',
-                'rules'     => 'trim|required|xss_clean'
             )
     ),
     'projects/edit_project_item'                 => array(
             array(
-                'field'     => 'name',
+                'field'     => 'project_item_name',
                 'label'     => 'lang:label_item',
                 'rules'     => 'trim|required|xss_clean'
             ),
             array(
-                'field'     => 'price',
+                'field'     => 'project_item_price',
                 'label'     => 'lang:label_price',
                 'rules'     => 'trim|required|xss_clean|numeric'
             ),
             array(
-                'field'     => 'user',
+                'field'     => 'user_fullname',
                 'label'     => 'lang:label_user',
                 'rules'     => 'trim|required|xss_clean|numeric'
-            ),
-            array(
-                'field'     => 'date',
-                'label'     => 'lang:label_date',
-                'rules'     => 'trim|required|xss_clean'
             )
     ),
     'studies/add'                               => array(
