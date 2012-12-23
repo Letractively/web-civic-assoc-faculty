@@ -106,9 +106,9 @@
 			
 			if( $grid->bind($items, 'project_item_id') )
 			{
-				$grid->add_url = "{$this->router->class}/add";
-				$grid->edit_url = "{$this->router->class}/edit";
-				$grid->remove_url = "{$this->router->class}/delete";
+				$grid->add_url = "{$this->router->class}/add_project_item";
+				$grid->edit_url = "{$this->router->class}/edit_project_item";
+				$grid->remove_url = "{$this->router->class}/delete_project_item";
 
 				$grid->header('project_item_id')->visible = false;
 				$grid->header('user_id')->visible = false;
@@ -120,6 +120,11 @@
 				$grid->header('user_fullname')->component->type = 'combobox';
 				$grid->header('user_fullname')->component->bind($users, 'user_id', 'user_fullname');
 
+                                $grid->header('project_item_name')->text = $this->lang->line('label_item');
+                                $grid->header('project_item_price')->text = $this->lang->line('label_price');
+                                $grid->header('project_item_date')->text = $this->lang->line('label_date');
+                                $grid->header('user_fullname')->text = $this->lang->line('label_fullname');
+                                
 				$grid->display();
 			}
 		?>

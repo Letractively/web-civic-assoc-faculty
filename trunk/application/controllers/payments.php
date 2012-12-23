@@ -106,7 +106,8 @@ class Payments extends MY_Controller
          */
         public function edit($pay_id)
         {
-            parent::edit('edit_payments', $pay_id, $this->router->class, $this->router->method);
+            //array_debug($this->input->post());
+            parent::edit('edit_payments', $pay_id, 'operation_edit');
 
             $data = array(
                 'pay_id'    => $pay_id

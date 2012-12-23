@@ -128,35 +128,37 @@ abstract class MY_Controller extends CI_Controller
         
     }
     
-    protected function add_param( $method, $id, $class_valid, $method_valid )
+    protected function add_param( $method, $id, $submit = 'submit')
     {
+        echo $this->router->method;
         /*if( !$this->userdata->is_admin() )
             redirect(base_url());*/
-        $this->load->model('selecter');
+       /* $this->load->model('selecter');
         $this->load->model('inserter');
         
-        if( $this->input->post('submit') )
+        if( $this->input->post( $submit ) )
         {
-            if( $this->form_validation->run("{$class_valid}/{$method_valid}") )
+            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
                 $this->inserter->$method( $id, $this->input->post() );
-                redirect( $class_valid );
+                redirect( $this->router->class );
             }
-        }
+        }*/
     }
     
     protected function edit( $method, $id, $submit = 'submit' )
     {
         if( $id == '')
             redirect ('404');
-        
-        /*if( !$this->userdata->is_admin() )
-            redirect(base_url());*/
+
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
         
         if ( $this->input->post($submit) )
 	{
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
+                array_debug($this->input->post());
                 $this->load->model('updater');
                 $this->updater->$method( $id, $this->input->post() );
                     redirect( $this->router->class );

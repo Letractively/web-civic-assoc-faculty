@@ -48,6 +48,12 @@
 			$grid->header('user_id')->visible = false;
 			$grid->header('project_item_date')->set_datetime('Y-m-d');
 
+                        $grid->header('project_item_name')->text = $this->lang->line('label_item');
+                        $grid->header('project_item_price')->text = $this->lang->line('label_price');
+                        $grid->header('project_item_date')->text = $this->lang->line('label_date');
+                        $grid->header('user_name')->text = $this->lang->line('label_user_name');
+                        $grid->header('user_surname')->text = $this->lang->line('label_user_surname');
+                        
 			$grid->display();
 		}
 	?>
