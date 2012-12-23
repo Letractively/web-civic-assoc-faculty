@@ -11,6 +11,7 @@
             echo '<div class="post" id='.$event->event_id.'>';
                 echo $event->event_name.'<br />';
                 echo perex_from_content($event->event_about).'...<br />';
+                echo '<br />';
             echo '</div>'; 
             $counter++;
         }
@@ -26,6 +27,7 @@
             echo '<div class="event" id='.$post->post_id.'>';
                 echo $post->post_title.'<br />';
                 echo perex_from_content($post->post_content).'...<br />';
+                echo '<br />';
             echo '</div>'; 
             $counter++;
         }
