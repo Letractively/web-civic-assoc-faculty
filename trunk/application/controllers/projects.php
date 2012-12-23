@@ -61,7 +61,7 @@ class Projects extends MY_Controller
         public function add_project_item( $project_id )
         {
             array_debug($project_id);
-            /*
+            
             parent::add_param('add_project_item', $project_id, 'operation_add');
 
             $data = array(
@@ -69,12 +69,12 @@ class Projects extends MY_Controller
                 'project_id'        => $project_id
             );
 
-            $this->load->view('container', array_merge($this->data, $data)); */
+            $this->load->view('container', array_merge($this->data, $data)); 
         }
 
         public function edit( $project_id )
         {
-            parent::edit('edit_project', $project_id, $this->router->class, $this->router->method);
+            parent::edit('edit_project', $project_id);
 
             $data = array(
                 'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
@@ -88,14 +88,15 @@ class Projects extends MY_Controller
 
         public function edit_project_item( $project_id )
         {
-            parent::edit('edit_project_item', $project_id, $this->router->class, $this->router->method);
+            //array_debug($project_id);
+            parent::edit('edit_project_item', $project_id, 'operation_edit');
 
             $data = array(
                 'view'              => "{$this->router->class}_edit_view",
                 'project_id'        => $project_id
             );
 
-            $this->load->view('container', array_merge($this->data, $data)); 
+            $this->load->view('container', array_merge($this->data, $data));
         }
         
         public function edit_project_closed( $project_id )

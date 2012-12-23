@@ -148,13 +148,13 @@ abstract class MY_Controller extends CI_Controller
     
     protected function edit( $method, $id, $submit = 'submit' )
     {
-        if( $id == '')
+        /*if( $id == '')
             redirect ('404');
 
         if( !$this->userdata->is_admin() )
-            redirect(base_url());
+            redirect(base_url());*/
         
-        if ( $this->input->post($submit) )
+        if ( $this->input->post( $submit ) )
 	{
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
