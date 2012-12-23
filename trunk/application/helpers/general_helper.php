@@ -40,6 +40,8 @@ function array_debug($arr, $return = false)
  * @param data vstupne pole udajov
  * @param id_index key v poli
  * @param value_index value ktora prislucha danemu key
+ * @param css_class názov class selektora pre css, defaultne sa nepoužíva
+ * @param attributes dodatoèné atribúty pre element, zadávaju sa vo forme stringu formou 'atribut1="hodnota1", atribut2="hodnota2", ...'
  * @return form_dropdown menu
  *  
  *//*
@@ -57,7 +59,7 @@ function gen_dropdown($name, $id_selected, $data, $id_index, $value_index)
 	return form_dropdown($name, $options, $id_selected);
 }*/
 
-function gen_dropdown($name, $id_selected, $data, $id_index, $value_index, $css_class = '')
+function gen_dropdown($name, $id_selected, $data, $id_index, $value_index, $css_class = '', $attributes = '')
 {
 	$options = array();
 	
@@ -70,8 +72,13 @@ function gen_dropdown($name, $id_selected, $data, $id_index, $value_index, $css_
 	
 	$css = 'class="'.$css_class.'"';
 	if ($css_class != '')
-		return form_dropdown($name, $options, $id_selected, $css);
-	else return form_dropdown($name, $options, $id_selected);
+	{
+		if ($attributes == '')
+			return form_dropdown($name, $options, $id_selected, $css);
+		else
+			return form_dropdown($name, $options, $id_selected, $css.' '.$attributes);
+	}
+	else return form_dropdown($name, $options, $id_selected, $attributes);
 }
 
 function year($date){
