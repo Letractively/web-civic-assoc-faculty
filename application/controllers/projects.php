@@ -26,10 +26,11 @@ class Projects extends MY_Controller
          * @return      void
          * 
          */
-        public function index()
+		public function index($pr_cat_id = 0)
         {
             $data = array(
                 'view'              => "{$this->router->class}_view",
+				'category_id'		=> $pr_cat_id
             );
             $this->load->view('container', array_merge($this->data, $data));
         }

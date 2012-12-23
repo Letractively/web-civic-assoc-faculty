@@ -1,8 +1,10 @@
 <?php
+$lang['caption_all']          = 'Všetky';
 
 $lang['anchor_project_categories']          = 'Kategórie projektov';
 
 $lang['label_name']                         = 'Názov projektu';
+$lang['label_category_name']				= 'Kategória';
 $lang['label_about']                        = 'Popis';
 $lang['label_priority']                     = 'Priorita';
 $lang['label_project_category_id']          = 'Kategória';
