@@ -263,6 +263,17 @@ class Grid
 			}
 		?>
 		
+		var cells = new Array(); // generuje pre js informaciu o komponente na danych stlpcoch
+		<?php
+			$row_num = 0;
+			foreach ($this->rows as $row)
+			{
+				echo 'cells["'.$row->cells[$this->unique].'"] = new Array()'."\n";
+				foreach ($row->cells as $index => $value)
+					echo 'cells["'.$row->cells[$this->unique].'"]["'.$index.'"] = "'.$value.'"'."\n";
+			}
+		?>
+		
 		var combobox_dataSources = new Array(); // generuje pre js zdroje dat pre comboboxove stlpce
 		// toto pole sa indexuje id-ckami kontretnych stlpcov
 		// na danom indexe je pole typu [id,value]
@@ -291,8 +302,8 @@ class Grid
 		// id - id elementu, do ktoreho sa ma pichut textbox
 		function changeToTextbox(name, id)
 		{
-			var elem = document.getElementById(id);
-			var old_val = elem.innerHTML;
+			var elem = document.getElementById(name+id);
+			var old_val = cells[id][name];
 			elem.innerHTML = '';
 			var textbox = document.createElement('input');
 			textbox.setAttribute('type','text');
@@ -389,7 +400,7 @@ class Grid
 				if (cols[col] == 'textbox')
 				{
 					removeAllChildsIfExist(col+id);
-					changeToTextbox(col, col+id);
+					changeToTextbox(col, id);
 				}
 				else if (cols[col] == 'combobox')
 				{

@@ -30,6 +30,8 @@
             $grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
             $grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
             $grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
+			$grid->header('payment_total_sum')->set_numformat('{2:,: } €');
+            $grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
             $grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
             $grid->header('payment_paid_time')->set_datetime();
             $grid->add_url = "{$this->router->class}/add";
@@ -50,6 +52,8 @@
             $grid->header('payment_vs')->editable = false;
             $grid->header('payment_total_sum')->editable = false;
             $grid->header('payment_paid_time')->editable = false;
+			$grid->header('payment_total_sum')->set_numformat('{2:,: } €');
+            $grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
             $grid->header('user_name')->text = $this->lang->line('label_user_id');
             $grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
             $grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
@@ -75,6 +79,8 @@
             $grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
             $grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
             $grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
+			$grid->header('payment_total_sum')->set_numformat('{2:,: } €');
+            $grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
             $grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
 			$grid->header('payment_paid_time')->set_datetime();
             $grid->add_url = "{$this->router->class}/add";
