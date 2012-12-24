@@ -141,7 +141,7 @@ class Updater extends MY_Model
                           SET project_item_name='".$values['name']."',
                               project_item_price='".$values['price']."',
                               project_item_user_id='".$values['user_id']."',
-                              project_item_date='".$values['date']."',
+                              project_item_date='".date('Y-m-d')."'
                           WHERE project_item_id=$pr_item_id
                               ");
         

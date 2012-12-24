@@ -265,12 +265,14 @@ class Grid
 		
 		var cells = new Array(); // generuje pre js informaciu o komponente na danych stlpcoch
 		<?php
-			$row_num = 0;
+			echo 'cells["0"] = new Array();'."\n";
+			foreach ($this->headCols as $index => $col)
+				echo 'cells["0"]["'.$index.'"] = "";'."\n";
 			foreach ($this->rows as $row)
 			{
-				echo 'cells["'.$row->cells[$this->unique].'"] = new Array()'."\n";
+				echo 'cells["'.$row->cells[$this->unique].'"] = new Array();'."\n";
 				foreach ($row->cells as $index => $value)
-					echo 'cells["'.$row->cells[$this->unique].'"]["'.$index.'"] = "'.$value.'"'."\n";
+					echo 'cells["'.$row->cells[$this->unique].'"]["'.$index.'"] = "'.$value.'";'."\n";
 			}
 		?>
 		
