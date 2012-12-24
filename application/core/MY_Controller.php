@@ -131,9 +131,9 @@ abstract class MY_Controller extends CI_Controller
     protected function add_param( $method, $id, $submit = 'submit')
     {
         echo $this->router->method;
-        /*if( !$this->userdata->is_admin() )
-            redirect(base_url());*/
-       /* $this->load->model('selecter');
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
+        $this->load->model('selecter');
         $this->load->model('inserter');
         
         if( $this->input->post( $submit ) )
@@ -143,16 +143,16 @@ abstract class MY_Controller extends CI_Controller
                 $this->inserter->$method( $id, $this->input->post() );
                 redirect( $this->router->class );
             }
-        }*/
+        }
     }
     
     protected function edit( $method, $id, $submit = 'submit' )
     {
-        /*if( $id == '')
+        if( $id == '')
             redirect ('404');
 
         if( !$this->userdata->is_admin() )
-            redirect(base_url());*/
+            redirect(base_url());
         
         if ( $this->input->post( $submit ) )
 	{
@@ -163,8 +163,8 @@ abstract class MY_Controller extends CI_Controller
                 $this->updater->$method( $id, $this->input->post() );
                     redirect( $this->router->class );
             }
-            //else
-               // redirect( $this->router->class );
+            else
+               redirect( $this->router->class );
         }
     }
 
@@ -173,8 +173,8 @@ abstract class MY_Controller extends CI_Controller
         if( $id == '')
             redirect ('404');
         
-        /*if( !$this->userdata->is_admin() )
-            redirect(base_url());*/
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
         
         $action = $this->input->post('submit_action');
         

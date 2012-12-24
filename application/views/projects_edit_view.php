@@ -81,7 +81,14 @@
 		</div>
 	<!--end-->
 
-		<?php
+		<div class="inputitem">
+			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit1'), $this->lang->line('button_edit_project')) ?>
+		
+			<?= form_submit(array('type'=>'submit', 'name' => 'close', 'class' => 'button_close'), $this->lang->line('button_close_project')) ?>
+		</div>
+	<?= form_close() ?>
+	
+	<?php
 			$this->load->library('grid');
 			
 			$grid = new Grid();
@@ -106,9 +113,9 @@
 			
 			if( $grid->bind($items, 'project_item_id') )
 			{
-				$grid->add_url = "{$this->router->class}/add_project_item";
-				$grid->edit_url = "{$this->router->class}/edit_project_item";
-				$grid->remove_url = "{$this->router->class}/delete_project_item";
+				$grid->add_url = base_url()."projects/add_project_item/$project_id";
+				$grid->edit_url = base_url()."projects/edit_project_item/$project_id";
+				$grid->remove_url = "projects/delete_project_item/$project_id";
 
 				$grid->header('project_item_id')->visible = false;
 				$grid->header('user_id')->visible = false;
@@ -128,13 +135,7 @@
 				$grid->display();
 			}
 		?>
-
-		<div class="inputitem">
-			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit1'), $this->lang->line('button_edit_project')) ?>
-		
-			<?= form_submit(array('type'=>'submit', 'name' => 'close', 'class' => 'button_close'), $this->lang->line('button_close_project')) ?>
-		</div>
-	<?= form_close() ?>
+	
         <?php
             echo anchor('projects/', $this->lang->line('to_projects'));
         ?>

@@ -8,7 +8,7 @@
   	<meta name="keywords" content="obcianske zdruzenie, exkurzie, FMFI, uniba" />
         <meta name="author" content="TIS: Tutifruty Team" />
         <title><?= $title ?></title>
-        <link href="<?= base_url(); ?>/assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="<?= base_url(); ?>../assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
     </head>
     <body>
 		<noscript><?= $this->lang->line('no_js'); ?></noscript>

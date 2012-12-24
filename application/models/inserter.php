@@ -180,7 +180,7 @@ class Inserter extends MY_Model
     {
        $this->db->query("INSERT INTO project_items
                            (project_item_project_id, project_item_name, project_item_price, project_item_user_id,project_item_date)
-                           VALUES ('".$pr_id."','".$values['name']."','".$values['price']."','".$values['user_id']."','".$values['date']."')
+                           VALUES ('".$pr_id."','".$values['name']."','".$values['price']."','".$values['user_id']."','".date('Y-m-d')."')
                          ");
        if($this->db->affected_rows()>0){ 
         return TRUE;
