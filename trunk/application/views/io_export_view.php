@@ -17,7 +17,7 @@
 <?= form_open("io/export") ?>
 	<div class="inputitem">
 		<p class="label"> <label for="table"><?= $this->lang->line('label_table') ?></label> </p>
-		<?= gen_dropdown('table', set_value('id'), $tables, 'id', 'name'); ?>
+		<?= gen_dropdown('datasource', set_value('id'), $tables, 'id', 'name'); ?>
 	</div>
 	
 	<div class="inputitem">
