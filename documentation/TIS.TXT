@@ -1,9 +1,5 @@
 Pri commite ned·vam container.php, config.php a htacces
 
-Nadizajnovaù:
-GRID wrapper:
-	- project_categories_view
-
 DOROBIç:
 	- auth_registration_view - dropdown na roky
 	- auth_view - Mino
@@ -41,7 +37,6 @@ Pozn·mky:
 	
 	- do message.php dorobit vedla imagu nazov (varovanie, informacia)
 	- administration_view - co tam chceme zobrazovat
-	- events_view - nefunguje spravne funkcia tlacidiel
 	
 	
 	- OVERIç:
