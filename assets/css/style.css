@@ -338,22 +338,11 @@ body {
    background: -o-linear-gradient(top, black, #880d0d, #fecc78); /* Opera 11.10+ */
 }
 
-#main_navigation a:active {
-	background: -webkit-linear-gradient(top, black, #fecc78, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
-   background: -moz-linear-gradient(top, black, #fecc78, #fecc78); /* Firefox 3.6+ */
-   background: -ms-linear-gradient(top, black, #fecc78, #fecc78); /* IE 10 */
-   background: -o-linear-gradient(top, black, #fecc78, #fecc78); /* Opera 11.10+ */
-}
-
-#main_navigation a:??? {
+#main_navigation .selected {
 	background: -webkit-linear-gradient(top, black, #fecc78, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
    background: -moz-linear-gradient(top, black, #fecc78, #fecc78); /* Firefox 3.6+ */
    background: -ms-linear-gradient(top, black, #fecc78, #fecc78); /* IE 10 */
    background: -o-linear-gradient(top, black, #fecc78, #fecc78); /* Opera 11.10+ */	
-}
-
-.selected {
-	color: white;
 }
 
 /****** Obsah ******/
