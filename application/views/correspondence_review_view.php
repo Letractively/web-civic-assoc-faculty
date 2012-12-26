@@ -1,6 +1,6 @@
 ﻿<?php
 	$this->load->library('grid');
-
+	
 	$grid = new Grid();
 
 	if ( $grid->bind($this->selecter->get_users_filter($get), 'user_id') )
@@ -13,6 +13,8 @@
 		$grid->header('study_program_name')->text = 'študijný program';
 		$grid->header('user_email')->text = 'email';
 	}
-	
-	$grid->display();
+
+	echo '<div id="grid_wrapper">';
+		$grid->display();
+	echo '</div>';
 ?>

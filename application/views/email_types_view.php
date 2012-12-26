@@ -12,8 +12,9 @@
         $grid->header('email_type_id')->editable = false;
         $grid->header('email_type_id')->visible = false;
         $grid->header('email_type_name')->text = $this->lang->line('label_name');
-
-        $grid->display();
     }
-    
+	
+	echo '<div id="grid_wrapper">';
+		$grid->display();
+	echo '</div>';
 ?>

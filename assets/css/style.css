@@ -103,14 +103,6 @@ root {
 
 /************** WEB DESIGN CSS **************/
 
-.inputitem label.error {
-color: #e21313;
-}
-
-.inputitem .input.error {
-border: 1px solid #e21313;
-}
-
 /****** Telo ******/
 body {
 	/* background-color: #fecc78; */
@@ -121,8 +113,6 @@ body {
 	background-repeat: no-repeat;
 	font-family: "Arial";
 	overflow-y: scroll;
-	height: 100% !important;
-	max-height: 100%;
 	margin: 0;
 	padding: 0;
 }
@@ -388,14 +378,25 @@ body {
 }
 
 #content_wrapper {
-	/* border: 1px solid black; */
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 35px;
 	margin-top: 25px;
 	padding: 15px;
-	/*box-shadow: 10px 10px 50px black;*/
+	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
+	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
+	box-shadow: 5px 5px 20px 10px #2e2e2e;	 
+}
+
+#grid_wrapper {
+	min-width: 150px;
+	max-width: 850px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 35px;
+	margin-top: 25px;
+	padding: 25px 10px 25px 10px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
 	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
 	box-shadow: 5px 5px 20px 10px #2e2e2e;	 
@@ -403,7 +404,18 @@ body {
 
 /** Vstupne udaje **/
 .inputitem {
-	margin: 10px 0px 2px 0px;		
+	margin: 10px 15px 2px 15px;
+}
+
+.inputitem label.error {
+	color: #e21313;
+}
+
+.inputitem .input_data.error {
+	border-top: solid 3px #e21313;
+	border-left: solid 3px #e21313;
+	border-bottom: solid 2px #e21313;
+	border-right: solid 2px #e21313;
 }
 
 .label {	
@@ -417,6 +429,38 @@ body {
 	border-radius: 5px;
 	padding: 0px 10px;
 	font-size: 15px;
+	border-top: solid 3px #2e2e2e;
+	border-left: solid 3px #2e2e2e;
+	border-bottom: solid 2px gray;
+	border-right: solid 2px gray;
+}
+
+.dropdown {
+	width: 275px;
+	height: 25px;
+	font-size: 15px;
+	border-top: solid 3px #2e2e2e;
+	border-left: solid 3px #2e2e2e;
+	border-bottom: solid 2px gray;
+	border-right: solid 1px gray;	
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	outline: none;
+	padding-left: 10px;
+}
+
+.dropdown_priority {
+	width: 190px;
+	height: 25px;
+	font-size: 15px;
+	border-top: solid 3px #2e2e2e;
+	border-left: solid 3px #2e2e2e;
+	border-bottom: solid 2px gray;
+	border-right: solid 1px gray;	
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	outline: none;
+	padding-left: 10px;	
 }
 
 .input_data_date {
@@ -424,7 +468,11 @@ body {
 	height: 20px;
 	border-radius: 5px;
 	padding: 0px 10px;
-	font-size: 15px;	
+	font-size: 15px;
+	border-top: solid 3px #2e2e2e;
+	border-left: solid 3px #2e2e2e;
+	border-bottom: solid 2px gray;
+	border-right: solid 2px gray;	
 }
 
 .input_data_time {
@@ -433,14 +481,22 @@ body {
 	border-radius: 5px;
 	padding: 0px 10px;
 	font-size: 15px;
+	border-top: solid 3px #2e2e2e;
+	border-left: solid 3px #2e2e2e;
+	border-bottom: solid 2px gray;
+	border-right: solid 2px gray;
 }
 
 .input_data_date_time {
-	width: 115px;
+	width: 165px;
 	height: 20px;
 	border-radius: 5px;
 	padding: 0px 10px;
 	font-size: 15px;
+	border-top: solid 3px #2e2e2e;
+	border-left: solid 3px #2e2e2e;
+	border-bottom: solid 2px gray;
+	border-right: solid 2px gray;
 }
 
 .input_data_reg {
@@ -449,13 +505,17 @@ body {
 	border-radius: 7px;
 	padding: 0px 10px;
 	text-align: center;
+	border-top: solid 2px #2e2e2e;
+	border-left: solid 2px #2e2e2e;
+	border-bottom: solid 1px gray;
+	border-right: solid 1px gray;
 }
 
 .textarea_data {
-	min-width: 350px;
-	max-width: 350px;
-	min-height: 170px;
-	max-height: 170px;
+	min-width: 540px;
+	max-width: 540px;
+	min-height: 225px;
+	max-height: 225px;
 	border-radius: 5px;
 	padding: 5px 10px;
 	font-size: 15px;
@@ -467,12 +527,14 @@ body {
 
 /** Tlacidla **/
 .button_submit {
-	width: 150px;
-	height: 30px;
+	width: 170px;
+	height: 35px;
 	border-radius: 25px;
 	border: 2px solid black;
+	font-size: 18px;
 	font-family: "Arial Black";
-	background-color: silver;	
+	background-color: silver;
+	margin-bottom: 15px;	
 }
 
 .button_submit:hover {
@@ -486,63 +548,78 @@ body {
 	font-family: "Arial black";
 }
 
-.btn_add {
+.button_add {
 	width: 120px;
-	height: 20px;
-	border: 1px solid black;
+	height: 22px;
+	border: 2px solid black;
 	background-color: silver;
 	text-align: center;
-	border-radius: 10px;
+	border-radius: 15px;
 	margin: 5px 0px;
+	padding-top: 3px;
 }
 
 .button_edit {
-	width: 120px;
-	height: 20px;
+	width: auto;
+	min-width: 120px;
+	max-width: 300px;
+	height: 22px;
 	display: inline-block;
-	border: 1px solid black;
+	border: 2px solid black;
 	background-color: silver;
 	text-align: center;
 	border-radius: 10px;
 	margin: 5px 5px;
-}
-
-.button_edit1 {
-	width: 120px;
-	height: 20px;
-	display: inline-block;
-	border: 1px solid black;
-	background-color: silver;
-	text-align: center;
-	border-radius: 10px;
-	margin: 5px 5px;
-	font-size: 16px;
-	font-weight: bolder;		
+	padding: 0px 10px;
 }
 
 .button_delete {
 	width: 120px;
-	height: 20px;
+	height: 22px;
 	display: inline-block;
-	border: 1px solid black;
+	border: 2px solid black;
 	background-color: silver;
 	text-align: center;
 	border-radius: 10px;
 	margin: 5px 5px;
+	padding: 0px 10px;
 }
 
 .button_close {
 	width: 120px;
-	height: 20px;
+	height: 22px;
 	display: inline-block;
-	border: 1px solid black;
+	border: 2px solid black;
 	background-color: silver;
 	text-align: center;
 	border-radius: 10px;
 	margin: 5px 5px;
+	padding: 0px 10px;
 	font-size: 16px;
 	font-weight: bolder;
 	color: red;
+}
+
+.button_back {
+	width: 150px;
+	height: 22px;
+	display: inline-block;
+	border: 2px solid black;
+	background-color: silver;
+	text-align: center;
+	border-radius: 10px;
+	margin: 5px 5px;
+	padding: 0px 10px;
+}
+
+.button_add:hover {
+	background-color: #fecc78;
+	background-image: url(images/linear_bg_1.png);
+	background-repeat: repeat-y;
+	background: -webkit-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Safari 5.1+ ; Chrome 10+ */
+   background: -moz-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* IE 10 */
+   background: -o-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Opera 11.10+ */		
 }
 
 /** Odkazy **/
@@ -550,13 +627,15 @@ body {
 	display: block;
 	width: 150px;
 	margin-top: 10px;
+	margin-left: 15px;
 	font-family: "Comic Sans MS";
 	text-decoration: none;
 	text-align: center;
-	border: 1px solid black;
+	border: 2px solid black;
 	border-radius: 25px;
 	background-color: silver;
 	color: black;
+	padding: 2px 0px;
 }
 
 .link_text a {
@@ -574,15 +653,50 @@ body {
 	display: block;
 	font-size: 16px;
 	font-weight: bolder;
+	padding: 2px 0px;
 }
 
 .button_delete a {
 	text-decoration: none;
-	color: red;
+	color: #bf0000;
 	display: block;
 	font-size: 16px;
 	font-weight: bolder;
+	padding: 2px 0px;
 }
+
+.button_back a {
+	text-decoration: none;
+	color: black;
+	display: block;
+	font-size: 16px;
+	font-weight: bolder;
+	padding: 2px 0px;
+}
+
+.link_button a:hover {
+	background-color: #fecc78;
+	background-image: url(images/linear_bg_1.png);
+	background-repeat: repeat-y;
+	background: -webkit-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Safari 5.1+ ; Chrome 10+ */
+   background: -moz-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* IE 10 */
+   background: -o-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Opera 11.10+ */	
+}
+
+.button_edit a:hover, .button_delete a:hover, .button_back a:hover {
+	margin: 0px -10px;
+	height: 18px;
+	border-radius: 8px;
+	background-color: #fecc78;
+	background-image: url(images/linear_bg_1.png);
+	background-repeat: repeat-y;
+	background: -webkit-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Safari 5.1+ ; Chrome 10+ */
+   background: -moz-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* IE 10 */
+   background: -o-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Opera 11.10+ */	
+}
+
 
 /****** Paticka ******/
 #footer {
@@ -610,6 +724,7 @@ body {
 	margin-right: 50px;
 }
 
+
 /****** Event detail view ******/
 .event_category {
 	margin: 5px 0px;
@@ -623,19 +738,7 @@ body {
 	font-family: "Arial Black";
 }
 
-.event_body {
-	margin: 5px 0px 5px 10px;
-}
-
-.event_time {
-	margin: 5px 0px 5px 10px;
-}
-
-.event_priority {
-	margin: 5px 0px 5px 10px;
-}
-
-.event_add_info {
+.event_body, .event_time, .event_priority, .event_add_info {
 	margin: 5px 0px 5px 10px;
 }
 
@@ -652,19 +755,7 @@ body {
 	color: blue;
 }
 
-.project_about {
-	margin: 5px 0px 5px 10px;	
-}
-
-.project_priority {
-	margin: 5px 0px 5px 10px;	
-}
-
-.project_booked_cash {
-	margin: 5px 0px 5px 10px;	
-}
-
-.post_modifie_info {
+.project_about, .project_priority, .project_booked_cash, .post_modifie_info {
 	margin: 5px 0px 5px 10px;	
 }
 
@@ -676,36 +767,49 @@ body {
 
 /****** Message graphic ******/
 #confirm_message {
-	
+
 }
 
-.message_image {
-	background-image: url(../img/confirm_inform.png);
-	background-repeat: no-repeat;
-	height: 60px;
+.set_image {
+	height: 48px;
+	margin-left: 10px;
 }
+
+.set_title {
+	font-family: "Arial Black";
+}
+
+.set_text {
+	margin-left: 10px;
+}
+
+.yes_no_buttons {
+	display: inline-block;
+	height: 25px;
+	width: 120px;
+	padding: 3px 0px;
+	border-radius: 10px;
+	margin: 15px 5px 10px 5px;
+	background-color: silver;
+	border: solid 1px black;
+	text-align: center;
+	font-weight: bolder;
+	font-size: 16px;
+	font-weight: bolder;
+}
+
+.yes_no_buttons:hover {
+	background-color: #fecc78;
+	background-image: url(images/linear_bg_1.png);
+	background-repeat: repeat-y;
+	background: -webkit-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Safari 5.1+ ; Chrome 10+ */
+   background: -moz-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* IE 10 */
+   background: -o-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Opera 11.10+ */	
+}
+
 
 /****** Rusenie zltych ramikov v Google CHROME ******/
-.input_data:focus {
-	outline: none;
-}
-
-.input_data_date:focus {
-	outline: none;
-}
-
-.input_data_time:focus {
-	outline: none;
-}
-
-.input_data_reg:focus {
-	outline: none;
-}
-
-.textarea_data:focus {
-	outline: none;
-}
-
-.input_data_date_time {
+.input_data:focus, .input_data_date:focus, .input_data_time:focus, .input_data_reg:focus, .textarea_data:focus, .input_data_date_time {
 	outline: none;
 }

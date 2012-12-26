@@ -38,13 +38,13 @@
 	<?= form_open("events/edit/".$event_id) ?>
 		<div class="inputitem">
 			<p class="label"> <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label> </p>
-			<?= gen_dropdown('event_category_id', set_value('event_category_id', $field->event_event_category_id),$this->selecter->get_event_categories(),'event_category_id','event_category_name'); ?>
+			<?= gen_dropdown('event_category_id', set_value('event_category_id', $field->event_event_category_id),$this->selecter->get_event_categories(),'event_category_id','event_category_name', 'dropdown'); ?>
 		</div>
 
 	 <!--generovat prioritu-->
 		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
-			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value'); ?>
+			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value', 'dropdown_priority'); ?>
 		</div>
 	 <!--end-->
 	 
@@ -77,12 +77,12 @@
 		</div>
 
 		
-
+		<div class="inputitem">
+		     <?php echo '<p class="button_back">'; echo anchor('events/', $this->lang->line('to_events')); echo '</p>'; ?>
+		</div>
+		
 		<div class="inputitem">
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_edit_event')) ?>
 		</div>
 	<?= form_close() ?>
-        <?php
-            echo anchor('events/', $this->lang->line('to_events'));
-        ?>
 </div>
