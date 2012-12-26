@@ -32,13 +32,11 @@
 	</div>
 
 	<?php
+		echo '<p class="button_back">'; echo anchor('events/', $this->lang->line('to_events')); echo '</p>';
 		if( $this->userdata->is_admin() )
 		{
 			echo '<p class="button_edit">'; echo anchor('events/edit/'.$event_id, $this->lang->line('button_edit_event') ); echo '</p>'; 
 			echo '<p class="button_delete">'; echo anchor('events/delete/'.$event_id, $this->lang->line('button_delete_event') ); echo '</p>';
-		}
-			
-	
-            echo anchor('events/', $this->lang->line('to_events'));
-        ?>
+		}            
+	?>
 </div>

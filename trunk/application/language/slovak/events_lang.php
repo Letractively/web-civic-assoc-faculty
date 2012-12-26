@@ -7,10 +7,10 @@ $lang['label_from']                     = 'Od';
 $lang['label_to']                       = 'Do';
 $lang['label_about']                    = 'Popis';
 
-$lang['back_to_event_categories']       = 'späť na kategórie udalostí';
+$lang['back_to_event_categories']       = 'Späť na kategórie udalostí';
 $lang['to_event_categories']            = 'Kategórie udalostí';
-$lang['anchor_add']       		= 'Pridať novú udalosť';
-$lang['to_events']      = 'Späť na dalosti';
+$lang['anchor_add']       				= 'Pridať novú udalosť';
+$lang['to_events']      				= 'Späť na udalosti';
 
 $lang['event_date']                     = 'Kedy: ';
 $lang['event_author']                   = 'Pridal: ';

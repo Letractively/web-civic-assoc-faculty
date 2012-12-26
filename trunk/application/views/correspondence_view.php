@@ -179,11 +179,11 @@
 
 		<div class="inputitem">
 			<p class="label"> <label for="email_type_id"><?= $this->lang->line('label_email_type_id') ?></label> </p>
-			<?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name'); ?>
+			<?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name', 'dropdown'); ?>
 		</div>
 		
 		<div id="filter" class="inputitem">
-			<div class="btn_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
+			<div class="button_add" onclick="addFilterItem()"><?= $this->lang->line('button_filter_add'); ?></div>
 		</div>
 		
 		<div class="link_button"><?= anchor($this->router->class.'/review', $this->lang->line('correspondence_review'), 'id="review", target="_blank"'); ?></div>

@@ -48,7 +48,7 @@ class Message
                     $this->type = 'delete';
                     for($i = 0; $i < $this->buttons; $i++)
                     {
-                        echo '<input type="submit" name="submit_action" value="'.$this->langs[$i].'">';
+                        echo '<input class="yes_no_buttons" type="submit" name="submit_action" value="'.$this->langs[$i].'">';
                     }
                     break;
                  case 'inform':
@@ -116,7 +116,7 @@ class Message
          */
         private function set_text( $text )
         {
-            echo '<p>'.$text.'</p>';
+            echo '<p class="set_text">'.$text.'</p>';
         }
         
         /*
@@ -138,8 +138,8 @@ class Message
 				echo '<div id="confirm_message">';
 				$this->load_lang($langs);
 				
-					$this->set_title($title);
-					$this->set_image($type);
+					echo '<p class="set_image">'; $this->set_image($type); echo '</p>';
+					echo '<p class="set_title">'; $this->set_title($title); echo '</p>';
 					$this->set_text($text);
 					if( $type == 'inform')
 					{

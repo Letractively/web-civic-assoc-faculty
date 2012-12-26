@@ -36,13 +36,13 @@
 	<?= form_open("events/add", array('onload' => 'initCalendar()')) ?>
 		<div class="inputitem">
 			<p class="label"> <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label> </p>
-			<?= gen_dropdown('event_category_id', set_value('event_category_id'),$this->selecter->get_event_categories(),'event_category_id','event_category_name'); ?>     
+			<?= gen_dropdown('event_category_id', set_value('event_category_id'),$this->selecter->get_event_categories(),'event_category_id','event_category_name', 'dropdown'); ?>     
 		</div>
 	 <!--dropdown robis takto ako je hore gen_dropdown, to co su tie parametre uvidis ked si otvoris danu funkciu-->
 	 <!--generovat prioritu-->
 		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
-			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value'); ?>
+			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value', 'dropdown_priority'); ?>
 		</div>
 	 <!--end-->
 	 
@@ -74,13 +74,12 @@
 			<?= form_textarea(array('name' => 'about', 'id' => 'textarea', 'class' => 'textarea_data'.$error['about']), set_value('about')) ?>
 		</div>
 
+		<div class="inputitem">
+			<?php echo '<p class="button_back">'; echo anchor('events/', $this->lang->line('to_events')); echo '</p>'; ?>
+		</div>
 		
-
 		<div class="inputitem">
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_add_event')) ?>
 		</div>
-        <?php
-            echo anchor('events/', $this->lang->line('to_events'));
-        ?>
 </div>
 
