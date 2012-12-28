@@ -14,14 +14,16 @@
 	);
 ?>
 
-<?= form_open("io/export") ?>
-	<div class="inputitem">
-		<p class="label"> <label for="table"><?= $this->lang->line('label_table') ?></label> </p>
-		<?= gen_dropdown('datasource', set_value('id'), $tables, 'id', 'name'); ?>
-	</div>
-	
-	<div class="inputitem">
-		<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_export')) ?>
-	</div>
-		
-<?= form_close() ?>
+<div id="content_wrapper">
+	<?= form_open("io/export") ?>
+		<div class="inputitem">
+			<p class="label"> <label for="table"><?= $this->lang->line('label_table') ?></label> </p>
+			<?= gen_dropdown('datasource', set_value('id'), $tables, 'id', 'name', 'dropdown'); ?>
+		</div>
+		<br />
+		<div class="inputitem">
+			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_export')) ?>
+		</div>
+			
+	<?= form_close() ?>
+</div>

@@ -11,7 +11,10 @@
     $grid->header('user_surname')->text = $this->lang->line('user_surname');
     $grid->header('post_modifie_date')->text = $this->lang->line('label_post_date');
     $grid->header('post_modifie_date')->set_datetime('Y-m-d H:i:s', 'd.m.Y H:i');
-    $grid->display();
     
-    echo anchor('posts/detail/'.$post_id, $this->lang->line('detail'));
+	echo '<div id="grid_wrapper">';
+		$grid->display();
+		echo '<br />';
+		echo '<p class="button_edit">'; echo anchor('posts/detail/'.$post_id, $this->lang->line('detail')); echo '</p>';
+	echo '</div>';
 ?>

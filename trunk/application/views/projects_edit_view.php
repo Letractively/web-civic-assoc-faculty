@@ -43,11 +43,6 @@
 			<?= form_input(array('name' => 'name', 'id' => 'name', 'class' => 'input_data'.$error['name']), set_value('name', $field[0]->project_name)) ?>
 		</div>
 
-		<div class="inputitem">
-			<p class="label"> <label for="about" class="<?= $error['about'] ?>"><?= $this->lang->line('label_about') ?></label> </p>
-			<?= form_textarea(array('name' => 'about', 'id' => 'about', 'class' => 'textarea_data'.$error['about']), set_value('about', $field[0]->project_about)) ?>
-		</div>
-
 	 <!--generovat prioritu-->
 		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
@@ -57,7 +52,12 @@
 	 
 		<div class="inputitem">
 			<p class="label"> <label for="project_categories_id" class="<?= $error['project_category_id'] ?>"><?= $this->lang->line('label_project_category_id') ?></label> </p>
-			<?= gen_dropdown('project_categories_id', set_value('project_categories_id', $field[0]->project_project_category_id),$this->selecter->get_project_categories(),'project_category_id','project_category_name'); ?>
+			<?= gen_dropdown('project_categories_id', set_value('project_categories_id', $field[0]->project_project_category_id),$this->selecter->get_project_categories(),'project_category_id','project_category_name', 'dropdown'); ?>
+		</div>
+		
+		<div class="inputitem">
+			<p class="label"> <label for="about" class="<?= $error['about'] ?>"><?= $this->lang->line('label_about') ?></label> </p>
+			<?= form_textarea(array('name' => 'about', 'id' => 'about', 'class' => 'textarea_data'.$error['about']), set_value('about', $field[0]->project_about)) ?>
 		</div>
 		
 		<div class="inputitem">
@@ -82,9 +82,10 @@
 	<!--end-->
 
 		<div class="inputitem">
-			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit1'), $this->lang->line('button_edit_project')) ?>
-		
-			<?= form_submit(array('type'=>'submit', 'name' => 'close', 'class' => 'button_close'), $this->lang->line('button_close_project')) ?>
+			<p>
+				<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_edit_project')) ?>
+				<?= form_submit(array('type'=>'submit', 'name' => 'close', 'class' => 'button_close'), $this->lang->line('button_close_project')) ?>
+			</p>
 		</div>
 	<?= form_close() ?>
 	
@@ -137,6 +138,6 @@
 		?>
 	
         <?php
-            echo anchor('projects/', $this->lang->line('to_projects'));
+			echo '<p class="button_back">'; echo anchor('projects/', $this->lang->line('to_projects')); echo '</p>';
         ?>
 </div>

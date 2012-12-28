@@ -42,18 +42,18 @@
 		</div>
 
 		<div class="inputitem">
-			<p class="label"> <label for="about" class="<?= $error['about'] ?>"><?= $this->lang->line('label_about') ?></label> </p>
-			<?= form_textarea(array('name' => 'about', 'id' => 'about', 'class' => 'textarea_data'.$error['about']), set_value('about')) ?>
-		</div>
-
-		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
 			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value'); ?>
 		</div>
 
 		<div class="inputitem">
 			<p class="label"> <label for="project_category_id" class="<?= $error['project_category_id'] ?>"><?= $this->lang->line('label_project_category_id') ?></label> </p>
-			<?= gen_dropdown('project_category_id', set_value('project_category_id'),$this->selecter->get_project_categories(),'project_category_id','project_category_name'); ?> 
+			<?= gen_dropdown('project_category_id', set_value('project_category_id'),$this->selecter->get_project_categories(),'project_category_id','project_category_name', 'dropdown'); ?> 
+		</div>
+		
+		<div class="inputitem">
+			<p class="label"> <label for="about" class="<?= $error['about'] ?>"><?= $this->lang->line('label_about') ?></label> </p>
+			<?= form_textarea(array('name' => 'about', 'id' => 'about', 'class' => 'textarea_data'.$error['about']), set_value('about')) ?>
 		</div>
 
 		<div class="inputitem">
@@ -72,10 +72,11 @@
 		</div>
 
 		<div class="inputitem">
+			<?php echo '<p class="button_edit">'; echo anchor('projects/', $this->lang->line('to_projects')); echo '</p>'; ?>
+		</div>
+		
+		<div class="inputitem">
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_add_project')) ?>
 		</div>
 	<?= form_close() ?>
-    <?php
-        echo anchor('projects/', $this->lang->line('to_projects'));
-    ?>
 </div>
