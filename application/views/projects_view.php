@@ -9,15 +9,21 @@
 </script>
 
 <div id="content_wrapper">  
-   
+
+	<p class="project_label">
+		<span class="link_text"> <?= anchor('project_categories', $this->lang->line('anchor_project_categories')); ?> </span>
+	</p>
+
    <div class="inputitem">
         <!--<p class="label"> <?//= $error['project_id'] ?>"><?//= $this->lang->line('label_project_id') ?> </p>-->
 		<?php
 			$pr_cats = $this->selecter->get_project_categories();
 			$pr_cats[] = array('project_category_id' => 0, 'project_category_name' => $this->lang->line('caption_all'));
 		?>
-        <?= gen_dropdown('project_category', $category_id, $pr_cats,'project_category_id', 'project_category_name', '', 'onchange="changeFilter(this);"'); ?>
-		<?= anchor('project_categories', $this->lang->line('anchor_project_categories')); ?>
+		
+        <span class="project_label"> Zobraziť: </span>
+		<?= gen_dropdown('project_category', $category_id, $pr_cats,'project_category_id', 'project_category_name', 'dropdown', 'onchange="changeFilter(this);"'); ?>
+		<br /> <br />
    </div>
 
 	<?php

@@ -14,7 +14,7 @@
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
-			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value'); ?>
+			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value', 'dropdown_priority'); ?>
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="content" class="<?= $error['content'] ?>"><?= $this->lang->line('label_content') ?></label> </p>
@@ -31,11 +31,14 @@
                         <p class="label"><label for="content" class="<?= $error['content'] ?>"><?=$this->lang->line('published')?></label> </p>
 			<?= form_checkbox(array('name' => 'post_published', 'class' => 'post_published')) ?>
 		</div>
+		
+		<div class="inputitem">
+			<?php echo '<p class="button_back">'; echo anchor('posts/', $this->lang->line('to_posts')); echo '</p>'; ?>
+		</div>
+		
 		<div class="inputitem">
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_edit_post')) ?>
 		</div>
 	<?= form_close() ?>
-    <?php
-        echo anchor('posts/', $this->lang->line('to_posts'));
-    ?>
+
 </div>

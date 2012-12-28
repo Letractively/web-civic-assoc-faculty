@@ -1,43 +1,32 @@
 Pri commite ned·vam container.php, config.php a htacces
 
 DOROBIç:
-	- auth_registration_view - dropdown na roky
-	- auth_view - Mino
+	- auth_registration_view, user_add_view - form dropdown na roky
+	- auth_view - Mino, alebo tam mam nahodit post_view???
 	- correspondence_view - dal by som tam bb code
 	- correspondence_view - neviem kde treba dat CSS na to nove menu po pridani pre koho je ta sprava
-	- 
-	
-	
-	- posts_view - CSS
-	- posts_detail_view - CSS, anchor na zoznam modifikacii
-	- error hl·öky - CSS
+	- io_import_view - nemame
+	- do message.php dorobit vedla imagu nazov (varovanie, informacia)
+	- administration_view - co tam chceme zobrazovat
+	- GRID - mierna uprava, napr som na udalosti - kategorie udalosti pod kategoriou seminare a ja neviem kde som, nie je tam ziadny popis a neviem si zobrazit len nejaku kategoriu a v nej udalosti
+	- neviditelne entery robi kodovanie UTF-8 co s tym spravime!!!!
+	- z project_categories_detail treba prirobit link na navrat spat na kategorie projektov, alebo niekam, viem to tam len zmazat + pridat tam menu eura
+	- project_add_view - dal by som bb code pred textareu
+	- project_edit_view - form dropdown vymysliet ako ho tam privolat + pridat bb code + vymysliet nieco s tymi buttonmi
+	- USERS celkovo neukazuju clena s hodnostou admina + ak dana skupina nema clena neukazuje vobec GRID aby som ho mohol pridat (neni tam ikona pridania)!!!
+	- users_add_view - chyba tam popis k tomu vyberaciemu menu 4 clena
+	- users_detail_view - dokoncit, je tam vela nejasnosti
 	- navigacia - CSS
-	- project_edit_view - CSS
-	- project_edit_view - CSS
-	- project_detail - CSS
-	- project_categories_detail - CSS
+	- error hl·öky - CSS
+	- users_edit_view - form_button_edit + na vsetkych strankach kde sa pouziva
+	- users_detail - odstranit tie debug array, alebo co to je
+	
+	- MARTIN - tam kde sa nachadzaju form_submit tlacidla treba to predesignovat (zistime pri teste)
+	- STEVO - ked budes designovat GRID, ak sa ti nezmesti do toho ramceka tak prehod div id="content_wrapper" na div id="grid_wrapper" ten by mal mat pohyblivu velkost
 	
 Pozn·mky:
 	- GRID-y design + fix editu d·tumov a s˙m
 
 	- DOROBIç:
-		OK - pridat anchor spat -projects,payments... vsade z add edit a detail
-		
-		OK - auth_view - POSTS ako to pred tym
-		OK - events_view - anchor na event_cat 
-
-		OK - payments_view - editovatelne iba suma k ˙hrade
-		OK - posts_modifiers_view - anchor na post detail aj s id na ktorom som bol
-
-		HADAM OK- posts - fix add, edit + dorobiù checkbox "zverejnit", pridat do view anchor na add
-		
-		- io_export - vyrobiù
-		- project_view - fix, nejde v˝ber kategÛrie	
-	
-	
-	- do message.php dorobit vedla imagu nazov (varovanie, informacia)
-	- administration_view - co tam chceme zobrazovat
-	
 	
 	- OVERIç:
-		

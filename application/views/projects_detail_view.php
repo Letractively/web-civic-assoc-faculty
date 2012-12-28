@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     $obj = $this->selecter->get_project_detail($project_id);
     //array_debug($obj);
 ?>
@@ -17,13 +17,11 @@
 
 	<div class="project_booked_cash">
 	   <span class="project_label"> Rozpočet: </span>
-		 <?= $obj[0]->project_booked_cash ?>€ ,
+		 <b> <?= $obj[0]->project_booked_cash ?>€ </b>,
 		minuté 
-		<?= $obj[0]->project_spended_cash ?>€ ,
+		<span class="cash_spend"> <?= $obj[0]->project_spended_cash ?>€ </span>,
 		ostáva 
-		<?php
-		echo $obj[0]->project_booked_cash - $obj[0]->project_spended_cash;
-		?>€ 
+		<span class="cash_remain"> <?php echo $obj[0]->project_booked_cash - $obj[0]->project_spended_cash; ?>€ </span>
 	</div>
 
 	<div class="post_modifie_info">
@@ -57,9 +55,12 @@
 			$grid->display();
 		}
 	?>
-    <?php
-		echo anchor("projects/edit/{$project_id}", $this->lang->line('anchor_edit_project'));
-		echo anchor("projects/delete/{$project_id}", $this->lang->line('anchor_delete_project'));
-        echo anchor('projects/', $this->lang->line('to_projects'));
-    ?>
+	
+	<br />
+	
+	<?php
+		echo '<p class="button_back">'; echo anchor('projects/', $this->lang->line('to_projects')); echo '</p>';
+		echo '<p class="button_edit">'; echo anchor("projects/edit/{$project_id}", $this->lang->line('anchor_edit_project')); echo '</p>';
+		echo '<p class="button_delete">'; echo anchor("projects/delete/{$project_id}", $this->lang->line('anchor_delete_project')); echo '</p>';
+	?>
 </div>

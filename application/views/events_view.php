@@ -1,10 +1,13 @@
-<div id="grid_wrapper">
-	<ul>
-		<li><?= anchor('events', $this->lang->line('events_all')); ?></li>
-		<li><?= anchor('events/newest', $this->lang->line('events_newest')); ?></li>
-		<li><?= anchor('events/prior', $this->lang->line('events_prior')); ?></li>
-	</ul>
-
+﻿<div id="grid_wrapper">
+	<div class="grid_link_text">
+		<span class="grid_label"> Zoradit podla: </span>
+		<ul>
+			<li><?= anchor('events', $this->lang->line('events_all')); ?></li>
+			<li><?= anchor('events/newest', $this->lang->line('events_newest')); ?></li>
+			<li><?= anchor('events/prior', $this->lang->line('events_prior')); ?></li>
+		</ul>
+	</div>
+		
 	<?php
 		$this->load->library('grid');
 		

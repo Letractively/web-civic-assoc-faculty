@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $this->load->library('grid');
     
     $grid = new Grid();
@@ -13,5 +13,7 @@ $this->load->library('grid');
     $grid->header('study_program_id')->visible = false;
     $grid->header('study_program_name')->text = $this->lang->line('label_name');
     
-    $grid->display();
+	echo '<div id="grid_wrapper">';
+		$grid->display();
+	echo '</div>'
 ?>
