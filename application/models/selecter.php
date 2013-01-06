@@ -344,7 +344,7 @@ class Selecter extends MY_Model
     
     public function get_posts()
     {
-             $q = $this->db->query("SELECT ppm.post_id, ppm.post_title, ppm.post_content, ppm.post_author_id, 
+             $q = $this->db->query("SELECT ppm.post_id, ppm.post_title, ppm.post_content, ppm.post_author_id, ppm.post_priority, 
                                            ppm.post_date, ppm.post_modifie_author_id, u.user_name as modifier_name, 
                                            u.user_surname as modifier_surname, ppm.post_modifie_date, us.user_name as author_name,
                                            us.user_surname as author_surname
