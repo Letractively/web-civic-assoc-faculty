@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 //    array_debug($this->selecter->get_posts());
 //    array_debug($this->selecter->get_events(0));

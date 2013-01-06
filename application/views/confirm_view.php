@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     $message = new Message();
     if( $type == 'inform')
     {

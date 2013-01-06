@@ -120,7 +120,7 @@ body {
 /****** Hlavicka ******/
 #header {
 	width: 960px;
-	height: 335px;
+	height: 338px;
 	border-color: black;
 	border-width: 4px;
 	border-style: solid;
@@ -245,10 +245,8 @@ body {
 	background-image: url(../img/panel.png);
 	background-repeat: repeat-x;
 	border-color: black;
-	border-top-width: 2px;
-	border-top-style: solid;
-	border-bottom-width: 2px;
-	border-bottom-width: solid;
+	border-top: 2px solid;
+	border-bottom: 2px solid;
 	float: left;
 }
 
@@ -329,9 +327,21 @@ body {
 	margin: auto 0 auto 0;
 	padding: 8px 25px 8px 25px;
 	text-align: center;
+	font-weight: bolder;
+	text-decoration: none;
+}
+
+#main_navigation a {
+	color: #fecc78;
+}
+
+#secondary_navigation a {
+	color: black;
+	padding: 9px 25px 8px 25px;
 }
 
 #main_navigation a:hover {
+	color: white;
 	background: -webkit-linear-gradient(top, black, #880d0d, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
    background: -moz-linear-gradient(top, black, #880d0d, #fecc78); /* Firefox 3.6+ */
    background: -ms-linear-gradient(top, black, #880d0d, #fecc78); /* IE 10 */
@@ -339,11 +349,28 @@ body {
 }
 
 #main_navigation .selected {
+	color: black;
 	background: -webkit-linear-gradient(top, black, #fecc78, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
    background: -moz-linear-gradient(top, black, #fecc78, #fecc78); /* Firefox 3.6+ */
    background: -ms-linear-gradient(top, black, #fecc78, #fecc78); /* IE 10 */
    background: -o-linear-gradient(top, black, #fecc78, #fecc78); /* Opera 11.10+ */	
 }
+
+#secondary_navigation a:hover {
+	color: black;
+	padding: 4px 25px 9px 25px;	
+	font-style: oblique;
+	font-size: 18px;
+}
+
+#secondary_navigation .selected {
+	padding: 6px 25px 9px 25px;
+	color: black;
+	font-family: "Arial black";
+	text-decoration: underline; 
+}
+
+
 
 /****** Obsah ******/
 #content {
@@ -356,7 +383,7 @@ body {
 	border-width: 4px;
 	border-top: none;
 	border-bottom: none;
-	margin: 0px auto 0px auto;
+	margin: -19px auto -19px auto;
 	background-color: white;
 }
 
@@ -373,6 +400,18 @@ body {
 	margin-bottom: 45px;
 	margin-top: 25px;
 	padding: 15px;
+	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
+	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
+	box-shadow: 5px 5px 20px 10px #2e2e2e;	 
+}
+
+#content_wrapper1 {
+	width: 670px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 45px;
+	margin-top: 25px;
+	padding: 15px 30px 15px 30px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
 	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
 	box-shadow: 5px 5px 20px 10px #2e2e2e;	 
@@ -851,4 +890,21 @@ User detail view ******/
 .input_data:focus, .input_data_date:focus, .input_data_time:focus, .input_data_reg:focus,
 .textarea_data:focus, .input_data_date_time {
 	outline: none;
+}
+
+/****** Page Rules (Stanovy) ******/
+.page_rules_title {
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	color: #880d0d;	
+}
+
+.page_rules_sec_title {
+	font-weight: bold;	
+}
+
+.page_rules {
+	margin-top: 2px;
+	margin-bottom: 2px;
 }
