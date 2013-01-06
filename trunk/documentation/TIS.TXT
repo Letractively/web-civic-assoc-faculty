@@ -9,15 +9,12 @@ DOROBIç:
 	- do message.php dorobit vedla imagu nazov (varovanie, informacia)
 	- administration_view - co tam chceme zobrazovat
 	- GRID - mierna uprava, napr som na udalosti - kategorie udalosti pod kategoriou seminare a ja neviem kde som, nie je tam ziadny popis a neviem si zobrazit len nejaku kategoriu a v nej udalosti
-	- neviditelne entery robi kodovanie UTF-8 co s tym spravime!!!!
 	- z project_categories_detail treba prirobit link na navrat spat na kategorie projektov, alebo niekam, viem to tam len zmazat + pridat tam menu eura
 	- project_add_view - dal by som bb code pred textareu
 	- project_edit_view - form dropdown vymysliet ako ho tam privolat + pridat bb code + vymysliet nieco s tymi buttonmi
 	- USERS celkovo neukazuju clena s hodnostou admina + ak dana skupina nema clena neukazuje vobec GRID aby som ho mohol pridat (neni tam ikona pridania)!!!
 	- users_add_view - chyba tam popis k tomu vyberaciemu menu 4 clena
 	- users_detail_view - dokoncit, je tam vela nejasnosti
-	- navigacia - CSS
-	- error hl·öky - CSS
 	- users_edit_view - form_button_edit + na vsetkych strankach kde sa pouziva
 	- users_detail - odstranit tie debug array, alebo co to je
 	

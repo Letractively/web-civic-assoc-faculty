@@ -1,4 +1,4 @@
-<div id="content_wrapper">
+﻿<div id="content_wrapper">
 	<?php
 		$obj = $this->selecter->get_posts();
 		
