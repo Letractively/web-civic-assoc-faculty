@@ -60,37 +60,16 @@
 					$grid->header('user_degree_year')->text = $this->lang->line('label_degree_year');
 					$grid->header('degree_name')->text = $this->lang->line('label_degree_id');
 					
-					
-			$grid->add_url = "users/add";
-			$grid->edit_url = "users/edit";
-			$grid->remove_url = "users/delete";
-			$grid->add_mode = "external";
-			$grid->edit_mode = "external";
+			if( $this->userdata->is_admin() )
+                        {	
+                            $grid->add_url = "users/add";
+                            $grid->edit_url = "users/edit";
+                            $grid->remove_url = "users/delete";
+                            $grid->add_mode = "external";
+                            $grid->edit_mode = "external";
+                        }
 			$grid->display();
 		}
-		
-		/*
-		elseif( $flag == 3 )
-		{
-			if( !$grid->bind($this->selecter->get_users(2),'user_id') )
-			{
-				$grid->header('user_id')->editable = false;
-				$grid->header('user_id')->visible = false;
-				$grid->header('user_name')->text = $this->lang->line('label_name');
-				$grid->header('user_name')->set_anchor("{$this->router->class}/detail", "user_id");
-				$grid->header('user_surname')->text = $this->lang->line('label_vs'); 
-				$grid->header('user_surname')->set_anchor("{$this->router->class}/detail", "user_id");
-				$grid->header('user_email')->text = $this->lang->line('label_surname');  
-				$grid->add_url = "add";
-				$grid->edit_url = "edit";
-				$grid->remove_url = "delete";
-			}
-		}
-		*/
-	 
-			/*$grid->add_mode = "external";
-			$grid->edit_mode = "external";
-			$grid->display();*/
 	   
 	?>
 </div>
