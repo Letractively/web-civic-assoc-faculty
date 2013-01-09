@@ -25,9 +25,7 @@ root {
 }
 
 .grid_header {
-	/*height: 36px;
-	background-color: #B2B2F0;
-	font-size: large;*/
+	background-color: #cccccc;
 }
 
 .grid_header_cell {
@@ -50,6 +48,7 @@ root {
 }
 
 .grid_row {
+	background-color: #fefefe;
 }
 
 .grid_cell {
@@ -58,15 +57,27 @@ root {
 	border-right: 1px solid black;
 }
 
+.grid_cell a {
+	color: blue;
+}
+
 .grid_cell_first {
 	border-left: 1px solid black;
 	border-bottom: 1px solid black;
 	border-right: 1px solid black;
 }
 
+.grid_cell_first a {
+	color: blue;
+}
+
 .grid_cell_last {
 	border-bottom: 1px solid black;
 	border-right:	1px solid black;
+}
+
+.grid_cell_last a {
+	color: blue;
 }
 
 .grid_cell_editing { /* bunka v ktorej je textbox, combobox */
@@ -86,6 +97,7 @@ root {
 }
 
 .grid_row_btn_cell { /* vsetky bunky tabulky obsahujuce tlacitko-idne elementy */
+	background-color: #ffffff;
 }
 
 .grid_row_btn_cell button { /* submit button */
