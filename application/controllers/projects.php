@@ -153,16 +153,10 @@ class Projects extends MY_Controller
 			$this->load->model('deleter');
 			$this->deleter->remove_project_item($project_item_id);
             
-            /*$data = array(
-              'view'            => 'confirm_view',
-              'type'            => 'delete',
-              'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-              'method'          => $this->router->class.'/'.$project_id.'/'.$project_item_id
-            );*/
-			$data = array(
-              'view'            => "{$this->router->class}_edit_view",
-			  'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
-                                                                                'booked_cash', 'from', 'to','password','username')),
+            $data = array(
+                'view'                  => "{$this->router->class}_edit_view",
+		'error'                 => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
+                                                                                        'booked_cash', 'from', 'to','password','username')),
                 'project_id'            => $project_id,
                 'priorities'            => $this->generate_priorities(5)
             );

@@ -112,8 +112,8 @@ abstract class MY_Controller extends CI_Controller
     
     protected function add( $method, $submit = 'submit')
     {
-        /*if( !$this->userdata->is_admin() )
-            redirect(base_url());*/
+        if( !$this->userdata->is_admin() )
+            redirect(base_url());
 
         if( $this->input->post($submit) )
         {

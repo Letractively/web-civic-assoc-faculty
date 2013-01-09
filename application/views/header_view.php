@@ -50,8 +50,10 @@
 			<?= anchor('events', 'UDALOSTI', $sender == 'events' ? array('class' => 'selected') : null); ?>
 			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>
 			<?= anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null); ?>
-			<?= anchor('administration', 'SPRÁVA', $sender == 'administration' ? array('class' => 'selected') : null); ?>
-			<?= anchor('test', 'TEST', $sender == 'test' ? array('class' => 'selected') : null); ?>
+			<?php if( $this->userdata->is_admin() ): ?>
+                            <?= anchor('administration', 'SPRÁVA', $sender == 'administration' ? array('class' => 'selected') : null); ?>
+			<?php endif; ?>
+                        <?php //echo anchor('test', 'TEST', $sender == 'test' ? array('class' => 'selected') : null); ?>
 		</div>
 		<?php if ( ($sender == 'auth') || ($sender == 'pages') ) { ?>
 		<div id="secondary_navigation"> <!-- //secondary navigation -->
