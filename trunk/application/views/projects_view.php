@@ -43,7 +43,8 @@
 			$grid->header('project_name')->text = $this->lang->line('label_name');
 			$grid->header('project_name')->set_anchor("{$this->router->class}/detail", 'project_id');
 			$grid->header('project_category_name')->text =  $this->lang->line('label_category_name');
-			$grid->header('project_category_name')->set_anchor("project_categories/detail", 'project_category_id');
+                        if( $this->userdata->is_admin() )
+                            $grid->header('project_category_name')->set_anchor("project_categories/detail", 'project_category_id');
 			$grid->header('project_booked_cash')->text =  $this->lang->line('label_booked_cash');
 			$grid->header('project_booked_cash')->set_numformat('{2:,: } €');
 			$grid->header('project_date_from')->text = $this->lang->line('label_from');
