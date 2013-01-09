@@ -50,8 +50,12 @@ el.display=(el.display == 'block')?'none':'block';
 			echo '<div class="user_place_of_birth">Miesto narodenia: '.$obj[0]->user_place_of_birth.'</div>';
 			echo '<div class="user_postcode">PSČ: '.$obj[0]->user_postcode.'</div> </div>';
 			
-			echo '<p class="button_edit">'; echo anchor('users/edit/'.$obj[0]->user_id,$this->lang->line('edit_item')); echo '</p>';
-						
+                        if( $this->userdata->is_admin() )
+                        {
+                            echo '<p class="button_edit">'; 
+                                echo anchor('users/edit/'.$obj[0]->user_id,$this->lang->line('edit_item')); 
+                            echo '</p>';
+                        }			
 			$lp = $this->selecter->get_payments_lastpaid($user_id);
 			$date = datetime($lp->payment_paid_time, FALSE);
 			//array_debug($lp);
@@ -59,25 +63,28 @@ el.display=(el.display == 'block')?'none':'block';
 			if($lp->payment_paid_time == NULL){
 				echo 'Musíte uhradiť členský poplatok 5€';
 				echo '<br />';
-				echo '<a style="cursor: pointer; text-decoration: underline;" onclick="zobrazSkryj(\'oddil1\')">Uhradiť</a>';
-				echo '<div id="oddil1" class="skryvany">';
-					echo form_open('payments/add');
-						$pay= $this->selecter->get_payments($user_id);
-						echo '<div class="inputitem">';
-							echo '<p class="label"> <label for="vs">'.$this->lang->line('label_vs').'</label> </p>';
-							echo form_input(array('name' => 'vs', 'id' => 'vs', 'class' => 'input_data' ), set_value('vs', $pay[0] -> payment_vs));
-						echo '</div>';
+                                if( $this->userdata->is_admin() )
+				{
+                                    echo '<a style="cursor: pointer; text-decoration: underline;" onclick="zobrazSkryj(\'oddil1\')">Uhradiť</a>';
+                                    echo '<div id="oddil1" class="skryvany">';
+                                            echo form_open('payments/add');
+                                                    $pay= $this->selecter->get_payments($user_id);
+                                                    echo '<div class="inputitem">';
+                                                            echo '<p class="label"> <label for="vs">'.$this->lang->line('label_vs').'</label> </p>';
+                                                            echo form_input(array('name' => 'vs', 'id' => 'vs', 'class' => 'input_data' ), set_value('vs', $pay[0] -> payment_vs));
+                                                    echo '</div>';
 
-						echo '<div class="inputitem">';
-							echo '<p class="label"> <label for="total_sum">'.$this->lang->line('label_total_sum').'</label> </p>';
-							echo form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class' => 'input_data_date' ), set_value('total_sum', 5)).'€';
-						echo '</div>';
+                                                    echo '<div class="inputitem">';
+                                                            echo '<p class="label"> <label for="total_sum">'.$this->lang->line('label_total_sum').'</label> </p>';
+                                                            echo form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class' => 'input_data_date' ), set_value('total_sum', 5)).'€';
+                                                    echo '</div>';
 
-						echo '<div class="inputitem">';
-							echo form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_add'));
-						echo '</div>';
-					echo form_close();
-				echo '</div>';
+                                                    echo '<div class="inputitem">';
+                                                            echo form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_add'));
+                                                    echo '</div>';
+                                            echo form_close();
+                                    echo '</div>';
+                                }
 				echo '<p class="button_back">'; echo anchor('users/', $this->lang->line('to_users')); echo '</p>';
 			}
 		  
@@ -89,25 +96,28 @@ el.display=(el.display == 'block')?'none':'block';
 				echo '<br />Členské vypršalo: '.$dm = day_month($date).'.'.$year = year($date)+1;
 				echo '<br />V prípade neúhrady registrácia platná do: 31.12.'.$year = year($date)+1;
 				echo '<br />';
-				echo '<p class="button_edit"><a style="cursor: pointer; " onclick="zobrazSkryj(\'oddil1\')">Uhradiť</a></p>';
-				echo '<div id="oddil1" class="skryvany">';
-					echo form_open('payments/add');
-						$pay= $this->selecter->get_payments($user_id);
-						echo '<div class="inputitem">';
-							echo '<p class="label"> <label for="vs">'.$this->lang->line('label_vs').'</label> </p>';
-							echo form_input(array('name' => 'vs', 'id' => 'vs', 'class' => 'input_data' ), set_value('vs', $pay[0] -> payment_vs));
-						echo '</div>';
+                                if( $this->userdata->is_admin() )
+				{
+                                    echo '<p class="button_edit"><a style="cursor: pointer; " onclick="zobrazSkryj(\'oddil1\')">Uhradiť</a></p>';
+                                    echo '<div id="oddil1" class="skryvany">';
+                                            echo form_open('payments/add');
+                                                    $pay= $this->selecter->get_payments($user_id);
+                                                    echo '<div class="inputitem">';
+                                                            echo '<p class="label"> <label for="vs">'.$this->lang->line('label_vs').'</label> </p>';
+                                                            echo form_input(array('name' => 'vs', 'id' => 'vs', 'class' => 'input_data' ), set_value('vs', $pay[0] -> payment_vs));
+                                                    echo '</div>';
 
-						echo '<div class="inputitem">';
-							echo '<label for="total_sum">'.$this->lang->line('label_total_sum').'</label>';
-							echo form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class' => 'input_data_date' ), set_value('total_sum', 5)).'€';
-						echo '</div>';
+                                                    echo '<div class="inputitem">';
+                                                            echo '<label for="total_sum">'.$this->lang->line('label_total_sum').'</label>';
+                                                            echo form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class' => 'input_data_date' ), set_value('total_sum', 5)).'€';
+                                                    echo '</div>';
 
-						echo '<div class="inputitem">';
-							echo form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_add'));
-						echo '</div>';
-					echo form_close();
-				echo '</div>';
+                                                    echo '<div class="inputitem">';
+                                                            echo form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_add'));
+                                                    echo '</div>';
+                                            echo form_close();
+                                    echo '</div>';
+                                }
 				echo '<p class="button_back">'; echo anchor('users/', $this->lang->line('to_users')); echo '</p>';
 			}
 	  
