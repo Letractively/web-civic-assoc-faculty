@@ -528,10 +528,23 @@ class Grid
 		
 		// generuje hlavicku
 		echo '<tr class="grid_header">'."\n";
+		$i = 0;
+		$last = -1;
+		foreach ($this->headCols as $key => $head)
+		{
+			if ($this->headCols[$key]->visible == true) $last++;
+		}
 		foreach ($this->headCols as $key => $head)
 		{
 			if ($this->headCols[$key]->visible == true)
-				echo '<th class="grid_header_cell">'.$head->text.'</th>';
+			{
+				$css_class_postfix = '';
+				if ($i == 0) $css_class_postfix = '_first';
+				else if ($i == $last) $css_class_postfix = '_last';
+				
+				echo '<th class="grid_header_cell'.$css_class_postfix.'">'.$head->text.'</th>';
+				$i++;
+			}
 		}
 		echo '</tr>'."\n";
 		
@@ -541,11 +554,21 @@ class Grid
 			if ($row->visible == true) // ak je dany riadok viditelny
 			{
 				echo '<tr id="row'.$unique_key.'" class="grid_row">'."\n";
+				$i = 0;
+				$last = -1;
+				foreach ($row->cells as $index => $cell)
+				{
+					if ($this->headCols[$index]->visible == true) $last++;
+				}
 				foreach ($row->cells as $index => $cell) // generuje bunky riadka
 				{
 					if ($this->headCols[$index]->visible == true) // ak bunka patri stlpcu, ktory je viditelny
 					{
-						echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell">';
+						$css_class_postfix = '';
+						if ($i == 0) $css_class_postfix = '_first';
+						else if ($i == $last) $css_class_postfix = '_last';
+					
+						echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell'.$css_class_postfix.'">';
 						if ($this->headCols[$index]->type == 'anchor') // ak to ma byt link
 						{
 							echo '<a href="'.base_url().$this->headCols[$index]->options['controller'].'/'.$row->cells[ $this->headCols[$index]->options['id'] ].'">'.$cell.'</a>';
@@ -562,6 +585,7 @@ class Grid
 						else // ak to ma byt iba cisty text (alebo nejaky iny nedefinovany typ)
 							echo $cell;
 						echo '</td>'."\n";
+						$i++;
 					}
 				}
 				if ($this->edit_url != "" && $row->editable == true) // ak mame zadany controller na edit a dany riadok je editovatelny - zobrazi tlacitko edit
