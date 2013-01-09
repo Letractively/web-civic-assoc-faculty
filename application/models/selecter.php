@@ -398,7 +398,7 @@ class Selecter extends MY_Model
     {
 		if ($cat_id == 0)
 		{
-			$q = $this->db->query("SELECT  p.project_name, pc.project_category_name, p.project_booked_cash, p.project_date_from, 
+			$q = $this->db->query("SELECT  p.project_name, pc.project_category_id, pc.project_category_name, p.project_booked_cash, p.project_date_from, 
                                             p.project_date_to, sum(pi.project_item_price) AS project_spended_cash,
                                             pi.project_item_id, p.project_id
                                     FROM project_items pi

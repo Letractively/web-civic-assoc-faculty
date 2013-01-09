@@ -9,10 +9,11 @@
 </script>
 
 <div id="content_wrapper">  
-
+        <?php if( $this->userdata->is_admin() ): ?>
 	<p class="project_label">
 		<span class="link_text"> <?= anchor('project_categories', $this->lang->line('anchor_project_categories')); ?> </span>
 	</p>
+        <?php endif; ?> 
 
    <div class="inputitem">
         <!--<p class="label"> <?//= $error['project_id'] ?>"><?//= $this->lang->line('label_project_id') ?> </p>-->
@@ -37,11 +38,12 @@
 		{
 			$grid->header('project_id')->visible = false;
 			$grid->header('project_item_id')->visible = false;
+                        $grid->header('project_category_id')->visible = false;
 
 			$grid->header('project_name')->text = $this->lang->line('label_name');
 			$grid->header('project_name')->set_anchor("{$this->router->class}/detail", 'project_id');
 			$grid->header('project_category_name')->text =  $this->lang->line('label_category_name');
-			$grid->header('project_category_name')->set_anchor("project_categories/detail", 'project_id');
+			$grid->header('project_category_name')->set_anchor("project_categories/detail", 'project_category_id');
 			$grid->header('project_booked_cash')->text =  $this->lang->line('label_booked_cash');
 			$grid->header('project_booked_cash')->set_numformat('{2:,: } €');
 			$grid->header('project_date_from')->text = $this->lang->line('label_from');
@@ -50,15 +52,22 @@
 			$grid->header('project_date_to')->set_datetime('Y-m-d');
 			$grid->header('project_spended_cash')->text =  $this->lang->line('label_spended_cash');
 			
-			$grid->add_url = "{$this->router->class}/add";
-			$grid->add_mode = "external";
-			$grid->edit_url = "{$this->router->class}/edit";
-			$grid->edit_mode = "external";
-			$grid->remove_url = "{$this->router->class}/delete";
-
+                        if( $this->userdata->is_admin() )
+                        {
+                            $grid->add_mode = "external";
+                            $grid->edit_url = "{$this->router->class}/edit";
+                            $grid->edit_mode = "external";
+                            $grid->remove_url = "{$this->router->class}/delete";
+                        }
 			$grid->header('project_id')->editable = false;
 
 			$grid->display();
 		}
+                if( $this->userdata->is_admin() )
+                {
+                    echo '<p class="button_back">'; 
+                    echo anchor('projects/add', 'Pridať nový projekt'); 
+                    echo '</p>';
+                }
     ?>
 </div>

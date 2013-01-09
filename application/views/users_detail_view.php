@@ -54,7 +54,7 @@ el.display=(el.display == 'block')?'none':'block';
 						
 			$lp = $this->selecter->get_payments_lastpaid($user_id);
 			$date = datetime($lp->payment_paid_time, FALSE);
-			array_debug($lp);
+			//array_debug($lp);
 			
 			if($lp->payment_paid_time == NULL){
 				echo 'Musíte uhradiť členský poplatok 5€';
