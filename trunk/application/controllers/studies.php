@@ -13,6 +13,8 @@ class Studies extends MY_Controller
         {
             parent::__construct();
             $this->load->model('selecter');
+            if( !$this->userdata->is_admin() )
+                redirect(base_url());
             $data = array(
                 'title' 		=> $this->lang->line('title'),   //Title na aktualnej stranke
                 'view'              => "{$this->router->class}_view"

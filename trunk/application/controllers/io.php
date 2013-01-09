@@ -12,7 +12,8 @@ class Io extends MY_Controller
     function __construct() 
     {
         parent::__construct();
-        
+        if( !$this->userdata->is_admin() )
+                redirect(base_url());
         $data = array(
             'title' 		=> 'Export'   //Title na aktualnej stranke
         );
