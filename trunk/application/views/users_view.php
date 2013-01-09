@@ -8,7 +8,7 @@
 		<span class="grid_label"> Zoradit podľa: </span>
 		<ul>
 			<li><?= anchor('users/members',$this->lang->line('oz_member')) ?></li>
-			<li><?= anchor('users/visitors',$this->lang->line('ex_member')) ?></li>
+			<!--li><?= anchor('users/visitors',$this->lang->line('ex_member')) ?></li-->
 			<li><?= anchor('users/lecturers',$this->lang->line('lecturer')) ?></li>
 			<li><?= anchor('users/admins',$this->lang->line('admin')) ?></li>
 			<li><?= anchor('users/index',$this->lang->line('all')) ?></li>

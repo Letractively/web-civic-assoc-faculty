@@ -49,8 +49,12 @@
 		$grid->display();		
 		if($event_cat_id != 0)
 			{ echo '<p class="button_edit">'; echo anchor('events/', $this->lang->line('back_to_event_categories')); echo '</p>'; }
+		if( $this->userdata->is_admin() )
+                {
+                    echo '<p class="button_edit">'; echo anchor('events/add', $this->lang->line('anchor_add')); echo '</p>';
+                    echo '<p class="button_edit">'; echo anchor('event_categories/', $this->lang->line('to_event_categories')); echo '</p>';
+                }
 		
-		echo '<p class="button_edit">'; echo anchor('events/add', $this->lang->line('anchor_add')); echo '</p>';
-		echo '<p class="button_edit">'; echo anchor('event_categories/', $this->lang->line('to_event_categories')); echo '</p>';
+		
 	?>
 </div>

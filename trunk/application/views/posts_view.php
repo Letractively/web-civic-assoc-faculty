@@ -38,6 +38,11 @@
 		}
 	}
 
-	echo '<p class="button_edit">'; echo anchor('posts/add', $this->lang->line('add_post')); echo '</p>';
+        if( $this->userdata->is_admin() )
+        {
+            echo '<p class="button_edit">'; 
+                echo anchor('posts/add', $this->lang->line('add_post')); 
+            echo '</p>';
+        }
 	?>
 </div>

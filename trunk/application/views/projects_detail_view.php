@@ -36,6 +36,8 @@
 	</div>
 
 	<?php
+            if( $this->userdata->is_admin() )
+            {
 		$this->load->library('grid');
 			
 		$grid = new Grid();
@@ -54,13 +56,18 @@
                         
 			$grid->display();
 		}
+            }
 	?>
 	
 	<br />
 	
 	<?php
-		echo '<p class="button_back">'; echo anchor('projects/', $this->lang->line('to_projects')); echo '</p>';
-		echo '<p class="button_edit">'; echo anchor("projects/edit/{$project_id}", $this->lang->line('anchor_edit_project')); echo '</p>';
+            if( $this->userdata->is_admin() )
+            {
+                echo '<p class="button_edit">'; echo anchor("projects/edit/{$project_id}", $this->lang->line('anchor_edit_project')); echo '</p>';
 		echo '<p class="button_delete">'; echo anchor("projects/delete/{$project_id}", $this->lang->line('anchor_delete_project')); echo '</p>';
+            }
+		echo '<p class="button_back">'; echo anchor('projects/', $this->lang->line('to_projects')); echo '</p>';
+		
 	?>
 </div>
