@@ -28,7 +28,9 @@
 		</div>
 		
 		<div>
+                    <?php if( $this->userdata->is_admin() ): ?>
 			<span class="button_edit"><?= anchor('posts/modifiers/'.$post_id, "Zobraziť históriu modifikácií") ?></span>
+                    <?php endif; ?>
 		</div>
 	<?php endif; ?>
 	
