@@ -9,7 +9,8 @@
         if($counter < 3)
         {
             echo '<div class="post" id='.$event->event_id.'>';
-                echo $event->event_name.'<br />';
+                anchor('events/detail/'.$event->event_id,$o->$event->event_name);
+                echo '<br />';
                 echo perex_from_content($event->event_about).'...<br />';
                 echo '<br />';
             echo '</div>'; 
@@ -25,7 +26,8 @@
         if($counter < 3)
         {
             echo '<div class="event" id='.$post->post_id.'>';
-                echo $post->post_title.'<br />';
+                anchor('posts/detail/'.$post->post_id,$post->post_title);
+                echo '<br />';
                 echo perex_from_content($post->post_content).'...<br />';
                 echo '<br />';
             echo '</div>'; 
