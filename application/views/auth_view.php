@@ -9,7 +9,7 @@
         if($counter < 3)
         {
             echo '<div class="post" id='.$event->event_id.'>';
-                anchor('events/detail/'.$event->event_id,$o->$event->event_name);
+                anchor('events/detail/'.$event->event_id,$event->event_name);
                 echo '<br />';
                 echo perex_from_content($event->event_about).'...<br />';
                 echo '<br />';
