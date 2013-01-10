@@ -920,3 +920,44 @@ User detail view ******/
 	margin-top: 2px;
 	margin-bottom: 2px;
 }
+
+/****** Auth view ******/
+.auth_view_column {
+	width: 315px;
+	margin: 10px 10px 25px 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.auth_view_title {
+	color: #880d0d;
+	font-weight: bolder;
+	font-size: 20px;
+	font-family: "Arial black";
+}
+
+.post, .event {
+	float: left;
+	width: 315px;
+	height: 80px;
+	overflow: hidden;
+	margin-top: 15px;
+}
+
+.separation {
+	border-bottom: dashed 1px black;
+	width: 250px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-bottom: 12px;
+}
+
+.auth_view_link a {
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;	
+}
+
+.auth_view_link a:hover {
+	text-decoration: underline;	
+}
