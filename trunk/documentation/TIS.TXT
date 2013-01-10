@@ -17,9 +17,29 @@ DOROBIç:
 	- users_detail_view - dokoncit, je tam vela nejasnosti
 	- users_edit_view - form_button_edit + na vsetkych strankach kde sa pouziva
 	- users_detail - odstranit tie debug array, alebo co to je
-	
-	- MARTIN - tam kde sa nachadzaju form_submit tlacidla treba to predesignovat (zistime pri teste)
-	- STEVO - ked budes designovat GRID, ak sa ti nezmesti do toho ramceka tak prehod div id="content_wrapper" na div id="grid_wrapper" ten by mal mat pohyblivu velkost
+	- Pokonzultacne problemy s panom Petrovicom
+		- Homepage - premenovat na nejaky krajsi + dorobit tam linky na udalosti a clanky
+		- Udalosti - linky prerobit na dropdown?
+					- nezobrazovat prioritu
+					- doplnit tam, ze v akej kategorii sme, zobrazit ich, potom pridat tam bb code HTML tag
+					- na gride prirobit edit/delete
+		- Uzivatelia - nevypisovat prednasajucich
+					- nastavit zobrazenie udajov, co vidia clenovia, co potencionalny clenovia a pod
+					- tlacidlo profil + editacia vlastneho profilu
+					- potom prirobit tam slovo suma ked predlzujem clenske
+					- ak uzivatel strati heslo, tak + moznost aby sme mu poslali nove a ktore bude vediet potom zmenit
+		- CSS navigacia
+		- Upravid DB na projektoch
+		- Clenova - schovat verejne veci
+				  - zoznam clenov, schovat mail
+		- Export - ciselne udaje dat do ' '
+		- Registracia - prepisat na registracia noveho clena
+		- Platbz - premenovat neuhradena na nepotvrdena
+				 - nova rola uzivatela
+				 - zlucovanie platieb
+		- Korespondencia - kopia pre admina - copy to
+						 - doplnit od koho ide email - from to
+		- DOROBIT ARCHIV
 	
 Pozn·mky:
 	- GRID-y design + fix editu d·tumov a s˙m
