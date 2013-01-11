@@ -1,49 +1,34 @@
 Pri commite nedávam container.php, config.php a htacces
 
 DOROBI:
-	- auth_registration_view, user_add_view - form dropdown na roky
-	- auth_view - Mino, alebo tam mam nahodit post_view???
-	- correspondence_view - dal by som tam bb code
-	- correspondence_view - neviem kde treba dat CSS na to nove menu po pridani pre koho je ta sprava
-	- io_import_view - nemame
-	- do message.php dorobit vedla imagu nazov (varovanie, informacia)
-	- administration_view - co tam chceme zobrazovat
-	- GRID - mierna uprava, napr som na udalosti - kategorie udalosti pod kategoriou seminare a ja neviem kde som, nie je tam ziadny popis a neviem si zobrazit len nejaku kategoriu a v nej udalosti
-	- z project_categories_detail treba prirobit link na navrat spat na kategorie projektov, alebo niekam, viem to tam len zmazat + pridat tam menu eura
-	- project_add_view - dal by som bb code pred textareu
-	- project_edit_view - form dropdown vymysliet ako ho tam privolat + pridat bb code + vymysliet nieco s tymi buttonmi
-	- USERS celkovo neukazuju clena s hodnostou admina + ak dana skupina nema clena neukazuje vobec GRID aby som ho mohol pridat (neni tam ikona pridania)!!!
-	- users_add_view - chyba tam popis k tomu vyberaciemu menu 4 clena
-	- users_detail_view - dokoncit, je tam vela nejasnosti
-	- users_edit_view - form_button_edit + na vsetkych strankach kde sa pouziva
-	- users_detail - odstranit tie debug array, alebo co to je
+	- correspondence_view - CSS pre filter komponenty
+	- administration_view - automaticky presmerovat na platby
+	- project categories - doplnit do kapitálu znak eur
+	- project categories - navrat na zoznam kategorii
+	- grid - opravit lomitko nakonci v url
+	- grid - vymysle ako by mohol prazdny grid ukazat add
 	- Pokonzultacne problemy s panom Petrovicom
-		- Homepage - premenovat na nejaky krajsi + dorobit tam linky na udalosti a clanky
-		- Udalosti - linky prerobit na dropdown?
-					- nezobrazovat prioritu
-					- doplnit tam, ze v akej kategorii sme, zobrazit ich, potom pridat tam bb code HTML tag
-					- na gride prirobit edit/delete
-		- Uzivatelia - nevypisovat prednasajucich
-					- nastavit zobrazenie udajov, co vidia clenovia, co potencionalny clenovia a pod
+		- Homepage	- premenovat na nejaky krajsi + dorobit tam linky na udalosti a clanky
 					- tlacidlo profil + editacia vlastneho profilu
-					- potom prirobit tam slovo suma ked predlzujem clenske
-					- ak uzivatel strati heslo, tak + moznost aby sme mu poslali nove a ktore bude vediet potom zmenit
-		- CSS navigacia
-		- Upravid DB na projektoch
-		- Clenova - schovat verejne veci
-				  - zoznam clenov, schovat mail
+		- Events 	- dropdown pre zobrazenie eventov v urcitej kategorii
+					- súèasné anchory prerobi na dropdown
+					- odstráni prioritu
+					- doplnit do gridu, v akej kategórii udalostí sme, dropdown na vıber udalostí v konkrétnej kategórii
+					- na gride prirobit edit/delete
+		- Users - neukazuje sa hodnos admin, opravit alebo stiahnut opravu z kempelenu
+				- users_add/edit_view	- vyhodi všetkych, necha iba èlena a prida ešte potenciálneho èlena -> nová rola
+										- potom prirobit tam slovo suma ked predlzujem clenske
+										- prida monos upravi vıšku príspevku (min. však 5€), takzie prerozdelenie (v prípade e má èo uhrádza)
+										- prida monos prida/zmeni/zmaza si dobrovo¾ny príspevok a prerozdelenia na kategórie
+				- users_detail_view - prida ïalšie osobné údaje, kontrola èi sa èlen pozerá na svoj profil, ak nie zakáza niektoré osobné údaje
+									- email nie je verenjny
+				- ak uzivatel strati heslo, tak + moznost aby sme mu poslali nove a ktore bude vediet potom zmenit	
 		- Export - ciselne udaje dat do ' '
 		- Registracia - prepisat na registracia noveho clena
-		- Platbz - premenovat neuhradena na nepotvrdena
-				 - nova rola uzivatela
-				 - zlucovanie platieb
+		- Platby - prida typ platby -> dobovo¾nı príspevok
 		- Korespondencia - kopia pre admina - copy to
 						 - doplnit od koho ide email - from to
+						 - doplni do filtra monos posla iba potencialnym èlenom
+						 - doplni do filtra posla èlenom, ktorım nebol poslanı rovnakı typ emailu istu dobu (prida dropdown s dobou)
+		- CSS - oprava skákajúcej navigácie
 		- DOROBIT ARCHIV
-	
-Poznámky:
-	- GRID-y design + fix editu dátumov a súm
-
-	- DOROBI:
-	
-	- OVERI:
