@@ -11,7 +11,8 @@ $lang['confirm_delete_title']           =   'Ste si istý?';
 $lang['confirm_delete_question']        =   'Naozaj chcete vymazať tento záznam?';
 $lang['confirm_yes']                    =   'Áno';
 $lang['confirm_no']                     =   'Nie';
-$lang['confirm_ok']                     =   'Ok';
+//$lang['confirm_ok']                     =   'Ok';
+$lang['confirm_back']                     =   'Späť na hlavnú stránku';
 
 $lang['delete_item']                    =   'Zmazať';
 $lang['edit_item']                      =   'Upraviť';

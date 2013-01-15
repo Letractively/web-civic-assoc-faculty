@@ -191,13 +191,13 @@ class Inserter extends MY_Model
     public function add_register($param)
     {
         $this->db->query("  INSERT INTO users 
-                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
+                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone, user_active,
                             user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
                             VALUES
-                            ('".$param['name']."','".$param['surname']."',1,'".$param['username']."',
-                             '".sha1($param['password'])."','".$param['email']."','".$param['phone']."',
-                             '".$param['study_program_id']."','".$param['degree_id']."','".$param['place_of_birth']."',
-                             '".$param['postcode']."','".$param['degree_year']."')
+                            ('".$param['name']."', '".$param['surname']."', 2, '".$param['username']."',
+                             '".sha1($param['password'])."', '".$param['email']."', '".$param['phone']."',
+                             0, '".$param['study_program_id']."', '".$param['degree_id']."', 
+                             '".$param['place_of_birth']."', '".$param['postcode']."', '".$param['degree_year']."')
                          ");
         
         $user_id = $this->db->insert_id();
