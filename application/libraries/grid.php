@@ -162,34 +162,55 @@ class Grid
 	 * @param table Dvojrozmerné pole dát vo formáte array of object alebo array of array. V prípade array of array musí mať pole nižšej úrovne indexy ako string, ktoré zároveň definujú názvy stĺpcov gridu.
 	 * @param unique_key Názov stĺpca, ktorý obsahuje IDčko záznamu.
 	 */
-	public function bind($table, $unique_key) // ocakava array of object alebo array of array
+	public function bind($table, $unique_key) // ocakava array of object alebo array of array alebo CI_DB_mysql_result
 	{	
-		if (count($table) == 0) return false; // ak neprisiel ziaden zaznam, da ende
-		$this->unique = $unique_key;
-		
-		// ---------- bindovanie stlpcov ----------
-		// bindovanie prebieha tak, ze ci vycucne prvy riadok zaznamu a z neho povytahuje nie hodnoty, ale indexy ala nazvy stlpcov
-		if (is_object($table[0])) // ak su zaznamy objekty --> prerob na array a vycucni riadok
-			$row = get_object_vars($table[0]);
-		else // ak nie, iba vycucni riadok
-			$row = $table[0];
-		foreach ($row as $key => $value) // nahadz nazvy stlpcov hlavicky gridu
-			$this->headCols[$key] = new Col($key);
-		
-		// ---------- bindovanie záznamov ----------
-		foreach ($table as $table_row) // pre vsetky zaznamy
+		if (gettype($table) == 'object') // ci je datasource objekt
 		{
-			$row = new Row; // vytvori novy riadok
-			if (is_object($table_row)) // prerobi objekt na array
-				$table_row = get_object_vars($table_row);
-			foreach($table_row as $key => $value) // pre vsetky hodnoty v riadku
-				$row->cells[$key] = $value; // uklada hodnoty pod kluc (nazov stlpca)
-			$this->rows[$table_row[$unique_key]] = $row; // riadok ulozi pod index, ktory je v stlpci id-čiek (kvoli idenitifikacii zaznamu cez id-cko)
+			if (get_class($table) == 'CI_DB_mysql_result') // ak je objekt, ci je takeho typu aky potrebujem
+			{
+				if (count($table->result()) == 0) // ak vysledok z db neobsahuje ziaden zaznam
+				{
+					foreach ($table->list_fields() as $col) // prejdi nazvy stlpcov a nabinduj ich na grid
+						$this->headCols[$col] = new Col($col);
+					$this->unique = $unique_key;
+					return true; // bind sa podaril
+				}
+				else // ak vysledok z db obsahuje nejake zaznamy
+					$table = $table->result(); // vytiahni z objektu array zaznamov a pokracuj normalne dalej
+			}
+			else return false; // ak je objekt zleho typu
 		}
 		
-		return true;
+		if (gettype($table) == 'array')
+		{
+			if (count($table) == 0) return false; // ak neprisiel ziaden zaznam, da ende
+			$this->unique = $unique_key;
+			
+			// ---------- bindovanie stlpcov ----------
+			// bindovanie prebieha tak, ze ci vycucne prvy riadok zaznamu a z neho povytahuje nie hodnoty, ale indexy ala nazvy stlpcov
+			if (is_object($table[0])) // ak su zaznamy objekty --> prerob na array a vycucni riadok
+				$row = get_object_vars($table[0]);
+			else // ak nie, iba vycucni riadok
+				$row = $table[0];
+			foreach ($row as $key => $value) // nahadz nazvy stlpcov hlavicky gridu
+				$this->headCols[$key] = new Col($key);
+			
+			// ---------- bindovanie záznamov ----------
+			foreach ($table as $table_row) // pre vsetky zaznamy
+			{
+				$row = new Row; // vytvori novy riadok
+				if (is_object($table_row)) // prerobi objekt na array
+					$table_row = get_object_vars($table_row);
+				foreach($table_row as $key => $value) // pre vsetky hodnoty v riadku
+					$row->cells[$key] = $value; // uklada hodnoty pod kluc (nazov stlpca)
+				$this->rows[$table_row[$unique_key]] = $row; // riadok ulozi pod index, ktory je v stlpci id-čiek (kvoli idenitifikacii zaznamu cez id-cko)
+			}
+			
+			return true;
+		}
+		else return false;
 	}
-	
+
 	/*
 	 * header
 	 * 
@@ -601,21 +622,23 @@ class Grid
 			}
 		}
 		
-		if (count($this->rows) != 0) // osetrenie, ak nemame nabindovanie ziade data, nevieme kam co jako pridat (nepozname stlpce tabulky), nezobrazime add button
-		if ($this->add_url != "") // ak mame zadany controller na add
+		if (count($this->headCols) != 0) // osetrenie, ak nemame nabindovanie ziade data, nevieme kam co jako pridat (nepozname stlpce tabulky), nezobrazime add button
 		{
-			// vygeneruje pridavaci riadok tak ci tak, len bude mat taky styl, aby neboli vidno jeho bunky
-			echo '<tr id="row0">'."\n";
-			foreach ($row->cells as $index => $cell)
+			if ($this->add_url != "") // ak mame zadany controller na add
 			{
-				if ($this->headCols[$index]->visible == true)
-					echo '<td id="'.$index.'0"></td>';
+				// vygeneruje pridavaci riadok tak ci tak, len bude mat taky styl, aby neboli vidno jeho bunky
+				echo '<tr id="row0">'."\n";
+				foreach ($this->headCols as $index => $cell)
+				{
+					if ($this->headCols[$index]->visible == true)
+						echo '<td id="'.$index.'0"></td>';
+				}
+				if ($this->add_mode == "internal")
+					echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="'.base_url().'../assets/img/add.png" alt="add" /></div></td>';
+				else if ($this->add_mode == "external")
+					echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.base_url().$this->add_url.'"><img src="'.base_url().'../assets/img/add.png" alt="add" /></a></td>';
+				echo '</tr>'."\n";
 			}
-			if ($this->add_mode == "internal")
-				echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="'.base_url().'../assets/img/add.png" alt="add" /></div></td>';
-			else if ($this->add_mode == "external")
-				echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.base_url().$this->add_url.'"><img src="'.base_url().'../assets/img/add.png" alt="add" /></a></td>';
-			echo '</tr>'."\n";
 		}
 		
 		echo '</table>'."\n";
