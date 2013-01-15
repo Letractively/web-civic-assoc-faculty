@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="post_content">
-                        <?= perex_from_content($o->post_content) ?>  
+                        <?= perex_from_content($o->post_content) ?>...  
                     </div>
         <?php
                     if($o->post_modifie_author_id == TRUE && $o->post_modifie_date == TRUE)
