@@ -29,11 +29,18 @@
 		</div>
                 <div class="inputitem">
                         <p class="label"><label for="content" class="<?= $error['content'] ?>"><?=$this->lang->line('published')?></label> </p>
-			<?= form_checkbox(array('name' => 'post_published', 'class' => 'post_published')) ?>
+			<?php
+                            if($field->post_published == 1)
+                            {
+                                echo form_checkbox(array('checked'=>'checked','value'=>'1','name' => 'post_published', 'class' => 'post_published', 'id' => 'post_published'));
+                            }
+                            else
+                                echo form_checkbox(array('value'=>'0','name' => 'post_published', 'class' => 'post_published', 'id' => 'post_published'));
+                        ?>
 		</div>
 		
 		<div class="inputitem">
-			<?php echo '<p class="button_back">'; echo anchor('posts/', $this->lang->line('to_posts')); echo '</p>'; ?>
+			<?php echo '<p class="button_back">'; echo anchor('posts/', $this->lang->line('to_post_detail')); echo '</p>'; ?>
 		</div>
 		
 		<div class="inputitem">

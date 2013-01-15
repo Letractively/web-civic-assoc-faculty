@@ -19,6 +19,7 @@ $lang['detail']               = 'Detail príspevku';
 $lang['add_post']               = 'Pridať nový príspevok';
 
 $lang['to_posts']      = 'Späť na články';
+$lang['to_post_detail']      = 'Späť na náhľad';
 
 /* End of file posts_lang.php */
 /* Location: ./application/language/slovak/posts_lang.php */
