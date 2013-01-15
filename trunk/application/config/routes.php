@@ -41,6 +41,7 @@
 $route['default_controller'] = "auth";
 $route['404_override'] = '';
 
+$route['administration']            =   "payments/index";
 $route['events/(:num)']             =   "events/index/$1";
 $route['payments/(:num)']           =   "payments/index/$1";
 
