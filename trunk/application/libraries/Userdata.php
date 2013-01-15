@@ -108,4 +108,22 @@ class Userdata
                                                 WHERE user_id = '".$user_id."'");
             return $query->row()->name;   
         }
+        
+        /*
+         * get_user_id
+         * 
+         * Funkcia vrati ID aktualne prihlaseneho pouzivatela
+         * 
+         * @return integer
+         * 
+         */
+        public function get_user_id()
+        {
+            if( $this->is_logged() )
+            {
+                return $this->CI->session->userdata('user');
+            }
+            else
+                return null;
+        }
 }
