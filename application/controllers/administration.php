@@ -23,7 +23,7 @@ class Administration extends MY_Controller
         public function index()
         {
 			$data = array(
-                            'view' => "{$this->router->class}_view",
+                                'view' => "{$this->router->class}_view",
 				'title' => 'Administrácia'
             );
 			
