@@ -1,6 +1,6 @@
 ﻿<?php
     $obj = $this->selecter->get_category_detail($project_category_id);
-    //array_debug($obj);
+    //array_debug($obj);set_numformat('{2:,: } €');
 ?>
 
 <div id="grid_wrapper">
@@ -9,9 +9,9 @@
 	<div class="project_category_cash">
 		<p> 
 			<span class="project_category_label"> <?= $this->lang->line('pr_cat_stats'); ?> <br /> </span>
-			<span class="project_category_labels"> <?= $this->lang->line('pr_cat_cur_state'); ?>: <b> <?= $obj->project_category_cash ?> </b> <br /> </span>
-			<span class="project_category_labels"> <?= $this->lang->line('pr_cat_move_from'); ?>: <span class="cash_from"> <?= $obj->transaction_cash_from ?> <br /> </span> </span>
-			<span class="project_category_labels"> <?= $this->lang->line('pr_cat_move_to'); ?>: <span class="cash_to"> <?= $obj->transaction_cash_to ?> </span> </span>
+			<span class="project_category_labels"> <?= $this->lang->line('pr_cat_cur_state'); ?>: <b> <?= $obj->project_category_cash;?> € </b> <br /> </span>
+			<span class="project_category_labels"> <?= $this->lang->line('pr_cat_move_from'); ?>: <span class="cash_from"> <?= $obj->transaction_cash_from ?> € <br /> </span> </span>
+			<span class="project_category_labels"> <?= $this->lang->line('pr_cat_move_to'); ?>: <span class="cash_to"> <?= $obj->transaction_cash_to ?> € </span> </span>
 		</p>
 	</div>
 	
@@ -35,10 +35,10 @@
 		<div class="inputitem">
 			<label for="to" class="<?= $error['to'] ?>"><?= $this->lang->line('label_to') ?>:</label>
 			<?= gen_dropdown('to', set_value('event_category_id'),$this->selecter->get_event_categories(),'event_category_id','event_category_name', 'dropdown'); ?>     
-		</div>
 		<div class="inputitem">
 			<label for="cash" class="<?= $error['cash'] ?>"><?= $this->lang->line('label_cash') ?>:</label>
-			<?= form_input(array('name' => 'cash', 'id' => 'cash', 'class' => 'input_data'.$error['cash']), set_value('cash')) ?>
+			<?= form_input(array('name' => 'cash', 'id' => 'cash', 'class' => 'input_data'.$error['cash']), set_value('cash')) ?>€
+
 		</div>   
 		
 		<div class="inputitem">
@@ -63,7 +63,7 @@
 			$grid->header('fin_category_transaction_from')->text = $this->lang->line('label_from');
 			$grid->header('fin_category_transaction_to')->text = $this->lang->line('label_to');
 			$grid->header('category_transaction_cash')->text = $this->lang->line('label_cash');
-
+                        $grid->header('category_transaction_cash')->set_numformat('{2:,: } €');
 
 			$grid->display();
 		}
@@ -82,7 +82,11 @@
 			$grid1->header('project_name')->text = $this->lang->line('label_name');
 			$grid1->header('project_booked_cash')->text = $this->lang->line('label_capital');
 			$grid1->header('project_spended_cash')->text = $this->lang->line('label_spend');
-			$grid1->header('project_date_from')->text = $this->lang->line('label_date_from');
+
+                        $grid1->header('project_booked_cash')->set_numformat('{2:,: } €');
+			$grid1->header('project_spended_cash')->set_numformat('{2:,: } €');
+                        
+                        $grid1->header('project_date_from')->text = $this->lang->line('label_date_from');
 			$grid1->header('project_date_to')->text = $this->lang->line('label_date_to');
 
 			$grid1->header('project_name')->set_anchor('projects/detail', 'project_id');

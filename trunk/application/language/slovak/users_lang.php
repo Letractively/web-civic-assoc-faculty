@@ -22,6 +22,7 @@ $lang['label_lecturer']             =   'prednášajúci';
 
 $lang['label_vs_box']               =   'Pre úhradu členského zakliknúť';
 $lang['label_vs']                   =   'Variabilný symbol';
+$lang['label_total_sum']                   =   'Suma';
 
 $lang['label_project_category_1']   =   '1';
 $lang['label_project_category_2']   =   '2';

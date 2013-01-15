@@ -17,7 +17,10 @@ el.display=(el.display == 'block')?'none':'block';
 	<?php
 		echo '<p class="project_label">';
 			echo 'Vaša hodnosť: ';
-			if($obj[0]->user_role == 2){
+                        if($obj[0]->user_role == 1){
+				echo '<span class="user_rank">'; echo 'Admin'; echo '</span>';
+			}
+			else if($obj[0]->user_role == 2){
 				echo '<span class="user_rank">'; echo 'Člen'; echo '</span>';
 			}
 			else if ($obj[0]->user_role == 3){

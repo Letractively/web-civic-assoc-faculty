@@ -14,7 +14,7 @@
 		
 		$grid->header('project_category_id')->editable = false;
 		$grid->header('project_category_cash')->editable = false;
-		
+		$grid->header('project_category_cash')->set_numformat('{2:,: } €');
 		$grid->header('project_category_id')->visible = false;
 		
 		$grid->header('project_category_name')->text = $this->lang->line('label_name');
