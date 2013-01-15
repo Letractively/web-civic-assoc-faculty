@@ -51,5 +51,21 @@ class MY_Model extends CI_Model
             else
                 return FALSE;
         }
+        
+        public function is_activated( $param )
+        {
+            $answer = FALSE;
+            $q = $this->db->query(" SELECT user_id
+                                    FROM users
+                                    WHERE user_username = '".$param['username']."' AND
+                                          user_password = '".sha1($param['password'])."' AND
+                                          user_active   = 0
+                                  ");   
+            if($q->num_rows > 0)
+                $answer = FALSE;
+            else
+                $answer = TRUE;
+            return $answer;
+        }
 
 }

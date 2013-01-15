@@ -91,14 +91,24 @@ class Auth extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
                 {
-                    $user_obj = $this->selecter->get_login( $this->input->post() );
-                    if( $user_obj != '' )
+                    if ( $this->selecter->is_activated( $this->input->post() ) )
                     {
-                        $this->session->set_userdata( array('user' => $user_obj->user_id, 'logged_in' => TRUE, 'user_role' => $user_obj->user_role) );
-                        if( $user_obj->user_role == 1 )
-                            $this->session->set_userdata( array('admin' => TRUE) );     
+                        $user_obj = $this->selecter->get_login( $this->input->post() );
+
+                        if( !empty($user_obj) )
+                        {
+                            $this->session->set_userdata( array('user' => $user_obj->user_id, 'logged_in' => TRUE, 'user_role' => $user_obj->user_role) );
+                            if( $user_obj->user_role == 1 )
+                                $this->session->set_userdata( array('admin' => TRUE) );     
+                        }
+                        else                
+                            redirect('show_message/index/error_input');
                     }
+                    else
+                        redirect('show_message/index/inactive_registration');
                 }
+                else
+                    redirect('show_message/index/error_validation');
             }
             redirect('auth');
         }

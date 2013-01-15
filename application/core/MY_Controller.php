@@ -2,9 +2,9 @@
 
 abstract class MY_Controller extends CI_Controller
 {
-    protected $data 			= array();
-    public $language                    = '';
-    protected $priorits                   = 5;
+    protected   $data                   = array();
+    public      $language               = '';
+    protected   $priorits               = 5;
 
     /*
      * Constructor

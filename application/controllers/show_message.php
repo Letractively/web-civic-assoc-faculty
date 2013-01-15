@@ -14,7 +14,7 @@ class Show_message extends MY_Controller
             $data = array(
                 'view'              => "confirm_view",
                 'type'              => 'inform',
-                'langs'             => array($this->lang->line('confirm_ok')),
+                'langs'             => array($this->lang->line('confirm_back')),
                 'method'            => '',
                 'title'             => $this->lang->line('title')
             );
