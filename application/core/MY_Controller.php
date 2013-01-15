@@ -5,6 +5,13 @@ abstract class MY_Controller extends CI_Controller
     protected   $data                   = array();
     public      $language               = '';
     protected   $priorits               = 5;
+    protected   $priorits_name          = array(
+                                            'Velmi dolezite',
+                                            'Stredne dolezite',
+                                            'Dolezite',
+                                            'Malo dolezite',
+                                            'Informativne'
+                                          );
 
     /*
      * Constructor
@@ -104,7 +111,7 @@ abstract class MY_Controller extends CI_Controller
         for($i = 1; $i <= $how_much; $i++)
         {
             $result[$i]['id'] = $i;
-            $result[$i]['value'] = $i;
+            $result[$i]['value'] = $this->priorits_name[$i-1];
         }
         
         return $result;
