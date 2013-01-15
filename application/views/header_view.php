@@ -20,7 +20,7 @@
 						<td> <?= form_password(array('type' => 'password', 'id' => 'password', 'name' => 'password', 'class' => 'input'.$error['password']), set_value('password')); ?> </td>
 						<td> <?= form_submit(array('name' => 'submit', 'class' => 'loginBtn'), $this->lang->line("button_login")); ?> </td>
 					</tr>
-					<tr> <td colspan="3" id="registration"> <?= anchor('auth/registration', 'REGISTRÁCIA'); ?> </td> </tr>
+					<tr> <td colspan="3" id="registration"> <?= anchor('auth/registration', 'Registrácia nového člena'); ?> </td> </tr>
 				<?= form_close(); ?>
 			</table>
 		<?php else: ?>

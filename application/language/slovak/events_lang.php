@@ -6,7 +6,7 @@ $lang['label_name']                     = 'Názov';
 $lang['label_from']                     = 'Od';
 $lang['label_to']                       = 'Do';
 $lang['label_about']                    = 'Popis';
-
+$lang['label_catname']                  = 'Kategória';
 $lang['back_to_event_categories']       = 'Späť na kategórie udalostí';
 $lang['to_event_categories']            = 'Kategórie udalostí';
 $lang['anchor_add']       				= 'Pridať novú udalosť';

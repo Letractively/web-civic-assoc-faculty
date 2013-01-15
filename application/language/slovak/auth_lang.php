@@ -1,8 +1,8 @@
 <?php
 
-$lang['title']                      =   'Homepage';
+$lang['title']                      =   'Domovská stránka';
 
-$lang['title_registration']         =   'Registrácia';
+$lang['title_registration']         =   'Registrácia nového člena';
 $lang['label_name']                 =   'Meno';
 $lang['label_surname']              =   'Priezvisko';
 $lang['label_username']             =   'Nick';

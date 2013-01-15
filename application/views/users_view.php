@@ -46,7 +46,7 @@
 			$grid->header('user_surname')->visible = true;
 			$grid->header('user_name')->set_anchor('users/detail', 'user_id');
 			$grid->header('user_surname')->set_anchor('users/detail', 'user_id');
-			$grid->header('user_email')->visible = true;
+			$grid->header('user_email')->visible = false;
 			if ($flag == ROLE_OZ_MEMBER) $grid->header('user_phone')->visible = true;
 			if ($flag == ROLE_OZ_MEMBER) $grid->header('study_program_name')->visible = true;
 			if ($flag == ROLE_OZ_MEMBER) $grid->header('user_degree_year')->visible = true;
