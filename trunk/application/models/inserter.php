@@ -91,32 +91,7 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
-    public function add_excursion($values)
-    {
-        
-    }
-    
-    public function add_excursion_event($values)
-    {
-        
-    }
-    
-    public function add_excursion_event_book($values)
-    {
-        
-    }
-    
-    public function add_excursion_event_lecturer($ex_event_id,$values)
-    {
-        
-    }
-    
-    public function add_excursion_event_visitor($values)
-    {
-        
-    }
-    
-    public function add_lecturer_times($ex_event_id, $user_id, $values)
+    /*public function add_lecturer_times($ex_event_id, $user_id, $values)
     {
       $this->db->query("INSERT INTO excursion_times
                            (excursion_time_excursion_event_id, excursion_lecturer_id, excursion_time_from, excursion_time_to)
@@ -126,7 +101,7 @@ class Inserter extends MY_Model
         return TRUE;
       }
       else{ return FALSE;}
-    }
+    }*/
     
     public function add_payments($values)
     {
@@ -140,16 +115,22 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
-    public function add_post($values)
+    public function add_post( $values )
     {
+        if( !isset($values['foo']) && $values['post_published'] == '1' )
+            $checked = '1';
+        else
+            $checked = '0';
         $this->db->query("INSERT INTO posts
-                           ( post_priority, post_title, post_author_id, post_content)
-                           VALUES ('".$values['priority']."','".$values['title']."','".$this->session->userdata('user')."','".$values['content']."')
+                           ( post_priority, post_title, post_author_id, post_content, post_published )
+                           VALUES ( '".$values['priority']."', '".$values['title']."', 
+                                    '".$this->session->userdata('user')."', '".$values['content']."', '".$checked."'
+                                   )
                          ");
-      if($this->db->affected_rows()>0){ 
-        return TRUE;
-      }
-      else{ return FALSE;}
+        if( $this->db->affected_rows() > 0 )
+            return TRUE;
+        else
+            return FALSE;
     }
     
     public function add_project($values)

@@ -37,6 +37,8 @@
 			echo '<span class="auth_view_title"> Články </span>';
 			foreach ($this->selecter->get_posts() as $post) 
 			{
+                            if( $post->post_published == 1)
+                            {
 				if($counter < 3)
 				{
 					echo '<div class="event" id='.$post->post_id.'>';
@@ -52,7 +54,8 @@
 				}	
 				else
 					break;
-			}
+                            }
+                        }
 		echo '</div>';
 	   
 	?>

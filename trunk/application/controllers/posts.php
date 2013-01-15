@@ -64,7 +64,7 @@ class Posts extends MY_Controller
         {
             if( !$this->userdata->is_admin() )
                 redirect(base_url());
-            parent::add('add_post', $this->router->class, $this->router->method);
+            parent::add( 'add_post' );
 
             $data = array(
                 'error'         => $this->form_validation->form_required(array('title','content','priority')),
@@ -89,7 +89,7 @@ class Posts extends MY_Controller
                 redirect('404');
             if( !$this->userdata->is_admin() )
                 redirect(base_url());
-            parent::edit('edit_post', $post_id, $this->router->class, $this->router->method);
+            parent::edit( 'edit_post', $post_id );
 
             $this->load->model('selecter');
 

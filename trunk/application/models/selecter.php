@@ -346,7 +346,7 @@ class Selecter extends MY_Model
     public function get_posts()
     {
              $q = $this->db->query("SELECT ppm.post_id, ppm.post_title, ppm.post_content, ppm.post_author_id, ppm.post_priority, 
-                                           ppm.post_date, ppm.post_modifie_author_id, u.user_name as modifier_name, 
+                                           ppm.post_date, ppm.post_modifie_author_id, ppm.post_published, u.user_name as modifier_name, 
                                            u.user_surname as modifier_surname, ppm.post_modifie_date, us.user_name as author_name,
                                            us.user_surname as author_surname
                                     FROM (SELECT *
@@ -357,7 +357,7 @@ class Selecter extends MY_Model
                                     LEFT JOIN users u ON (ppm.post_modifie_author_id=u.user_id)
                                     LEFT JOIN users us ON(ppm.post_author_id = us.user_id)
                                     GROUP BY ppm.post_id
-                                    ORDER BY ppm.post_date
+                                    ORDER BY ppm.post_date DESC
                                     
                                      ");
              return $q->result();

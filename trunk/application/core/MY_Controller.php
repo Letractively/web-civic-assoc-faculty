@@ -6,11 +6,11 @@ abstract class MY_Controller extends CI_Controller
     public      $language               = '';
     protected   $priorits               = 5;
     protected   $priorits_name          = array(
-                                            'Velmi dolezite',
-                                            'Stredne dolezite',
-                                            'Dolezite',
-                                            'Malo dolezite',
-                                            'Informativne'
+                                            'Vysoka',
+                                            'Vyssia',
+                                            'Stredna',
+                                            'Nizsia',
+                                            'Nizka'
                                           );
 
     /*
@@ -165,7 +165,7 @@ abstract class MY_Controller extends CI_Controller
 	{
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
-                array_debug($this->input->post());
+                //array_debug($this->input->post());
                 $this->load->model('updater');
                 $this->updater->$method( $id, $this->input->post() );
                     redirect( $this->router->class );
