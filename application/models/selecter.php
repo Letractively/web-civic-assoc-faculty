@@ -243,7 +243,7 @@ class Selecter extends MY_Model
     }
     
     
-    public function get_events($cat_id)
+    public function get_events($cat_id, $grid = false)
     {
        if($cat_id != 0){
         $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
@@ -253,7 +253,8 @@ class Selecter extends MY_Model
                                WHERE ec.event_category_id = '".$cat_id."'
                                ORDER BY e.event_priority DESC, e.event_created DESC
                                ");
-        return $q->result();
+        if ($grid == true) return $q;
+		else return $q->result();
         }
     
         else
@@ -264,11 +265,12 @@ class Selecter extends MY_Model
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority DESC, e.event_created DESC
                                ");
-         return $q->result();
+         if ($grid == true) return $q;
+		else return $q->result();
        }
     }
     
-    public function get_events_newest($cat_id)
+    public function get_events_newest($cat_id, $grid = false)
     {
        if($cat_id != 0){
         $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
@@ -278,7 +280,8 @@ class Selecter extends MY_Model
                                WHERE ec.event_category_id = '".$cat_id."'
                                ORDER BY e.event_created DESC
                                ");
-        return $q->result();
+        if ($grid == true) return $q;
+		else return $q->result();
         }
     
         else
@@ -289,11 +292,12 @@ class Selecter extends MY_Model
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_created DESC
                                ");
-         return $q->result();
+         if ($grid == true) return $q;
+		else return $q->result();
        }
     }
     
-    public function get_events_prior($cat_id)
+    public function get_events_prior($cat_id, $grid = false)
     {
        if($cat_id != 0){
         $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
@@ -303,7 +307,8 @@ class Selecter extends MY_Model
                                WHERE ec.event_category_id = '".$cat_id."'
                                ORDER BY e.event_priority DESC, e.event_name ASC
                                ");
-        return $q->result();
+        if ($grid == true) return $q;
+		else return $q->result();
         }
     
         else
@@ -314,7 +319,8 @@ class Selecter extends MY_Model
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority DESC, e.event_name ASC
                                ");
-         return $q->result();
+         if ($grid == true) return $q;
+		else return $q->result();
        }
     }
     
