@@ -21,13 +21,13 @@
 		<?php echo '-'; ?>
 		<?= datetime($obj[0]->event_to, FALSE).' '.time_withou_seconds(datetime($obj[0]->event_to, TRUE)) ?>  
 	</div>
-	<div class="event_priority">
+	<!--div class="event_priority">
 		<span class="event_label"><?= $this->lang->line('label_priority').': ' ?></span>
 		<?= $obj[0]->event_priority ?> 
-	</div>
+	</div-->
 	<div class="event_add_info">
 		<span class="event_label"><?= $this->lang->line('event_author'); ?></span>
-		<?= $obj[0]->event_author ?>,
+		<?= anchor('users/detail/'.$obj[0]->user_id, $obj[0]->event_author) ?>,
 		<?= $date.' '.$time; ?>
 	</div>
 

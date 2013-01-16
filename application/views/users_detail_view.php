@@ -24,10 +24,7 @@ el.display=(el.display == 'block')?'none':'block';
 				echo '<span class="user_rank">'; echo 'Člen'; echo '</span>';
 			}
 			else if ($obj[0]->user_role == 3){
-				echo '<span class="user_rank">'; echo 'Návštevník exkurzie'; echo '</span>';
-			}
-			else if ($obj[0]->user_role == 4){
-				echo '<span class="user_rank">'; echo 'Prednášajúci'; echo '</span>';
+				echo '<span class="user_rank">'; echo 'Potencionálny člen'; echo '</span>';
 			}
 		echo '</p>';
 	?>

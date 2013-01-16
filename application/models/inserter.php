@@ -71,7 +71,7 @@ class Inserter extends MY_Model
          $this->db->query("INSERT INTO events
                            (event_author_id, event_event_category_id, event_priority, event_name, event_from, event_to, event_about)
                            VALUES ('".$this->session->userdata('user')."','".$values['event_category_id']."','".$values['priority']."','".$values['name']."',
-                                   '".format_date($values['from']).' '.$values['from_time'].':00'."', '".format_date($values['to']).' '.$values['to_time'].':00'."','".$values['about']."')
+                                   '".  date( format_datetime($values['from']) )."', '".date( format_datetime($values['to']) )."','".$values['about']."')
                          ");
      if($this->db->affected_rows()>0){ 
         return TRUE;

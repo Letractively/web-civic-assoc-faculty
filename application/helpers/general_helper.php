@@ -40,8 +40,8 @@ function array_debug($arr, $return = false)
  * @param data vstupne pole udajov
  * @param id_index key v poli
  * @param value_index value ktora prislucha danemu key
- * @param css_class názov class selektora pre css, defaultne sa nepoužíva
- * @param attributes dodatoèné atribúty pre element, zadávaju sa vo forme stringu formou 'atribut1="hodnota1", atribut2="hodnota2", ...'
+ * @param css_class nï¿½zov class selektora pre css, defaultne sa nepouï¿½ï¿½va
+ * @param attributes dodatoï¿½nï¿½ atribï¿½ty pre element, zadï¿½vaju sa vo forme stringu formou 'atribut1="hodnota1", atribut2="hodnota2", ...'
  * @return form_dropdown menu
  *  
  *//*
@@ -158,4 +158,11 @@ function format_date($input)
 {
     $date = explode('.', $input);
     return $date[2].'-'.$date[1].'-'.$date[0];
+}
+
+function format_datetime($input)
+{
+    $dateAndTime = explode(' ', $input);
+    $date = explode('.', $dateAndTime[0]);
+    return $date[2].'-'.$date[1].'-'.$date[0].' '.$dateAndTime[1].':00';
 }

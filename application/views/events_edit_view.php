@@ -1,10 +1,13 @@
-﻿<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
-<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css" />
+<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css" />
 <script src="../../../assets/js/calendar/dhtmlxcalendar.js"></script>
+<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/js/calendar/dhtmlxcalendar.css" />
+<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/js/calendar/skins/dhtmlxcalendar_omega.css" />
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/calendar/dhtmlxcalendar.js"></script>
 <script type="text/javascript">
 	window.onload = function()
 	{
-		var calendar = new dhtmlXCalendarObject(["from","to"]);
+		var calendar = new dhtmlXCalendarObject("from");
 		calendar.setDateFormat("%d.%m.%Y %H:%i");
 		dhtmlXCalendarObject.prototype.langData["sk"] =
 		{
@@ -44,7 +47,7 @@
 	 <!--generovat prioritu-->
 		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
-			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value', 'dropdown_priority'); ?>
+			<?= gen_dropdown('priority', set_value('priority_id', $field->event_priority), $priorities, 'id', 'value', 'dropdown_priority'); ?>
 		</div>
 	 <!--end-->
 	 

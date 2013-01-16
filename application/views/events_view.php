@@ -35,7 +35,7 @@
 			$grid->header('event_id')->editable = false;
 			$grid->header('event_id')->visible              = false;
 			$grid->header('event_about')->visible           = false;
-			$grid->header('event_created')->visible         = false;
+			//$grid->header('event_created')->visible         = false;
 			$grid->header('event_category_name')->text = $this->lang->line('label_catname');
 			$grid->header('event_priority')->visible        = false;
 			$grid->header('event_name')->set_anchor('events/detail', 'event_id');
@@ -45,8 +45,8 @@
 			$grid->header('event_to')->set_datetime();
 			$grid->header('event_to')->text     = $this->lang->line('label_to');
                         
-                        $grid->add_url = "{$this->router->class}/add";
-                        $grid->edit_url = "{$this->router->class}/edit";
+                        //$grid->add_url = "{$this->router->class}/add";
+                        //$grid->edit_url = "{$this->router->class}/edit";
                         $grid->remove_url = "{$this->router->class}/delete";
 		}
 
