@@ -230,7 +230,7 @@ class Selecter extends MY_Model
 		                       ec.event_category_name AS event_category, 
 	                               eec.event_name, eec.event_about,
                                        eec.event_from, eec.event_to,
-		                       eec.event_priority,
+		                       eec.event_priority, eec.user_id,
 		                       CONCAT(CONCAT(eec.user_name,' '),eec.user_surname) AS event_author, eec.event_created
                                 FROM event_categories ec
 	                         JOIN
@@ -593,8 +593,8 @@ class Selecter extends MY_Model
     {
         $q = $this->db->query(" SELECT *
                                 FROM users u
-                                JOIN study_programs sp ON (u.user_study_program_id=sp.study_program_id) 
-                                JOIN degrees d ON (u.user_degree_id=d.degree_id)
+                                LEFT JOIN study_programs sp ON (u.user_study_program_id=sp.study_program_id) 
+                                LEFT JOIN degrees d ON (u.user_degree_id=d.degree_id)
                                 WHERE u.user_id=$user_id       
                                ");
         return $q->result();

@@ -29,8 +29,8 @@ class Updater extends MY_Model
                           SET event_event_category_id='".$values['event_category_id']."', 
                               event_priority='".$values['priority']."', 
                               event_name='".$values['name']."',
-                              event_from='".format_date($values['from']).' '.$values['from_time'].':00'."', 
-                              event_to='".format_date($values['to']).' '.$values['to_time'].':00'."', 
+                              event_from='".date( format_datetime($values['from']) )."', 
+                              event_to='".date( format_datetime($values['to']) )."', 
                               event_about='".$values['about']."'
                           WHERE event_id=$ev_id");
         

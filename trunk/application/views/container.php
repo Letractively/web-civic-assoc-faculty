@@ -13,8 +13,8 @@
         <link href="<?= base_url(); ?>/assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
         <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-        <script type="text/javascript" src="<?= base_url(); ?>/assets/js/custom.js"></script>
-        <script type="text/javascript" src="<?= base_url(); ?>/assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="<?= base_url(); ?>assets/js/custom.js"></script>
+        <script type="text/javascript" src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
     </head>
     <body>
 		<noscript><?= $this->lang->line('no_js'); ?></noscript>
