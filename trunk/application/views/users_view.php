@@ -1,18 +1,32 @@
-﻿<?php
+﻿<script type="text/javascript" charset="UTF-8">
+	var base_url = '<?=base_url()?>';
+
+	function changeFilter(sender)
+	{
+		var user_filter = document.getElementById('user_filter');
+		var url = user_filter.options[user_filter.selectedIndex].value;
+		window.location = base_url+url;
+	}
+</script>
+
+<?php
     $this->load->library('grid');
     $grid = new Grid();
 ?>
  
 <div id="grid_wrapper"> 
+
+	<?php
+		$user_filters = array(
+			array('id' => 'users', 'value' => $this->lang->line('all')),
+			array('id' => 'users/admins', 'value' => $this->lang->line('admin')),
+			array('id' => 'users/members', 'value' => $this->lang->line('oz_member'))
+		);
+	?>
+
 	<div class="grid_link_text">
-		<span class="grid_label"> Zoradit podľa: </span>
-		<ul>
-			<li><?= anchor('users/members',$this->lang->line('oz_member')) ?></li>
-			<!--li><?= anchor('users/visitors',$this->lang->line('ex_member')) ?></li-->
-			<li><?= anchor('users/lecturers',$this->lang->line('lecturer')) ?></li>
-			<li><?= anchor('users/admins',$this->lang->line('admin')) ?></li>
-			<li><?= anchor('users/index',$this->lang->line('all')) ?></li>
-		</ul>
+		<span class="grid_label"> Zobraziť: </span>
+		<?= gen_dropdown('user_filter', $user_filters[$flag]['id'], $user_filters, 'id', 'value', 'dropdown','id="user_filter" onchange="changeFilter(this);"'); ?>
 	</div>
 	<?php
 		$users_objects = $this->selecter->get_users($flag);
