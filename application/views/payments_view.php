@@ -27,14 +27,22 @@
 		
 		$users = $this->selecter->get_users(0);
 		$userlist = array();
-		foreach ($users as $user)
+		if ($this->userdata->is_admin())
 		{
-			$userlist[] = array(
-				'id' => $user->user_id,
-				'name' => $user->user_name.' '.$user->user_surname
-			);
+			foreach ($users as $user)
+			{
+				$userlist[] = array(
+					'id' => $user->user_id,
+					'name' => $user->user_name.' '.$user->user_surname
+				);
+			}
+			$userlist[] = array('id' => 0, 'name' => 'Všetci');
 		}
-		$userlist[] = array('id' => 0, 'name' => 'Všetci');
+		else
+		{
+			$userID = $this->userdata->get_user_id();
+			$userlist[] = array('id' => $userID, 'name' => $this->userdata->full_name($userID));
+		}
 	?>
 
     <div class="grid_link_text">
@@ -69,8 +77,12 @@
 				$grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
 				$grid->header('payment_paid_time')->set_datetime();
 				
-				$grid->edit_url = "{$this->router->class}/edit";
-				$grid->remove_url = "{$this->router->class}/delete";
+				$grid->add_url = "payments/add";
+				$grid->edit_url = "payments/edit";
+				$grid->remove_url = "payments/delete";
+				$grid->add_mode = "external";
+				$grid->edit_mode = "external";
+				
 				$grid->display();
 			}
 		}
@@ -95,6 +107,13 @@
 				$grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
 				$grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
 				$grid->header('payment_paid_time')->set_datetime();
+				
+				$grid->add_url = "payments/add";
+				$grid->edit_url = "payments/edit";
+				$grid->remove_url = "payments/delete";
+				$grid->add_mode = "external";
+				$grid->edit_mode = "external";
+				
 				$grid->display();
 			}
 		}
@@ -120,8 +139,12 @@
 				$grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
 				$grid->header('payment_paid_time')->set_datetime();
 				
-				$grid->edit_url = "{$this->router->class}/edit";
-				$grid->remove_url = "{$this->router->class}/delete";
+				$grid->add_url = "payments/add";
+				$grid->edit_url = "payments/edit";
+				$grid->remove_url = "payments/delete";
+				$grid->add_mode = "external";
+				$grid->edit_mode = "external";
+				
 				$grid->display();
 			}
 		}

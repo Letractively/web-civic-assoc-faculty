@@ -13,8 +13,8 @@ class Payments extends MY_Controller
         {
             parent::__construct();
             $this->load->model('selecter');
-            if( !$this->userdata->is_admin() )
-                redirect(base_url());
+            /*if( !$this->userdata->is_admin() )
+                redirect(base_url());*/
 
              $this->load->model('selecter');
 
@@ -38,6 +38,9 @@ class Payments extends MY_Controller
          */
         public function index($pay_id = 0)
         {   
+			if( !$this->userdata->is_admin() && ($pay_id != $this->userdata->get_user_id() ) )
+				$pay_id = $this->userdata->get_user_id();
+				
             $data = array(
                 'flag'      => 0,
                 'pay_id'    => $pay_id
@@ -57,6 +60,9 @@ class Payments extends MY_Controller
          */
         public function paid($pay_id = 0)
         {
+			if( !$this->userdata->is_admin() && ($pay_id != $this->userdata->get_user_id() ) )
+				$pay_id = $this->userdata->get_user_id();
+		
             $data = array(
                 'flag'      => 1,
                 'pay_id'    => $pay_id
@@ -76,6 +82,9 @@ class Payments extends MY_Controller
          */
         public function nopaid($pay_id = 0)
         {
+			if( !$this->userdata->is_admin() && ($pay_id != $this->userdata->get_user_id() ) )
+				$pay_id = $this->userdata->get_user_id();
+		
             $data = array(
                 'flag'      => 2,
                 'pay_id'    => $pay_id
