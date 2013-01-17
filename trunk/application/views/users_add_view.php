@@ -52,10 +52,6 @@ function showdiv(id) {
 <div id="content_wrapper">
 	<label for="oz_member" class="<?= $error['oz_member'] ?>"><?= $this->lang->line('label_oz_member') ?></label>
 		<input type="radio" value="1" name="myRadio" onclick="javascript:switchid('a1');" checked="checked"/><br />
-	<label for="ex_member" class="<?= $error['ex_member'] ?>"><?= $this->lang->line('label_ex_member') ?></label>
-		<input type="radio" value="2" name="myRadio" onclick="javascript:switchid('a2');"/><br />
-	<label for="lecturer" class="<?= $error['lecturer'] ?>"><?= $this->lang->line('label_lecturer') ?></label>
-		<input type="radio" value="3" name="myRadio" onclick="javascript:switchid('a3');"/><br />
 	<label for="admin" class="<?= $error['admin'] ?>"><?= $this->lang->line('label_admin') ?></label>
 		<input type="radio" value="4" name="myRadio" onclick="javascript:switchid('a4');"/><br />
 

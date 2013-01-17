@@ -31,10 +31,6 @@
 					$users[$i]['nopaid_payments'] += $p->payment_total_sum;
 			}
 			break;
-		case ROLE_EX_MEMBER: // prvych n udalosti
-			break;
-		case ROLE_LECTURER: // prvych n prednasok
-			break;
 		}
 		
 		//array_debug($users);
@@ -50,7 +46,7 @@
 			if ($flag == ROLE_OZ_MEMBER) $grid->header('user_phone')->visible = true;
 			if ($flag == ROLE_OZ_MEMBER) $grid->header('study_program_name')->visible = true;
 			if ($flag == ROLE_OZ_MEMBER) $grid->header('user_degree_year')->visible = true;
-			if (in_array($flag, array(ROLE_OZ_MEMBER, ROLE_LECTURER))) $grid->header('degree_name')->visible = true;
+			if ($flag == ROLE_OZ_MEMBER) $grid->header('degree_name')->visible = true;
 			
 					$grid->header('user_name')->text = $this->lang->line('label_name');
 					$grid->header('user_surname')->text = $this->lang->line('label_surname');

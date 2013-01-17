@@ -124,6 +124,6 @@ class Userdata
                 return $this->CI->session->userdata('user');
             }
             else
-                return null;
+                return 0;
         }
 }

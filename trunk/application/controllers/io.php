@@ -33,7 +33,7 @@ class Io extends MY_Controller
 		if ($header)
 		{
 			foreach($header as $cell)
-				$export_text .= $cell.';';
+				$export_text .= '"'.$cell.'";';
 			$export_text .= "\n";
 		}
 		foreach($source as $row)
@@ -42,7 +42,7 @@ class Io extends MY_Controller
 			foreach($row as $index => $cell)
 			{
 				if (!in_array($index, $remove_from_export))
-					$export_text .= $cell.';';
+					$export_text .= '"'.$cell.'";';
 			}
 			$export_text .= "\n";
 		}
