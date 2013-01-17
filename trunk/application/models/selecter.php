@@ -100,12 +100,13 @@ class Selecter extends MY_Model
      * @access      public
      * @return      array of objects
      */
-    public function get_event_categories()
+    public function get_event_categories($grid = false)
     {
             $q = $this->db->query(" SELECT *
                                     FROM event_categories
                                   ");
-            return $q->result();
+            if ($grid == true) return $q;
+		else return $q->result();
     }
     
     /*
@@ -308,7 +309,7 @@ class Selecter extends MY_Model
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
-                               ORDER BY e.event_priority DESC, e.event_name ASC
+                               ORDER BY e.event_priority ASC, e.event_created DESC, e.event_name ASC
                                ");
         if ($grid == true) return $q;
 		else return $q->result();
@@ -320,7 +321,7 @@ class Selecter extends MY_Model
                                         ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
-                               ORDER BY e.event_priority DESC, e.event_name ASC
+                               ORDER BY e.event_priority ASC, e.event_created DESC, e.event_name ASC
                                ");
          if ($grid == true) return $q;
 		else return $q->result();
