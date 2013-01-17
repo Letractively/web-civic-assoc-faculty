@@ -475,7 +475,7 @@ class Selecter extends MY_Model
             return $q->row()->total_sum;
     }
     
-    public function get_payments($user_id)
+    public function get_payments($user_id, $grid = false)
     {
         if($user_id == 0){
             $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
@@ -483,7 +483,8 @@ class Selecter extends MY_Model
                                     FROM payments p
                                     LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                   ");
-            return $q->result();
+            if ($grid == true) return $q;
+			else return $q->result();
         }   
         else {
         $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
@@ -492,7 +493,8 @@ class Selecter extends MY_Model
                                     LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                     WHERE u.user_id = $user_id
                                   ");
-            return $q->result();
+            if ($grid == true) return $q;
+			else return $q->result();
         }
     }
     
@@ -510,7 +512,7 @@ class Selecter extends MY_Model
             return $q->row(1);
     }
     
-    public function get_payments_nopaid($user_id)
+    public function get_payments_nopaid($user_id, $grid = false)
     {
         if($user_id==0){
             $q = $this->db->query("
@@ -534,10 +536,11 @@ class Selecter extends MY_Model
                                    
                                   ");
         }
-            return $q->result();
+            if ($grid == true) return $q;
+			else return $q->result();
     }
     
-    public function get_payments_paid($user_id)
+    public function get_payments_paid($user_id, $grid = false)
     {
         if($user_id==0){
             $q = $this->db->query("
@@ -561,7 +564,8 @@ class Selecter extends MY_Model
                                    
                                   ");
         }
-            return $q->result();
+            if ($grid == true) return $q;
+			else return $q->result();
     }
     
     public function get_transactions($pr_cat_id)

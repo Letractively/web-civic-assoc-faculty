@@ -13,8 +13,8 @@ class Payments extends MY_Controller
         {
             parent::__construct();
             $this->load->model('selecter');
-            /*if( !$this->userdata->is_admin() )
-                redirect(base_url());*/
+            if( !$this->userdata->is_logged() )
+                redirect(base_url());
 
              $this->load->model('selecter');
 
@@ -100,9 +100,12 @@ class Payments extends MY_Controller
          */
         public function add()
         {
-            parent::add('add_payments', $this->router->class, $this->router->method);
+            //parent::add('add_payments', $this->router->class, $this->router->method);
+			$data = array(
+                'view' => "payments_add_view"
+            );
 
-            $this->load->view('container', $this->data); 
+            $this->load->view('container', array_merge($this->data, $data)); 
         }
 
         /*

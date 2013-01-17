@@ -56,7 +56,7 @@
 	//array_debug($this->selecter->get_payments($pay_id));
 		if( $flag == 0 )
 		{
-			if( $grid->bind(addAdditional($this->selecter->get_payments($pay_id)), 'payment_id') )
+			if( $grid->bind($this->selecter->get_payments($pay_id, true), 'payment_id') )
 			{
 				$grid->header('payment_id')->editable = false;
 				$grid->header('payment_id')->visible = false;
@@ -64,7 +64,7 @@
 				$grid->header('payment_vs')->editable = false;
 				$grid->header('payment_total_sum')->editable = false;
 				$grid->header('payment_paid_time')->editable = false;
-				$grid->header('stav')->editable = false;
+				//$grid->header('stav')->editable = false;
 				
 				$grid->header('user_id')->visible = false;
 				$grid->header('user_name')->set_anchor('users/detail', 'user_id');
@@ -88,14 +88,14 @@
 		}
 		elseif ( $flag == 1 ) 
 		{
-			if( $grid->bind(addAdditional($this->selecter->get_payments_paid($pay_id)), 'payment_id') )
+			if( $grid->bind($this->selecter->get_payments_paid($pay_id, true), 'payment_id') )
 			{
 				$grid->header('payment_id')->editable = false;
 				$grid->header('payment_id')->visible = false;
 				$grid->header('user_id')->visible = false;
 				$grid->header('user_name')->set_anchor('users/detail', 'user_id');
 				$grid->header('user_name')->editable = false;
-				$grid->header('stav')->editable = false;
+				//$grid->header('stav')->editable = false;
 				$grid->header('payment_vs')->editable = false;
 				$grid->header('payment_total_sum')->editable = false;
 				$grid->header('payment_paid_time')->editable = false;
@@ -119,7 +119,7 @@
 		}
 		elseif( $flag == 2 )
 		{
-			if( $grid->bind(addAdditional($this->selecter->get_payments_nopaid($pay_id)), 'payment_id') )
+			if( $grid->bind($this->selecter->get_payments_nopaid($pay_id, true), 'payment_id') )
 			{
 				$grid->header('payment_id')->editable = false;
 				$grid->header('payment_id')->visible = false;
@@ -129,7 +129,7 @@
 				$grid->header('payment_vs')->editable = false;
 				$grid->header('payment_total_sum')->editable = false;
 				$grid->header('payment_paid_time')->editable = false;
-				$grid->header('stav')->editable = false;
+				//$grid->header('stav')->editable = false;
 				$grid->header('user_name')->text = $this->lang->line('label_user_id');
 				$grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
 				$grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
