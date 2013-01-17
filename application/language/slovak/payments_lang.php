@@ -10,6 +10,7 @@ $lang['label_date']                 =   'čas platby';
 $lang['payment_all']                =   'Všetky';
 $lang['payment_paid']               =   'Zaplatené';
 $lang['payment_nopaid']             =   'Nezaplatené';
+$lang['payment_mine']             =   'Moje';
 
 $lang['paid']						=   'uhradená';
 $lang['partly_paid']				=   'čiastočne uhradená';

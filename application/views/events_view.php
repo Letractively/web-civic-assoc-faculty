@@ -1,12 +1,38 @@
-﻿<div id="grid_wrapper">
-	<div class="grid_link_text">
-		<span class="grid_label"> Zoradit podla: </span>
-		<ul>
-			<li><?= anchor('events', $this->lang->line('events_all')); ?></li>
-			<li><?= anchor('events/newest', $this->lang->line('events_newest')); ?></li>
-			<li><?= anchor('events/prior', $this->lang->line('events_prior')); ?></li>
-		</ul>
-	</div>
+﻿<script type="text/javascript" charset="UTF-8">
+	var base_url = '<?=base_url()?>';
+
+	function changeFilter(sender)
+	{
+		var event_sort = document.getElementById('event_sort');
+		var event_category = document.getElementById('event_category');
+		var url = event_sort.options[event_sort.selectedIndex].value;
+		var cat_id = event_category.options[event_category.selectedIndex].value;
+		window.location = base_url+url+'/'+cat_id;
+	}
+</script>
+
+<div id="grid_wrapper">
+	<?php
+		if( $this->userdata->is_admin() )
+		{
+			echo '<p class="button_edit">'; echo anchor('event_categories/', $this->lang->line('to_event_categories')); echo '</p>';
+		}
+	?>
+	
+	<?php
+		$event_sorters = array(
+			array('id' => 'events', 'value' => $this->lang->line('events_all')),
+			array('id' => 'events/newest', 'value' => $this->lang->line('events_newest')),
+			array('id' => 'events/prior', 'value' => $this->lang->line('events_prior'))
+		);
+		
+		$event_cats = $this->selecter->get_event_categories();
+		$event_cats[] = array('event_category_id' => 0, 'event_category_name' => $this->lang->line('events_all'));
+	?>
+	<span> Usporiadať: </span>
+		<?= gen_dropdown('event_sort', $event_sorters[$flag]['id'], $event_sorters, 'id', 'value', 'dropdown','id="event_sort" onchange="changeFilter(this);"'); ?>
+	<span> Vybrať z kategórie: </span>
+		<?= gen_dropdown('event_category', $event_cat_id, $event_cats, 'event_category_id', 'event_category_name', 'dropdown', 'id="event_category" onchange="changeFilter(this);"'); ?>
 		
 	<?php
 		$this->load->library('grid');
@@ -51,12 +77,11 @@
 		}
 
 		$grid->display();		
-		if($event_cat_id != 0)
-			{ echo '<p class="button_edit">'; echo anchor('events/', $this->lang->line('back_to_event_categories')); echo '</p>'; }
+		/*if($event_cat_id != 0)
+			{ echo '<p class="button_edit">'; echo anchor('events/', $this->lang->line('back_to_event_categories')); echo '</p>'; }*/
 		if( $this->userdata->is_admin() )
                 {
                     echo '<p class="button_edit">'; echo anchor('events/add', $this->lang->line('anchor_add')); echo '</p>';
-                    echo '<p class="button_edit">'; echo anchor('event_categories/', $this->lang->line('to_event_categories')); echo '</p>';
                 }
 		
 		
