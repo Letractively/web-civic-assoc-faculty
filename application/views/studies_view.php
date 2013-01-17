@@ -3,7 +3,7 @@ $this->load->library('grid');
     
     $grid = new Grid();
     
-    $grid->bind($this->selecter->get_study_programs(), 'study_program_id');
+    $grid->bind($this->selecter->get_study_programs(true), 'study_program_id');
     
     $grid->add_url = "{$this->router->class}/add";
     $grid->edit_url = "{$this->router->class}/edit";

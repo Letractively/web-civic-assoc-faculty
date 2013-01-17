@@ -32,12 +32,13 @@ class Selecter extends MY_Model
         * @access      public
         * @return      array of objects
         */
-    public function get_study_programs()
+    public function get_study_programs($grid = false)
     {
         $q = $this->db->query(" SELECT * 
                                 FROM study_programs
                               ");
-        return $q->result();
+        if ($grid == true) return $q;
+		else return $q->result();
         
     }
     
@@ -49,12 +50,13 @@ class Selecter extends MY_Model
      * @access      public
      * @return      array of objects
      */
-    public function get_degrees()
+    public function get_degrees($grid = false)
     {
         $q = $this->db->query(" SELECT d.degree_id, d.degree_name, d.degree_grade
                                 FROM degrees d
                               ");
-        return $q->result();
+        if ($grid == true) return $q;
+		else return $q->result();
     }
     
     /*
@@ -81,12 +83,13 @@ class Selecter extends MY_Model
      * @access      public
      * @return      array of objects
      */
-    public function get_email_types()
+    public function get_email_types($grid = false)
     {
             $q = $this->db->query(" SELECT *
                                     FROM email_types
                                   ");
-            return $q->result();
+            if ($grid == true) return $q;
+		else return $q->result();
     }
     
     /*
