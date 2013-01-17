@@ -63,7 +63,7 @@
 			$grid->header('event_about')->visible           = false;
 			//$grid->header('event_created')->visible         = false;
 			$grid->header('event_category_name')->text = $this->lang->line('label_catname');
-			$grid->header('event_priority')->visible        = false;
+			//$grid->header('event_priority')->visible        = false;
 			$grid->header('event_name')->set_anchor('events/detail', 'event_id');
 			$grid->header('event_name')->text   = $this->lang->line('label_name');
 			$grid->header('event_from')->set_datetime();

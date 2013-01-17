@@ -5,7 +5,7 @@
     
     //array_debug($this->selecter->->get_event_categories());
     
-    if( $grid->bind($this->selecter->get_event_categories(), 'event_category_id') )
+    if( $grid->bind($this->selecter->get_event_categories(true), 'event_category_id') )
     {
         $grid->add_url = "{$this->router->class}/add";
         $grid->edit_url = "{$this->router->class}/edit";
