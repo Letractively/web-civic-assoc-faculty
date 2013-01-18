@@ -172,6 +172,18 @@
 			 <p class="label"> <label for="correspondence_subject" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_correspondence_subject') ?></label> </p>
 			<?= form_input(array('name' => 'correspondence_subject', 'id' => 'correspondence_subject', 'class' => 'input_data'.$error['correspondence_subject']), set_value('correspondence_subject')) ?>
 		</div>
+    
+    ///////////////////////////////
+                <div class="inputitem">
+			 <p class="label"> <label for="from" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_from') ?></label> </p>
+			<?= form_input(array('name' => 'correspondence_subject', 'id' => 'correspondence_subject', 'class' => 'input_data'.$error['correspondence_subject']), set_value('correspondence_subject')) ?>
+		</div>
+                <div class="inputitem">
+			 <p class="label"> <label for="correspondence_subject" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_correspondence_subject') ?></label> </p>
+			<?= form_input(array('name' => 'correspondence_subject', 'id' => 'correspondence_subject', 'class' => 'input_data'.$error['correspondence_subject']), set_value('correspondence_subject')) ?>
+		</div>
+    /////////////////////////////////
+    
 		<div class="inputitem">
 			<p class="label"> <label for="correspondence_content" class="<?= $error['correspondence_content'] ?>"><?= $this->lang->line('label_correspondence_content') ?></label> </p>
 			<?= form_textarea(array('name' => 'correspondence_content', 'id' => 'textarea', 'class' => 'textarea_data'.$error['correspondence_content']), set_value('correspondence_content')) ?>

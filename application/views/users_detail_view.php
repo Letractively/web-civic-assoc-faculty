@@ -49,7 +49,7 @@ el.display=(el.display == 'block')?'none':'block';
 			echo '<div class="user_degree_year">Rok ukončenia štúdia: '.$obj[0]->user_degree_year.'</div>';
 			echo '<div class="user_place_of_birth">Miesto narodenia: '.$obj[0]->user_place_of_birth.'</div>';
 			echo '<div class="user_postcode">PSČ: '.$obj[0]->user_postcode.'</div> </div>';
-			
+                        
                         if( $this->userdata->is_admin() )
                         {
                             echo '<p class="button_edit">'; 
@@ -87,15 +87,54 @@ el.display=(el.display == 'block')?'none':'block';
                                 }
 				echo '<p class="button_back">'; echo anchor('users/', $this->lang->line('to_users')); echo '</p>';
 			}
-		  
-			else if(date('Y+1-m-d') <  $lp->payment_paid_time){
+			else if(date("Y-m-d", time() - (365 * 86400)) <=  $lp->payment_paid_time){
 				echo '<br />Členstvo platné do: '.$dm = day_month($date).'.'.$year = year($date)+1;
-				echo '<br /><p class="button_back">'; echo anchor('users/', $this->lang->line('to_users')); echo '</p>';
+                                echo '<br />';
+                                echo '<p class="button_edit"><a style="cursor: pointer; " onclick="zobrazSkryj(\'oddil\')">Dobrovoľný Príspevok</a></p>';
+				echo '<p class="button_back">'; echo anchor('users/', $this->lang->line('to_users')); echo '</p>';
+                                
+                                echo '<div id="oddil" class="skryvany">';
+                                    echo form_open('payments/add');
+                                                    $pay= $this->selecter->get_payments($user_id);
+                                                    echo '<div class="inputitem">';
+                                                            echo '<p class="label"> <label for="vs">'.$this->lang->line('label_vs').'</label> </p>';
+                                                            echo form_input(array('name' => 'vs', 'id' => 'vs', 'class' => 'input_data' ), set_value('vs', $pay[0] -> payment_vs));
+                                                    echo '</div>';
+
+                                                    echo '<div class="inputitem">';
+                                                            echo '<p class="label"> <label for="total_sum">'.$this->lang->line('label_total_sum').'</label></p>';
+                                                            echo form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class' => 'input_data_date' ), set_value('total_sum', 5)).'€';
+                                                    echo '</div>';
+
+                                                    $obj = $this->selecter->get_project_categories();
+
+                                                    echo '<table class="inputitem">';
+                                                                 echo '<tr><th>'.$this->lang->line('table_th_category').'</th><th>'.$this->lang->line('table_th_ratio').'</th></tr>';
+                                                                 foreach($obj as $o)
+                                                                 {
+                                                                         $cat_id = $o->project_category_id;
+                                                                         echo '<tr>';
+                                                                                  echo '<td> <label for="categories['.$cat_id.']">';
+                                                                                          echo $o->project_category_name;
+                                                                                  echo '</label></td>';
+                                                                                  echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => '1', 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$cat_id)).'</td>';
+                                                                         echo '</tr>';
+                                                                 }
+                                                    echo '</table>';
+		                                    
+                                                    echo '<div class="inputitem">';
+                                                            echo form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_add'));
+                                                    echo '</div>';                
+                                            echo form_close();
+                                echo '</div>';
 			}
 			else{
 				echo '<br />Členské vypršalo: '.$dm = day_month($date).'.'.$year = year($date)+1;
 				echo '<br />V prípade neúhrady registrácia platná do: 31.12.'.$year = year($date)+1;
 				echo '<br />';
+                                
+                                
+                                
                                 if( $this->userdata->is_admin() )
 				{
                                     echo '<p class="button_edit"><a style="cursor: pointer; " onclick="zobrazSkryj(\'oddil1\')">Uhradiť</a></p>';
@@ -108,13 +147,29 @@ el.display=(el.display == 'block')?'none':'block';
                                                     echo '</div>';
 
                                                     echo '<div class="inputitem">';
-                                                            echo '<label for="total_sum">'.$this->lang->line('label_total_sum').'</label>';
+                                                            echo '<p class="label"> <label for="total_sum">'.$this->lang->line('label_total_sum').'</label></p>';
                                                             echo form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class' => 'input_data_date' ), set_value('total_sum', 5)).'€';
                                                     echo '</div>';
 
+                                                    $obj = $this->selecter->get_project_categories();
+
+                                                    echo '<table class="inputitem">';
+                                                                 echo '<tr><th>'.$this->lang->line('table_th_category').'</th><th>'.$this->lang->line('table_th_ratio').'</th></tr>';
+                                                                 foreach($obj as $o)
+                                                                 {
+                                                                         $cat_id = $o->project_category_id;
+                                                                         echo '<tr>';
+                                                                                  echo '<td> <label for="categories['.$cat_id.']">';
+                                                                                          echo $o->project_category_name;
+                                                                                  echo '</label></td>';
+                                                                                  echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => '1', 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$cat_id)).'</td>';
+                                                                         echo '</tr>';
+                                                                 }
+                                                    echo '</table>';
+		                                    
                                                     echo '<div class="inputitem">';
                                                             echo form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_add'));
-                                                    echo '</div>';
+                                                    echo '</div>';                
                                             echo form_close();
                                     echo '</div>';
                                 }
