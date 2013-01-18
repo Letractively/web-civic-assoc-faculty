@@ -100,12 +100,18 @@ class Payments extends MY_Controller
          */
         public function add()
         {
-            //parent::add('add_payments', $this->router->class, $this->router->method);
-			$data = array(
-                'view' => "payments_add_view"
-            );
+			if ($this->input->post())
+			{
+				redirect('payments');
+			}
+			else
+			{
+				$data = array(
+					'view' => "payments_add_view"
+				);
 
-            $this->load->view('container', array_merge($this->data, $data)); 
+				$this->load->view('container', array_merge($this->data, $data));
+			}
         }
 
         /*
@@ -118,13 +124,19 @@ class Payments extends MY_Controller
          */
         public function edit($pay_id)
         {
-            //array_debug($this->input->post());
-            parent::edit('edit_payments', $pay_id, 'operation_edit');
-
-            $data = array(
-                'pay_id'    => $pay_id
-            );
-            $this->load->view('container', array_merge($this->data, $data)); 
+            if ($this->input->post())
+			{
+				redirect('payments');
+			}
+			else
+			{
+				$data = array(
+					'view' => "payments_edit_view"
+				);
+				$data = array_merge($data, $this->selecter->get_payment_detail($pay_id));
+				array_debug($data);
+				$this->load->view('container', array_merge($this->data, $data));
+			}
         }
 
         /*

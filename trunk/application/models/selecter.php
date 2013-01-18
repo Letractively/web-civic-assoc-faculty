@@ -479,6 +479,23 @@ class Selecter extends MY_Model
                                   ");
             return $q->row()->total_sum;
     }
+	
+	public function get_payment_detail($payment_id)
+	{
+		$q = $this->db->query("SELECT * FROM payments WHERE payment_id = $payment_id");
+		$payment = get_object_vars($q->row(1));
+		if ($payment != null)
+		{
+			$q = $this->db->query("SELECT * FROM fin_redistributes fr WHERE fr.fin_redistribute_payment_id = $payment_id");
+			$redistributes = $q->result();
+			foreach ($redistributes as $r)
+			{
+				//$payment['categories'] = array();
+				$payment['categories'][$r->fin_redistribute_project_category_id] = $r->fin_redistribute_ratio;
+			}
+		}
+		return $payment;
+	}
     
     public function get_payments($user_id, $grid = false)
     {

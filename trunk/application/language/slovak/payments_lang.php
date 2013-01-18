@@ -12,6 +12,9 @@ $lang['payment_paid']               =   'Zaplatené';
 $lang['payment_nopaid']             =   'Nezaplatené';
 $lang['payment_mine']             =   'Moje';
 
+$lang['payment_type_account'] = 'Členský príspevok';
+$lang['payment_type_voluntary'] = 'Dobrovoľný príspevok';
+
 $lang['paid']						=   'uhradená';
 $lang['partly_paid']				=   'čiastočne uhradená';
 $lang['nopaid']						=   'neuhradená';
