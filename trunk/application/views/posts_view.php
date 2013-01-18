@@ -1,7 +1,8 @@
 ﻿<div id="content_wrapper">
 	<?php
-            $obj = $this->selecter->get_posts();
-		
+            $obj = $this->selecter->get_posts($c_pagination['per_page'], $c_pagination['cur_page']);
+	
+            //array_debug($pagination);
             //array_debug($obj);
             //$date = datetime($o->post_date, FALSE);
             //$time = time_withou_seconds(datetime($o->post_date, TRUE));
@@ -46,4 +47,5 @@
             echo '</p>';
         }
 	?>
+            <?php echo pagination($pagination); ?>
 </div>

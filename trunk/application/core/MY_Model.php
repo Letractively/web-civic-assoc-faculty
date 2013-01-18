@@ -67,5 +67,13 @@ class MY_Model extends CI_Model
                 $answer = TRUE;
             return $answer;
         }
+        
+        public function rows( $table, $id )
+        {
+            $q = $this->db->query(" SELECT $id
+                                    FROM $table
+                                  ");
+            return $q->num_rows();
+        }
 
 }

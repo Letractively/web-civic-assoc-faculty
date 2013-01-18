@@ -2,6 +2,10 @@
 
 class Posts extends MY_Controller
 {
+        protected $c_pagination         = array();
+        protected $get_query 		= array();
+        protected $per_page             = 3;
+        
         /*
          * __construct
          * 
@@ -11,7 +15,8 @@ class Posts extends MY_Controller
         function __construct() 
         {
             parent::__construct();
-
+            $this->get_query = ( $_GET ) ? '?' . http_build_query($_GET) : '';
+            
             $data = array(
                 'title' 		=> 'Články'   //Title na aktualnej stranke
             );
@@ -25,11 +30,21 @@ class Posts extends MY_Controller
          * default index metoda, ktora sa vola primarne, zobrazi vsetky prispevky
          * 
          */
-        public function index()
+        public function index($page = 0)
         {
+            $this->load->library('pagination');
             $this->load->model('selecter');
+                        
+            $this->c_pagination['base_url'] = base_url().'posts/';
+            $this->c_pagination['cur_page'] = $page;
+            $this->c_pagination['per_page'] = $this->per_page;
+            $this->c_pagination['total_rows'] = $this->selecter->rows('posts', 'post_id');
+            $this->pagination->initialize($this->c_pagination);
+            
             $data = array(
-                'view'      => "{$this->router->class}_view"
+                'view'          => "{$this->router->class}_view",
+                'c_pagination'  => $this->c_pagination,
+                'pagination'    => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
             );
 
             $this->load->view('container', array_merge($this->data, $data));
