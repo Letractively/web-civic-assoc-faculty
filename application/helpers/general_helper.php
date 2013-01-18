@@ -166,3 +166,17 @@ function format_datetime($input)
     $date = explode('.', $dateAndTime[0]);
     return $date[2].'-'.$date[1].'-'.$date[0].' '.$dateAndTime[1].':00';
 }
+
+function pagination( $pagination )
+{
+	if( $pagination )
+	{
+		return '
+		<div class="pager right">
+			' . $pagination . '
+		</div>
+		';
+	}
+	
+	return FALSE;
+}

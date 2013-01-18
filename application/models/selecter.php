@@ -67,12 +67,13 @@ class Selecter extends MY_Model
      * @access      public
      * @return      array of objects
      */
-    public function get_project_categories()
+    public function get_project_categories($grid = false)
     {
            $q = $this->db->query(" SELECT *
                                     FROM project_categories
                                   ");
-            return $q->result();
+            if ($grid == true) return $q;
+		else return $q->result();
     }
     
     /*
@@ -353,7 +354,7 @@ class Selecter extends MY_Model
     }
    
     
-    public function get_posts()
+    public function get_posts( $per_page = 0, $cur_page = 0)
     {
              $q = $this->db->query("SELECT ppm.post_id, ppm.post_title, ppm.post_content, ppm.post_author_id, ppm.post_priority, 
                                            ppm.post_date, ppm.post_modifie_author_id, ppm.post_published, u.user_name as modifier_name, 
@@ -368,8 +369,8 @@ class Selecter extends MY_Model
                                     LEFT JOIN users us ON(ppm.post_author_id = us.user_id)
                                     GROUP BY ppm.post_id
                                     ORDER BY ppm.post_date DESC
-                                    
-                                     ");
+                                    LIMIT $cur_page, $per_page
+                                    ");
              return $q->result();
     }
     

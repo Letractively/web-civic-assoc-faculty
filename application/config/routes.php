@@ -43,6 +43,7 @@ $route['404_override'] = '';
 
 $route['administration']            =   "payments/index";
 $route['events/(:num)']             =   "events/index/$1";
+$route['posts/(:num)']              =   "posts/index/$1";
 $route['payments/(:num)']           =   "payments/index/$1";
 
 
