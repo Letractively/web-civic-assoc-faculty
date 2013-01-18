@@ -7,7 +7,7 @@
             //$date = datetime($o->post_date, FALSE);
             //$time = time_withou_seconds(datetime($o->post_date, TRUE));
             //array_debug($time);
-		
+	 echo pagination($pagination);	
             foreach($obj as $o)
             {
                 if( $o->post_published == 1 || $this->userdata->is_admin() )

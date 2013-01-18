@@ -50,10 +50,11 @@ class Selecter extends MY_Model
      * @access      public
      * @return      array of objects
      */
-    public function get_degrees($grid = false)
+    public function get_degrees($grid = false, $per_page = 0, $cur_page = 0 )
     {
         $q = $this->db->query(" SELECT d.degree_id, d.degree_name, d.degree_grade
                                 FROM degrees d
+                                LIMIT $cur_page, $per_page
                               ");
         if ($grid == true) return $q;
 		else return $q->result();
@@ -354,7 +355,7 @@ class Selecter extends MY_Model
     }
    
     
-    public function get_posts( $per_page = 0, $cur_page = 0)
+    public function get_posts( $per_page = 0, $cur_page = 0 )
     {
              $q = $this->db->query("SELECT ppm.post_id, ppm.post_title, ppm.post_content, ppm.post_author_id, ppm.post_priority, 
                                            ppm.post_date, ppm.post_modifie_author_id, ppm.post_published, u.user_name as modifier_name, 
