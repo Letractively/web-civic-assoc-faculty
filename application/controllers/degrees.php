@@ -59,8 +59,8 @@ class Degrees extends MY_Controller
          */
         public function add()
         {     
-            redirect('test');
-            //parent::add('add_degree', 'operation_add');
+            //redirect('test');
+            parent::add('add_degree', 'operation_add');
         }
         
         /*

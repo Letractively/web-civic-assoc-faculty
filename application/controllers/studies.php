@@ -42,7 +42,7 @@ class Studies extends MY_Controller
          */
         public function add()
         {
-            parent::add('add_study_program', 'operation_add');
+           parent::add('add_study_program', 'operation_add');
         }
 
         /*
