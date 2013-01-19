@@ -136,7 +136,7 @@ class Inserter extends MY_Model
     public function add_project($values)
     {
       $this->db->query("INSERT INTO projects
-                           ( project_name, project_about, project_priority, project_project_category_id, project_booked_cash, project_from, project_to)
+                           ( project_name, project_about, project_priority, project_project_category_id, project_booked_cash, project_date_from, project_date_to)
                            VALUES ('".$values['name']."','".$values['about']."','".$values['priority']."','".$values['project_category_id']."','".$values['booked_cash']."','".$values['from']."','".$values['to']."')
                          ");
       if($this->db->affected_rows()>0){ 
@@ -181,20 +181,20 @@ class Inserter extends MY_Model
                              '".$param['place_of_birth']."', '".$param['postcode']."', '".$param['degree_year']."')
                          ");
         
+        
         $user_id = $this->db->insert_id();
-
         $this->db->query("  INSERT INTO payments
                             (payment_vs, payment_total_sum, payment_user_id)
                             VALUES
                             ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$user_id."')
                          ");
-        
-		$q = 'INSERT INTO fin_redistributes (fin_redistribute_user_id, fin_redistribute_project_category_id, fin_redistribute_ratio) VALUES ';
+        $payment_id = $this->db->insert_id();
+		$q = 'INSERT INTO fin_redistributes (fin_redistribute_payment_id, fin_redistribute_project_category_id, fin_redistribute_ratio) VALUES ';
 		$first = true;
 		foreach ($param['categories'] as $cat_id => $ratio)
 		{
 			if (!$first) $q .= ', ';
-			$q .= "('".$user_id."', '".$cat_id."', '".$ratio."')";
+			$q .= "('".$payment_id."', '".$cat_id."', '".$ratio."')";
 			$first = false;
 		}
 		$q .= ';';

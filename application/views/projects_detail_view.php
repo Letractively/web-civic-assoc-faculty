@@ -12,7 +12,7 @@
 		<?= $obj[0]->project_about ?>  
 	</div>
 	<div class="project_priority">
-		<span class="project_label"> Priorita: </span> <?= $obj[0]->project_priority ?>  
+		<!--span class="project_label"> Priorita: <?= $obj[0]->project_priority ?></span-->   
 	</div>
 
 	<div class="project_booked_cash">
@@ -51,8 +51,8 @@
                         $grid->header('project_item_name')->text = $this->lang->line('label_item');
                         $grid->header('project_item_price')->text = $this->lang->line('label_price');
                         $grid->header('project_item_date')->text = $this->lang->line('label_date');
-                        $grid->header('user_name')->text = $this->lang->line('label_user_name');
-                        $grid->header('user_surname')->text = $this->lang->line('label_user_surname');
+                        $grid->header('user_name')->text = $this->lang->line('label_fullname');
+                        //$grid->header('user_surname')->text = $this->lang->line('label_user_surname');
                         
 			$grid->display();
 		}

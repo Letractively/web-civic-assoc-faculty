@@ -108,8 +108,8 @@ class Updater extends MY_Model
                               project_priority='".$values['priority']."',
                               project_project_category_id='".$values['project_category_id']."',
                               project_booked_cash='".$values['booked_cash']."',
-                              project_from='".$values['from']."',
-                              project_to='".$values['to']."'
+                              project_date_from='".format_date($values['from'])."',
+                              project_date_to='".format_date($values['to'])."'
                           WHERE project_id=$pr_id
                               ");
         
@@ -140,7 +140,7 @@ class Updater extends MY_Model
                           WHERE project_id=$pr_id");
     }
 
-        public function edit_project_item($pr_item_id, $values)
+    public function edit_project_item($pr_item_id, $values)
     {
         $this->db->query("UPDATE project_items
                           SET project_item_name='".$values['name']."',

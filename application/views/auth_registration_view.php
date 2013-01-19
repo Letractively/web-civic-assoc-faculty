@@ -1,6 +1,7 @@
 ﻿ <div class="errors">
     <?php 
-        echo validation_errors();     
+        echo validation_errors(); 
+        $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
      ?>
 </div>
 
@@ -35,12 +36,12 @@
 			<?= form_input(array('name' => 'phone', 'id' => 'phone', 'class' => 'input_data'.$error['phone']), set_value('phone')) ?>
 		</div>
 		<div class="inputitem">
-			<p class="label"> <label for="study_program_id" class="<?= $error['study_program_id'] ?>"><?= $this->lang->line('label_study_program_id') ?></label> </p>
+			<p class="label"> <label for="study_program_id" ><?= $this->lang->line('label_study_program_id') ?></label> </p>
 			<?= gen_dropdown('study_program_id', set_value('study_program_id'), $this->selecter->get_study_programs(), 'study_program_id', 'study_program_name', 'dropdown'); ?>
 		</div>
 		<div class="inputitem">
-			<p class="label"> <label for="degree_id" class="<?= $error['degree_id'] ?>"><?= $this->lang->line('label_degree_id') ?></label> </p>
-			<?= gen_dropdown('degree_id', set_value('degree_id'), $this->selecter->get_degrees(), 'degree_id', 'degree_name', 'dropdown'); ?>
+			<p class="label"> <label for="degree_id" ><?= $this->lang->line('label_degree_id') ?></label> </p>
+			<?= gen_dropdown('degree_id', set_value('degree_id'), $this->selecter->get_degrees(false,$numberOfDegrees,0), 'degree_id', 'degree_name', 'dropdown'); ?>
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="place_of_birth" class="<?= $error['place_of_birth'] ?>"><?= $this->lang->line('label_place_of_birth') ?></label> </p>

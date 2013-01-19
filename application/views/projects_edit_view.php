@@ -1,6 +1,9 @@
 ﻿<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
 <link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css"></link>
 <script src="../../../assets/js/calendar/dhtmlxcalendar.js"></script>
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/js/calendar/dhtmlxcalendar.css"></link>
+<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/js/calendar/skins/dhtmlxcalendar_omega.css"></link>
+<script src="<?=base_url()?>assets/js/calendar/dhtmlxcalendar.js"></script>
 <script type="text/javascript">
 	window.onload = function()
 	{
@@ -36,7 +39,7 @@
 </div>
 
 <div id="content_wrapper">
-	<?= form_open("projects/edit") ?>
+	<?= form_open("projects/edit/".$project_id) ?>
 
 		<div class="inputitem">
 			<p class="label"> <label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label> </p>
@@ -46,13 +49,13 @@
 	 <!--generovat prioritu-->
 		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
-			<?= form_dropdown('priority', $priorities, set_value('priority_id', $field[0]->project_priority)) ?>
+			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value', 'dropdown_priority'); ?>
 		</div>
 	 <!--end-->
 	 
 		<div class="inputitem">
-			<p class="label"> <label for="project_categories_id" class="<?= $error['project_category_id'] ?>"><?= $this->lang->line('label_project_category_id') ?></label> </p>
-			<?= gen_dropdown('project_categories_id', set_value('project_categories_id', $field[0]->project_project_category_id),$this->selecter->get_project_categories(),'project_category_id','project_category_name', 'dropdown'); ?>
+			<p class="label"> <label for="project_category_id" class="<?= $error['project_category_id'] ?>"><?= $this->lang->line('label_project_category_id') ?></label> </p>
+			<?= gen_dropdown('project_category_id', set_value('project_category_id', $field[0]->project_project_category_id),$this->selecter->get_project_categories(),'project_category_id','project_category_name', 'dropdown'); ?>
 		</div>
 		
 		<div class="inputitem">
@@ -94,25 +97,26 @@
 			
 			$grid = new Grid();
 			
-			$items_object = $this->selecter->get_project_items($project_id);
+			/*$items_object = $this->selecter->get_project_items($project_id, true);
 			$items = array();
 			foreach ($items_object as $item_object)
 			{
 				$item = get_object_vars($item_object);
 				$item['user_fullname'] = $item['user_name'].' '.$item['user_surname'];
 				$items[] = $item;
-			}
+			}*/
 			
-			$users_object = $this->selecter->get_users(ROLE_ADMIN);
+			$users_object = $this->selecter->get_users(0);
+                        
 			$users = array();
 			foreach ($users_object as $user_object)
 			{
 				$user = get_object_vars($user_object);
-				$user['user_fullname'] = $user['user_name'].' '.$user['user_surname'];
+				$user['user_fullname'] = $user['user_name'];
 				$users[] = $user;
 			}
-			
-			if( $grid->bind($items, 'project_item_id') )
+			//array_debug($users);
+			if( $grid->bind($this->selecter->get_project_items($project_id, true), 'project_item_id') )
 			{
 				$grid->add_url = base_url()."projects/add_project_item/$project_id";
 				$grid->edit_url = base_url()."projects/edit_project_item/$project_id";
@@ -120,18 +124,18 @@
 
 				$grid->header('project_item_id')->visible = false;
 				$grid->header('user_id')->visible = false;
-				$grid->header('user_name')->visible = false;
-				$grid->header('user_surname')->visible = false;
+				//$grid->header('user_surname')->visible = false;
+				//$grid->header('user_fullname')->visible = true;
 				$grid->header('project_item_date')->editable = false;
 				$grid->header('project_item_date')->set_datetime('Y-m-d');
 				$grid->header('project_item_price')->set_numformat('{2:,: } EUR');
-				$grid->header('user_fullname')->component->type = 'combobox';
-				$grid->header('user_fullname')->component->bind($users, 'user_id', 'user_fullname');
+				$grid->header('user_name')->component->type = 'combobox';
+				$grid->header('user_name')->component->bind($users, 'user_id', 'user_fullname');
 
                                 $grid->header('project_item_name')->text = $this->lang->line('label_item');
                                 $grid->header('project_item_price')->text = $this->lang->line('label_price');
                                 $grid->header('project_item_date')->text = $this->lang->line('label_date');
-                                $grid->header('user_fullname')->text = $this->lang->line('label_fullname');
+                                $grid->header('user_name')->text = $this->lang->line('label_fullname');
                                 
 				$grid->display();
 			}

@@ -40,16 +40,6 @@ $config = array(
             'rules'     => 'trim|required|xss_clean|numeric'
         ),
         array(
-            'field'     => 'study_program_id',
-            'label'     => 'lang:label_study_program_id',
-            'rules'     => 'trim|required|xss_clean|numeric'
-        ),
-        array(
-            'field'     => 'degree_id',
-            'label'     => 'lang:label_degree_id',
-            'rules'     => 'trim|required|xss_clean|numeric'
-        ),
-        array(
             'field'     => 'place_of_birth',
             'label'     => 'lang:label_place_of_birth',
             'rules'     => 'trim|required|xss_clean'

@@ -26,11 +26,11 @@ class Projects extends MY_Controller
          * @return      void
          * 
          */
-		public function index($pr_cat_id = 0)
+	public function index($pr_cat_id = 0)
         {
             $data = array(
-                'view'              => "{$this->router->class}_view",
-				'category_id'		=> $pr_cat_id
+                'view'                  => "{$this->router->class}_view",
+		'category_id'		=> $pr_cat_id
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
@@ -63,7 +63,7 @@ class Projects extends MY_Controller
 			$new_post = array(
 				'name' => $_POST['project_item_name'],
 				'price' => $_POST['project_item_price'],
-				'user_id' => $_POST['user_fullname']
+				'user_id' => $_POST['user_id']
 			);
 			$_POST = $new_post;
 			
@@ -88,9 +88,9 @@ class Projects extends MY_Controller
 
             $data = array(
                 'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
-                                                                                'booked_cash', 'from', 'to','password','username')),
+                                                                                'booked_cash', 'from', 'to')),
                 'project_id'            => $project_id,
-                'priorities'            => $this->generate_priorities(5)
+                'priorities'            => $this->generate_priorities($this->priorits)
             );
             
             $this->load->view('container', array_merge($this->data, $data)); 
@@ -101,7 +101,7 @@ class Projects extends MY_Controller
             $new_post = array(
 				'name' => $_POST['project_item_name'],
 				'price' => $_POST['project_item_price'],
-				'user_id' => $_POST['user_fullname']
+				'user_id' => $_POST['user_name']
 			);
 			$_POST = $new_post;
 			
