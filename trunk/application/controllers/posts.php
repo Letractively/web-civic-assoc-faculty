@@ -129,10 +129,6 @@ class Posts extends MY_Controller
          */
         public function delete( $post_id )
         {
-            if( $post_id == '')
-                redirect('404');
-            if( !$this->userdata->is_admin() )
-                redirect(base_url());
             parent::delete('remove_post', $post_id, $this->router->class);
 
             $data = array(
