@@ -63,7 +63,7 @@ class Projects extends MY_Controller
 			$new_post = array(
 				'name' => $_POST['project_item_name'],
 				'price' => $_POST['project_item_price'],
-				'user_id' => $_POST['user_id']
+				'user_id' => $_POST['user_name']
 			);
 			$_POST = $new_post;
 			
@@ -137,8 +137,7 @@ class Projects extends MY_Controller
               'view'            => 'confirm_view',
               'type'            => 'delete',
               'langs'           => array($this->lang->line('confirm_yes'), $this->lang->line('confirm_no')),
-              'method'          => $this->router->class.'/'.$project_id,
-              'project_id'      => $project_id
+              'method'          => $this->router->class.'/'.$this->router->method.'/'.$project_id
             );
             
             $this->load->view('container', array_merge($this->data, $data));

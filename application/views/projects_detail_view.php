@@ -1,6 +1,6 @@
 ﻿<?php
     $obj = $this->selecter->get_project_detail($project_id);
-    //array_debug($obj);
+    
 ?>
 
 <div id="content_wrapper">
@@ -17,11 +17,15 @@
 
 	<div class="project_booked_cash">
 	   <span class="project_label"> Rozpočet: </span>
-		 <b> <?= $obj[0]->project_booked_cash ?>€ </b>,
+		 <strong> <?= $obj[0]->project_booked_cash ?> €</strong>,
 		minuté 
-		<span class="cash_spend"> <?= $obj[0]->project_spended_cash ?>€ </span>,
+		<span class="cash_spend"> 
+                    <?php if ($obj[0]->project_spended_cash == '')
+                            echo '0';
+                          else
+                            echo $obj[0]->project_spended_cash; ?> €</span>,
 		ostáva 
-		<span class="cash_remain"> <?php echo $obj[0]->project_booked_cash - $obj[0]->project_spended_cash; ?>€ </span>
+		<span class="cash_remain"> <?php echo $obj[0]->project_booked_cash - $obj[0]->project_spended_cash; ?> €</span>
 	</div>
 
 	<div class="post_modifie_info">
