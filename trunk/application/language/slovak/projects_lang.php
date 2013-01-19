@@ -13,11 +13,11 @@ $lang['label_spended_cash']                 = 'Minuté';
 $lang['label_from']                         = 'Od';
 $lang['label_to']                           = 'Do';
 
-$lang['label_item']                         = 'Položka';
+$lang['label_item']                         = 'položka';
 $lang['label_price']                        = 'cena';
 $lang['label_user']                         = 'osoba';
 $lang['label_date']                         = 'kedy';
-$lang['label_fullname']                     = 'Meno a priezvisko';
+$lang['label_fullname']                     = 'meno a priezvisko';
 $lang['label_user_name']                    = 'Meno';
 $lang['label_user_surname']                 = 'priezvisko';
 

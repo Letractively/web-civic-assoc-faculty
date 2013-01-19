@@ -28,7 +28,8 @@
    </div>
 
 	<?php
-		//array_debug($this->selecter->get_projects(1));
+        //echo $category_id;
+	//	array_debug($this->selecter->get_projects($category_id));
 		
         $this->load->library('grid');
 
@@ -44,8 +45,10 @@
 			$grid->header('project_name')->set_anchor("{$this->router->class}/detail", 'project_id');
 			$grid->header('project_category_name')->text =  $this->lang->line('label_category_name');
                         if( $this->userdata->is_admin() )
+                        {
                             $grid->header('project_category_name')->set_anchor("project_categories/detail", 'project_category_id');
-			$grid->header('project_booked_cash')->text =  $this->lang->line('label_booked_cash');
+			}
+                        $grid->header('project_booked_cash')->text =  $this->lang->line('label_booked_cash');
 			$grid->header('project_booked_cash')->set_numformat('{2:,: } €');
 			$grid->header('project_date_from')->text = $this->lang->line('label_from');
 			$grid->header('project_date_from')->set_datetime('Y-m-d');

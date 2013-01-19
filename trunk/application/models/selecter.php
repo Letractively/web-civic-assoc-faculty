@@ -38,8 +38,7 @@ class Selecter extends MY_Model
                                 FROM study_programs
                               ");
         if ($grid == true) return $q;
-		else return $q->result();
-        
+		else return $q->result();    
     }
     
     /*
@@ -121,22 +120,22 @@ class Selecter extends MY_Model
      */
     public function get_users($role)
     {
-			if ($role == 0)
-				$q = $this->db->query(" SELECT ud.user_id, ud.user_name, ud.user_surname, ud.user_email, ud.user_phone, ud.user_degree_year, sp.study_program_name, ud.degree_name, ud.user_postcode 
-                                    FROM study_programs sp
-                                    JOIN 
-                                       (SELECT *
-                                        FROM users u
-                                        JOIN degrees d ON (u.user_degree_id=d.degree_id)) ud ON (sp.study_program_id=ud.user_study_program_id)
+        if ($role == 0)
+            $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
+                                            u.user_email, u.user_phone, u.user_degree_year, 
+                                            sp.study_program_name, d.degree_name, u.user_postcode 
+                                    FROM users u
+                                    LEFT JOIN degrees d ON (u.user_degree_id = d.degree_id)
+                                    LEFT JOIN study_programs sp ON (u.user_study_program_id = sp.study_program_id)
                                   ");
-			else
-				$q = $this->db->query(" SELECT ud.user_id, ud.user_name, ud.user_surname, ud.user_email, ud.user_phone, ud.user_degree_year, sp.study_program_name, ud.degree_name, ud.user_postcode 
-                                    FROM study_programs sp
-                                    JOIN 
-                                       (SELECT *
-                                        FROM users u
-                                        JOIN degrees d ON (u.user_degree_id=d.degree_id)) ud ON (sp.study_program_id=ud.user_study_program_id)
-                                    WHERE user_role=$role
+	else
+            $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
+                                            u.user_email, u.user_phone, u.user_degree_year, 
+                                            sp.study_program_name, d.degree_name, u.user_postcode 
+                                    FROM users u
+                                    LEFT JOIN degrees d ON (u.user_degree_id = d.degree_id)
+                                    LEFT JOIN study_programs sp ON (u.user_study_program_id = sp.study_program_id)
+                                    WHERE u.user_role=$role
                                   ");
             return $q->result();
     }
@@ -415,19 +414,19 @@ class Selecter extends MY_Model
                                             p.project_date_to, sum(pi.project_item_price) AS project_spended_cash,
                                             pi.project_item_id, p.project_id
                                     FROM project_items pi
-                                    JOIN projects p ON (pi.project_item_project_id = p.project_id)
-									JOIN project_categories pc ON (p.project_project_category_id = pc.project_category_id)
+                                    RIGHT JOIN projects p ON (pi.project_item_project_id = p.project_id)
+                                    JOIN project_categories pc ON (p.project_project_category_id = pc.project_category_id)
                                     GROUP BY p.project_id
                                   ");
 		}
 		else
 		{
-            $q = $this->db->query("SELECT  p.project_name, pc.project_category_name, p.project_booked_cash, p.project_date_from, 
+                $q = $this->db->query("SELECT  p.project_name, pc.project_category_name, p.project_booked_cash, p.project_date_from, 
                                             p.project_date_to, sum(pi.project_item_price) AS project_spended_cash,
-                                            pi.project_item_id, p.project_id
+                                            pi.project_item_id, p.project_id, pc.project_category_id
                                     FROM project_items pi
-                                    JOIN projects p ON (pi.project_item_project_id = p.project_id)
-									JOIN project_categories pc ON (p.project_project_category_id = pc.project_category_id)
+                                    RIGHT JOIN projects p ON (pi.project_item_project_id = p.project_id)
+                                    JOIN project_categories pc ON (p.project_project_category_id = pc.project_category_id)
                                     WHERE p.project_project_category_id = $cat_id
                                     GROUP BY p.project_id
                                   ");
@@ -448,16 +447,17 @@ class Selecter extends MY_Model
             return $q->row();   
     }
     
-    public function get_project_items($project_id)
+    public function get_project_items( $project_id, $grid = false )
     {
             $q = $this->db->query(" SELECT piu.project_item_name, piu.project_item_price,
-                                           u.user_id, u.user_name, u.user_surname, 
+                                           u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
                                            piu.project_item_date, piu.project_item_id
                                     FROM project_items piu
                                     JOIN users u on (piu.project_item_user_id = u.user_id)
                                     WHERE piu.project_item_project_id=$project_id
                                   ");
-            return $q->result();
+            if ($grid == true) return $q;
+		else return $q->result();
     }
     
     public function get_project_detail($project_id)

@@ -1,8 +1,8 @@
 ﻿<div id="content_wrapper1">
 	<?php
 
-	//    array_debug($this->selecter->get_posts());
-	//    array_debug($this->selecter->get_events(0));
+	    //array_debug($this->selecter->get_posts(6,0));
+	    //array_debug($this->selecter->get_events(0));
 		
 		$this->load->helper('text');
 		
@@ -35,7 +35,8 @@
 		$counter = 0;
 		echo '<div class="auth_view_column">';
 			echo '<span class="auth_view_title"> Články </span>';
-			foreach ($this->selecter->get_posts() as $post) 
+                        $numberOfRows = $this->selecter->rows('posts', 'post_id');
+			foreach ($this->selecter->get_posts($numberOfRows,0) as $post) 
 			{
                             if( $post->post_published == 1)
                             {

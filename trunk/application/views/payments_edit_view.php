@@ -15,7 +15,7 @@
 			{
 				$userlist[] = array(
 					'id' => $user->user_id,
-					'name' => $user->user_name.' '.$user->user_surname
+					'name' => $user->user_name
 				);
 			}
 		}
