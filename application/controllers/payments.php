@@ -13,7 +13,7 @@ class Payments extends MY_Controller
         {
             parent::__construct();
             $this->load->model('selecter');
-            if( !$this->userdata->is_logged() )
+            if( !$this->userdata->is_logged() || !$this->userdata->is_admin() )
                 redirect(base_url());
 
              $this->load->model('selecter');

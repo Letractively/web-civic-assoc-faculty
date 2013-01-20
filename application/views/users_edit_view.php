@@ -1,6 +1,7 @@
 ﻿<div id="content_wrapper">
 	<?php
 		$obj = $this->selecter->get_user_detail($user_id);
+                $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
 		echo validation_errors();
 		//array_debug($obj);  
 	?>
@@ -22,7 +23,7 @@
 				echo 'Vaša hodnosť: ';
 				echo '<span class="user_rank">'; echo 'člen'; echo '</span>';
 			echo '</p>';
-			echo form_open("users/edit");
+			echo form_open("users/edit/".$user_id);
 			echo '<div class="inputitem">
 					<p class="label"> <label for="username" class="'.$error['username'].'">'.$this->lang->line('label_username').'</label> </p>'.
 					form_input(array('name' => 'username', 'id' => 'username', 'class' => 'input_data'.$error['username']), set_value('username', $obj[0]->user_username))
@@ -60,7 +61,7 @@
 			
 			echo '<div class="inputitem">
 					<p class="label"> <label for="degree_id" class="'.$error['degree_id'].'">'.$this->lang->line('label_degree_id').'</label> </p>'.
-					gen_dropdown('degree_id', set_value('degree_id', 37),$this->selecter->get_degrees(),'degree_id','degree_name', 'dropdown')
+					gen_dropdown('degree_id', set_value('degree_id', $obj[0]->degree_id),$this->selecter->get_degrees(false,$numberOfDegrees,0),'degree_id','degree_name', 'dropdown')
 				  .'</div>';
 			
 			echo '<div class="inputitem">
