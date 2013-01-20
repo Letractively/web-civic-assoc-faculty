@@ -75,7 +75,19 @@ class Users extends MY_Controller
         if( $user_id == '')
             redirect('404');
         
-        parent::edit( 'edit_user', $user_id );
+        if( $user_id != $this->session->userdata('user') )
+            redirect (base_url ());
+        if ( $this->input->post( $submit = 'submit' ) )
+	{
+            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
+            {
+                $this->load->model('updater');
+                $this->updater->edit_user( $user_id, $this->input->post() );
+                    redirect( $this->router->class );
+            }
+           else
+               redirect( $this->router->class );
+        }
         $data = array(
             'user_id'       => $user_id,
             'error'         => $this->form_validation->form_required(array( 'username', 'name','surname', /*'password',*/'email', 
