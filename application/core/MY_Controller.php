@@ -170,11 +170,11 @@ abstract class MY_Controller extends CI_Controller
                 //array_debug($this->input->post());
                 $this->load->model('updater');
                 $this->updater->$method( $id, $this->input->post() );
-                    redirect( $this->router->class );
+                redirect( $this->router->class );
             }
-           else
-               redirect( $this->router->class );
-        }
+            else
+                redirect( $this->router->class );
+        }   
     }
 
     protected function delete( $method, $id, $class_valid )
