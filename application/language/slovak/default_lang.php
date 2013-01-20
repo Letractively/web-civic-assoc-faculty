@@ -3,9 +3,8 @@
 /***USER ROLES***/
 $lang['admin']                          =   'Administrátor';
 $lang['oz_member']                      =   'Člen združenia';
-$lang['ex_member']                      =   'Vedúci exkurzie';
-$lang['lecturer']                       =   'Prednášajúci';
-$lang['all']                       		=   'Všetci';
+$lang['po_member']                      =   'Potencionálny člen';
+$lang['all']                            =   'Všetci';
 
 $lang['confirm_delete_title']           =   'Ste si istý?';
 $lang['confirm_delete_question']        =   'Naozaj chcete vymazať tento záznam?';
@@ -25,6 +24,8 @@ $lang['button_delete_event']            =   'Zmazať';
 
 $lang['label_login']                    =   'Nick';
 $lang['label_password']                 =   'Heslo';
+$lang['label_password_again']           =   'Heslo znova';
+$lang['label_role']                     =   'Štatút';
 
 $lang['logged_in']                      =   'Si prihlásený ako';
 

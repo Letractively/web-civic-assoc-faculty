@@ -8,11 +8,11 @@
 <div id="content_wrapper">
 	<?= form_open("auth/registration") ?>
 		<div class="inputitem">
-			<p class="label"> <label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label> </p>
+			<p class="label"><label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label> </p>
 			<?= form_input(array('name' => 'name', 'id' => 'name', 'class' => 'input_data'.$error['name']), set_value('name')) ?>
 		</div>
 		<div class="inputitem">
-			<p class="label"> <label for="surname" class="<?= $error['surname'] ?>"><?= $this->lang->line('label_surname') ?></label> </p>
+			<p class="label"><label for="surname" class="<?= $error['surname'] ?>"><?= $this->lang->line('label_surname') ?></label> </p>
 			<?= form_input(array('name' => 'surname', 'id' => 'surname', 'class' => 'input_data'.$error['surname']), set_value('surname')) ?>
 		</div>
 		<div class="inputitem">
@@ -45,20 +45,20 @@
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="place_of_birth" class="<?= $error['place_of_birth'] ?>"><?= $this->lang->line('label_place_of_birth') ?></label> </p>
-			<?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => 'input_data'.$error['place_of_birth']), set_value('place_of_birth')) ?>
+			<?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => 'input_data'.$error['place_of_birth']), set_value('place_of_birth')); ?>
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="postcode" class="<?= $error['postcode'] ?>"><?= $this->lang->line('label_postcode') ?></label> </p>
-			<?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => 'input_data'.$error['postcode']), set_value('postcode')) ?>
+			<?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => 'input_data'.$error['postcode']), set_value('postcode')); ?>
 		</div>
 		<div class="inputitem">
-			<p class="label"> <label for="degree_year" class="<?= $error['degree_year'] ?>"><?= $this->lang->line('label_degree_year') ?></label> </p>
+			<p class="label"> <label for="degree_year" class="<?= $error['degree_year'] ?>"><?= $this->lang->line('label_degree_year'); ?></label> </p>
 			<?= form_dropdown('degree_year', $years, set_value('degree_year_id')) ?>
 		</div>
 	 
 		<div class="inputitem">
 			<p class="label"> <label for="total_sum" class=" <?= $error['total_sum'] ?>"><?= $this->lang->line('label_total_tum') ?></label> </p>
-			<?= form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class'=>'input_data'.$error['total_sum']), set_value('total_sum')) ?>
+			<?= form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class'=>'input_data'.$error['total_sum']), set_value('total_sum')); ?>
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="vs" class=" <?= $error['vs'] ?>"><?= $this->lang->line('label_vs') ?></label> </p>

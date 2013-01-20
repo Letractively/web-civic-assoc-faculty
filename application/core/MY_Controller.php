@@ -172,7 +172,7 @@ abstract class MY_Controller extends CI_Controller
                 $this->updater->$method( $id, $this->input->post() );
                     redirect( $this->router->class );
             }
-            else
+           else
                redirect( $this->router->class );
         }
     }
