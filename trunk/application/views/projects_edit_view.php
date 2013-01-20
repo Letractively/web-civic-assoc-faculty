@@ -7,7 +7,7 @@
 <script type="text/javascript">
 	window.onload = function()
 	{
-		var calendar = new dhtmlXCalendarObject(["from","to"]);
+		var calendar = new dhtmlXCalendarObject(["from","to","project_item_date"]);
 		calendar.setDateFormat("%d.%m.%Y");
 		dhtmlXCalendarObject.prototype.langData["sk"] =
 		{

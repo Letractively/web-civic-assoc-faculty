@@ -28,4 +28,20 @@ class MY_Form_validation extends CI_Form_validation {
     		return $output;
     	}
     }
+    
+    /**
+	 * Greather or equal than
+	 *
+	 * @access	public
+	 * @param	string
+	 * @return	bool
+	 */
+	public function greater_or_equal_than($str, $min)
+	{
+		if ( ! is_numeric($str))
+		{
+			return FALSE;
+		}
+		return $str >= $min;
+	}
 }

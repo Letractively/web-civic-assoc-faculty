@@ -10,7 +10,7 @@ class Administration extends MY_Controller
          * 
          */
         function __construct() 
-        {
+        {           
             parent::__construct();
         }
 
@@ -22,11 +22,15 @@ class Administration extends MY_Controller
          */
         public function index()
         {
-			$data = array(
-                                'view' => "{$this->router->class}_view",
-				'title' => 'Administrácia'
+            if( !$this->userdata->is_admin() )
+            {
+                redirect(base_url ());
+            }
+            $data = array(
+                'view' => "{$this->router->class}_view",
+		'title' => 'Administrácia'
             );
 			
-			$this->load->view('container', array_merge($this->data, $data));
+            $this->load->view('container', array_merge($this->data, $data));
         }
 }

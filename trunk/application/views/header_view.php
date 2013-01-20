@@ -50,7 +50,8 @@
 			<?= anchor('events', 'UDALOSTI', $sender == 'events' ? array('class' => 'selected') : null); ?>
 			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>
 			<?= anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null); ?>
-            <?php if( $this->userdata->is_logged() ) echo anchor('administration', 'SPRÁVA', $sender == 'administration' ? array('class' => 'selected') : null); ?>
+            <?php if( $this->userdata->is_admin() ) 
+                    echo anchor('administration', 'SPRÁVA', $sender == 'administration' ? array('class' => 'selected') : null); ?>
                         <?php //echo anchor('test', 'TEST', $sender == 'test' ? array('class' => 'selected') : null); ?>
 		</div>
 		<div id="secondary_navigation">

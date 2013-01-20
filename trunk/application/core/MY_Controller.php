@@ -163,10 +163,11 @@ abstract class MY_Controller extends CI_Controller
         
         if ( $this->input->post( $submit ) )
 	{
+            //echo $this->router->class.' '.$this->router->method;
             //array_debug($this->input->post());
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
-                //array_debug($this->input->post());
+                array_debug($this->input->post());
                 $this->load->model('updater');
                 $this->updater->$method( $id, $this->input->post() );
                     redirect( $this->router->class );

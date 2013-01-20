@@ -53,9 +53,9 @@
 		{
 			$grid->all_cols_visible(false);
 			$grid->header('user_name')->visible = true;
-			$grid->header('user_surname')->visible = true;
+			//$grid->header('user_surname')->visible = true;
 			$grid->header('user_name')->set_anchor('users/detail', 'user_id');
-			$grid->header('user_surname')->set_anchor('users/detail', 'user_id');
+			//$grid->header('user_surname')->set_anchor('users/detail', 'user_id');
 			$grid->header('user_email')->visible = false;
 			if ($flag == ROLE_OZ_MEMBER) $grid->header('user_phone')->visible = true;
 			if ($flag == ROLE_OZ_MEMBER) $grid->header('study_program_name')->visible = true;
@@ -63,7 +63,7 @@
 			if ($flag == ROLE_OZ_MEMBER) $grid->header('degree_name')->visible = true;
 			
 					$grid->header('user_name')->text = $this->lang->line('label_name');
-					$grid->header('user_surname')->text = $this->lang->line('label_surname');
+					//$grid->header('user_surname')->text = $this->lang->line('label_surname');
 					$grid->header('user_email')->text = $this->lang->line('label_email');
 					$grid->header('user_phone')->text = $this->lang->line('label_phone');
 					$grid->header('study_program_name')->text = $this->lang->line('label_study_program_id');

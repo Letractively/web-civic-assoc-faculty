@@ -54,7 +54,7 @@ class Users extends MY_Controller
        
         $this->load->model('selecter');
         
-        parent::add('add_user', $this->router->class, $this->router->method);
+        parent::add( 'add_user' );
         $data = array(
             'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
                                                                                 'email', 'phone', 'study_program_id', 'degree_id', 
@@ -75,15 +75,14 @@ class Users extends MY_Controller
         if( $user_id == '')
             redirect('404');
         
+        parent::edit( 'edit_user', $user_id );
         $data = array(
-            'user_id'   => $user_id,
-            'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
-                                                                                'email', 'phone', 'study_program_id', 'degree_id', 
-                                                                                'place_of_birth', 'postcode', 'degree_year',
-                                                                                'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
-                                                                                'project_category_5', 'project_category_6','oz_member','ex_member','lecturer','degrees_id','vs_box')
+            'user_id'       => $user_id,
+            'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password',
+                                                                                'email', 'phone', 'place_of_birth', 'postcode', 'degree_year',
+                                                                                'vs','total_sum', 'study_program_id','degree_id','vs_box')
                                                                         ),
-            'years'                 => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset)
+            'years'         => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset)
         );
         $this->load->view('container', array_merge($this->data, $data));
     }
