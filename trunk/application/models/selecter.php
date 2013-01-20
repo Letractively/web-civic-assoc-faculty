@@ -252,7 +252,7 @@ class Selecter extends MY_Model
     {
        if($cat_id != 0){
         $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
-                                        ec.event_category_name, event_priority
+                                        ec.event_category_id, ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
@@ -265,7 +265,7 @@ class Selecter extends MY_Model
         else
         {
          $q = $this->db->query("SELECT  e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
-                                        ec.event_category_name, event_priority
+                                        ec.event_category_id, ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority DESC, e.event_created DESC
@@ -279,7 +279,7 @@ class Selecter extends MY_Model
     {
        if($cat_id != 0){
         $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
-                                        ec.event_category_name, event_priority
+                                        ec.event_category_id, ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
@@ -292,7 +292,7 @@ class Selecter extends MY_Model
         else
         {
          $q = $this->db->query("SELECT  e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
-                                        ec.event_category_name, event_priority
+                                        ec.event_category_id, ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_created DESC
@@ -306,7 +306,7 @@ class Selecter extends MY_Model
     {
        if($cat_id != 0){
         $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
-                                        ec.event_category_name, event_priority
+                                        ec.event_category_id, ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
@@ -319,7 +319,7 @@ class Selecter extends MY_Model
         else
         {
          $q = $this->db->query("SELECT  e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
-                                        ec.event_category_name, event_priority
+                                        ec.event_category_id, ec.event_category_name, event_priority
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority ASC, e.event_created DESC, e.event_name ASC
@@ -501,7 +501,7 @@ class Selecter extends MY_Model
     public function get_payments($user_id, $grid = false)
     {
         if($user_id == 0){
-            $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
+            $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -510,7 +510,7 @@ class Selecter extends MY_Model
 			else return $q->result();
         }   
         else {
-        $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
+        $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -524,7 +524,7 @@ class Selecter extends MY_Model
      public function get_payments_lastpaid($user_id)
      {
          $q = $this->db->query("
-                                    SELECT p.payment_paid_sum, p.payment_paid_time, 
+                                    SELECT p.payment_type, p.payment_paid_sum, p.payment_paid_time, 
                                            p.payment_total_sum, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -539,7 +539,7 @@ class Selecter extends MY_Model
     {
         if($user_id==0){
             $q = $this->db->query("
-                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -550,7 +550,7 @@ class Selecter extends MY_Model
         } 
         else{
         $q = $this->db->query("
-                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -567,7 +567,7 @@ class Selecter extends MY_Model
     {
         if($user_id==0){
             $q = $this->db->query("
-                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -578,7 +578,7 @@ class Selecter extends MY_Model
         }
         else{
         $q = $this->db->query("
-                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_vs, p.payment_total_sum,
+                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
@@ -629,6 +629,15 @@ class Selecter extends MY_Model
                                 LEFT JOIN study_programs sp ON (u.user_study_program_id=sp.study_program_id) 
                                 LEFT JOIN degrees d ON (u.user_degree_id=d.degree_id)
                                 WHERE u.user_id=$user_id       
+                               ");
+        return $q->result();
+    }
+    
+    public function get_fin_redistribution($payment_id,$pr_cat_id)
+    {
+        $q = $this->db->query(" SELECT *
+                                FROM fin_redistributes
+                                WHERE fin_redistribute_payment_id=$payment_id AND fin_redistribute_project_category_id$pr_cat_id      
                                ");
         return $q->result();
     }
