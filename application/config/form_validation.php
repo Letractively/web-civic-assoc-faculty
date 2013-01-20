@@ -267,19 +267,7 @@ $config = array(
                 'label'     => 'lang:label_content',
                 'rules'     => 'trim|required|xss_clean'
             )
-    ),
-    'project_categories/detail'              => array(
-            array(
-                'field'     => 'to',
-                'label'     => 'lang:label_to',
-                'rules'     => 'trim|required|xss_clean|numeric'
-            ),
-            array(
-                'field'     => 'cash',
-                'label'     => 'lang:label_cash',
-                'rules'     => 'trim|required|xss_clean|numeric'
-            )
-    ),
+    ),    
     'project_categories/add'                => array(
             array(
                 'field'     => 'project_category_name',
@@ -302,6 +290,18 @@ $config = array(
                 'field'     => 'project_category_cash',
                 'label'     => 'lang:label_capital',
                 'rules'     => 'trim|xss_clean|numeric'
+            )
+    ),
+    'project_categories/add_transaction'                  => array(
+            array(
+                'field'     => 'to',
+                'label'     => 'lang:label_to',
+                'rules'     => 'trim|required|xss_clean|numeric'
+            ),
+            array(
+                'field'     => 'cash',
+                'label'     => 'lang:label_cash',
+                'rules'     => 'trim|required|xss_clean|numeric'
             )
     ),
     'projects/add'                          => array(
