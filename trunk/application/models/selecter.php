@@ -607,7 +607,8 @@ class Selecter extends MY_Model
     {
         $q1 = $this->db->query("(SELECT 
                                        tmp.project_category_name AS fin_category_transaction_from, ppc.project_category_name AS fin_category_transaction_to,
-                                       tmp.category_transaction_cash, tmp.project_category_id, tmp.fin_category_transaction_id
+                                       tmp.category_transaction_cash, tmp.project_category_id, tmp.fin_category_transaction_id, fin_category_transaction_cat_to_id,
+                                       fin_category_transaction_cat_from_id
                                 FROM
                                 (SELECT *, SUM(fct.fin_category_transaction_cash) AS category_transaction_cash
                                 FROM fin_category_transactions fct
@@ -620,7 +621,8 @@ class Selecter extends MY_Model
                              UNION
                                   ( SELECT  
                                        ppc.project_category_name AS fin_category_transaction_to, tmp.project_category_name AS fin_category_transaction_from,
-                                       tmp.category_transaction_cash, tmp.project_category_id, tmp.fin_category_transaction_id
+                                       tmp.category_transaction_cash, tmp.project_category_id, tmp.fin_category_transaction_id, fin_category_transaction_cat_to_id,
+                                       fin_category_transaction_cat_from_id
                                 FROM
                                 (SELECT *, SUM(fct.fin_category_transaction_cash) AS category_transaction_cash
                                 FROM fin_category_transactions fct

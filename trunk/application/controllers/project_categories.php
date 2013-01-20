@@ -75,11 +75,7 @@ class Project_categories extends MY_Controller
          */
         public function add_transaction()
         {
-            parent::add('add_transaction', $this->router->class, $this->router->method);
-            $data = array(
-                'view'                  => "{$this->router->class}_{$this->router->method}_view"
-            );
-            array_merge($this->data, $data);
+            parent::add('add_transaction');
         }
 
         public function edit( $project_category_id )
