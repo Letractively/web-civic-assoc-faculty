@@ -12,6 +12,7 @@ $lang['label_booked_cash']                  = 'Rozpočet';
 $lang['label_spended_cash']                 = 'Minuté';
 $lang['label_from']                         = 'Od';
 $lang['label_to']                           = 'Do';
+$lang['label_active']                       = 'Rozpracovanosť';
 
 $lang['label_item']                         = 'položka';
 $lang['label_price']                        = 'cena';
@@ -27,6 +28,11 @@ $lang['anchor_delete_project']                = 'Zmazať';
 $lang['button_add_project']                   = 'Pridaj';
 $lang['button_edit_project']                  = 'Uprav';
 $lang['button_close_project']                  = 'Uzatvor';
+
+$lang['project_open']                       = 'Prebieha';
+$lang['project_closed']                     = 'Uzatvorený';
+
+$lang['project_is_closed']                  = 'Tento projekt je uzavretý';
 
 $lang['to_projects']      = 'Späť na projekty';
 

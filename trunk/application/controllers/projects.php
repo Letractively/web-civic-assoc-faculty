@@ -84,6 +84,9 @@ class Projects extends MY_Controller
 
         public function edit( $project_id )
         {
+            if($this->input->post('submit') == $this->lang->line('button_close_project'))
+                $this->edit_project_closed ($project_id);
+            
             parent::edit('edit_project', $project_id);
 
             $data = array(
@@ -122,11 +125,13 @@ class Projects extends MY_Controller
         
         public function edit_project_closed( $project_id )
         {
-            $data = array(
+            $this->load->model('updater');
+            $this->updater->edit_project_closed( $project_id );
+            redirect($this->router->class);
+            /*$data = array(
                 'project_id'        => $project_id
             );
-
-            $this->load->view('container', array_merge($this->data, $data)); 
+            $this->load->view('container', array_merge($this->data, $data));*/
         }
 
         public function delete( $project_id )

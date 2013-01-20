@@ -30,12 +30,21 @@
 
 	<div class="post_modifie_info">
 		<span class="project_label"> Trvanie: </span>
-		od:
 		<?php 
 			echo datetime($obj[0]->project_date_from, FALSE);
 			echo ' - ';
 			echo datetime($obj[0]->project_date_to, FALSE);
 		?>
+	   
+	</div>
+        <div class="post_modifie_info">
+		<span class="project_label"> Rozpracovanosť: </span>
+		<?php 
+			if( $obj[0]->project_active == 0 )
+                            echo $this->lang->line('project_closed');
+                        else
+                            echo $this->lang->line('project_open');
+		?>  
 	   
 	</div>
 
@@ -45,8 +54,7 @@
 		$this->load->library('grid');
 			
 		$grid = new Grid();
-
-		if( $grid->bind($this->selecter->get_project_items($project_id), 'project_item_id') )
+                if( $grid->bind($this->selecter->get_project_items($project_id), 'project_item_id') )
 		{
 			$grid->header('project_item_id')->visible = false;
 			$grid->header('user_id')->visible = false;
@@ -58,8 +66,12 @@
                         $grid->header('user_name')->text = $this->lang->line('label_fullname');
                         //$grid->header('user_surname')->text = $this->lang->line('label_user_surname');
                         
+                        $grid->header('project_item_price')->set_numformat('{2:,: } €');
+                        
 			$grid->display();
 		}
+                
+                
             }
 	?>
 	
@@ -68,7 +80,12 @@
 	<?php
             if( $this->userdata->is_admin() )
             {
-                echo '<p class="button_edit">'; echo anchor("projects/edit/{$project_id}", $this->lang->line('anchor_edit_project')); echo '</p>';
+                if( $obj[0]->project_active == 1 )
+                {
+                    echo '<p class="button_edit">'; 
+                        echo anchor("projects/edit/{$project_id}", $this->lang->line('anchor_edit_project')); 
+                    echo '</p>';
+                }
 		echo '<p class="button_delete">'; echo anchor("projects/delete/{$project_id}", $this->lang->line('anchor_delete_project')); echo '</p>';
             }
 		echo '<p class="button_back">'; echo anchor('projects/', $this->lang->line('to_projects')); echo '</p>';

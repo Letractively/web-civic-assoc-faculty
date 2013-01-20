@@ -234,7 +234,7 @@ class Grid
 	 *
 	 * @return Objekt ktorý obsahuje atribúty riadku. Ak neexistuje, vracia null.
 	 */
-	public function row($unique_key)
+        public function row($unique_key)
 	{
 		return $this->rows[$unique_key];
 	}
