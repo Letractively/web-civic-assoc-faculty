@@ -90,8 +90,8 @@ class Users extends MY_Controller
         }
         $data = array(
             'user_id'       => $user_id,
-            'error'         => $this->form_validation->form_required(array( 'username', 'name','surname', /*'password',*/'email', 
-                                                                            'phone', 'place_of_birth', 'postcode', 'degree_year',
+            'error'         => $this->form_validation->form_required(array( 'username', 'name','surname', 'email', 
+                                                                            'phone', 'place_of_birth', 'postcode', 'degree_year'
                                                                           )
                                                                         ),
             'years'         => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset)

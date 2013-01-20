@@ -137,7 +137,7 @@ abstract class MY_Controller extends CI_Controller
     
     protected function add_param( $method, $id, $submit = 'submit')
     {
-        echo $this->router->method;
+        //echo $this->router->method;
         if( !$this->userdata->is_admin() )
             redirect(base_url());
         $this->load->model('selecter');
@@ -167,7 +167,7 @@ abstract class MY_Controller extends CI_Controller
             //array_debug($this->input->post());
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
-                array_debug($this->input->post());
+                //array_debug($this->input->post());
                 $this->load->model('updater');
                 $this->updater->$method( $id, $this->input->post() );
                     redirect( $this->router->class );

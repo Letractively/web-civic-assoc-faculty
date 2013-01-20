@@ -22,6 +22,16 @@ class Selecter extends MY_Model
                               ");   
         return $q->row();
     }
+    
+    public function project_state( $project_id )
+    {
+        $q = $this->db->query(" SELECT project_active
+                                FROM projects
+                                WHERE project_id = $project_id
+                              ");
+        
+        return $q->row()->project_active;
+    }
     /*******************************************************/
     
     /*
@@ -412,23 +422,25 @@ class Selecter extends MY_Model
 		{
 			$q = $this->db->query("SELECT  p.project_name, pc.project_category_id, pc.project_category_name, p.project_booked_cash, p.project_date_from, 
                                             p.project_date_to, sum(pi.project_item_price) AS project_spended_cash,
-                                            pi.project_item_id, p.project_id
+                                            pi.project_item_id, p.project_id, p.project_active
                                     FROM project_items pi
                                     RIGHT JOIN projects p ON (pi.project_item_project_id = p.project_id)
                                     JOIN project_categories pc ON (p.project_project_category_id = pc.project_category_id)
                                     GROUP BY p.project_id
+                                    ORDER BY p.project_active DESC
                                   ");
 		}
 		else
 		{
                 $q = $this->db->query("SELECT  p.project_name, pc.project_category_name, p.project_booked_cash, p.project_date_from, 
                                             p.project_date_to, sum(pi.project_item_price) AS project_spended_cash,
-                                            pi.project_item_id, p.project_id, pc.project_category_id
+                                            pi.project_item_id, p.project_id, pc.project_category_id, p.project_active
                                     FROM project_items pi
                                     RIGHT JOIN projects p ON (pi.project_item_project_id = p.project_id)
                                     JOIN project_categories pc ON (p.project_project_category_id = pc.project_category_id)
                                     WHERE p.project_project_category_id = $cat_id
                                     GROUP BY p.project_id
+                                    ORDER BY p.project_active DESC
                                   ");
 		}
         return $q->result();
@@ -465,7 +477,7 @@ class Selecter extends MY_Model
             $q = $this->db->query(" SELECT p.project_name, p.project_about, p.project_priority, 
                                            p.project_project_category_id, p.project_booked_cash, 
                                            sum(pi.project_item_price) AS project_spended_cash,
-                                           p.project_date_from, p.project_date_to
+                                           p.project_date_from, p.project_date_to, p.project_active
                                     FROM project_items pi
                                     JOIN projects p ON (pi.project_item_project_id=p.project_id)
                                     WHERE project_id=$project_id

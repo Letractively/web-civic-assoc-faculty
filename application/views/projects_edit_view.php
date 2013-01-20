@@ -39,6 +39,7 @@
 </div>
 
 <div id="content_wrapper">
+    <?php if($this->selecter->project_state($project_id) == 1): ?>
 	<?= form_open("projects/edit/".$project_id) ?>
 
 		<div class="inputitem">
@@ -86,12 +87,11 @@
 
 		<div class="inputitem">
 			<p>
-				<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_edit_project')) ?>
-				<?= form_submit(array('type'=>'submit', 'name' => 'close', 'class' => 'button_close'), $this->lang->line('button_close_project')) ?>
-			</p>
+                            <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_edit_project')) ?>				
+                            <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_close'), $this->lang->line('button_close_project')) ?>
+                        </p>
 		</div>
-	<?= form_close() ?>
-	
+	<?= form_close(); ?>
 	<?php
 			$this->load->library('grid');
 			
@@ -128,7 +128,7 @@
 				//$grid->header('user_fullname')->visible = true;
 				$grid->header('project_item_date')->editable = false;
 				$grid->header('project_item_date')->set_datetime('Y-m-d');
-				$grid->header('project_item_price')->set_numformat('{2:,: } EUR');
+				$grid->header('project_item_price')->set_numformat('{2:,: } €');
 				$grid->header('user_name')->component->type = 'combobox';
 				$grid->header('user_name')->component->bind($users, 'user_id', 'user_fullname');
 
@@ -144,4 +144,7 @@
         <?php
 			echo '<p class="button_back">'; echo anchor('projects/', $this->lang->line('to_projects')); echo '</p>';
         ?>
+        <?php else: ?>
+            <strong><?= $this->lang->line('project_is_closed'); ?></strong>
+        <?php endif; ?>
 </div>

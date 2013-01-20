@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+add<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Inserter extends MY_Model
 {
@@ -29,7 +29,6 @@ class Inserter extends MY_Model
    
     public function add_degree($values)
     {
-        array_debug($values);
         $this->db->query("INSERT INTO degrees
                           (degree_name, degree_grade)
                           VALUES ('".$values['degree_name']."','".$values['degree_grade']."')
@@ -143,8 +142,8 @@ class Inserter extends MY_Model
     public function add_project($values)
     {
       $this->db->query("INSERT INTO projects
-                           ( project_name, project_about, project_priority, project_project_category_id, project_booked_cash, project_date_from, project_date_to)
-                           VALUES ('".$values['name']."','".$values['about']."','".$values['priority']."','".$values['project_category_id']."','".$values['booked_cash']."','".$values['from']."','".$values['to']."')
+                           ( project_name, project_about, project_priority, project_project_category_id, project_booked_cash,project_active, project_date_from, project_date_to)
+                           VALUES ('".$values['name']."','".$values['about']."','".$values['priority']."','".$values['project_category_id']."','".$values['booked_cash']."',1,'".$values['from']."','".$values['to']."')
                          ");
       if($this->db->affected_rows()>0){ 
         return TRUE;

@@ -17,7 +17,7 @@
         <script type="text/javascript" src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
     </head>
     <body>
-		<noscript><?= $this->lang->line('no_js'); ?></noscript>
+	<noscript><?= $this->lang->line('no_js'); ?></noscript>
         <div> <!-- wrapper -->
             <div> <!-- header -->
                <?= $this->load->view('header_view') ?>
