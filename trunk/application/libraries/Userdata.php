@@ -26,8 +26,7 @@ class Userdata
 		$this->roles = array(
 			1 => $this->CI->lang->line('admin'),
 			2 => $this->CI->lang->line('oz_member'),
-			3 => $this->CI->lang->line('ex_member'),
-			4 => $this->CI->lang->line('lecturer'),
+			3 => $this->CI->lang->line('po_member')
 		);
 		
 		if( $all )
@@ -90,6 +89,33 @@ class Userdata
                                                 FROM users
                                                 WHERE user_id = '".$user_id."'");
             return $query->row()->user_role;   
+        }
+        
+        /*
+         * get_role 
+         * 
+         * Funkcia vrati pozivatelsku rolu pouzivatela z jeho ID
+         * 
+         * @param user_id ID pouzivatela
+         * @return integer
+         * 
+         */
+        public function get_role_name( $role_number )
+        {
+            $roleName = '';
+            switch($role_number)
+            {
+                case 1:
+                    $roleName = $this->CI->lang->line('admin');
+                    break;
+                case 2:
+                    $roleName = $this->CI->lang->line('oz_member');
+                    break;
+                case 3:
+                    $roleName = $this->CI->lang->line('po_member');
+                    break;
+            }
+            return $roleName;  
         }
         
         /*
