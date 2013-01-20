@@ -39,13 +39,12 @@ el.display=(el.display == 'block')?'none':'block';
 			<?= $obj[0]->user_surname ?>
 	</div>
 
-	<div class="inputitem">
-		<span class="user_detail_label"> E-mail: </span> <?= $obj[0]->user_email ?>  
-	</div>
+	
 
 	<?php
-		if($obj[0]->user_role == 2){
-			echo '<br /> <div class="inputitem"> <div class="study_program_name">Študijný program: '.$obj[0]->study_program_name.'</div>';
+		if($obj[0]->user_role == 2 and $this->userdata->is_admin() or $this->userdata->get_user_id() == $obj[0]->user_id){  
+			echo '<br /><div class="inputitem"><span class="user_detail_label"> E-mail: </span>'. $obj[0]->user_email .'</div>'; 
+                        echo '<div class="inputitem"> <div class="study_program_name">Študijný program: '.$obj[0]->study_program_name.'</div>';
 			echo '<div class="user_degree_year">Rok ukončenia štúdia: '.$obj[0]->user_degree_year.'</div>';
 			echo '<div class="user_place_of_birth">Miesto narodenia: '.$obj[0]->user_place_of_birth.'</div>';
 			echo '<div class="user_postcode">PSČ: '.$obj[0]->user_postcode.'</div> </div>';
@@ -85,13 +84,13 @@ el.display=(el.display == 'block')?'none':'block';
                                             echo form_close();
                                     echo '</div>';
                                 }
-				echo '<p class="button_back">'; echo anchor('users/', $this->lang->line('to_users')); echo '</p>';
+				
 			}
 			else if(date("Y-m-d", time() - (365 * 86400)) <=  $lp->payment_paid_time){
 				echo '<br />Členstvo platné do: '.$dm = day_month($date).'.'.$year = year($date)+1;
                                 echo '<br />';
                                 echo '<p class="button_edit"><a style="cursor: pointer; " onclick="zobrazSkryj(\'oddil\')">Dobrovoľný Príspevok</a></p>';
-				echo '<p class="button_back">'; echo anchor('users/', $this->lang->line('to_users')); echo '</p>';
+				//echo '<p class="button_back">'; echo anchor('users/', $this->lang->line('to_users')); echo '</p>';
                                 
                                 echo '<div id="oddil" class="skryvany">';
                                     echo form_open('payments/add');
@@ -200,7 +199,7 @@ el.display=(el.display == 'block')?'none':'block';
 	//            echo $l->excursion_time_from.'-'.$l->excursion_time_to.'<br />';
 	//        }
 		}    
-		
+		echo '<p class="button_back">'; echo anchor('users/', $this->lang->line('to_users')); echo '</p>';
 		
 	?>
 </div>
