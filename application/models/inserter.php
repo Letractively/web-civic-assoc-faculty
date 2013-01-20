@@ -106,9 +106,16 @@ class Inserter extends MY_Model
     public function add_payments($values)
     {
         $this->db->query("INSERT INTO payments
-                           ( payment_vs, payment_user_id, payment_total_sum, payment_paid_sum)
-                           VALUES ('".$values['vs']."','".$values['user_id']."','".$values['total_sum']."','".$values['paid_sum']."')
+                           ( payment_vs, payment_user_id, payment_total_sum, payment_paid_sum, payment_type)
+                           VALUES ('".$values['vs']."','".$values['user_id']."','".$values['total_sum']."','0','".$values['payment_type']."')
                          ");
+        $payment_id = $this->db->insert_id();
+        foreach($values['categories'] as $key=>$value ){
+            $this->db->query("INSERT INTO fin_redistribution
+                               (fin_redistribute_project_category_id, fin_redistribute_ratio, fin_redistribute_payment_id)
+                               VALUES ('".$key."', '".$value."','".$payment_id."')
+                             ");
+    }
      if($this->db->affected_rows()>0){ 
         return TRUE;
       }

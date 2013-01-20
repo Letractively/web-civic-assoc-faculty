@@ -64,7 +64,7 @@ class Updater extends MY_Model
       else{ return FALSE;}
     }
     
-    public function edit_payments($payment_id, $values)
+    public function edit_payments_payment($payment_id, $values)
     {
         $this->db->query("UPDATE payments
                           SET payment_paid_sum='".$values['payment_paid_sum']."'
@@ -75,6 +75,27 @@ class Updater extends MY_Model
         return TRUE;
       }
       else{ return FALSE;}
+    }
+    
+    public function edit_payments($payment_id, $values)
+    {
+         $this->db->query("UPDATE payments
+                           SET payment_vs='".$values['vs']."', 
+                               payment_user_id='".$values['user_id']."', 
+                               payment_total_sum, payment_paid_sum, 
+                               payment_type='".$values['payment_type']."'
+                           WHERE payment_id=$payment_id
+                         ");
+        $payment_id = $this->db->insert_id();
+        foreach($values['categories'] as $key=>$value ){
+            $this->db->query("UPDATE fin_redistribution
+                               SET fin_redistribute_ratio='".$value."'
+                               WHERE fin_redistribute_payment_id=$payment_id AND fin_redistribute_project_category_id='".$key."'
+                             ");}
+        if($this->db->affected_rows()>0){ 
+           return TRUE;
+          }
+        else{ return FALSE;} 
     }
     
      public function edit_post($post_id, $values)
