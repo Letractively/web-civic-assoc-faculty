@@ -1,7 +1,7 @@
 <?php
 
 $lang['title']                          = 'Hromadná korešpondencia';
-
+$lang['sender']                         = 'Odosielateľ';
 $lang['label_email_type_id']            = 'Typ';
 $lang['label_correspondence_subject']   = 'Predmet';
 $lang['label_correspondence_content']   = 'Telo';
