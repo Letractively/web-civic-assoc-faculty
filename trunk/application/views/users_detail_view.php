@@ -16,7 +16,7 @@ el.display=(el.display == 'block')?'none':'block';
 <div id="content_wrapper">
 	<?php
 		echo '<p class="project_label">';
-			echo 'Vaša hodnosť: ';
+			echo $this->lang->line('label_state').': ';
                         if($obj[0]->user_role == 1){
 				echo '<span class="user_rank">'; echo 'Admin'; echo '</span>';
 			}
@@ -42,21 +42,21 @@ el.display=(el.display == 'block')?'none':'block';
 	
 
 	<?php
-		if($obj[0]->user_role == 2 and $this->userdata->is_admin() or $this->userdata->get_user_id() == $obj[0]->user_id){  
-			echo '<br /><div class="inputitem"><span class="user_detail_label"> E-mail: </span>'. $obj[0]->user_email .'</div>'; 
-                        echo '<div class="inputitem"> <div class="study_program_name">Študijný program: '.$obj[0]->study_program_name.'</div>';
-			echo '<div class="user_degree_year">Rok ukončenia štúdia: '.$obj[0]->user_degree_year.'</div>';
-			echo '<div class="user_place_of_birth">Miesto narodenia: '.$obj[0]->user_place_of_birth.'</div>';
-			echo '<div class="user_postcode">PSČ: '.$obj[0]->user_postcode.'</div> </div>';
+		if($obj[0]->user_role == 2 && $this->userdata->is_admin() or $this->userdata->get_user_id() == $obj[0]->user_id){  
+			echo '<div class="inputitem"><span class="user_detail_label"> E-mail: </span>'. $obj[0]->user_email .'</div>'; 
+                        echo '<div class="inputitem"><span class="user_detail_label">Študijný program: </span>'.$obj[0]->study_program_name.'</div>';
+			echo '<div class="inputitem"><span class="user_detail_label">Rok ukončenia štúdia: </span>'.$obj[0]->user_degree_year.'</div>';
+			echo '<div class="inputitem"><span class="user_detail_label">Miesto narodenia: </span>'.$obj[0]->user_place_of_birth.'</div>';
+			echo '<div class="inputitem"><span class="user_detail_label">PSČ: </span>'.$obj[0]->user_postcode.'</div>';
                         
-                        if( $this->userdata->is_admin() )
+                        if( $this->userdata->is_admin() || $this->userdata->get_user_id() == $obj[0]->user_id )
                         {
                             echo '<p class="button_edit">'; 
                                 echo anchor('users/edit/'.$obj[0]->user_id,$this->lang->line('edit_item')); 
                             echo '</p>';
                         }			
 			$lp = $this->selecter->get_payments_lastpaid($user_id);
-			$date = datetime($lp->payment_paid_time, FALSE);
+                        $date = datetime($lp->payment_paid_time, FALSE);
 			//array_debug($lp);
 			
 			if($lp->payment_paid_time == NULL){
