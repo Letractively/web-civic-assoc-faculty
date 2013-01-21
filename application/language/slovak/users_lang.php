@@ -15,6 +15,7 @@ $lang['label_place_of_birth']       =   'Miesto narodenia';
 $lang['label_postcode']             =   'PSČ';
 $lang['label_degree_year']          =   'Rok ukončenia na fakulte';
 $lang['label_role']                 =   'Rola';
+$lang['label_state']                =   'Štatút';
 
 $lang['label_oz_member']            =   'člen';
 $lang['label_ex_member']            =   'návštevník exkurzie';
