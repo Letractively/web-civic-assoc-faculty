@@ -134,7 +134,7 @@ class Payments extends MY_Controller
 					'view' => "payments_edit_view"
 				);
 				$data = array_merge($data, $this->selecter->get_payment_detail($pay_id));
-				array_debug($data);
+				//array_debug($data);
 				$this->load->view('container', array_merge($this->data, $data));
 			}
         }
