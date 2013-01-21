@@ -175,8 +175,13 @@
 		</div>
     
 		<div class="inputitem">
-			 <p class="label"> <label for="sender"><?= $this->lang->line('sender') ?></label> </p>
-			<?= form_input(array('name' => 'sender', 'id' => 'sender', 'class' => 'input_data'), set_value('sender')) ?>
+			 <p class="label"> <label for="correspondence_sender" class="<?= $error['correspondence_sender'] ?>"><?= $this->lang->line('label_correspondence_sender') ?></label> </p>
+			<?= form_input(array('name' => 'correspondence_sender', 'id' => 'correspondence_sender', 'class' => 'input_data'.$error['correspondence_sender']), set_value('correspondence_sender')) ?>
+		</div>
+    
+                <div class="inputitem">
+			 <p class="label"> <label for="correspondence_cc" class="<?= $error['correspondence_cc'] ?>"> <?= $this->lang->line('label_correspondence_cc') ?></label> </p>
+			<?= form_input(array('name' => 'correspondence_cc', 'id' => 'correspondence_cc', 'class' => 'input_data'.$error['correspondence_cc']), set_value('correspondence_cc')) ?>
 		</div>
     
 		<div class="inputitem">

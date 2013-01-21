@@ -448,14 +448,15 @@ class Selecter extends MY_Model
     
     public function get_category_detail($cat_id)
     {
-         $q = $this->db->query(" SELECT project_category_name, project_category_cash, 
-                                        SUM(fct1.fin_category_transaction_cash) AS transaction_cash_from,
-                                        SUM(fct2.fin_category_transaction_cash) AS transaction_cash_to
-                                 FROM project_categories pc
-                                 JOIN fin_category_transactions fct1 ON (pc.project_category_id=fct1.fin_category_transaction_cat_from_id)
-                                 JOIN fin_category_transactions fct2 ON (pc.project_category_id=fct2.fin_category_transaction_cat_to_id)
-                                 WHERE project_category_id=$cat_id       
-                                  ");
+         $q = $this->db->query(" SELECT fin_from.*, SUM(fin_trans_to.fin_category_transaction_cash) AS transaction_cash_to
+                                 FROM 
+                                    (SELECT p_c.project_category_cash, p_c.project_category_id, p_c.project_category_name, 
+                                            SUM(fin_trans_from.fin_category_transaction_cash) AS transaction_cash_from
+                                     FROM project_categories p_c
+                                     LEFT JOIN fin_category_transactions fin_trans_from ON (p_c.project_category_id = fin_trans_from.fin_category_transaction_cat_from_id)
+                                     WHERE project_category_id = $cat_id) fin_from
+                                 LEFT JOIN fin_category_transactions fin_trans_to ON (fin_from.project_category_id = fin_trans_to.fin_category_transaction_cat_to_id)       
+                               ");
             return $q->row();   
     }
     

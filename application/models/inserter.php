@@ -155,7 +155,7 @@ class Inserter extends MY_Model
     {
         $this->db->query("INSERT INTO project_categories
                            ( project_category_name, project_category_cash)
-                           VALUES ('".$values['project_category_name']."','".$values['project_category_cash']."')
+                           VALUES ('".$values['project_category_name']."','0')
                          ");
        if($this->db->affected_rows()>0){ 
         return TRUE;

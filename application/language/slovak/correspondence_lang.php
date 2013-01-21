@@ -1,10 +1,11 @@
 <?php
 
 $lang['title']                          = 'Hromadná korešpondencia';
-$lang['sender']                         = 'Odosielateľ';
+$lang['label_correspondence_sender']    = 'Email odosielateľa';
 $lang['label_email_type_id']            = 'Typ';
 $lang['label_correspondence_subject']   = 'Predmet';
 $lang['label_correspondence_content']   = 'Telo';
+$lang['label_correspondence_cc']        = 'Kópia';
 $lang['label_filter']                   = 'Filter';
 
 $lang['button_correspondence']          = 'Odoslať';
