@@ -30,6 +30,8 @@
 		$grid->edit_url = "{$this->router->class}/edit";
 		$grid->remove_url = "{$this->router->class}/delete";
 		
+                array_debug($grid->row(1));
+                
 		$grid->display();
 	}
 	

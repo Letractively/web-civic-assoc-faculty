@@ -18,19 +18,19 @@ class Test extends MY_Controller {
 	
 	public function index()
 	{
-            $query = $this->db->query('SELECT *
+           /* $query = $this->db->query('SELECT *
                                     FROM event_categories'); 
 
                 foreach ($query->list_fields() as $field)
                 {
                     echo $field.'<br />';
-                } 
-        /*$data = array( 
+                } */
+        $data = array( 
             'view'       => "{$this->router->class}_view",
             'users' => $this->db->query("SELECT * from users")->result()
         );
         
-        $this->load->view('container', array_merge($this->data, $data));*/
+        $this->load->view('container', array_merge($this->data, $data));
 	}
 	
 	public function add()
