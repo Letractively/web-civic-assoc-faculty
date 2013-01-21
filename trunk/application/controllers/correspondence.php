@@ -46,7 +46,8 @@ class Correspondence extends MY_Controller
             $data = array( 
 		'years'         => $this->generate_years(60, 2012, 50),
                 'view'          => "{$this->router->class}_view",
-                'error'         => $this->form_validation->form_required(array('correspondence_subject','correspondence_content')),
+                'error'         => $this->form_validation->form_required(array('correspondence_subject','correspondence_content',
+                                                                                'correspondence_sender', 'correspondence_cc')),
                // 'buttons'       => get_bbcode_buttons()
             );
 
@@ -55,6 +56,7 @@ class Correspondence extends MY_Controller
         
         public function send_email( $post_params )
         {
+            
             $users = $this->selecter->get_users_filter( $post_params );
             $ids = array();
             $this->load->library('email');
@@ -63,10 +65,11 @@ class Correspondence extends MY_Controller
             {
                 array_push($ids, $user->user_id);
                
-                /*$config['mailtype'] = 'html';
-                $this->email->initialize($config);*/
-                $this->email->from( $this->config->item('server_email'), $this->userdata->full_name($logged_user_id) );
-                $this->email->to($user->user_email);
+                //$config['mailtype'] = 'html';
+                //$this->email->initialize($config);
+                $this->email->from( $post_params['correspondence_sender'], $this->userdata->full_name($logged_user_id) );
+                $this->email->to($user->user_email); 
+                $this->email->cc($post_params['correspondence_cc']); 
                 $this->email->subject($post_params['correspondence_subject']);
                 $this->email->message( parse_bbcode($post_params['correspondence_content']) );
                 $this->email->send();

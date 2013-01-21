@@ -12,7 +12,7 @@
                             : <strong> <?php if( $obj->project_category_cash == '' )
                                                 echo '0';
                                              else
-                                                echo $obj->project_category_cash;
+                                                echo $obj->project_category_cash-$obj->transaction_cash_from+$obj->transaction_cash_to;
                                                  ?> €</strong><br /> 
                         </span>
 			<span class="project_category_labels"> <?= $this->lang->line('pr_cat_move_from'); ?>
@@ -124,5 +124,6 @@
 	?>
 	<div class="inputitem">
 		<p class="button_delete"> <?= anchor("projects_categories/delete/$project_category_id", 'Zmazať') ?> </p>
-	</div>
+                <p class="button_back"> <?= anchor('projects', $this->lang->line('anchor_back')); ?> </p>
+        </div>
 </div>

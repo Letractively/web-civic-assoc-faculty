@@ -16,12 +16,12 @@ $lang['pr_cat_label']           = 'Kategória';
 $lang['pr_cat_stats']           = 'Štatistiky';
 
 $lang['pr_cat_cur_state']       = 'Súčasný stav';
-$lang['pr_cat_move_from']       = 'Presun sem';
-$lang['pr_cat_move_to']         = 'Presun preč';
+$lang['pr_cat_move_from']       = 'Presuň sem';
+$lang['pr_cat_move_to']         = 'Presuň preč';
 
 $lang['btn_add_trans']          = 'Vykonaj transakciu';
 
-$lang['anchor_back']          = 'Návrat na projekty';
+$lang['anchor_back']          = 'Späť na projekty';
 
 /* End of file project_categories_lang.php */
 /* Location: ./application/language/slovak/project_categories_lang.php */

@@ -65,7 +65,7 @@ class Io extends MY_Controller
 			{
 			case 'users':
 				$export = $this->selecter->get_users(0);
-				$header = array('meno', 'priezvisko', 'email', 'telefón', 'rok ukončenia štúdia', 'študijný program', 'stupeň vzdelania', 'PSČ');
+				$header = array('meno', 'email', 'telefón', 'rok ukončenia štúdia', 'študijný program', 'stupeň vzdelania', 'PSČ');
 				$removed_cols = array('user_id');
 				break;
 			case 'payments':

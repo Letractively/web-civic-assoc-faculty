@@ -1,5 +1,5 @@
 ﻿<div id="grid_wrapper">
-	<p class="project_label"> <?= $this->lang->line('label_together').': '.$this->selecter->get_project_categories_total_cash(); ?> </p>
+	<p class="project_label"> <?= $this->lang->line('label_together').': '.$this->selecter->get_project_categories_total_cash().' €'; ?> </p>
 
 	<?php
 		$this->load->library('grid');
