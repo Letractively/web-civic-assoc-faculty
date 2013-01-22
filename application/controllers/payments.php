@@ -13,7 +13,7 @@ class Payments extends MY_Controller
         {
             parent::__construct();
             $this->load->model('selecter');
-            if( !$this->userdata->is_logged() || !$this->userdata->is_admin() )
+            if( !$this->userdata->is_logged() )
                 redirect(base_url());
 
              $this->load->model('selecter');
@@ -38,8 +38,8 @@ class Payments extends MY_Controller
          */
         public function index($pay_id = 0)
         {   
-			if( !$this->userdata->is_admin() && ($pay_id != $this->userdata->get_user_id() ) )
-				$pay_id = $this->userdata->get_user_id();
+            if( !$this->userdata->is_admin() && ($pay_id != $this->userdata->get_user_id() ) )
+                $pay_id = $this->userdata->get_user_id();
 				
             $data = array(
                 'flag'      => 0,
@@ -100,18 +100,32 @@ class Payments extends MY_Controller
          */
         public function add()
         {
-			if ($this->input->post())
-			{
-				redirect('payments');
-			}
-			else
-			{
-				$data = array(
-					'view' => "payments_add_view"
-				);
-
-				$this->load->view('container', array_merge($this->data, $data));
-			}
+            if ( $this->input->post('submit') )
+            {
+                //array_debug($this->input->post());
+                if( $this->input->post('payment_type') == 1 )
+                    $this->form_validation->set_rules('total_sum','lang:label_total_sum','trim|required|xss_clean|numeric|greater_or_equal_than[5]');
+                else
+                    $this->form_validation->set_rules('total_sum','lang:label_total_sum','trim|required|xss_clean|numeric|greater_or_equal_than[1]');
+                
+                $this->form_validation->set_rules('payment_vs','lang:label_vs','trim|required|xss_clean|numeric');
+                /*foreach ($this->input->post('categories') as $cat_id => $ratio)
+                {
+                    $this->form_validation->set_rules('categories[$cat_id]','lang:label_proj_category','required|xss_clean|numeric');
+                }*/
+                if( $this->form_validation->run() )
+                {
+                    $this->load->model('inserter');
+                    $this->inserter->add_payments( $this->input->post() );
+                    redirect('users/detail/'.$this->userdata->get_user_id());
+                }
+            }
+            
+            $data = array(
+                'view'      => $this->router->class.'_'.$this->router->method.'_view'
+            );
+            
+            $this->load->view('container', array_merge($this->data, $data));
         }
 
         /*

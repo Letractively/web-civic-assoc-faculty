@@ -106,15 +106,16 @@ class Inserter extends MY_Model
     {
         $this->db->query("INSERT INTO payments
                            ( payment_vs, payment_user_id, payment_total_sum, payment_paid_sum, payment_type)
-                           VALUES ('".$values['vs']."','".$values['user_id']."','".$values['total_sum']."','0','".$values['payment_type']."')
+                           VALUES ('".$values['payment_vs']."','".$values['user_id']."','".$values['total_sum']."','0','".$values['payment_type']."')
                          ");
         $payment_id = $this->db->insert_id();
-        foreach($values['categories'] as $key=>$value ){
-            $this->db->query("INSERT INTO fin_redistribution
-                               (fin_redistribute_project_category_id, fin_redistribute_ratio, fin_redistribute_payment_id)
-                               VALUES ('".$key."', '".$value."','".$payment_id."')
+        foreach($values['categories'] as $key=>$value )
+        {
+            $this->db->query("INSERT INTO fin_redistributes
+                               (fin_redistribute_payment_id,fin_redistribute_project_category_id, fin_redistribute_ratio)
+                               VALUES ('".$payment_id."', '".$key."', '".$value."')
                              ");
-    }
+        }
      if($this->db->affected_rows()>0){ 
         return TRUE;
       }
@@ -190,9 +191,9 @@ class Inserter extends MY_Model
         
         $user_id = $this->db->insert_id();
         $this->db->query("  INSERT INTO payments
-                            (payment_vs, payment_total_sum, payment_user_id)
+                            (payment_vs, payment_total_sum, payment_user_id, payment_type)
                             VALUES
-                            ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$user_id."')
+                            ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$user_id."', 1)
                          ");
         $payment_id = $this->db->insert_id();
 		$q = 'INSERT INTO fin_redistributes (fin_redistribute_payment_id, fin_redistribute_project_category_id, fin_redistribute_ratio) VALUES ';
