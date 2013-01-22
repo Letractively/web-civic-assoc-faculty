@@ -42,6 +42,15 @@ $lang['to_users']                   =   'Späť na členov';
 $lang['edit_item']                  =   'Upraviť profil';
 
 $lang['pay_unlimited']              =   'Vaše členstvo v OZ je <strong>neobmedzené</strong>';
+$lang['pay_limited_in']             =   'Členstvo platné do';
+$lang['pay_limited_out']            =   'Členské vypršalo';
+
+$lang['acc_enabled_until']          =   'V prípade neúhrady členského, je účet platný do';      
+
+$lang['entry_free']                 =   'Dobrovoľný Príspevok';
+$lang['entry_fee']                  =   'Uhradiť členské';
+
+$lang['wtg_fee']                    =   'Čaká sa na úhradu členského poplatku';
 
 /* End of file auth_lang.php */
 /* Location: ./application/language/slovak/auth_lang.php */
