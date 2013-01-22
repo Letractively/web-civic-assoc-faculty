@@ -152,4 +152,15 @@ class Userdata
             else
                 return 0;
         }
+        
+        public function is_exempted( $user_id )
+        {
+            $query =    $this->CI->db->query("  SELECT user_exempted
+                                                FROM users
+                                                WHERE user_id = '".$user_id."'");
+            if ($query->row()->user_exempted == 0)
+                return false;
+            else
+                return true;
+        }
 }

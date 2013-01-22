@@ -2,7 +2,7 @@ add<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Inserter extends MY_Model
 {
-    /*
+        /*
      * insert_into_fin_redistributes
      * 
      * Funkcia zaeviduje poziadavku navstevnika ako maju byt prerozdelene jeho

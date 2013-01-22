@@ -28,12 +28,11 @@ class Auth extends MY_Controller
          */
         public function index()
         {      
-            $this->load->model('selecter');
-            $this->load->model('inserter');
+            $this->load->model('selecter');           
             $data = array( 
                 'view'       => "{$this->router->class}_view"  
             );
-
+                
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
@@ -51,19 +50,19 @@ class Auth extends MY_Controller
             if( $this->userdata->is_logged() )
                 redirect(base_url ());
             $this->load->model('selecter');
-            $this->load->model('inserter');
-
+            
             if( $this->input->post('submit') )
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") == TRUE )
                 {
-                    if(  $this->inserter->add_register( $this->input->post() ) == TRUE )
+                    $this->load->model('inserter');
+                    if(  $this->inserter->add_register( $this->input->post() ) == TRUE  )
                     {
                         redirect('show_message/index/success_registration');
                     }       
                 }      
             }
-
+            
             $data = array(
                 'error'                 => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
                                                                                 'email', 'phone', 'place_of_birth', 'postcode', 'degree_year',
