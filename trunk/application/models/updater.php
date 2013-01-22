@@ -82,7 +82,7 @@ class Updater extends MY_Model
          $this->db->query("UPDATE payments
                            SET payment_vs='".$values['vs']."', 
                                payment_user_id='".$values['user_id']."', 
-                               payment_total_sum, payment_paid_sum, 
+                               payment_total_sum='".$values['suma']."', 
                                payment_type='".$values['payment_type']."'
                            WHERE payment_id=$payment_id
                          ");
@@ -193,16 +193,18 @@ class Updater extends MY_Model
                             SET user_username='".$values['username']."',
                                 user_name='".$values['name']."',
                                 user_surname='".$values['surname']."',
-                                user_password='".sha1($values['password'])."',
+                                user_password='".$values['password']."',
                                 user_email='".$values['email']."',
                                 user_phone='".$values['phone']."',
                                 user_study_program_id='".$values['study_program_id']."',
                                 user_degree_id='".$values['degree_id']."',
                                 user_place_of_birth='".$values['place_of_birth']."',
                                 user_postcode='".$values['postcode']."',
-                                user_degree_year='".$values['degree_year']."',
-                                user_role='".$values['role']."'
+                                user_degree_year='".$values['degree_year']."'
                             WHERE user_id=$user_id");
+          $this->db->query("UPDATE payments
+                            SET payment_vs='".$values['vs']."'
+                            WHERE payment_user_id=$user_id");
       if($this->db->affected_rows()>0){
         return TRUE;
       }
