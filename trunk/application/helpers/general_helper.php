@@ -91,7 +91,7 @@ function year($date){
 function day_month($date){
     $input 		= explode(' ', $date);
     $date 		= explode('.', $input[0]);
-    $output 	= "{$date[1]}.{$date[0]}";
+    $output 	= "{$date[0]}.{$date[1]}";
     return $output;
 }
 /*

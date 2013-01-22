@@ -70,16 +70,38 @@
     <?php endif; ?>
     
     <?php
-        $lp = $this->selecter->get_payments_lastpaid($user_id);
-        //$date = datetime($lp->payment_paid_time, FALSE);
-	
         if( $this->userdata->is_admin() || $user_id == $this->userdata->get_user_id() )
         {
             if( $this->userdata->is_exempted($user_id) )
+            {
                 echo '<div class="inputitem"><p>'.$this->lang->line('pay_unlimited').'</p></div>';
+                echo '<p class="button_edit">'.anchor('payments/add', $this->lang->line('entry_free')).'</p>';
+            }
             else
             {
-                array_debug($lp);
+                $lp = $this->selecter->get_payments_lastpaid($user_id);
+                $date = datetime($lp->payment_paid_time, FALSE);
+                $dayAndMonth = day_month($date);
+                $year = year($date)+1;
+                //array_debug($lp);
+                
+                if( date("Y-m-d", time() - (365 * 86400)) <=  $lp->payment_paid_time )
+                {
+                    if( $lp->payment_paid_sum <= $lp->payment_total_sum)
+                        echo '<div class="inputitem"><strong>'.$this->lang->line('wtg_fee').'</strong></div>';
+                    else
+                        echo '<div class="inputitem">'.$this->lang->line('pay_limited_in').': <strong>'.$dayAndMonth.'.'.$year.'</strong></div>';
+                    
+                    if( $user_id == $this->userdata->get_user_id() && $lp->payment_paid_sum >= $lp->payment_total_sum )
+                        echo '<p class="button_edit">'.anchor('payments/add', $this->lang->line('entry_free')).'</p>';
+                }
+                else if( date("Y-m-d", time() - (365 * 86400)) >=  $lp->payment_paid_time )
+                {
+                    echo '<div class="inputitem">'.$this->lang->line('pay_limited_out').': <strong>'.$dayAndMonth.'.'.$year.'</strong></div>';
+                    echo '<div class="inputitem">'.$this->lang->line('acc_enabled_until').': <strong>31.12.'.$year.'</strong></div>';
+                    if( $user_id == $this->userdata->get_user_id() )
+                        echo '<p class="button_edit">'.anchor('payments/add', $this->lang->line('entry_fee')).'</p>';
+                }
             }
         }
     ?>
