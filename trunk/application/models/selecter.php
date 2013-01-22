@@ -541,11 +541,10 @@ class Selecter extends MY_Model
                                            p.payment_total_sum, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
-                                       WHERE u.user_id=$user_id 
-                                      ORDER BY p.payment_paid_time DESC
-                                   
+                                       WHERE u.user_id = $user_id AND p.payment_type = 1
+                                      ORDER BY p.payment_paid_time DESC                            
                                   ");
-            return $q->row(1);
+            return $q->row();
     }
     
     public function get_payments_nopaid($user_id, $grid = false)

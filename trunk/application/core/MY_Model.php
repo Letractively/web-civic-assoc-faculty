@@ -2,7 +2,7 @@
 
 class MY_Model extends CI_Model
 {
-        /*
+     /*
          * Constructor
          * 
          * @access      private

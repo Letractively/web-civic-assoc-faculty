@@ -13,7 +13,7 @@ $lang['label_degree_id']            =   'Titul';
 $lang['label_degree']               =   'Dosiahnutý titul';
 $lang['label_place_of_birth']       =   'Miesto narodenia';
 $lang['label_postcode']             =   'PSČ';
-$lang['label_degree_year']          =   'Rok ukončenia na fakulte';
+$lang['label_degree_year']          =   'Rok ukončenia štúdia na fakulte';
 $lang['label_role']                 =   'Rola';
 $lang['label_state']                =   'Štatút';
 
@@ -35,9 +35,13 @@ $lang['label_project_category_4']   =   '4';
 $lang['label_project_category_5']   =   '5';
 $lang['label_project_category_6']   =   '6';
 
-$lang['button_add']            =   'Pridaj';
-$lang['button_edit']            =   'Uprav';
-$lang['to_users']      = 'Späť na členov';
+$lang['button_add']                 =   'Pridaj';
+$lang['button_edit']                =   'Uprav';
+$lang['to_users']                   =   'Späť na členov';
+
+$lang['edit_item']                  =   'Upraviť profil';
+
+$lang['pay_unlimited']              =   'Vaše členstvo v OZ je <strong>neobmedzené</strong>';
 
 /* End of file auth_lang.php */
 /* Location: ./application/language/slovak/auth_lang.php */
