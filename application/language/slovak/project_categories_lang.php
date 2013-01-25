@@ -8,6 +8,9 @@ $lang['label_cash']             = 'Koľko';
 $lang['label_capital']          = 'kapitál';
 $lang['label_spend']            = 'minuté';
 $lang['label_together']         = 'Spolu';
+$lang['label_state'] = 'Stav';
+$lang['label_active'] = 'Aktívny';
+$lang['label_closed'] = 'Uzatvorený';
 
 $lang['label_date_from']        = 'od kedy';
 $lang['label_date_to']          = 'do kedy';

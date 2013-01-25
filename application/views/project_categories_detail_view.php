@@ -1,4 +1,6 @@
 ﻿<?php
+	$this->load->helper('project_categories');  
+
     $obj = $this->selecter->get_category_detail($project_category_id);
 ?>
 
@@ -96,7 +98,7 @@
 	   
 		//array_debug($this->selecter->get_projects($project_category_id));
 		
-	   if(  $grid1->bind($this->selecter->get_projects($project_category_id), 'project_id') )
+	   if(  $grid1->bind(updateProjCatDetailData($this->selecter->get_projects($project_category_id)), 'project_id') )
 	   {
 			$grid1->header('project_id')->editable = false;
                         
@@ -118,6 +120,8 @@
                         $grid1->header('project_date_to')->set_datetime('Y-m-d');
                         
                         $grid1->header('project_name')->set_anchor('projects/detail', 'project_id');
+						
+						$grid1->header('project_active')->text = $this->lang->line('label_state');
 
                         
                         $grid1->add_url = "projects/add";

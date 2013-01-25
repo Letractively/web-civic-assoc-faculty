@@ -13,12 +13,14 @@ $lang['payment_paid']               =   'Zaplatené';
 $lang['payment_nopaid']             =   'Nezaplatené';
 $lang['payment_mine']               =   'Moje';
 
-$lang['payment_type_account']       =   'Členský príspevok';
-$lang['payment_type_voluntary']     =   'Dobrovoľný príspevok';
+$lang['label_paidtype'] = 'Typ príspevku';
 
-$lang['paid']                       =   'uhradená';
-$lang['partly_paid']                =   'čiastočne uhradená';
-$lang['nopaid']                     =   'neuhradená';
+$lang['payment_type_account']       =   'Členský';
+$lang['payment_type_voluntary']     =   'Dobrovoľný';
+
+$lang['paid']                       =   'zaplatená';
+$lang['partly_paid']                =   'čiastočne zaplatená';
+$lang['nopaid']                     =   'nezaplatená';
 
 $lang['payment_add']                =   'Zaeviduj platbu';
 

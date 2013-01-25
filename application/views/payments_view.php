@@ -56,7 +56,7 @@
         $grid = new Grid();
 		if( $flag == 0 )
 		{
-			if( $grid->bind($this->selecter->get_payments($pay_id, true), 'payment_id') )
+			if( $grid->bind(updatePaymentsData($this->selecter->get_payments($pay_id, true)), 'payment_id') )
 			{
 				$grid->header('payment_id')->editable = false;
 				$grid->header('payment_id')->visible = false;
@@ -76,6 +76,7 @@
 				$grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
 				$grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
 				$grid->header('payment_paid_time')->set_datetime();
+				$grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
 				
 				$grid->add_url = "payments/add";
 				$grid->edit_url = "payments/edit";
@@ -88,7 +89,7 @@
 		}
 		elseif ( $flag == 1 ) 
 		{
-			if( $grid->bind($this->selecter->get_payments_paid($pay_id, true), 'payment_id') )
+			if( $grid->bind(updatePaymentsData($this->selecter->get_payments_paid($pay_id, true)), 'payment_id') )
 			{
 				$grid->header('payment_id')->editable = false;
 				$grid->header('payment_id')->visible = false;
@@ -107,6 +108,7 @@
 				$grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
 				$grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
 				$grid->header('payment_paid_time')->set_datetime();
+				$grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
 				
 				$grid->add_url = "payments/add";
 				$grid->edit_url = "payments/edit";
@@ -119,7 +121,7 @@
 		}
 		elseif( $flag == 2 )
 		{
-			if( $grid->bind($this->selecter->get_payments_nopaid($pay_id, true), 'payment_id') )
+			if( $grid->bind(updatePaymentsData($this->selecter->get_payments_nopaid($pay_id, true)), 'payment_id') )
 			{
 				$grid->header('payment_id')->editable = false;
 				$grid->header('payment_id')->visible = false;
@@ -138,6 +140,7 @@
 				$grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
 				$grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
 				$grid->header('payment_paid_time')->set_datetime();
+				$grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
 				
 				$grid->add_url = "payments/add";
 				$grid->edit_url = "payments/edit";
