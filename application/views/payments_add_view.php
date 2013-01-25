@@ -56,21 +56,24 @@
                                     {
                                         echo form_input(array('name' => 'payment', 'value' => $this->lang->line('payment_type_voluntary'),'disabled'=>'disabled'));
                                         echo form_hidden('payment_type', 2);
+                                        echo '<span>'.$this->lang->line('label_total_sum').':</span>';
+                                        echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum',1));
+                                        echo '<span>€</span>';
                                     }
                                 }
                                 else if( date("Y-m-d", time() - (365 * 86400)) >  $lp->payment_paid_time )
                                 {
                                     echo form_input(array('name' => 'payment', 'value' => $this->lang->line('payment_type_account'),'disabled'=>'disabled'));
                                     echo form_hidden('payment_type', 1);
+                                    echo '<span>'.$this->lang->line('label_total_sum').':</span>';
+                                    echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum',5));
+                                    echo '<span>€</span>';
                                 }
                             }
                         ?>
-			<span><?= $this->lang->line('label_total_sum'); ?>:</span>
-                        <?= form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum', 5)); ?>
-			<span>€</span>
 			
 			<span><?= $this->lang->line('label_vs'); ?>:</span>
-                        <?= form_input(array('name' => 'payment_vs', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum')); ?>
+                        <?= form_input(array('name' => 'payment_vs', 'type' => 'text', 'class' => 'input_data_date'),  set_value('payment_vs')); ?>
 		<?php
                    $obj = $this->selecter->get_project_categories();
 		   

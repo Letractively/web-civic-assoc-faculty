@@ -11,9 +11,6 @@
 	<div class="project_about">
 		<?= $obj[0]->project_about ?>  
 	</div>
-	<div class="project_priority">
-		<!--span class="project_label"> Priorita: <?= $obj[0]->project_priority ?></span-->   
-	</div>
 
 	<div class="project_booked_cash">
 	   <span class="project_label"> Rozpočet: </span>
@@ -52,9 +49,19 @@
             if( $this->userdata->is_admin() )
             {
 		$this->load->library('grid');
-			
+		
+                $users_object = $this->selecter->get_users(0);
+                        
+		$users = array();
+		foreach ($users_object as $user_object)
+		{
+                    $user = get_object_vars($user_object);
+                    $user['user_fullname'] = $user['user_name'];
+                    $users[] = $user;
+		}
+                
 		$grid = new Grid();
-                if( $grid->bind($this->selecter->get_project_items($project_id), 'project_item_id') )
+                if( $grid->bind($this->selecter->get_project_items($project_id, true), 'project_item_id') )
 		{
 			$grid->header('project_item_id')->visible = false;
 			$grid->header('user_id')->visible = false;
@@ -64,9 +71,11 @@
                         $grid->header('project_item_price')->text = $this->lang->line('label_price');
                         $grid->header('project_item_date')->text = $this->lang->line('label_date');
                         $grid->header('user_name')->text = $this->lang->line('label_fullname');
-                        //$grid->header('user_surname')->text = $this->lang->line('label_user_surname');
                         
                         $grid->header('project_item_price')->set_numformat('{2:,: } €');
+                        
+                        $grid->header('user_name')->component->type = 'combobox';
+			$grid->header('user_name')->component->bind($users, 'user_id', 'user_fullname');
                         
 			$grid->display();
 		}
@@ -87,6 +96,7 @@
                     echo '</p>';
                 }
 		echo '<p class="button_delete">'; echo anchor("projects/delete/{$project_id}", $this->lang->line('anchor_delete_project')); echo '</p>';
+               
             }
 		echo '<p class="button_back">'; echo anchor('projects/', $this->lang->line('to_projects')); echo '</p>';
 		

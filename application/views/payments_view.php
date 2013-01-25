@@ -13,8 +13,7 @@
 
 <?php
     $this->load->library('grid');
-	$this->load->helper('payments');
-    $grid = new Grid();
+    $this->load->helper('payments');   
 ?> 
 <div id="grid_wrapper">   
 
@@ -54,6 +53,7 @@
  
 	<?php
 	//array_debug($this->selecter->get_payments($pay_id));
+        $grid = new Grid();
 		if( $flag == 0 )
 		{
 			if( $grid->bind($this->selecter->get_payments($pay_id, true), 'payment_id') )

@@ -1,7 +1,9 @@
 ﻿<div id="content_wrapper">
 	<?php
-            $obj = $this->selecter->get_posts($c_pagination['per_page'], $c_pagination['cur_page']);
-	
+            if($this->userdata->is_admin())
+                $obj = $this->selecter->get_posts($c_pagination['per_page'], $c_pagination['cur_page']);
+            else
+                $obj = $this->selecter->get_posts($c_pagination['per_page'], $c_pagination['cur_page'], true);
             //array_debug($pagination);
             //array_debug($obj);
             //$date = datetime($o->post_date, FALSE);
@@ -13,6 +15,7 @@
                 if( $o->post_published == 1 || $this->userdata->is_admin() )
                 {
 	?>
+                    <p>
                     <div class="post_title">
                         <?= anchor('posts/detail/'.$o->post_id,$o->post_title) ?>
                     </div>
@@ -38,6 +41,7 @@
                         echo '<br /> <br /> <p class="separator"></p> </div>';
                      }
                  }
+                 echo '</p>';
              }
 
         if( $this->userdata->is_admin() )

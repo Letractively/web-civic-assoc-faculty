@@ -69,7 +69,7 @@ class Auth extends MY_Controller
                                                                                 'vs','total_sum')
                                                                                 ),     
                 'years'                 => $this->generate_years(60, 2012, 50),
-                'title' 		=> $this->lang->line('title_registration')   //Title na aktualnej stranke
+                'title' 		=> $this->lang->line('title_registration')
            );
 
             $this->load->view('container', array_merge($this->data, $data)); 

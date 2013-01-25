@@ -119,6 +119,13 @@
                         
                         $grid1->header('project_name')->set_anchor('projects/detail', 'project_id');
 
+                        
+                        $grid1->add_url = "projects/add";
+                        $grid1->add_mode = "external";
+                        $grid1->edit_url = "projects/edit";
+                        $grid1->edit_mode = "external";
+                        $grid1->remove_url = "projects/delete";
+                        
 			$grid1->display();
 	   }
 	?>

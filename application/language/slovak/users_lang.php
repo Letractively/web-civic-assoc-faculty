@@ -24,6 +24,7 @@ $lang['label_lecturer']             =   'prednášajúci';
 $lang['label_vs_box']               =   'Pre úhradu členského zakliknúť';
 $lang['label_vs']                   =   'Variabilný symbol';
 $lang['label_total_sum']            =   'Suma';
+$lang['label_pay_date']             =   'Čas platby';
 
 $lang['table_th_category']          =   'Kategória';
 $lang['table_th_ratio']             =   'Pomer';

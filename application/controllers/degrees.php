@@ -5,6 +5,7 @@ class Degrees extends MY_Controller
         protected $c_pagination         = array();
         protected $get_query 		= array();
         protected $per_page             = 3;
+        
         /*
          * __construct
          * 
@@ -59,7 +60,6 @@ class Degrees extends MY_Controller
          */
         public function add()
         {     
-            //redirect('test');
             parent::add('add_degree', 'operation_add');
         }
         
