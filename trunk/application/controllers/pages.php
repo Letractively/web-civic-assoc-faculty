@@ -22,7 +22,7 @@ class Pages extends MY_Controller
          */
         public function index($view)
         {
-			$data = array( 
+            $data = array( 
                 'view' => $this->router->class.'_'.$view.'_'.'view',
             );
 			

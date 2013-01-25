@@ -364,23 +364,44 @@ class Selecter extends MY_Model
     }
    
     
-    public function get_posts( $per_page = 0, $cur_page = 0 )
+    public function get_posts( $per_page = 0, $cur_page = 0, $unpublished = false )
     {
-             $q = $this->db->query("SELECT ppm.post_id, ppm.post_title, ppm.post_content, ppm.post_author_id, ppm.post_priority, 
-                                           ppm.post_date, ppm.post_modifie_author_id, ppm.post_published, u.user_name as modifier_name, 
-                                           u.user_surname as modifier_surname, ppm.post_modifie_date, us.user_name as author_name,
-                                           us.user_surname as author_surname
-                                    FROM (SELECT *
-                                          FROM posts p
-                                          LEFT JOIN post_modifies pm ON (p.post_id=pm.post_modifie_post_id)
-                                          ORDER BY pm.post_modifie_date DESC
-                                          ) ppm
-                                    LEFT JOIN users u ON (ppm.post_modifie_author_id=u.user_id)
-                                    LEFT JOIN users us ON(ppm.post_author_id = us.user_id)
-                                    GROUP BY ppm.post_id
-                                    ORDER BY ppm.post_date DESC
-                                    LIMIT $cur_page, $per_page
-                                    ");
+        if($unpublished == true)
+        {
+            $q = $this->db->query("SELECT ppm.post_id, ppm.post_title, ppm.post_content, ppm.post_author_id, ppm.post_priority, 
+                                          ppm.post_date, ppm.post_modifie_author_id, ppm.post_published, u.user_name as modifier_name, 
+                                          u.user_surname as modifier_surname, ppm.post_modifie_date, us.user_name as author_name,
+                                          us.user_surname as author_surname
+                                   FROM (SELECT *
+                                         FROM posts p
+                                         LEFT JOIN post_modifies pm ON (p.post_id=pm.post_modifie_post_id)
+                                         ORDER BY pm.post_modifie_date DESC
+                                        ) ppm
+                                   LEFT JOIN users u ON (ppm.post_modifie_author_id=u.user_id)
+                                   LEFT JOIN users us ON(ppm.post_author_id = us.user_id)
+                                   GROUP BY ppm.post_id
+                                   ORDER BY ppm.post_published DESC, ppm.post_date DESC
+                                   LIMIT $cur_page, $per_page
+                                  ");
+        }
+        else
+        {
+            $q = $this->db->query("SELECT ppm.post_id, ppm.post_title, ppm.post_content, ppm.post_author_id, ppm.post_priority, 
+                                          ppm.post_date, ppm.post_modifie_author_id, ppm.post_published, u.user_name as modifier_name, 
+                                          u.user_surname as modifier_surname, ppm.post_modifie_date, us.user_name as author_name,
+                                          us.user_surname as author_surname
+                                   FROM (SELECT *
+                                         FROM posts p
+                                         LEFT JOIN post_modifies pm ON (p.post_id=pm.post_modifie_post_id)
+                                         ORDER BY pm.post_modifie_date DESC
+                                        ) ppm
+                                   LEFT JOIN users u ON (ppm.post_modifie_author_id=u.user_id)
+                                   LEFT JOIN users us ON(ppm.post_author_id = us.user_id)
+                                   GROUP BY ppm.post_id
+                                   ORDER BY ppm.post_date DESC
+                                   LIMIT $cur_page, $per_page
+                                  ");
+        }
              return $q->result();
     }
     

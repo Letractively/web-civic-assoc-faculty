@@ -183,7 +183,7 @@ abstract class MY_Controller extends CI_Controller
         }   
     }
 
-    protected function delete( $method, $id, $class_valid )
+    protected function delete( $method, $id )
     {
         if( $id == '')
             redirect ('404');
@@ -198,10 +198,10 @@ abstract class MY_Controller extends CI_Controller
         if( $action == $this->lang->line('confirm_yes') )
         {
             $this->deleter->$method($id);
-            redirect($class_valid);
+            redirect( $this->router->class );
         }
         elseif( $action == $this->lang->line('confirm_no') )
-            redirect($class_valid);
+            redirect( $this->router->class );
     }
     
     protected function delete_param( $method, $id, $param, $class_valid )

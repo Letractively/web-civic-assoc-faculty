@@ -36,7 +36,13 @@
 		echo '<div class="auth_view_column">';
 			echo '<span class="auth_view_title"> Články </span>';
                         $numberOfRows = $this->selecter->rows('posts', 'post_id');
-			foreach ($this->selecter->get_posts($numberOfRows,0) as $post) 
+                        
+                        if($this->userdata->is_admin())
+                            $posts = $this->selecter->get_posts($numberOfRows,0);
+                        else
+                            $posts = $this->selecter->get_posts($numberOfRows,0, true);
+                        
+			foreach ( $posts as $post ) 
 			{
                             if( $post->post_published == 1)
                             {

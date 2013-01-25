@@ -68,10 +68,36 @@
             <?= $obj[0]->user_postcode ?>  
 	</div>       
     <?php endif; ?>
-    
+   
     <?php
         if( $this->userdata->is_admin() || $user_id == $this->userdata->get_user_id() )
         {
+            $this->load->library('grid');
+            $grid = new Grid();
+            if( $grid->bind($this->selecter->get_payments_nopaid($user_id, true), 'payment_id') )
+            {
+                $grid->header('payment_id')->editable = false;
+                $grid->header('payment_type')->editable = false;
+                $grid->header('payment_paid_sum')->editable = false;
+                $grid->header('user_id')->editable = false;
+                $grid->header('user_name')->editable = false;
+                $grid->header('payment_paid_time')->editable = false;
+
+                $grid->header('payment_id')->visible = false;
+                $grid->header('payment_type')->visible = false;
+                $grid->header('payment_paid_sum')->visible = false;
+                $grid->header('user_id')->visible = false;
+                $grid->header('user_name')->visible = false;
+
+                $grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
+                $grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum');
+                $grid->header('payment_paid_time')->text = $this->lang->line('label_pay_date');
+
+                $grid->header('payment_paid_time')->set_datetime("Y-m-d H:i:s", "d.m.Y H:i");
+
+                $grid->display();
+            }
+            
             if( $this->userdata->is_exempted($user_id) )
             {
                 echo '<div class="inputitem"><p>'.$this->lang->line('pay_unlimited').'</p></div>';
@@ -115,4 +141,5 @@
     <p class="button_back">
         <?= anchor('users/', $this->lang->line('to_users')); ?>
     </p>
+
 </div>

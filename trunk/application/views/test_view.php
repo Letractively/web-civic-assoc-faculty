@@ -21,7 +21,7 @@
 
 	if ( $grid->bind($users, 'user_id') )
 	{
-		$grid->header('user_id')->visible = false;
+		/*$grid->header('user_id')->visible = false;
 		$grid->header('name')->set_anchor("users/detail", "user_id");
 		$grid->header('food')->component->type = "combobox";
 		$grid->header('food')->component->bind($foods, 'food_id', 'food_name');
@@ -30,7 +30,7 @@
 		$grid->edit_url = "{$this->router->class}/edit";
 		$grid->remove_url = "{$this->router->class}/delete";
 		
-                array_debug($grid->row(1));
+                array_debug($grid->row(1));*/
                 
 		$grid->display();
 	}

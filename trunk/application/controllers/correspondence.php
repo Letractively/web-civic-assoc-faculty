@@ -47,8 +47,7 @@ class Correspondence extends MY_Controller
 		'years'         => $this->generate_years(60, 2012, 50),
                 'view'          => "{$this->router->class}_view",
                 'error'         => $this->form_validation->form_required(array('correspondence_subject','correspondence_content',
-                                                                                'correspondence_sender', 'correspondence_cc')),
-               // 'buttons'       => get_bbcode_buttons()
+                                                                                'correspondence_sender', 'correspondence_cc'))
             );
 
             $this->load->view('container', array_merge($this->data, $data)); 
@@ -61,12 +60,11 @@ class Correspondence extends MY_Controller
             $ids = array();
             $this->load->library('email');
             $logged_user_id = $this->session->userdata('user');
+            
             foreach ($users as $user) 
             {
                 array_push($ids, $user->user_id);
                
-                //$config['mailtype'] = 'html';
-                //$this->email->initialize($config);
                 $this->email->from( $post_params['correspondence_sender'], $this->userdata->full_name($logged_user_id) );
                 $this->email->to($user->user_email); 
                 $this->email->cc($post_params['correspondence_cc']); 

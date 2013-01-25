@@ -69,6 +69,7 @@ class Projects extends MY_Controller
 			
 			$this->load->model('inserter');
 			$this->inserter->add_project_item($project_id, $_POST);
+                        redirect('projects/edit/'.$project_id);
             //parent::add_param('add_project_item', $project_id, 'operation_add');
 
             $data = array(
