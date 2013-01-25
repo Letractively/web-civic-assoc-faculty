@@ -111,6 +111,7 @@ class Projects extends MY_Controller
 			
 			$this->load->model('updater');
 			$this->updater->edit_project_item($project_item_id, $_POST);
+                         redirect('projects/edit/'.$project_id);
             //parent::edit('edit_project_item', $project_id, 'operation_edit');
 
             $data = array(
@@ -157,7 +158,7 @@ class Projects extends MY_Controller
             //parent::delete_param('remove_project_item', $project_id,$project_item_id, $this->router->class);
 			$this->load->model('deleter');
 			$this->deleter->remove_project_item($project_item_id);
-            
+                        redirect('projects/edit/'.$project_id);
             $data = array(
                 'view'                  => "{$this->router->class}_edit_view",
 		'error'                 => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
