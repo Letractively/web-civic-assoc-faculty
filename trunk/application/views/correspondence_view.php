@@ -13,7 +13,9 @@
 	var filter_types = [
 		new Pair('study','odbor'),
 		new Pair('grade','stupeň vzdelania'),
-		new Pair('degree_year','rok ukončenia')
+		new Pair('degree_year','rok ukončenia'),
+		new Pair('user_type', 'používatel'),
+		new Pair('period', 'perióda')
 	];
 	
 	// kazdemu riadku filtra sem pribudne 
@@ -51,6 +53,23 @@
 			$first = false;
 		}
 	?>
+	];
+	
+	// natvrdo useri
+	filter_types_options['user_type'] = [
+		new Pair(1,'administrátor'),
+		new Pair(2,'člen s uhradeným členským'),
+		new Pair(4,'člen s neuhradeným členským'),
+		new Pair(3,'potencionálny člen')
+	];
+	
+	// natvrdo perioda
+	filter_types_options['period'] = [
+		new Pair(1,'týždeň'),
+		new Pair(2,'mesiac'),
+		new Pair(3,'3 mesiace'),
+		new Pair(4,'pol roka'),
+		new Pair(5,'rok')
 	];
 
 	function createCombobox(name, options)
@@ -138,6 +157,9 @@
 	{
 		var url = review_url;
 		
+		var combo_email_type = document.getElementById('email_type_id');
+		var email_type_id = combo_email_type.options[combo_email_type.selectedIndex].value;
+		
 		var filter = document.getElementById('filter').getElementsByTagName('div');
 		var first = true;
 		for (var i = 0; i < filter.length; ++i)
@@ -147,6 +169,7 @@
 				var combo_sec = filter[i].getElementsByTagName('select')[1];
 				var type = combo_sec.getAttribute('name');
 				var val = combo_sec.childNodes[combo_sec.selectedIndex].value;
+				if (first) url += '?email_type_id=' + email_type_id;
 				if (first) url += '?';
 				else url += '&';
 				url += type+'='+val;
@@ -191,7 +214,7 @@
 
 		<div class="inputitem">
 			<p class="label"> <label for="email_type_id"><?= $this->lang->line('label_email_type_id') ?></label> </p>
-			<?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name', 'dropdown'); ?>
+			<?= gen_dropdown('email_type_id', set_value('email_type_id'),$this->selecter->get_email_types(),'email_type_id','email_type_name', 'dropdown', 'onchange = "refreshReviewLink()" id="email_type_id"'); ?>
 		</div>
 		
 		<div id="filter" class="inputitem">
