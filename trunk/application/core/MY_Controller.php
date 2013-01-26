@@ -168,18 +168,22 @@ abstract class MY_Controller extends CI_Controller
         
         if ( $this->input->post( $submit ) )
 	{
-            //echo $this->router->class.' '.$this->router->method;
-            //array_debug($this->input->post());
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
-                //array_debug($this->input->post());
                 $this->load->model('updater');
                 $this->updater->$method( $id, $this->input->post() );
-                redirect( $this->router->class );
+                if( $this->router->class == 'pages' )
+                    redirect( $this->router->class.'/index/'.$id);
+                else
+                    redirect( $this->router->class );
             }
             else
-                //redirect( base_url() );
-                redirect( $this->router->class );
+            {
+                if( $this->router->class == 'pages' )
+                    redirect( $this->router->class.'/index/'.$id);
+                else
+                    redirect( $this->router->class );
+            }
         }   
     }
 

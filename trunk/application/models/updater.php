@@ -77,6 +77,17 @@ class Updater extends MY_Model
       else{ return FALSE;}
     }
     
+    public function edit_page_text($page_name, $values)
+    {
+        $this->db->query("  UPDATE pages
+                            SET page_".$page_name.'='.$values['label_text'].
+                            "WHERE page_".$page_name.'='.'page_'.$page_name);
+        if($this->db->affected_rows()>0)
+           return TRUE;
+        else
+            return FALSE; 
+    }
+    
     public function edit_payments($payment_id, $values)
     {
          $this->db->query("UPDATE payments

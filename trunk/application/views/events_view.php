@@ -88,6 +88,7 @@
 		}
 		else
 		{
+                    //array_debug($event_list);
 			foreach ($event_list as $event)
 			{ ?>
 			<p>

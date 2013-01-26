@@ -3,17 +3,13 @@
             if($this->userdata->is_admin())
                 $obj = $this->selecter->get_posts($c_pagination['per_page'], $c_pagination['cur_page']);
             else
+            {
                 $obj = $this->selecter->get_posts($c_pagination['per_page'], $c_pagination['cur_page'], true);
-            //array_debug($pagination);
-            //array_debug($obj);
-            //$date = datetime($o->post_date, FALSE);
-            //$time = time_withou_seconds(datetime($o->post_date, TRUE));
-            //array_debug($time);
-	 echo pagination($pagination);	
+            }
+                
+            echo pagination($pagination);	
             foreach($obj as $o)
             {
-                if( $o->post_published == 1 || $this->userdata->is_admin() )
-                {
 	?>
                     <p>
                     <div class="post_title">
@@ -40,7 +36,6 @@
                             echo datetime($o->post_date, FALSE).' '.time_withou_seconds(datetime($o->post_date, TRUE));
                         echo '<br /> <br /> <p class="separator"></p> </div>';
                      }
-                 }
                  echo '</p>';
              }
 
