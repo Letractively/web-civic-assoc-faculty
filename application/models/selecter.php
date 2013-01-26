@@ -155,11 +155,15 @@ class Selecter extends MY_Model
      */
     public function get_users_filter($values)
     {
-        $this->db           ->select('u.user_id, u.user_name, u.user_surname, d.degree_name, sp.study_program_name, u.user_email')
-                            ->from('users u');
+        //array_debug($values);
+        $this->db->select('u.user_id, u.user_name, u.user_surname, u.user_email,
+                           d.degree_name, sp.study_program_name, 
+                           u_e_e.user_email_evidence_date, u_e_e.user_email_evidence_email_type_id')
+                 ->from('user_email_evidence u_e_e');
         
-		$this->db->join('degrees d', 'u.user_degree_id = d.degree_id');
-		$this->db->join('study_programs sp', 'u.user_study_program_id = sp.study_program_id');
+        $this->db->join('users u', 'u_e_e.user_email_evidence_user_id = u.user_id','right');
+        $this->db->join('degrees d', 'u.user_degree_id = d.degree_id');
+        $this->db->join('study_programs sp', 'u.user_study_program_id = sp.study_program_id');
 		
         //Generator pre where podmienky na studijny program
         if( isset($values['study']) )
@@ -207,35 +211,157 @@ class Selecter extends MY_Model
             }
             else
                 $this->db->where_in('u.user_degree_year', $values['degree_year'][0]);     
-        }
+        }	
 		
-		// 1 - admin
-		// 2 - clen s uhradenym clenskym
-		// 3 - potencionalny clen
-		// 4 - clen s neuhradenym clenskym
-		// IDcka 1-3 sedia s databazou
-		if( isset($values['user_type']) )
-		{
-		}
+	// 1 - viac ako tyzden
+	// 2 - viac ako mesiac
+	// 3 - viac ako 3 mesiace
+	// 4 - viac ako pol roka
+	// 5 - viac ako rok
+	if( isset($values['period']) )
+	{
+            if ( count($values['period']) > 1)
+            {
+                $checkDates = array();
+                foreach ($values['period'] as $key => $value)
+                {
+                    array_push($checkDates, $this->returnDate($value));
+                }
+                foreach ($checkDates as $date) 
+                {   
+                    $this->db->where('u_e_e.user_email_evidence_date <=', $date);
+                }
+            }
+            else
+                $this->db->where('u_e_e.user_email_evidence_date <', $this->returnDate($values['period'][0]));
+	}
 		
-		// 1 - viac ako tyzden
-		// 2 - viac ako mesiac
-		// 3 - viac ako 3 mesiace
-		// 4 - viac ako pol roka
-		// 5 - viac ako rok
-		if( isset($values['period']) )
-		{
-		}
-		
-		// perioda sa viace k typu emailu, ktory chce user posiela
-		// typ emailu zistis cez $values['email_type_id'] - IDcko do tabulky email_types
+	// perioda sa viace k typu emailu, ktory chce user posiela
+	// typ emailu zistis cez $values['email_type_id'] - IDcko do tabulky email_types
         
+        // 1 - admin
+	// 2 - clen
+	// 3 - potencionalny clen
+	if( isset($values['user_type']) )
+	{
+            if ( count($values['user_type']) > 1)
+            {
+                $roles = array();
+                foreach ($values['user_type'] as $key => $value) 
+                {
+                    array_push($roles, $value);
+                }
+                $this->db->where_in('u.user_role', $roles);
+            }
+            else 
+            {
+                $this->db->where('u.user_role', $values['user_type'][0]);    
+            }
+	}
+        
+        $this->db->group_by('u.user_id');
         $query = $this->db->get();
 	
         $result = $query->result();
-	$query->free_result();
+        if( isset($values['payment_time']) )
+            return $this->selecter->get_users_filter_on_payments($result, $values['payment_time']);
+        else
+        {
+            $query->free_result();
+            return $result;  
+        }
+     //array_debug($result);
+    }
+    
+    public function get_users_filter_on_payments($users, $payments_value)
+    {
+        $lastPayments = array();
+        foreach ($users as $user)
+        {
+            array_push($lastPayments, $this->get_payments_lastpaid($user->user_id));
+        }
         
+        $this->db   ->select('u.user_id, u.user_name, u.user_surname, u.user_email,
+                           d.degree_name, sp.study_program_name, 
+                          ')
+                    ->from('users u');
+        $this->db   ->join('degrees d', 'u.user_degree_id = d.degree_id');
+        $this->db   ->join('study_programs sp', 'u.user_study_program_id = sp.study_program_id');
+        
+        $userIDS = array();
+        foreach ($payments_value as $value) 
+        {
+            switch ($value) 
+            {
+                case 1:
+                    foreach ($lastPayments as $value) 
+                    {
+                        if( isset($value->payment_paid_sum) )
+                        {
+                           if($value->payment_paid_sum >= $value->payment_total_sum)
+                           {
+                               array_push($userIDS, $value->user_id);
+                           }
+                        }         
+                    }
+                    break;
+                case 2:
+                    foreach ($lastPayments as $value) 
+                    {
+                        if( isset($value->payment_paid_sum) )
+                        {
+                           if($value->payment_paid_sum < $value->payment_total_sum)
+                           {
+                               array_push($userIDS, $value->user_id);
+                           }
+                        }         
+                    }
+                    break;
+            }
+        }
+        
+        $this->db->where_in('user_id',$userIDS);
+        $query = $this->db->get();
+	$result = $query->result();
+        $query->free_result();
         return $result;
+    }
+    
+    private function returnDate($id)
+    {
+        $date = '';
+        /*$lastDate = date("Y-m-d H:i:s");
+        $timeStamp = strtotime($lastDate);*/
+
+        switch ($id) 
+        {
+            case 1:
+                /*$timeStamp -= 24 * 60 * 60 * 7;
+                $date = date("Y-m-d  H:i:s", $timeStamp);*/
+                $date = date("Y-m-d  H:i:s", strtotime("-1 week", strtotime(date("Y-m-d  H:i:s"))));
+                break;
+            case 2:
+                /*$timeStamp -= 24 * 60 * 60 * 30;
+                $date = date("Y-m-d  H:i:s", $timeStamp);*/
+                $date = date("Y-m-d  H:i:s", strtotime("-1 month", strtotime(date("Y-m-d  H:i:s"))));
+                break;
+            case 3:
+                /*$timeStamp -= 24 * 60 * 60 * 30 * 3;
+                $date = date("Y-m-d  H:i:s", $timeStamp);*/
+                $date = date("Y-m-d  H:i:s", strtotime("-3 month", strtotime(date("Y-m-d  H:i:s"))));
+                break;
+            case 4:
+                /*$timeStamp -= 24 * 60 * 60 * 30 * 6;
+                $date = date("Y-m-d  H:i:s", $timeStamp);*/
+                $date = date("Y-m-d  H:i:s", strtotime("-6 month", strtotime(date("Y-m-d  H:i:s"))));
+                break;
+            case 5:
+                /*$timeStamp -= 24 * 60 * 60 * 30 * 12;
+                $date = date("Y-m-d  H:i:s", $timeStamp);*/
+                $date = date("Y-m-d  H:i:s", strtotime("-1 year", strtotime(date("Y-m-d  H:i:s"))));
+                break;
+        }
+        return $date;
     }
     
     /*public function get_user($study_ids, $degrees, $degree_years)
@@ -580,7 +706,7 @@ class Selecter extends MY_Model
      {
          $q = $this->db->query("
                                     SELECT p.payment_type, p.payment_paid_sum, p.payment_paid_time, 
-                                           p.payment_total_sum, p.payment_id
+                                           p.payment_total_sum, p.payment_id, u.user_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE u.user_id = $user_id AND p.payment_type = 1

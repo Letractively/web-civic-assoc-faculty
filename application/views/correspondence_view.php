@@ -15,7 +15,8 @@
 		new Pair('grade','stupeň vzdelania'),
 		new Pair('degree_year','rok ukončenia'),
 		new Pair('user_type', 'používatel'),
-		new Pair('period', 'perióda')
+		new Pair('period', 'perióda'),
+                new Pair('payment_time', 'úhrada')
 	];
 	
 	// kazdemu riadku filtra sem pribudne 
@@ -58,8 +59,7 @@
 	// natvrdo useri
 	filter_types_options['user_type'] = [
 		new Pair(1,'administrátor'),
-		new Pair(2,'člen s uhradeným členským'),
-		new Pair(4,'člen s neuhradeným členským'),
+		new Pair(2,'člen združenia'),
 		new Pair(3,'potencionálny člen')
 	];
 	
@@ -70,6 +70,12 @@
 		new Pair(3,'3 mesiace'),
 		new Pair(4,'pol roka'),
 		new Pair(5,'rok')
+	];
+        
+        // natvrdo zaplatenie
+	filter_types_options['payment_time'] = [
+		new Pair(1,'zaplatené'),
+		new Pair(2,'nezaplatené')
 	];
 
 	function createCombobox(name, options)
