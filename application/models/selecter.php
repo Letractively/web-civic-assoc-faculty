@@ -526,8 +526,9 @@ class Selecter extends MY_Model
                                         ) ppm
                                    LEFT JOIN users u ON (ppm.post_modifie_author_id=u.user_id)
                                    LEFT JOIN users us ON(ppm.post_author_id = us.user_id)
+                                   WHERE ppm.post_published = 1
                                    GROUP BY ppm.post_id
-                                   ORDER BY ppm.post_published DESC, ppm.post_date DESC
+                                   ORDER BY ppm.post_date DESC
                                    LIMIT $cur_page, $per_page
                                   ");
         }

@@ -36,4 +36,15 @@ class Pages extends MY_Controller
 			
 			$this->load->view('container', array_merge($this->data, $data));
         }
+        
+        public function edit( $page_name )
+        {
+            parent::edit('edit_page_text', $page_name);
+            
+            $data = array(
+                'title'     =>  $this->lang->line('title')
+            );
+            
+            $this->load->view('container', array_merge($this->data, $data));
+        }
 }

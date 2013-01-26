@@ -215,7 +215,14 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean'
             )
     ),
-    'payments/edit'                      => array(
+    'pages/edit'                            => array(
+            array(
+                'field'     => 'text',
+                'label'     => 'lang:label_text',
+                'rules'     => 'trim|required|xss_clean'
+            )
+    ),
+    'payments/edit'                         => array(
             array(
                 'field'     => 'payment_paid_sum',
                 'label'     => 'lang:label_paid_sum',

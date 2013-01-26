@@ -5,6 +5,7 @@ class Posts extends MY_Controller
         protected $c_pagination         = array();
         protected $get_query 		= array();
         protected $per_page             = 3;
+        protected $totalRows            = 0;
         
         /*
          * __construct
@@ -34,11 +35,30 @@ class Posts extends MY_Controller
         {
             $this->load->library('pagination');
             $this->load->model('selecter');
-                        
+            $this->totalRows = $this->selecter->rows('posts', 'post_id');
+            
             $this->c_pagination['base_url'] = base_url().'posts/';
             $this->c_pagination['cur_page'] = $page;
             $this->c_pagination['per_page'] = $this->per_page;
-            $this->c_pagination['total_rows'] = $this->selecter->rows('posts', 'post_id');
+            
+            if ( $this->userdata->is_admin() )
+            {
+                $this->c_pagination['total_rows'] = $this->totalRows;
+            }      
+            else 
+            {
+                $posts = $this->selecter->get_posts($this->totalRows, 0);
+                $this->totalRows = 0;
+                
+                foreach ($posts as $post)
+                {
+                    if($post->post_published == 1)
+                        $this->totalRows += 1; 
+                }
+                echo $this->totalRows;
+                
+                $this->c_pagination['total_rows'] = $this->totalRows;
+            }
             $this->pagination->initialize($this->c_pagination);
             
             $data = array(

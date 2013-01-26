@@ -1,8 +1,5 @@
 ﻿<div id="content_wrapper1">
 	<?php
-
-	    //array_debug($this->selecter->get_posts(6,0));
-	    //array_debug($this->selecter->get_events(0));
 		
 		$this->load->helper('text');
 		
@@ -40,12 +37,10 @@
                         if($this->userdata->is_admin())
                             $posts = $this->selecter->get_posts($numberOfRows,0);
                         else
-                            $posts = $this->selecter->get_posts($numberOfRows,0, true);
-                        
+                            $posts = $this->selecter->get_posts($numberOfRows,0, true); 
+                                                    
 			foreach ( $posts as $post ) 
 			{
-                            if( $post->post_published == 1)
-                            {
 				if($counter < 3)
 				{
 					echo '<div class="event" id='.$post->post_id.'>';
@@ -59,9 +54,6 @@
 					echo '</div>';
 					$counter++;
 				}	
-				else
-					break;
-                            }
                         }
 		echo '</div>';
 	   
