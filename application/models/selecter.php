@@ -208,6 +208,27 @@ class Selecter extends MY_Model
             else
                 $this->db->where_in('u.user_degree_year', $values['degree_year'][0]);     
         }
+		
+		// 1 - admin
+		// 2 - clen s uhradenym clenskym
+		// 3 - potencionalny clen
+		// 4 - clen s neuhradenym clenskym
+		// IDcka 1-3 sedia s databazou
+		if( isset($values['user_type']) )
+		{
+		}
+		
+		// 1 - viac ako tyzden
+		// 2 - viac ako mesiac
+		// 3 - viac ako 3 mesiace
+		// 4 - viac ako pol roka
+		// 5 - viac ako rok
+		if( isset($values['period']) )
+		{
+		}
+		
+		// perioda sa viace k typu emailu, ktory chce user posiela
+		// typ emailu zistis cez $values['email_type_id'] - IDcko do tabulky email_types
         
         $query = $this->db->get();
 	
