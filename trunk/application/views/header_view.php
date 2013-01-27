@@ -57,9 +57,8 @@
                     echo anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null);
                 else
                     echo anchor('users/members', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null);
-                echo anchor('administration', 'SPRÁVA', in_array($sender, array('degrees','studies','email_types','payments','io','correspondence')) ? array('class' => 'selected') : null);
+					echo anchor('administration', 'SPRÁVA', in_array($sender, array('degrees','studies','email_types','payments','io','correspondence')) ? array('class' => 'selected') : null);
             }
-                
             ?>
 		</div>
 		<div id="secondary_navigation">
@@ -79,16 +78,16 @@
 					case 'payments':
 					case 'io':
 					case 'correspondence':
-                                            if( $this->userdata->is_admin() ) 
-                                            {
-                                                echo anchor('degrees', 'Tituly', $sender == 'degrees' ? array('class' => 'selected') : null) . '|';
-						echo anchor('studies', 'Študijné programy', $sender == 'studies' ? array('class' => 'selected') : null) . '|';
-						echo anchor('email_types', 'E-mail typy', $sender == 'email_types' ? array('class' => 'selected') : null) . '|';
-						echo anchor('io/export', 'Export', $sender == 'io' ? array('class' => 'selected') : null) . '|';
-						echo anchor('correspondence', 'Korešpondencia', $sender == 'correspondence' ? array('class' => 'selected') : null) . '|';
-                                            }
-                                            echo anchor('payments', 'Platby', $sender == 'payments' ? array('class' => 'selected') : null);
-                                            break;
+						if( $this->userdata->is_admin() ) 
+						echo anchor('payments', 'Platby', $sender == 'payments' ? array('class' => 'selected') : null) . '|';
+						{
+							echo anchor('degrees', 'Tituly', $sender == 'degrees' ? array('class' => 'selected') : null) . '|';
+							echo anchor('studies', 'Študijné programy', $sender == 'studies' ? array('class' => 'selected') : null) . '|';
+							echo anchor('email_types', 'E-mail typy', $sender == 'email_types' ? array('class' => 'selected') : null) . '|';
+							echo anchor('io/export', 'Export', $sender == 'io' ? array('class' => 'selected') : null) . '|';
+							echo anchor('correspondence', 'Korešpondencia', $sender == 'correspondence' ? array('class' => 'selected') : null);
+						}
+						break;
 				}
 			?>
 		</div>
