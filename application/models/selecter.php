@@ -42,6 +42,20 @@ class Selecter extends MY_Model
         
         return $q->row();
     }
+    
+    public function EventRowsInCategory($table, $id, $event_cat)
+    {
+        if ($event_cat == 0)
+            return $this->rows($table, $id);
+        else
+        {
+            $q = $this->db->query(" SELECT $id
+                                    FROM $table
+                                    WHERE event_event_category_id = $event_cat
+                                  ");
+            return $q->num_rows();
+        }
+    }
     /*******************************************************/
     
     /*
@@ -415,7 +429,7 @@ class Selecter extends MY_Model
     }
     
     
-    public function get_events($cat_id, $grid = false)
+    public function get_events( $per_page = 0, $cur_page = 0, $cat_id = 0, $grid = false )
     {
        if($cat_id != 0){
         $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
@@ -424,6 +438,7 @@ class Selecter extends MY_Model
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
                                ORDER BY e.event_priority DESC, e.event_created DESC
+                               LIMIT $cur_page, $per_page
                                ");
         if ($grid == true) return $q;
 		else return $q->result();
@@ -436,13 +451,14 @@ class Selecter extends MY_Model
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority DESC, e.event_created DESC
+                               LIMIT $cur_page, $per_page
                                ");
          if ($grid == true) return $q;
 		else return $q->result();
        }
     }
     
-    public function get_events_newest($cat_id, $grid = false)
+    public function get_events_newest( $per_page = 0, $cur_page = 0, $cat_id, $grid = false )
     {
        if($cat_id != 0){
         $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
@@ -451,6 +467,7 @@ class Selecter extends MY_Model
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
                                ORDER BY e.event_created DESC
+                               LIMIT $cur_page, $per_page
                                ");
         if ($grid == true) return $q;
 		else return $q->result();
@@ -463,13 +480,14 @@ class Selecter extends MY_Model
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_created DESC
+                               LIMIT $cur_page, $per_page
                                ");
          if ($grid == true) return $q;
 		else return $q->result();
        }
     }
     
-    public function get_events_prior($cat_id, $grid = false)
+    public function get_events_prior( $per_page = 0, $cur_page = 0, $cat_id, $grid = false )
     {
        if($cat_id != 0){
         $q = $this->db->query("SELECT   e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
@@ -478,6 +496,7 @@ class Selecter extends MY_Model
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                WHERE ec.event_category_id = '".$cat_id."'
                                ORDER BY e.event_priority ASC, e.event_created DESC, e.event_name ASC
+                               LIMIT $cur_page, $per_page
                                ");
         if ($grid == true) return $q;
 		else return $q->result();
@@ -490,6 +509,7 @@ class Selecter extends MY_Model
                                FROM events e
                                JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority ASC, e.event_created DESC, e.event_name ASC
+                               LIMIT $cur_page, $per_page
                                ");
          if ($grid == true) return $q;
 		else return $q->result();

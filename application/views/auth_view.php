@@ -2,14 +2,12 @@
 	<?php
 		
 		$this->load->helper('text');
-		
-		
-		
-		
+		$totalRows = $this->selecter->EventRowsInCategory('events', 'event_id', 0);
+                
 		$counter = 0;
 		echo '<div class="auth_view_column">';
 			echo '<span class="auth_view_title"> Udalosti </span>';
-			foreach ($this->selecter->get_events(0) as $event) 
+			foreach ($this->selecter->get_events($totalRows) as $event) 
 			{
 				if($counter < 3)
 				{

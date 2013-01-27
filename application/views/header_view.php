@@ -44,10 +44,11 @@
 	</div>
 	<div id="navigation">
 		<div id="main_navigation"> <!-- //main navigation -->
+                <?php if(isset($event_cat_id))$e_c = $event_cat_id; else $e_c = 0; ?>    
 		<?php $sender = $this->router->class; ?>
 			<?= anchor('auth', 'DOMOV', ($sender == 'auth' || $sender == 'pages') ? array('class' => 'selected') : null); ?>
 			<?= anchor('projects', 'PROJEKTY', in_array($sender, array('projects', 'project_categories')) ? array('class' => 'selected') : null); ?>
-			<?= anchor('events', 'UDALOSTI', $sender == 'events' ? array('class' => 'selected') : null); ?>
+			<?= anchor('events/'.$e_c, 'UDALOSTI', $sender == 'events' ? array('class' => 'selected') : null); ?>
 			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>
 			<?= anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null); ?>
             <?php if( $this->userdata->is_admin() ) 

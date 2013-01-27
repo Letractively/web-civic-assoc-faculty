@@ -14,7 +14,8 @@ class Auth extends MY_Controller
             parent::__construct();
 
             $data = array(
-                'title' 		=> $this->lang->line('title')   //Title na aktualnej stranke
+                'title' 	=> $this->lang->line('title'),
+                'page'          => ""
             );
 
             $this->data = array_merge($this->data, $data);
@@ -30,8 +31,7 @@ class Auth extends MY_Controller
         {      
             $this->load->model('selecter');           
             $data = array( 
-                'view'       => "{$this->router->class}_view",
-                'page'       => ""
+                'view'       => "{$this->router->class}_view"
             );
                 
             $this->load->view('container', array_merge($this->data, $data)); 
