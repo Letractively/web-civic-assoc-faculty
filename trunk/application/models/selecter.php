@@ -56,6 +56,28 @@ class Selecter extends MY_Model
             return $q->num_rows();
         }
     }
+    
+    public function UsersInDatabase($table, $id, $role)
+    {
+        if ($role == 0)
+            return $this->rows($table, $id);
+        else if($role == ROLE_INACTIVE)
+        {
+            $q = $this->db->query(" SELECT $id
+                                    FROM $table
+                                    WHERE user_active = 0
+                                  ");
+            return $q->num_rows();
+        }
+        else
+        {
+            $q = $this->db->query(" SELECT $id
+                                    FROM $table
+                                    WHERE user_role = $role
+                                  ");
+            return $q->num_rows();
+        }
+    }
     /*******************************************************/
     
     /*
@@ -83,11 +105,10 @@ class Selecter extends MY_Model
      * @access      public
      * @return      array of objects
      */
-    public function get_degrees($grid = false, $per_page = 0, $cur_page = 0 )
+    public function get_degrees($grid = false)
     {
         $q = $this->db->query(" SELECT d.degree_id, d.degree_name, d.degree_grade
                                 FROM degrees d
-                                LIMIT $cur_page, $per_page
                               ");
         if ($grid == true) return $q;
 		else return $q->result();
@@ -152,7 +173,7 @@ class Selecter extends MY_Model
      * @access      public
      * @return      array of objects
      */
-    public function get_users($role)
+    public function get_users( $per_page = 0, $cur_page = 0, $role )
     {
         if ($role == 0)
             $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
@@ -161,8 +182,19 @@ class Selecter extends MY_Model
                                     FROM users u
                                     LEFT JOIN degrees d ON (u.user_degree_id = d.degree_id)
                                     LEFT JOIN study_programs sp ON (u.user_study_program_id = sp.study_program_id)
+                                    LIMIT $cur_page, $per_page
                                   ");
-	else
+	else if($role == 4)
+            $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
+                                            u.user_email, u.user_phone, u.user_degree_year, 
+                                            sp.study_program_name, d.degree_name, u.user_postcode 
+                                    FROM users u
+                                    LEFT JOIN degrees d ON (u.user_degree_id = d.degree_id)
+                                    LEFT JOIN study_programs sp ON (u.user_study_program_id = sp.study_program_id)
+                                    WHERE u.user_active=0
+                                    LIMIT $cur_page, $per_page
+                                  ");
+        else
             $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
                                             u.user_email, u.user_phone, u.user_degree_year, 
                                             sp.study_program_name, d.degree_name, u.user_postcode 
@@ -170,8 +202,9 @@ class Selecter extends MY_Model
                                     LEFT JOIN degrees d ON (u.user_degree_id = d.degree_id)
                                     LEFT JOIN study_programs sp ON (u.user_study_program_id = sp.study_program_id)
                                     WHERE u.user_role=$role
+                                    LIMIT $cur_page, $per_page
                                   ");
-            return $q->result();
+        return $q->result();
     }
 	
 	/*

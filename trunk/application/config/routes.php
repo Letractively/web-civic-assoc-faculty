@@ -51,6 +51,7 @@ $route['events/prior/(:num)']           =   "events/prior/$1";
 $route['events/prior/(:num)/(:num)']    =   "events/prior/$1/$2";
 $route['payments/(:num)']               =   "payments/index/$1";
 $route['posts/(:num)']                  =   "posts/index/$1";
+$route['users/(:num)']                  =   "users/index/$1";
 
 
 /* End of file routes.php */

@@ -26,7 +26,8 @@ class Userdata
 		$this->roles = array(
 			1 => $this->CI->lang->line('admin'),
 			2 => $this->CI->lang->line('oz_member'),
-			3 => $this->CI->lang->line('po_member')
+			3 => $this->CI->lang->line('po_member'),
+                        4 => $this->CI->lang->line('me_inactive'),
 		);
 		
 		if( $all )
