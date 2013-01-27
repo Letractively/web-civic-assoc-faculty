@@ -1,4 +1,4 @@
-﻿<script type="text/javascript" charset="UTF-8">
+<script type="text/javascript" charset="UTF-8">
 	var base_url = '<?=base_url()?>';
 
 	function changeFilter(sender)
@@ -23,8 +23,8 @@
 			array('id' => 'payments/paid', 'value' => $this->lang->line('payment_paid')),
 			array('id' => 'payments/nopaid', 'value' => $this->lang->line('payment_nopaid'))
 		);
-		
-		$users = $this->selecter->get_users(0);
+		$totalRows = $this->selecter->UsersInDatabase('users', 'user_id', 0);
+		$users = $this->selecter->get_users($totalRows,0,0);
 		$userlist = array();
 		if ($this->userdata->is_admin())
 		{

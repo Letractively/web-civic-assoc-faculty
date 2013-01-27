@@ -13,7 +13,7 @@ $lang['label_degree_id']            =   'Titul';
 $lang['label_degree']               =   'Dosiahnutý titul';
 $lang['label_place_of_birth']       =   'Miesto narodenia';
 $lang['label_postcode']             =   'PSČ';
-$lang['label_degree_year']          =   'Rok ukončenia štúdia na fakulte';
+$lang['label_degree_year']          =   'Rok skončenia';
 $lang['label_role']                 =   'Rola';
 $lang['label_state']                =   'Štatút';
 

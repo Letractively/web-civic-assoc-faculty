@@ -2,7 +2,6 @@
 
 class Payments extends MY_Controller
 {
-    
         /*
          * __construct
          * 
@@ -12,7 +11,7 @@ class Payments extends MY_Controller
         function __construct() 
         {
             parent::__construct();
-            $this->load->model('selecter');
+            
             if( !$this->userdata->is_logged() )
                 redirect(base_url());
 

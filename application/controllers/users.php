@@ -5,6 +5,11 @@ class Users extends MY_Controller
     private $start_offset = 60;
     private $actual_year = 2012;
     private $end_offset = 50;
+    
+    protected $c_pagination         = array();
+    protected $get_query            = array();
+    protected $per_page             = 3;
+    protected $totalRows            = 0;
     /*
      * Constructor
      * 
@@ -14,6 +19,8 @@ class Users extends MY_Controller
     function __construct() 
     {
         parent::__construct();
+        $this->get_query = ( $_GET ) ? '?' . http_build_query($_GET) : '';
+        
         $this->load->model('selecter');
         $data = array(
             'title' 		=> 'Užívatelia'
@@ -28,11 +35,102 @@ class Users extends MY_Controller
      * @return      void
      * 
      */
-    public function index()
+    public function index( $page = 0 )
     {
+        $this->load->library('pagination');
+        $this->totalRows = $this->selecter->UsersInDatabase('users', 'user_id', 0);
+            
+        $this->c_pagination['base_url']     = base_url().'users/';
+        $this->c_pagination['cur_page']     = $page;
+        $this->c_pagination['per_page']     = $this->per_page;
+        $this->c_pagination['total_rows']   = $this->totalRows;
+        $this->pagination->initialize($this->c_pagination);
+        
         $data = array(
             'flag'              => 0,
-            'view'              => $this->router->class.'_view'
+            'view'              => $this->router->class.'_view',
+            'c_pagination'      => $this->c_pagination,
+            'pagination'        => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
+        );
+        $this->load->view('container', array_merge($this->data, $data));
+    }
+    
+    public function admins( $page = 0 )
+    {
+        $this->load->library('pagination');
+        $this->totalRows = $this->selecter->UsersInDatabase('users', 'user_id', ROLE_ADMIN);
+            
+        $this->c_pagination['base_url']     = base_url().'users/admins';
+        $this->c_pagination['cur_page']     = $page;
+        $this->c_pagination['per_page']     = $this->per_page;
+        $this->c_pagination['total_rows']   = $this->totalRows;
+        $this->pagination->initialize($this->c_pagination);
+        
+        $data = array(
+            'flag'              => ROLE_ADMIN,
+            'view'              => "{$this->router->class}_view",
+            'c_pagination'      => $this->c_pagination,
+            'pagination'        => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
+    }
+    
+    public function members( $page = 0 )
+    {
+        $this->load->library('pagination');
+        $this->totalRows = $this->selecter->UsersInDatabase('users', 'user_id', ROLE_OZ_MEMBER);
+            
+        $this->c_pagination['base_url']     = base_url().'users/members/';
+        $this->c_pagination['cur_page']     = $page;
+        $this->c_pagination['per_page']     = $this->per_page;
+        $this->c_pagination['total_rows']   = $this->totalRows;
+        $this->pagination->initialize($this->c_pagination);
+        
+        $data = array(
+            'flag'              => ROLE_OZ_MEMBER,
+            'view'              => "{$this->router->class}_view",
+            'c_pagination'      => $this->c_pagination,
+            'pagination'        => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
+    }
+    
+    public function potentials( $page = 0 )
+    {
+        $this->load->library('pagination');
+        $this->totalRows = $this->selecter->UsersInDatabase('users', 'user_id', ROLE_PO_MEMBER);
+            
+        $this->c_pagination['base_url']     = base_url().'users/potentials/';
+        $this->c_pagination['cur_page']     = $page;
+        $this->c_pagination['per_page']     = $this->per_page;
+        $this->c_pagination['total_rows']   = $this->totalRows;
+        $this->pagination->initialize($this->c_pagination);
+        
+        $data = array(
+            'flag'              => ROLE_PO_MEMBER,
+            'view'              => "{$this->router->class}_view",
+            'c_pagination'      => $this->c_pagination,
+            'pagination'        => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
+        );
+        $this->load->view('container', array_merge($this->data, $data)); 
+    }
+    
+    public function innactive( $page = 0 )
+    {
+        $this->load->library('pagination');
+        $this->totalRows = $this->selecter->UsersInDatabase('users', 'user_id', ROLE_INACTIVE);
+            
+        $this->c_pagination['base_url']     = base_url().'users/innactive/';
+        $this->c_pagination['cur_page']     = $page;
+        $this->c_pagination['per_page']     = $this->per_page;
+        $this->c_pagination['total_rows']   = $this->totalRows;
+        $this->pagination->initialize($this->c_pagination);
+        
+        $data = array(
+            'flag'              => ROLE_INACTIVE,
+            'view'              => "{$this->router->class}_view",
+            'c_pagination'      => $this->c_pagination,
+            'pagination'        => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
         );
         $this->load->view('container', array_merge($this->data, $data));
     }
@@ -120,44 +218,7 @@ class Users extends MY_Controller
         );
             
         $this->load->view('container', array_merge($this->data, $data));
-    }
-    
-    public function members()
-    {
-        $data = array(
-            'flag'              => ROLE_OZ_MEMBER,
-            'view'              => "{$this->router->class}_view"
-        );
-        $this->load->view('container', array_merge($this->data, $data)); 
-    }
-    
-    public function visitors()
-    {
-        $data = array(
-            'flag'              => ROLE_EX_MEMBER,
-            'view'              => "{$this->router->class}_view"
-        );
-        $this->load->view('container', array_merge($this->data, $data)); 
-    }
-    
-    public function lecturers()
-    {
-        $data = array(
-            'flag'              => ROLE_LECTURER,
-            'view'              => "{$this->router->class}_view"
-        );
-        $this->load->view('container', array_merge($this->data, $data)); 
-    }
-	
-	public function admins()
-    {
-        $data = array(
-            'flag'              => ROLE_ADMIN,
-            'view'              => "{$this->router->class}_view"
-        );
-        $this->load->view('container', array_merge($this->data, $data)); 
-    }
-    
+    } 
 }
     
 

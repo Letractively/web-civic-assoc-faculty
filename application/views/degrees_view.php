@@ -2,7 +2,7 @@
     $this->load->library('grid');
     $grid = new Grid();
     
-    if( $grid->bind($this->selecter->get_degrees(true, $c_pagination['per_page'], $c_pagination['cur_page']),'degree_id') )
+    if( $grid->bind($this->selecter->get_degrees(true),'degree_id') )
     {
         $grid->header('degree_id')->editable = false;
         $grid->header('degree_id')->visible = false;
@@ -16,5 +16,4 @@
 	echo '<div id="grid_wrapper">';
 		$grid->display();
 	echo '</div>';
-        echo pagination($pagination);
 ?>

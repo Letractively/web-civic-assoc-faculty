@@ -35,19 +35,10 @@ class Degrees extends MY_Controller
          */
         public function index( $page = 0 )
         {   
-            $this->load->library('pagination');
             $this->load->model('selecter');
             
-            $this->c_pagination['base_url'] = base_url().'degrees/';
-            $this->c_pagination['cur_page'] = $page;
-            $this->c_pagination['per_page'] = $this->per_page;
-            $this->c_pagination['total_rows'] = $this->selecter->rows('degrees', 'degree_id');
-            $this->pagination->initialize($this->c_pagination);
-            
             $data = array(
-                'view'              => "{$this->router->class}_view",
-                'c_pagination'  => $this->c_pagination,
-                'pagination'    => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
+                'view'              => "{$this->router->class}_view"
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
