@@ -4,7 +4,7 @@ class Payments extends MY_Controller
 {
         protected $c_pagination         = array();
         protected $get_query 		= array();
-        protected $per_page             = 1;
+        protected $per_page             = 20;
         protected $totalRows            = 0;
         /*
          * __construct
