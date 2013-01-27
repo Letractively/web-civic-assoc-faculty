@@ -1,8 +1,5 @@
-﻿<div class="errors">
-    <?php echo validation_errors();     
-    
-    //array_debug($programs) ?>
-
+<div class="errors">
+    <?php echo validation_errors(); ?>
 </div>
 
 <?php
@@ -23,7 +20,6 @@
 		<br />
 		<div class="inputitem">
 			<?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('button_export')) ?>
-		</div>
-			
+		</div>		
 	<?= form_close() ?>
 </div>

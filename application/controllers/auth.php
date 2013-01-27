@@ -30,7 +30,8 @@ class Auth extends MY_Controller
         {      
             $this->load->model('selecter');           
             $data = array( 
-                'view'       => "{$this->router->class}_view"  
+                'view'       => "{$this->router->class}_view",
+                'page'       => ""
             );
                 
             $this->load->view('container', array_merge($this->data, $data)); 
