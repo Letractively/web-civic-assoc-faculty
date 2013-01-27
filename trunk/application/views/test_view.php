@@ -17,11 +17,14 @@
 		array('food_id' => 6, 'food_name' => 'space meat', 'food_healty' => 'best', 'food_price' => '15204', 'food_date' => '2012-12-10 00-00')
 	);
 	
-	$grid = new Grid();
+	$emails = $this->selecter->get_email_types();
+	array_debug($emails);
+	
+	/*$grid = new Grid();
 
 	if ( $grid->bind($users, 'user_id') )
 	{
-		/*$grid->header('user_id')->visible = false;
+		$grid->header('user_id')->visible = false;
 		$grid->header('name')->set_anchor("users/detail", "user_id");
 		$grid->header('food')->component->type = "combobox";
 		$grid->header('food')->component->bind($foods, 'food_id', 'food_name');
@@ -30,10 +33,10 @@
 		$grid->edit_url = "{$this->router->class}/edit";
 		$grid->remove_url = "{$this->router->class}/delete";
 		
-                array_debug($grid->row(1));*/
+                array_debug($grid->row(1));
                 
 		$grid->display();
-	}
+	}*/
 	
 	/*$grid2 = new Grid();
 

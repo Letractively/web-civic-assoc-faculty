@@ -175,8 +175,7 @@
 				var combo_sec = filter[i].getElementsByTagName('select')[1];
 				var type = combo_sec.getAttribute('name');
 				var val = combo_sec.childNodes[combo_sec.selectedIndex].value;
-				if (first) url += '?email_type_id=' + email_type_id;
-				if (first) url += '?';
+				if (first) url += '?email_type_id=' + email_type_id + '&';
 				else url += '&';
 				url += type+'='+val;
 				first = false;
