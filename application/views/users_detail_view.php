@@ -74,7 +74,8 @@
         {
             $this->load->library('grid');
             $grid = new Grid();
-            if( $grid->bind($this->selecter->get_payments_nopaid($user_id, true), 'payment_id') )
+            $totalPays = $this->selecter->rows('payments', 'payment_id');
+            if( $grid->bind($this->selecter->get_payments_nopaid($totalPays,0,$user_id, true), 'payment_id') )
             {
                 $grid->header('payment_id')->editable = false;
                 $grid->header('payment_type')->editable = false;

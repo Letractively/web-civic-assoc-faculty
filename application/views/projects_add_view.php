@@ -32,8 +32,7 @@
 </script>
 
 <div class="errors">
-    <?php echo validation_errors();      
-    //array_debug($programs) ?>
+    <?php echo validation_errors(); ?>
 </div>
 
 <div id="content_wrapper">

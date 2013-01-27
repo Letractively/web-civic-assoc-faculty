@@ -134,8 +134,6 @@ abstract class MY_Controller extends CI_Controller
                 else
                     redirect($this->router->class);
             }
-            else
-                redirect(base_url());
         }
         
     }
@@ -172,13 +170,6 @@ abstract class MY_Controller extends CI_Controller
             {
                 $this->load->model('updater');
                 $this->updater->$method( $id, $this->input->post() );
-                if( $this->router->class == 'pages' )
-                    redirect( $this->router->class.'/index/'.$id);
-                else
-                    redirect( $this->router->class );
-            }
-            else
-            {
                 if( $this->router->class == 'pages' )
                     redirect( $this->router->class.'/index/'.$id);
                 else

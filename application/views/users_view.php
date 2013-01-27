@@ -57,11 +57,13 @@
                 
                 $grid->header('user_name')->visible = true;
                 $grid->header('study_program_name')->visible = true;
+                $grid->header('user_degree_year')->visible = true;
             }
             $grid->header('user_name')->set_anchor('users/detail', 'user_id');
             
             $grid->header('user_name')->text = $this->lang->line('label_name');
             $grid->header('study_program_name')->text = $this->lang->line('label_study_program_id');
+            $grid->header('user_degree_year')->text = $this->lang->line('label_degree_year');
             
             if( $this->userdata->is_admin() )
             {	

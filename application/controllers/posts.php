@@ -55,7 +55,6 @@ class Posts extends MY_Controller
                     if($post->post_published == 1)
                         $this->totalRows += 1; 
                 }
-                echo $this->totalRows;
                 
                 $this->c_pagination['total_rows'] = $this->totalRows;
             }

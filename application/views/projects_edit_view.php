@@ -106,7 +106,8 @@
 				$items[] = $item;
 			}*/
 			
-			$users_object = $this->selecter->get_users(0);
+			$totalRows = $this->selecter->rows('users','user_id');
+                        $users_object = $this->selecter->get_users($totalRows,0,0);
                         
 			$users = array();
 			foreach ($users_object as $user_object)
