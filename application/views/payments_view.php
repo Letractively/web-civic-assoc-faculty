@@ -51,105 +51,50 @@
 		<?= gen_dropdown('user_filter', $pay_id, $userlist, 'id', 'name', 'dropdown','id="user_filter" onchange="changeFilter(this);"'); ?>
     </div>
  
-	<?php
-	//array_debug($this->selecter->get_payments($pay_id));
+    <?php
         $grid = new Grid();
-		if( $flag == 0 )
-		{
-			if( $grid->bind(updatePaymentsData($this->selecter->get_payments($pay_id, true)), 'payment_id') )
-			{
-				$grid->header('payment_id')->editable = false;
-				$grid->header('payment_id')->visible = false;
-				$grid->header('user_name')->editable = false;
-				$grid->header('payment_vs')->editable = false;
-				$grid->header('payment_total_sum')->editable = false;
-				$grid->header('payment_paid_time')->editable = false;
-				//$grid->header('stav')->editable = false;
+        $payments = array();
+        switch ( $flag )
+        {
+            case 0:
+                $payments = $this->selecter->get_payments($c_pagination['per_page'], $c_pagination['cur_page'], $pay_id, true);
+                break;
+            case 1:
+                $payments = $this->selecter->get_payments_paid($c_pagination['per_page'], $c_pagination['cur_page'], $pay_id, true);
+                break;
+            case 2:
+                $payments = $this->selecter->get_payments_nopaid($c_pagination['per_page'], $c_pagination['cur_page'], $pay_id, true);
+                break;
+        }
+	if( $grid->bind(updatePaymentsData($payments), 'payment_id') )
+        {
+            $grid->header('payment_id')->editable = false;
+            $grid->header('payment_id')->visible = false;
+            $grid->header('user_name')->editable = false;
+            $grid->header('payment_vs')->editable = false;
+            $grid->header('payment_total_sum')->editable = false;
+            $grid->header('payment_paid_time')->editable = false;
 				
-				$grid->header('user_id')->visible = false;
-				$grid->header('user_name')->set_anchor('users/detail', 'user_id');
-				$grid->header('user_name')->text = $this->lang->line('label_user_id');         
-				$grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
-				$grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
-				$grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
-				$grid->header('payment_total_sum')->set_numformat('{2:,: } €');
-				$grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
-				$grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
-				$grid->header('payment_paid_time')->set_datetime();
-				$grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
+            $grid->header('user_id')->visible = false;
+            $grid->header('user_name')->set_anchor('users/detail', 'user_id');
+            $grid->header('user_name')->text = $this->lang->line('label_user_id');         
+            $grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
+            $grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
+            $grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
+            $grid->header('payment_total_sum')->set_numformat('{2:,: } €');
+            $grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
+            $grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
+            $grid->header('payment_paid_time')->set_datetime();
+            $grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
 				
-				$grid->add_url = "payments/add";
-				$grid->edit_url = "payments/edit";
-				$grid->remove_url = "payments/delete";
-				$grid->add_mode = "external";
-				$grid->edit_mode = "external";
+            $grid->add_url = "payments/add";
+            $grid->edit_url = "payments/edit";
+            $grid->remove_url = "payments/delete";
+            $grid->add_mode = "external";
+            $grid->edit_mode = "external";
 				
-				$grid->display();
-			}
-		}
-		elseif ( $flag == 1 ) 
-		{
-			if( $grid->bind(updatePaymentsData($this->selecter->get_payments_paid($pay_id, true)), 'payment_id') )
-			{
-				$grid->header('payment_id')->editable = false;
-				$grid->header('payment_id')->visible = false;
-				$grid->header('user_id')->visible = false;
-				$grid->header('user_name')->set_anchor('users/detail', 'user_id');
-				$grid->header('user_name')->editable = false;
-				//$grid->header('stav')->editable = false;
-				$grid->header('payment_vs')->editable = false;
-				$grid->header('payment_total_sum')->editable = false;
-				$grid->header('payment_paid_time')->editable = false;
-				$grid->header('payment_total_sum')->set_numformat('{2:,: } €');
-				$grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
-				$grid->header('user_name')->text = $this->lang->line('label_user_id');
-				$grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
-				$grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
-				$grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
-				$grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
-				$grid->header('payment_paid_time')->set_datetime();
-				$grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
-				
-				$grid->add_url = "payments/add";
-				$grid->edit_url = "payments/edit";
-				$grid->remove_url = "payments/delete";
-				$grid->add_mode = "external";
-				$grid->edit_mode = "external";
-				
-				$grid->display();
-			}
-		}
-		elseif( $flag == 2 )
-		{
-			if( $grid->bind(updatePaymentsData($this->selecter->get_payments_nopaid($pay_id, true)), 'payment_id') )
-			{
-				$grid->header('payment_id')->editable = false;
-				$grid->header('payment_id')->visible = false;
-				$grid->header('user_id')->visible = false;
-				$grid->header('user_name')->set_anchor('users/detail', 'user_id');
-				$grid->header('user_name')->editable = false;
-				$grid->header('payment_vs')->editable = false;
-				$grid->header('payment_total_sum')->editable = false;
-				$grid->header('payment_paid_time')->editable = false;
-				//$grid->header('stav')->editable = false;
-				$grid->header('user_name')->text = $this->lang->line('label_user_id');
-				$grid->header('payment_vs')->text = $this->lang->line('label_vs'); 
-				$grid->header('payment_total_sum')->text = $this->lang->line('label_total_sum'); 
-				$grid->header('payment_paid_sum')->text = $this->lang->line('label_paid_sum'); 
-				$grid->header('payment_total_sum')->set_numformat('{2:,: } €');
-				$grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
-				$grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
-				$grid->header('payment_paid_time')->set_datetime();
-				$grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
-				
-				$grid->add_url = "payments/add";
-				$grid->edit_url = "payments/edit";
-				$grid->remove_url = "payments/delete";
-				$grid->add_mode = "external";
-				$grid->edit_mode = "external";
-				
-				$grid->display();
-			}
-		}
-	?>
+            $grid->display();
+        }
+	echo pagination($pagination);
+    ?>
 </div>
