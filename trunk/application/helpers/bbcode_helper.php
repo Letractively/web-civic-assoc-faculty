@@ -41,12 +41,28 @@ function js_insert_bbcode($form_name = '', $form_field = '')
 {
     ?>
     <script type="text/javascript">
-    function insert_bbcode(open, close)
-    {
-		var obsah = document.getElementById("textarea");
-		obsah.value =  obsah.value + open + close;
-	}
-	
+        function insert_bbcode(open, close)
+        {
+            var obsah = document.getElementById("textarea");
+            
+            var textObsah = open + obsah.value.substr(obsah.selectionStart, (obsah.selectionEnd - obsah.selectionStart)) + close;
+                if (document.selection) 
+                {
+                    obsah.focus();
+                    sel = document.selection.createRange();
+                    sel.text = obsah;
+                }
+                //MOZILLA and others
+                else if (obsah.selectionStart || obsah.selectionStart == '0') {
+                    var startPos = obsah.selectionStart;
+                    var endPos = obsah.selectionEnd;
+                    obsah.value = obsah.value.substring(0, startPos)
+                        + textObsah
+                        + obsah.value.substring(endPos, obsah.value.length);
+                } else {
+                    obsah.value += open+close;
+                }
+        }
     </script> 
     <?php 
 } 

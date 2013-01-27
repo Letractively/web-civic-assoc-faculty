@@ -217,7 +217,7 @@ $config = array(
     ),
     'pages/edit'                            => array(
             array(
-                'field'     => 'text',
+                'field'     => 'page_text',
                 'label'     => 'lang:label_text',
                 'rules'     => 'trim|required|xss_clean'
             )

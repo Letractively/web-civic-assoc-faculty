@@ -32,6 +32,16 @@ class Selecter extends MY_Model
         
         return $q->row()->project_active;
     }
+    
+    public function get_page($view)
+    {
+        $q = $this->db->query(" SELECT page_$view
+                                FROM pages
+                                WHERE page_$view = page_$view
+                              ");
+        
+        return $q->row();
+    }
     /*******************************************************/
     
     /*

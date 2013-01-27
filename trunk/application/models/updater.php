@@ -79,9 +79,12 @@ class Updater extends MY_Model
     
     public function edit_page_text($page_name, $values)
     {
+        $text = $values['page_text'];
+        $column = 'page_'.$page_name;
         $this->db->query("  UPDATE pages
-                            SET page_".$page_name.'='.$values['label_text'].
-                            "WHERE page_".$page_name.'='.'page_'.$page_name);
+                            SET ".$column."='".$text."'
+                            WHERE '".$column."'='".$column."'
+                         ");
         if($this->db->affected_rows()>0)
            return TRUE;
         else
