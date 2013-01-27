@@ -7,7 +7,8 @@
 	<?= form_open("payments/add") ?>
 	
 	<?php
-		$users = $this->selecter->get_users(0);
+		$totalRows = $this->selecter->UsersInDatabase('users', 'user_id', 0);
+		$users = $this->selecter->get_users($totalRows,0,0);
 		$userlist = array();
 		if ($this->userdata->is_admin())
 		{
@@ -56,7 +57,7 @@
 						 echo '<td> <label for="categories['.$cat_id.']">';
 							 echo $o->project_category_name;
 						 echo '</label></td>';
-						 echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => $categories[$cat_id] != null ? $categories[$cat_id] : 0, 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$cat_id)).'</td>';
+						 echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => 'categories['.$cat_id.']' != null ? 'categories['.$cat_id.']' : 0, 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$cat_id)).'</td>';
 					echo '</tr>';
 				}
 		   echo '</table>';

@@ -7,7 +7,8 @@
 	<?= form_open("payments/add") ?>
 	
             <?php
-		$users = $this->selecter->get_users(0);
+		$totalRows = $this->selecter->UsersInDatabase('users', 'user_id', 0);
+		$users = $this->selecter->get_users($totalRows,0,0);
 		$userlist = array();
 		if ( $this->userdata->is_admin() )
 		{
@@ -44,7 +45,12 @@
                         <span>Typ platby:</span>
 			<?php
                             if( $this->userdata->is_admin() ) 
+                            {    
                                 echo gen_dropdown('payment_type', 1, $payment_types, 'id', 'value', 'dropdown','id="payment_type" onchange="changeFilter(this);"');
+                                echo '<span>'.$this->lang->line('label_total_sum').':</span>';
+                                    echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum'));
+                                echo '<span>€</span>';
+                            }
                             else
                             {
                                 $lp = $this->selecter->get_payments_lastpaid($userID);
@@ -68,7 +74,7 @@
                                     echo '<span>'.$this->lang->line('label_total_sum').':</span>';
                                     echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum',5));
                                     echo '<span>€</span>';
-                                }
+                                }      
                             }
                         ?>
 			
