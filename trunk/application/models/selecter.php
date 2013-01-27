@@ -57,7 +57,7 @@ class Selecter extends MY_Model
         }
     }
     
-    public function UsersInDatabase($table, $id, $role)
+    public function UsersInDatabase( $table, $id, $role )
     {
         if ($role == 0)
             return $this->rows($table, $id);
@@ -77,6 +77,17 @@ class Selecter extends MY_Model
                                   ");
             return $q->num_rows();
         }
+    }
+    
+    public function PaymentsInDatabase( $table, $id, $user_id, $pay_type )
+    {
+        $totalPays = $this->rows($table, $id);
+        if ($pay_type == 0)
+           return count($this->get_payments ($totalPays, 0, $user_id));
+        else if($pay_type == 1)
+           return count($this->get_payments_paid($totalPays, 0, $user_id));
+        else if($pay_type == 2)
+           return count($this->get_payments_nopaid($totalPays, 0, $user_id));
     }
     /*******************************************************/
     
@@ -743,13 +754,14 @@ class Selecter extends MY_Model
 		return $payment;
 	}
     
-    public function get_payments($user_id, $grid = false)
+    public function get_payments( $per_page = 0, $cur_page = 0, $user_id, $grid = false)
     {
         if($user_id == 0){
             $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                     FROM payments p
                                     LEFT JOIN users u ON (p.payment_user_id=u.user_id)
+                                    LIMIT $cur_page, $per_page
                                   ");
             if ($grid == true) return $q;
 			else return $q->result();
@@ -760,6 +772,7 @@ class Selecter extends MY_Model
                                     FROM payments p
                                     LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                     WHERE u.user_id = $user_id
+                                    LIMIT $cur_page, $per_page
                                   ");
             if ($grid == true) return $q;
 			else return $q->result();
@@ -779,7 +792,7 @@ class Selecter extends MY_Model
             return $q->row();
     }
     
-    public function get_payments_nopaid($user_id, $grid = false)
+    public function get_payments_nopaid( $per_page = 0, $cur_page = 0, $user_id, $grid = false )
     {
         if($user_id==0){
             $q = $this->db->query("
@@ -789,25 +802,25 @@ class Selecter extends MY_Model
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE p.payment_paid_sum<p.payment_total_sum
                                       ORDER BY p.payment_paid_time DESC
+                                      LIMIT $cur_page, $per_page
                                    
                                   ");
         } 
         else{
-        $q = $this->db->query("
-                                    SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
+        $q = $this->db->query("       SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                           p.payment_paid_sum, p.payment_paid_time, p.payment_id
                                       FROM payments p
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE u.user_id=$user_id AND p.payment_paid_sum<p.payment_total_sum
                                       ORDER BY p.payment_paid_time DESC
-                                   
+                                      LIMIT $cur_page, $per_page
                                   ");
         }
             if ($grid == true) return $q;
 			else return $q->result();
     }
     
-    public function get_payments_paid($user_id, $grid = false)
+    public function get_payments_paid( $per_page = 0, $cur_page = 0, $user_id, $grid = false )
     {
         if($user_id==0){
             $q = $this->db->query("
@@ -817,7 +830,7 @@ class Selecter extends MY_Model
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE p.payment_paid_sum>=p.payment_total_sum
                                       ORDER BY p.payment_paid_time DESC
-                                   
+                                      LIMIT $cur_page, $per_page
                                   ");
         }
         else{
@@ -828,7 +841,7 @@ class Selecter extends MY_Model
                                       LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                        WHERE (u.user_id=$user_id) AND (p.payment_paid_sum>=p.payment_total_sum)
                                       ORDER BY p.payment_paid_time DESC
-                                   
+                                      LIMIT $cur_page, $per_page
                                   ");
         }
             if ($grid == true) return $q;

@@ -38,20 +38,28 @@
 |
 */
 
-$route['default_controller']            =   "auth";
-$route['404_override']                  =   '';
+$route['default_controller']                =   "auth";
+$route['404_override']                      =   '';
 
-$route['administration']                =   "payments/index";
-$route['degrees/(:num)']                =   "degrees/index/$1";
-$route['events/(:num)']                 =   "events/index/$1";
-$route['events/(:num)/(:num)']          =   "events/index/$1/$2";
-$route['events/newest/(:num)']          =   "events/newest/$1";
-$route['events/newest/(:num)/(:num)']   =   "events/newest/$1/$2";
-$route['events/prior/(:num)']           =   "events/prior/$1";
-$route['events/prior/(:num)/(:num)']    =   "events/prior/$1/$2";
-$route['payments/(:num)']               =   "payments/index/$1";
-$route['posts/(:num)']                  =   "posts/index/$1";
-$route['users/(:num)']                  =   "users/index/$1";
+$route['administration']                    =   "payments/index";
+$route['degrees/(:num)']                    =   "degrees/index/$1";
+
+$route['events/(:num)']                     =   "events/index/$1";
+$route['events/(:num)/(:num)']              =   "events/index/$1/$2";
+$route['events/newest/(:num)']              =   "events/newest/$1";
+$route['events/newest/(:num)/(:num)']       =   "events/newest/$1/$2";
+$route['events/prior/(:num)']               =   "events/prior/$1";
+$route['events/prior/(:num)/(:num)']        =   "events/prior/$1/$2";
+
+$route['payments/(:num)']                   =   "payments/index/$1";
+$route['payments/(:num)/(:num)']            =   "payments/index/$1/$2";
+$route['payments/nopaid/(:num)']            =   "payments/nopaid/$1";
+$route['payments/nopaid/(:num)/(:num)']     =   "payments/nopaid/$1/$2";
+$route['payments/paid/(:num)']              =   "payments/paid/$1";
+$route['payments/paid/(:num)/(:num)']       =   "payments/paid/$1/$2";
+
+$route['posts/(:num)']                      =   "posts/index/$1";
+$route['users/(:num)']                      =   "users/index/$1";
 
 
 /* End of file routes.php */
