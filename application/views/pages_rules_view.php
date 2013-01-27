@@ -1,138 +1,138 @@
-ï»¿<div id="content_wrapper1">
-	<p class="page_rules_title"> STANOVY OBÄŒIANSKÃ‰HO ZDRUÅ½ENIA alumni FMFI </p>
+<div id="content_wrapper1">
+	<p class="page_rules_title"> STANOVY OB?IANSKÉHO ZDRUENIA alumni FMFI</p>
 
-	<p class="page_rules_sec_title"> PODÄ½A ZÃKONA Ä. 83/1990 Zb. O ZDRUÅ½OVANÃ OBÄŒANOV V ZNENÃ NESKORÅ ÃCH PREDPISOV </p>
+	<p class="page_rules_sec_title"> POD?A ZÁKONA ?. 83/1990 Zb. O ZDRUOVANÍ OB?ANOV V ZNENÍ NESKORŠÍCH PREDPISOV </p>
 	 
-	<p class="page_rules"> <b> ÃšvodnÃ© ustanovenie </b> </p>
-	<p class="page_rules"> <b> a) </b> NÃ¡zov zdruÅ¾enia:  alumni FMFI </p>
-	<span style="margin-left: 25px;"> Charakteristika: zdruÅ¾enie Å¡tudentov, zamestnancov, absolventov a priateÄ¾ov FMFI UK </span> 
-	<p class="page_rules"> <b> b) </b> SÃ­dlo zdruÅ¾enia:  FMFI UK, MlynskÃ¡ dolina F1, 842 48 Bratislava </p> <br />
+	<p class="page_rules"> <b> Úvodné ustanovenie </b> </p>
+	<p class="page_rules"> <b> a) </b> Názov zdruenia:  alumni FMFI </p>
+	<span style="margin-left: 25px;"> Charakteristika: zdruenie študentov, zamestnancov, absolventov a priate?ov FMFI UK </span> 
+	<p class="page_rules"> <b> b) </b> Sídlo zdruenia:  FMFI UK, Mlynská dolina F1, 842 48 Bratislava </p> <br />
 	 
-	<p class="page_rules"> <b> c) Ciele a Ãºlohy zdruÅ¾enia </b> </p>
+	<p class="page_rules"> <b> c) Ciele a úlohy zdruenia </b> </p>
 	<p class="page_rules"> 
-		ÄŒlenovia obÄianskeho zdruÅ¾enia alumni FMFI (daÄ¾ej o.z.) si uvedomujÃº vÃ½znam rozvoja vedy a vzdelania pre rozvoj vzdelanostnej Ãºrovne regiÃ³nu a jeho dosah na celkovÃ½ hospodÃ¡rsky, ekonomickÃ½, kultÃºrny a spoloÄenskÃ½ rozvoj. HlavnÃ½m cieÄ¾om o.z. je podpora vÅ¡estrannÃ©ho rozvoja Fakulty matematiky, fyziky a informatiky Univerzity KomenskÃ©ho v Bratislave (Äalej FMFI UK) a to najmÃ¤ v nasledujÃºcich oblastiach:
+		?lenovia ob?ianskeho zdruenia alumni FMFI (da?ej o.z.) si uvedomujú vıznam rozvoja vedy a vzdelania pre rozvoj vzdelanostnej úrovne regiónu a jeho dosah na celkovı hospodársky, ekonomickı, kultúrny a spolo?enskı rozvoj. Hlavnım cie?om o.z. je podpora všestranného rozvoja Fakulty matematiky, fyziky a informatiky Univerzity Komenského v Bratislave (?alej FMFI UK) a to najmä v nasledujúcich oblastiach:
 		
 		<ul>
-			<li> podpora vzdelÃ¡vania, </li>
-			<li> podpora a rozvoj telesnej kultÃºry, podpora  Å¡portu detÃ­ a mlÃ¡deÅ¾e (Å¡tudentov fakulty,  detÃ­ zamestnancov, absolventov  a Älenov zdruÅ¾enia, ...), </li>
-			<li> zachovanie kultÃºrnych hodnÃ´t, </li>
-			<li> poskytovanie sociÃ¡lnej pomoci a podpora zdravotne postihnutÃ½ch obÄanov, </li>
-			<li> podpora Å¡tudentskÃ½ch aktivÃ­t, </li>
-			<li> organizÃ¡cia odbornÃ½ch, kultÃºrnych a spoloÄenskÃ½ch podujatÃ­, </li>
-			<li> podpora mobility Å¡tudentov,  uÄiteÄ¾ov a zamestnancov, </li>
-			<li> vydavateÄ¾skÃ¡ a konzultaÄnÃ¡ ÄinnosÅ¥, </li>
-			<li> vytvÃ¡ranie podmienok pre trvalÃº existenciu intelektuÃ¡lneho akademickÃ©ho prostredia na pracoviskÃ¡ch FMFI UK, </li>
-			<li> prÃ­prava ÄalÅ¡Ã­ch projektov, </li>
-			<li> podpora vedy a vÃ½skumu a ich prepojenie s praxou, </li>
-			<li> spoluprÃ¡ca s vysokÃ½mi Å¡kolami a odbornÃ½mi inÅ¡titÃºciami v Slovenskej republike a v zahraniÄÃ­, </li>
-			<li> spoluprÃ¡ce so zÃ¡kladnÃ½mi a strednÃ½mi Å¡kolami, </li>
+			<li> podpora vzdelávania, </li>
+			<li> podpora a rozvoj telesnej kultúry, podpora  športu detí a mládee (študentov fakulty,  detí zamestnancov, absolventov  a ?lenov zdruenia, ...), </li>
+			<li> zachovanie kultúrnych hodnôt, </li>
+			<li> poskytovanie sociálnej pomoci a podpora zdravotne postihnutıch ob?anov, </li>
+			<li> podpora študentskıch aktivít, </li>
+			<li> organizácia odbornıch, kultúrnych a spolo?enskıch podujatí, </li>
+			<li> podpora mobility študentov,  u?ite?ov a zamestnancov, </li>
+			<li> vydavate?ská a konzulta?ná ?innos?, </li>
+			<li> vytváranie podmienok pre trvalú existenciu intelektuálneho akademického prostredia na pracoviskách FMFI UK, </li>
+			<li> príprava ?alších projektov, </li>
+			<li> podpora vedy a vıskumu a ich prepojenie s praxou, </li>
+			<li> spolupráca s vysokımi školami a odbornımi inštitúciami v Slovenskej republike a v zahrani?í, </li>
+			<li> spolupráce so základnımi a strednımi školami, </li>
 		</ul> 
 		
-		ObÄianske zdruÅ¾enie chce dosiahnuÅ¥ svoje ciele prostrednÃ­ctvom aktivÃ­t smerujÃºcich k Ãºzkej spoluprÃ¡ci FMFI UK s orgÃ¡nmi regionÃ¡lnej a miestnej sprÃ¡vy a samosprÃ¡vy, k spoluprÃ¡ci s podnikateÄ¾skÃ½mi a finanÄnÃ½mi subjektami a masmÃ©diami, ako aj prostrednÃ­ctvom zÃ­skavania finanÄnÃ½ch prostriedkov a darov.
+		Ob?ianske zdruenie chce dosiahnu? svoje ciele prostredníctvom aktivít smerujúcich k úzkej spolupráci FMFI UK s orgánmi regionálnej a miestnej správy a samosprávy, k spolupráci s podnikate?skımi a finan?nımi subjektami a masmédiami, ako aj prostredníctvom získavania finan?nıch prostriedkov a darov.
 	</p>
 	
-	<p class="page_rules"> <b> d) ÄŒlenstvo v zdruÅ¾enÃ­ </b> </p>
+	<p class="page_rules"> <b> d) ?lenstvo v zdruení </b> </p>
 	<p class="page_rules"> 
-		ÄŒlenstvo v zdruÅ¾enÃ­ mÃ´Å¾e byÅ¥:
+		?lenstvo v zdruení môe by?:
 		
 		<ul>
-			<li> <i> <u> <b> ÄŒestnÃ© </b> </u> </i> â€“ mÃ´Å¾e potvrdiÅ¥ ÄlenskÃ¡ schÃ´dza na nÃ¡vrh vÃ½konnej rady alebo Å¡tatutÃ¡ra zdruÅ¾enia tomu, kto sa vÃ½znamnÃ½m spÃ´sobom zaslÃºÅ¾il o rozvoj zdruÅ¾enia alebo FMFI UK. </li>
-			<li> <i> <u> <b> PrispievateÄ¾skÃ© </b> </u> </i> â€“ fyzickÃ¡ alebo prÃ¡vnickÃ¡ osoba, ktorÃ¡ riadne zaplatila ÄlenskÃ½ prÃ­spevok vo vÃ½Å¡ke minimÃ¡lne 5â‚¬. ÄŒlenstvo vznikÃ¡ prijatÃ­m ÄlenskÃ©ho prÃ­spevku a zanikÃ¡ k 31.12. v kalendÃ¡rnom roku, keÄ Älen nezaplatil ÄlenskÃ½ prÃ­spevok. </li>
-			<li> <i> <u> <b> ÄŒinnÃ© </b> </u> </i> â€“ osoba aktÃ­vne sa podieÄ¾ajÃºca na aktivitÃ¡ch obÄianskeho zdruÅ¾enia. ÄŒlenstvo v zdruÅ¾enÃ­ vznikÃ¡ prijatÃ­m Älena vÃ½konnou radou na zÃ¡klade pÃ­somnej Å¾iadosti uchÃ¡dzaÄa o Älenstvo. </li>
+			<li> <i> <u> <b> ?estné </b> </u> </i> – môe potvrdi? ?lenská schôdza na návrh vıkonnej rady alebo štatutára zdruenia tomu, kto sa vıznamnım spôsobom zaslúil o rozvoj zdruenia alebo FMFI UK. </li>
+			<li> <i> <u> <b> Prispievate?ské </b> </u> </i> – fyzická alebo právnická osoba, ktorá riadne zaplatila ?lenskı príspevok vo vıške minimálne 5€. ?lenstvo vzniká prijatím ?lenského príspevku a zaniká k 31.12. v kalendárnom roku, ke? ?len nezaplatil ?lenskı príspevok. </li>
+			<li> <i> <u> <b> ?inné </b> </u> </i> – osoba aktívne sa podie?ajúca na aktivitách ob?ianskeho zdruenia. ?lenstvo v zdruení vzniká prijatím ?lena vıkonnou radou na základe písomnej iadosti uchádza?a o ?lenstvo. </li>
 		</ul>
 		
-		<i> <u> <b> PrÃ¡va Älenov: </b> </u> </i>
+		<i> <u> <b> Práva ?lenov: </b> </u> </i>
 		<ul> 
-			<li> podieÄ¾aÅ¥ sa na Äinnosti zdruÅ¾enia, </li>
-			<li> voliÅ¥ a byÅ¥ volenÃ½ do orgÃ¡nov zdruÅ¾enia, </li>
-			<li> obracaÅ¥ sa na orgÃ¡ny zdruÅ¾enia s nÃ¡metmi a sÅ¥aÅ¾nosÅ¥ami a Å¾iadaÅ¥ o stanovisko, </li>
-			<li> byÅ¥ informovanÃ½ o Äinnosti a o rozhodnutiach orgÃ¡nov zdruÅ¾enia. </li>
+			<li> podie?a? sa na ?innosti zdruenia, </li>
+			<li> voli? a by? volenı do orgánov zdruenia, </li>
+			<li> obraca? sa na orgány zdruenia s námetmi a s?anos?ami a iada? o stanovisko, </li>
+			<li> by? informovanı o ?innosti a o rozhodnutiach orgánov zdruenia. </li>
 		</ul>
 
-		<i> <u> <b> Povinnosti Älenov </b> </u> </i>
+		<i> <u> <b> Povinnosti ?lenov </b> </u> </i>
 		<ul>
-			<li> dodrÅ¾iavaÅ¥ stanovy zdruÅ¾enia, </li>
-			<li> pomÃ¡haÅ¥ pri plnenÃ­ cieÄ¾ov zdruÅ¾enia a aktÃ­vne sa podieÄ¾aÅ¥ na jeho prÃ¡ci, </li>
-			<li> podÄ¾a svojho svedomia, rozsahu svojich moÅ¾nostÃ­ a schopnostÃ­ pomÃ¡haÅ¥ orgÃ¡nom zdruÅ¾enia, </li>
-			<li> platiÅ¥ ÄlenskÃ© prÃ­spevky, </li>
-			<li> ochraÅˆovaÅ¥ a zveÄ¾aÄovaÅ¥ majetok zdruÅ¾enia. </li>
+			<li> dodriava? stanovy zdruenia, </li>
+			<li> pomáha? pri plnení cie?ov zdruenia a aktívne sa podie?a? na jeho práci, </li>
+			<li> pod?a svojho svedomia, rozsahu svojich moností a schopností pomáha? orgánom zdruenia, </li>
+			<li> plati? ?lenské príspevky, </li>
+			<li> ochra?ova? a zve?a?ova? majetok zdruenia. </li>
 		</ul>
 			
-		<i> <u> <b> ZÃ¡nik Älenstva </b> </u> </i>
+		<i> <u> <b> Zánik ?lenstva </b> </u> </i>
 		<ul>		
-			<li> vystÃºpenÃ­m â€“ Älenstvo zanikÃ¡ dÅˆom doruÄenia pÃ­somnÃ©ho oznÃ¡menia Älena o vystÃºpenÃ­ zo zdruÅ¾enia, </li>
-			<li> ÃºmrtÃ­m fyzickej osoby, resp. zÃ¡nikom prÃ¡vnickej osoby, </li>
-			<li> zÃ¡nikom zdruÅ¾enia, </li>
-			<li> vyÅ¡krtnutÃ­m z dÃ´vodu neÄinnosti Älena (tÃ½ka sa ÄinnÃ½ch Älenov), </li>
-			<li> k 31.12. v kalendÃ¡rnom roku keÄ nebol zaplatenÃ½ ÄlenskÃ½ prÃ­spevok, </li>
-			<li> vylÃºÄenÃ­m, ak Älen opÃ¤tovne a napriek vÃ½strahe poruÅ¡uje ÄlenskÃ© povinnosti, alebo z inÃ½ch dÃ´leÅ¾itÃ½ch dÃ´vodov. O podmieneÄnom vylÃºÄenÃ­ rozhoduje vÃ½konnÃ¡ rada. Proti rozhodnutiu o vylÃºÄenÃ­ mÃ¡ prÃ¡vo podaÅ¥ Älen odvolanie na ÄlenskÃº schÃ´dzu, ktorÃ¡ potvrdzuje rozhodnutie nadpoloviÄnou vÃ¤ÄÅ¡inou. </li>
+			<li> vystúpením – ?lenstvo zaniká d?om doru?enia písomného oznámenia ?lena o vystúpení zo zdruenia, </li>
+			<li> úmrtím fyzickej osoby, resp. zánikom právnickej osoby, </li>
+			<li> zánikom zdruenia, </li>
+			<li> vyškrtnutím z dôvodu ne?innosti ?lena (tıka sa ?innıch ?lenov), </li>
+			<li> k 31.12. v kalendárnom roku ke? nebol zaplatenı ?lenskı príspevok, </li>
+			<li> vylú?ením, ak ?len opätovne a napriek vıstrahe porušuje ?lenské povinnosti, alebo z inıch dôleitıch dôvodov. O podmiene?nom vylú?ení rozhoduje vıkonná rada. Proti rozhodnutiu o vylú?ení má právo poda? ?len odvolanie na ?lenskú schôdzu, ktorá potvrdzuje rozhodnutie nadpolovi?nou vä?šinou. </li>
 		</ul>
 	</p>
 	
 	<p class="page_rules">
-		<b> e) OrganizaÄnÃ¡ Å¡truktÃºra zdruÅ¾enia </b>
+		<b> e) Organiza?ná štruktúra zdruenia </b>
 		<ul style="list-style: decimal;">
-			<li> najvyÅ¡Å¡Ã­ orgÃ¡n - ÄlenskÃ¡ schÃ´dza - delegÃ¡ti Älenskej zÃ¡kladne, </li>
-			<li> vÃ½konnÃ½ orgÃ¡n  - vÃ½konnÃ¡ rada â€“ 3 ÄlennÃ¡ spomedzi ÄinnÃ½ch Älenov o.z. â€“ 2 Älenov menuje a odvolÃ¡va dekan FMFI UK, 1 Älena volÃ­ a odvolÃ¡va ÄlenskÃ¡ schÃ´dza, </li>
-			<li> Å¡tatutÃ¡rny orgÃ¡n â€“ predseda vÃ½konnej rady â€“ volia si ho spomedzi seba Älenovia vÃ½konnej rady, </li>
-			<li> kontrolnÃ½ orgÃ¡n - revÃ­zna komisia - 3 ÄlennÃ¡ spomedzi  ÄinnÃ½ch, prispievateÄ¾skÃ½ch Älenov - navrhuje a schvaÄ¾uje ÄlenskÃ¡ schÃ´dza. </li>
+			<li> najvyšší orgán - ?lenská schôdza - delegáti ?lenskej základne, </li>
+			<li> vıkonnı orgán  - vıkonná rada – 3 ?lenná spomedzi ?innıch ?lenov o.z. – 2 ?lenov menuje a odvoláva dekan FMFI UK, 1 ?lena volí a odvoláva ?lenská schôdza, </li>
+			<li> štatutárny orgán – predseda vıkonnej rady – volia si ho spomedzi seba ?lenovia vıkonnej rady, </li>
+			<li> kontrolnı orgán - revízna komisia - 3 ?lenná spomedzi  ?innıch, prispievate?skıch ?lenov - navrhuje a schva?uje ?lenská schôdza. </li>
 		</ul>
-		FunkÄnÃ© obdobie orgÃ¡nov zdruÅ¾enia je Å¡tandardne 4 roky. ZvolenÃ½ (menovanÃ½) Älen vÃ½konnej rady a revÃ­znej komisie zastÃ¡va svoju funkciu pokiaÄ¾ nie je zvolenÃ½ (menovanÃ½) novÃ½ Älen. V prÃ­pade ukonÄenie vÃ½konu funkcie (z dÃ´vodu napr. odstÃºpenia, Ãºmrtia, zruÅ¡enia Älenstva,...) novÃ©ho doÄasnÃ©ho vykonÃ¡vateÄ¾a funkcie do najbliÅ¾Å¡ej Älenskej schÃ´dze menuje dekan FMFI UK. Funkcie vo vÃ½konnej rade a revÃ­znej komisiÃ­ sÃº navzÃ¡jom nezluÄiteÄ¾nÃ©.
-		PrÃ­pravnÃ½ vÃ½bor sa vznikom o.z. automaticky stÃ¡va vÃ½konnou radou (okrem dekana) a mÃ¡ povinnosÅ¥ do pol roka od vzniku o.z. zvolaÅ¥ prvÃº ÄlenskÃº schÃ´dzu.
+		Funk?né obdobie orgánov zdruenia je štandardne 4 roky. Zvolenı (menovanı) ?len vıkonnej rady a revíznej komisie zastáva svoju funkciu pokia? nie je zvolenı (menovanı) novı ?len. V prípade ukon?enie vıkonu funkcie (z dôvodu napr. odstúpenia, úmrtia, zrušenia ?lenstva,...) nového do?asného vykonávate?a funkcie do najblišej ?lenskej schôdze menuje dekan FMFI UK. Funkcie vo vıkonnej rade a revíznej komisií sú navzájom nezlu?ite?né.
+		Prípravnı vıbor sa vznikom o.z. automaticky stáva vıkonnou radou (okrem dekana) a má povinnos? do pol roka od vzniku o.z. zvola? prvú ?lenskú schôdzu.
 	</p>
 	 
 	<p class="page_rules">
-		<b> f) SpÃ´sob ustanovenia orgÃ¡nov a ich prÃ¡vomoci </b> <br />
-		<span style="margin-left: 10px;"> <b> 1) <i> <u> ÄŒlenskÃ¡ schÃ´dza </u> </i> </b> o.z. je tvorenÃ¡ z delegÃ¡tov Älenskej zÃ¡kladne </span>
+		<b> f) Spôsob ustanovenia orgánov a ich právomoci </b> <br />
+		<span style="margin-left: 10px;"> <b> 1) <i> <u> ?lenská schôdza </u> </i> </b> o.z. je tvorená z delegátov ?lenskej základne </span>
 		<ul>		
-			<li> delegÃ¡tom Älenskej zÃ¡kladne je kaÅ¾dÃ½ Älen o.z., ktorÃ½ sa ÃºÄastnÃ­ Älenskej schÃ´dze, </li>
-			<li> pravidelnÃ¡ vÃ½roÄnÃ¡ ÄlenskÃ¡ schÃ´dza je zvolÃ¡vanÃ¡ vÃ½konnou radou raz roÄne, </li>
-			<li> mimoriadnu ÄlenskÃº schÃ´dzu mÃ´Å¾e navrhnÃºÅ¥ kaÅ¾dÃ½ Älen o.z. na zÃ¡klade pÃ­somnej Å¾iadosti vÃ½konnej rade podpÃ­sanej 20 Älenmi o.z. , </li>
-			<li> ÄlenskÃ¡ schÃ´dza volÃ­ tretieho Älena vÃ½konnej rady nadpoloviÄnou vÃ¤ÄÅ¡inou prÃ­tomnÃ½ch Älenov, </li>
-			<li> volÃ­ a odvolÃ¡va Älenov revÃ­znej komisie, </li>
-			<li> rozhoduje o zÃ¡niku zdruÅ¾enia zlÃºÄenÃ­m s inÃ½m obÄianskym zdruÅ¾enÃ­m alebo dobrovoÄ¾nÃ½m rozpustenÃ­m, </li>
-			<li> schvaÄ¾uje plÃ¡n Äinnosti a vÃ½roÄnÃº sprÃ¡vu, </li>
-			<li> schvaÄ¾uje rozpoÄet a sprÃ¡vu o hospodÃ¡renÃ­, </li>
-			<li> potvrdzuje prijatie novÃ½ch Älenov a vylÃºÄenie Älenov. </li>
+			<li> delegátom ?lenskej základne je kadı ?len o.z., ktorı sa ú?astní ?lenskej schôdze, </li>
+			<li> pravidelná vıro?ná ?lenská schôdza je zvolávaná vıkonnou radou raz ro?ne, </li>
+			<li> mimoriadnu ?lenskú schôdzu môe navrhnú? kadı ?len o.z. na základe písomnej iadosti vıkonnej rade podpísanej 20 ?lenmi o.z. , </li>
+			<li> ?lenská schôdza volí tretieho ?lena vıkonnej rady nadpolovi?nou vä?šinou prítomnıch ?lenov, </li>
+			<li> volí a odvoláva ?lenov revíznej komisie, </li>
+			<li> rozhoduje o zániku zdruenia zlú?ením s inım ob?ianskym zdruením alebo dobrovo?nım rozpustením, </li>
+			<li> schva?uje plán ?innosti a vıro?nú správu, </li>
+			<li> schva?uje rozpo?et a správu o hospodárení, </li>
+			<li> potvrdzuje prijatie novıch ?lenov a vylú?enie ?lenov. </li>
 		</ul>
 		 
-		<span style="margin-left: 10px;"> <b> 2) <i> <u> VÃ½konnÃ¡ rada </u> </i> </b> </span>
+		<span style="margin-left: 10px;"> <b> 2) <i> <u> Vıkonná rada </u> </i> </b> </span>
 		<ul>
-			<li> je za svoju ÄinnosÅ¥ zodpovednÃ¡ Älenskej schÃ´dzi, </li>
-			<li> riadi ÄinnosÅ¥ zdruÅ¾enia, </li>
-			<li> schvaÄ¾uje stanovy, ich zmeny a doplnky, </li>
-			<li> zvolÃ¡va a obsahovo pripravuje rokovanie najvyÅ¡Å¡ieho orgÃ¡nu a pripravuje zÃ¡kladnÃ© materiÃ¡ly na tieto rokovania, </li>
-			<li> zvolÃ¡va vÃ½roÄnÃº ÄlenskÃº schÃ´dzu â€“ minimÃ¡lne raz roÄne, kde predkladÃ¡ vÃ½roÄnÃº sprÃ¡vu o Äinnosti o.z., </li>
-			<li> je povinnÃ¡ zvolaÅ¥ mimoriadnu ÄlenskÃº schÃ´dzu, najneskÃ´r do 30 dnÃ­ od obdrÅ¾ania pÃ­somnej Å¾iadosti o jej konanie. MÃ¡ vÅ¡ak moÅ¾nosÅ¥ posunÃºÅ¥ termÃ­n mimoriadnej Älenskej schÃ´dze tak, aby ÄasovÃ½ odstup od poslednej Älenskej schÃ´dze bol aspoÅˆ tri mesiace, </li>
-			<li> schvaÄ¾uje prijatie novÃ½ch ÄinnÃ½ch Älenov. </li>
+			<li> je za svoju ?innos? zodpovedná ?lenskej schôdzi, </li>
+			<li> riadi ?innos? zdruenia, </li>
+			<li> schva?uje stanovy, ich zmeny a doplnky, </li>
+			<li> zvoláva a obsahovo pripravuje rokovanie najvyššieho orgánu a pripravuje základné materiály na tieto rokovania, </li>
+			<li> zvoláva vıro?nú ?lenskú schôdzu – minimálne raz ro?ne, kde predkladá vıro?nú správu o ?innosti o.z., </li>
+			<li> je povinná zvola? mimoriadnu ?lenskú schôdzu, najneskôr do 30 dní od obdrania písomnej iadosti o jej konanie. Má však monos? posunú? termín mimoriadnej ?lenskej schôdze tak, aby ?asovı odstup od poslednej ?lenskej schôdze bol aspo? tri mesiace, </li>
+			<li> schva?uje prijatie novıch ?innıch ?lenov. </li>
 		</ul>
 		
-		<span style="margin-left: 10px;"> <b> 3) <i> <u> Å tatutÃ¡rnym orgÃ¡nom </u> </i> </b> zdruÅ¾enia je predseda vÃ½konnej rady. </span> <br />
+		<span style="margin-left: 10px;"> <b> 3) <i> <u> Štatutárnym orgánom </u> </i> </b> zdruenia je predseda vıkonnej rady. </span> <br />
 		 
-		<span style="margin-left: 10px;"> <b> 4) <i> <u> RevÃ­zna komisia </u> </i> </b> </span>
+		<span style="margin-left: 10px;"> <b> 4) <i> <u> Revízna komisia </u> </i> </b> </span>
 		<ul>
-			<li> je kontrolnÃ½m orgÃ¡nom, ktorÃ½ za svoju ÄinnosÅ¥ zodpovedÃ¡ Älenskej zÃ¡kladni, </li>
-			<li> predkladÃ¡ vÃ½roÄnÃº sprÃ¡vu o kontrole Äinnosti o.z. minimÃ¡lne raz roÄne na vÃ½roÄnej Älenskej schÃ´dzi, </li>
-			<li> kontroluje hospodÃ¡renie zdruÅ¾enia, upozorÅˆuje orgÃ¡ny zdruÅ¾enia na nedostatky a navrhuje opatrenia na ich odstrÃ¡nenie, </li>
-			<li> kontroluje aj dodrÅ¾iavanie stanov a vnÃºtornÃ½ch predpisov, </li>
-			<li> spomedzi seba volia Älenovia revÃ­znej komisie predsedu revÃ­znej komisie, </li>
+			<li> je kontrolnım orgánom, ktorı za svoju ?innos? zodpovedá ?lenskej základni, </li>
+			<li> predkladá vıro?nú správu o kontrole ?innosti o.z. minimálne raz ro?ne na vıro?nej ?lenskej schôdzi, </li>
+			<li> kontroluje hospodárenie zdruenia, upozor?uje orgány zdruenia na nedostatky a navrhuje opatrenia na ich odstránenie, </li>
+			<li> kontroluje aj dodriavanie stanov a vnútornıch predpisov, </li>
+			<li> spomedzi seba volia ?lenovia revíznej komisie predsedu revíznej komisie, </li>
 		</ul>
 	</p>
 	
 	<p class="page_rules">
-		<b> g) ZÃ¡sady hospodÃ¡renia </b>
+		<b> g) Zásady hospodárenia </b>
 		<ul>
-			<li> hospodÃ¡renie sa uskutoÄÅˆuje podÄ¾a schvÃ¡lenÃ©ho rozpoÄtu, </li>
-			<li> zdruÅ¾enie hospodÃ¡ri s hnuteÄ¾nÃ½m a nehnuteÄ¾nÃ½m majetkom (ak ho mÃ¡), </li>
-			<li> zdrojmi majetku sÃº: ÄlenskÃ© prÃ­spevky, dary od fyzickÃ½ch osÃ´b, dary,  dotÃ¡cie a granty od prÃ¡vnickÃ½ch osÃ´b, </li>
-			<li> vÃ½nosy z majetku a vlastnej Äinnosti mÃ´Å¾u byt pouÅ¾itÃ© len na podporu cieÄ¾a zdruÅ¾enia, </li>
-			<li> V zÃ¡ujme vytvÃ¡rania vlastnÃ½ch zdrojov mÃ´Å¾e zdruÅ¾enie vykonÃ¡vaÅ¥ v doplnkovom rozsahu vo vzÅ¥ahu k zÃ¡ujmovej Äinnosti podnikateÄ¾skÃº ÄinnosÅ¥, sÃºvisiacu so zabezpeÄovanÃ­m cieÄ¾ov a poslania zdruÅ¾enia, a v sÃºlade so vÅ¡eobecne zÃ¡vÃ¤znÃ½mi predpismi a stanovami. </li>
+			<li> hospodárenie sa uskuto??uje pod?a schváleného rozpo?tu, </li>
+			<li> zdruenie hospodári s hnute?nım a nehnute?nım majetkom (ak ho má), </li>
+			<li> zdrojmi majetku sú: ?lenské príspevky, dary od fyzickıch osôb, dary,  dotácie a granty od právnickıch osôb, </li>
+			<li> vınosy z majetku a vlastnej ?innosti môu byt pouité len na podporu cie?a zdruenia, </li>
+			<li> V záujme vytvárania vlastnıch zdrojov môe zdruenie vykonáva? v doplnkovom rozsahu vo vz?ahu k záujmovej ?innosti podnikate?skú ?innos?, súvisiacu so zabezpe?ovaním cie?ov a poslania zdruenia, a v súlade so všeobecne záväznımi predpismi a stanovami. </li>
 		</ul>
 	</p>
 	
 	<p class="page_rules"> 
-		<b> h) ZÃ¡nik zdruÅ¾enia </b> <br />
-		O zÃ¡niku zdruÅ¾enia zlÃºÄenÃ­m s inÃ½m obÄianskym zdruÅ¾enÃ­m alebo dobrovoÄ¾nÃ½m rozpustenÃ­m rozhoduje ÄlenskÃ¡ schÃ´dza, ktorÃ¡ menuje likvidÃ¡tora. LikvidÃ¡tor najskÃ´r vyrovnÃ¡ vÅ¡etky zÃ¡vÃ¤zky a pohÄ¾adÃ¡vky a s likvidaÄnÃ½m zostatkom naloÅ¾Ã­ podÄ¾a rozhodnutia vÃ½konnej rady. ZÃ¡nik zdruÅ¾enia treba oznÃ¡miÅ¥ do 15 dnÃ­ po ukonÄenÃ­ likvidÃ¡cie Ministerstvu vnÃºtra Slovenskej republiky. Pri likvidÃ¡cii zdruÅ¾enia sa primerane postupuje podÄ¾a Â§70 â€“ 75 ObchodnÃ©ho zÃ¡konnÃ­ka.
+		<b> h) Zánik zdruenia </b> <br />
+		O zániku zdruenia zlú?ením s inım ob?ianskym zdruením alebo dobrovo?nım rozpustením rozhoduje ?lenská schôdza, ktorá menuje likvidátora. Likvidátor najskôr vyrovná všetky záväzky a poh?adávky a s likvida?nım zostatkom naloí pod?a rozhodnutia vıkonnej rady. Zánik zdruenia treba oznámi? do 15 dní po ukon?ení likvidácie Ministerstvu vnútra Slovenskej republiky. Pri likvidácii zdruenia sa primerane postupuje pod?a §70 – 75 Obchodného zákonníka.
 	</p>
 	
 	<br /> <br /> <br />
