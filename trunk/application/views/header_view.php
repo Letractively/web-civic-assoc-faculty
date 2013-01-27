@@ -37,7 +37,7 @@
 		<div id="center">
 			<div id="headline">
 				<p class="headline1"> Alumni FMFI </p>
-				<p class="headline2"> združenie absolventov a priateľov Fakulty matematiky, fyziky a informatiky Univerzity Komenského v Bratislave </p>
+				<p class="headline2"> združenie absolventov a priateľov Fakulty matematiky, fyziky a informatiky<br /> Univerzity Komenského v Bratislave </p>
 			</div>
 		</div>
 		<div id="right"> </div>
@@ -51,8 +51,7 @@
 			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>
 			<?= anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null); ?>
             <?php if( $this->userdata->is_admin() ) 
-                    echo anchor('administration', 'SPRÁVA', $sender == 'administration' ? array('class' => 'selected') : null); ?>
-                        <?php //echo anchor('test', 'TEST', $sender == 'test' ? array('class' => 'selected') : null); ?>
+                    echo anchor('administration', 'SPRÁVA', in_array($sender, array('degrees','studies','email_types','payments','io','correspondence')) ? array('class' => 'selected') : null); ?>
 		</div>
 		<div id="secondary_navigation">
 			<?php
@@ -60,9 +59,9 @@
 				{
 					case 'auth':
 					case 'pages':
-						echo anchor('pages/index/rules', 'Stanovy', $view == 'pages_rules_view' ? array('class' => 'selected') : null) . '|';
-						echo anchor('pages/index/about', 'O nás', $view == 'pages_about_view' ? array('class' => 'selected') : null) . '|';
-						echo anchor('pages/index/contact', 'Kontakt', $view == 'pages_contact_view' ? array('class' => 'selected') : null); 
+						echo anchor('pages/index/rules', 'Stanovy', $page == 'rules' ? array('class' => 'selected') : null) . '|';
+						echo anchor('pages/index/about', 'O nás', $page == 'about' ? array('class' => 'selected') : null) . '|';
+						echo anchor('pages/index/contact', 'Kontakt', $page == 'contact' ? array('class' => 'selected') : null); 
 						break;
 					case 'administration':
 					case 'degrees':

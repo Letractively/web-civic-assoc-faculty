@@ -1,4 +1,4 @@
-﻿<script type="text/javascript" charset="UTF-8">
+<script type="text/javascript" charset="UTF-8">
 
 	// datova struktura
 	function Pair(id,value)
@@ -189,12 +189,8 @@
 
 </script>
 
-<?php // echo js_insert_bbcode("{$this->router->class}/index", 'textarea'); ?>
-
 <div class="errors">
-    <?php echo validation_errors();
-    
-    //array_debug($programs) ?>
+    <?php echo validation_errors(); ?>
 </div>
 <div id="content_wrapper">
 	<?= form_open("correspondence") ?>
