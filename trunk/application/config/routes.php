@@ -45,6 +45,10 @@ $route['administration']                =   "payments/index";
 $route['degrees/(:num)']                =   "degrees/index/$1";
 $route['events/(:num)']                 =   "events/index/$1";
 $route['events/(:num)/(:num)']          =   "events/index/$1/$2";
+$route['events/newest/(:num)']          =   "events/newest/$1";
+$route['events/newest/(:num)/(:num)']   =   "events/newest/$1/$2";
+$route['events/prior/(:num)']           =   "events/prior/$1";
+$route['events/prior/(:num)/(:num)']    =   "events/prior/$1/$2";
 $route['payments/(:num)']               =   "payments/index/$1";
 $route['posts/(:num)']                  =   "posts/index/$1";
 
