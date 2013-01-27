@@ -49,10 +49,15 @@
 			<?= anchor('auth', 'DOMOV', ($sender == 'auth' || $sender == 'pages') ? array('class' => 'selected') : null); ?>
 			<?= anchor('projects', 'PROJEKTY', in_array($sender, array('projects', 'project_categories')) ? array('class' => 'selected') : null); ?>
 			<?= anchor('events/'.$e_c, 'UDALOSTI', $sender == 'events' ? array('class' => 'selected') : null); ?>
-			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>
-			<?= anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null); ?>
-            <?php if( $this->userdata->is_admin() ) 
-                    echo anchor('administration', 'SPRÁVA', in_array($sender, array('degrees','studies','email_types','payments','io','correspondence')) ? array('class' => 'selected') : null); ?>
+			<?= anchor('posts', 'ČLÁNKY', $sender == 'posts' ? array('class' => 'selected') : null); ?>		
+            <?php 
+            if( $this->userdata->is_logged() )
+            {
+                echo anchor('users', 'ČLENOVIA', $sender == 'users' ? array('class' => 'selected') : null);
+                echo anchor('administration', 'SPRÁVA', in_array($sender, array('degrees','studies','email_types','payments','io','correspondence')) ? array('class' => 'selected') : null);
+            }
+                
+            ?>
 		</div>
 		<div id="secondary_navigation">
 			<?php
@@ -71,13 +76,16 @@
 					case 'payments':
 					case 'io':
 					case 'correspondence':
-						if( $this->userdata->is_admin() ) echo anchor('degrees', 'Tituly', $sender == 'degrees' ? array('class' => 'selected') : null) . '|';
-						if( $this->userdata->is_admin() ) echo anchor('studies', 'Študijné programy', $sender == 'studies' ? array('class' => 'selected') : null) . '|';
-						if( $this->userdata->is_admin() ) echo anchor('email_types', 'E-mail typy', $sender == 'email_types' ? array('class' => 'selected') : null) . '|';
-						if( $this->userdata->is_logged() ) echo anchor('payments', 'Platby', $sender == 'payments' ? array('class' => 'selected') : null) . '|';
-						if( $this->userdata->is_admin() ) echo anchor('io/export', 'Export', $sender == 'io' ? array('class' => 'selected') : null) . '|';
-						if( $this->userdata->is_admin() ) echo anchor('correspondence', 'Korešpondencia', $sender == 'correspondence' ? array('class' => 'selected') : null);
-						break;
+                                            if( $this->userdata->is_admin() ) 
+                                            {
+                                                echo anchor('degrees', 'Tituly', $sender == 'degrees' ? array('class' => 'selected') : null) . '|';
+						echo anchor('studies', 'Študijné programy', $sender == 'studies' ? array('class' => 'selected') : null) . '|';
+						echo anchor('email_types', 'E-mail typy', $sender == 'email_types' ? array('class' => 'selected') : null) . '|';
+						echo anchor('payments', 'Platby', $sender == 'payments' ? array('class' => 'selected') : null) . '|';
+						echo anchor('io/export', 'Export', $sender == 'io' ? array('class' => 'selected') : null) . '|';
+						echo anchor('correspondence', 'Korešpondencia', $sender == 'correspondence' ? array('class' => 'selected') : null);
+                                            }
+                                            break;
 				}
 			?>
 		</div>
