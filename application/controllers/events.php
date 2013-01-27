@@ -4,7 +4,7 @@ class Events extends MY_Controller
 {
         protected $c_pagination         = array();
         protected $get_query 		= array();
-        protected $per_page             = 2;
+        protected $per_page             = 3;
         protected $totalRows            = 0;
         
         /*
@@ -44,9 +44,6 @@ class Events extends MY_Controller
             $this->c_pagination['total_rows'] = $this->totalRows;
             $this->pagination->initialize($this->c_pagination);
             
-            
-           // array_debug($this->pagination->create_links());
-            
             $data = array(
                 'view'              => "{$this->router->class}_view",
                 'event_cat_id'      => $event_cat_id,
@@ -54,7 +51,6 @@ class Events extends MY_Controller
                 'c_pagination'      => $this->c_pagination,
                 'pagination'        => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
             );
-                 //array_debug($this->get_query);
             $this->load->view('container', array_merge($this->data, $data));
         }
 
@@ -66,14 +62,22 @@ class Events extends MY_Controller
          * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
          * 
          */
-        public function newest( $event_cat_id = 0 )
+        public function newest( $event_cat_id = 0, $page = 0 )
         {
             $this->load->model('selecter');
+            $this->totalRows = $this->selecter->EventRowsInCategory('events', 'event_id', $event_cat_id);
+            $this->c_pagination['base_url'] = base_url().'events/newest/'.$event_cat_id.'/';
+            $this->c_pagination['cur_page'] = $page;
+            $this->c_pagination['per_page'] = $this->per_page;
+            $this->c_pagination['total_rows'] = $this->totalRows;
+            $this->pagination->initialize($this->c_pagination);
             
             $data = array(
                 'view'              => "{$this->router->class}_view",
                 'event_cat_id'      => $event_cat_id,
-                'flag'              => 1
+                'flag'              => 1,
+                'c_pagination'      => $this->c_pagination,
+                'pagination'        => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
@@ -86,12 +90,22 @@ class Events extends MY_Controller
          * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
          * 
          */
-        public function prior( $event_cat_id = 0 )
+        public function prior( $event_cat_id = 0, $page = 0 )
         {
+            $this->load->model('selecter');
+            $this->totalRows = $this->selecter->EventRowsInCategory('events', 'event_id', $event_cat_id);
+            $this->c_pagination['base_url'] = base_url().'events/newest/'.$event_cat_id.'/';
+            $this->c_pagination['cur_page'] = $page;
+            $this->c_pagination['per_page'] = $this->per_page;
+            $this->c_pagination['total_rows'] = $this->totalRows;
+            $this->pagination->initialize($this->c_pagination);
+            
             $data = array(
                 'view'              => "{$this->router->class}_view",
                 'event_cat_id'      => $event_cat_id,
-                'flag'              => 2
+                'flag'              => 2,
+                'c_pagination'      => $this->c_pagination,
+                'pagination'        => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
             );
             $this->load->view('container', array_merge($this->data, $data));
         }
