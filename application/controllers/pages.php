@@ -12,6 +12,7 @@ class Pages extends MY_Controller
         function __construct() 
         {
             parent::__construct();
+            $this->load->model('selecter');
         }
 
         /*
@@ -20,21 +21,30 @@ class Pages extends MY_Controller
          * default index metoda, ktora sa vola primarne
          * 
          */
-        public function index($view)
+        public function index($page_name)
         {
             $data = array( 
-                'view' => $this->router->class.'_'.$view.'_'.'view',
+                'view' =>  $this->router->class.'_'.'view',
+                'page'  => $page_name
             );
+            
+            switch ($page_name)
+            {
+		case 'rules': 
+                    $data['title'] = $this->lang->line('title_rules');
+                    break;
+		case 'contact': 
+                    $data['title'] = $this->lang->line('title_contact');
+                    break;
+		case 'about': 
+                    $data['title'] = $this->lang->line('title_about'); 
+                    break;
+		default: 
+                    $data['title'] = ''; 
+                    break;
+            }     
 			
-			switch ($view)
-			{
-				case 'rules': $data['title'] = 'Stanovy'; break;
-				case 'contact': $data['title'] = 'Kontakt'; break;
-				case 'about': $data['title'] = 'O nás'; break;
-				default: $data['title'] = ''; break;
-			}
-			
-			$this->load->view('container', array_merge($this->data, $data));
+            $this->load->view('container', array_merge($this->data, $data));
         }
         
         public function edit( $page_name )
@@ -42,7 +52,10 @@ class Pages extends MY_Controller
             parent::edit('edit_page_text', $page_name);
             
             $data = array(
-                'title'     =>  $this->lang->line('title')
+                'error'         =>  $this->form_validation->form_required(array('page_text')),
+                'title'         =>  $this->lang->line('title_editor'),
+                'buttons'       =>  get_bbcode_buttons(),
+                'page'          =>  $page_name
             );
             
             $this->load->view('container', array_merge($this->data, $data));
