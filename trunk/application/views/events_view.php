@@ -1,4 +1,4 @@
-﻿<script type="text/javascript" charset="UTF-8">
+<script type="text/javascript" charset="UTF-8">
 	var base_url = '<?=base_url()?>';
 
 	function changeFilter(sender)
@@ -43,14 +43,14 @@
 		switch ($flag)
 		{
 			case 0:
-				$event_list = $this->selecter->get_events($event_cat_id);
-				break;
+                            $event_list = $this->selecter->get_events($c_pagination['per_page'], $c_pagination['cur_page'], $event_cat_id);
+                            break;
 			case 1:
-				$event_list = $this->selecter->get_events_newest($event_cat_id);
-				break;
+                            $event_list = $this->selecter->get_events_newest($c_pagination['per_page'], $c_pagination['cur_page'], $event_cat_id);
+                            break;
 			case 2:
-				$event_list = $this->selecter->get_events_prior($event_cat_id);
-				break;
+                            $event_list = $this->selecter->get_events_prior($c_pagination['per_page'], $c_pagination['cur_page'], $event_cat_id);
+                            break;
 		}
 	
 		if ($this->userdata->is_admin())
@@ -83,8 +83,13 @@
 			$grid->display();		
 			/*if($event_cat_id != 0)
 				{ echo '<p class="button_edit">'; echo anchor('events/', $this->lang->line('back_to_event_categories')); echo '</p>'; }*/
-			if( $this->userdata->is_admin() )
-				echo '<p class="button_edit">'; echo anchor('events/add', $this->lang->line('anchor_add')); echo '</p>';
+                        echo pagination($pagination);
+                        if( $this->userdata->is_admin() )
+			{
+                            echo '<p class="button_edit">'; 
+                                echo anchor('events/add', $this->lang->line('anchor_add')); 
+                            echo '</p>';
+                        }
 		}
 		else
 		{
@@ -113,6 +118,5 @@
 			<?php
 			}
 		}
-		
 	?>
 </div>

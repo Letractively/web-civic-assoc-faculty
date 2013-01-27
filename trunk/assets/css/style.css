@@ -325,7 +325,7 @@ body {
 }
 
 #secondary_navigation {
-    /*height: 40px;*/
+    height: 40px;
    background-image: url(images/linear_bg_2.png);
    background-repeat: repeat-x;
    background: -webkit-linear-gradient(top, #fecc78, #880d0d); /* Safari 5.1+ ; Chrome 10+ */
@@ -349,7 +349,7 @@ body {
 
 #secondary_navigation a {
 	color: black;
-/*	padding: 9px 25px 8px 25px;*/
+	padding: 9px 25px 8px 25px;
 }
 
 #main_navigation a:hover {
@@ -370,18 +370,16 @@ body {
 
 #secondary_navigation a:hover {
 	color: black;
-        background-color: red;
-	/*padding: 4px 25px 9px 25px;	*/
-	/*font-style: oblique;*/
-	/*font-size: 18px;*/
+	padding: 4px 25px 9px 25px;	
+	font-style: oblique;
+	font-size: 18px;
 }
 
 #secondary_navigation .selected {
-	/*padding: 6px 25px 9px 25px;*/
+	padding: 6px 25px 9px 25px;
 	color: black;
-        background-color: white;
-	/*font-family: "Arial black";*/
-	/*text-decoration: underline; */
+	font-family: "Arial black";
+	text-decoration: underline; 
 }
 
 
