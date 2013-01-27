@@ -449,7 +449,7 @@ class Selecter extends MY_Model
          $q = $this->db->query("SELECT  e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
                                         ec.event_category_id, ec.event_category_name, event_priority
                                FROM events e
-                               JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
+                               LEFT OUTER JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority DESC, e.event_created DESC
                                LIMIT $cur_page, $per_page
                                ");
@@ -478,7 +478,7 @@ class Selecter extends MY_Model
          $q = $this->db->query("SELECT  e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
                                         ec.event_category_id, ec.event_category_name, event_priority
                                FROM events e
-                               JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
+                               LEFT OUTER JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_created DESC
                                LIMIT $cur_page, $per_page
                                ");
@@ -507,7 +507,7 @@ class Selecter extends MY_Model
          $q = $this->db->query("SELECT  e.event_id, e.event_about, e.event_name, e.event_created, e.event_from, e.event_to,
                                         ec.event_category_id, ec.event_category_name, event_priority
                                FROM events e
-                               JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
+                               LEFT OUTER JOIN event_categories ec ON(e.event_event_category_id=ec.event_category_id)
                                ORDER BY e.event_priority ASC, e.event_created DESC, e.event_name ASC
                                LIMIT $cur_page, $per_page
                                ");
@@ -624,7 +624,7 @@ class Selecter extends MY_Model
                                             pi.project_item_id, p.project_id, p.project_active
                                     FROM project_items pi
                                     RIGHT JOIN projects p ON (pi.project_item_project_id = p.project_id)
-                                    JOIN project_categories pc ON (p.project_project_category_id = pc.project_category_id)
+                                    LEFT OUTER JOIN project_categories pc ON (p.project_project_category_id = pc.project_category_id)
                                     GROUP BY p.project_id
                                     ORDER BY p.project_active DESC
                                   ");
