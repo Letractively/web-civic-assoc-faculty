@@ -1,4 +1,4 @@
-﻿<div id="content_wrapper1">
+﻿<div id="content_wrapper_medium">
 	<?php
 		
 		$this->load->helper('text');
@@ -18,7 +18,6 @@
 						$string = word_limiter($string, 15);
 						echo perex_from_content($string);
 						echo '<br />';
-						echo '<p class="separation"> </p>';
 					echo '</div>';				
 					$counter++;
 				}
@@ -48,7 +47,6 @@
 						$string = word_limiter($string, 15);
 						echo perex_from_content($string);
 						echo '<br />';
-						echo '<p class="separation"> </p>';
 					echo '</div>';
 					$counter++;
 				}	
