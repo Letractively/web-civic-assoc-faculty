@@ -1,4 +1,4 @@
-﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /*
  * array_debug
@@ -44,21 +44,7 @@ function array_debug($arr, $return = false)
  * @param attributes dodato�n� atrib�ty pre element, zad�vaju sa vo forme stringu formou 'atribut1="hodnota1", atribut2="hodnota2", ...'
  * @return form_dropdown menu
  *  
- *//*
-function gen_dropdown($name, $id_selected, $data, $id_index, $value_index)
-{
-	$options = array();
-	
-	foreach ($data as $val)
-	{
-		if (is_object($val))
-			$val = get_object_vars($val);
-		$options[$val[$id_index]] = $val[$value_index];
-	}
-	
-	return form_dropdown($name, $options, $id_selected);
-}*/
-
+ */
 function gen_dropdown($name, $id_selected, $data, $id_index, $value_index, $css_class = '', $attributes = '')
 {
 	$options = array();
@@ -81,6 +67,14 @@ function gen_dropdown($name, $id_selected, $data, $id_index, $value_index, $css_
 	else return form_dropdown($name, $options, $id_selected, $attributes);
 }
 
+/*
+ * year
+ * 
+ * Funkcia vrati iba ciselnu podobu roku
+ * 
+ * @param date datetime v tvare xx.xx.xxxx xx:xx:xx
+ * 
+ */
 function year($date){
     $input 		= explode(' ', $date);
     $date 		= explode('.', $input[0]);
@@ -88,12 +82,21 @@ function year($date){
     return $output;
 }
 
+/*
+ * day_month
+ * 
+ * Funkcia vrati iba ciselnu podobu dna a mesiaca
+ * 
+ * @param date datetime v tvare xx.xx.xxxx xx:xx:xx
+ * 
+ */
 function day_month($date){
     $input 		= explode(' ', $date);
     $date 		= explode('.', $input[0]);
     $output 	= "{$date[0]}.{$date[1]}";
     return $output;
 }
+
 /*
  * datetime
  * 
@@ -160,6 +163,15 @@ function format_date($input)
     return $date[2].'-'.$date[1].'-'.$date[0];
 }
 
+/*
+ * format_datetime
+ * 
+ * Funkcia vrati naformatovanz datetime aky je standartny tvar pre databazu. Tj
+ * xxxx-xx-xx xx:xx:xx
+ * 
+ * @param input slovensky datetime v tvare xx.xx.xxxx xx:xx
+ * 
+ */
 function format_datetime($input)
 {
     $dateAndTime = explode(' ', $input);
@@ -167,6 +179,15 @@ function format_datetime($input)
     return $date[2].'-'.$date[1].'-'.$date[0].' '.$dateAndTime[1].':00';
 }
 
+/*
+ * pagination
+ * 
+ * Funkcia vlozi url odkazy strankovania do wrapera, ktory ju obali a takyto obsah
+ * vrati spat.
+ * 
+ * @param pagination url odkazy spolu so strong formatom
+ * 
+ */
 function pagination( $pagination )
 {
 	if( $pagination )

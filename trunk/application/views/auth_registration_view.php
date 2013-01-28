@@ -1,4 +1,4 @@
-﻿<div class="errors">
+<div class="errors">
     <?php 
         echo validation_errors(); 
         $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');

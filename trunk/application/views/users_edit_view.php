@@ -1,4 +1,4 @@
-﻿<div id="content_wrapper">
+<div id="content_wrapper">
 	<?php
 		$obj = $this->selecter->get_user_detail($user_id);
                 $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');

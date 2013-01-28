@@ -1,5 +1,13 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+ * updateCorUserList
+ * 
+ * Funkcia doplni stlpec typ emailu do gridu kde sa nachadza medzi vysledok filtra
+ * 
+ * @param users Array of objects s udajmi o useroch ktori vyhovuju filtru
+ * 
+ */
 function updateCorUserList($users)
 {	
 	$CI =& get_instance();
