@@ -16,15 +16,25 @@
 		<span class="post_created_by"> <?= $this->lang->line('created_by'); ?>: </span>
 		<span class="link_text"> <?= anchor('users/detail/'.$obj->post_author_id, $obj->author_name.' '.$obj->author_surname); ?></span>, 
 		<?= datetime($obj->post_date, FALSE).' '. time_withou_seconds(datetime($obj->post_date, TRUE)) ?>
+                <?php if($this->userdata->is_admin()): ?>
+                            <br /><span class="link_text">
+                                    <strong><?= $this->lang->line('published'); ?>: </strong>
+                                    <?php if($obj->post_published == 1): ?>
+                                        <?= $this->lang->line('confirm_yes'); ?>
+                                    <?php else: ?>
+                                        <?= $this->lang->line('confirm_no'); ?>
+                                    <?php endif; ?>
+                                </span>
+                        <?php endif; ?>
 		<br /> <br />		
 	</div>
-
 	<?php if($obj->post_modifie_date == TRUE && $obj->post_modifie_author_id == TRUE): ?>
 		<div class="post_modifie_info">
 			<span class="post_last_update"><?= $this->lang->line('last_update'); ?></span>
 			<span class="link_text"> <?= anchor('users/detail/'.$obj->post_modifie_author_id, $obj->modifie_name.' '.$obj->modifie_surname) ?></span>,
 			<?= datetime($obj->post_modifie_date, FALSE).' '. time_withou_seconds(datetime($obj->post_modifie_date, TRUE)) ?> 
-			<br /> <br />
+			
+                        <br /> <br />
 		</div>
 		
 		<div>

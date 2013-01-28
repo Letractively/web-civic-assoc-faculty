@@ -135,8 +135,7 @@ class Deleter extends MY_Model
     {
         $this->db->query("DELETE FROM projects WHERE project_id=$pr_id");
         if($this->db->affected_rows()>0){
-          $this->db->query("UPDATE project_items
-                            SET project_item_project_id=NULL 
+          $this->db->query("DELEFET FROM project_items
                             WHERE project_item_project_id=$pr_id"); 
           return TRUE;
         }

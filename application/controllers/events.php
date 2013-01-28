@@ -94,7 +94,7 @@ class Events extends MY_Controller
         {
             $this->load->model('selecter');
             $this->totalRows = $this->selecter->EventRowsInCategory('events', 'event_id', $event_cat_id);
-            $this->c_pagination['base_url'] = base_url().'events/newest/'.$event_cat_id.'/';
+            $this->c_pagination['base_url'] = base_url().'events/prior/'.$event_cat_id.'/';
             $this->c_pagination['cur_page'] = $page;
             $this->c_pagination['per_page'] = $this->per_page;
             $this->c_pagination['total_rows'] = $this->totalRows;

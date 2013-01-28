@@ -119,8 +119,8 @@ abstract class MY_Controller extends CI_Controller
     
     protected function add( $method, $submit = 'submit')
     {
-        //if( !$this->userdata->is_admin() )
-          //  redirect(base_url());
+        if( !$this->userdata->is_admin() )
+          redirect(base_url());
 
         if( $this->input->post($submit) )
         {
@@ -128,11 +128,12 @@ abstract class MY_Controller extends CI_Controller
             {
                 $this->load->model('inserter');
                 $this->inserter->$method( $this->input->post() );
+                redirect($this->router->class);
                 //array_debug($this->input->post());
-                if( $this->router->class == 'project_categories' )
+                /*if( $this->router->class == 'project_categories' )
                     redirect($this->router->class.'/detail/'.$this->input->post('pr_cat'));
                 else
-                    redirect($this->router->class);
+                    redirect($this->router->class);*/
             }
         }
         

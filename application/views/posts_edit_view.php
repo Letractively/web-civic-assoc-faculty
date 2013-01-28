@@ -40,7 +40,7 @@
 		</div>
 		
 		<div class="inputitem">
-			<?php echo '<p class="button_back">'; echo anchor('posts/', $this->lang->line('to_post_detail')); echo '</p>'; ?>
+			<?php echo '<p class="button_back">'; echo anchor('posts/detail/'.$post_id, $this->lang->line('to_post_detail')); echo '</p>'; ?>
 		</div>
 		
 		<div class="inputitem">
