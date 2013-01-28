@@ -52,18 +52,6 @@ class Updater extends MY_Model
       else{ return FALSE;}
     }
     
-     public function edit_lecturer_time($lec_time_id, $values)
-    {
-          $this->db->query("UPDATE excursion_times
-                            SET excursion_time_excursion_event_from='".$values['from']."',
-                                excursion_time_excursion_event_to='".$values['to']."'
-                            WHERE excursion_time_id=$lec_time_id");
-      if($this->db->affected_rows()>0){
-        return TRUE;
-      }
-      else{ return FALSE;}
-    }
-    
     public function edit_payments_payment($payment_id, $values)
     {
         $this->db->query("UPDATE payments

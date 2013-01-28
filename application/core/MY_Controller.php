@@ -14,9 +14,9 @@ abstract class MY_Controller extends CI_Controller
                                           );
 
     /*
-     * Constructor
+     * __construct
      * 
-     * Toto je konstruktor, ktory sa zavola po nacitani aplikacie, ked sa spusti
+     * Konstruktor, ktory sa zavola po nacitani aplikacie, ked sa spusti
      * tak najprv zavola konstruktor jej nadradenej classy (CI_Controller)
      * 
      * @access      private
@@ -63,10 +63,10 @@ abstract class MY_Controller extends CI_Controller
      * daka ciselna hodnota (integer - ID z DB).
      * 
      * @access      public
-     * @param       array
-     * @param       mixed
-     * @param       mixed
-     * @return      array
+     * @param       array Vstupne pole udajov
+     * @param       key Kluc vo vyslednom zazname
+     * @param       value hodnota premennej vo vyslednom zazname
+     * 
      */
     protected function recompile_into_array($array, $key, $value)
     {
@@ -87,10 +87,10 @@ abstract class MY_Controller extends CI_Controller
      * velky bude tento casovy usek, zalezi od vstupnych parametrov
      * 
      * @access      public
-     * @param       integer
-     * @param       integer
-     * @param       integer
-     * @return      array
+     * @param       back Ciselna hodnota poctu rokov ktore sa vygeneruje od aktualneho roku dozadu 
+     * @param       default pociatocny rok od ktoreho sa budu generovat dopredu a dozadu roky
+     * @param       forward Ciselna hodnota poctu rokov ktore sa vygeneruje od aktualneho roku dopredu
+     * 
      */
     protected function generate_years($back, $default, $forward)
     {
@@ -105,6 +105,14 @@ abstract class MY_Controller extends CI_Controller
         return $result;
     }
     
+    /*
+     * generete_priorities
+     * 
+     * Funkcia vygeneruje urcity pocet priorit
+     * 
+     * @param how_much pocet priorit ktore sa maju vygenerovat
+     * 
+     */
     protected function generate_priorities( $how_much )
     {
         $result = array();
@@ -117,6 +125,15 @@ abstract class MY_Controller extends CI_Controller
         return $result;
     }
     
+    /*
+     * add
+     * 
+     * Funkcia vola modelovu funkciu na pridanie zaznamu do databazy
+     * 
+     * @param method Nazov modelovej funkcie ktora sa ma zavolat
+     * @param submit Hodnota odosielacieho tlacidla
+     * 
+     */
     protected function add( $method, $submit = 'submit')
     {
         if( !$this->userdata->is_admin() )
@@ -139,12 +156,21 @@ abstract class MY_Controller extends CI_Controller
         
     }
     
+    /*
+     * add
+     * 
+     * Funkcia vola modelovu funkciu na pridanie zaznamu do databazy
+     * 
+     * @param method Nazov modelovej funkcie ktora sa ma zavolat
+     * @param id vacsinou foreign key na inu tabulku aby boli udaje konzistentne
+     * @param submit Hodnota odosielacieho tlacidla
+     * 
+     */
     protected function add_param( $method, $id, $submit = 'submit')
     {
-        //echo $this->router->method;
         if( !$this->userdata->is_admin() )
             redirect(base_url());
-        $this->load->model('selecter');
+        
         $this->load->model('inserter');
         
         if( $this->input->post( $submit ) )
@@ -157,6 +183,16 @@ abstract class MY_Controller extends CI_Controller
         }
     }
     
+    /*
+     * edit
+     * 
+     * Funkcia vola prislusnu modelovu funkciu na upravenie zaznamu v databaze
+     * 
+     * @param method Nazov metody ktora sa ma zavolat
+     * @param id ID zaznamu ktory sa ma upravit
+     * @param submit Hodnota odosielacieho submit buttonu defaultne je submit
+     * 
+     */
     protected function edit( $method, $id, $submit = 'submit' )
     {
         if( $id == '')
@@ -179,6 +215,15 @@ abstract class MY_Controller extends CI_Controller
         }   
     }
 
+    /*
+     * delete
+     * 
+     * Funkcia vola prislusnu modelovu funkciu na vymazaie zaznamu z databazy
+     * 
+     * @param method Nazov prislusnej modelovej funkcie ktora sa ma vykonat
+     * @param id ID zaznamu ktory sa ma vymazat
+     * 
+     */
     protected function delete( $method, $id )
     {
         if( $id == '')
@@ -198,24 +243,6 @@ abstract class MY_Controller extends CI_Controller
         }
         elseif( $action == $this->lang->line('confirm_no') )
             redirect( $this->router->class );
-    }
-    
-    protected function delete_param( $method, $id, $param, $class_valid )
-    {
-        if( !$this->userdata->is_admin() )
-            redirect(base_url());
-        
-        $action = $this->input->post('submit_action');
-        
-        $this->load->model('deleter');
-        
-        if( $action == $this->lang->line('confirm_yes') )
-        {
-            $this->deleter->$method($id, $param);
-            redirect($class_valid.'/'.$param);
-        }
-        elseif( $action == $this->lang->line('confirm_no') )
-            redirect($class_valid.'/'.$param);
     }
 }
 
