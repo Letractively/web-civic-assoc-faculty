@@ -55,25 +55,25 @@ class Correspondence extends MY_Controller
         
         public function send_email( $post_params )
         {
-            //array_debug($post_params);
             $users = $this->selecter->get_users_filter( $post_params );
-            //array_debug($users);
             $ids = array();
             $this->load->library('email');
             $logged_user_id = $this->session->userdata('user');
-            /*foreach ($users as $user) 
+            if($users != '')
             {
-                array_push($ids, $user->user_id);
-               
-                $this->email->from( $post_params['correspondence_sender'], $this->userdata->full_name($logged_user_id) );
-                $this->email->to($user->user_email); 
-                $this->email->cc($post_params['correspondence_cc']); 
-                $this->email->subject($post_params['correspondence_subject']);
-                $this->email->message( parse_bbcode($post_params['correspondence_content']) );
-                $this->email->send();
+                /*foreach ($users as $user) 
+                {
+                    array_push($ids, $user->user_id);
+
+                    $this->email->from( $post_params['correspondence_sender'], $this->userdata->full_name($logged_user_id) );
+                    $this->email->to($user->user_email); 
+                    $this->email->cc($post_params['correspondence_cc']); 
+                    $this->email->subject($post_params['correspondence_subject']);
+                    $this->email->message( parse_bbcode($post_params['correspondence_content']) );
+                    $this->email->send();
+                }
+                return $this->inserter->add_email_log($post_params['email_type_id'], $ids);*/
             }
-            return TRUE;*/
-            //return $this->inserter->add_email_log($post_params['email_type_id'], $ids);
         }
 
         public function review()

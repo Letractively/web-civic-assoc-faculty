@@ -184,7 +184,7 @@ class Selecter extends MY_Model
      * @access      public
      * @return      array of objects
      */
-    public function get_users( $per_page = 0, $cur_page = 0, $role )
+    public function get_users( $per_page = 0, $cur_page = 0, $role, $grid = false )
     {
         if ($role == 0)
             $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
@@ -215,7 +215,8 @@ class Selecter extends MY_Model
                                     WHERE u.user_role=$role
                                     LIMIT $cur_page, $per_page
                                   ");
-        return $q->result();
+        if ($grid == true) return $q;
+		else return $q->result();
     }
 	
 	/*
@@ -223,15 +224,14 @@ class Selecter extends MY_Model
      */
     public function get_users_filter($values)
     {
-        //array_debug($values);
         $this->db->select('u.user_id, u.user_name, u.user_surname, u.user_email,
                            d.degree_name, sp.study_program_name, 
                            u_e_e.user_email_evidence_date, u_e_e.user_email_evidence_email_type_id')
                  ->from('user_email_evidence u_e_e');
         
         $this->db->join('users u', 'u_e_e.user_email_evidence_user_id = u.user_id','right');
-        $this->db->join('degrees d', 'u.user_degree_id = d.degree_id');
-        $this->db->join('study_programs sp', 'u.user_study_program_id = sp.study_program_id');
+        $this->db->join('degrees d', 'u.user_degree_id = d.degree_id','left');
+        $this->db->join('study_programs sp', 'u.user_study_program_id = sp.study_program_id','left');
 		
         //Generator pre where podmienky na studijny program
         if( isset($values['study']) )
@@ -332,13 +332,15 @@ class Selecter extends MY_Model
 	
         $result = $query->result();
         if( isset($values['payment_time']) )
-            return $this->selecter->get_users_filter_on_payments($result, $values['payment_time']);
+            if($result != array())
+                return $this->selecter->get_users_filter_on_payments($result, $values['payment_time']);
+            else
+                return null;
         else
         {
             $query->free_result();
             return $result;  
         }
-     //array_debug($result);
     }
     
     public function get_users_filter_on_payments($users, $payments_value)

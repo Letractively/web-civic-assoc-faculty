@@ -2,31 +2,6 @@ add<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Inserter extends MY_Model
 {
-        /*
-     * insert_into_fin_redistributes
-     * 
-     * Funkcia zaeviduje poziadavku navstevnika ako maju byt prerozdelene jeho
-     * peniaze
-     * 
-     * @access      private
-     * @param       integer
-     * @param       array
-     * @return      boolean
-     */
-    private function insert_into_fin_redistributes($user_id, $array)
-    {
-        foreach($array as $key => $value)
-        {
-            $this->db->query("  INSERT INTO fin_redistributes
-                                (fin_redistribute_user_id, fin_redistribute_project_category_id, fin_redistribute_ratio)
-                                VALUES
-                                ('".$user_id."','".$key."','".$value."')
-                             ");
-        }
-        
-        return TRUE;
-    }
-   
     public function add_degree($values)
     {
         $this->db->query("INSERT INTO degrees
@@ -89,18 +64,6 @@ class Inserter extends MY_Model
       }
       else{ return FALSE;}
     }
-    
-    /*public function add_lecturer_times($ex_event_id, $user_id, $values)
-    {
-      $this->db->query("INSERT INTO excursion_times
-                           (excursion_time_excursion_event_id, excursion_lecturer_id, excursion_time_from, excursion_time_to)
-                           VALUES ('".$ex_event_id."','".$user_id."','".$values['from']."','".$values['to']."')
-                         ");
-      if($this->db->affected_rows()>0){ 
-        return TRUE;
-      }
-      else{ return FALSE;}
-    }*/
     
     public function add_payments($values)
     {

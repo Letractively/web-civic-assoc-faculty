@@ -2,6 +2,15 @@
 
 class Deleter extends MY_Model
 {
+    /*
+     * remove_degree
+     * 
+     * Funkcia zmaze z tabulky degrees zaznam a prislusnym zaznamom v tabulke users 
+     * nastavi null
+     * 
+     * @param degree_id ID-cko titulu ktory sa ma zmazat
+     * 
+     */
     public function remove_degree($degree_id)
     {   
         $this->db->query("DELETE FROM degrees WHERE degree_id=$degree_id");
@@ -15,16 +24,35 @@ class Deleter extends MY_Model
         else{ return FALSE; }
     }
     
+    /*
+     * remove_email_type
+     * 
+     * Funkcia vymaze zaznam z tabulky email_types a prisluchajucim polozkam
+     * v tabulke user_email_evidence nastavi null
+     * 
+     * @param e_type_id ID-cko typu emailu ktory sa ma vymazat
+     * 
+     */
     public function remove_email_type($e_type_id)
     {
         $this->db->query("DELETE FROM email_types WHERE email_type_id=$e_type_id");
         if($this->db->affected_rows()>0){
-          $this->db->query("UPDATE user_email_evidence SET user_email_evidence_email_type_id=NULL WHERE user_email_evidence_email_type_id=$e_type_id");
+          $this->db->query("UPDATE user_email_evidence 
+                            SET user_email_evidence_email_type_id=NULL 
+                            WHERE user_email_evidence_email_type_id=$e_type_id");
             return TRUE;
         }
         else{ return FALSE; }
     }
     
+    /*
+     * remove_event
+     * 
+     * Funkcia vymaze zaznam z tabulky events
+     * 
+     * @param ev_id ID-cko eventu ktory sa ma vymazat
+     * 
+     */
     public function remove_event($ev_id)
     {
         $this->db->query("DELETE FROM events WHERE event_id=$ev_id");
@@ -46,103 +74,59 @@ class Deleter extends MY_Model
         else{ return FALSE; }
     }
     
-    public function remove_excursion($ex_id)
-    {
-        $this->db->query("DELETE FROM excursions WHERE excursion_id=$ex_id");
-        if($this->db->affected_rows()>0){
-          $this->db->query("UPDATE excursion_events 
-                            SET excursion_event_excursion_id=NULL 
-                            WHERE excursion_event_excursion_id=$ex_id");
-          return TRUE;
-        }
-        else{ return FALSE; }
-    }
-    
-    public function remove_excursion_event($ex_ev_id)
-    {
-        $this->db->query("DELETE FROM excursion_events WHERE excursion_event_id=$ex_ev_id");
-        if($this->db->affected_rows()>0){
-          $this->db->query("UPDATE excursion_times
-                            SET excursion_time_excursion_event_id=NULL 
-                            WHERE excursion_time_excursion_event_id=$ex_ev_id");
-          $this->db->query("UPDATE booked_excursions
-                            SET booked_excursion_excursion_event_id=NULL 
-                            WHERE booked_excursion_excursion_event_id=$ex_ev_id");
-          return TRUE;
-        }
-        else{ return FALSE; }
-    }
-    
-    public function remove_excursion_event_book($ex_ev_book_id)
-    {
-        $this->db->query("DELETE FROM booked_excursions WHERE booked_excursion_id=$ex_ev_book_id");
-        if($this->db->affected_rows()>0){
-          return TRUE;
-        }
-        else{ return FALSE; }
-    }
-    
-    public function remove_excursion_event_lecturer($ex_ev_id, $user_id)
-    {
-        $this->db->query("DELETE FROM  WHERE ");
-        if($this->db->affected_rows()>0){
-          return TRUE;
-        }
-        else{ return FALSE; }
-    }
-    
-    public function remove_excursion_event_visitor($ex_ev_vi_id)
-    {
-        $this->db->query("DELETE FROM  WHERE ");
-        if($this->db->affected_rows()>0){
-          return TRUE;
-        }
-        else{ return FALSE; }
-    }
-    
-    public function remove_lecturer_time($lec_time_id)
-    {
-        $this->db->query("DELETE FROM excursion_times WHERE excursion_time_lecturer_id=$lec_time_id");
-        if($this->db->affected_rows()>0){
-          return TRUE;
-        }
-        else{ return FALSE; }
-    }
-    
+    /*
+     * remove_payments
+     * 
+     * Funkcia zmaze zaznam z tabulky payments a k nemu prisluchajuce zaznamy v tabulke fin_redistributes
+     * 
+     * @param payment_id ID-cko platby
+     * 
+     */
     public function remove_payments($payment_id)
     {
-        $this->db->query("DELETE FROM payments WHERE payment_id=$payment_id");
-       if($this->db->affected_rows()>0){
-           $this->db->query("DELETE FROM fin_redistributes WHERE fin_redistribute_payment_id=$payment_id");
-          return TRUE;
+        $this->db->query("DELETE FROM fin_redistributes WHERE fin_redistribute_payment_id=$payment_id");
+        
+        if($this->db->affected_rows()>0)
+        {
+            $this->db->query("DELETE FROM payments WHERE payment_id=$payment_id");
+            return TRUE;
         }
-        else{ return FALSE; }
+        else
+            return FALSE;
     }
     
+    /*
+     * remove_post
+     * 
+     * Funkcia vymaze dany prispevok a ak existuju k nemu zaznamy v tabulke 
+     * post_modifies tak vymaze aj tie
+     * 
+     * @param post_id ID-cko daneho clanku co sa ma vymazat
+     * 
+     */
     public function remove_post($post_id)
     {
+        $this->db->query("DELETE FROM post_modifies
+                          WHERE post_modifie_post_id=$post_id");  
         $this->db->query("DELETE FROM posts WHERE post_id=$post_id");
-        if($this->db->affected_rows()>0){
-          $this->db->query("UPDATE post_modifies
-                            SET post_modifie_post_id=NULL 
-                            WHERE post_modifie_post_id=$post_id");  
-          return TRUE;
-        }
-        else{ return FALSE; }
+        return TRUE;
     }
     
+    /*
+     * remove_project
+     * 
+     * zmaze zaznam z tabulky projects a k nemu prislusne zaznamy z tabulky project_items ak existuju
+     * @param pr_id ID-cko projektu
+     * 
+     */
     public function remove_project($pr_id)
     {
-        $this->db->query("DELETE FROM projects WHERE project_id=$pr_id");
-        if($this->db->affected_rows()>0){
-          $this->db->query("DELEFET FROM project_items
-                            WHERE project_item_project_id=$pr_id"); 
-          return TRUE;
-        }
-        else{ return FALSE; }
+        $this->db->query("DELETE FROM project_items WHERE project_item_project_id=$pr_id"); 
+        $this->db->query("DELETE FROM projects WHERE project_id=$pr_id");    
+        return TRUE;
     }
     
-     public function remove_project_category($pr_cat_id)
+    public function remove_project_category($pr_cat_id)
     {
         $this->db->query("DELETE FROM project_categories WHERE project_category_id=$pr_cat_id");
         if($this->db->affected_rows()>0){
@@ -166,7 +150,15 @@ class Deleter extends MY_Model
         else{ return FALSE; }
     }
    
-     public function remove_project_item($pr_item_id)
+    /*
+     * remove_project_item
+     * 
+     * Zmaze zaznam z tabulky project_items
+     * 
+     * @param pr_item_id ID-cko project itemu ktory sa ma zmazat
+     * 
+     */
+    public function remove_project_item($pr_item_id)
     {
         $this->db->query("DELETE FROM project_items WHERE project_item_id=$pr_item_id");
         if($this->db->affected_rows()>0){
@@ -175,7 +167,15 @@ class Deleter extends MY_Model
         else{ return FALSE; }
     }
     
-     public function remove_study_program($study_pr_id)
+    /*
+     * remove_study_program
+     * 
+     * Funkcia vymaze zaznam z tabulky study_programs a prislusnym hodnotam v users nastavi null
+     * 
+     * @param study_pr_id ID-cko studijneho programu ktory sa ma zmazat
+     * 
+     */
+    public function remove_study_program($study_pr_id)
     {
         $this->db->query("DELETE FROM study_programs WHERE study_program_id=$study_pr_id");
         if($this->db->affected_rows()>0){
@@ -201,15 +201,17 @@ class Deleter extends MY_Model
          // $this->db->query("INSERT INTO deleted_users (deleted_user_user_clean_id, deleted_user_name, deleted_user_surname_deleted_user_email, deleted_user_birth_day)
           //                  VALUES ($id, '".$tmp['user_name']."', '".$tmp['user_surname']."', '".$tmp['user_email']."', '".$tmp['birth_date']."')");
           
-          $this->db->query("UPDATE payments
-                            SET payment_user_id=NULL 
+          $this->db->query("DELETE FROM payments
                             WHERE payment_user_id=$user_id");
-          $this->db->query("UPDATE fin_redistributes
-                            SET fin_redistribute_user_id=NULL 
-                            WHERE fin_redistribute_user_id=$user_id");
-          $this->db->query("UPDATE user_email_evidence
-                            SET user_email_evidence_user_id=NULL 
+          $this->db->query("DELETE FROM user_email_evidence
                             WHERE user_email_evidence_user_id=$user_id");
+          $this->db->query("DELETE FROM history_paids
+                            WHERE history_paids_user_id=$user_id");
+          $this->db->query("DELETE FROM booked_excursions
+                            WHERE booked_excursion_user_id=$user_id");
+          $this->db->query("DELETE FROM excursion_times
+                            WHERE excursion_time_lecturer_id=$user_id");
+          
           $this->db->query("UPDATE events
                             SET event_author_id=NULL 
                             WHERE event_author_id=$user_id");
@@ -219,15 +221,6 @@ class Deleter extends MY_Model
           $this->db->query("UPDATE project_items
                             SET project_item_user_id=NULL 
                             WHERE project_item_user_id=$user_id");
-          $this->db->query("UPDATE history_paids
-                            SET history_paids_user_id=NULL 
-                            WHERE history_paids_user_id=$user_id");
-          $this->db->query("UPDATE booked_excursions
-                            SET booked_excursion_user_id=NULL 
-                            WHERE booked_excursion_user_id=$user_id");
-          $this->db->query("UPDATE excursion_times
-                            SET excursion_time_lecturer_id=NULL 
-                            WHERE excursion_time_lecturer_id=$user_id");
           $this->db->query("UPDATE posts
                             SET post_author_id=NULL 
                             WHERE post_author_id=$user_id");

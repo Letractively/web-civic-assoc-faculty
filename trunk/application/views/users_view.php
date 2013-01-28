@@ -40,7 +40,7 @@
             ?>
         </div>
      <?php   
-        if( $grid->bind($this->selecter->get_users( $c_pagination['per_page'], $c_pagination['cur_page'], $role ), 'user_id') )
+        if( $grid->bind($this->selecter->get_users( $c_pagination['per_page'], $c_pagination['cur_page'], $role, true ), 'user_id') )
 	{
             if( $this->userdata->is_admin() )
             {
@@ -73,8 +73,9 @@
                 $grid->add_mode = "external";
                 $grid->edit_mode = "external";
             }
-            $grid->display();
+            
         }
+        $grid->display();
         echo pagination($pagination);			
 	?>
 </div>
