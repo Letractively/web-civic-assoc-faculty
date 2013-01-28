@@ -78,15 +78,16 @@
 					case 'payments':
 					case 'io':
 					case 'correspondence':
-						if( $this->userdata->is_admin() ) 
+						if( $this->userdata->is_admin() )
+						echo anchor('payments', 'Platby', $sender == 'payments' ? array('class' => 'selected') : null) . '|' ;
 						{
 							echo anchor('degrees', 'Tituly', $sender == 'degrees' ? array('class' => 'selected') : null) . '|';
 							echo anchor('studies', 'Študijné programy', $sender == 'studies' ? array('class' => 'selected') : null) . '|';
 							echo anchor('email_types', 'E-mail typy', $sender == 'email_types' ? array('class' => 'selected') : null) . '|';
 							echo anchor('io/export', 'Export', $sender == 'io' ? array('class' => 'selected') : null) . '|';
-							echo anchor('correspondence', 'Korešpondencia', $sender == 'correspondence' ? array('class' => 'selected') : null) . '|';
+							echo anchor('correspondence', 'Korešpondencia', $sender == 'correspondence' ? array('class' => 'selected') : null);
 						}
-                                                echo anchor('payments', 'Platby', $sender == 'payments' ? array('class' => 'selected') : null);
+                                                
 						break;
 				}
 			?>

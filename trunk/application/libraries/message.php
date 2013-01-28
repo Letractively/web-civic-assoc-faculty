@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Message
 {
@@ -134,7 +134,7 @@ class Message
         public function generate_message( $type, $text, $suffix, $title, $langs )
         {
             $this->set_class($suffix);
-			echo '<div id=content_wrapper>';
+			echo '<br /> <div id=content_wrapper_small>';
 				echo '<div id="confirm_message">';
 				$this->load_lang($langs);
 				

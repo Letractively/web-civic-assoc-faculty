@@ -6,7 +6,7 @@
                 
 		$counter = 0;
 		echo '<div class="auth_view_column">';
-			echo '<span class="auth_view_title"> Udalosti </span>';
+			echo '<span class="auth_view_title">'; echo anchor('events', 'Udalosti'); echo '</span>';
 			foreach ($this->selecter->get_events($totalRows) as $event) 
 			{
 				if($counter < 3)
@@ -28,7 +28,7 @@
 		
 		$counter = 0;
 		echo '<div class="auth_view_column">';
-			echo '<span class="auth_view_title"> Články </span>';
+			echo '<span class="auth_view_title">'; echo anchor('posts', 'Články'); echo '</span>';
                         $numberOfRows = $this->selecter->rows('posts', 'post_id');
                         
                         if($this->userdata->is_admin())

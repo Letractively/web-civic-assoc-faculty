@@ -38,7 +38,7 @@
     ?>
 </div>
 
-<div id="content_wrapper">
+<div id="content_wrapper_small">
     <?php if($this->selecter->project_state($project_id) == 1): ?>
 	<?= form_open("projects/edit/".$project_id) ?>
 
@@ -87,8 +87,8 @@
 
 		<div class="inputitem">
 			<p>
-                            <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_edit_project')) ?>				
-                            <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_close'), $this->lang->line('button_close_project')) ?>
+                            <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_sub_edit'), $this->lang->line('button_edit_project')) ?>				
+                            <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_sub_close'), $this->lang->line('button_close_project')) ?>
                         </p>
 		</div>
 	<?= form_close(); ?>

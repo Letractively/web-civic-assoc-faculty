@@ -8,7 +8,7 @@
 	}
 </script>
 
-<div id="content_wrapper">  
+<div id="content_wrapper_medium">  
         <?php if( $this->userdata->is_admin() ): ?>
 	<p class="project_label">
 		<span class="link_text"> <?= anchor('project_categories', $this->lang->line('anchor_project_categories')); ?> </span>
@@ -73,7 +73,8 @@
 
 			$grid->display();
 		}
-                
+		echo '<br />';
+             
                
                 if( $this->userdata->is_admin() )
                 {

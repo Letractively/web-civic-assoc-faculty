@@ -3,7 +3,8 @@
         $pageContent = $this->selecter->get_page($page);
         //array_debug($pageContent);
         $row = 'page_'.$page;
-        echo parse_bbcode($pageContent->$row); 
+        echo parse_bbcode($pageContent->$row);
+		echo '<br /> <br />';
         
         if( $this->userdata->is_admin() )
         {
