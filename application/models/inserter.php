@@ -199,7 +199,44 @@ class Inserter extends MY_Model
     
     public function add_user($values)
     {
-
+        $this->db->query("  INSERT INTO users 
+                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone, user_active,
+                            user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
+                            VALUES
+                            ('".$values['name']."', '".$values['surname']."','".$values['role']."', '".$values['username']."',
+                             '".sha1($values['password'])."', '".$values['email']."', '".$values['phone']."',
+                             0, '".$values['study_program_id']."', '".$values['degree_id']."', 
+                             '".$values['place_of_birth']."', '".$values['postcode']."', '".$values['degree_year']."')
+                         ");
+        
+        $user_id = $this->db->insert_id();
+        if($values['hidden_payment'] == 1)
+        {
+            $this->db->query("  INSERT INTO payments
+                                (payment_vs, payment_total_sum, payment_user_id, payment_type)
+                                VALUES
+                                ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$user_id."', 1)
+                             ");
+            $payment_id = $this->db->insert_id();
+            $q = 'INSERT INTO fin_redistributes (fin_redistribute_payment_id, fin_redistribute_project_category_id, fin_redistribute_ratio) VALUES ';
+            $first = true;
+            foreach ($values['categories'] as $cat_id => $ratio)
+            {
+            	if (!$first) $q .= ', ';
+		$q .= "('".$payment_id."', '".$cat_id."', '".$ratio."')";
+		$first = false;
+            }
+            $q .= ';';
+		
+            return $this->db->query($q);
+        }
+        else
+        {
+            $this->db->query("UPDATE users
+                              SET user_exempted = 1
+                              WHERE user_id = '".$user_id."'");
+            return true;
+        }    
     }
 }   
     

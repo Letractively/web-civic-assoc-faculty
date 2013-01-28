@@ -191,11 +191,16 @@ class Updater extends MY_Model
     
     public function edit_user($user_id, $values)
     {
+          if($values['password'] != '')
+          {
+              $this->db->query("UPDATE users 
+                                SET user_password=sha1('".$values['password']."')
+                                WHERE user_id = '".$user_id."'");
+          }    
           $this->db->query("UPDATE users 
                             SET user_username='".$values['username']."',
                                 user_name='".$values['name']."',
                                 user_surname='".$values['surname']."',
-                                user_password='".$values['password']."',
                                 user_email='".$values['email']."',
                                 user_phone='".$values['phone']."',
                                 user_study_program_id='".$values['study_program_id']."',
