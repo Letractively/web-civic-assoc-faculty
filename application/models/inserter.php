@@ -1,4 +1,4 @@
-﻿add<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Inserter extends MY_Model
 {
@@ -87,14 +87,10 @@ class Inserter extends MY_Model
     
     public function add_post( $values )
     {
-        if( !isset($values['foo']) && $values['post_published'] == '1' )
-            $checked = '1';
-        else
-            $checked = '0';
         $this->db->query("INSERT INTO posts
                            ( post_priority, post_title, post_author_id, post_content, post_published )
                            VALUES ( '".$values['priority']."', '".$values['title']."', 
-                                    '".$this->session->userdata('user')."', '".$values['content']."', '".$checked."'
+                                    '".$this->session->userdata('user')."', '".$values['content']."', '".$values['post_published']."'
                                    )
                          ");
         if( $this->db->affected_rows() > 0 )
