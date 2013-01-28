@@ -2,26 +2,118 @@
 
 class MY_Model extends CI_Model
 {
-     /*
-         * Constructor
+        /*
+         * __construct()
          * 
-         * @access      private
+         * Konštruktor triedy
+         * 
          * @return      void
          */
         public function __construct()
         {
             parent::__construct();
         }
+        
+        /*
+         * EventRowsInCategory
+         * 
+         * Funkcia vrati pocet eventov v kategorii alebo celkovy pocet eventov
+         * 
+         * @param table tabulka event_categories
+         * @param id stlpec nad ktorym vykonavam sucet
+         * @param event_cat id-kategorie v ktorej chcem zistit pocet eventov
+         * 
+         */
+        public function EventRowsInCategory($table, $id, $event_cat)
+        {
+            if ($event_cat == 0)
+                return $this->rows($table, $id);
+            else
+            {
+                $q = $this->db->query(" SELECT $id
+                                        FROM $table
+                                        WHERE event_event_category_id = $event_cat
+                                      ");
+                return $q->num_rows();
+            }
+        }
 
+        /*
+         * exists
+         * 
+         * Funkcia kontroluje na zaklade vstupnych udajov ci sa dany zaznam nachadza
+         * v databaze ak ano vrati TRUE.
+         * 
+         * @param table tabulka v ktorej sa kontroluje existencia
+         * @param column stlpec nad ktorym sa kontrulje existencia
+         * @param id ID-cko zaznamu ktoreho existenciu chcem zistit
+         * 
+         */
+        public function exists($table, $column, $id)
+        {
+            $q = $this->db->query("  SELECT $column
+                                FROM $table
+                                WHERE $column = $id
+                                ");
+            if ($q->num_rows() > 0)
+                return TRUE;
+            else
+                return FALSE;
+        }
+        
+        /*
+         * id
+         * 
+         * Funkcia zisti vsetky udaje o danom zaznamu na zaklade vstupnych
+         * parametrov
+         * 
+         * @param id ciselna hodnota zaznamu
+         * @param table tabulka z ktorej zistujem udaje
+         * @param column stlpec nad ktorym zistujem hodnotu
+         * 
+         */
+        public function id($id, $table, $column)
+        {
+            $q = $this->db->query(" SELECT * 
+                                    FROM $table
+                                    WHERE $column = $id
+                                  ");
+            return $q->row();
+        }
+        
+        /*
+         * is_activated
+         * 
+         * Funkcia zisti ci pouzivatel ma aktivny ucet alebo nie
+         * 
+         * @param param Array vstupnych udajov [username] a [password]
+         * 
+         */
+        public function is_activated( $param )
+        {
+            $answer = FALSE;
+            $q = $this->db->query(" SELECT user_id
+                                    FROM users
+                                    WHERE user_username = '".$param['username']."' AND
+                                          user_password = '".sha1($param['password'])."' AND
+                                          user_active   = 0
+                                  ");   
+            if($q->num_rows > 0)
+                $answer = FALSE;
+            else
+                $answer = TRUE;
+            return $answer;
+        }
+        
         /*
          * logger
          * 
          * Funkcia vykonava logovanie udalosti, ktore sa stali s databazou do jednej
          * samostatnej tabulky v databaze
          * 
-         * @access      public
-         * @param       array
+         * @param       params Pole údajov ktore sa vlozia do tabulky databse_logs
          * @return      void
+         * 
          */
         protected function logger($params)
         {
@@ -40,34 +132,79 @@ class MY_Model extends CI_Model
             return TRUE;
         }
         
-        public function exists($table, $column, $id)
+        /*
+         * UsersInDatabase
+         * 
+         * Funkcia vrati pocet userov danej pouzivatelskej roli
+         * 
+         * @param table Vstupnym udajom je users
+         * @param id lubovolny stlpec z tabulky users nad ktorym sa vykona sucet riadkov
+         * @param role ciselna hodnota pouzivatelskej roli ktorej pocet userov chcem vratit
+         * 
+         */
+        public function UsersInDatabase( $table, $id, $role )
         {
-            $q = $this->db->query("  SELECT $column
-                                FROM $table
-                                WHERE $column = $id
-                                ");
-            if ($q->num_rows() > 0)
-                return TRUE;
+            if ($role == 0)
+                return $this->rows($table, $id);
+            else if($role == ROLE_INACTIVE)
+            {
+                $q = $this->db->query(" SELECT $id
+                                        FROM $table
+                                        WHERE user_active = 0
+                                      ");
+                return $q->num_rows();
+            }
             else
-                return FALSE;
+            {
+                $q = $this->db->query(" SELECT $id
+                                        FROM $table
+                                        WHERE user_role = $role
+                                      ");
+                return $q->num_rows();
+            }
         }
         
-        public function is_activated( $param )
+        /*
+         * returnDate
+         * 
+         * Funkcia vrati casovy udaj na zaklade flagu ktory konkretne sa ma vratit
+         * 
+         * @param flag flag na zaklade ktoreho sa vrati urcity casovy udaj spatneho charakteru
+         * 
+         */
+        public function returnDate( $flag )
         {
-            $answer = FALSE;
-            $q = $this->db->query(" SELECT user_id
-                                    FROM users
-                                    WHERE user_username = '".$param['username']."' AND
-                                          user_password = '".sha1($param['password'])."' AND
-                                          user_active   = 0
-                                  ");   
-            if($q->num_rows > 0)
-                $answer = FALSE;
-            else
-                $answer = TRUE;
-            return $answer;
+            $date = '';
+            switch ($flag) 
+            {
+                case 1:
+                    $date = date("Y-m-d  H:i:s", strtotime("-1 week", strtotime(date("Y-m-d  H:i:s"))));
+                    break;
+                case 2:
+                    $date = date("Y-m-d  H:i:s", strtotime("-1 month", strtotime(date("Y-m-d  H:i:s"))));
+                    break;
+                case 3:
+                    $date = date("Y-m-d  H:i:s", strtotime("-3 month", strtotime(date("Y-m-d  H:i:s"))));
+                    break;
+                case 4:
+                    $date = date("Y-m-d  H:i:s", strtotime("-6 month", strtotime(date("Y-m-d  H:i:s"))));
+                    break;
+                case 5:
+                    $date = date("Y-m-d  H:i:s", strtotime("-1 year", strtotime(date("Y-m-d  H:i:s"))));
+                    break;
+            }
+            return $date;
         }
         
+        /*
+         * rows
+         * 
+         * Funkcia vrati pocet zaznamov v tabulke xyz
+         * 
+         * @param table Nazov tabulky
+         * @param id nazov stlpca nad ktorym sa ma vykonat sucet riadkov v tabulke
+         * 
+         */
         public function rows( $table, $id )
         {
             $q = $this->db->query(" SELECT $id
