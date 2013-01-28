@@ -7,7 +7,7 @@
     $time = time_withou_seconds(datetime($obj[0]->event_created, TRUE));
     
 ?>
-<div id="content_wrapper">
+<div id="content_wrapper_large">
 	<p class="event_category"> <?= $this->lang->line('label_event_category_id').': '; ?> <span class="link_text"> <?= anchor('events/'.$obj[0]->event_category_id, $obj[0]->event_category); ?> </span> </p>
 	<div class="event_title">
 		<?= $obj[0]->event_name ?>

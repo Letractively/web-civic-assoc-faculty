@@ -34,7 +34,7 @@
     <?php echo validation_errors();      
     //array_debug($programs) ?>
 </div>
-<div id="content_wrapper">
+<div id="content_wrapper_small">
 	<?= js_insert_bbcode('events/add', 'textarea'); ?>
 	<?= form_open("events/add", array('onload' => 'initCalendar()')) ?>
 		<div class="inputitem">

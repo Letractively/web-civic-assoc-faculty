@@ -3,7 +3,7 @@
     //array_debug($programs) ?>
 </div>
 
-<div id="content_wrapper">
+<div id="content_wrapper_small">
 	<?= form_open("payments/add") ?>
 	
             <?php
@@ -32,54 +32,61 @@
 		);
 		
 	?>
-			<span>Používateľ:</span>
-			<?php
-                            if( $this->userdata->is_admin() )
-                                echo gen_dropdown('user_id', 0, $userlist, 'id', 'name', 'dropdown','id="user_id" onchange="changeFilter(this);"'); 
-                            else
-                            {
-                                echo form_input(array('name' => 'user', 'value' => $userName,'disabled'=>'disabled')); 
-                                echo form_hidden('user_id', $userID);
-                            }
-                        ?>
-                        <span>Typ platby:</span>
-			<?php
-                            if( $this->userdata->is_admin() ) 
-                            {    
-                                echo gen_dropdown('payment_type', 1, $payment_types, 'id', 'value', 'dropdown','id="payment_type" onchange="changeFilter(this);"');
-                                echo '<span>'.$this->lang->line('label_total_sum').':</span>';
-                                    echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum'));
-                                echo '<span>€</span>';
-                            }
-                            else
-                            {
-                                $lp = $this->selecter->get_payments_lastpaid($userID);
-                                if( $lp->payment_paid_sum < $lp->payment_total_sum)
-                                    redirect(base_url ());
-                                else if( date("Y-m-d", time() - (365 * 86400)) <=  $lp->payment_paid_time )
-                                {
-                                    if( $lp->payment_paid_sum >= $lp->payment_total_sum )
-                                    {
-                                        echo form_input(array('name' => 'payment', 'value' => $this->lang->line('payment_type_voluntary'),'disabled'=>'disabled'));
-                                        echo form_hidden('payment_type', 2);
-                                        echo '<span>'.$this->lang->line('label_total_sum').':</span>';
-                                        echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum',1));
-                                        echo '<span>€</span>';
-                                    }
-                                }
-                                else if( date("Y-m-d", time() - (365 * 86400)) >  $lp->payment_paid_time )
-                                {
-                                    echo form_input(array('name' => 'payment', 'value' => $this->lang->line('payment_type_account'),'disabled'=>'disabled'));
-                                    echo form_hidden('payment_type', 1);
-                                    echo '<span>'.$this->lang->line('label_total_sum').':</span>';
-                                    echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum',5));
-                                    echo '<span>€</span>';
-                                }      
-                            }
-                        ?>
+			<div class="inputitem">	
+				<span class="label"> Používateľ: </span>
+				<?php
+								if( $this->userdata->is_admin() )
+									echo gen_dropdown('user_id', 0, $userlist, 'id', 'name', 'dropdown','id="user_id" onchange="changeFilter(this);"'); 
+								else
+								{
+									echo form_input(array('name' => 'user', 'value' => $userName,'disabled'=>'disabled')); 
+									echo form_hidden('user_id', $userID);
+								}
+				?>
+			</div>
 			
-			<span><?= $this->lang->line('label_vs'); ?>:</span>
-                        <?= form_input(array('name' => 'payment_vs', 'type' => 'text', 'class' => 'input_data_date'),  set_value('payment_vs')); ?>
+			<div class="inputitem">	
+				<span class="label"> Typ platby: </span>
+				<?php
+					if( $this->userdata->is_admin() ) 
+					{    
+						echo gen_dropdown('payment_type', 1, $payment_types, 'id', 'value', 'dropdown','id="payment_type" onchange="changeFilter(this);"');
+						echo '<div class="inputitem"> <span class="label">'.$this->lang->line('label_total_sum').':</span>';
+						echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum'));
+						echo '<span class="label"> €</span> </div>';
+					}
+					else
+					{
+						$lp = $this->selecter->get_payments_lastpaid($userID);
+						if( $lp->payment_paid_sum < $lp->payment_total_sum)
+							redirect(base_url ());
+						else if( date("Y-m-d", time() - (365 * 86400)) <=  $lp->payment_paid_time )
+						{
+							if( $lp->payment_paid_sum >= $lp->payment_total_sum )
+							{
+								echo form_input(array('name' => 'payment', 'value' => $this->lang->line('payment_type_voluntary'),'disabled'=>'disabled'));
+								echo form_hidden('payment_type', 2);
+								echo '<div class="inputitem"> <span class="label">'.$this->lang->line('label_total_sum').':</span>';
+								echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum',1));
+								echo '<span class="label"> €</span> </div>';
+							}
+						}
+						else if( date("Y-m-d", time() - (365 * 86400)) >  $lp->payment_paid_time )
+						{
+							echo form_input(array('name' => 'payment', 'value' => $this->lang->line('payment_type_account'),'disabled'=>'disabled'));
+							echo form_hidden('payment_type', 1);
+							echo '<div class="inputitem"> <span class="label">'.$this->lang->line('label_total_sum').':</span>';
+							echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum',5));
+							echo '<span class="label"> €</span> </div>';
+						}      
+					}
+				?>
+			</div>
+
+			<div class="inputitem">
+				<span class="label"> <?= $this->lang->line('label_vs'); ?>:</span>
+				<?= form_input(array('name' => 'payment_vs', 'type' => 'text', 'class' => 'input_data_date'),  set_value('payment_vs')); ?>
+			</div>
 		<?php
                    $obj = $this->selecter->get_project_categories();
 		   
@@ -97,7 +104,11 @@
 			}
 		   echo '</table>';
 		?>
-		<?= form_submit( array('type' => 'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('payment_add') ); ?>
+		
+		<div class="inputitem">
+			<br />		
+			<?= form_submit( array('type' => 'submit', 'name' => 'submit', 'class' => 'button_submit'), $this->lang->line('payment_add') ); ?>
+		</div>
 		
 	<?= form_close() ?>
 </div>

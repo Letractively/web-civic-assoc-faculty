@@ -3,7 +3,7 @@ $obj = $this->selecter->get_post_detail($post_id);
 //array_debug($obj);
 ?>
 
-<div id="content_wrapper">
+<div id="content_wrapper_large">
     <div class="post_label">
         <?= $obj->post_title ?>
     </div>

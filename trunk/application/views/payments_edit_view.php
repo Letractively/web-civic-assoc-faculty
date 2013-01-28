@@ -3,7 +3,7 @@
     //array_debug($programs) ?>
 </div>
 
-<div id="content_wrapper">
+<div id="content_wrapper_small">
 	<?= form_open("payments/add") ?>
 	
 	<?php
@@ -32,18 +32,26 @@
 		);
 		
 		?>
-			<span>Používateľ:</span>
+		<div class="inputitem">	
+			<span class="label"> Používateľ: </span>
 			<?= gen_dropdown('user_id', $payment_user_id, $userlist, 'id', 'name', 'dropdown','id="user_id" onchange="changeFilter(this);"'); ?>
-			
-			<span>Typ platby:</span>
+		</div>
+
+		<div class="inputitem">
+			<span class="label"> Typ platby: </span>
 			<?= gen_dropdown('payment_type', $payment_type, $payment_types, 'id', 'value', 'dropdown','id="payment_type" onchange="changeFilter(this);"'); ?>
-			
-			<span>Suma:</span>
+		</div>
+
+		<div class="inputitem">
+			<span class="label"> Suma: </span>
 			<input name="sum" type="text" value="<?=$payment_total_sum?>" class="input_data_date" />
 			<span>€</span>
-			
-			<span>VS:</span>
+		</div>
+		
+		<div class="inputitem">
+			<span class="label"> VS: </span>
 			<input name="vs" type="text" value="<?=$payment_vs?>" class="input_data_date" />
+		</div>
 		<?php
 		
 		   $obj = $this->selecter->get_project_categories();
@@ -62,7 +70,10 @@
 				}
 		   echo '</table>';
 		?>
+		<div class="inputitem">
+			<br />
 			<input type="submit" name="submit" value="Uprav platbu" class="button_submit" />
+		</div>
 		<?php
 	?>
 		

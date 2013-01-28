@@ -37,7 +37,7 @@
     ?>
 </div>
 <?= js_insert_bbcode('events/edit', 'textarea'); ?>
-<div id="content_wrapper">
+<div id="content_wrapper_large">
 	<?= form_open("events/edit/".$event_id) ?>
 		<div class="inputitem">
 			<p class="label"> <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label> </p>
@@ -76,7 +76,7 @@
 					}
 				?>
 			</div>
-			<?= form_textarea(array('name' => 'about', 'id' => 'textarea', 'class' => 'textarea_data'.$error['about']), set_value('about', $field->event_about)) ?>
+			<?= form_textarea(array('name' => 'about', 'id' => 'textarea', 'class' => 'textarea_data3'.$error['about']), set_value('about', $field->event_about)) ?>
 		</div>
 
 		

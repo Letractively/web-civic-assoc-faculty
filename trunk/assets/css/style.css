@@ -188,7 +188,7 @@ body {
 #login_table .input {
 	border: 2px solid black;
 	border-radius: 55px;
-	height: 20px;
+	height: 26px;
 	width: 150px;
 	padding: 0px 10px;
 }
@@ -209,7 +209,7 @@ body {
 #login_table #registration {
 	font-size: 15px;
 	font-weight: bold;
-	padding-left: 55px;
+	padding-left: 45px;
 }
 
 #login_table #registration a {
@@ -404,7 +404,7 @@ body {
 }
 
 #content_wrapper_small {
-	width: 600px;
+	width: 650px;
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 55px;
@@ -416,7 +416,7 @@ body {
 }
 
 #content_wrapper_medium {
-	width: 670px;
+	width: 700px;
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 55px;
@@ -475,8 +475,8 @@ label.error {
 }
 
 .input_data {
-	width: 250px;
-	height: 20px;
+	width: 275px;
+	height: 26px;
 	border-radius: 5px;
 	padding: 0px 10px;
 	font-size: 15px;
@@ -488,7 +488,7 @@ label.error {
 
 .dropdown {
 	width: 275px;
-	height: 25px;
+	height: 26spx;
 	font-size: 15px;
 	border-top: solid 3px #2e2e2e;
 	border-left: solid 3px #2e2e2e;
@@ -502,7 +502,7 @@ label.error {
 
 .dropdown_priority {
 	width: 190px;
-	height: 25px;
+	height: 26px;
 	font-size: 15px;
 	border-top: solid 3px #2e2e2e;
 	border-left: solid 3px #2e2e2e;
@@ -516,7 +516,7 @@ label.error {
 
 .input_data_date {
 	width: 100px;
-	height: 20px;
+	height: 26px;
 	border-radius: 5px;
 	padding: 0px 10px;
 	font-size: 15px;
@@ -528,7 +528,7 @@ label.error {
 
 .input_data_time {
 	width: 50px;
-	height: 20px;
+	height: 26px;
 	border-radius: 5px;
 	padding: 0px 10px;
 	font-size: 15px;
@@ -540,7 +540,7 @@ label.error {
 
 .input_data_date_time {
 	width: 165px;
-	height: 20px;
+	height: 26px;
 	border-radius: 5px;
 	padding: 0px 10px;
 	font-size: 15px;
@@ -552,7 +552,7 @@ label.error {
 
 .input_data_reg {
 	border: solid 1px black;
-	height: 20px;
+	height: 26px;
 	border-radius: 7px;
 	padding: 0px 10px;
 	text-align: center;
@@ -590,10 +590,38 @@ label.error {
 	border-right: solid 2px gray;
 }
 
+.textarea_data3 {
+	min-width: 770px;
+	max-width: 770px;
+	min-height: 500px;
+	max-height: 500px;
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-size: 15px;
+	border-left: solid 3px #2e2e2e;
+	border-top: solid 3px #2e2e2e;
+	border-bottom: solid 2px gray;
+	border-right: solid 2px gray;
+}
+
+.textarea_data4 {
+	min-width: 665px;
+	max-width: 665px;
+	min-height: 350px;
+	max-height: 350px;
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-size: 15px;
+	border-left: solid 3px #2e2e2e;
+	border-top: solid 3px #2e2e2e;
+	border-bottom: solid 2px gray;
+	border-right: solid 2px gray;
+}
+
 .separator {
-	width: 570px;
+	width: 750px;
 	border-top: 2px dashed black;
-	margin: 0px 15px 15px 5px;
+	margin: 5px auto 20px auto;
 }
 
 /** Tlacidla **/
@@ -720,30 +748,16 @@ label.error {
 	text-decoration: underline;
 }
 
-.grid_link_text a{
-	text-decoration: none;
-	color: black;
-}
-
 .post_title a {
 	text-decoration: none;
 	font-weight: bolder;
 	color: blue;
 }
 
-.grid_link_text a:hover, .post_title a:hover {
+.post_title a:hover {
 	text-decoration: underline;
 	font-weight: bolder;
 	color: blue;
-}
-
-.grid_link_text li {
-	height: 20px;
-	list-style: none;
-}
-
-.grid_link_text ul {
-	margin-top: 0px;
 }
 
 .grid_label {
