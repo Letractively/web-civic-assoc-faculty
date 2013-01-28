@@ -1,4 +1,4 @@
-<div class="errors">
+﻿<div class="errors">
     <?php 
         echo validation_errors();  
         $field = $this->selecter->id($post_id,'posts','post_id');
