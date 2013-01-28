@@ -102,15 +102,11 @@ class Updater extends MY_Model
     
      public function edit_post($post_id, $values)
     {
-        if( !isset($values['foo']) && $values['post_published'] == '0' )
-            $checked = '1';
-        else
-            $checked = '0';
         $this->db->query("UPDATE posts
                           SET post_priority='".$values['priority']."',
                               post_title='".$values['title']."',
                               post_content='".$values['content']."',
-                              post_published='".$checked."'
+                              post_published='".$values['post_published']."'
                           WHERE post_id=$post_id
                               ");
         

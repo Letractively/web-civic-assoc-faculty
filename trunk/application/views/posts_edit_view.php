@@ -14,7 +14,7 @@
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
-			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value', 'dropdown_priority'); ?>
+			<?= gen_dropdown('priority', set_value('priority_id', $field->post_priority), $priorities, 'id', 'value', 'dropdown_priority'); ?>
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="content" class="<?= $error['content'] ?>"><?= $this->lang->line('label_content') ?></label> </p>
@@ -30,12 +30,12 @@
                 <div class="inputitem">
                         <p class="label"><label for="content" class="<?= $error['content'] ?>"><?=$this->lang->line('published')?></label> </p>
 			<?php
-                            if($field->post_published == 1)
+                           if($field->post_published == 1)
                             {
-                                echo form_checkbox(array('checked'=>'checked','value'=>'1','name' => 'post_published', 'class' => 'post_published', 'id' => 'post_published'));
+                                echo form_checkbox(array('checked'=>'checked','value'=>'1','name' => 'post_published', 'class' => 'post_published', 'id' => 'post_published','onchange'=>'zmenstav()'));
                             }
                             else
-                                echo form_checkbox(array('value'=>'0','name' => 'post_published', 'class' => 'post_published', 'id' => 'post_published'));
+                                echo form_checkbox(array('value'=>'0','name' => 'post_published', 'class' => 'post_published', 'id' => 'post_published','onchange'=>'zmenstav()'));
                         ?>
 		</div>
 		
