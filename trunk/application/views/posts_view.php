@@ -26,6 +26,16 @@
                             echo '<span class="post_last_update">'.$this->lang->line('last_update').':</span>';
                             echo '<span class="link_text">'; echo anchor('users/detail/'.$o->post_modifie_author_id, $o->modifier_name.' '.$o->modifier_surname).', '; echo '</span>';
                             echo datetime($o->post_modifie_date, FALSE).' '.time_withou_seconds(datetime($o->post_modifie_date, TRUE));
+                            if($this->userdata->is_admin())
+                            {
+                                echo '<br /><span class="link_text"><strong>';
+                                    echo $this->lang->line('published').': </strong>';
+                                    if($o->post_published == 1)
+                                        echo $this->lang->line('confirm_yes');
+                                    else
+                                        echo $this->lang->line('confirm_no');
+                                echo '</span>';
+                            }
                         echo '<br /> <br /> <p class="separator"></p> </div>';
                      }
                      else
@@ -34,6 +44,16 @@
                             echo '<span class="post_added_by">'.$this->lang->line('added_by').':</span>';
                             echo '<span class="link_text">'; echo anchor('users/detail/'.$o->post_author_id, $o->author_name.' '.$o->author_surname).', '; echo '</span>';
                             echo datetime($o->post_date, FALSE).' '.time_withou_seconds(datetime($o->post_date, TRUE));
+                            if($this->userdata->is_admin())
+                            {
+                                echo '<br /><span class="link_text"><strong>';
+                                    echo $this->lang->line('published').': </strong>';
+                                    if($o->post_published == 1)
+                                        echo $this->lang->line('confirm_yes');
+                                    else
+                                        echo $this->lang->line('confirm_no');
+                                echo '</span>';
+                            }
                         echo '<br /> <br /> <p class="separator"></p> </div>';
                      }
                  echo '</p>';

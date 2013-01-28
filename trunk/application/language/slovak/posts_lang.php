@@ -11,7 +11,7 @@ $lang['created_by']                         =   'Vytvoril';
 $lang['user_name']                          =   'Meno';
 $lang['user_surname']                       =   'Priezvisko';
 $lang['label_post_date']                    =   'Kedy';
-$lang['published']                          =   'Zverejnený';
+$lang['published']                          =   'Zverejnené';
 
 $lang['button_add_post']                    =   'Vytvoriť';
 $lang['button_edit_post']                   =   'Uprav';
