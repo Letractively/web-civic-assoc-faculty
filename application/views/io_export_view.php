@@ -11,7 +11,7 @@
 	);
 ?>
 
-<div id="content_wrapper">
+<div id="content_wrapper_small">
 	<?= form_open("io/export") ?>
 		<div class="inputitem">
 			<p class="label"> <label for="table"><?= $this->lang->line('label_table') ?></label> </p>

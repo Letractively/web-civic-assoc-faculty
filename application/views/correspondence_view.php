@@ -191,7 +191,7 @@
 <div class="errors">
     <?php echo validation_errors(); ?>
 </div>
-<div id="content_wrapper">
+<div id="content_wrapper_medium">
 	<?= form_open("correspondence") ?>
                 <div class="inputitem">
 			 <p class="label"> <label for="correspondence_subject" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_correspondence_subject') ?></label> </p>
@@ -210,7 +210,7 @@
     
 		<div class="inputitem">
 			<p class="label"> <label for="correspondence_content" class="<?= $error['correspondence_content'] ?>"><?= $this->lang->line('label_correspondence_content') ?></label> </p>
-			<?= form_textarea(array('name' => 'correspondence_content', 'id' => 'textarea', 'class' => 'textarea_data'.$error['correspondence_content']), set_value('correspondence_content')) ?>
+			<?= form_textarea(array('name' => 'correspondence_content', 'id' => 'textarea', 'class' => 'textarea_data4'.$error['correspondence_content']), set_value('correspondence_content')) ?>
 		</div>
 
 		<div class="inputitem">

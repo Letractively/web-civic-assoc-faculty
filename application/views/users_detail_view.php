@@ -2,7 +2,7 @@
 $obj = $this->selecter->get_user_detail($user_id);
 //array_debug($obj);
 ?>
-<div id="content_wrapper">
+<div id="content_wrapper_small">
     <?php
     if ($this->userdata->is_admin()) {
         echo '<p class="project_label">';

@@ -1,4 +1,4 @@
-﻿<div id="content_wrapper">
+﻿<div id="content_wrapper_small">
 	<?php
 		$obj = $this->selecter->get_user_detail($user_id);
                 $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
@@ -89,7 +89,7 @@
                         <p class="label">
                             <label for="degree_year" class="<?= $error['degree_year']; ?>"><?= $this->lang->line('label_degree_year'); ?></label>
                         </p>
-                        <?= form_dropdown('degree_year', $years, set_value('degree_year_id', $obj[0]->user_degree_year)); ?>
+                        <?= form_dropdown('degree_year', $years, set_value('degree_year_id', $obj[0]->user_degree_year), 'dropdown'); ?>
                     </div>
                     
                     <?php 
@@ -100,14 +100,11 @@
                                 echo form_dropdown('role', $this->userdata->roles(false), set_value('role', $obj[0]->user_role));
                             echo '</div>';
                         }
-                    ?>
+                    ?> <br />
                     
                     <div class="inputitem">
-                        <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_edit'), $this->lang->line('button_edit')); ?>
-                    </div>
-                    
-                    <div class="inputitem">	
-			<p class="button_back"> <?php echo anchor('users/', $this->lang->line('to_users')); ?> </p>
+                        <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_sub_edit'), $this->lang->line('button_edit')); ?>	
+						<span class="button_back"> <?php echo anchor('users/', $this->lang->line('to_users')); ?> </span>
                     </div>
                 <?= form_close(); ?>
    

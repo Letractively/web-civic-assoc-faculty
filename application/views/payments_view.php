@@ -44,12 +44,15 @@
 		}
 	?>
 
-    <div class="grid_link_text">
-        <span> Zoradit podla: </span>
+    <div class="inputitem">
+        <span class="label"> Zoradit podla: </span>
 		<?= gen_dropdown('payment_filter', $payment_filters[$flag]['id'], $payment_filters, 'id', 'value', 'dropdown','id="payment_filter" onchange="changeFilter(this);"'); ?>
-		<span>Platby používateľa: </span>
+	</div>
+	
+	<div class="inputitem">
+		<span class="label"> Platby používateľa: </span>
 		<?= gen_dropdown('user_filter', $pay_id, $userlist, 'id', 'name', 'dropdown','id="user_filter" onchange="changeFilter(this);"'); ?>
-    </div>
+    </div> <br />
  
     <?php
         $grid = new Grid();
@@ -107,9 +110,7 @@
 				
             //$grid->display();
         }
-        echo '<div id="grid_wrapper">';
 		$grid->display();
-	echo '</div>';
 	echo pagination($pagination);
     ?>
 </div>

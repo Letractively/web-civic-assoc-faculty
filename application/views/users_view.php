@@ -32,13 +32,13 @@
                 array('id' => 'users/admins', 'value' => $this->lang->line('admin'))               
             );  
      ?>
-        <div class="grid_link_text">
+        <div class="inputitem">
             <span class="grid_label"> Zobraziť: </span>
             <?php if($flag == 2 && !$this->userdata->is_admin())
                     $flag = 0;
                   echo gen_dropdown('user_filter', $user_filters[$flag]['id'], $user_filters, 'id', 'value', 'dropdown','id="user_filter" onchange="changeFilter(this);"');
             ?>
-        </div>
+        </div> <br />
      <?php   
         if( $grid->bind($this->selecter->get_users( $c_pagination['per_page'], $c_pagination['cur_page'], $role, true ), 'user_id') )
 	{

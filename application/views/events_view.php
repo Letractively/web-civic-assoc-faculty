@@ -33,12 +33,12 @@
 		$event_cats[] = array('event_category_id' => 0, 'event_category_name' => $this->lang->line('events_all'));
 	?>
 	<div class="inputitem">
-		<p class="label"> Usporiadať: </p>
+		<span class="label"> Usporiadať: </span>
 		<?= gen_dropdown('event_sort', $event_sorters[$flag]['id'], $event_sorters, 'id', 'value', 'dropdown','id="event_sort" onchange="changeFilter(this);"'); ?>
 	</div>
 	
 	<div class="inputitem">
-		<p class="label"> Vybrať z kategórie: </p>
+		<span class="label"> Vybrať z kategórie: </span>
 		<?= gen_dropdown('event_category', $event_cat_id, $event_cats, 'event_category_id', 'event_category_name', 'dropdown', 'id="event_category" onchange="changeFilter(this);"'); ?>
 	</div>
 	
