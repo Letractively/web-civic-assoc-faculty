@@ -1,4 +1,4 @@
-<script type="text/javascript" charset="UTF-8">
+﻿<script type="text/javascript" charset="UTF-8">
 	var base_url = '<?=base_url()?>';
 
 	function changeFilter(sender)
@@ -16,7 +16,7 @@
 		if( $this->userdata->is_admin() )
 		{ ?>
 			<p class="project_label">
-			<span class="link_text"> <?= anchor('event_categories', $this->lang->line('to_event_categories')); ?> </span>
+				<span class="link_text"> <?= anchor('event_categories', $this->lang->line('to_event_categories')); ?> </span>
 			</p>
 		<?php
 		}
@@ -32,11 +32,18 @@
 		$event_cats = $this->selecter->get_event_categories();
 		$event_cats[] = array('event_category_id' => 0, 'event_category_name' => $this->lang->line('events_all'));
 	?>
-	<span> Usporiadať: </span>
+	<div class="inputitem">
+		<p class="label"> Usporiadať: </p>
 		<?= gen_dropdown('event_sort', $event_sorters[$flag]['id'], $event_sorters, 'id', 'value', 'dropdown','id="event_sort" onchange="changeFilter(this);"'); ?>
-	<span> Vybrať z kategórie: </span>
+	</div>
+	
+	<div class="inputitem">
+		<p class="label"> Vybrať z kategórie: </p>
 		<?= gen_dropdown('event_category', $event_cat_id, $event_cats, 'event_category_id', 'event_category_name', 'dropdown', 'id="event_category" onchange="changeFilter(this);"'); ?>
-		
+	</div>
+	
+	<br />
+	
 	<?php
 		$event_list = null;
 		

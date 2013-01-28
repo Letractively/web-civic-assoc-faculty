@@ -3,7 +3,7 @@
     
 ?>
 
-<div id="content_wrapper">
+<div id="content_wrapper_medium">
 	<div class="project_name">
 		<span class="project_label"> Projekt: </span> <?= $obj[0]->project_name ?>
 	</div>

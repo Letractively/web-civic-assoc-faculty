@@ -35,7 +35,7 @@
     <?php echo validation_errors(); ?>
 </div>
 
-<div id="content_wrapper">
+<div id="content_wrapper_small">
 	<?= form_open("projects/add") ?>
 
 		<div class="inputitem">
@@ -45,7 +45,7 @@
 
 		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
-			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value'); ?>
+			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value', 'dropdown_priority'); ?>
 		</div>
 
 		<div class="inputitem">

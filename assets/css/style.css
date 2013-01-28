@@ -9,6 +9,11 @@
 
 /*************** GRID CSS **************/
 
+#grid_form {
+	margin-left: auto;
+	margin-right: auto;	
+}
+
 root { 
     display: block;
 }
@@ -137,7 +142,7 @@ body {
 	border-width: 4px;
 	border-style: solid;
 	border-bottom: none;
-	margin: 25px auto 0px auto;
+	margin: 0px auto 0px auto;
 	border-top-right-radius: 50px;
 	background-color: white;
 	padding: 0;
@@ -402,7 +407,7 @@ body {
 	width: 600px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 45px;
+	margin-bottom: 55px;
 	margin-top: 25px;
 	padding: 15px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
@@ -414,7 +419,7 @@ body {
 	width: 670px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 45px;
+	margin-bottom: 55px;
 	margin-top: 25px;
 	padding: 15px 30px 15px 30px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
@@ -426,7 +431,7 @@ body {
 	width: 800px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 45px;
+	margin-bottom: 55px;
 	margin-top: 25px;
 	padding: 15px 30px 15px 30px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
@@ -435,11 +440,12 @@ body {
 }
 
 #grid_wrapper {
+	width: auto;
 	min-width: 150px;
 	max-width: 850px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 45px;
+	margin-bottom: 55px;
 	margin-top: 25px;
 	padding: 25px 10px 25px 10px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
@@ -601,7 +607,8 @@ label.error {
 	border: 2px solid black;
 	font-size: 18px;
 	background-color: silver;
-	margin-bottom: 15px;	
+	margin-bottom: 15px;
+	font-weight: bold;	
 }
 
 .button_submit:hover {
@@ -670,6 +677,22 @@ label.error {
    background: -moz-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Firefox 3.6+ */
    background: -ms-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* IE 10 */
    background: -o-linear-gradient(left, #fecc78, #fecc78, #880d0d); /* Opera 11.10+ */		
+}
+
+.button_sub_edit, .button_sub_close {
+	min-width: 120px;
+	max-width: 225px;
+	height: 26px;
+	display: inline-block;
+	border: 2px solid black;
+	background-color: silver;
+	text-align: center;
+	border-radius: 10px;
+	margin: 5px 5px;
+	padding: 0px 10px;
+	font-weight: bold;
+	font-size: 16px;
+	font-family: "Arial";	
 }
 
 /** Odkazy **/
@@ -762,7 +785,7 @@ label.error {
 	padding: 2px 0px;
 }
 
-.link_button a:hover {
+.link_button a:hover, .button_sub_edit:hover, .button_sub_close:hover {
 	background-color: #fecc78;
 	background-image: url(images/linear_bg_1.png);
 	background-repeat: repeat-y;
@@ -944,10 +967,15 @@ User detail view ******/
 	vertical-align: top;
 }
 
-.auth_view_title {
+.auth_view_title a{
 	color: #880d0d;
 	font-weight: bolder;
 	font-size: 20px;
+	text-decoration: none;
+}
+
+.auth_view_title a:hover {
+	text-decoration: underline;
 }
 
 .post, .event {
@@ -956,14 +984,6 @@ User detail view ******/
 	height: 80px;
 	overflow: hidden;
 	margin-top: 15px;
-}
-
-.separation {
-	border-bottom: dashed 1px black;
-	width: 250px;
-	margin-right: auto;
-	margin-left: auto;
-	padding-bottom: 12px;
 }
 
 .auth_view_link a {
