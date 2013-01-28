@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['label_event_category_id']        = 'Kategória';
 $lang['label_priority']                 = 'Priorita';

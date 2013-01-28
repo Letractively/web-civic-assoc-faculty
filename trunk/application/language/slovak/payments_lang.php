@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['label_vs']                   =   'Variabilný symbol';
 $lang['label_user_id']              =   'používateľ';

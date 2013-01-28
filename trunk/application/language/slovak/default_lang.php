@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /***USER ROLES***/
 $lang['admin']                          =   'Administrátor';

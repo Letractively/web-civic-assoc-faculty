@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['title']          = 'Kategórie udalostí';
 $lang['label_name']     = 'Názov';

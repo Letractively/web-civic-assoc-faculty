@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['title']                      = 'Štúdijné programy';
 $lang['label_name']                 = 'Názov';

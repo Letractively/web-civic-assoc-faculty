@@ -1,4 +1,4 @@
-<div id="content_wrapper_large">
+﻿<div id="content_wrapper_large">
     <?php 
         $pageContent = $this->selecter->get_page($page);
         //array_debug($pageContent);

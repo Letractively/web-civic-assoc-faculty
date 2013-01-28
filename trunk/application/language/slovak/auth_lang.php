@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['title']                      =   'Domovská stránka';
 

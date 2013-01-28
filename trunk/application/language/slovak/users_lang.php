@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $lang['title_add_user']             =   'Pridaj používateľa';
 
 $lang['title_users']                =   'Pridávanie členov';
