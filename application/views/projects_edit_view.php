@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
+﻿<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
 <link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css"></link>
 <script src="../../../assets/js/calendar/dhtmlxcalendar.js"></script>
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/js/calendar/dhtmlxcalendar.css"></link>
