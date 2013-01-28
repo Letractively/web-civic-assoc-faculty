@@ -12,5 +12,7 @@ $lang['button_correspondence']          = 'Odoslať';
 $lang['button_filter_add']              = 'Pridaj';
 
 $lang['correspondence_review']          = 'Zobraz userov';
+
+$lang['no_result']                      = 'Neboli nájdené žiadne výsledky pre daný filter';
 /* End of file correspondence_lang.php */
 /* Location: ./application/language/slovak/correspondence_lang.php */

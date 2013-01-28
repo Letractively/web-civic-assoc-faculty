@@ -66,7 +66,14 @@
                 $payments = $this->selecter->get_payments_nopaid($c_pagination['per_page'], $c_pagination['cur_page'], $pay_id, true);
                 break;
         }
-	if( $grid->bind(updatePaymentsData($payments), 'payment_id') )
+        
+        $paymentsData = array();
+        if($payments->num_rows == 0)
+            $paymentsData = $payments;
+        else
+            $paymentsData = updatePaymentsData($payments);
+        
+        if( $grid->bind($paymentsData, 'payment_id') )
         {
             $grid->header('payment_id')->editable = false;
             $grid->header('payment_id')->visible = false;
@@ -88,13 +95,21 @@
             $grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
 				
             $grid->add_url = "payments/add";
-            $grid->edit_url = "payments/edit";
+            
+            if($flag != 1)
+            {
+                $grid->edit_url = "payments/edit";
+                $grid->edit_mode = "external";
+            }
             $grid->remove_url = "payments/delete";
             $grid->add_mode = "external";
-            $grid->edit_mode = "external";
+            
 				
-            $grid->display();
+            //$grid->display();
         }
+        echo '<div id="grid_wrapper">';
+		$grid->display();
+	echo '</div>';
 	echo pagination($pagination);
     ?>
 </div>
