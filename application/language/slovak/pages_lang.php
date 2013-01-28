@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['title_editor']       =   'Editor';
 $lang['title_rules']        =   'Stanovy';

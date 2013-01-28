@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['add_user_system']       =   'Užívateľ sa registroval do združenia';
 

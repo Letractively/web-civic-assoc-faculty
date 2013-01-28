@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $lang['caption_all']          = 'Všetky';
 
 $lang['anchor_project_categories']          = 'Kategórie projektov';

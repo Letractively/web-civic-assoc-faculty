@@ -1,4 +1,4 @@
-add<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+﻿add<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Inserter extends MY_Model
 {

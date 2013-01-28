@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['required']			= "Pole %s je potrebné vyplniť.";
 $lang['isset']				= "The %s field must have a value.";

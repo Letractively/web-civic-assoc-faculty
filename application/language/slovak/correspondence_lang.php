@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['title']                          = 'Hromadná korešpondencia';
 $lang['label_correspondence_sender']    = 'Email odosielateľa';

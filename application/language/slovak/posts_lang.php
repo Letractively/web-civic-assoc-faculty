@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['label_subject']                      =   'Nadpis';
 $lang['label_content']                      =   'Obsah príspevku';

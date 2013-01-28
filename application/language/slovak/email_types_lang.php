@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $lang['title']          = 'Typy emailov';
 $lang['label_name']     = 'Názov';
