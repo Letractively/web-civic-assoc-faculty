@@ -1,4 +1,4 @@
-﻿<div id="content_wrapper">
+<div id="content_wrapper">
 	<?php
             if($this->userdata->is_admin())
                 $obj = $this->selecter->get_posts($c_pagination['per_page'], $c_pagination['cur_page']);

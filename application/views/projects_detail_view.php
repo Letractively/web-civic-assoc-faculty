@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     $obj = $this->selecter->get_project_detail($project_id);
     
 ?>

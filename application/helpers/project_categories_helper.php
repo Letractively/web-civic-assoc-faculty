@@ -1,5 +1,14 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+ * updateProjCatDetailData
+ * 
+ * Funkcia premapuje stlpec project_active v gride s projektami na textovu podobu
+ * 0 zmeni na uzavrety projekt, a 1 zmeni na prebiehajuci projekt
+ * 
+ * @param projects Array of objects projektov
+ * 
+ */
 function updateProjCatDetailData($projects)
 {	
 	$CI =& get_instance();

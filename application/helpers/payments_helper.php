@@ -1,5 +1,13 @@
-﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+ * updatePaymentsData
+ * 
+ * Funkcia doplni stlpec 'stav' do gridu kde sa nachadzaju payments
+ * 
+ * @param payments Array of objects s paymentmi
+ * 
+ */
 function updatePaymentsData($payments)
 {	
 	$CI =& get_instance();

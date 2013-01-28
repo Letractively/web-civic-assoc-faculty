@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     $obj = $this->selecter->get_event_detail($event_id);
     
     //array_debug($obj);

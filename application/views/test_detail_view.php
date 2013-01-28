@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 echo 'detail';
 	$this->load->model('selecter');
 	
