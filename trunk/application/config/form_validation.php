@@ -421,12 +421,7 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean'
             )
     ),
-    'users/edit'                   => array(
-        array(
-            'field'     => 'username',
-            'label'     => 'lang:label_username',
-            'rules'     => 'trim|required|xss_clean'
-        ),
+    'users/add'                                  => array(
         array(
             'field'     => 'name',
             'label'     => 'lang:label_name',
@@ -438,19 +433,24 @@ $config = array(
             'rules'     => 'trim|required|xss_clean'
         ),
         array(
+            'field'     => 'username',
+            'label'     => 'lang:label_username',
+            'rules'     => 'trim|required|xss_clean'
+        ),
+        array(
             'field'     => 'password',
             'label'     => 'lang:label_password',
-            'rules'     => 'trim|xss_clean|min_length[6]'
+            'rules'     => 'trim|required|xss_clean|min_length[6]'
         ),
         array(
             'field'     => 'password_again',
             'label'     => 'lang:label_password_again',
-            'rules'     => 'trim|xss_clean|matches[password]'
+            'rules'     => 'trim|required|xss_clean|min_length[6]|matches[password]'
         ),
         array(
             'field'     => 'email',
             'label'     => 'lang:label_email',
-            'rules'     => 'trim|required|xss_clean|valid_email'
+            'rules'     => 'trim|required|xss_clean|is_unique[users.user_email]|valid_email'
         ),
         array(
             'field'     => 'phone',
@@ -471,6 +471,58 @@ $config = array(
             'field'     => 'degree_year',
             'label'     => 'lang:label_degree',
             'rules'     => 'trim|required|xss_clean|numeric'
+        )
+    ),
+    'users/edit'                                => array(
+        array(
+            'field'         => 'username',
+            'label'         => 'lang:label_username',
+            'rules'         => 'trim|required|xss_clean'
+        ),
+        array(
+            'field'         => 'name',
+            'label'         => 'lang:label_name',
+            'rules'         => 'trim|required|xss_clean'
+        ),
+        array(
+            'field'         => 'surname',
+            'label'         => 'lang:label_surname',
+            'rules'         => 'trim|required|xss_clean'
+        ),
+        array(
+            'field'         => 'password',
+            'label'         => 'lang:label_password',
+            'rules'         => 'trim|xss_clean|min_length[6]'
+        ),
+        array(
+            'field'         => 'password_again',
+            'label'         => 'lang:label_password_again',
+            'rules'         => 'trim|xss_clean|matches[password]'
+        ),
+        array(
+            'field'         => 'email',
+            'label'         => 'lang:label_email',
+            'rules'         => 'trim|required|xss_clean|valid_email'
+        ),
+        array(
+            'field'         => 'phone',
+            'label'         => 'lang:label_phone',
+            'rules'         => 'trim|required|xss_clean|numeric'
+        ),
+        array(
+            'field'         => 'place_of_birth',
+            'label'         => 'lang:label_place_of_birth',
+            'rules'         => 'trim|required|xss_clean'
+        ),
+        array(
+            'field'         => 'postcode',
+            'label'         => 'lang:label_postcode',
+            'rules'         => 'trim|required|xss_clean|numeric'
+        ),
+        array(
+            'field'         => 'degree_year',
+            'label'         => 'lang:label_degree',
+            'rules'         => 'trim|required|xss_clean|numeric'
         )
     )
 );

@@ -1,4 +1,4 @@
-﻿<script type="text/javascript" charset="UTF-8">
+<script type="text/javascript" charset="UTF-8">
 
 	// datova struktura
 	function Pair(id,value)

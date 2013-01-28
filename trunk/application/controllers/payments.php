@@ -144,10 +144,10 @@ class Payments extends MY_Controller
                     $this->form_validation->set_rules('total_sum','lang:label_total_sum','trim|required|xss_clean|numeric|greater_or_equal_than[1]');
                 
                 $this->form_validation->set_rules('payment_vs','lang:label_vs','trim|required|xss_clean|integer|min_length[4]|max_length[10]');
-                /*foreach ($this->input->post('categories') as $cat_id => $ratio)
+                foreach ($this->input->post('categories') as $cat_id => $ratio)
                 {
-                    $this->form_validation->set_rules('categories[$cat_id]','lang:label_proj_category','required|xss_clean|numeric');
-                }*/
+                    $this->form_validation->set_rules('categories[$cat_id]','lang:label_proj_category','trim|xss_clean|numeric');
+                }
                 if( $this->form_validation->run() )
                 {
                     $this->load->model('inserter');

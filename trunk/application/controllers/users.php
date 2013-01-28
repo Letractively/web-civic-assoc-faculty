@@ -150,15 +150,33 @@ class Users extends MY_Controller
         if( !$this->userdata->is_admin() )
             redirect(base_url ());
        
+        if ( $this->input->post('submit') )
+        {
+             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
+             {
+                 if($this->input->post('hidden_payment') == 1)
+                 {
+                    $this->form_validation->set_rules('vs','lang:label_vs','trim|required|integer|min_length[4]|max_length[10]');
+                    $this->form_validation->set_rules('total_sum','lang:label_total_tum','trim|required|xss_clean|greater_or_equal_than[5]');
+                    foreach ($this->input->post('categories') as $cat_id => $ratio)
+                    {
+                        $this->form_validation->set_rules('categories[$cat_id]','lang:label_proj_category','trim|xss_clean|numeric');
+                    }
+                    if( $this->form_validation->run() )
+                    {
+                        $this->load->model('inserter');
+                        $this->inserter->add_user($this->input->post());
+                        redirect($this->router->class);
+                    }
+                 }
+             }
+        }
         $this->load->model('selecter');
         
-        parent::add( 'add_user' );
         $data = array(
-            'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
-                                                                                'email', 'phone', 'study_program_id', 'degree_id', 
-                                                                                'place_of_birth', 'postcode', 'degree_year',
-                                                                                'vs','total_sum', 'project_category_1', 'project_category_2','project_category_3','project_category_4',
-                                                                                'project_category_5', 'project_category_6','oz_member','ex_member','lecturer','admin','degrees_id','vs_box','role')
+                'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
+                                                                                'email', 'phone', 'place_of_birth', 'postcode', 'degree_year',
+                                                                                'vs','total_sum')
                                                                         ),       
                 'years'                 => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset),
                 'title' 		=> $this->lang->line('title_add_user') 
