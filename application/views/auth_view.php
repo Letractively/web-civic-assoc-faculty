@@ -1,13 +1,11 @@
-﻿<div id="content_wrapper_medium">
+﻿<div id="content_wrapper_large">
     <?php
     $this->load->helper('text');
     $totalRows = $this->selecter->EventRowsInCategory('events', 'event_id', 0);
 
     $counter = 0;
     echo '<div class="auth_view_column">';
-    echo '<span class="auth_view_title">';
-    echo anchor('events', 'Udalosti');
-    echo '</span>';
+    echo '<span class="auth_view_title"> Udalosti </span> <br />';
     foreach ($this->selecter->get_events($totalRows) as $event) {
         if ($counter < 3) {
             echo '<div class="post" id=' . $event->event_id . '>';
@@ -25,13 +23,14 @@
         else
             break;
     }
+	echo '<p class="other_links">';
+	echo anchor('events', 'Ďalšie udalosti...');
+	echo '</p>';
     echo '</div>';
 
     $counter = 0;
     echo '<div class="auth_view_column">';
-    echo '<span class="auth_view_title">';
-    echo anchor('posts', 'Články');
-    echo '</span>';
+    echo '<span class="auth_view_title"> Články </span> <br />';
     $numberOfRows = $this->selecter->rows('posts', 'post_id');
 
     if ($this->userdata->is_admin())
@@ -53,7 +52,12 @@
             echo '</div>';
             $counter++;
         }
+		
     }
+	
+	echo '<p class="other_links">';
+	echo anchor('posts', 'Ďalšie články...');
+	echo '</p>';
     echo '</div>';
     ?>
 </div>

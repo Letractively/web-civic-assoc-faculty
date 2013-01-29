@@ -11,7 +11,7 @@
 	}
 </script>
 
-<div id="grid_wrapper">
+<div id="content_wrapper_large">
 	<?php
 		if( $this->userdata->is_admin() )
 		{ ?>

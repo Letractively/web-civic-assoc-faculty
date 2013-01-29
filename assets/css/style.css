@@ -991,29 +991,25 @@ User detail view ******/
 
 /****** Auth view ******/
 .auth_view_column {
-	width: 315px;
+	width: 380px;
 	margin: 10px 10px 25px 10px;
 	display: inline-block;
 	vertical-align: top;
 }
 
-.auth_view_title a{
+.auth_view_title {
 	color: #880d0d;
 	font-weight: bolder;
-	font-size: 20px;
+	font-size: 22px;
 	text-decoration: none;
-}
-
-.auth_view_title a:hover {
-	text-decoration: underline;
 }
 
 .post, .event {
 	float: left;
-	width: 315px;
+	width: 380px;
 	height: 80px;
 	overflow: hidden;
-	margin-top: 15px;
+	margin-top: 20px;
 }
 
 .auth_view_link a {
@@ -1024,6 +1020,19 @@ User detail view ******/
 
 .auth_view_link a:hover {
 	text-decoration: underline;	
+}
+
+.other_links {
+	width: 380px;
+	padding-top: 25px;
+}
+
+.other_links a {
+	margin-left: 75px;
+	color: black;
+	font-size: 20px;
+	font-weight: bolder;
+	text-decoration: none;
 }
 
 /****** Correspondence view ******/
@@ -1054,4 +1063,43 @@ User detail view ******/
 	color: red;
 	font-weight: bolder;
 	margin: 2px 5px;
+}
+
+/****** pager ******/
+.pager_right {
+	padding:3px;
+	margin:3px;
+	text-align:center;
+	font-weight: bolder;
+}
+
+.pager_right a {
+	padding: 2px 5px 2px 5px;
+	margin-right: 2px;
+	border: 1px solid #2C2C2C;
+	text-decoration: none; 
+	color: #fff;
+	background: #2C2C2C url(image1.gif);
+}
+
+.pager_right a:hover, .pager_right a:active {
+	border:1px solid #AAD83E;
+	color: #FFF;
+	background: #AAD83E url(image2.gif);
+}
+
+.pager_right span.current {
+	padding: 2px 5px 2px 5px;
+	margin-right: 2px;
+	border: 1px solid #AAD83E;
+   font-weight: bold;
+	background: #AAD83E url(image2.gif);
+	color: #FFF;
+}
+
+.pager_right span.disabled {
+	padding: 2px 5px 2px 5px;
+	margin-right: 2px;
+	border: 1px solid #f3f3f3;
+	color: #ccc;
 }
