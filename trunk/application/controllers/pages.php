@@ -21,7 +21,7 @@ class Pages extends MY_Controller
          * default index metoda, ktora sa vola primarne
          * 
          */
-        public function index($page_name)
+        public function index($page_name = 'rules')
         {
             $data = array( 
                 'view' =>  $this->router->class.'_'.'view',

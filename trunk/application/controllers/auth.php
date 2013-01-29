@@ -50,6 +50,7 @@ class Auth extends MY_Controller
         {
             if( $this->userdata->is_logged() )
                 redirect(base_url ());
+                //redirect ('show_message/index/error_logged');
             $this->load->model('selecter');
             
             if( $this->input->post('submit') )
