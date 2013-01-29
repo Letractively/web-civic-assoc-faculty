@@ -193,7 +193,7 @@ function pagination( $pagination )
 	if( $pagination )
 	{
 		return '
-		<div class="pager right">
+		<div class="pager_right">
 			' . $pagination . '
 		</div>
 		';
