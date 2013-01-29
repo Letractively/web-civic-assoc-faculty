@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     $this->load->library('grid');
     $grid = new Grid();
 

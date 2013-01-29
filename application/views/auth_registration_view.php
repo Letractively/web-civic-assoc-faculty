@@ -1,4 +1,4 @@
-<div class="errors">
+﻿<div class="errors">
     <?php 
         echo validation_errors(); 
         $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
@@ -53,7 +53,7 @@
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="degree_year" class="<?= $error['degree_year'] ?>"><?= $this->lang->line('label_degree_year'); ?></label> </p>
-			<?= form_dropdown('degree_year', $years, set_value('degree_year_id')) ?>
+			<?= form_dropdown('degree_year', $years, set_value('degree_year_id'),'class="dropdown_year"') ?>
 		</div>
 	 
 		<div class="inputitem">

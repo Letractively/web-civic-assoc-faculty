@@ -1,4 +1,4 @@
-<div class="errors">
+﻿<div class="errors">
     <?php 
         echo validation_errors(); 
         $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
@@ -21,7 +21,7 @@
         }
     }
 </script>
-<div id="content_wrapper">
+<div id="content_wrapper_small">
 	<?= form_open("users/add"); ?>
                     <div class="inputitem">
                         <p class="label">
@@ -102,7 +102,7 @@
                         <p class="label">
                             <label for="degree_year" class="<?= $error['degree_year']; ?>"><?= $this->lang->line('label_degree_year'); ?></label>
                         </p>
-                        <?= form_dropdown('degree_year', $years, set_value('degree_year_id')); ?>
+                        <?= form_dropdown('degree_year', $years, set_value('degree_year_id'), 'class="dropdown_year"'); ?>
                     </div>
                     
                     <?php 
@@ -110,7 +110,7 @@
                         {
                             echo '<div class="inputitem">';
                                 echo '<p class="label"><label for="role" >'.$this->lang->line('label_role').'</label></p>';
-                                echo form_dropdown('role', $this->userdata->roles(false), set_value('role'));
+                                echo form_dropdown('role', $this->userdata->roles(false), set_value('role'), 'class="dropdown_year"');
                             echo '</div>';
                         }
                     ?>
@@ -129,7 +129,7 @@
 
                             echo '<div class="inputitem">';
                                 echo '<p class="label"> <label for="total_sum">'.$this->lang->line('label_total_sum').'</label></p>';
-                                echo form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class' => 'input_data_date' ), set_value('total_sum', 5)).'€';
+                                echo form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class' => 'input_data_date' ), set_value('total_sum', 5)).' €';
                             echo '</div>';
 
                             $obj = $this->selecter->get_project_categories();
@@ -151,7 +151,7 @@
                     ?>
                     
                     <div class="inputitem">
-                        <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_back'), $this->lang->line('button_add')); ?>
+                        <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_sub_edit'), $this->lang->line('button_add')); ?>
                     </div>
                     
                     <div class="inputitem">	
