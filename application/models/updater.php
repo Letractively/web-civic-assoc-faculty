@@ -59,31 +59,47 @@ class Updater extends MY_Model
                                 SET payment_paid_sum='".$values['payment_paid_sum']."'
                                 WHERE payment_id=$payment_id
                              ");
-        if( $values['user_id'] == $this->userdata->get_user_id() )
-            foreach($values['categories'] as $key=>$value )
-            {
-                $this->db->query(" UPDATE fin_redistributes
-                                   SET fin_redistribute_ratio='".$value."'
-                                   WHERE fin_redistribute_payment_id=$payment_id AND fin_redistribute_project_category_id='".$key."'
-                                 ");
-            }
+        foreach($values['categories'] as $key=>$value )
+        {
+            $this->db->query(" UPDATE fin_redistributes
+                               SET fin_redistribute_ratio='".$value."'
+                               WHERE fin_redistribute_payment_id=$payment_id AND fin_redistribute_project_category_id='".$key."'
+                             ");
+        }
         if( $this->db->affected_rows() > 0 )
-            return TRUE;
+            return 'TRUE';
         else
-            return FALSE;
+            return 'FALSE';
     }
     
     public function edit_payments_payment($payment_id, $values)
     {
-      /*  $this->db->query("UPDATE payments
-                          SET payment_paid_sum='".$values['payment_paid_sum']."'
-                          WHERE payment_id=$payment_id
-                              ");
+        $this->db->query(" UPDATE users
+                           SET user_active = 1
+                           WHERE user_id = '".$values['payment_user_id']."'");
         
-      if($this->db->affected_rows()>0){ 
-        return TRUE;
-      }
-      else{ return FALSE;}*/
+        $totalAmount = $values['payment_paid_sum'];
+        $totalRatio = 0;
+        
+        foreach ($values['categories'] as $key => $ratio) 
+        {
+            $totalRatio += $ratio;
+        }
+        
+        $onePieceOfRatio = $totalAmount / $totalRatio;
+        
+        foreach ($values['categories'] as $key => $ratio) 
+        {
+            $cashPerCategory = $onePieceOfRatio*$ratio;
+            $this->db->query("  UPDATE project_categories
+                                SET project_category_cash = project_category_cash+$cashPerCategory
+                                WHERE project_category_id = $key
+                             ");
+            $this->db->query("  DELETE FROM fin_redistributes
+                                WHERE fin_redistribute_payment_id = $payment_id AND 
+                                      fin_redistribute_project_category_id = $key
+                             ");
+        }
     }
     
     public function edit_post($post_id, $values)
