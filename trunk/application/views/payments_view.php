@@ -102,7 +102,7 @@
 
             foreach ($payments->result() as $pay)
             {
-                if($pay->payment_paid_sum >= $pay->payment_total_sum)
+                if($pay->payment_accepted == 1)
                 {
                     $grid->row($pay->payment_id)->editable = false;
                 }
@@ -110,8 +110,10 @@
             
             $grid->edit_url = "payments/edit";
             $grid->edit_mode = "external";
-            $grid->remove_url = "payments/delete";
             $grid->add_mode = "external";
+            
+            if($this->userdata->is_admin())
+                $grid->remove_url = "payments/delete";
             
 				
             //$grid->display();

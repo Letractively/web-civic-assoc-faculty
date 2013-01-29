@@ -184,6 +184,7 @@ class Payments extends MY_Controller
                 if( $payment_object['payment_user_id'] != $this->userdata->get_user_id())
                     redirect( $this->router->class );
                 
+            $this->load->model('updater');    
             if( $this->input->post('submit') )
             {
                 if( $payment_object['payment_user_id'] == $this->userdata->get_user_id() )
@@ -195,15 +196,15 @@ class Payments extends MY_Controller
                 }
                 elseif( $this->userdata->is_admin() )
                     $this->form_validation->set_rules('payment_paid_sum', 'lang:label_paid_sum','trim|required|xss_clean|numeric');
-                
+                    
                 if( $this->form_validation->run() )
                 {
-                    $this->load->model('updater');
-                    $result = $this->updater->edit_payments( $pay_id, $this->input->post() );
-                    $this->__edit_payments_payment($result, $pay_id);
+                    $this->updater->edit_payments( $pay_id, $this->input->post() );
                     redirect($this->router->class);
                 }
             }
+            elseif( $this->input->post('payment_accepted') )
+                $this->__edit_payments_payment($pay_id);
             
             $data = array(
                 'payment_object'    => $payment_object,
@@ -223,29 +224,11 @@ class Payments extends MY_Controller
          * @param payment_id ID-cko platby ktora sa bude kontrolovat ci bola v plnej miere uhradena
          * 
          */
-        function __edit_payments_payment($result, $payment_id)
+        function __edit_payments_payment($payment_id)
         {
-            if( $result == 'TRUE')
-            {
-                $payment_detail = $this->selecter->get_payment_detail($payment_id);
-                $this->load->model('updater');
-                switch($payment_detail['payment_type'])
-                {
-                    case 1:
-                        if( $payment_detail['payment_paid_sum'] >= 5 || $payment_detail['payment_paid_sum'] >= $payment_detail['payment_total_sum'] );
-                            $this->updater->edit_payments_payment($payment_id, $payment_detail);
-                        break;
-                    case 2:
-                        if( $payment_detail['payment_paid_sum'] >= 1 || $payment_detail['payment_paid_sum'] >= $payment_detail['payment_total_sum'] );
-                            $this->updater->edit_payments_payment($payment_id, $payment_detail);
-                        break;
-                }
-                /*if( $payment_detail['payment_paid_sum'] >= 5 || $payment_detail['payment_paid_sum'] >= $payment_detail['payment_total_sum'] )
-                {
-                    $this->load->model('updater');
-                    $this->updater->edit_payments_payment($payment_id, $payment_detail);
-                }*/
-            }
+            $payment_detail = $this->selecter->get_payment_detail($payment_id);
+            $this->load->model('updater');
+            $this->updater->edit_payments_payment($payment_id, $payment_detail);
         }
 
         /*

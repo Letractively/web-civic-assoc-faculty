@@ -67,16 +67,22 @@ class Updater extends MY_Model
                              ");
         }
         if( $this->db->affected_rows() > 0 )
-            return 'TRUE';
+            return TRUE;
         else
-            return 'FALSE';
+            return FALSE;
     }
     
     public function edit_payments_payment($payment_id, $values)
     {
+        $this->db->query(" UPDATE payments
+                           SET payment_accepted = 1
+                           WHERE payment_id = $payment_id
+                         ");
+        
         $this->db->query(" UPDATE users
                            SET user_active = 1
-                           WHERE user_id = '".$values['payment_user_id']."'");
+                           WHERE user_id = '".$values['payment_user_id']."'
+                         ");
         
         $totalAmount = $values['payment_paid_sum'];
         $totalRatio = 0;
@@ -86,8 +92,10 @@ class Updater extends MY_Model
             $totalRatio += $ratio;
         }
         
-        $onePieceOfRatio = $totalAmount / $totalRatio;
+        $onePieceOfRatio = round($totalAmount / $totalRatio, 2);
         
+        $checkSum = $totalRatio * $onePieceOfRatio;
+
         foreach ($values['categories'] as $key => $ratio) 
         {
             $cashPerCategory = $onePieceOfRatio*$ratio;
@@ -98,6 +106,17 @@ class Updater extends MY_Model
             $this->db->query("  DELETE FROM fin_redistributes
                                 WHERE fin_redistribute_payment_id = $payment_id AND 
                                       fin_redistribute_project_category_id = $key
+                             ");
+        }
+        
+        if($checkSum != $totalAmount)
+        {
+            $balance = $totalAmount - $checkSum;
+            $randomCategory = rand(1, count($values['categories']));
+            
+            $this->db->query("  UPDATE project_categories
+                                SET project_category_cash = project_category_cash+$balance
+                                WHERE project_category_id = $randomCategory
                              ");
         }
     }

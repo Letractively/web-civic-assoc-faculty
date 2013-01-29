@@ -27,6 +27,7 @@
 		<div class="inputitem">
 			<span class="label"><?= $this->lang->line('label_paidtype'); ?>: </span>
 			<?= gen_dropdown('payment_type', $object['payment_type'], $payment_types, 'id', 'value', 'dropdown','id="payment_type" onchange="changeFilter(this);" disabled=disabled'); ?>
+                        <?= form_hidden('payment_type', $object['payment_type']); ?>
                 </div>
 
                 <div class="inputitem">
@@ -82,6 +83,9 @@
 		<div class="inputitem">
 			<br />
 			<input type="submit" name="submit" value="Uprav platbu" class="button_submit" />
+                        <?php if($this->userdata->is_admin()): ?>
+                            <input type="submit" name="payment_accepted" value="Uhradená" class="button_submit" />
+                        <?php endif; ?>
 		</div>
     <?= form_close() ?>
 </div>
