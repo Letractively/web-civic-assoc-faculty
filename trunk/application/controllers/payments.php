@@ -199,7 +199,8 @@ class Payments extends MY_Controller
                 if( $this->form_validation->run() )
                 {
                     $this->load->model('updater');
-                    $this->updater->edit_payments( $pay_id, $this->input->post() );
+                    $result = $this->updater->edit_payments( $pay_id, $this->input->post() );
+                    $this->__edit_payments_payment($result, $pay_id);
                     redirect($this->router->class);
                 }
             }
@@ -210,6 +211,29 @@ class Payments extends MY_Controller
                 'pay_id'            => $pay_id
             );
             $this->load->view('container', array_merge($this->data, $data));
+        }
+        
+        /*
+         * __edit_payments_payment
+         * 
+         * Funkcia zisti ci bola skutocne uhradena suma a ak ano tak vykona pripisanie
+         * financnych prostriedkov na jednotlive kategorie a zmaze zaznamy z fin_redistributers
+         * 
+         * @param result informacia otom ci sa uskutocnila zmena v payments
+         * @param payment_id ID-cko platby ktora sa bude kontrolovat ci bola v plnej miere uhradena
+         * 
+         */
+        function __edit_payments_payment($result, $payment_id)
+        {
+            if( $result == 'TRUE')
+            {
+                $payment_detail = $this->selecter->get_payment_detail($payment_id);
+                if( $payment_detail['payment_paid_sum'] >= 5 || $payment_detail['payment_paid_sum'] >= $payment_detail['payment_total_sum'] )
+                {
+                    $this->load->model('updater');
+                    $this->updater->edit_payments_payment($payment_id, $payment_detail);
+                }
+            }
         }
 
         /*
