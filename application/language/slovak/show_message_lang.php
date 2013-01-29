@@ -9,6 +9,7 @@ $lang['inactive_registration']      =   'Váša žiadosť o členostvo ešte neb
 
 $lang['error_validation']           =   'Zle zadané údaje';
 $lang['error_input']                =   'Zadal si zlé meno alebo heslo';
+$lang['error_logged']               =   'Prihlásený používateľ sa nemôže registrovať';
 
 /* End of file show_message_lang.php */
 /* Location: ./application/language/slovak/show_message_lang.php */

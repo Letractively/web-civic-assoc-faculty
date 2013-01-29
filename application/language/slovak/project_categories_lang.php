@@ -26,5 +26,7 @@ $lang['btn_add_trans']          = 'Vykonaj transakciu';
 
 $lang['anchor_back']          = 'Späť na projekty';
 
+$lang['booked_cash']            =   'Rezervované peniaze';
+
 /* End of file project_categories_lang.php */
 /* Location: ./application/language/slovak/project_categories_lang.php */
