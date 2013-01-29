@@ -154,6 +154,14 @@ class Userdata
                 return 0;
         }
         
+        /*
+         * is_ecempted
+         * 
+         * Funkcia zisti ci je user s danym ID oslobodeny od platby
+         * 
+         * @param user_id ID-pouzivatela
+         * 
+         */
         public function is_exempted( $user_id )
         {
             $query =    $this->CI->db->query("  SELECT user_exempted

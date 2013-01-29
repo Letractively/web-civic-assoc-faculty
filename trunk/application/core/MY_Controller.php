@@ -99,7 +99,8 @@ abstract class MY_Controller extends CI_Controller
         
         for($i = 1; $i <= $back+$forward; $i++)
         {
-            $result[$i] = $gen_year_start++;
+            $result[$gen_year_start] = $gen_year_start;
+            $gen_year_start++;
         }
         
         return $result;
@@ -226,7 +227,7 @@ abstract class MY_Controller extends CI_Controller
      */
     protected function delete( $method, $id )
     {
-        if( $id == '')
+        if( $id == '' )
             redirect ('404');
         
         if( !$this->userdata->is_admin() )

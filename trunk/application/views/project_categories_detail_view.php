@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $this->load->helper('project_categories');
 
 $obj = $this->selecter->get_category_detail($project_category_id);

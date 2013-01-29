@@ -1,11 +1,7 @@
-﻿<?php
-    $obj = $this->selecter->get_event_detail($event_id);
-    
-    //array_debug($obj);
-    
+<?php
+    $obj = $this->selecter->get_event_detail($event_id);    
     $date = datetime($obj[0]->event_created, FALSE);
     $time = time_withou_seconds(datetime($obj[0]->event_created, TRUE));
-    
 ?>
 <div id="content_wrapper_large">
 	<p class="event_category"> <?= $this->lang->line('label_event_category_id').': '; ?> <span class="link_text"> <?= anchor('events/'.$obj[0]->event_category_id, $obj[0]->event_category); ?> </span> </p>
@@ -21,10 +17,6 @@
 		<?php echo '-'; ?>
 		<?= datetime($obj[0]->event_to, FALSE).' '.time_withou_seconds(datetime($obj[0]->event_to, TRUE)) ?>  
 	</div>
-	<!--div class="event_priority">
-		<span class="event_label"><?= $this->lang->line('label_priority').': ' ?></span>
-		<?= $obj[0]->event_priority ?> 
-	</div-->
 	<div class="event_add_info">
 		<span class="event_label"><?= $this->lang->line('event_author'); ?></span>
 		<?= anchor('users/detail/'.$obj[0]->user_id, $obj[0]->event_author) ?>,

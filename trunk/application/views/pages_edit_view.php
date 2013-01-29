@@ -1,4 +1,4 @@
-﻿<div id="content_wrapper_large">
+<div id="content_wrapper_large">
     <div class="errors">
         <?php 
             echo validation_errors();  

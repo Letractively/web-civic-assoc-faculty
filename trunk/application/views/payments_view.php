@@ -70,6 +70,7 @@
                 break;
         }
         
+        //array_debug();
         $paymentsData = array();
         if($payments->num_rows == 0)
             $paymentsData = $payments;
@@ -98,12 +99,17 @@
             $grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
 				
             $grid->add_url = "payments/add";
-            
-            if($flag != 1)
+
+            foreach ($payments->result() as $pay)
             {
-                $grid->edit_url = "payments/edit";
-                $grid->edit_mode = "external";
+                if($pay->payment_paid_sum >= $pay->payment_total_sum)
+                {
+                    $grid->row($pay->payment_id)->editable = false;
+                }
             }
+            
+            $grid->edit_url = "payments/edit";
+            $grid->edit_mode = "external";
             $grid->remove_url = "payments/delete";
             $grid->add_mode = "external";
             

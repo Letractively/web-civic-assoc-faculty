@@ -1,4 +1,4 @@
-﻿<script type="text/javascript" charset="UTF-8">
+<script type="text/javascript" charset="UTF-8">
 	var base_url = '<?=base_url()?>';
 
 	function changeFilter(sender)
@@ -68,23 +68,26 @@
 			if( $grid->bind($event_list, 'event_id') )
 			{
 				$grid->header('event_id')->editable = false;
-				$grid->header('event_id')->visible              = false;
+				
+                                $grid->header('event_id')->visible              = false;
 				$grid->header('event_about')->visible           = false;
 				$grid->header('event_created')->visible         = false;
-							$grid->header('event_category_id')->visible     = false;
-				$grid->header('event_category_name')->text = $this->lang->line('label_catname');
+				$grid->header('event_category_id')->visible     = false;
+				
 				$grid->header('event_priority')->visible        = false;
+                                $grid->header('event_from')->set_datetime();
+                                $grid->header('event_to')->set_datetime();
 				$grid->header('event_name')->set_anchor('events/detail', 'event_id');
+                                
+                                $grid->header('event_category_name')->text = $this->lang->line('label_catname');
 				$grid->header('event_name')->text   = $this->lang->line('label_name');
-				$grid->header('event_from')->set_datetime();
 				$grid->header('event_from')->text   = $this->lang->line('label_from');
-				$grid->header('event_to')->set_datetime();
 				$grid->header('event_to')->text     = $this->lang->line('label_to');
 							
-							//$grid->add_url = "{$this->router->class}/add";
-							$grid->edit_url = "{$this->router->class}/edit";
-							$grid->edit_mode = "external";
-							$grid->remove_url = "{$this->router->class}/delete";
+				//$grid->add_url = "{$this->router->class}/add";
+				$grid->edit_url = "{$this->router->class}/edit";
+				$grid->edit_mode = "external";
+				$grid->remove_url = "{$this->router->class}/delete";
 			}
 
 			$grid->display();		
@@ -100,7 +103,6 @@
 		}
 		else
 		{
-                    //array_debug($event_list);
 			foreach ($event_list as $event)
 			{ ?>
 			<p>

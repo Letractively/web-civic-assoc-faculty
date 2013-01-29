@@ -18,23 +18,16 @@ $lang['label_role']                 =   'Rola';
 $lang['label_state']                =   'Štatút';
 
 $lang['label_oz_member']            =   'člen';
-$lang['label_ex_member']            =   'návštevník exkurzie';
-$lang['label_lecturer']             =   'prednášajúci';
 
 $lang['label_vs_box']               =   'Pre úhradu členského zakliknúť';
 $lang['label_vs']                   =   'Variabilný symbol';
 $lang['label_total_sum']            =   'Suma';
 $lang['label_pay_date']             =   'Čas platby';
 
+$lang['payments']                   =   'Platby';
+
 $lang['table_th_category']          =   'Kategória';
 $lang['table_th_ratio']             =   'Pomer';
-
-$lang['label_project_category_1']   =   '1';
-$lang['label_project_category_2']   =   '2';
-$lang['label_project_category_3']   =   '3';
-$lang['label_project_category_4']   =   '4';
-$lang['label_project_category_5']   =   '5';
-$lang['label_project_category_6']   =   '6';
 
 $lang['button_add']                 =   'Pridaj';
 $lang['button_edit']                =   'Uprav';
