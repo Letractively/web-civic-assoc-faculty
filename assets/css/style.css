@@ -1067,34 +1067,37 @@ User detail view ******/
 
 /****** pager ******/
 .pager_right {
-	padding:3px;
-	margin:3px;
-	text-align:center;
+	padding: 3px;
+	margin: 3px;
+	text-align: right;
 	font-weight: bolder;
 }
 
 .pager_right a {
 	padding: 2px 5px 2px 5px;
 	margin-right: 2px;
-	border: 1px solid #2C2C2C;
 	text-decoration: none; 
-	color: #fff;
-	background: #2C2C2C url(image1.gif);
+	color: #fecc78;
+	background: #880d0d;
 }
 
 .pager_right a:hover, .pager_right a:active {
-	border:1px solid #AAD83E;
-	color: #FFF;
-	background: #AAD83E url(image2.gif);
+	background-color: #fecc78;
+	color: black;
+	background-image: url(images/linear_bg_1.png);
+	background-repeat: repeat-y;
+	background: -webkit-linear-gradient(top, #fecc78, #880d0d); /* Safari 5.1+ ; Chrome 10+ */
+   background: -moz-linear-gradient(top, #fecc78, #880d0d); /* Firefox 3.6+ */
+   background: -ms-linear-gradient(top, #fecc78, #880d0d); /* IE 10 */
+   background: -o-linear-gradient(top, #fecc78, #880d0d); /* Opera 11.10+ */	
 }
 
-.pager_right span.current {
+.pager_right > strong {
 	padding: 2px 5px 2px 5px;
 	margin-right: 2px;
-	border: 1px solid #AAD83E;
    font-weight: bold;
-	background: #AAD83E url(image2.gif);
-	color: #FFF;
+	background: #fecc78;
+	color: black;
 }
 
 .pager_right span.disabled {
