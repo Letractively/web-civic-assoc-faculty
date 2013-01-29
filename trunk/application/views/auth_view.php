@@ -1,4 +1,4 @@
-<div id="content_wrapper_medium">
+﻿<div id="content_wrapper_medium">
     <?php
     $this->load->helper('text');
     $totalRows = $this->selecter->EventRowsInCategory('events', 'event_id', 0);

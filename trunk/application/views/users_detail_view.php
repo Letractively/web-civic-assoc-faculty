@@ -1,4 +1,4 @@
-<?php $obj = $this->selecter->get_user_detail($user_id); ?>
+﻿<?php $obj = $this->selecter->get_user_detail($user_id); ?>
 <div id="content_wrapper_small">
     <?php
     if ($this->userdata->is_admin()) {

@@ -1,4 +1,4 @@
-<div id="header">
+﻿<div id="header">
     <div id="logo">
         <div id="logo_position"> </div>
     </div>

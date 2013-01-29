@@ -1,4 +1,4 @@
-<script type="text/javascript" charset="UTF-8">
+﻿<script type="text/javascript" charset="UTF-8">
 	var base_url = '<?=base_url()?>';
 
 	function changeFilter(sender)

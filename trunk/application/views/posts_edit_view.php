@@ -5,7 +5,7 @@
     ?>
 </div>
 
-<div id="content_wrapper">
+<div id="content_wrapper_large">
 	<?= js_insert_bbcode('posts/edit', 'textarea'); ?>
 	<?= form_open("posts/edit/".$post_id) ?>
 		<div class="inputitem">
@@ -25,7 +25,7 @@
 					}
 				?>
 			</div> 
-			<?= form_textarea(array('name' => 'content', 'id' => 'textarea', 'class' => 'textarea_data'.$error['content']), set_value('content', $field->post_content)) ?>
+			<?= form_textarea(array('name' => 'content', 'id' => 'textarea', 'class' => 'textarea_data3'.$error['content']), set_value('content', $field->post_content)) ?>
 		</div>
                 <div class="inputitem">
                         <p class="label"><label for="content" class="<?= $error['content'] ?>"><?=$this->lang->line('published')?></label> </p>

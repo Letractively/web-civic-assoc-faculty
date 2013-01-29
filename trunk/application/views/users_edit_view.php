@@ -1,4 +1,4 @@
-<div id="content_wrapper_small">
+﻿<div id="content_wrapper_small">
 	<?php
 		$obj = $this->selecter->get_user_detail($user_id);
                 $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
@@ -88,7 +88,7 @@
                         <p class="label">
                             <label for="degree_year" class="<?= $error['degree_year']; ?>"><?= $this->lang->line('label_degree_year'); ?></label>
                         </p>
-                        <?= form_dropdown('degree_year', $years, set_value('degree_year_id', $obj[0]->user_degree_year), 'dropdown'); ?>
+                        <?= form_dropdown('degree_year', $years, set_value('degree_year_id', $obj[0]->user_degree_year), 'class="dropdown_year"'); ?>
                     </div>
                     
                     <?php 
@@ -96,7 +96,7 @@
                         {
                             echo '<div class="inputitem">';
                                 echo '<p class="label"><label for="role" >'.$this->lang->line('label_role').'</label></p>';
-                                echo form_dropdown('role', $this->userdata->roles(false), set_value('role', $obj[0]->user_role));
+                                echo form_dropdown('role', $this->userdata->roles(false), set_value('role', $obj[0]->user_role), 'class="dropdown_priority"');
                             echo '</div>';
                         }
                     ?> <br />
