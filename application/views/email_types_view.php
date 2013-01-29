@@ -1,6 +1,5 @@
-﻿<?php
+<?php
     $this->load->library('grid');
-    
     $grid = new Grid();
     
     if( $grid->bind($this->selecter->get_email_types(true), 'email_type_id') )

@@ -146,7 +146,7 @@ class Payments extends MY_Controller
                 $this->form_validation->set_rules('payment_vs','lang:label_vs','trim|required|xss_clean|integer|min_length[4]|max_length[10]');
                 foreach ($this->input->post('categories') as $cat_id => $ratio)
                 {
-                    $this->form_validation->set_rules('categories[$cat_id]','lang:label_proj_category','trim|xss_clean|numeric');
+                    $this->form_validation->set_rules('categories['.$cat_id.']','lang:label_proj_category','trim|xss_clean|numeric');
                 }
                 if( $this->form_validation->run() )
                 {
@@ -173,19 +173,43 @@ class Payments extends MY_Controller
          */
         public function edit($pay_id)
         {
-            if ($this->input->post())
-			{
-				redirect('payments');
-			}
-			else
-			{
-				$data = array(
-					'view' => "payments_edit_view"
-				);
-				$data = array_merge($data, $this->selecter->get_payment_detail($pay_id));
-				//array_debug($data);
-				$this->load->view('container', array_merge($this->data, $data));
-			}
+            if( !$this->selecter->exists('payments','payment_id', $pay_id) )
+                redirect( '404' );
+            
+            if( $pay_id == '' )
+                redirect( $this->router->class );
+            
+            $payment_object = $this->selecter->get_payment_detail($pay_id);
+            if( !$this->userdata->is_admin() )
+                if( $payment_object['payment_user_id'] != $this->userdata->get_user_id())
+                    redirect( $this->router->class );
+                
+            if( $this->input->post('submit') )
+            {
+                if( $payment_object['payment_user_id'] == $this->userdata->get_user_id() )
+                {
+                    foreach ($this->input->post('categories') as $cat_id => $ratio)
+                    {
+                        $this->form_validation->set_rules('categories['.$cat_id.']','lang:label_proj_category','trim|xss_clean|numeric');
+                    }
+                }
+                elseif( $this->userdata->is_admin() )
+                    $this->form_validation->set_rules('payment_paid_sum', 'lang:label_paid_sum','trim|required|xss_clean|numeric');
+                
+                if( $this->form_validation->run() )
+                {
+                    $this->load->model('updater');
+                    $this->updater->edit_payments( $pay_id, $this->input->post() );
+                    redirect($this->router->class);
+                }
+            }
+            
+            $data = array(
+                'payment_object'    => $payment_object,
+                'view'              => "payments_edit_view",
+                'pay_id'            => $pay_id
+            );
+            $this->load->view('container', array_merge($this->data, $data));
         }
 
         /*

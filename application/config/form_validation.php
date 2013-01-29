@@ -222,13 +222,6 @@ $config = array(
                 'rules'     => 'trim|required|xss_clean'
             )
     ),
-    'payments/edit'                         => array(
-            array(
-                'field'     => 'payment_paid_sum',
-                'label'     => 'lang:label_paid_sum',
-                'rules'     => 'trim|required|xss_clean|numeric'
-            )
-    ),
     'posts/add'                             => array(
             array(
                 'field'     => 'title',
@@ -507,7 +500,7 @@ $config = array(
         array(
             'field'         => 'phone',
             'label'         => 'lang:label_phone',
-            'rules'         => 'trim|required|xss_clean|numeric'
+            'rules'         => 'trim|xss_clean|numeric'
         ),
         array(
             'field'         => 'place_of_birth',

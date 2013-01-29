@@ -1,7 +1,4 @@
-﻿<?php
-$obj = $this->selecter->get_user_detail($user_id);
-//array_debug($obj);
-?>
+<?php $obj = $this->selecter->get_user_detail($user_id); ?>
 <div id="content_wrapper_small">
     <?php
     if ($this->userdata->is_admin()) {
@@ -68,11 +65,25 @@ $obj = $this->selecter->get_user_detail($user_id);
         <?php endif; ?>
 
     <?php
-    if ($this->userdata->is_admin() || $user_id == $this->userdata->get_user_id()) {
+    if ( $this->userdata->is_admin() || $user_id == $this->userdata->get_user_id() ) {
         $this->load->library('grid');
         $grid = new Grid();
         $totalPays = $this->selecter->rows('payments', 'payment_id');
-        if ($grid->bind($this->selecter->get_payments_nopaid($totalPays, 0, $user_id, true), 'payment_id')) {
+        $userNoPaidPayments = array();
+        
+        $limit = 0;
+        foreach($this->selecter->get_payments_nopaid($totalPays, 0, $user_id, true)->result() as $payment)
+        {
+            if( $limit < 5 )
+            {
+                array_push($userNoPaidPayments, $payment);
+                $limit++;
+            }
+            else
+                break;
+        }
+        
+        if ($grid->bind($userNoPaidPayments, 'payment_id')) {
             $grid->header('payment_id')->editable = false;
             $grid->header('payment_type')->editable = false;
             $grid->header('payment_paid_sum')->editable = false;
@@ -97,7 +108,7 @@ $obj = $this->selecter->get_user_detail($user_id);
 
         if ($this->userdata->is_exempted($user_id)) {
             echo '<div class="inputitem"><p>' . $this->lang->line('pay_unlimited') . '</p></div>';
-            echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('entry_free')) . '</p>';
+            echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('payments')) . '</p>';
         } else {
             $lp = $this->selecter->get_payments_lastpaid($user_id);
             $date = datetime($lp->payment_paid_time, FALSE);

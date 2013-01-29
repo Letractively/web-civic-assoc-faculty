@@ -1,9 +1,5 @@
-﻿<div class="errors">
-    <?php echo validation_errors();
-
-    //array_debug($programs) 
-    ?>
-
+<div class="errors">
+    <?php echo validation_errors(); ?>
 </div>
 
 <?= form_open("io/import") ?>

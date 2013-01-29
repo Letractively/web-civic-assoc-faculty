@@ -1,30 +1,16 @@
-﻿<div class="errors">
-    <?php echo validation_errors();      
-    //array_debug($programs) ?>
+<div class="errors">
+    <?php 
+        echo validation_errors();  
+        $object = $payment_object;
+    ?>
 </div>
 
 <div id="content_wrapper_small">
-	<?= form_open("payments/add") ?>
+	<?= form_open("payments/edit/".$pay_id) ?>
 	
 	<?php
-		$totalRows = $this->selecter->UsersInDatabase('users', 'user_id', 0);
-		$users = $this->selecter->get_users($totalRows,0,0);
-		$userlist = array();
-		if ($this->userdata->is_admin())
-		{
-			foreach ($users as $user)
-			{
-				$userlist[] = array(
-					'id' => $user->user_id,
-					'name' => $user->user_name
-				);
-			}
-		}
-		else
-		{
-			$userID = $this->userdata->get_user_id();
-			$userlist[] = array('id' => $userID, 'name' => $this->userdata->full_name($userID));
-		}
+                $userID = $object['payment_user_id'];
+		$userlist[] = array('id' => $userID, 'name' => $this->userdata->full_name($userID));
 		
 		$payment_types = array(
 			array('id' => '1', 'value' => $this->lang->line('payment_type_account')),
@@ -33,29 +19,41 @@
 		
 		?>
 		<div class="inputitem">	
-			<span class="label"> Používateľ: </span>
-			<?= gen_dropdown('user_id', $payment_user_id, $userlist, 'id', 'name', 'dropdown','id="user_id" onchange="changeFilter(this);"'); ?>
-		</div>
+			<span class="label"><?= $this->lang->line('label_user_id'); ?>: </span>
+			<?= gen_dropdown('user_id', $userID, $userlist, 'id', 'name', 'dropdown','id="user_id" onchange="changeFilter(this);" disabled=disabled'); ?>
+                        <?= form_hidden('user_id', $userID); ?>
+                </div>
 
 		<div class="inputitem">
-			<span class="label"> Typ platby: </span>
-			<?= gen_dropdown('payment_type', $payment_type, $payment_types, 'id', 'value', 'dropdown','id="payment_type" onchange="changeFilter(this);"'); ?>
+			<span class="label"><?= $this->lang->line('label_paidtype'); ?>: </span>
+			<?= gen_dropdown('payment_type', $object['payment_type'], $payment_types, 'id', 'value', 'dropdown','id="payment_type" onchange="changeFilter(this);" disabled=disabled'); ?>
 		</div>
 
+                <div class="inputitem">
+			<span class="label"><?= $this->lang->line('label_vs'); ?>: </span>
+			<input name="vs" type="text" value="<?= $object['payment_vs']?>" class="input_data_date" disabled="disabled" />
+		</div>
+    
 		<div class="inputitem">
-			<span class="label"> Suma: </span>
-			<input name="sum" type="text" value="<?=$payment_total_sum?>" class="input_data_date" />
+			<span class="label"><?= $this->lang->line('label_total_sum'); ?>: </span>
+			<input name="total_sum" type="text" value="<?= $object['payment_total_sum']; ?>" class="input_data_date" disabled="disabled" />
 			<span>€</span>
 		</div>
-		
-		<div class="inputitem">
-			<span class="label"> VS: </span>
-			<input name="vs" type="text" value="<?=$payment_vs?>" class="input_data_date" />
+    
+                <div class="inputitem">
+			<span class="label"><?= $this->lang->line('label_paid_sum'); ?>: </span>
+                        <?php if( $this->userdata->is_admin() ): ?>
+                            <input name="payment_paid_sum" type="text" value="<?= $object['payment_paid_sum']; ?>" class="input_data_date" />
+			<?php else: ?>
+                            <input name="payment_paid_sum" type="text" value="<?= $object['payment_paid_sum']; ?>" class="input_data_date" disabled="disabled" />
+                        <?php endif; ?>
+                        <span>€</span>
 		</div>
+		
+		
 		<?php
 		
 		   $obj = $this->selecter->get_project_categories();
-		   
 		   echo '<table class="inputitem">';
 				echo '<tr><th>'.$this->lang->line('table_th_category').'</th><th>'.$this->lang->line('table_th_ratio').'</th></tr>';
 				foreach($obj as $o)
@@ -65,8 +63,19 @@
 						 echo '<td> <label for="categories['.$cat_id.']">';
 							 echo $o->project_category_name;
 						 echo '</label></td>';
-						 echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => 'categories['.$cat_id.']' != null ? 'categories['.$cat_id.']' : 0, 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$cat_id)).'</td>';
-					echo '</tr>';
+                                                 if( $this->userdata->is_admin() && $userID != $this->userdata->get_user_id() )
+                                                    echo '<td>'.form_input(array(   'disabled'=>'disabled',
+                                                                                    'name' => 'categories['.$cat_id.']', 
+                                                                                    'size'=> 3, 
+                                                                                    'class' => 'input_data_reg' 
+                                                                                ), set_value('project_category_'.$cat_id, $object['categories'][$cat_id])).'</td>';
+                                                 else
+                                                     if($object['payment_paid_sum'] < $object['payment_total_sum'])
+                                                        echo '<td>'.form_input( array(  'name'  => 'categories['.$cat_id.']', 
+                                                                                        'size'=> 3, 
+                                                                                        'class' => 'input_data_reg' 
+                                                                                     ), set_value('project_category_'.$cat_id, $object['categories'][$cat_id])).'</td>';
+                                        echo '</tr>';
 				}
 		   echo '</table>';
 		?>
@@ -74,8 +83,5 @@
 			<br />
 			<input type="submit" name="submit" value="Uprav platbu" class="button_submit" />
 		</div>
-		<?php
-	?>
-		
-	<?= form_close() ?>
+    <?= form_close() ?>
 </div>

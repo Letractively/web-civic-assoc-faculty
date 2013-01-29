@@ -1,4 +1,4 @@
-﻿<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
+<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css"></link>
 <link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css"></link>
 <script src="../../../assets/js/calendar/dhtmlxcalendar.js"></script>
 <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/js/calendar/dhtmlxcalendar.css" />
@@ -31,8 +31,7 @@
 </script>
 
 <div class="errors">
-    <?php echo validation_errors();      
-    //array_debug($programs) ?>
+    <?php echo validation_errors(); ?>
 </div>
 <div id="content_wrapper_small">
 	<?= js_insert_bbcode('events/add', 'textarea'); ?>
@@ -41,20 +40,17 @@
 			<p class="label"> <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label> </p>
 			<?= gen_dropdown('event_category_id', set_value('event_category_id'),$this->selecter->get_event_categories(),'event_category_id','event_category_name', 'dropdown'); ?>     
 		</div>
-	 <!--dropdown robis takto ako je hore gen_dropdown, to co su tie parametre uvidis ked si otvoris danu funkciu-->
-	 <!--generovat prioritu-->
+    
 		<div class="inputitem">
 			<p class="label"> <label for="priority" class="<?= $error['priority'] ?>"><?= $this->lang->line('label_priority') ?></label> </p>
 			<?= gen_dropdown('priority', set_value('priority_id'), $priorities, 'id', 'value', 'dropdown_priority'); ?>
 		</div>
-	 <!--end-->
 	 
 		<div class="inputitem">
 			<p class="label"> <label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label> </p>
 			<?= form_input(array('name' => 'name', 'id' => 'name', 'class' => 'input_data'.$error['name']), set_value('name')) ?>
 		</div>
 	 
-	<!--od -> do-->
 		<div class="inputitem">
 			<p class="label"> <label for="from" class="<?= $error['from'] ?>"><?= $this->lang->line('label_from') ?></label> </p>
 			<?= form_input(array('name' => 'from', 'id' => 'from', 'class' => 'input_data_date_time'.$error['from'], 'maxlength' => 16, 'size' => 16), set_value('from')) ?>
@@ -64,15 +60,15 @@
 			<p class="label"> <label for="to" class="<?= $error['to'] ?>"><?= $this->lang->line('label_to') ?></label> </p>
 			<?= form_input(array('name' => 'to', 'id' => 'to', 'class' => 'input_data_date_time'.$error['to'], 'maxlength' => 16, 'size' => 16), set_value('to')) ?>
 		</div>
-	<!--end-->
+
 		<div class="inputitem">
 			<p class="label"> <label for="about" class="<?= $error['about'] ?>"><?= $this->lang->line('label_about') ?></label> </p>
 			<div>
-				<?php foreach($buttons as $i)
-					{
-						echo $i;
-					}
-				?>
+                            <?php   foreach($buttons as $i)
+                                    {
+                                        echo $i;
+                                    }
+                            ?>
 			</div>
 			<?= form_textarea(array('name' => 'about', 'id' => 'textarea', 'class' => 'textarea_data'.$error['about']), set_value('about')) ?>
 		</div>

@@ -137,6 +137,11 @@ class Users extends MY_Controller
     
     public function detail( $user_id )
     {
+        if( !$this->selecter->exists('users','user_id', $user_id) )
+            redirect('404');
+        if( $user_id == '')
+            redirect( $this->router->class );
+        
         $this->load->model('selecter');
         $data = array(
             'user_id'      => $user_id
@@ -187,8 +192,10 @@ class Users extends MY_Controller
     
     public function edit( $user_id )
     {
-        if( $user_id == '')
+        if( !$this->selecter->exists('users','user_id', $user_id) )
             redirect('404');
+        if( $user_id == '')
+            redirect( $this->router->class );
         
         if( $this->userdata->is_admin() || $user_id == $this->session->userdata('user') )
         {
@@ -200,12 +207,10 @@ class Users extends MY_Controller
                     $this->updater->edit_user( $user_id, $this->input->post() );
                     redirect( $this->router->class );
                 }
-                else
-                    redirect( $this->router->class );
             }
         }
         else
-            redirect (base_url ());
+            redirect ( base_url () );
 
         $data = array(
             'user_id'       => $user_id,
@@ -224,9 +229,9 @@ class Users extends MY_Controller
             redirect(base_url ());
         
         if( $user_id == '')
-            redirect('404');
+            redirect( $this->router->class );
         
-        parent::delete('remove_user', $user_id, $this->router->class);
+        parent::delete( 'remove_user', $user_id );
         
         $data = array(
             'view'            => 'confirm_view',

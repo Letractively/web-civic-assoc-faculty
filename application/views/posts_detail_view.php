@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $obj = $this->selecter->get_post_detail($post_id);
 //array_debug($obj);
 ?>

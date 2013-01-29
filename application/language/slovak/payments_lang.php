@@ -1,9 +1,9 @@
 ﻿<?php
 
 $lang['label_vs']                   =   'Variabilný symbol';
-$lang['label_user_id']              =   'používateľ';
+$lang['label_user_id']              =   'Používateľ';
 $lang['label_total_sum']            =   'Suma k úhrade';
-$lang['label_paid_sum']             =   'uhradená suma';
+$lang['label_paid_sum']             =   'Uhradená suma';
 $lang['label_status']               =   'stav';
 $lang['label_date']                 =   'čas platby';
 $lang['label_proj_category']        =   'Kategória';
@@ -13,7 +13,7 @@ $lang['payment_paid']               =   'Zaplatené';
 $lang['payment_nopaid']             =   'Nezaplatené';
 $lang['payment_mine']               =   'Moje';
 
-$lang['label_paidtype'] = 'Typ príspevku';
+$lang['label_paidtype']             =   'Typ platby';
 
 $lang['payment_type_account']       =   'Členský';
 $lang['payment_type_voluntary']     =   'Dobrovoľný';
