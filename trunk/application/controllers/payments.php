@@ -228,11 +228,23 @@ class Payments extends MY_Controller
             if( $result == 'TRUE')
             {
                 $payment_detail = $this->selecter->get_payment_detail($payment_id);
-                if( $payment_detail['payment_paid_sum'] >= 5 || $payment_detail['payment_paid_sum'] >= $payment_detail['payment_total_sum'] )
+                $this->load->model('updater');
+                switch($payment_detail['payment_type'])
+                {
+                    case 1:
+                        if( $payment_detail['payment_paid_sum'] >= 5 || $payment_detail['payment_paid_sum'] >= $payment_detail['payment_total_sum'] );
+                            $this->updater->edit_payments_payment($payment_id, $payment_detail);
+                        break;
+                    case 2:
+                        if( $payment_detail['payment_paid_sum'] >= 1 || $payment_detail['payment_paid_sum'] >= $payment_detail['payment_total_sum'] );
+                            $this->updater->edit_payments_payment($payment_id, $payment_detail);
+                        break;
+                }
+                /*if( $payment_detail['payment_paid_sum'] >= 5 || $payment_detail['payment_paid_sum'] >= $payment_detail['payment_total_sum'] )
                 {
                     $this->load->model('updater');
                     $this->updater->edit_payments_payment($payment_id, $payment_detail);
-                }
+                }*/
             }
         }
 

@@ -88,7 +88,7 @@ class Projects extends MY_Controller
             if($this->input->post('submit') == $this->lang->line('button_close_project'))
                 $this->edit_project_closed ($project_id);
             
-            parent::edit('edit_project', $project_id);
+            //parent::edit('edit_project', $project_id);
 
             $data = array(
                 'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
@@ -111,8 +111,8 @@ class Projects extends MY_Controller
 			
 			$this->load->model('updater');
 			$this->updater->edit_project_item($project_item_id, $_POST);
-                         redirect('projects/edit/'.$project_id);
-            //parent::edit('edit_project_item', $project_id, 'operation_edit');
+                        redirect('projects/edit/'.$project_id);
+
 
             $data = array(
 				'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
@@ -129,7 +129,7 @@ class Projects extends MY_Controller
         {
             $this->load->model('updater');
             $this->updater->edit_project_closed( $project_id );
-            redirect($this->router->class);
+            redirect($this->router->class.'/detail/'.$project_id);
             /*$data = array(
                 'project_id'        => $project_id
             );

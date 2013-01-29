@@ -94,18 +94,8 @@
 	<?= form_close(); ?>
 	<?php
 			$this->load->library('grid');
-			
 			$grid = new Grid();
-			
-			/*$items_object = $this->selecter->get_project_items($project_id, true);
-			$items = array();
-			foreach ($items_object as $item_object)
-			{
-				$item = get_object_vars($item_object);
-				$item['user_fullname'] = $item['user_name'].' '.$item['user_surname'];
-				$items[] = $item;
-			}*/
-			
+                        
 			$totalRows = $this->selecter->rows('users','user_id');
                         $users_object = $this->selecter->get_users($totalRows,0,0);
                         
@@ -125,8 +115,6 @@
 
 				$grid->header('project_item_id')->visible = false;
 				$grid->header('user_id')->visible = false;
-				//$grid->header('user_surname')->visible = false;
-				//$grid->header('user_fullname')->visible = true;
 				$grid->header('project_item_date')->editable = false;
 				$grid->header('project_item_date')->set_datetime('Y-m-d');
 				$grid->header('project_item_price')->set_numformat('{2:,: } €');
