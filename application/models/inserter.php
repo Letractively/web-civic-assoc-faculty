@@ -79,10 +79,10 @@ class Inserter extends MY_Model
                                VALUES ('".$payment_id."', '".$key."', '".$value."')
                              ");
         }
-     if($this->db->affected_rows()>0){ 
-        return TRUE;
-      }
-      else{ return FALSE;}
+        if( $this->db->affected_rows() > 0 )
+            return TRUE;
+        else
+            return FALSE;
     }
     
     public function add_post( $values )

@@ -172,9 +172,27 @@ class Updater extends MY_Model
     
     public function edit_project_closed($pr_id)
     {
+        $q = $this->db->query(" SELECT sum(project_item_price) as project_item_total_price
+                                FROM project_items
+                                WHERE project_item_project_id = $pr_id
+                              ");
+        $totalProjectPrice = $q->row()->project_item_total_price;
+        $q->free_result();
+        $q = $this->db->query(" SELECT project_project_category_id
+                                                FROM projects
+                                                WHERE project_id = $pr_id
+                                              ");
+        $projectCategoryID = $q->row()->project_project_category_id;
+        
+        
+        $this->db->query("UPDATE project_categories
+                          SET project_category_cash = project_category_cash - $totalProjectPrice
+                          WHERE project_category_id = $projectCategoryID
+                         ");
         $this->db->query("UPDATE projects
                           SET project_active='0'
-                          WHERE project_id=$pr_id");
+                          WHERE project_id=$pr_id
+                         ");
     }
 
     public function edit_project_item($pr_item_id, $values)
