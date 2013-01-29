@@ -74,13 +74,14 @@
         $limit = 0;
         foreach($this->selecter->get_payments_nopaid($totalPays, 0, $user_id, true)->result() as $payment)
         {
-            if( $limit < 5 )
-            {
-                array_push($userNoPaidPayments, $payment);
-                $limit++;
-            }
-            else
-                break;
+            if($payment->payment_type == 2)
+                if( $limit < 5 )
+                {
+                    array_push($userNoPaidPayments, $payment);
+                    $limit++;
+                }
+                else
+                    break;
         }
         
         if ($grid->bind($userNoPaidPayments, 'payment_id')) {
@@ -114,10 +115,10 @@
             $date = datetime($lp->payment_paid_time, FALSE);
             $dayAndMonth = day_month($date);
             $year = year($date) + 1;
-            //array_debug($lp);
 
-            if (date("Y-m-d", time() - (365 * 86400)) <= $lp->payment_paid_time) {
-                if ($lp->payment_paid_sum < $lp->payment_total_sum)
+            if (date("Y-m-d", time() - (365 * 86400)) <= $lp->payment_paid_time) 
+            {
+                if ($lp->payment_paid_sum <= 5 && $lp->payment_paid_sum <= $lp->payment_total_sum)
                     echo '<div class="inputitem"><strong>' . $this->lang->line('wtg_fee') . '</strong></div>';
                 else
                     echo '<div class="inputitem">' . $this->lang->line('pay_limited_in') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';
