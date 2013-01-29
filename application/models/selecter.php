@@ -397,12 +397,26 @@ class Selecter extends MY_Model
          */
         public function get_project_categories($grid = false)
         {
+               $q = $this->db->query("  SELECT p_c.project_category_id, p_c.project_category_name, p_c.project_category_cash, proj.booked_cash
+                                        FROM(
+                                            SELECT project_project_category_id, sum(project_booked_cash) AS booked_cash
+                                            FROM projects
+                                            WHERE project_active = 1
+                                            GROUP BY(project_project_category_id)
+                                        ) proj
+                                        RIGHT JOIN project_categories p_c ON (proj.project_project_category_id = p_c.project_category_id)
+                                      ");
+                if ($grid == true) return $q;
+                    else return $q->result();
+        }
+        /*public function get_project_categories($grid = false)
+        {
                $q = $this->db->query(" SELECT *
                                         FROM project_categories
                                       ");
                 if ($grid == true) return $q;
                     else return $q->result();
-        }
+        }*/
         
         public function get_project_categories_total_cash()
         {
