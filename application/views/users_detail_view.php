@@ -118,7 +118,7 @@
 
             if (date("Y-m-d", time() - (365 * 86400)) <= $lp->payment_paid_time) 
             {
-                if ($lp->payment_paid_sum <= 5 && $lp->payment_paid_sum <= $lp->payment_total_sum)
+                if ($lp->payment_paid_sum < $lp->payment_total_sum)
                     echo '<div class="inputitem"><strong>' . $this->lang->line('wtg_fee') . '</strong></div>';
                 else
                     echo '<div class="inputitem">' . $this->lang->line('pay_limited_in') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';

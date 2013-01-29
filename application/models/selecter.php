@@ -223,7 +223,7 @@ class Selecter extends MY_Model
         {
             if($user_id == 0){
                 $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
-                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id
+                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
                                         FROM payments p
                                         LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                         LIMIT $cur_page, $per_page
@@ -233,7 +233,7 @@ class Selecter extends MY_Model
             }   
             else {
             $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
-                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id
+                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
                                         FROM payments p
                                         LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                         WHERE u.user_id = $user_id
@@ -248,7 +248,7 @@ class Selecter extends MY_Model
          {
              $q = $this->db->query("
                                         SELECT p.payment_type, p.payment_paid_sum, p.payment_paid_time, 
-                                               p.payment_total_sum, p.payment_id, u.user_id
+                                               p.payment_total_sum, p.payment_id, u.user_id, p.payment_accepted
                                           FROM payments p
                                           LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                            WHERE u.user_id = $user_id AND p.payment_type = 1
@@ -262,7 +262,7 @@ class Selecter extends MY_Model
             if($user_id==0){
                 $q = $this->db->query("
                                         SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
-                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id
+                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
                                           FROM payments p
                                           LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                            WHERE p.payment_paid_sum<p.payment_total_sum
@@ -273,7 +273,7 @@ class Selecter extends MY_Model
             } 
             else{
             $q = $this->db->query("       SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
-                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id
+                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
                                           FROM payments p
                                           LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                            WHERE u.user_id=$user_id AND p.payment_paid_sum<p.payment_total_sum
@@ -290,7 +290,7 @@ class Selecter extends MY_Model
             if($user_id==0){
                 $q = $this->db->query("
                                         SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
-                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id
+                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
                                           FROM payments p
                                           LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                            WHERE p.payment_paid_sum>=p.payment_total_sum
@@ -301,7 +301,7 @@ class Selecter extends MY_Model
             else{
             $q = $this->db->query("
                                         SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
-                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id
+                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
                                           FROM payments p
                                           LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                            WHERE (u.user_id=$user_id) AND (p.payment_paid_sum>=p.payment_total_sum)
