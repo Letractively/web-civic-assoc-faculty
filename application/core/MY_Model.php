@@ -149,24 +149,30 @@ class MY_Model extends CI_Model
          */
         public function UsersInDatabase( $table, $id, $role )
         {
-            if ($role == 0)
+            
+            if ( $role == 0 )
                 return $this->rows($table, $id);
             else if($role == ROLE_INACTIVE)
             {
                 $q = $this->db->query(" SELECT $id
                                         FROM $table
-                                        WHERE user_activated = 0
+                                        WHERE user_activated = '0000-00-00 00:00:00' AND user_exempted = 0
                                       ");
-                return $q->num_rows();
+            }
+            else if($role == ROLE_BLOCKED)
+            {
+                $actualDateTime = date("Y-m-d  H:i:s", strtotime("+2 year", strtotime(date("Y-m-d  H:i:s"))));
+                $q = $this->db->query(" SELECT $id
+                                        FROM $table
+                                        WHERE user_activated <= '".$actualDateTime."' AND user_exempted = 0 AND user_activated != '0000-00-00 00:00:00' 
+                                      ");   
             }
             else
-            {
                 $q = $this->db->query(" SELECT $id
                                         FROM $table
                                         WHERE user_role = $role
-                                      ");
-                return $q->num_rows();
-            }
+                                      ");     
+            return $q->num_rows();
         }
         
         /*

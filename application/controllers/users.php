@@ -135,6 +135,26 @@ class Users extends MY_Controller
         $this->load->view('container', array_merge($this->data, $data));
     }
     
+    public function blocked( $page = 0 )
+    {
+        $this->load->library('pagination');
+        $this->totalRows = $this->selecter->UsersInDatabase('users', 'user_id', ROLE_BLOCKED);
+            
+        $this->c_pagination['base_url']     = base_url().'users/blocked/';
+        $this->c_pagination['cur_page']     = $page;
+        $this->c_pagination['per_page']     = $this->per_page;
+        $this->c_pagination['total_rows']   = $this->totalRows;
+        $this->pagination->initialize($this->c_pagination);
+        
+        $data = array(
+            'flag'              => ROLE_BLOCKED,
+            'view'              => "{$this->router->class}_view",
+            'c_pagination'      => $this->c_pagination,
+            'pagination'        => preg_replace('/(href="[^"]*)/i', "$1" . $this->get_query, $this->pagination->create_links())
+        );
+        $this->load->view('container', array_merge($this->data, $data));
+    }
+    
     public function detail( $user_id )
     {
         if( !$this->selecter->exists('users','user_id', $user_id) )
