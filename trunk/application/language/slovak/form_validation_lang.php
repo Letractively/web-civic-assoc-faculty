@@ -1,30 +1,32 @@
 ﻿<?php
 
-$lang['required']			= "Pole %s je potrebné vyplniť.";
-$lang['isset']				= "The %s field must have a value.";
-$lang['valid_email']                    = "The %s field must contain a valid email address.";
-$lang['valid_emails']                   = "The %s field must contain all valid email addresses.";
-$lang['valid_url']			= "The %s field must contain a valid URL.";
-$lang['valid_ip']			= "The %s field must contain a valid IP.";
-$lang['min_length']			= "The %s field must be at least %s characters in length.";
-$lang['max_length']			= "The %s field can not exceed %s characters in length.";
-$lang['exact_length']                   = "The %s field must be exactly %s characters in length.";
-$lang['alpha']				= "The %s field may only contain alphabetical characters.";
-$lang['alpha_numeric']                  = "The %s field may only contain alpha-numeric characters.";
-$lang['alpha_dash']			= "The %s field may only contain alpha-numeric characters, underscores, and dashes.";
-$lang['numeric']			= "The %s field must contain only numbers.";
-$lang['is_numeric']			= "The %s field must contain only numeric characters.";
-$lang['integer']			= "The %s field must contain an integer.";
-$lang['regex_match']                    = "The %s field is not in the correct format.";
-$lang['matches']			= "The %s field does not match the %s field.";
-$lang['is_unique'] 			= "The %s field must contain a unique value.";
-$lang['is_natural']			= "The %s field must contain only positive numbers.";
-$lang['is_natural_no_zero']             = "The %s field must contain a number greater than zero.";
-$lang['decimal']			= "The %s field must contain a decimal number.";
-$lang['less_than']			= "The %s field must contain a number less than %s.";
-$lang['greater_than']                   = "The %s field must contain a number greater than %s.";
-$lang['valid_date']                     = "Pole %s musi obsahovat validny date format";
-$lang['valid_datetime']                = "Pole %s musi obsahovat validny datetime format";
+$lang['required'] 			= 'Pole <strong>%s</strong> je povinné.';
+$lang['isset'] 				= 'Pole <strong>%s</strong> musí mať hodnotu.';
+$lang['valid_email']                    = 'Pole <strong>%s</strong> musí obsahovať platnú e-mailovú adresu.';
+$lang['valid_emails']                   = 'Pole <strong>%s</strong> musí obsahovať platné e-mailové adresy.';
+$lang['valid_url'] 			= 'Pole <strong>%s</strong> musí obsahovať platnú URL.';
+$lang['valid_ip'] 			= 'Pole <strong>%s</strong> musí obsahovať platnú IP adresu.';
+$lang['min_length']                     = 'Pole <strong>%s</strong> musí byť dlhé aspoň <strong>%s</strong> znakov.';
+$lang['max_length']                     = 'Pole <strong>%s</strong> nesmie presiahnuť dĺžku <strong>%s</strong> znakov.';
+$lang['exact_length']                   = 'Pole <strong>%s</strong> musí byť dlhé presne <strong>%s</strong> znakov.';
+$lang['alpha'] 				= 'Pole <strong>%s</strong> môže obsahovať iba písmena.';
+$lang['alpha_numeric']                  = 'Pole <strong>%s</strong> môže obsahovať iba písmena a číslice.';
+$lang['alpha_dash']                     = 'Pole <strong>%s</strong> môže obsahovať iba písmena, číslice, podčiarkovník a pomlčku.';
+$lang['numeric']                    	= 'Pole <strong>%s</strong> musí obsahovať iba číslo.';
+$lang['is_numeric']                     = 'Pole <strong>%s</strong> musí obsahovať iba numerické znaky.';
+$lang['integer'] 			= 'Pole <strong>%s</strong> musí obsahovať číslo.';
+$lang['regex_match']                    = "Pole <strong>%s</strong> field is not in the correct format.";
+$lang['matches'] 			= 'Pole <strong>%s</strong> sa nezhoduje s <strong>%s</strong>.';
+$lang['is_natural']                     = 'Pole <strong>%s</strong> musí obsahovať iba kladné čísla.';
+$lang['is_natural_no_zero']             = 'Pole <strong>%s</strong> musí obsahovať číslo väčšie ako nula.';
+$lang['is_unique'] 			= "Pole <strong>%s</strong> musí byť unikátne.";
+$lang['is_natural']			= "Pole <strong>%s</strong> musí obsahovať iba kladné číslo.";
+$lang['is_natural_no_zero']             = "Pole <strong>%s</strong> musí obsahovať číslo väčšie ako nula.";
+$lang['decimal']			= "Pole <strong>%s</strong> musí obsahovať a desiatkové číslo.";
+$lang['less_than']			= "Pole <strong>%s</strong> musí obsahovať a číslo menšie ako <strong>%s</strong>.";
+$lang['greater_than']                   = "Pole <strong>%s</strong> musí obsahovať číslo väčsie rovne ako <strong>%s.</strong>";
+$lang['valid_date']                     = "Pole <strong>%s</strong> musi obsahovat validny date format";
+$lang['valid_datetime']                 = "Pole <strong>%s</strong> musi obsahovat validny datetime format";
 
 
 /* End of file form_validation_lang.php */

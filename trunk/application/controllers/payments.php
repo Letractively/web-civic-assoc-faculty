@@ -237,6 +237,7 @@ class Payments extends MY_Controller
             $payment_detail = $this->selecter->get_payment_detail($payment_id);
             $this->load->model('updater');
             $this->updater->edit_payments_payment($payment_id, $payment_detail);
+            redirect($this->router->class);
         }
 
         /*

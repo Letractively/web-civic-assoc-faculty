@@ -36,9 +36,12 @@ class Correspondence extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}") )
                 {
-                    if ($this->send_email( $this->input->post() ) )
+                    if($this->input->post('correspondence_cc') != '' )
+                        $this->form_validation->set_rules('correspondence_cc','lang:label_correspondence_cc','trim|xss_clean|valid_email');
+                    if( $this->form_validation->run() )
                     {
-                        redirect('show_message/index/success_correspondence');
+                        if ($this->send_email( $this->input->post() ) )
+                            redirect('show_message/index/success_correspondence');
                     }
                 }
             }

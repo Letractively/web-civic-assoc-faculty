@@ -241,14 +241,12 @@ class Deleter extends MY_Model
           
           $this->db->query("DELETE FROM payments
                             WHERE payment_user_id=$user_id");
+          
           $this->db->query("DELETE FROM user_email_evidence
                             WHERE user_email_evidence_user_id=$user_id");
+          
           $this->db->query("DELETE FROM history_paids
                             WHERE history_paids_user_id=$user_id");
-          $this->db->query("DELETE FROM booked_excursions
-                            WHERE booked_excursion_user_id=$user_id");
-          $this->db->query("DELETE FROM excursion_times
-                            WHERE excursion_time_lecturer_id=$user_id");
           
           $this->db->query("UPDATE events
                             SET event_author_id=NULL 

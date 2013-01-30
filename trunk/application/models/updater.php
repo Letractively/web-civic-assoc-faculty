@@ -179,8 +179,7 @@ class Updater extends MY_Model
     public function edit_project_category($pr_cat_id, $values)
     {
         $this->db->query("UPDATE project_categories
-                          SET project_category_name='".$values['project_category_name']."',
-                              project_category_cash='".$values['project_category_cash']."'
+                          SET project_category_name='".$values['project_category_name']."'
                           WHERE project_category_id=$pr_cat_id
                               ");
         
@@ -188,6 +187,22 @@ class Updater extends MY_Model
         return TRUE;
       }
       else{ return FALSE;}
+    }
+    
+    public function edit_project_category_transactions($values)
+    {
+        $this->db->query("UPDATE project_categories
+                          SET project_category_cash=project_category_cash - '".$values['cash']."'
+                          WHERE project_category_id='".$values['from']."'
+                              ");
+        $this->db->query("UPDATE project_categories
+                          SET project_category_cash=project_category_cash + '".$values['cash']."'
+                          WHERE project_category_id='".$values['to']."'
+                              ");
+        if( $this->db->affected_rows() > 0 )
+            return TRUE;
+        else
+            return FALSE;
     }
     
     public function edit_project_closed($pr_id)

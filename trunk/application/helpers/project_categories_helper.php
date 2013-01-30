@@ -24,3 +24,34 @@ function updateProjCatDetailData($projects)
 	}
 	return $result;
 }
+
+/*function updateProjectDetailData($projects)
+{
+        $CI =& get_instance();
+	$pStates = array(0 => $CI->lang->line('label_closed'), 1 => $CI->lang->line('label_active'));
+	
+	$result = array();
+	foreach ($projects->result() as $project)
+	{
+		$arr = get_object_vars($project);
+		$arr['project_active'] = in_array($arr['project_active'],array(0,1)) ? $pStates[$arr['project_active']] : '-';
+		$result[] = $arr;
+	}
+	return $result;
+}*/
+
+function updateProjectDetailData($projects)
+{	
+	$CI =& get_instance();
+
+	$pStates = array(0 => $CI->lang->line('label_closed'), 1 => $CI->lang->line('label_active'));
+	
+	$result = array();
+	foreach ($projects->result() as $project)
+	{
+		$arr = get_object_vars($payment);
+		$arr['project_active'] = in_array($arr['project_active'],array(0,1)) ? $pStates[$arr['project_active']] : '-';
+		$result[] = $arr;
+	}
+	return $result;
+}
