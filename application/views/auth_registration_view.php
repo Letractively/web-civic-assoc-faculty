@@ -32,8 +32,8 @@
 			<?= form_input(array('name' => 'email', 'id' => 'email', 'class' => 'input_data'.$error['email']), set_value('email')) ?> 
 		</div>
 		<div class="inputitem">
-			<p class="label"> <label for="phone" class="<?= $error['phone'] ?>"><?= $this->lang->line('label_phone') ?></label> </p>
-			<?= form_input(array('name' => 'phone', 'id' => 'phone', 'class' => 'input_data'.$error['phone']), set_value('phone')) ?>
+			<p class="label"> <label for="phone" ><?= $this->lang->line('label_phone') ?></label> </p>
+			<?= form_input(array('name' => 'phone', 'id' => 'phone', 'class' => 'input_data'), set_value('phone')) ?>
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="study_program_id" ><?= $this->lang->line('label_study_program_id') ?></label> </p>
@@ -44,12 +44,12 @@
 			<?= gen_dropdown('degree_id', set_value('degree_id'), $this->selecter->get_degrees(false,$numberOfDegrees,0), 'degree_id', 'degree_name', 'dropdown'); ?>
 		</div>
 		<div class="inputitem">
-			<p class="label"> <label for="place_of_birth" class="<?= $error['place_of_birth'] ?>"><?= $this->lang->line('label_place_of_birth') ?></label> </p>
-			<?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => 'input_data'.$error['place_of_birth']), set_value('place_of_birth')); ?>
+			<p class="label"> <label for="place_of_birth"><?= $this->lang->line('label_place_of_birth') ?></label> </p>
+			<?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => 'input_data'), set_value('place_of_birth')); ?>
 		</div>
 		<div class="inputitem">
-			<p class="label"> <label for="postcode" class="<?= $error['postcode'] ?>"><?= $this->lang->line('label_postcode') ?></label> </p>
-			<?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => 'input_data'.$error['postcode']), set_value('postcode')); ?>
+			<p class="label"> <label for="postcode"><?= $this->lang->line('label_postcode') ?></label> </p>
+			<?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => 'input_data'), set_value('postcode')); ?>
 		</div>
 		<div class="inputitem">
 			<p class="label"> <label for="degree_year" class="<?= $error['degree_year'] ?>"><?= $this->lang->line('label_degree_year'); ?></label> </p>

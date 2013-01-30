@@ -34,32 +34,31 @@
         $this->load->library('grid');
 
         $grid = new Grid();
+        $this->load->helper('project_categories');
         
-        //$projects = $this->selecter->get_projects($category_id);
-        
-        if ($grid->bind($this->selecter->get_projects($category_id), 'project_id'))
+        if ($grid->bind(updateProjCatDetailData($this->selecter->get_projects($category_id)), 'project_id'))
 		{
 			$grid->header('project_id')->visible = false;
 			$grid->header('project_item_id')->visible = false;
                         $grid->header('project_category_id')->visible = false;
-                        $grid->header('project_active')->visible = false;
 
 			$grid->header('project_name')->text = $this->lang->line('label_name');
-			$grid->header('project_name')->set_anchor("{$this->router->class}/detail", 'project_id');
+			$grid->header('project_date_from')->text = $this->lang->line('label_from');
 			$grid->header('project_category_name')->text =  $this->lang->line('label_category_name');
+                        $grid->header('project_active')->text =  $this->lang->line('label_state');
+                        $grid->header('project_booked_cash')->text =  $this->lang->line('label_booked_cash');
+                        $grid->header('project_date_to')->text =  $this->lang->line('label_to');
+                        $grid->header('project_spended_cash')->text =  $this->lang->line('label_spended_cash');
+                        
                         if( $this->userdata->is_admin() )
                         {
                             $grid->header('project_category_name')->set_anchor("project_categories/detail", 'project_category_id');
 			}
-                        $grid->header('project_booked_cash')->text =  $this->lang->line('label_booked_cash');
+                        $grid->header('project_name')->set_anchor("{$this->router->class}/detail", 'project_id');
 			$grid->header('project_booked_cash')->set_numformat('{2:,: } €');
-			$grid->header('project_date_from')->text = $this->lang->line('label_from');
 			$grid->header('project_date_from')->set_datetime('Y-m-d');
-			$grid->header('project_date_to')->text =  $this->lang->line('label_to');
 			$grid->header('project_date_to')->set_datetime('Y-m-d');
-			$grid->header('project_spended_cash')->text =  $this->lang->line('label_spended_cash');
 			$grid->header('project_spended_cash')->set_numformat('{2:,: } €');
-                        
                         $grid->header('project_id')->editable = false;
                                 
                         if( $this->userdata->is_admin() )
@@ -70,8 +69,6 @@
                             $grid->edit_mode = "external";
                             $grid->remove_url = "{$this->router->class}/delete";
                         }
-			
-
 			$grid->display();
 		}
 		echo '<br />';

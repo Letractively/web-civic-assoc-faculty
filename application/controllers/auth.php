@@ -74,7 +74,7 @@ class Auth extends MY_Controller
             
             $data = array(
                 'error'                 => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
-                                                                                'email', 'phone', 'place_of_birth', 'postcode', 'degree_year',
+                                                                                'email', 'degree_year',
                                                                                 'vs','total_sum')
                                                                                 ),     
                 'years'                 => $this->generate_years(60, 2012, 50),

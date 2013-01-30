@@ -37,17 +37,17 @@ $config = array(
         array(
             'field'     => 'phone',
             'label'     => 'lang:label_phone',
-            'rules'     => 'trim|required|xss_clean|numeric'
+            'rules'     => 'trim|xss_clean|numeric'
         ),
         array(
             'field'     => 'place_of_birth',
             'label'     => 'lang:label_place_of_birth',
-            'rules'     => 'trim|required|xss_clean'
+            'rules'     => 'trim|xss_clean'
         ),
         array(
             'field'     => 'postcode',
             'label'     => 'lang:label_postcode',
-            'rules'     => 'trim|required|xss_clean|numeric'
+            'rules'     => 'trim|xss_clean|numeric'
         ),
         array(
             'field'     => 'degree_year',
@@ -448,17 +448,17 @@ $config = array(
         array(
             'field'     => 'phone',
             'label'     => 'lang:label_phone',
-            'rules'     => 'trim|required|xss_clean|numeric'
+            'rules'     => 'trim|xss_clean|numeric'
         ),
         array(
             'field'     => 'place_of_birth',
             'label'     => 'lang:label_place_of_birth',
-            'rules'     => 'trim|required|xss_clean'
+            'rules'     => 'trim|xss_clean'
         ),
         array(
             'field'     => 'postcode',
             'label'     => 'lang:label_postcode',
-            'rules'     => 'trim|required|xss_clean|numeric'
+            'rules'     => 'trim|xss_clean|numeric'
         ),
         array(
             'field'     => 'degree_year',
@@ -505,12 +505,12 @@ $config = array(
         array(
             'field'         => 'place_of_birth',
             'label'         => 'lang:label_place_of_birth',
-            'rules'         => 'trim|required|xss_clean'
+            'rules'         => 'trim|xss_clean'
         ),
         array(
             'field'         => 'postcode',
             'label'         => 'lang:label_postcode',
-            'rules'         => 'trim|required|xss_clean|numeric'
+            'rules'         => 'trim|xss_clean|numeric'
         ),
         array(
             'field'         => 'degree_year',

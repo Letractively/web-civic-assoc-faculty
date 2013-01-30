@@ -12,7 +12,10 @@ $lang['label_booked_cash']                  = 'Rozpočet';
 $lang['label_spended_cash']                 = 'Minuté';
 $lang['label_from']                         = 'Od';
 $lang['label_to']                           = 'Do';
-$lang['label_active']                       = 'Rozpracovanosť';
+
+$lang['label_state']            = 'Stav';
+$lang['label_active']           = 'Aktívny';
+$lang['label_closed']           = 'Uzatvorený';
 
 $lang['label_item']                         = 'položka';
 $lang['label_price']                        = 'cena';
