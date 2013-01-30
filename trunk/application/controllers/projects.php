@@ -50,8 +50,8 @@ class Projects extends MY_Controller
             parent::add('add_project');
 
             $data = array(
-                'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
-                                                                                'booked_cash', 'from', 'to','password','username')),
+                'error'                 => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
+                                                                                        'booked_cash', 'from', 'to','password','username')),
                 'priorities'            => $this->generate_priorities(5)
             );
             
@@ -88,7 +88,7 @@ class Projects extends MY_Controller
             if($this->input->post('submit') == $this->lang->line('button_close_project'))
                 $this->edit_project_closed ($project_id);
             
-            //parent::edit('edit_project', $project_id);
+            parent::edit('edit_project', $project_id);
 
             $data = array(
                 'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',

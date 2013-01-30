@@ -180,8 +180,7 @@ class Users extends MY_Controller
         
         $data = array(
                 'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
-                                                                                'email', 'phone', 'place_of_birth', 'postcode', 'degree_year',
-                                                                                'vs','total_sum')
+                                                                                'email', 'degree_year', 'vs','total_sum')
                                                                         ),       
                 'years'                 => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset),
                 'title' 		=> $this->lang->line('title_add_user') 
@@ -215,7 +214,7 @@ class Users extends MY_Controller
         $data = array(
             'user_id'       => $user_id,
             'error'         => $this->form_validation->form_required(array( 'username', 'name','surname', 'email', 
-                                                                            'phone', 'place_of_birth', 'postcode', 'degree_year'
+                                                                            'degree_year'
                                                                           )
                                                                         ),
             'years'         => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset)

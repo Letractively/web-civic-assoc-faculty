@@ -155,7 +155,7 @@ class MY_Model extends CI_Model
             {
                 $q = $this->db->query(" SELECT $id
                                         FROM $table
-                                        WHERE user_active = 0
+                                        WHERE user_activated = 0
                                       ");
                 return $q->num_rows();
             }

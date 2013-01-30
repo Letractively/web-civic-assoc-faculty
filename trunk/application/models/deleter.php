@@ -128,7 +128,45 @@ class Deleter extends MY_Model
     
     public function remove_project_category($pr_cat_id)
     {
+        $categories = $this->db->query(" SELECT project_category_id 
+                                         FROM project_categories
+                                         WHERE project_category_id != $pr_cat_id
+                                       ");
+        $totalCategories = $categories->num_rows;
+        
+        $q = $this->db->query(" SELECT project_category_cash 
+                                FROM project_categories
+                                WHERE project_category_id = $pr_cat_id
+                              ");
+        $totalAmount = $q->row()->project_category_cash;
+        $q->free_result();
+        
+        $onePieceOfRatio = round($totalAmount / $totalCategories, 2);
+        
+        $checkSum = $totalCategories * $onePieceOfRatio;
+        
+        foreach ($categories->result() as $category) 
+        {
+            $cashPerCategory = $onePieceOfRatio*1;
+            $this->db->query("  UPDATE project_categories
+                                SET project_category_cash = project_category_cash+$cashPerCategory
+                                WHERE project_category_id = $category->project_category_id
+                             ");
+        }
+        
+        if($checkSum != $totalAmount)
+        {
+            $balance = $totalAmount - $checkSum;
+            $randomCategory = rand( 1, $totalCategories );
+            
+            $this->db->query("  UPDATE project_categories
+                                SET project_category_cash = project_category_cash+$balance
+                                WHERE project_category_id = $randomCategory
+                             ");
+        }
+        
         $this->db->query("DELETE FROM project_categories WHERE project_category_id=$pr_cat_id");
+        
         if($this->db->affected_rows()>0){
           $this->db->query("UPDATE projects
                             SET project_project_category_id=NULL 

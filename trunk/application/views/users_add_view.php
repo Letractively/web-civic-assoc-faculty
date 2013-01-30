@@ -65,9 +65,9 @@
                     
                     <div class="inputitem">
                         <p class="label">
-                            <label for="phone" class="<?= $error['phone']; ?>"><?= $this->lang->line('label_phone'); ?></label>
+                            <label for="phone"><?= $this->lang->line('label_phone'); ?></label>
                         </p>
-                        <?= form_input(array('name' => 'phone', 'id' => 'phone', 'class' => 'input_data'.$error['phone']), set_value('phone')); ?>
+                        <?= form_input(array('name' => 'phone', 'id' => 'phone', 'class' => 'input_data'), set_value('phone')); ?>
                     </div>
                     
                     <div class="inputitem">
@@ -86,16 +86,16 @@
                     
                     <div class="inputitem">
                         <p class="label">
-                            <label for="place_of_birth" class="<?= $error['place_of_birth']; ?>"><?= $this->lang->line('label_place_of_birth'); ?></label>
+                            <label for="place_of_birth" ><?= $this->lang->line('label_place_of_birth'); ?></label>
                         </p>
-                        <?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => 'input_data'.$error['place_of_birth']), set_value('place_of_birth')); ?>
+                        <?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => 'input_data'), set_value('place_of_birth')); ?>
                     </div>
                     
                     <div class="inputitem">
                         <p class="label">
-                            <label for="postcode" class="<?= $error['postcode']; ?>"><?= $this->lang->line('label_postcode'); ?></label>
+                            <label for="postcode"><?= $this->lang->line('label_postcode'); ?></label>
                         </p>
-                        <?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => 'input_data'.$error['postcode']), set_value('postcode')); ?>
+                        <?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => 'input_data'), set_value('postcode')); ?>
                     </div>
                     
                     <div class="inputitem">

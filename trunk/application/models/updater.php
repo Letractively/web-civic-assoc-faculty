@@ -203,12 +203,14 @@ class Updater extends MY_Model
                                                 WHERE project_id = $pr_id
                                               ");
         $projectCategoryID = $q->row()->project_project_category_id;
-        
-        
-        $this->db->query("UPDATE project_categories
-                          SET project_category_cash = project_category_cash - $totalProjectPrice
-                          WHERE project_category_id = $projectCategoryID
-                         ");
+
+        if(isset($totalProjectPrice))
+        {
+            $this->db->query("UPDATE project_categories
+                              SET project_category_cash = project_category_cash - $totalProjectPrice
+                              WHERE project_category_id = $projectCategoryID
+                             ");
+        }
         $this->db->query("UPDATE projects
                           SET project_active='0'
                           WHERE project_id=$pr_id
