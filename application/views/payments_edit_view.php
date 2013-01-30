@@ -27,7 +27,6 @@
 		<div class="inputitem">
 			<span class="label"><?= $this->lang->line('label_paidtype'); ?>: </span>
 			<?= gen_dropdown('payment_type', $object['payment_type'], $payment_types, 'id', 'value', 'dropdown','id="payment_type" onchange="changeFilter(this);" disabled=disabled'); ?>
-                        <?= form_hidden('payment_type', $object['payment_type']); ?>
                 </div>
 
                 <div class="inputitem">

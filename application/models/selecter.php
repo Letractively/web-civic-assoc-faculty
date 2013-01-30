@@ -186,8 +186,7 @@ class Selecter extends MY_Model
             $q = $this->db->query(" SELECT user_id, user_role
                                     FROM users
                                     WHERE user_username = '".$param['username']."' AND
-                                          user_password = '".sha1($param['password'])."' AND
-                                          user_active   = 1
+                                          user_password = '".sha1($param['password'])."'
                                   ");   
             return $q->row();
         }
