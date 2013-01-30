@@ -5,7 +5,8 @@ $lang['admin']                          =   'Administrátor';
 $lang['oz_member']                      =   'Člen združenia';
 $lang['po_member']                      =   'Potencionálny člen';
 $lang['all']                            =   'Všetci';
-$lang['me_inactive']                    =   'Neaktívny';
+$lang['me_inactive']                    =   'Čakajúci člen';
+$lang['blocked_member']                 =   'Zablokovaný člen';
 
 $lang['label_proj_category']            =   'Kategória';
 

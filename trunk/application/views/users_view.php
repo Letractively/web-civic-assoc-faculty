@@ -24,7 +24,8 @@
                 array('id' => 'users/admins', 'value' => $this->lang->line('admin')),
                 array('id' => 'users/members', 'value' => $this->lang->line('oz_member')),
                 array('id' => 'users/potentials', 'value' => $this->lang->line('po_member')),
-                array('id' => 'users/innactive', 'value' => $this->lang->line('me_inactive'))
+                array('id' => 'users/innactive', 'value' => $this->lang->line('me_inactive')),
+                array('id' => 'users/blocked', 'value' => $this->lang->line('blocked_member'))
             );  
         else
             $user_filters = array(
