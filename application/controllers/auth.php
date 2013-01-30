@@ -57,11 +57,18 @@ class Auth extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") == TRUE )
                 {
-                    $this->load->model('inserter');
-                    if(  $this->inserter->add_register( $this->input->post() ) == TRUE  )
+                    foreach ($this->input->post('categories') as $cat_id => $ratio)
                     {
-                        redirect('show_message/index/success_registration');
-                    }       
+                        $this->form_validation->set_rules('categories['.$cat_id.']','lang:label_proj_category','trim|xss_clean|numeric|is_natural');
+                    }
+                    if( $this->form_validation->run())
+                    {
+                        $this->load->model('inserter');
+                        if(  $this->inserter->add_register( $this->input->post() ) == TRUE  )
+                        {
+                            redirect('show_message/index/success_registration');
+                        }
+                    }                           
                 }      
             }
             
