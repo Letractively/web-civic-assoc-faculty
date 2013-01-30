@@ -44,7 +44,7 @@ $lang['acc_enabled_until']          =   'V prípade neúhrady členského, je ú
 $lang['entry_free']                 =   'Dobrovoľný Príspevok';
 $lang['entry_fee']                  =   'Uhradiť členské';
 
-$lang['wtg_fee']                    =   'Čaká sa na úhradu členského poplatku';
+
 
 /* End of file auth_lang.php */
 /* Location: ./application/language/slovak/auth_lang.php */

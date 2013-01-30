@@ -32,5 +32,7 @@ $lang['logged_in']                      =   'Si prihlásený ako';
 
 $lang['no_js']				=   'Pre správne fungovanie tejto aplikácie musíte mať povolený javascript.';
 
+$lang['wtg_fee']                    =   'Čaká sa na úhradu členského poplatku';
+
 /* End of file default_lang.php */
 /* Location: ./application/language/slovak/default_lang.php */
