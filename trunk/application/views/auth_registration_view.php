@@ -77,7 +77,7 @@
 						 echo '<td> <label for="categories['.$cat_id.']">';
 							 echo $o->project_category_name;
 						 echo '</label></td>';
-						 echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => '1', 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$cat_id)).'</td>';
+						 echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => '1', 'size'=> 3, 'class' => 'input_data_reg' ), set_value('categories['.$cat_id.']')).'</td>';
 					echo '</tr>';
 				}
 		   echo '</table>';
