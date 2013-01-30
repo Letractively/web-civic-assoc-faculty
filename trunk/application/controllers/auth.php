@@ -110,7 +110,7 @@ class Auth extends MY_Controller
                 else
                     redirect('show_message/index/error_validation');
             }
-            redirect('auth');
+           redirect('auth');
         }
 
         /*

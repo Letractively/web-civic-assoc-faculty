@@ -79,8 +79,9 @@ class Updater extends MY_Model
                            WHERE payment_id = $payment_id
                          ");
         
+        $timestamp = date("Y-m-d H:i:s");        
         $this->db->query(" UPDATE users
-                           SET user_active = 1
+                           SET user_activated = '".$timestamp."'
                            WHERE user_id = '".$values['payment_user_id']."'
                          ");
         

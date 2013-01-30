@@ -138,12 +138,12 @@ class Inserter extends MY_Model
     public function add_register($param)
     {
         $this->db->query("  INSERT INTO users 
-                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone, user_active,
+                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
                             user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
                             VALUES
                             ('".$param['name']."', '".$param['surname']."', 2, '".$param['username']."',
                              '".sha1($param['password'])."', '".$param['email']."', '".$param['phone']."',
-                             0, '".$param['study_program_id']."', '".$param['degree_id']."', 
+                             '".$param['study_program_id']."', '".$param['degree_id']."', 
                              '".$param['place_of_birth']."', '".$param['postcode']."', '".$param['degree_year']."')
                          ");
         
@@ -196,12 +196,12 @@ class Inserter extends MY_Model
     public function add_user($values)
     {
         $this->db->query("  INSERT INTO users 
-                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone, user_active,
+                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
                             user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
                             VALUES
                             ('".$values['name']."', '".$values['surname']."','".$values['role']."', '".$values['username']."',
                              '".sha1($values['password'])."', '".$values['email']."', '".$values['phone']."',
-                             0, '".$values['study_program_id']."', '".$values['degree_id']."', 
+                             '".$values['study_program_id']."', '".$values['degree_id']."', 
                              '".$values['place_of_birth']."', '".$values['postcode']."', '".$values['degree_year']."')
                          ");
         
