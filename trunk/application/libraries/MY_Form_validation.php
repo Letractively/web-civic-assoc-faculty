@@ -44,4 +44,14 @@ class MY_Form_validation extends CI_Form_validation {
 		}
 		return $str >= $min;
 	}
+        
+        public function valid_date($str)
+        {
+            return ( ! preg_match('/^[0-9]{2}.[0-9]{2}.[0-9]{4}$/', $str)) ? FALSE : TRUE;
+        }
+        
+        public function valid_datetime($str)
+        {
+            return ( ! preg_match('/^[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]:[0-9]$/', $str)) ? FALSE : TRUE;
+        }
 }

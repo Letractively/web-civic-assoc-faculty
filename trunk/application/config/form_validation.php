@@ -316,17 +316,17 @@ $config = array(
             array(
                 'field'     => 'booked_cash',
                 'label'     => 'lang:label_booked_cash',
-                'rules'     => 'trim|required|xss_clean|numeric'
+                'rules'     => 'trim|required|xss_clean|numeric|is_natural'
             ),
             array(
                 'field'     => 'from',
                 'label'     => 'lang:label_from',
-                'rules'     => 'trim|required|xss_clean'
+                'rules'     => 'trim|required|xss_clean|valid_date'
             ),
             array(
                 'field'     => 'to',
                 'label'     => 'lang:label_to',
-                'rules'     => 'trim|required|xss_clean'
+                'rules'     => 'trim|required|xss_clean|valid_date'
             )
     ),
     'projects/edit'                          => array(
