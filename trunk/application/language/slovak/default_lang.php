@@ -7,6 +7,8 @@ $lang['po_member']                      =   'Potencionálny člen';
 $lang['all']                            =   'Všetci';
 $lang['me_inactive']                    =   'Neaktívny';
 
+$lang['label_proj_category']            =   'Kategória';
+
 $lang['confirm_delete_title']           =   'Ste si istý?';
 $lang['confirm_delete_question']        =   'Naozaj chcete vymazať tento záznam?';
 $lang['confirm_yes']                    =   'Áno';

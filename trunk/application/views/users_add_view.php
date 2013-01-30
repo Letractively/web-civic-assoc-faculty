@@ -5,19 +5,47 @@
     ?>
 </div>
 <script>
-    function zobrazSkryj(idecko){
+    function zobrazSkryj(idecko)
+    {
         el = document.getElementById(idecko).style; 
         el.display = (el.display == 'block')?'none':'block';
         
         if(document.getElementById('checkbox').value == 0)
         {
             document.getElementById('checkbox').value = 1;
-            document.forms[0].hidden_payment.value = 1;
+         //   document.forms[0].hidden_payment.value = 1;
         }    
         else if(document.getElementById('checkbox').value == 1)
         {
             document.getElementById('checkbox').value = 0;
-            document.forms[0].hidden_payment.value = 0;
+         //   document.forms[0].hidden_payment.value = 0;
+        }
+    }
+    
+    function hidecheckbox(id, form)
+    {
+        el = document.getElementById(id).style; 
+        el2 = document.getElementById(form).style; 
+        checkbox = document.getElementById('checkbox');
+        
+        if(document.getElementById('role').value == '1' ) //Adminsitrator
+        {    
+            el.display = (el.display == 'block')?'none':'none';
+            el2.display = (el.display == 'block')?'none':'none';
+            checkbox.value = 0;
+            checkbox.checked = false;
+        }
+        else if(document.getElementById('role').value == '2') // Clen zdruzenia
+        {
+            el.display = (el.display == 'none')?'block':'none';
+            el2.display = (el.display == 'block')?'none':'block';
+        }
+        else if(document.getElementById('role').value == '3') // Potencionalny clen
+        {
+            el.display = (el.display == 'block')?'none':'none';
+            el2.display = (el.display == 'block')?'none':'none';
+            checkbox.value = 0;
+            checkbox.checked = false;
         }
     }
 </script>
@@ -108,22 +136,25 @@
                     <?php 
                         if( $this->userdata->is_admin() )
                         {
+                            $roles = array( '1'=>$this->lang->line('admin'), 
+                                            '2'=>$this->lang->line('oz_member'),
+                                            '3'=>$this->lang->line('po_member')
+                                          );
                             echo '<div class="inputitem">';
                                 echo '<p class="label"><label for="role" >'.$this->lang->line('label_role').'</label></p>';
-                                echo form_dropdown('role', $this->userdata->roles(false), set_value('role'), 'class="dropdown_year"');
+                                echo form_dropdown('role', $roles, set_value('role'), 'id="role" class="dropdown_year" onchange="hidecheckbox(\'payments\',\'oddil1\')" style="cursor: pointer"');
                             echo '</div>';
                         }
                     ?>
                     
                     <?php
-                        echo '<div class="inputitem"><strong>'.$this->lang->line('entry_fee').'</strong>';
+                        echo '<div class="inputitem" id="payments" style="display: none"><strong>'.$this->lang->line('entry_fee').'</strong>';
                             echo form_checkbox(array("id"=>"checkbox","name"=>"checkbox","style"=>"cursor: pointer", "onchange" =>"zobrazSkryj('oddil1')"), 0);
                         echo '</div>';
                         
                         echo '<div id="oddil1" class="skryvany" style="display: none">';
                             echo '<div class="inputitem">';
                                 echo '<p class="label"> <label for="vs">'.$this->lang->line('label_vs').'</label> </p>';
-                                echo form_hidden('hidden_payment', 0);
                                 echo form_input(array('name' => 'vs', 'id' => 'vs', 'class' => 'input_data' ), set_value('vs'));
                             echo '</div>';
 

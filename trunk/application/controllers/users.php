@@ -157,22 +157,30 @@ class Users extends MY_Controller
        
         if ( $this->input->post('submit') )
         {
+                   
              if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
              {
-                 if($this->input->post('hidden_payment') == 1)
+                 switch( $this->input->post('role') )
                  {
-                    $this->form_validation->set_rules('vs','lang:label_vs','trim|required|integer|min_length[4]|max_length[10]');
-                    $this->form_validation->set_rules('total_sum','lang:label_total_tum','trim|required|xss_clean|greater_or_equal_than[5]');
-                    foreach ($this->input->post('categories') as $cat_id => $ratio)
-                    {
-                        $this->form_validation->set_rules('categories[$cat_id]','lang:label_proj_category','trim|xss_clean|numeric');
-                    }
-                    if( $this->form_validation->run() )
-                    {
-                        $this->load->model('inserter');
-                        $this->inserter->add_user($this->input->post());
-                        redirect($this->router->class);
-                    }
+                     case 1:                         
+                     case 3:
+                         break;
+                     case 2:
+                         if( $this->input->post('checkbox') == 1 )
+                            $this->form_validation->set_rules('vs','lang:label_vs','trim|required|integer|min_length[4]|max_length[10]');
+                            $this->form_validation->set_rules('total_sum','lang:label_total_sum','trim|required|xss_clean|greater_or_equal_than[5]|numeric');
+                            foreach ($this->input->post('categories') as $cat_id => $ratio)
+                            {
+                                $this->form_validation->set_rules('categories['.$cat_id.']','lang:label_proj_category','trim|xss_clean|numeric|is_natural');
+                            } 
+                         break;               
+                 }
+                 
+                 if( $this->form_validation->run() )
+                 {
+                     $this->load->model('inserter');
+                     $this->inserter->add_user( $this->input->post() );
+                     redirect($this->router->class);
                  }
              }
         }

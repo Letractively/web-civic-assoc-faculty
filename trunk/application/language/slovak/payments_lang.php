@@ -6,7 +6,7 @@ $lang['label_total_sum']            =   'Suma k úhrade';
 $lang['label_paid_sum']             =   'Uhradená suma';
 $lang['label_status']               =   'stav';
 $lang['label_date']                 =   'čas platby';
-$lang['label_proj_category']        =   'Kategória';
+
 
 $lang['payment_all']                =   'Všetky';
 $lang['payment_paid']               =   'Zaplatené';
