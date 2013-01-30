@@ -64,6 +64,7 @@
                                 
                         if( $this->userdata->is_admin() )
                         {
+                            $grid->add_url = "{$this->router->class}/add";
                             $grid->add_mode = "external";
                             $grid->edit_url = "{$this->router->class}/edit";
                             $grid->edit_mode = "external";

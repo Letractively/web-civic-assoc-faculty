@@ -144,6 +144,7 @@ abstract class MY_Controller extends CI_Controller
         {
             if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
             {
+
                 $this->load->model('inserter');
                 $this->inserter->$method( $this->input->post() );
                 redirect($this->router->class);
