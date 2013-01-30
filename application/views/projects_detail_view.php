@@ -40,7 +40,10 @@
                             echo $this->lang->line('project_open');
 		?>  
 	</div>
-
+        <div class="post_modifie_info">
+		<span class="project_label"> Kategória: </span>
+		<?= anchor('project_categories/detail/'.$obj[0]->project_project_category_id,$obj[0]->project_category_name); ?>  
+	</div>
 	<?php
             if( $this->userdata->is_admin() )
             {

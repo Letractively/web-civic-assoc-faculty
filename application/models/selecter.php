@@ -430,9 +430,11 @@ class Selecter extends MY_Model
                 $q = $this->db->query(" SELECT p.project_name, p.project_about, p.project_priority, 
                                                p.project_project_category_id, p.project_booked_cash, 
                                                sum(pi.project_item_price) AS project_spended_cash,
-                                               p.project_date_from, p.project_date_to, p.project_active
+                                               p.project_date_from, p.project_date_to, p.project_active,
+                                               p_c.project_category_name
                                         FROM project_items pi
                                         JOIN projects p ON (pi.project_item_project_id=p.project_id)
+                                        JOIN project_categories p_c ON (p.project_project_category_id = p_c.project_category_id)
                                         WHERE project_id=$project_id
                                       ");
                 return $q->result();
@@ -451,7 +453,7 @@ class Selecter extends MY_Model
                     else return $q->result();
         }
     
-        public function get_projects($cat_id)
+        public function get_projects($cat_id, $grid = false)
         {
                     if ($cat_id == 0)
                     {
@@ -478,7 +480,8 @@ class Selecter extends MY_Model
                                         ORDER BY p.project_active DESC
                                       ");
                     }
-            return $q->result();
+            if ($grid == true) return $q;
+                    else return $q->result();
         }
 
         /*
@@ -577,14 +580,14 @@ class Selecter extends MY_Model
                                       ");
                     break;
                 case 5:
-                    $actualDateTime = date("Y-m-d  H:i:s", strtotime("+2 year", strtotime(date("Y-m-d  H:i:s"))));
+                    $actualDateTime = date("Y-m-d  H:i:s");
                     $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
                                                 u.user_email, u.user_phone, u.user_degree_year, 
                                                 sp.study_program_name, d.degree_name, u.user_postcode 
                                         FROM users u
                                         LEFT JOIN degrees d ON (u.user_degree_id = d.degree_id)
                                         LEFT JOIN study_programs sp ON (u.user_study_program_id = sp.study_program_id)
-                                        WHERE u.user_activated <= '".$actualDateTime."' AND u.user_exempted = 0 AND u.user_activated != '0000-00-00 00:00:00' 
+                                        WHERE u.user_activated >= '".$actualDateTime."' AND u.user_exempted = 0 AND u.user_activated != '0000-00-00 00:00:00' 
                                         LIMIT $cur_page, $per_page
                                       ");
                     break;

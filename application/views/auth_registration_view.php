@@ -57,7 +57,7 @@
 		</div>
 	 
 		<div class="inputitem">
-			<p class="label"> <label for="total_sum" class=" <?= $error['total_sum'] ?>"><?= $this->lang->line('label_total_tum') ?></label> </p>
+			<p class="label"> <label for="total_sum" class=" <?= $error['total_sum'] ?>"><?= $this->lang->line('label_total_sum') ?></label> </p>
 			<?= form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class'=>'input_data'.$error['total_sum']), set_value('total_sum')); ?>
 		</div>
 		<div class="inputitem">

@@ -1,8 +1,4 @@
-﻿<?php
-$this->load->helper('project_categories');
-
-$obj = $this->selecter->get_category_detail($project_category_id);
-?>
+<?php $obj = $this->selecter->get_category_detail($project_category_id); array_debug($obj);?>
 
 <div id="grid_wrapper">
     <span class="project_category_label"> <?= $this->lang->line('pr_cat_label') . ': <span class="project_name">' . $obj->project_category_name . '</span>'; ?>  </span> 
@@ -15,7 +11,7 @@ $obj = $this->selecter->get_category_detail($project_category_id);
 if ($obj->project_category_cash == '')
     echo '0';
 else
-    echo $obj->project_category_cash - $obj->transaction_cash_from + $obj->transaction_cash_to;
+    echo $obj->project_category_cash;
 ?> €</strong><br /> 
             </span>
             <span class="project_category_labels"> <?= $this->lang->line('pr_cat_move_from'); ?>
@@ -44,8 +40,6 @@ else
     <div class="errors">
     <?php
     echo validation_errors();
-    //$field = $this->selecter->id($project_category_id,'events','event_id');
-    //array_debug($programs) 
     ?>
     </div>
 
@@ -102,8 +96,12 @@ else
     $grid1 = new Grid();
 
     //array_debug($this->selecter->get_projects($project_category_id));
-
-    if ($grid1->bind(updateProjCatDetailData($this->selecter->get_projects($project_category_id)), 'project_id')) {
+        $this->load->helper('project_categories');
+        $project_categories = $this->selecter->get_projects($project_category_id, true);
+        $inputData = updateProjectDetailData($project_categories);
+        
+        if ($grid1->bind($inputData, 'project_id')) 
+        {
         $grid1->header('project_id')->editable = false;
 
         $grid1->header('project_id')->visible = false;
@@ -133,9 +131,8 @@ else
         $grid1->edit_url = "projects/edit";
         $grid1->edit_mode = "external";
         $grid1->remove_url = "projects/delete";
-
-        $grid1->display();
     }
+    $grid1->display();
     ?>
     <div class="inputitem">
         <p class="button_delete"> <?= anchor("projects_categories/delete/$project_category_id", 'Zmazať') ?> </p>

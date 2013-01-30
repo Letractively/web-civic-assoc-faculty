@@ -84,11 +84,6 @@ $config = array(
             'rules'     => 'required|trim|xss_clean|valid_email'
         ),
         array(
-            'field'     => 'correspondence_cc',
-            'label'     => 'lang:label_correspondence_cc',
-            'rules'     => 'required|trim|xss_clean|valid_email'
-        ),
-        array(
             'field'     => 'correspondence_subject',
             'label'     => 'lang:label_correspondence_subject',
             'rules'     => 'required|trim|xss_clean'

@@ -137,7 +137,7 @@ class Inserter extends MY_Model
     
     public function add_register($param)
     {
-        $this->db->query("  INSERT INTO users 
+       $this->db->query("  INSERT INTO users 
                             (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
                             user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
                             VALUES

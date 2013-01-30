@@ -1,69 +1,83 @@
-﻿<?php $obj = $this->selecter->get_user_detail($user_id); ?>
+<?php $obj = $this->selecter->get_user_detail($user_id); ?>
 <div id="content_wrapper_small">
     <?php
-    if ($this->userdata->is_admin()) {
-        echo '<p class="project_label">';
-        echo $this->lang->line('label_state') . ': ';
-        echo '<span class="user_rank">';
-        switch ($obj[0]->user_role) {
-            case 1:
-                echo $this->lang->line('admin');
-                break;
-            case 2:
-                echo $this->lang->line('oz_member');
-                break;
-            case 3:
-                echo $this->lang->line('po_member');
-                break;
+        if ($this->userdata->is_admin()) 
+        {
+            echo '<p class="project_label">';
+            echo $this->lang->line('label_state') . ': ';
+            echo '<span class="user_rank">';
+            switch ($obj[0]->user_role) 
+            {
+                case 1:
+                    echo $this->lang->line('admin');
+                    break;
+                case 2:
+                    echo $this->lang->line('oz_member');
+                    break;
+                case 3:
+                    echo $this->lang->line('po_member');
+                    break;
+            }
+            echo '</span>';
+            echo '</p>';
         }
-        echo '</span>';
-        echo '</p>';
-    }
     ?>    
     <div class="inputitem">
         <span class="user_detail_label"><?= $this->lang->line('label_name'); ?>: </span>
-<?= $obj[0]->user_name . ' ' . $obj[0]->user_surname; ?>
+        <?= $obj[0]->user_name . ' ' . $obj[0]->user_surname; ?>
     </div>
 
-<?php if ($obj[0]->user_degree_year != ''): ?>
+    <?php if ($obj[0]->user_degree_year != ''): ?>
         <div class="inputitem">
             <span class="user_detail_label"><?= $this->lang->line('label_degree_year'); ?>: </span>    
-    <?= $obj[0]->user_degree_year ?>  
+            <?= $obj[0]->user_degree_year ?>  
         </div>
-        <?php endif; ?>
+    <?php endif; ?>
+    
+    <?php if ($obj[0]->degree_name != ''): ?>
+        <div class="inputitem">
+            <span class="user_detail_label"><?= $this->lang->line('label_degree'); ?>: </span>    
+            <?= $obj[0]->degree_name ?>  
+        </div>
+    <?php endif; ?>
 
     <?php if ($obj[0]->user_study_program_id != ''): ?>
         <div class="inputitem">
             <span class="user_detail_label">
-    <?= $this->lang->line('label_study_program_id') . ': '; ?>
+                <?= $this->lang->line('label_study_program_id') . ': '; ?>
             </span>
                 <?= $obj[0]->study_program_name; ?>
         </div>
-        <?php endif; ?>
+    <?php endif; ?>
 
     <?php if ($this->userdata->is_admin() || $user_id == $this->userdata->get_user_id()): ?>
         <div class="inputitem">
             <span class="user_detail_label"><?= $this->lang->line('button_login'); ?>: </span>
-    <?= $obj[0]->user_username ?>  
+            <?= $obj[0]->user_username ?>  
         </div>
         <div class="inputitem">
             <span class="user_detail_label"><?= $this->lang->line('label_email'); ?>: </span>
-    <?= $obj[0]->user_email ?>  
+            <?= $obj[0]->user_email ?>  
         </div>
-        <div class="inputitem">
-            <span class="user_detail_label"><?= $this->lang->line('label_phone'); ?>: </span>
-    <?= $obj[0]->user_phone ?>  
-        </div>
+        <?php if ($obj[0]->user_phone != ''): ?>
+            <div class="inputitem">
+                <span class="user_detail_label"><?= $this->lang->line('label_phone'); ?>: </span>
+                <?= $obj[0]->user_phone ?>  
+            </div>
+        <?php endif; ?>
+        <?php if ($obj[0]->user_place_of_birth != ''): ?>
         <div class="inputitem">
             <span class="user_detail_label"><?= $this->lang->line('label_place_of_birth'); ?>: </span>
-    <?= $obj[0]->user_place_of_birth ?>  
+            <?= $obj[0]->user_place_of_birth ?>  
         </div>
-        <div class="inputitem">
-            <span class="user_detail_label"><?= $this->lang->line('label_postcode'); ?>: </span>
-    <?= $obj[0]->user_postcode ?>  
-        </div>       
         <?php endif; ?>
-
+        <?php if ($obj[0]->user_postcode != 0): ?>
+            <div class="inputitem">
+                <span class="user_detail_label"><?= $this->lang->line('label_postcode'); ?>: </span>
+                <?= $obj[0]->user_postcode ?>  
+            </div>       
+        <?php endif; ?>
+    <?php endif; ?>
     <?php
     if ( $this->userdata->is_admin() || $user_id == $this->userdata->get_user_id() ) {
         $this->load->library('grid');
@@ -126,7 +140,6 @@
             if (date("Y-m-d", time() - (365 * 86400)) <= $userActivationDate[0]) 
             {
                 echo '<div class="inputitem">' . $this->lang->line('pay_limited_in') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';
-                echo '<div class="inputitem">' . $this->lang->line('acc_enabled_until') . ': <strong>31.12.' . $year . '</strong></div>';
                 
                 if ($user_id == $this->userdata->get_user_id() && date("Y-m-d", time() - (365 * 86400)) <= $userActivationDate[0])
                     echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('entry_free')) . '</p>';

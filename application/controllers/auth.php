@@ -59,7 +59,7 @@ class Auth extends MY_Controller
                 {
                     foreach ($this->input->post('categories') as $cat_id => $ratio)
                     {
-                        $this->form_validation->set_rules('categories['.$cat_id.']','lang:label_proj_category','trim|xss_clean|numeric|is_natural');
+                        $this->form_validation->set_rules('categories['.$cat_id.']','lang:table_th_ratio','trim|xss_clean|numeric|is_natural');
                     }
                     if( $this->form_validation->run())
                     {

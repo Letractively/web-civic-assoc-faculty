@@ -75,7 +75,12 @@ class Project_categories extends MY_Controller
          */
         public function add_transaction()
         {
-            parent::add('add_transaction');
+            $dataInput = $this->input->post();
+            $this->load->model('inserter');
+            $this->inserter->add_transaction($dataInput);
+            $this->load->model('updater');
+            $this->updater->edit_project_category_transactions($dataInput);
+            redirect('project_categories/detail/'.$dataInput['from']);
         }
 
         public function edit( $project_category_id )

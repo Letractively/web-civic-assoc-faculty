@@ -161,10 +161,10 @@ class MY_Model extends CI_Model
             }
             else if($role == ROLE_BLOCKED)
             {
-                $actualDateTime = date("Y-m-d  H:i:s", strtotime("+2 year", strtotime(date("Y-m-d  H:i:s"))));
+                $actualDateTime = date("Y-m-d  H:i:s");
                 $q = $this->db->query(" SELECT $id
                                         FROM $table
-                                        WHERE user_activated <= '".$actualDateTime."' AND user_exempted = 0 AND user_activated != '0000-00-00 00:00:00' 
+                                        WHERE user_activated >= '".$actualDateTime."' AND user_exempted = 0 AND user_activated != '0000-00-00 00:00:00' 
                                       ");   
             }
             else

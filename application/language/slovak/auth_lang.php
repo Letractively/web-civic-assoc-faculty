@@ -16,7 +16,7 @@ $lang['label_place_of_birth']       =   'Miesto narodenia';
 $lang['label_postcode']             =   'PSČ';
 $lang['label_degree_year']          =   'Rok ukončenia na fakulte';
 
-$lang['label_total_tum']            =   'Suma, ktorú posielate';
+$lang['label_total_sum']            =   'Suma, ktorú posielate';
 $lang['label_vs']                   =   'Variabilný symbol';
 $lang['table_th_category']          =   'Kategória';
 $lang['table_th_ratio']             =   'Pomer';
