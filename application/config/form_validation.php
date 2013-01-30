@@ -56,7 +56,7 @@ $config = array(
         ),
         array(
             'field'     => 'total_sum',
-            'label'     => 'lang:label_total_tum',
+            'label'     => 'lang:label_total_sum',
             'rules'     => 'trim|required|xss_clean|greater_or_equal_than[5]'
         ),
         array(

@@ -195,44 +195,59 @@ class Inserter extends MY_Model
     
     public function add_user($values)
     {
+        $is_exempted = 0;
+        $is_activated = '0000-00-00 00:00:00';
+        
+        switch( $values['role'] )
+        {
+            case 1:
+                $is_exempted = 1;
+                break;
+            case 2:
+                if( !isset($values['checkbox']) )
+                    $is_exempted = 1;
+                break;
+        }
+        
         $this->db->query("  INSERT INTO users 
                             (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
-                            user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
+                            user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year,
+                            user_exempted, user_activated)
                             VALUES
                             ('".$values['name']."', '".$values['surname']."','".$values['role']."', '".$values['username']."',
                              '".sha1($values['password'])."', '".$values['email']."', '".$values['phone']."',
                              '".$values['study_program_id']."', '".$values['degree_id']."', 
-                             '".$values['place_of_birth']."', '".$values['postcode']."', '".$values['degree_year']."')
+                             '".$values['place_of_birth']."', '".$values['postcode']."', '".$values['degree_year']."',
+                             '".$is_exempted."', '".$is_activated."')
                          ");
         
         $user_id = $this->db->insert_id();
-        if($values['hidden_payment'] == 1)
+        if( $values['checkbox'] == 1 )
         {
             $this->db->query("  INSERT INTO payments
                                 (payment_vs, payment_total_sum, payment_user_id, payment_type)
                                 VALUES
-                                ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$user_id."', 1)
+                                ('".$values['vs']."','".$values['total_sum']."', '".$user_id."', 1)
                              ");
+            
             $payment_id = $this->db->insert_id();
             $q = 'INSERT INTO fin_redistributes (fin_redistribute_payment_id, fin_redistribute_project_category_id, fin_redistribute_ratio) VALUES ';
-            $first = true;
-            foreach ($values['categories'] as $cat_id => $ratio)
-            {
-            	if (!$first) $q .= ', ';
-		$q .= "('".$payment_id."', '".$cat_id."', '".$ratio."')";
-		$first = false;
-            }
-            $q .= ';';
+		$first = true;
+		foreach ($values['categories'] as $cat_id => $ratio)
+		{
+			if (!$first) $q .= ', ';
+			$q .= "('".$payment_id."', '".$cat_id."', '".$ratio."')";
+			$first = false;
+		}
+		$q .= ';';
 		
-            return $this->db->query($q);
+		return $this->db->query($q);
         }
         else
-        {
-            $this->db->query("UPDATE users
-                              SET user_exempted = 1
-                              WHERE user_id = '".$user_id."'");
-            return true;
-        }    
+            if( $this->db->affected_rows() > 0 ) 
+                return TRUE;
+            else
+                return FALSE;
     }
 }   
     
