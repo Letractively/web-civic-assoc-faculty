@@ -135,6 +135,14 @@ class Payments extends MY_Controller
          */
         public function add()
         {
+            $userID = $this->userdata->get_user_id();
+            $userActivationDate = explode(' ', $this->userdata->get_user_activated_time($userID));
+            $lp = $this->selecter->get_payments_lastpaid($userID);
+            
+            if( !$this->userdata->is_admin() )
+                if( (date("Y-m-d", time() - (365 * 86400)) > $userActivationDate[0]) && ($lp->payment_accepted == 0) )
+                    redirect('show_message/index/wtg_fee');
+            
             if ( $this->input->post('submit') )
             {
                 //array_debug($this->input->post());

@@ -172,4 +172,13 @@ class Userdata
             else
                 return true;
         }
+        
+        public function get_user_activated_time( $user_id )
+        {
+            $query =    $this->CI->db->query("  SELECT user_activated
+                                                FROM users
+                                                WHERE user_id = '".$user_id."'");
+            
+            return $query->row()->user_activated;
+        }
 }

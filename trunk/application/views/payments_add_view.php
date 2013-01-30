@@ -56,21 +56,24 @@
 					}
 					else
 					{
-						$lp = $this->selecter->get_payments_lastpaid($userID);
-						if( $lp->payment_paid_sum < $lp->payment_total_sum)
-							redirect(base_url ());
-						else if( date("Y-m-d", time() - (365 * 86400)) <=  $lp->payment_paid_time )
+						$userActivationDate = explode(' ', $this->userdata->get_user_activated_time($userID));
+                                                $lp = $this->selecter->get_payments_lastpaid($userID);
+                            
+                              
+						/*if( $lp->payment_paid_sum < $lp->payment_total_sum)
+							redirect(base_url ());*/
+						if( date("Y-m-d", time() - (365 * 86400)) <=  $userActivationDate[0])
 						{
-							if( $lp->payment_paid_sum >= $lp->payment_total_sum )
-							{
+							//if( $lp->payment_paid_sum >= $lp->payment_total_sum )
+							//{
 								echo form_input(array('name' => 'payment', 'value' => $this->lang->line('payment_type_voluntary'),'disabled'=>'disabled'));
 								echo form_hidden('payment_type', 2);
 								echo '<div class="inputitem"> <span class="label">'.$this->lang->line('label_total_sum').':</span>';
 								echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum',1));
 								echo '<span class="label"> €</span> </div>';
-							}
+							//}
 						}
-						else if( date("Y-m-d", time() - (365 * 86400)) >  $lp->payment_paid_time )
+						else if( date("Y-m-d", time() - (365 * 86400)) >  $userActivationDate[0])
 						{
 							echo form_input(array('name' => 'payment', 'value' => $this->lang->line('payment_type_account'),'disabled'=>'disabled'));
 							echo form_hidden('payment_type', 1);
