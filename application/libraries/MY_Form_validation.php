@@ -52,6 +52,6 @@ class MY_Form_validation extends CI_Form_validation {
         
         public function valid_datetime($str)
         {
-            return ( ! preg_match('/^[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]:[0-9]$/', $str)) ? FALSE : TRUE;
+            return ( ! preg_match('/^[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}$/', $str)) ? FALSE : TRUE;
         }
 }
