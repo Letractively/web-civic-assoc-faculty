@@ -122,6 +122,8 @@ class Events extends MY_Controller
         {
             if( $event_id == '')
                 redirect(base_url ());
+            if( $this->selecter->exists( 'events', 'event_id', $event_id) );
+                redirect($this->router->class);
             $this->load->model('selecter');
             
             $data = array(
@@ -166,7 +168,7 @@ class Events extends MY_Controller
                 redirect (base_url());
             
            if(!$this->selecter->exists('events','event_id', $event_id))
-                redirect (base_url());
+                redirect( '404' );
             parent::edit('edit_event', $event_id);
             
             

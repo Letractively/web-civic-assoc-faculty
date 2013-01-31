@@ -70,7 +70,7 @@ class Event_categories extends MY_Controller
          */
         public function delete( $event_category_id )
         {
-            parent::delete('remove_event_category', $event_category_id, $this->router->class);
+            parent::delete('remove_event_category', $event_category_id);
 
             $data = array(
                 'view'              => 'confirm_view',

@@ -1,4 +1,4 @@
-<?php $obj = $this->selecter->get_category_detail($project_category_id); array_debug($obj);?>
+<?php $obj = $this->selecter->get_category_detail($project_category_id); ?>
 
 <div id="grid_wrapper">
     <span class="project_category_label"> <?= $this->lang->line('pr_cat_label') . ': <span class="project_name">' . $obj->project_category_name . '</span>'; ?>  </span> 

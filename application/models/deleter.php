@@ -62,6 +62,14 @@ class Deleter extends MY_Model
         else{ return FALSE; }
     }
     
+    /*
+     * remove_event_category
+     * 
+     * Funkcia vymaze eventovu kategoriu z databazy
+     * 
+     * @param ev_cat_id ID-cko prave mazanej kategorie
+     * 
+     */
     public function remove_event_category($ev_cat_id)
     {
         $this->db->query("DELETE FROM event_categories WHERE event_category_id=$ev_cat_id");
@@ -126,6 +134,14 @@ class Deleter extends MY_Model
         return TRUE;
     }
     
+    /*
+     * remove_project_category
+     * 
+     * Funkcia vymaze  Projektovu kategoriu z databazy
+     * 
+     * @param pr_cat_id ID-cko prave mazanej kategorie
+     * 
+     */
     public function remove_project_category($pr_cat_id)
     {
         $categories = $this->db->query(" SELECT project_category_id 
@@ -227,9 +243,6 @@ class Deleter extends MY_Model
     
      public function remove_user($user_id)
     {
-      //  $tmp = $this->db->query("SELECT user_name, user_surname, user_email, user_birth_date
-      //                           FROM users
-      //                          WHERE user_id=$user_id");
         $this->db->query("DELETE FROM users WHERE user_id=$user_id");
         
         if($this->db->affected_rows()>0){

@@ -81,7 +81,8 @@ class Posts extends MY_Controller
         public function detail( $post_id )
         {
             $this->load->model('selecter');
-
+            if(!$this->selecter->exists('posts','post_id', $post_id))
+                redirect('404');
             $data = array(
                 'post_id'       => $post_id
             );
@@ -119,14 +120,12 @@ class Posts extends MY_Controller
          */
         public function edit( $post_id )
         {
-            if( $post_id == '')
+            $this->load->model('selecter');
+            if( $post_id == '' || !$this->selecter->exists('posts','post_id', $post_id))
                 redirect('404');
             if( !$this->userdata->is_admin() )
                 redirect(base_url());
             parent::edit( 'edit_post', $post_id );
-
-            $this->load->model('selecter');
-
 
             $data = array(
                 'post_id'       => $post_id,
@@ -172,6 +171,8 @@ class Posts extends MY_Controller
         public function modifiers( $post_id )
         {
             $this->load->model('selecter');
+            if( $post_id == '' || !$this->selecter->exists('posts','post_id', $post_id))
+                redirect('404');
 
             $data = array(
                 'post_id'       => $post_id

@@ -23,6 +23,8 @@ class Pages extends MY_Controller
          */
         public function index($page_name = 'rules')
         {
+            if(!in_array($page_name, array('rules','contact','about')))
+               redirect( '404' );
             $data = array( 
                 'view' =>  $this->router->class.'_'.'view',
                 'page'  => $page_name
@@ -49,6 +51,8 @@ class Pages extends MY_Controller
         
         public function edit( $page_name )
         {
+            if(!in_array($page_name, array('rules','contact','about')))
+               redirect( '404' );
             parent::edit('edit_page_text', $page_name);
             
             $data = array(
