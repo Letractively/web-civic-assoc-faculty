@@ -1,10 +1,4 @@
-﻿<div class="errors">
-    <?php 
-        echo validation_errors(); 
-        $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
-    ?>
-</div>
-<script>
+﻿<script>
     function zobrazSkryj(idecko)
     {
         el = document.getElementById(idecko).style; 
@@ -50,6 +44,14 @@
     }
 </script>
 <div id="content_wrapper_small">
+
+	<div class="errors">
+		<?php 
+			echo validation_errors(); 
+			$numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
+		?>
+	</div>
+
 	<?= form_open("users/add"); ?>
                     <div class="inputitem">
                         <p class="label">

@@ -1,11 +1,12 @@
-﻿<div class="errors">
-    <?php
-    echo validation_errors();
-    //array_debug($programs) 
-    ?>
-</div>
+﻿<div id="content_wrapper">
 
-<div id="content_wrapper">
+	<div class="errors">
+		<?php
+		echo validation_errors();
+		//array_debug($programs) 
+		?>
+	</div>
+
     <?= js_insert_bbcode('posts/add', 'textarea'); ?>
     <?= form_open("posts/add") ?>
     <div class="inputitem">

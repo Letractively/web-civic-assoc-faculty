@@ -1,11 +1,12 @@
-﻿<div class="errors">
-    <?php 
-        echo validation_errors(); 
-        $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
-     ?>
-</div>
-
-<div id="content_wrapper_small">
+﻿<div id="content_wrapper_small">
+	
+	<div class="errors">
+		<?php 
+			echo validation_errors(); 
+			$numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
+		 ?>
+	</div>
+	
 	<?= form_open("auth/registration") ?>
 		<div class="inputitem">
 			<p class="label"><label for="name" class="<?= $error['name'] ?>"><?= $this->lang->line('label_name') ?></label> </p>

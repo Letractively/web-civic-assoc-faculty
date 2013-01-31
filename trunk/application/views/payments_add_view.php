@@ -1,8 +1,9 @@
-﻿<div class="errors">
-    <?php echo validation_errors(); ?>
-</div>
+﻿<div id="content_wrapper_small">
 
-<div id="content_wrapper_small">
+	<div class="errors">
+		<?php echo validation_errors(); ?>
+	</div>
+
 	<?= form_open("payments/add") ?>
 	
             <?php

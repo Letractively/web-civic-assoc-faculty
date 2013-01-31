@@ -30,14 +30,16 @@
 	};
 </script>
 
-<div class="errors">
-    <?php 
-        echo validation_errors();  
-        $field = $this->selecter->id($event_id,'events','event_id');
-    ?>
-</div>
 <?= js_insert_bbcode('events/edit', 'textarea'); ?>
 <div id="content_wrapper_large">
+
+	<div class="errors">
+		<?php 
+			echo validation_errors();  
+			$field = $this->selecter->id($event_id,'events','event_id');
+		?>
+	</div>
+
 	<?= form_open("events/edit/".$event_id) ?>
 		<div class="inputitem">
 			<p class="label"> <label for="event_category_id" class="<?= $error['event_category_id'] ?>"><?= $this->lang->line('label_event_category_id') ?></label> </p>

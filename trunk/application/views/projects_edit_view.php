@@ -31,14 +31,15 @@
 	};
 </script>
 
-<div class="errors">
-    <?php 
-        echo validation_errors();  
-        $field = $this->selecter->get_project_detail($project_id,'projects','project_id');
-    ?>
-</div>
-
 <div id="content_wrapper_small">
+
+	<div class="errors">
+		<?php 
+			echo validation_errors();  
+			$field = $this->selecter->get_project_detail($project_id,'projects','project_id');
+		?>
+	</div>
+
     <?php if($this->selecter->project_state($project_id) == 1): ?>
 	<?= form_open("projects/edit/".$project_id) ?>
 

@@ -1,6 +1,4 @@
-﻿<div class="errors">
-    <?php echo validation_errors(); ?>
-</div>
+﻿
 
 <?php
 	$tables = array(
@@ -12,6 +10,11 @@
 ?>
 
 <div id="content_wrapper_small">
+
+	<div class="errors">
+		<?php echo validation_errors(); ?>
+	</div>
+
 	<?= form_open("io/export") ?>
 		<div class="inputitem">
 			<p class="label"> <label for="table"><?= $this->lang->line('label_table') ?></label> </p>
