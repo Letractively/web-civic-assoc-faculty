@@ -64,7 +64,7 @@ class Degrees extends MY_Controller
          */
         public function delete( $degree_id )
         {   
-            parent::delete('remove_degree', $degree_id, $this->router->class);
+            parent::delete('remove_degree', $degree_id);
             
             $data = array(
               'view'            => 'confirm_view',

@@ -250,7 +250,7 @@ class Payments extends MY_Controller
          */
         public function delete( $pay_id )
         {
-            parent::delete('remove_payments', $pay_id, $this->router->class);
+            parent::delete('remove_payments', $pay_id);
 
             $data = array(
                 'view'            => 'confirm_view',

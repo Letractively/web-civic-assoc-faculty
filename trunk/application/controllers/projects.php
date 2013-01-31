@@ -37,6 +37,8 @@ class Projects extends MY_Controller
 
         public function detail($project_id)
         {
+            if($project_id == '' || !$this->selecter->exists('projects','project_id',$project_id))
+               redirect('404');
             $errors = array_merge($this->data['error'], array('to' => '', 'cash' => ''));
             $data = array(
                 'project_id'   => $project_id,
@@ -85,6 +87,9 @@ class Projects extends MY_Controller
 
         public function edit( $project_id )
         {
+            if($project_id == '' || !$this->selecter->exists('projects','project_id',$project_id))
+               redirect('404');
+            
             if($this->input->post('submit') == $this->lang->line('button_close_project'))
                 $this->edit_project_closed ($project_id);
             

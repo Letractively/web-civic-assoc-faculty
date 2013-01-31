@@ -70,7 +70,7 @@ class Email_types extends MY_Controller
          */
         public function delete( $email_type_id )
         {     
-            parent::delete('remove_email_type', $email_type_id, $this->router->class);
+            parent::delete('remove_email_type', $email_type_id);
 
             $data = array(
                 'view'            => 'confirm_view',

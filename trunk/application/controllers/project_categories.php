@@ -53,9 +53,9 @@ class Project_categories extends MY_Controller
          */
         public function detail( $project_category_id )
         {
-            if( $project_category_id == '')
-                redirect('404');
-            
+            if( $project_category_id == '' || !$this->selecter->exists('project_categories','project_category_id',$project_category_id))
+               redirect('404');
+                    
             $errors = array_merge($this->data['error'], array('to' => '', 'cash' => ''));
             
             $data = array(
@@ -90,7 +90,7 @@ class Project_categories extends MY_Controller
 
         public function delete( $project_category_id )
         {
-            parent::delete('remove_project_category', $project_category_id, $this->router->class);
+            parent::delete('remove_project_category', $project_category_id);
 
             $data = array(
                 'view'            => 'confirm_view',

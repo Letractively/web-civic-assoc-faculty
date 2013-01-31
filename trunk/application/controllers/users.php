@@ -97,6 +97,8 @@ class Users extends MY_Controller
     
     public function potentials( $page = 0 )
     {
+        if(!$this->userdata->is_admin())
+            redirect('404');
         $this->load->library('pagination');
         $this->totalRows = $this->selecter->UsersInDatabase('users', 'user_id', ROLE_PO_MEMBER);
             
@@ -117,6 +119,8 @@ class Users extends MY_Controller
     
     public function innactive( $page = 0 )
     {
+        if(!$this->userdata->is_admin())
+            redirect('404');
         $this->load->library('pagination');
         $this->totalRows = $this->selecter->UsersInDatabase('users', 'user_id', ROLE_INACTIVE);
             
@@ -137,6 +141,8 @@ class Users extends MY_Controller
     
     public function blocked( $page = 0 )
     {
+        if(!$this->userdata->is_admin())
+            redirect('404');
         $this->load->library('pagination');
         $this->totalRows = $this->selecter->UsersInDatabase('users', 'user_id', ROLE_BLOCKED);
             
