@@ -1,11 +1,12 @@
-﻿<div class="errors">
-    <?php 
-        echo validation_errors();  
-        $object = $payment_object;
-    ?>
-</div>
+﻿<div id="content_wrapper_small">
 
-<div id="content_wrapper_small">
+	<div class="errors">
+		<?php 
+			echo validation_errors();  
+			$object = $payment_object;
+		?>
+	</div>
+
 	<?= form_open("payments/edit/".$pay_id) ?>
 	
 	<?php

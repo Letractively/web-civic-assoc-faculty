@@ -1,11 +1,12 @@
-﻿<div class="errors">
-    <?php 
-        echo validation_errors();  
-        $field = $this->selecter->id($post_id,'posts','post_id');
-    ?>
-</div>
+﻿<div id="content_wrapper_large">
 
-<div id="content_wrapper_large">
+	<div class="errors">
+		<?php 
+			echo validation_errors();  
+			$field = $this->selecter->id($post_id,'posts','post_id');
+		?>
+	</div>
+
 	<?= js_insert_bbcode('posts/edit', 'textarea'); ?>
 	<?= form_open("posts/edit/".$post_id) ?>
 		<div class="inputitem">

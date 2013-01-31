@@ -1,5 +1,6 @@
 ﻿<div id="content_wrapper_large">
-    <div class="errors">
+    
+	<div class="errors">
         <?php 
             echo validation_errors();  
             $field = $this->selecter->id('page_'.$page, 'pages', 'page_'.$page);

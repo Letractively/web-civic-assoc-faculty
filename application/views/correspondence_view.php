@@ -188,10 +188,12 @@
 
 </script>
 
-<div class="errors">
-    <?php echo validation_errors(); ?>
-</div>
 <div id="content_wrapper_medium">
+
+	<div class="errors">
+		<?php echo validation_errors(); ?>
+	</div>
+
 	<?= form_open("correspondence") ?>
                 <div class="inputitem">
 			 <p class="label"> <label for="correspondence_subject" class="<?= $error['correspondence_subject'] ?>"><?= $this->lang->line('label_correspondence_subject') ?></label> </p>

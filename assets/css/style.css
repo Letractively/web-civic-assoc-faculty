@@ -462,7 +462,12 @@ label.error {
 	color: #e21313;
 }
 
-.input_data.error, .input_data_date.error {
+.errors {
+	color: red;
+}
+
+
+.input_data.error, .input_data_date.error, .input_data_date_time {
 	border-top: solid 3px #e21313;
 	border-left: solid 3px #e21313;
 	border-bottom: solid 2px #e21313;

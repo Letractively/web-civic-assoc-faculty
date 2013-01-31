@@ -9,53 +9,43 @@
 ::webkit-selection{ background-color: #E13300; color: white; }
 
 body {
-	background-color: #fff;
-	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
-}
-
-a {
-	color: #003399;
-	background-color: transparent;
-	font-weight: normal;
-}
-
-h1 {
-	color: #444;
-	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
-	font-weight: normal;
-	margin: 0 0 14px 0;
-	padding: 14px 15px 10px 15px;
-}
-
-code {
-	font-family: Consolas, Monaco, Courier New, Courier, monospace;
-	font-size: 12px;
-	background-color: #f9f9f9;
-	border: 1px solid #D0D0D0;
-	color: #002166;
-	display: block;
-	margin: 14px 0 14px 0;
-	padding: 12px 10px 12px 10px;
+	margin: 75px;
+	font-family: Arial;
 }
 
 #container {
-	margin: 10px;
-	border: 1px solid #D0D0D0;
-	-webkit-box-shadow: 0 0 8px #D0D0D0;
+	background-color: white;
+	margin: 25px auto 45px auto;
+	padding: 0px 5px 15px 5px;
+	border: 4px solid black;
+	border-top-right-radius: 50px;
+	border-bottom-left-radius: 50px;
+	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
+	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
+	box-shadow: 5px 5px 20px 10px #2e2e2e;	
+}
+
+h3 {
+	height: 55px;
+	margin: 0px -5px;
+	border-bottom: solid black 4px;
+	padding: 18px 5px 0px 25px;
+	font-weight: bolder;
+	color: darkred;
+	border-top-right-radius: 47px;
+	-webkit-box-shadow: 5px 5px 20px 5px #2e2e2e;
 }
 
 p {
-	margin: 12px 15px 12px 15px;
+	margin: 15px 15px 15px 25px;
+	font-weight: bolder;
 }
+
 </style>
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?></h1>
+		<h1> <?php echo $heading; ?> </h1>
 		<?php echo $message; ?>
 	</div>
 </body>
