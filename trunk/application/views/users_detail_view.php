@@ -146,11 +146,13 @@
             }
             else if (date("Y-m-d", time() - (365 * 86400)) > $userActivationDate[0]) 
             {
-                if($lp->payment_accepted == 0)
-                    echo '<div class="inputitem"><p><strong>' . $this->lang->line('wtg_fee') . '</strong></p></div>';
+                if(isset($lp->payment_accepted))
+                    if($lp->payment_accepted == 0)
+                        echo '<div class="inputitem"><p><strong>' . $this->lang->line('wtg_fee') . '</strong></p></div>';
+                    else
+                        echo '<div class="inputitem">' . $this->lang->line('pay_limited_out') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';
                 else
-                    echo '<div class="inputitem">' . $this->lang->line('pay_limited_out') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';
-                echo '<div class="inputitem">' . $this->lang->line('acc_enabled_until') . ': <strong>31.12.' . $year . '</strong></div>';
+                    echo '<div class="inputitem">' . $this->lang->line('acc_enabled_until') . ': <strong>31.12.' . $year . '</strong></div>';
                 
                 if ($user_id == $this->userdata->get_user_id())
                     echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('entry_fee')) . '</p>';
