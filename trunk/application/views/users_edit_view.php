@@ -3,6 +3,7 @@
 		$obj = $this->selecter->get_user_detail($user_id);
                 $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
 		echo validation_errors();
+                array_debug($obj);
         ?>        
                 <p class="project_label">
                     Štatút: 
@@ -49,12 +50,17 @@
                         <?= form_input(array('name' => 'email', 'id' => 'email', 'class' => 'input_data'.$error['email']), set_value('email', $obj[0]->user_email)); ?>
                     </div>
                     
-                    <div class="inputitem">
-                        <p class="label">
-                            <label for="phone" class="<?= $error['phone']; ?>"><?= $this->lang->line('label_phone'); ?></label>
-                        </p>
-                        <?= form_input(array('name' => 'phone', 'id' => 'phone', 'class' => 'input_data'.$error['phone']), set_value('phone', $obj[0]->user_phone)); ?>
-                    </div>
+                        <div class="inputitem">
+                            <p class="label">
+                                <label for="phone" class="<?= $error['phone']; ?>"><?= $this->lang->line('label_phone'); ?></label>
+                            </p>
+                            <?php if (isset($obj[0]->user_phone)): ?>
+                                <?= form_input(array('name' => 'phone', 'id' => 'phone', 'class' => 'input_data'.$error['phone']), set_value('phone', $obj[0]->user_phone)); ?>
+                            <?php else: ?>
+                                <?= form_input(array('name' => 'phone', 'id' => 'phone', 'class' => 'input_data'.$error['phone']), set_value('phone')); ?>
+                            <?php endif; ?>
+                        </div>
+                    
                     
                     <div class="inputitem">
                         <p class="label">
@@ -74,14 +80,22 @@
                         <p class="label">
                             <label for="place_of_birth" class="<?= $error['place_of_birth']; ?>"><?= $this->lang->line('label_place_of_birth'); ?></label>
                         </p>
-                        <?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => 'input_data'.$error['place_of_birth']), set_value('place_of_birth', $obj[0]->user_place_of_birth)); ?>
+                        <?php if (isset($obj[0]->user_place_of_birth)): ?>
+                            <?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => 'input_data'.$error['place_of_birth']), set_value('place_of_birth', $obj[0]->user_place_of_birth)); ?>
+                        <?php else: ?>
+                                <?= form_input(array('name' => 'place_of_birth', 'id' => 'place_of_birth', 'class' => 'input_data'.$error['place_of_birth']), set_value('place_of_birth')); ?>
+                            <?php endif; ?>
                     </div>
                     
                     <div class="inputitem">
                         <p class="label">
                             <label for="postcode" class="<?= $error['postcode']; ?>"><?= $this->lang->line('label_postcode'); ?></label>
                         </p>
-                        <?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => 'input_data'.$error['postcode']), set_value('postcode', $obj[0]->user_postcode)); ?>
+                        <?php if (isset($obj[0]->user_postcode)): ?>
+                             <?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => 'input_data'.$error['postcode']), set_value('postcode', $obj[0]->user_postcode)); ?>
+                        <?php else: ?>
+                                <?= form_input(array('name' => 'postcode', 'id' => 'postcode', 'class' => 'input_data'.$error['postcode']), set_value('postcode')); ?>
+                            <?php endif; ?>
                     </div>
                     
                     <div class="inputitem">

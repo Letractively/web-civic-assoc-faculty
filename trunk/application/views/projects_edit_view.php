@@ -107,7 +107,7 @@
 				$user['user_fullname'] = $user['user_name'];
 				$users[] = $user;
 			}
-			//array_debug($users);
+			
 			if( $grid->bind($this->selecter->get_project_items($project_id, true), 'project_item_id') )
 			{
 				$grid->add_url = base_url()."projects/add_project_item/$project_id";

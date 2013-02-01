@@ -56,8 +56,10 @@ class Selecter extends MY_Model
             $q = $this->db->query(" SELECT *
                                     FROM email_types
                                   ");
-            if ($grid == true) return $q;
-                else return $q->result();
+            if ($grid == true) 
+                return $q;
+            else 
+                return $q->result();
         }
 
         /*
@@ -598,8 +600,8 @@ class Selecter extends MY_Model
                                                p.project_date_from, p.project_date_to, p.project_active,
                                                p_c.project_category_name
                                         FROM project_items pi
-                                        JOIN projects p ON (pi.project_item_project_id=p.project_id)
-                                        JOIN project_categories p_c ON (p.project_project_category_id = p_c.project_category_id)
+                                        RIGHT JOIN projects p ON (pi.project_item_project_id=p.project_id)
+                                        LEFT JOIN project_categories p_c ON (p.project_project_category_id = p_c.project_category_id)
                                         WHERE project_id=$project_id
                                       ");
                 return $q->result();
@@ -620,7 +622,7 @@ class Selecter extends MY_Model
                                                u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
                                                piu.project_item_date, piu.project_item_id
                                         FROM project_items piu
-                                        JOIN users u on (piu.project_item_user_id = u.user_id)
+                                        LEFT JOIN users u on (piu.project_item_user_id = u.user_id)
                                         WHERE piu.project_item_project_id=$project_id
                                       ");
                 if ($grid == true) 

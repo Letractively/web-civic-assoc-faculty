@@ -254,43 +254,35 @@ class Deleter extends MY_Model
          */
          public function remove_user($user_id)
          {
-            $this->db->query("DELETE FROM users WHERE user_id=$user_id");
-
-            if($this->db->affected_rows()>0){
-
               $this->db->query("INSERT INTO user_cleans (user_clean_date) VALUES (CURRENT_TIMESTAMP)");
               $id= $this->db->insert_id();
 
               $this->db->query("DELETE FROM payments
-                                WHERE payment_user_id=$user_id");
+                                WHERE payment_user_id=$user_id AND payment_accepted = 0");
+              
+              $this->db->query("UPDATE payments
+                                SET payment_user_id = NULL
+                                WHERE payment_user_id=$user_id AND payment_accepted = 1");
 
               $this->db->query("DELETE FROM user_email_evidence
                                 WHERE user_email_evidence_user_id=$user_id");
 
-              $this->db->query("DELETE FROM history_paids
-                                WHERE history_paids_user_id=$user_id");
 
               $this->db->query("UPDATE events
                                 SET event_author_id=NULL 
                                 WHERE event_author_id=$user_id");
-              $this->db->query("UPDATE projects
-                                SET project_user_id=NULL 
-                                WHERE project_user_id=$user_id");
+
               $this->db->query("UPDATE project_items
                                 SET project_item_user_id=NULL 
                                 WHERE project_item_user_id=$user_id");
               $this->db->query("UPDATE posts
                                 SET post_author_id=NULL 
                                 WHERE post_author_id=$user_id");
-              $this->db->query("UPDATE database_logs
-                                SET database_log_user_id=NULL 
-                                WHERE database_log_user_id=$user_id");
               $this->db->query("UPDATE post_modifies
                                 SET post_modifie_author_id=NULL 
                                 WHERE post_modifie_author_id=$user_id");
-              return TRUE;
-            }
-            else{ return FALSE; }
+              
+              $this->db->query("DELETE FROM users WHERE user_id=$user_id");
         }
 }
 
