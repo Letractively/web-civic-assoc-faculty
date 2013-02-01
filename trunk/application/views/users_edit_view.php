@@ -3,7 +3,7 @@
 		$obj = $this->selecter->get_user_detail($user_id);
                 $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
 		echo validation_errors();
-                array_debug($obj);
+                //array_debug($obj);
         ?>        
                 <p class="project_label">
                     Štatút: 
