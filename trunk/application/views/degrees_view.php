@@ -1,7 +1,7 @@
 ﻿<?php
     $this->load->library('grid');
     $grid = new Grid();
-    
+
     if( $grid->bind($this->selecter->get_degrees(true),'degree_id') )
     {
         $grid->header('degree_id')->editable = false;

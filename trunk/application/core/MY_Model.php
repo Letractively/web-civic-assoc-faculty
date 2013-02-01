@@ -52,7 +52,7 @@ class MY_Model extends CI_Model
         public function exists($table, $column, $id)
         {
             $q = $this->db->query("  SELECT $column
-                                FROM $table
+                                     FROM $table
                                 WHERE $column = $id
                                 ");
             if ($q->num_rows() > 0)
@@ -222,5 +222,23 @@ class MY_Model extends CI_Model
                                     FROM $table
                                   ");
             return $q->num_rows();
+        }
+        
+        /*
+         * project_state
+         * 
+         * Funkcia vrati stav v akom sa nachadza projekt
+         * 
+         * @param project_id ID projektu
+         * 
+         */
+        public function project_state( $project_id )
+        {
+            $q = $this->db->query(" SELECT project_active
+                                    FROM projects
+                                    WHERE project_id = $project_id
+                                  ");
+
+            return $q->row()->project_active;
         }
 }
