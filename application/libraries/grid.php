@@ -234,7 +234,7 @@ class Grid
 	 *
 	 * @return Objekt ktorý obsahuje atribúty riadku. Ak neexistuje, vracia null.
 	 */
-        public function row($unique_key)
+    public function row($unique_key)
 	{
 		return $this->rows[$unique_key];
 	}
@@ -454,7 +454,6 @@ class Grid
 			else
 				document.getElementById('grid_form').setAttribute('action', editURL+'/'+id);
 		}
-		
 	</script>
 	<?php
 	}
@@ -583,6 +582,7 @@ class Grid
 				}
 				foreach ($row->cells as $index => $cell) // generuje bunky riadka
 				{
+					$cell_value = ( ($cell != null) && ($cell != "") ) ? $cell : '&nbsp;';
 					if ($this->headCols[$index]->visible == true) // ak bunka patri stlpcu, ktory je viditelny
 					{
 						$css_class_postfix = '';
@@ -592,19 +592,19 @@ class Grid
 						echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell'.$css_class_postfix.'">';
 						if ($this->headCols[$index]->type == 'anchor') // ak to ma byt link
 						{
-							echo '<a href="'.base_url().$this->headCols[$index]->options['controller'].'/'.$row->cells[ $this->headCols[$index]->options['id'] ].'">'.$cell.'</a>';
+							echo '<a href="'.base_url().$this->headCols[$index]->options['controller'].'/'.$row->cells[ $this->headCols[$index]->options['id'] ].'">'.$cell_value.'</a>';
 						}
 						else if ($this->headCols[$index]->type == 'datetime') // ak to ma byt formatovany datum a cas
 						{
-							$date = date_create_from_format($this->headCols[$index]->options['inputFormat'], $cell);
+							$date = date_create_from_format($this->headCols[$index]->options['inputFormat'], $cell_value);
 							if ($date) echo $date->format($this->headCols[$index]->options['outputFormat']);
 						}
 						else if ($this->headCols[$index]->type == 'numformat')
 						{
-							echo $this->get_formatted_number($this->headCols[$index]->options['format'], $cell);
+							echo $this->get_formatted_number($this->headCols[$index]->options['format'], $cell_value);
 						}
 						else // ak to ma byt iba cisty text (alebo nejaky iny nedefinovany typ)
-							echo $cell;
+							echo $cell_value;
 						echo '</td>'."\n";
 						$i++;
 					}
