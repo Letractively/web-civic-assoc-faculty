@@ -24,8 +24,19 @@
                     {
                         echo '<div class="post_modifie_info">';
                             echo '<span class="post_last_update">'.$this->lang->line('last_update').':</span>';
-                            echo '<span class="link_text">'; echo anchor('users/detail/'.$o->post_modifie_author_id, $o->modifier_name.' '.$o->modifier_surname).', '; echo '</span>';
-                            echo datetime($o->post_modifie_date, FALSE).' '.time_withou_seconds(datetime($o->post_modifie_date, TRUE));
+                            if(isset($o->post_modifie_author_id))
+                            {
+                                echo '<span class="link_text">'; 
+                                    echo anchor('users/detail/'.$o->post_modifie_author_id, $o->modifier_name.' '.$o->modifier_surname).', '; 
+                                echo '</span>';    
+                            }
+                            else
+                            {
+                                echo '<span class="link_text">'; 
+                                    echo $this->lang->line('unknow').', ';
+                                echo '</span>';
+                            }
+                                echo datetime($o->post_modifie_date, FALSE).' '.time_withou_seconds(datetime($o->post_modifie_date, TRUE));
                             if($this->userdata->is_admin())
                             {
                                 echo '<br /><span class="link_text"><strong>';
@@ -42,7 +53,18 @@
                      {
                         echo '<div class="post_add_info">';
                             echo '<span class="post_added_by">'.$this->lang->line('added_by').':</span>';
-                            echo '<span class="link_text">'; echo anchor('users/detail/'.$o->post_author_id, $o->author_name.' '.$o->author_surname).', '; echo '</span>';
+                            if(isset($o->post_author_id))
+                            {
+                                echo '<span class="link_text">'; 
+                                    echo anchor('users/detail/'.$o->post_author_id, $o->author_name.' '.$o->author_surname).', '; 
+                                echo '</span>';
+                            }
+                            else
+                            {
+                                echo '<span class="link_text">'; 
+                                    echo $this->lang->line('unknow').', '; 
+                                echo '</span>';
+                            }
                             echo datetime($o->post_date, FALSE).' '.time_withou_seconds(datetime($o->post_date, TRUE));
                             if($this->userdata->is_admin())
                             {

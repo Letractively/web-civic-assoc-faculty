@@ -37,5 +37,7 @@ $lang['no_js']				=   'Pre správne fungovanie tejto aplikácie musíte mať pov
 
 $lang['wtg_fee']                    =   'Čaká sa na úhradu členského poplatku';
 
+$lang['unknow']                             =   'Neznámy';
+
 /* End of file default_lang.php */
 /* Location: ./application/language/slovak/default_lang.php */

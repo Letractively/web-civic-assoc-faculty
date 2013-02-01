@@ -42,7 +42,9 @@
 	</div>
         <div class="post_modifie_info">
 		<span class="project_label"> Kategória: </span>
-		<?= anchor('project_categories/detail/'.$obj[0]->project_project_category_id,$obj[0]->project_category_name); ?>  
+		<?php if(isset($obj[0]->project_project_category_id)): ?>
+                    <?= anchor('project_categories/detail/'.$obj[0]->project_project_category_id,$obj[0]->project_category_name); ?>  
+                <?php endif; ?>
 	</div>
 	<?php
             if( $this->userdata->is_admin() )

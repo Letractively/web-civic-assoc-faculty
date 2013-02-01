@@ -96,7 +96,7 @@ else
     $grid1 = new Grid();
 
     //array_debug($this->selecter->get_projects($project_category_id));
-        $this->load->helper('project_categories');
+        $this->load->helper('projects');
         $project_categories = $this->selecter->get_projects($project_category_id, true);
         $inputData = updateProjectDetailData($project_categories);
         
