@@ -1,0 +1,35 @@
+MATEJ:
+- projects_edit	- ak je projekt uzavretı, má by moné meni jeho kategóriu (nepovinné)
+				- projekt z NULL kategóriou sa nesmie da uzatvori - pri súèastnom spôsobe uzatvárania projektov to bude vadi, treba to fixnú
+- project_categories_detail	- pridávanie projektu priamo z kategórie by malo na projects_add automaticky vybra kategóriu z ktorej som prišiel (nepovinné)
+- users	- filter poloka "neaktívny" háde sql error
+- users_add	- ak sa pridáva admin, neuhdrádza èlenské
+			- ak sa pridáva èlen, je moné zvoli èi uhdrádza èlenské (dôleitı alebo vıznamnı èlen neuhdrádza èlenské)
+			- ak sa pridáva pot. èlen, neuhrádza èlenské
+			- v momentálnom stave nie je moné prida iadného usera ak nie je korektne vyplnená úhrada èlenského
+- auth_registration - validaèná hláška fieldu "heslo znovu" nie je v slovenskom jazyku
+					- validaèná hláška fieldu "suma" nie je v slovenskom jazyku
+					- validaèné hlášky v prerozdeleniach nie sú v slovenskom jazyku
+- payments_edit	- po klinutí na "uhradi" nesrpaví redirect na payments
+- project_detail	- prida kategóriu do ktorej patrí
+- project_categories	- treba fixnú zobrazovanie kapitálu na 2 desatinné miesta, buï zaokrúhli alebo upravi vıpoèet db funkcie
+						- keï upravím názov kategórie, kapitál na danej kategórii sa zmení na 0
+- project_category_detail	- v prípade prázdneho bindu na grid treba prida tlaèítko na pridanie projektu
+- users_detail	- v prípade prázdneho psc zobrazuje èíslo 0
+				- v prípade e vypršalo èlenské a neexistuje iadna èlenská platba v db k danému userovi (teda funkcia nevráti iaden údaj) píše php error
+				- hlášku "V prípade neúhrady èlenského, je úèet platnı do" treba zobrazi a keï vypršalo èlenské, zobrauje sa stále aj keï èlenské ešte platí
+				- treba prida zobrazenie titulu (vidite¾né aj pre adminov, aj pre èlenov), ak bude null nezobrazí sa
+- users_delete	- nejde odstráni usera, háde sql error
+- posts_edit	- nie je moné upravi z nezverejneného èlánku zverejnenı, naopak to ide
+- correspondence	- pole "kópia" je optional, validova iba v prípade e je zadanı aspoò 1 znak
+
+- project_edit	- ak má projekt NULL kategóriu, háde php error
+				- projekt z NULL kategóriou sa nesmie da uzatvori - pri súèastnom spôsobe uzatvárania projektov to bude vadi, treba to fixnú
+- project_detail	- ak má projekt NULL kategóriu, háde php error
+- project_category_detail	- v prípade prázdneho bindu na grid treba prida tlaèítko na pridanie projektu
+							- zablokova, aby sa nedalo prevádza hotovos z tej istej na tú istú kategóriu
+- post_edit	- to zverejnenie èlánku ti ide? mne vobec
+
+ŠTEVO:
+- payments	- upravi ståpec "stav" v gride po novom
+- grid	- v prípade prázdneho záznamu v bunke negeneruje okraje

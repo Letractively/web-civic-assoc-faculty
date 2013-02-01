@@ -43,7 +43,7 @@ function updateProjectDetailData($projects)
 	$result = array();
 	foreach ($projects->result() as $project)
 	{
-		$arr = get_object_vars($payment);
+		$arr = get_object_vars($project);
 		$arr['project_active'] = in_array($arr['project_active'],array(0,1)) ? $pStates[$arr['project_active']] : '-';
 		$result[] = $arr;
 	}

@@ -17,10 +17,7 @@
 		array('food_id' => 6, 'food_name' => 'space meat', 'food_healty' => 'best', 'food_price' => '15204', 'food_date' => '2012-12-10 00-00')
 	);
 	
-	$emails = $this->selecter->get_email_types();
-	array_debug($emails);
-	
-	/*$grid = new Grid();
+	$grid = new Grid();
 
 	if ( $grid->bind($users, 'user_id') )
 	{
@@ -36,7 +33,7 @@
                 array_debug($grid->row(1));
                 
 		$grid->display();
-	}*/
+	}
 	
 	/*$grid2 = new Grid();
 
