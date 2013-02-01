@@ -2,6 +2,14 @@
 
 class Selecter extends MY_Model
 {
+        /*
+         * get_category_detail
+         * 
+         * Funkcia vrati detailne informacie o projektovej kategorie
+         * 
+         * @param cat_id ID ID-kategorie ktorej podrobnosti chceme ziskat
+         * 
+         */
         public function get_category_detail($cat_id)
         {
              $q = $this->db->query(" SELECT fin_from.*, SUM(fin_trans_to.fin_category_transaction_cash) AS transaction_cash_to
@@ -21,7 +29,7 @@ class Selecter extends MY_Model
          * 
          * Funkcia vrati vsetky polozky z tabulky degrees
          * 
-         * @access      public
+         * @param       grid Ci budu udaje v gride alebo nie
          * @return      array of objects
          */
         public function get_degrees($grid = false)
@@ -29,8 +37,10 @@ class Selecter extends MY_Model
             $q = $this->db->query(" SELECT d.degree_id, d.degree_name, d.degree_grade
                                     FROM degrees d
                                   ");
-            if ($grid == true) return $q;
-                    else return $q->result();
+            if ($grid == true) 
+                return $q;
+            else 
+                return $q->result();
         }
 
         /*
@@ -38,8 +48,8 @@ class Selecter extends MY_Model
          * 
          * Funkcia vrati vsetky polozky z databazy
          * 
-         * @access      public
-         * @return      array of objects
+         * @param       grid Ci budu udaje v gride alebo nie
+         * 
          */
         public function get_email_types($grid = false)
         {
@@ -55,8 +65,8 @@ class Selecter extends MY_Model
          * 
          * Funkcia vrati vsetky polozky z databazy
          * 
-         * @access      public
-         * @return      array of objects
+         * @param       grid Ci budu udaje v gride alebo nie
+         * 
          */
         public function get_event_categories($grid = false)
         {
@@ -66,7 +76,15 @@ class Selecter extends MY_Model
             if ($grid == true) return $q;
                 else return $q->result();
         }
-
+        
+        /*
+         * get_event_detail
+         * 
+         * Funkcia vrati podrobne informacie o danom evente
+         * 
+         * @param event_id ID-eventu o ktorom chceme ziskat detajl
+         * 
+         */
         public function get_event_detail($event_id)
         {
             $q = $this->db->query(" SELECT eec.event_event_category_id AS event_category_id, 
@@ -82,9 +100,20 @@ class Selecter extends MY_Model
                                        LEFT OUTER JOIN users u ON (e.event_author_id=u.user_id)) eec 
                                       ON (ec.event_category_id=eec.event_event_category_id)
                                     WHERE eec.event_id=$event_id;");
-            return $q->result();
+            return $q->row();
         }
-
+        
+        /*
+         * get_events
+         * 
+         * Funkcia vrati vsetky eventy danej kategorie z databazy
+         * 
+         * @param per_page Pocet udalosti kolko sa ich ma zobrazit na stranu
+         * @param cur_page Aktualna strana
+         * @param cat_id ID-cko kategorie ktorej eventy chceme zobrazit
+         * @param grid Ci budu udaje v gride alebo nie
+         * 
+         */
         public function get_events( $per_page = 0, $cur_page = 0, $cat_id = 0, $grid = false )
         {
            if($cat_id != 0){
@@ -113,7 +142,18 @@ class Selecter extends MY_Model
                     else return $q->result();
            }
         }
-
+        
+        /*
+         * get_events_newest
+         * 
+         * Funkcia vrati vsetky eventy danej kategorie z databazy usporiadane od najnovsich po najstarsie
+         * 
+         * @param per_page Pocet udalosti kolko sa ich ma zobrazit na stranu
+         * @param cur_page Aktualna strana
+         * @param cat_id ID-cko kategorie ktorej eventy chceme zobrazit
+         * @param grid Ci budu udaje v gride alebo nie
+         * 
+         */
         public function get_events_newest( $per_page = 0, $cur_page = 0, $cat_id, $grid = false )
         {
            if($cat_id != 0){
@@ -143,6 +183,17 @@ class Selecter extends MY_Model
            }
         }
 
+        /*
+         * get_events_prior
+         * 
+         * Funkcia vrati vsetky eventy danej kategorie z databazy usporiadane podla priority od najvyssej po najnizsiu
+         * 
+         * @param per_page Pocet udalosti kolko sa ich ma zobrazit na stranu
+         * @param cur_page Aktualna strana
+         * @param cat_id ID-cko kategorie ktorej eventy chceme zobrazit
+         * @param grid Ci budu udaje v gride alebo nie
+         * 
+         */
         public function get_events_prior( $per_page = 0, $cur_page = 0, $cat_id, $grid = false )
         {
            if($cat_id != 0){
@@ -172,6 +223,16 @@ class Selecter extends MY_Model
            }
         }
 
+        /*
+         * get_fin_redistribution
+         * 
+         * Funkcia ziska z DB vsetky informacie o tom ako maju byt prerozdelene 
+         * peniaze
+         * 
+         * @param payment_id ID-platby ktorej sa to tyka
+         * @param pr_cat_id ID-cko kategorie
+         * 
+         */
         public function get_fin_redistribution($payment_id,$pr_cat_id)
         {
             $q = $this->db->query(" SELECT *
@@ -181,6 +242,14 @@ class Selecter extends MY_Model
             return $q->result();
         }
         
+        /*
+         * get_login
+         * 
+         * Funkcia ziska ID a rolu prihlasovaneho pouzivatela
+         * 
+         * @param param Informacie vratene POST-om
+         * 
+         */
         public function get_login( $param )
         {
             $q = $this->db->query(" SELECT user_id, user_role
@@ -191,6 +260,14 @@ class Selecter extends MY_Model
             return $q->row();
         }
         
+        /*
+         * get_page
+         * 
+         * Funkcia ziska zobrazovani text na danej podstranke
+         * 
+         * @param view nazov podstranky
+         * 
+         */
         public function get_page($view)
         {
             $q = $this->db->query(" SELECT page_$view
@@ -201,6 +278,14 @@ class Selecter extends MY_Model
             return $q->row();
         }
 
+        /*
+         * get_payment_detail
+         * 
+         * Funkcia ziska vsetky informacie o detajle platby
+         * 
+         * @param payment_id ID-cko platby ktorej udaje chceme ziskat
+         * 
+         */
         public function get_payment_detail($payment_id)
 	{
             $q = $this->db->query("SELECT * FROM payments WHERE payment_id = $payment_id");
@@ -211,13 +296,23 @@ class Selecter extends MY_Model
 		$redistributes = $q->result();
 		foreach ($redistributes as $r)
 		{
-                    //$payment['categories'] = array();
                     $payment['categories'][$r->fin_redistribute_project_category_id] = $r->fin_redistribute_ratio;
 		}
             }
             return $payment;
 	}
     
+        /*
+         * get_payments
+         * 
+         * Funkcia vrati vsetky platby alebo vsteky platby daneho usera
+         * 
+         * @param per_page Pocet platieb zobrazenych na stranu
+         * @param cur_page Aktualna strana
+         * @param user_id ID-cko pouzivatela ktoreho platby chceme ziskat
+         * @param grid Default false. Ci chceme udaje zobrazit v gride alebo nie
+         * 
+         */
         public function get_payments( $per_page = 0, $cur_page = 0, $user_id, $grid = false)
         {
             if($user_id == 0){
@@ -227,22 +322,35 @@ class Selecter extends MY_Model
                                         LEFT JOIN users u ON (p.payment_user_id=u.user_id)
                                         LIMIT $cur_page, $per_page
                                       ");
-                if ($grid == true) return $q;
-                            else return $q->result();
+                if ($grid == true) 
+                    return $q;
+                else 
+                    return $q->result();
             }   
-            else {
-            $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
-                                              p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
-                                        FROM payments p
-                                        LEFT JOIN users u ON (p.payment_user_id=u.user_id)
-                                        WHERE u.user_id = $user_id
-                                        LIMIT $cur_page, $per_page
-                                      ");
-                if ($grid == true) return $q;
-                            else return $q->result();
+            else 
+            {
+                $q = $this->db->query(" SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
+                                                  p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
+                                            FROM payments p
+                                            LEFT JOIN users u ON (p.payment_user_id=u.user_id)
+                                            WHERE u.user_id = $user_id
+                                            LIMIT $cur_page, $per_page
+                                          ");
+                    if ($grid == true) 
+                        return $q;
+                    else 
+                        return $q->result();
             }
         }
 
+        /*
+         * get_payments_lastpaid
+         * 
+         * Funkcia vrati poslednu platbu daneho usera
+         * 
+         * @param user_id ID usera ktoreho platbu chceme ziskat
+         * 
+         */
          public function get_payments_lastpaid($user_id)
          {
              $q = $this->db->query("
@@ -256,6 +364,17 @@ class Selecter extends MY_Model
                 return $q->row();
         }
 
+        /*
+         * get_payments_nopaid
+         * 
+         * Funkcia vrati vsetky nezaplatene platby alebo vsteky nezaplatene platby daneho usera
+         * 
+         * @param per_page Pocet platieb zobrazenych na stranu
+         * @param cur_page Aktualna strana
+         * @param user_id ID-cko pouzivatela ktoreho platby chceme ziskat
+         * @param grid Default false. Ci chceme udaje zobrazit v gride alebo nie
+         * 
+         */
         public function get_payments_nopaid( $per_page = 0, $cur_page = 0, $user_id, $grid = false )
         {
             if($user_id==0){
@@ -284,34 +403,57 @@ class Selecter extends MY_Model
                             else return $q->result();
         }
 
+        /*
+         * get_payments_paid
+         * 
+         * Funkcia vrati vsetky zaplatene platby alebo vsteky zaplatene platby daneho usera
+         * 
+         * @param per_page Pocet platieb zobrazenych na stranu
+         * @param cur_page Aktualna strana
+         * @param user_id ID-cko pouzivatela ktoreho platby chceme ziskat
+         * @param grid Default false. Ci chceme udaje zobrazit v gride alebo nie
+         * 
+         */
         public function get_payments_paid( $per_page = 0, $cur_page = 0, $user_id, $grid = false )
         {
-            if($user_id==0){
+            if($user_id==0)
+            {
                 $q = $this->db->query("
                                         SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                               p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
                                           FROM payments p
                                           LEFT JOIN users u ON (p.payment_user_id=u.user_id)
-                                           WHERE p.payment_paid_sum>=p.payment_total_sum
+                                          WHERE p.payment_paid_sum>=p.payment_total_sum
                                           ORDER BY p.payment_paid_time DESC
                                           LIMIT $cur_page, $per_page
                                       ");
             }
-            else{
+            else
+            {
             $q = $this->db->query("
                                         SELECT CONCAT(CONCAT(u.user_name,' '),u.user_surname) AS user_name, u.user_id, p.payment_type, p.payment_vs, p.payment_total_sum,
                                               p.payment_paid_sum, p.payment_paid_time, p.payment_id, p.payment_accepted
                                           FROM payments p
                                           LEFT JOIN users u ON (p.payment_user_id=u.user_id)
-                                           WHERE (u.user_id=$user_id) AND (p.payment_paid_sum>=p.payment_total_sum)
+                                          WHERE (u.user_id=$user_id) AND (p.payment_paid_sum>=p.payment_total_sum)
                                           ORDER BY p.payment_paid_time DESC
                                           LIMIT $cur_page, $per_page
                                       ");
             }
-                if ($grid == true) return $q;
-                            else return $q->result();
+            if ($grid == true) 
+                return $q;
+            else 
+                return $q->result();
         }
     
+        /*
+         * get_post_detail
+         * 
+         * Funkcia vrati detail o danom prispevku
+         * 
+         * @param post_id ID prispevku ktoreho deily chceme ziskat
+         * 
+         */
         public function get_post_detail($post_id)
         {
                  $q = $this->db->query("SELECT p.post_title, p.post_content, p.post_author_id, p.post_published,
@@ -328,7 +470,14 @@ class Selecter extends MY_Model
                  return $q->row();
         }
 
-
+        /*
+         * get_post_modifiers
+         * 
+         * Funkcia vrati vsetkych pouzivatelov ktori modifikovali dani prispevok
+         * 
+         * @param post_id ID prispevku ktorych modifikatorov chceme ziskat
+         * 
+         */
         public function get_post_modifiers($post_id)
         {
                 $q = $this->db->query(" SELECT u.user_id, u.user_name, u.user_surname, 
@@ -344,6 +493,16 @@ class Selecter extends MY_Model
                  return $q->result();
         }
 
+        /*
+         * get_posts
+         * 
+         * Funkcia vrati vsetky prispevky
+         * 
+         * @param per_page Pocet prispevkov zobrazenych na stranu
+         * @param cur_page Aktualna strana
+         * @param unpublished Default false. Ziskavame publikovane alebo nepublikovane clanky
+         * 
+         */
         public function get_posts( $per_page = 0, $cur_page = 0, $unpublished = false )
         {
             if($unpublished == true)
@@ -389,7 +548,7 @@ class Selecter extends MY_Model
         /*
          * get_project_categories
          * 
-         * Funkcia vrati vsetky polozky z databazy
+         * Funkcia vrati vsetky projektove kategorie z databazy
          * 
          * @access      public
          * @return      array of objects
@@ -408,15 +567,13 @@ class Selecter extends MY_Model
                 if ($grid == true) return $q;
                     else return $q->result();
         }
-        /*public function get_project_categories($grid = false)
-        {
-               $q = $this->db->query(" SELECT *
-                                        FROM project_categories
-                                      ");
-                if ($grid == true) return $q;
-                    else return $q->result();
-        }*/
-        
+
+        /*
+         * get_project_categories_total_cash
+         * 
+         * Funkcia vrati celkovu sumu na kategoriach
+         * 
+         */
         public function get_project_categories_total_cash()
         {
                 $q = $this->db->query(" SELECT sum(project_category_cash) AS total_sum
@@ -425,6 +582,14 @@ class Selecter extends MY_Model
                 return $q->row()->total_sum;
         }
         
+        /*
+         * get_project_detail
+         * 
+         * Funkcia vrati vsetky informacie o danom projekte
+         * 
+         * @param project_id ID projektu ktoreho informacie chceme
+         * 
+         */
         public function get_project_detail($project_id)
         {
                 $q = $this->db->query(" SELECT p.project_name, p.project_about, p.project_priority, 
@@ -440,6 +605,15 @@ class Selecter extends MY_Model
                 return $q->result();
         }
 
+        /*
+         * get_project_items
+         * 
+         * Funkcia vrati vsetky polozky ktore sa viazu na dany projekt
+         * 
+         * @param project_id ID projektu
+         * @param grid Default false, zalezi kam chceme vysledok zobrazit
+         * 
+         */
         public function get_project_items( $project_id, $grid = false )
         {
                 $q = $this->db->query(" SELECT piu.project_item_name, piu.project_item_price,
@@ -449,10 +623,21 @@ class Selecter extends MY_Model
                                         JOIN users u on (piu.project_item_user_id = u.user_id)
                                         WHERE piu.project_item_project_id=$project_id
                                       ");
-                if ($grid == true) return $q;
-                    else return $q->result();
+                if ($grid == true) 
+                    return $q;
+                else 
+                    return $q->result();
         }
     
+        /*
+         * get_projects
+         * 
+         * Funkcia vrati vsetky projekty danej kategorie
+         * 
+         * @param cat_id ID-kategorie
+         * @param grid Default false, pojednava ci sa maju zobrazit do gridu
+         * 
+         */
         public function get_projects($cat_id, $grid = false)
         {
                     if ($cat_id == 0)
@@ -485,13 +670,13 @@ class Selecter extends MY_Model
         }
 
         /*
-            * get_study_programs
-            * 
-            * Funkcia vrati vsetky polozky z databazy
-            * 
-            * @access      public
-            * @return      array of objects
-            */
+         * get_study_programs
+         * 
+         * Funkcia vrati vsetky polozky z databazy
+         * 
+         * @param      grid default false, hovori otocm ci sa maju polozky zobrazit do gridu
+         * @return      array of objects
+         */
         public function get_study_programs($grid = false)
         {
             $q = $this->db->query(" SELECT * 
@@ -501,6 +686,14 @@ class Selecter extends MY_Model
                     else return $q->result();    
         }
         
+        /*
+         * get_transactions
+         * 
+         * Funkcia vrati vsetky tranzakcie ktore boli vykonane and danou kategoriou
+         * 
+         * @param pr_cat_id ID kateogire ktorej sa to tyka
+         * 
+         */
         public function get_transactions($pr_cat_id)
         {
             $q1 = $this->db->query("(SELECT 
@@ -534,6 +727,13 @@ class Selecter extends MY_Model
                 return $q1->result();
         }
 
+        /*
+         * get_user_detail
+         * 
+         * Funkcia vrati vsetky informacie o danom pouzivatelovi
+         * 
+         * @param user_id ID pouzivatela
+         */
         public function get_user_detail($user_id)
         {
             $q = $this->db->query(" SELECT *
@@ -546,13 +746,16 @@ class Selecter extends MY_Model
         }
     
         /*
-        * get_users
-        * 
-        * Funkcia vrati vsetky polozky z databazy podla roly
-        * 
-        * @access      public
-        * @return      array of objects
-        */
+         * get_users
+         * 
+         * Funkcia vrati vsetky polozky z databazy z tabulky pouzivatelov
+         * 
+         * @param per_page celkovy pocet zaznamov
+         * @param cur_page aktualna strana
+         * @param role Pouzivatelska rola
+         * @param grid Defaultne je false. Hovori o tom ci sa maju udaje zobrazit do gridu
+         * 
+         */
         public function get_users( $per_page = 0, $cur_page = 0, $role, $grid = false )
         {
             $user_role = 0;
@@ -612,40 +815,20 @@ class Selecter extends MY_Model
                                         WHERE u.user_role=$user_role
                                         LIMIT $cur_page, $per_page
                                       ");
-            
-            /*if ($role == 0)
-                $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
-                                                u.user_email, u.user_phone, u.user_degree_year, 
-                                                sp.study_program_name, d.degree_name, u.user_postcode 
-                                        FROM users u
-                                        LEFT JOIN degrees d ON (u.user_degree_id = d.degree_id)
-                                        LEFT JOIN study_programs sp ON (u.user_study_program_id = sp.study_program_id)
-                                        LIMIT $cur_page, $per_page
-                                      ");
-            else if($role == 4)
-                $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
-                                                u.user_email, u.user_phone, u.user_degree_year, 
-                                                sp.study_program_name, d.degree_name, u.user_postcode 
-                                        FROM users u
-                                        LEFT JOIN degrees d ON (u.user_degree_id = d.degree_id)
-                                        LEFT JOIN study_programs sp ON (u.user_study_program_id = sp.study_program_id)
-                                        WHERE u.user_active=0
-                                        LIMIT $cur_page, $per_page
-                                      ");
-            else
-                $q = $this->db->query(" SELECT  u.user_id, CONCAT(CONCAT(u.user_name,' '), u.user_surname) as user_name, 
-                                                u.user_email, u.user_phone, u.user_degree_year, 
-                                                sp.study_program_name, d.degree_name, u.user_postcode 
-                                        FROM users u
-                                        LEFT JOIN degrees d ON (u.user_degree_id = d.degree_id)
-                                        LEFT JOIN study_programs sp ON (u.user_study_program_id = sp.study_program_id)
-                                        WHERE u.user_role=$role
-                                        LIMIT $cur_page, $per_page
-                                      ");*/
-            if ($grid == true) return $q;
-                    else return $q->result();
+            if ($grid == true) 
+                return $q;
+                    else 
+                return $q->result();
         }
         
+        /*
+         * get_users_filter
+         * 
+         * Funkcia vrati userom ktori vzhovuju filtracnzm podmienkam
+         * 
+         * @param values Informacie ktoru vrati POST
+         * 
+         */
         public function get_users_filter($values)
         {
             $this->db->select('u.user_id, u.user_name, u.user_surname, u.user_email,
@@ -767,6 +950,15 @@ class Selecter extends MY_Model
             }
         }
         
+        /*
+         * get_users_filter_on_payments
+         * 
+         * Funkcia vrati vyfiltrovanych userov nazakalde ci uhradili alebo neuhradili clensky poplatok
+         * 
+         * @param users Array of objects pouzivatelov
+         * @param paymenent_value Suma penazi
+         * 
+         */
         public function get_users_filter_on_payments($users, $payments_value)
         {
             $lastPayments = array();
@@ -822,48 +1014,27 @@ class Selecter extends MY_Model
         }
         
         
-    public function PaymentsInDatabase( $table, $id, $user_id, $pay_type )
-    {
-        $totalPays = $this->rows($table, $id);
-        if ($pay_type == 0)
-           return count($this->get_payments ($totalPays, 0, $user_id));
-        else if($pay_type == 1)
-           return count($this->get_payments_paid($totalPays, 0, $user_id));
-        else if($pay_type == 2)
-           return count($this->get_payments_nopaid($totalPays, 0, $user_id));
-    }    
-        
-    public function project_state( $project_id )
-    {
-        $q = $this->db->query(" SELECT project_active
-                                FROM projects
-                                WHERE project_id = $project_id
-                              ");
-        
-        return $q->row()->project_active;
-    }
-    
-    /*public function get_user($study_ids, $degrees, $degree_years)
-    {
-            $q = $this->db->query(" 
-                                    SELECT tab.user_id, tab.user_name, tab.user_surname, 
-                                           tab.degree_name AS user_degree, 
-                                           tab.study_program_name AS user_study_program, 
-                                           uee.user_email_evidence_date, tab.user_email
-                                    FROM user_email_evidence uee
-                                    JOIN 
-                                    (SELECT *
-                                     FROM study_programs sp
-                                     JOIN
-                                        (SELECT * 
-                                         FROM users u
-                                         JOIN degrees d ON (u.user_degree_id=d.degree_id)) ud 
-                                              ON (sp.study_program_id=ud.user_study_program_id) ) tab 
-                                         ON (uee.user_email_evidence_user_id=tab.user_id) 
-                                     WHERE  tab.user_degree_id=$degrees AND tab.user_degree_year=$degree_years AND tab.user_study_program_id=$study_ids
-                                  ");
-            return $q->result();
-    }*/
+        /*
+         * PaymentsInDatabase
+         * 
+         * Funkcia vrati pocet zaznamov z platieb daneho typu zaplatene, nezaplatene, vsetky
+         * 
+         * @param table Nazov tabulky
+         * @param id ID zaznamu platby
+         * @param user_id ID pouzivatela
+         * @param pay_type Typ platby
+         * 
+         */
+        public function PaymentsInDatabase( $table, $id, $user_id, $pay_type )
+        {
+            $totalPays = $this->rows($table, $id);
+            if ($pay_type == 0)
+               return count($this->get_payments ($totalPays, 0, $user_id));
+            else if($pay_type == 1)
+               return count($this->get_payments_paid($totalPays, 0, $user_id));
+            else if($pay_type == 2)
+               return count($this->get_payments_nopaid($totalPays, 0, $user_id));
+        }           
 }
 
 /* End of file selecter.php */

@@ -1,25 +1,25 @@
 ﻿<?php
     $obj = $this->selecter->get_event_detail($event_id);    
-    $date = datetime($obj[0]->event_created, FALSE);
-    $time = time_withou_seconds(datetime($obj[0]->event_created, TRUE));
+    $date = datetime($obj->event_created, FALSE);
+    $time = time_withou_seconds(datetime($obj->event_created, TRUE));
 ?>
 <div id="content_wrapper_large">
-	<p class="event_category"> <?= $this->lang->line('label_event_category_id').': '; ?> <span class="link_text"> <?= anchor('events/'.$obj[0]->event_category_id, $obj[0]->event_category); ?> </span> </p>
+	<p class="event_category"> <?= $this->lang->line('label_event_category_id').': '; ?> <span class="link_text"> <?= anchor('events/'.$obj->event_category_id, $obj->event_category); ?> </span> </p>
 	<div class="event_title">
-		<?= $obj[0]->event_name ?>
+		<?= $obj->event_name ?>
 	</div>
 	<div class="event_body">
-		<?= parse_bbcode($obj[0]->event_about) ?>  
+		<?= parse_bbcode($obj->event_about) ?>  
 	</div>
 	<div class="event_time">
 		<span class="event_label"><?= $this->lang->line('event_date'); ?></span>
-		<?= datetime($obj[0]->event_from, FALSE).' '.time_withou_seconds(datetime($obj[0]->event_from, TRUE)) ?>  
+		<?= datetime($obj->event_from, FALSE).' '.time_withou_seconds(datetime($obj->event_from, TRUE)) ?>  
 		<?php echo '-'; ?>
-		<?= datetime($obj[0]->event_to, FALSE).' '.time_withou_seconds(datetime($obj[0]->event_to, TRUE)) ?>  
+		<?= datetime($obj->event_to, FALSE).' '.time_withou_seconds(datetime($obj->event_to, TRUE)) ?>  
 	</div>
 	<div class="event_add_info">
 		<span class="event_label"><?= $this->lang->line('event_author'); ?></span>
-		<?= anchor('users/detail/'.$obj[0]->user_id, $obj[0]->event_author) ?>,
+		<?= anchor('users/detail/'.$obj->user_id, $obj->event_author) ?>,
 		<?= $date.' '.$time; ?>
 	</div>
 

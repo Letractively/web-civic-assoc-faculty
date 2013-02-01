@@ -122,10 +122,8 @@ class Events extends MY_Controller
         {
             if( $event_id == '')
                 redirect(base_url ());
-            if( $this->selecter->exists( 'events', 'event_id', $event_id) );
+            if( !$this->selecter->exists( 'events', 'event_id', $event_id) )
                 redirect($this->router->class);
-            $this->load->model('selecter');
-            
             $data = array(
                 'event_id'      => $event_id
             );
