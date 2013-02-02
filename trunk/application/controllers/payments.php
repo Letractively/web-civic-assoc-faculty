@@ -140,8 +140,10 @@ class Payments extends MY_Controller
             $lp = $this->selecter->get_payments_lastpaid($userID);
             
             if( !$this->userdata->is_admin() )
-                if( (date("Y-m-d", time() - (365 * 86400)) > $userActivationDate[0]) && ($lp->payment_accepted == 0) )
-                    redirect('show_message/index/wtg_fee');
+                if( (date("Y-m-d", time() - (365 * 86400)) > $userActivationDate[0]) )
+                   if(isset($lp->payment_accepted))
+                       if($lp->payment_accepted == 0)
+                            redirect('show_message/index/wtg_fee');
             
             if ( $this->input->post('submit') )
             {
@@ -154,7 +156,7 @@ class Payments extends MY_Controller
                 $this->form_validation->set_rules('payment_vs','lang:label_vs','trim|required|xss_clean|integer|min_length[4]|max_length[10]');
                 foreach ($this->input->post('categories') as $cat_id => $ratio)
                 {
-                    $this->form_validation->set_rules('categories['.$cat_id.']','lang:label_proj_category','trim|xss_clean|numeric');
+                    $this->form_validation->set_rules('categories['.$cat_id.']','lang:label_proj_category','trim|xss_clean|numeric|is_natural');
                 }
                 if( $this->form_validation->run() )
                 {

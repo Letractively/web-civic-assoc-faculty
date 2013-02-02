@@ -276,7 +276,8 @@ class Updater extends MY_Model
                                     user_degree_id='".$values['degree_id']."',
                                     user_place_of_birth='".$values['place_of_birth']."',
                                     user_postcode='".$values['postcode']."',
-                                    user_degree_year='".$values['degree_year']."'
+                                    user_degree_year='".$values['degree_year']."',
+                                    user_role='".$values['role']."'
                                 WHERE user_id=$user_id");
           if($this->db->affected_rows()>0)
             return TRUE;

@@ -29,7 +29,7 @@
 			<?= form_textarea(array('name' => 'content', 'id' => 'textarea', 'class' => 'textarea_data3'.$error['content']), set_value('content', $field->post_content)) ?>
 		</div>
                 <div class="inputitem">
-                        <p class="label"><label for="content" class="<?= $error['content'] ?>"><?=$this->lang->line('published')?></label> </p>
+                        <p class="label"><label for="post_published"><?=$this->lang->line('published')?></label> </p>
 			<?php
                            if($field->post_published == 1)
                             {

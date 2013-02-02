@@ -201,7 +201,7 @@ class Users extends MY_Controller
                             } 
                          break;               
                  }
-                 
+                 $this->form_validation->set_rules('role','lang:label_role','trim|required|xss_clean|is_natural|numeric');
                  if( $this->form_validation->run() )
                  {
                      $this->load->model('inserter');
@@ -214,7 +214,7 @@ class Users extends MY_Controller
         
         $data = array(
                 'error'         => $this->form_validation->form_required(array( 'name', 'surname', 'username', 'password', 'password_again', 
-                                                                                'email', 'degree_year', 'vs','total_sum')
+                                                                                'email', 'degree_year', 'vs','total_sum','role')
                                                                         ),       
                 'years'                 => $this->generate_years($this->start_offset, $this->actual_year, $this->end_offset),
                 'title' 		=> $this->lang->line('title_add_user') 
