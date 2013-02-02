@@ -105,10 +105,10 @@ class Inserter extends MY_Model
                            ( project_name, project_about, project_priority, project_project_category_id, project_booked_cash,project_active, project_date_from, project_date_to)
                            VALUES ('".$values['name']."','".$values['about']."','".$values['priority']."','".$values['project_category_id']."','".$values['booked_cash']."',1,'". format_date($values['from'])."','".format_date($values['to'])."')
                          ");
-      if($this->db->affected_rows()>0){ 
+      if($this->db->affected_rows()>0)
         return TRUE;
-      }
-      else{ return FALSE;}
+      else
+          return FALSE;
     }
     
     public function add_project_category($values)
