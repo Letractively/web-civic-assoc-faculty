@@ -88,8 +88,10 @@
 
 		<div class="inputitem">
 			<p>
-                            <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_sub_edit'), $this->lang->line('button_edit_project')) ?>				
-                            <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_sub_close'), $this->lang->line('button_close_project')) ?>
+                            <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_sub_edit'), $this->lang->line('button_edit_project')) ?>	
+                            <?php if($field[0]->project_project_category_id != ''): ?>
+                                <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_sub_close'), $this->lang->line('button_close_project')) ?>
+                            <?php endif; ?>
                         </p>
 		</div>
 	<?= form_close(); ?>

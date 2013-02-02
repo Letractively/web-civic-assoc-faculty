@@ -138,7 +138,8 @@
                     <?php 
                         if( $this->userdata->is_admin() )
                         {
-                            $roles = array( '1'=>$this->lang->line('admin'), 
+                            $roles = array( '-1' => '', 
+                                            '1'=>$this->lang->line('admin'), 
                                             '2'=>$this->lang->line('oz_member'),
                                             '3'=>$this->lang->line('po_member')
                                           );

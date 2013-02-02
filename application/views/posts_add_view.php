@@ -31,7 +31,7 @@
     </div>  
 
     <div class="inputitem">
-        <p class="label"><label for="content" class="<?= $error['content'] ?>"><?= $this->lang->line('published') ?></label> </p>
+        <p class="label"><label for="post_published" ><?= $this->lang->line('published') ?></label> </p>
         <?= form_checkbox(array('value' => '1', 'name' => 'post_published', 'class' => 'post_published', 'id' => 'post_published','onchange'=>'zmenstav()')) ?>
     </div>
 
