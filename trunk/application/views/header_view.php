@@ -21,7 +21,7 @@
                     <td> <?= form_submit(array('name' => 'submit', 'class' => 'loginBtn'), $this->lang->line("button_login")); ?> </td>
                 </tr>
                 <tr> <td colspan="3" id="registration"> <?= anchor('auth/registration', $this->lang->line('new_registration')); ?> </td> </tr>
-                <tr> <td colspan="3" > <?= anchor('auth/reset_password', $this->lang->line('reset_password')); ?> </td> </tr>
+                <tr> <td colspan="3" id="pass_lost"> <?= anchor('auth/reset_password', $this->lang->line('reset_password')); ?> </td> </tr>
                 <?= form_close(); ?>
             </table>
         <?php else: ?>
