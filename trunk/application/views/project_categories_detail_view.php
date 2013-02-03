@@ -16,18 +16,18 @@ else
             </span>
             <span class="project_category_labels"> <?= $this->lang->line('pr_cat_move_from'); ?>
                 : <span class="cash_from"> <?php
-if ($obj->transaction_cash_from == '')
+if ($obj->transaction_cash_to == '')
     echo '0';
 else
-    echo $obj->transaction_cash_from;
+    echo $obj->transaction_cash_to;
 ?> €</span> <br />
             </span>
             <span class="project_category_labels"> <?= $this->lang->line('pr_cat_move_to'); ?>
                 : <span class="cash_to"> <?php
-                    if ($obj->transaction_cash_to == '')
+                    if ($obj->transaction_cash_from == '')
                         echo '0';
                     else
-                        echo $obj->transaction_cash_to;
+                        echo $obj->transaction_cash_from;
 ?> €</span> 
             </span>
         </p>

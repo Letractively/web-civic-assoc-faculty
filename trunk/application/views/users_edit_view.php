@@ -1,4 +1,43 @@
-﻿<div id="content_wrapper_small">
+<script>
+    function zobrazSkryj(idecko)
+    {
+        el = document.getElementById(idecko).style; 
+        el.display = (el.display == 'block')?'none':'block';
+        
+        if(document.getElementById('checkbox').value == 0)
+        {
+            document.getElementById('checkbox').value = 1;
+        }    
+        else if(document.getElementById('checkbox').value == 1)
+        {
+            document.getElementById('checkbox').value = 0;
+        }
+    }
+    
+    function hidecheckbox(id, form)
+    {
+        el = document.getElementById(id).style; 
+        el2 = document.getElementById(form).style; 
+        checkbox = document.getElementById('checkbox');
+        
+        switch(document.getElementById('role').value)
+        {
+            case '2':
+                el.display = (el.display == 'none')?'block':'none';
+                el2.display = (el.display == 'block')?'none':'block';
+                break;
+            case '-1':
+            case '1':
+            case '3':
+                el.display = (el.display == 'block')?'none':'none';
+                el2.display = (el.display == 'block')?'none':'none';
+                checkbox.value = 0;
+                checkbox.checked = false;
+                break;
+        }
+    }
+</script>
+<div id="content_wrapper_small">
 	<?php
 		$obj = $this->selecter->get_user_detail($user_id);
                 $numberOfDegrees = $this->selecter->rows('degrees', 'degree_id');
@@ -108,12 +147,51 @@
                     <?php 
                         if( $this->userdata->is_admin() )
                         {
+                            $roles = array( '-1' => '', 
+                                            '1'=>$this->lang->line('admin'), 
+                                            '2'=>$this->lang->line('oz_member'),
+                                            '3'=>$this->lang->line('po_member')
+                                          );
                             echo '<div class="inputitem">';
                                 echo '<p class="label"><label for="role" >'.$this->lang->line('label_role').'</label></p>';
-                                echo form_dropdown('role', $this->userdata->roles(false), set_value('role', $obj[0]->user_role), 'class="dropdown_priority"');
+                                echo form_dropdown('role', $roles, set_value('role'), 'id="role" class="dropdown_year" onchange="hidecheckbox(\'payments\',\'oddil1\')" style="cursor: pointer"');
                             echo '</div>';
                         }
-                    ?> <br />
+                    ?>
+                    
+                    <?php
+                        echo '<div class="inputitem" id="payments" style="display: none"><strong>'.$this->lang->line('entry_fee').'</strong>';
+                            echo form_checkbox(array("id"=>"checkbox","name"=>"checkbox","style"=>"cursor: pointer", "onchange" =>"zobrazSkryj('oddil1')"), 0);
+                        echo '</div>';
+                        
+                        echo '<div id="oddil1" class="skryvany" style="display: none">';
+                            echo '<div class="inputitem">';
+                                echo '<p class="label"> <label for="vs">'.$this->lang->line('label_vs').'</label> </p>';
+                                echo form_input(array('name' => 'vs', 'id' => 'vs', 'class' => 'input_data' ), set_value('vs'));
+                            echo '</div>';
+
+                            echo '<div class="inputitem">';
+                                echo '<p class="label"> <label for="total_sum">'.$this->lang->line('label_total_sum').'</label></p>';
+                                echo form_input(array('name' => 'total_sum', 'id' => 'total_sum', 'class' => 'input_data_date' ), set_value('total_sum', 5)).' €';
+                            echo '</div>';
+
+                            $obj = $this->selecter->get_project_categories();
+
+                            echo '<table class="inputitem">';
+                                echo '<tr><th>'.$this->lang->line('table_th_category').'</th><th>'.$this->lang->line('table_th_ratio').'</th></tr>';
+                                foreach($obj as $o)
+                                {
+                                    $cat_id = $o->project_category_id;
+                                    echo '<tr>';
+                                        echo '<td> <label for="categories['.$cat_id.']">';
+                                            echo $o->project_category_name;
+                                        echo '</label></td>';
+                                        echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => '1', 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$cat_id)).'</td>';
+                                    echo '</tr>';
+                                }
+                            echo '</table>';            
+                        echo '</div>';
+                    ?><br />
                     
                     <div class="inputitem">
                         <?= form_submit(array('type'=>'submit', 'name' => 'submit', 'class' => 'button_sub_edit'), $this->lang->line('button_edit')); ?>	
