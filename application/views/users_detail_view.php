@@ -1,4 +1,4 @@
-<?php $obj = $this->selecter->get_user_detail($user_id); ?>
+<?php $obj = $this->selecter->get_user_detail($user_id);?>
 <div id="content_wrapper_small">
     <?php
         if ($this->userdata->is_admin()) 
@@ -79,7 +79,8 @@
         <?php endif; ?>
     <?php endif; ?>
     <?php
-    if ( $this->userdata->is_admin() || $user_id == $this->userdata->get_user_id() ) {
+    if ( $this->userdata->is_admin() || $user_id == $this->userdata->get_user_id() ) 
+    {
         $this->load->library('grid');
         $grid = new Grid();
         $totalPays = $this->selecter->rows('payments', 'payment_id');
@@ -97,8 +98,9 @@
                 else
                     break;
         }
-        
-        if ($grid->bind($userNoPaidPayments, 'payment_id')) {
+
+        if ($grid->bind($userNoPaidPayments, 'payment_id')) 
+        {
             $grid->header('payment_id')->editable = false;
             $grid->header('payment_type')->editable = false;
             $grid->header('payment_paid_sum')->editable = false;
@@ -129,35 +131,43 @@
             echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('payments')) . '</p>';
         } 
         else 
-        {
-            $userActivationDate = explode(' ', $this->userdata->get_user_activated_time($user_id));
-            
-            $lp = $this->selecter->get_payments_lastpaid($user_id);
-            $date = datetime($userActivationDate[0], FALSE);
-            $dayAndMonth = day_month($date);
-            $year = year($date) + 1;
-            
-            if (date("Y-m-d", time() - (365 * 86400)) <= $userActivationDate[0]) 
+            if($obj[0]->user_role <> 3)
             {
-                echo '<div class="inputitem">' . $this->lang->line('pay_limited_in') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';
-                
-                if ($user_id == $this->userdata->get_user_id() && date("Y-m-d", time() - (365 * 86400)) <= $userActivationDate[0])
-                    echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('entry_free')) . '</p>';
-            }
-            else if (date("Y-m-d", time() - (365 * 86400)) > $userActivationDate[0]) 
-            {
+                $userActivationDate = explode(' ', $this->userdata->get_user_activated_time($user_id));
+
+                if($userActivationDate[0] == '')
+                    $userActivationDate[0] = '0000-00-00 00:00:00';
+                $lp = $this->selecter->get_payments_lastpaid($user_id);
+                $date = datetime($userActivationDate[0], FALSE);
+                $dayAndMonth = day_month($date);
+                $year = year($date) + 1;
+
                 if(isset($lp->payment_accepted))
-                    if($lp->payment_accepted == 0)
-                        echo '<div class="inputitem"><p><strong>' . $this->lang->line('wtg_fee') . '</strong></p></div>';
-                    else
-                        echo '<div class="inputitem">' . $this->lang->line('pay_limited_out') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';
+                {
+                    if (date("Y-m-d", time() - (365 * 86400)) <= $userActivationDate[0]) 
+                    {
+                        echo '<div class="inputitem">' . $this->lang->line('pay_limited_in') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';
+
+                        if ($user_id == $this->userdata->get_user_id() && date("Y-m-d", time() - (365 * 86400)) <= $userActivationDate[0])
+                            echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('entry_free')) . '</p>';
+                    }
+                    else if (date("Y-m-d", time() - (365 * 86400)) > $userActivationDate[0]) 
+                    {
+                        if(isset($lp->payment_accepted))
+                            if($lp->payment_accepted == 0)
+                                echo '<div class="inputitem"><p><strong>' . $this->lang->line('wtg_fee') . '</strong></p></div>';
+                            else
+                                echo '<div class="inputitem">' . $this->lang->line('pay_limited_out') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';
+                        else
+                            echo '<div class="inputitem">' . $this->lang->line('acc_enabled_until') . ': <strong>31.12.' . $year . '</strong></div>';
+
+                        if ($user_id == $this->userdata->get_user_id())
+                            echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('entry_fee')) . '</p>';
+                    }
+                }
                 else
-                    echo '<div class="inputitem">' . $this->lang->line('acc_enabled_until') . ': <strong>31.12.' . $year . '</strong></div>';
-                
-                if ($user_id == $this->userdata->get_user_id())
-                    echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('entry_fee')) . '</p>';
-            }   
-        }
+                    echo '<div class="inputitem"><p><strong>' . $this->lang->line('payment_not_found') . '</strong></p></div>';
+            }    
     }
     ?>
 

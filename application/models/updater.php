@@ -276,6 +276,7 @@ class Updater extends MY_Model
                   {
                     case 1:
                         $is_exempted = 1;
+                        $this->db->query("DELETE FROM payments WHERE payment_user_id = '".$user_id."' AND payment_accepted = 0 AND payment_type = 1");
                         break;
                     case 2:
                         if( !isset($values['checkbox']) )
@@ -285,6 +286,7 @@ class Updater extends MY_Model
                         break;
                     case 3:
                         $is_exempted = 0;
+                        $this->db->query("DELETE FROM payments WHERE payment_user_id = '".$user_id."' AND payment_accepted = 0");
                         break;
                   }
                   $this->db->query("UPDATE users 
@@ -302,6 +304,7 @@ class Updater extends MY_Model
                                     user_exempted='".$is_exempted."',
                                     user_activated=null    
                                 WHERE user_id=$user_id");
+                  
               }
               else
                   $this->db->query("UPDATE users 
