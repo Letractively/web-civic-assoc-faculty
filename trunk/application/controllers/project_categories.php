@@ -88,11 +88,27 @@ class Project_categories extends MY_Controller
             }
         }
 
+        /*
+         * edit
+         * 
+         * Funkcia upravi danu projektovu kategoriu
+         * 
+         * @param project_category_id ID projektovej kategorie ktore chceme upravit
+         * 
+         */
         public function edit( $project_category_id )
         {
             parent::edit('edit_project_category', $project_category_id, 'operation_edit');
         }
 
+        /*
+         * delete
+         * 
+         * Funkcia vymaze z databazy projektovu kategoriu
+         * 
+         * @param project_category_id ID projektovej kategorie ktoru chceme zmazat
+         * 
+         */
         public function delete( $project_category_id )
         {
             parent::delete('remove_project_category', $project_category_id);
