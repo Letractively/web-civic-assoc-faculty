@@ -12,7 +12,8 @@ class Auth extends MY_Controller
         function __construct() 
         {
             parent::__construct();
-
+            $this->load->model('selecter');
+            
             $data = array(
                 'title' 	=> $this->lang->line('title'),
                 'page'          => ""
@@ -28,8 +29,7 @@ class Auth extends MY_Controller
          * 
          */
         public function index()
-        {      
-            $this->load->model('selecter');           
+        {               
             $data = array( 
                 'view'       => "{$this->router->class}_view"
             );
@@ -49,9 +49,8 @@ class Auth extends MY_Controller
         public function registration()
         {
             if( $this->userdata->is_logged() )
-                redirect(base_url ());
-                //redirect ('show_message/index/error_logged');
-            $this->load->model('selecter');
+                //redirect(base_url ());
+                redirect ('show_message/index/error_logged');
             
             if( $this->input->post('submit') )
             {
@@ -92,8 +91,6 @@ class Auth extends MY_Controller
          */
         public function login()
         {
-            
-            $this->load->model('selecter');
             if( $this->input->post('submit') )
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
@@ -132,6 +129,40 @@ class Auth extends MY_Controller
             $this->session->unset_userdata('admin');
             $this->session->unset_userdata('user');
             redirect(base_url());
+        }
+        
+        /*
+         * reset_password
+         * 
+         * Funkcia zresetuje heslo pouzivatela  a posle mu nove na emailovu adresu
+         * uvedenu pri registracii
+         * 
+         */
+        public function reset_password()
+        {
+            if( $this->userdata->is_logged() )
+                redirect(base_url());
+            
+            if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
+            {
+                $this->load->helper('string');
+                $new_password = random_string('alnum', 10);
+                
+                $this->load->library('email');
+                $this->email->from( $this->userdata->root_email(), $this->lang->line('reset_sender') );
+                $this->email->to( $this->input->post('email') ); 
+                $this->email->subject( $this->lang->line('reset_subject') );
+                $this->email->message( $this->lang->line('reset_message_start').$new_password.$this->lang->line('reset_message_end'));
+                $this->email->send();
+            }
+            
+            $data = array(
+                'error'             => $this->form_validation->form_required(array('username', 'password','email')),     
+                'view'              => 'auth_resetPassword_view',
+                'title'             => $this->lang->line('reset_title')
+            );
+            
+            $this->load->view('container', array_merge($this->data, $data)); 
         }
 
 }

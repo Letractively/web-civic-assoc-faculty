@@ -11,5 +11,7 @@ $lang['error_validation']           =   'Zle zadané údaje';
 $lang['error_input']                =   'Zadal si zlé meno alebo heslo';
 $lang['error_logged']               =   'Prihlásený používateľ sa nemôže registrovať';
 
+$lang['removeAdmin']                =   'Nie je možné odstrániť hlavného administrátora';
+
 /* End of file show_message_lang.php */
 /* Location: ./application/language/slovak/show_message_lang.php */

@@ -270,7 +270,7 @@ class Updater extends MY_Model
               $user_role = $q->row()->user_role;
               
               $is_exempted = 0;
-              if($user_role <> $values['role'])
+              if( $user_role <> $values['role'] )
               {
                   switch( $values['role'] )
                   {

@@ -76,11 +76,16 @@ class Project_categories extends MY_Controller
         public function add_transaction()
         {
             $dataInput = $this->input->post();
-            $this->load->model('inserter');
-            $this->inserter->add_transaction($dataInput);
-            $this->load->model('updater');
-            $this->updater->edit_project_category_transactions($dataInput);
-            redirect('project_categories/detail/'.$dataInput['from']);
+            
+            $this->form_validation->set_rules('cash', 'lang:label_cash', 'trim|xss_clean|numeric|natural_no_zero');
+            if( $this->form_validation->run() )
+            {
+                $this->load->model('inserter');
+                $this->inserter->add_transaction($dataInput);
+                $this->load->model('updater');
+                $this->updater->edit_project_category_transactions($dataInput);
+                redirect('project_categories/detail/'.$dataInput['from']);
+            }
         }
 
         public function edit( $project_category_id )

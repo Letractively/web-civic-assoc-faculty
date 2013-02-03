@@ -93,17 +93,17 @@ class MY_Model extends CI_Model
         {
             $actualYear = Date("Y");
             $answer = FALSE;
-            $q = $this->db->query(" SELECT user_activated, user_role
+            $q = $this->db->query(" SELECT user_activated, user_exempted
                                     FROM users
                                     WHERE user_username = '".$param['username']."' AND
                                           user_password = '".sha1($param['password'])."'
                                   ");
-            $role = $q->row()->user_role;
+            $exempted = $q->row()->user_exempted;
             $dateArray = explode('-', $q->row()->user_activated);
             
             $userYear = $dateArray[0]+2;
             
-            if($actualYear < $userYear || $role == 1 )
+            if($actualYear < $userYear || $exempted == 1 )
                 $answer = TRUE;
             else
                 $answer = FALSE;

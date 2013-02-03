@@ -46,6 +46,11 @@ $lang['entry_fee']                  =   'Uhradiť členské';
 
 $lang['payment_not_found']          =   'K danému používateľovi neexistuje žiadna platba';
 
+$lang['default_email']              =   'Dobrý deň, <br/> <br /> bol vám zmenený prístup na stránky Alumni FMFI <br/>,
+                                         ak sa chcete prihlásiť do svojho účtu je potrebné aby ste zaplatili členský poplatok.';
+
+$lang['pay_payment']                =   'Úhrada členského poplatku';
+
 
 
 /* End of file auth_lang.php */

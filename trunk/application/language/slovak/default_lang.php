@@ -35,9 +35,14 @@ $lang['logged_in']                      =   'Si prihlásený ako';
 
 $lang['no_js']				=   'Pre správne fungovanie tejto aplikácie musíte mať povolený javascript.';
 
-$lang['wtg_fee']                    =   'Čaká sa na úhradu členského poplatku';
+$lang['wtg_fee']                        =   'Čaká sa na úhradu členského poplatku';
 
-$lang['unknow']                             =   'Neznámy';
+$lang['unknow']                         =   'Neznámy';
+
+$lang['new_registration']               =   'Registrácia nového člen';
+$lang['reset_password']                 =   'Zabudol som heslo';
+$lang['reset_message_end']          =   'S pozdravom,<br />OZ alumni FMFI';
+$lang['reset_sender']               =   'Administrátor Alumni FMFI';
 
 /* End of file default_lang.php */
 /* Location: ./application/language/slovak/default_lang.php */

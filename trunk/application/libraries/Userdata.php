@@ -181,4 +181,13 @@ class Userdata
             
             return $query->row()->user_activated;
         }
+        
+        public function root_email()
+        {
+            $query =    $this->CI->db->query("  SELECT user_email
+                                                FROM users
+                                                WHERE user_username = 'root'");
+            
+            return $query->row()->user_email;
+        }
 }
