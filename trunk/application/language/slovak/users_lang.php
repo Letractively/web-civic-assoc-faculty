@@ -44,6 +44,8 @@ $lang['acc_enabled_until']          =   'V prípade neúhrady členského, je ú
 $lang['entry_free']                 =   'Dobrovoľný Príspevok';
 $lang['entry_fee']                  =   'Uhradiť členské';
 
+$lang['payment_not_found']          =   'K danému používateľovi neexistuje žiadna platba';
+
 
 
 /* End of file auth_lang.php */
