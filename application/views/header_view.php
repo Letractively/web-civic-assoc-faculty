@@ -1,6 +1,6 @@
 ﻿<div id="header">
     <div id="logo">
-        <div id="logo_position"> </div>
+        <div id="logo_position"> <?= anchor('auth', ' '); ?> </div>
     </div>
     <div id="loginBar">
         <?php if (!$this->userdata->is_logged()): ?>
