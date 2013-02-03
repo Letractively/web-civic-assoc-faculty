@@ -940,8 +940,9 @@ class Selecter extends MY_Model
             $query = $this->db->get();
 
             $result = $query->result();
+            
             if( isset($values['payment_time']) )
-                if($result != array())
+                if( $result != array() )
                     return $this->selecter->get_users_filter_on_payments($result, $values['payment_time']);
                 else
                     return null;
@@ -968,7 +969,7 @@ class Selecter extends MY_Model
             {
                 array_push($lastPayments, $this->get_payments_lastpaid($user->user_id));
             }
-
+           
             $this->db   ->select('u.user_id, u.user_name, u.user_surname, u.user_email,
                                d.degree_name, sp.study_program_name, 
                               ')
@@ -977,30 +978,30 @@ class Selecter extends MY_Model
             $this->db   ->join('study_programs sp', 'u.user_study_program_id = sp.study_program_id');
 
             $userIDS = array();
-            foreach ($payments_value as $value) 
+            foreach ( $payments_value as $value ) 
             {
-                switch ($value) 
+                switch ( $value ) 
                 {
                     case 1:
-                        foreach ($lastPayments as $value) 
+                        foreach ( $lastPayments as $value ) 
                         {
-                            if( isset($value->payment_paid_sum) )
+                            if( isset( $value->payment_paid_sum ) )
                             {
-                               if($value->payment_paid_sum >= $value->payment_total_sum)
+                               if( $value->payment_paid_sum >= $value->payment_total_sum )
                                {
-                                   array_push($userIDS, $value->user_id);
+                                   array_push( $userIDS, $value->user_id );
                                }
                             }         
                         }
                         break;
                     case 2:
-                        foreach ($lastPayments as $value) 
+                        foreach ( $lastPayments as $value ) 
                         {
-                            if( isset($value->payment_paid_sum) )
+                            if( isset( $value->payment_paid_sum ) )
                             {
-                               if($value->payment_paid_sum < $value->payment_total_sum)
+                               if( $value->payment_paid_sum < $value->payment_total_sum )
                                {
-                                   array_push($userIDS, $value->user_id);
+                                   array_push( $userIDS, $value->user_id );
                                }
                             }         
                         }
@@ -1008,11 +1009,17 @@ class Selecter extends MY_Model
                 }
             }
 
-            $this->db->where_in('user_id',$userIDS);
-            $query = $this->db->get();
-            $result = $query->result();
-            $query->free_result();
-            return $result;
+            if( $userIDS != array() )
+            {
+                $this->db->where_in('user_id',$userIDS);
+                $query = $this->db->get();
+                $result = $query->result();
+                $query->free_result();
+                return $result;
+            }
+            else
+                return null;
+            
         }
         
         

@@ -62,6 +62,7 @@ class Correspondence extends MY_Controller
             $ids = array();
             $this->load->library('email');
             $logged_user_id = $this->session->userdata('user');
+            
             if($users != '')
             {
                 /*foreach ($users as $user) 
