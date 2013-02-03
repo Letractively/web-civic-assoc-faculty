@@ -1,0 +1,8 @@
+validácia zápornej sumy na transakciách
+èestnı èlen sa nevie prihlási
+users_detail - èlen:
+	vypršalo èlenské, neexistuje posl. èlenská platba ALEBO existuje, ale je uhradená - má vypísa "Vaše èlenské skonèilo ..., prosím uhrade èlenské"
+	vypršalo èlenské, existuje posledná èlenská platba A je neuhradená - má vypísa "èaká sa na úhradu
+	je platné èlenské - má sa vypísa "Vaše èlensvo je platné do ... "
+payments - nejde vymaza uhradená èlenská platba
+users_edit - validova rolu, prejde aj prázdna (-1)
