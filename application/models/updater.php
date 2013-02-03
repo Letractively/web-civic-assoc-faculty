@@ -265,8 +265,29 @@ class Updater extends MY_Model
                   $this->db->query("UPDATE users 
                                     SET user_password=sha1('".$values['password']."')
                                     WHERE user_id = '".$user_id."'");
-              }    
-              $this->db->query("UPDATE users 
+              }
+              $q = $this->db->query("SELECT user_role FROM users WHERE user_id = '".$user_id."'");
+              $user_role = $q->row()->user_role;
+              
+              $is_exempted = 0;
+              if($user_role <> $values['role'])
+              {
+                  switch( $values['role'] )
+                  {
+                    case 1:
+                        $is_exempted = 1;
+                        break;
+                    case 2:
+                        if( !isset($values['checkbox']) )
+                        {
+                            $is_exempted = 1;
+                        }
+                        break;
+                    case 3:
+                        $is_exempted = 0;
+                        break;
+                  }
+                  $this->db->query("UPDATE users 
                                 SET user_username='".$values['username']."',
                                     user_name='".$values['name']."',
                                     user_surname='".$values['surname']."',
@@ -277,8 +298,27 @@ class Updater extends MY_Model
                                     user_place_of_birth='".$values['place_of_birth']."',
                                     user_postcode='".$values['postcode']."',
                                     user_degree_year='".$values['degree_year']."',
-                                    user_role='".$values['role']."'
+                                    user_role='".$values['role']."',
+                                    user_exempted='".$is_exempted."',
+                                    user_activated=null    
                                 WHERE user_id=$user_id");
+              }
+              else
+                  $this->db->query("UPDATE users 
+                                SET user_username='".$values['username']."',
+                                    user_name='".$values['name']."',
+                                    user_surname='".$values['surname']."',
+                                    user_email='".$values['email']."',
+                                    user_phone='".$values['phone']."',
+                                    user_study_program_id='".$values['study_program_id']."',
+                                    user_degree_id='".$values['degree_id']."',
+                                    user_place_of_birth='".$values['place_of_birth']."',
+                                    user_postcode='".$values['postcode']."',
+                                    user_degree_year='".$values['degree_year']."'  
+                                WHERE user_id=$user_id");
+              
+              
+              
           if($this->db->affected_rows()>0)
             return TRUE;
           else

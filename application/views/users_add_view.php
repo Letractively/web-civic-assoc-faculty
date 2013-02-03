@@ -1,4 +1,4 @@
-﻿<script>
+<script>
     function zobrazSkryj(idecko)
     {
         el = document.getElementById(idecko).style; 
@@ -7,12 +7,10 @@
         if(document.getElementById('checkbox').value == 0)
         {
             document.getElementById('checkbox').value = 1;
-         //   document.forms[0].hidden_payment.value = 1;
         }    
         else if(document.getElementById('checkbox').value == 1)
         {
             document.getElementById('checkbox').value = 0;
-         //   document.forms[0].hidden_payment.value = 0;
         }
     }
     
@@ -22,24 +20,20 @@
         el2 = document.getElementById(form).style; 
         checkbox = document.getElementById('checkbox');
         
-        if(document.getElementById('role').value == '1' ) //Adminsitrator
-        {    
-            el.display = (el.display == 'block')?'none':'none';
-            el2.display = (el.display == 'block')?'none':'none';
-            checkbox.value = 0;
-            checkbox.checked = false;
-        }
-        else if(document.getElementById('role').value == '2') // Clen zdruzenia
+        switch(document.getElementById('role').value)
         {
-            el.display = (el.display == 'none')?'block':'none';
-            el2.display = (el.display == 'block')?'none':'block';
-        }
-        else if(document.getElementById('role').value == '3') // Potencionalny clen
-        {
-            el.display = (el.display == 'block')?'none':'none';
-            el2.display = (el.display == 'block')?'none':'none';
-            checkbox.value = 0;
-            checkbox.checked = false;
+            case '2':
+                el.display = (el.display == 'none')?'block':'none';
+                el2.display = (el.display == 'block')?'none':'block';
+                break;
+            case '-1':
+            case '1':
+            case '3':
+                el.display = (el.display == 'block')?'none':'none';
+                el2.display = (el.display == 'block')?'none':'none';
+                checkbox.value = 0;
+                checkbox.checked = false;
+                break;
         }
     }
 </script>

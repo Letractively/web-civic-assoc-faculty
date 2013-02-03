@@ -196,7 +196,6 @@ class Inserter extends MY_Model
     public function add_user($values)
     {
         $is_exempted = 0;
-        $is_activated = '0000-00-00 00:00:00';
         
         switch( $values['role'] )
         {
@@ -212,13 +211,13 @@ class Inserter extends MY_Model
         $this->db->query("  INSERT INTO users 
                             (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
                             user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year,
-                            user_exempted, user_activated)
+                            user_exempted)
                             VALUES
                             ('".$values['name']."', '".$values['surname']."','".$values['role']."', '".$values['username']."',
                              '".sha1($values['password'])."', '".$values['email']."', '".$values['phone']."',
                              '".$values['study_program_id']."', '".$values['degree_id']."', 
                              '".$values['place_of_birth']."', '".$values['postcode']."', '".$values['degree_year']."',
-                             '".$is_exempted."', '".$is_activated."')
+                             '".$is_exempted."')
                          ");
         
         $user_id = $this->db->insert_id();
