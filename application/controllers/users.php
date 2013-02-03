@@ -10,6 +10,7 @@ class Users extends MY_Controller
     protected $get_query            = array();
     protected $per_page             = 20;
     protected $totalRows            = 0;
+    
     /*
      * Constructor
      * 
@@ -55,6 +56,14 @@ class Users extends MY_Controller
         $this->load->view('container', array_merge($this->data, $data));
     }
     
+    /*
+     * admins
+     * 
+     * Funkcia vrati vsetkych adminov
+     * 
+     * @param page cislo aktualnej strany
+     * 
+     */
     public function admins( $page = 0 )
     {
         $this->load->library('pagination');
@@ -75,6 +84,14 @@ class Users extends MY_Controller
         $this->load->view('container', array_merge($this->data, $data)); 
     }
     
+    /*
+     * members
+     * 
+     * Funkcia vrati vsetkych clenov zdruzenia
+     * 
+     * @param page cislo aktualnej strany
+     * 
+     */
     public function members( $page = 0 )
     {
         $this->load->library('pagination');
@@ -95,6 +112,14 @@ class Users extends MY_Controller
         $this->load->view('container', array_merge($this->data, $data)); 
     }
     
+    /*
+     * potentials
+     * 
+     * Funkcia vrati vsetkych potencialnych clenov
+     * 
+     * @param page cislo aktualnej strany
+     * 
+     */
     public function potentials( $page = 0 )
     {
         if(!$this->userdata->is_admin())
@@ -117,6 +142,14 @@ class Users extends MY_Controller
         $this->load->view('container', array_merge($this->data, $data)); 
     }
     
+    /*
+     * innactive
+     * 
+     * Funkcia vrati vsetkych cakajucich clenov
+     * 
+     * @param page cislo aktualnej strany
+     * 
+     */
     public function innactive( $page = 0 )
     {
         if(!$this->userdata->is_admin())
@@ -139,6 +172,14 @@ class Users extends MY_Controller
         $this->load->view('container', array_merge($this->data, $data));
     }
     
+    /*
+     * blocked
+     * 
+     * Funkcia vrati vsetkych zablokovanych clenov
+     * 
+     * @param page cislo aktualnej strany
+     * 
+     */
     public function blocked( $page = 0 )
     {
         if(!$this->userdata->is_admin())
@@ -161,6 +202,14 @@ class Users extends MY_Controller
         $this->load->view('container', array_merge($this->data, $data));
     }
     
+    /*
+     * detail
+     * 
+     * Funkcia vrati detajl pouzivatela
+     * 
+     * @param user_id ID pouzivatela
+     * 
+     */
     public function detail( $user_id )
     {
         if( !$this->selecter->exists('users','user_id', $user_id) )
@@ -176,6 +225,12 @@ class Users extends MY_Controller
         $this->load->view('container', array_merge($this->data, $data));
     }
     
+    /*
+     * add
+     * 
+     * Funkcia prida noveho pouzivatela do databazi
+     * 
+     */
     public function add()
     {
         if( !$this->userdata->is_admin() )
@@ -223,6 +278,13 @@ class Users extends MY_Controller
         
     }
     
+    /*
+     * edit
+     * 
+     * Funkcia upravi daneho pouzivatela
+     * 
+     * @param user_id ID pouzivatela
+     */
     public function edit( $user_id )
     {
         if( !$this->selecter->exists('users','user_id', $user_id) )
@@ -289,6 +351,14 @@ class Users extends MY_Controller
         $this->load->view('container', array_merge($this->data, $data));
     }
     
+    /*
+     * delete
+     * 
+     * Funkcia vymaze daneho pouzivatela z databazi
+     * 
+     * @param user_id ID pozivatela
+     * 
+     */
     public function delete( $user_id )
     {
         if( !$this->userdata->is_admin() )

@@ -35,6 +35,12 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
+        /*
+         * Funkcia vrati detajl daneho projektu
+         * 
+         * @param project_id ID projektu ktoreho detajl chceme ziskat
+         * 
+         */
         public function detail($project_id)
         {
             if($project_id == '' || !$this->selecter->exists('projects','project_id',$project_id))
@@ -47,6 +53,12 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
+        /*
+         * add
+         * 
+         * Funkcia prida novy projekt do databazi
+         * 
+         */
         public function add()
         {
             parent::add('add_project');
@@ -60,6 +72,14 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
+        /*
+         * add_project_item
+         * 
+         * Funkcia prida novu polozku projektu do databazi
+         * 
+         * @param project_id ID projektu ku ktoremu chceme pridat danu polozku
+         * 
+         */
         public function add_project_item( $project_id )
         {
 			$new_post = array(
@@ -85,6 +105,14 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
+        /*
+         * edit
+         * 
+         * Funkcia upravi projekt
+         * 
+         * @param project_id ID projektu ktori chceme upravit
+         * 
+         */
         public function edit( $project_id )
         {
             if($project_id == '' || !$this->selecter->exists('projects','project_id',$project_id))
@@ -105,6 +133,15 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
+        /*
+         * edit_project_item
+         * 
+         * Funkcia upravi polozku projektu
+         * 
+         * @param project_id ID projektu
+         * @param project_item_id ID polozky
+         * 
+         */
         public function edit_project_item($project_id, $project_item_id )
         {
             $new_post = array(
@@ -130,6 +167,14 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
+        /*
+         * edit_project_closed
+         * 
+         * Funkcia uzavre projekt
+         * 
+         * @param project_id ID projektu
+         * 
+         */
         public function edit_project_closed( $project_id )
         {
             $this->load->model('updater');
@@ -141,6 +186,14 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));*/
         }
 
+        /*
+         * delete
+         * 
+         * Funkcia zmaze projekt
+         * 
+         * @param project_id ID projektu
+         * 
+         */
         public function delete( $project_id )
         {
             parent::delete('remove_project', $project_id, $this->router->class);
@@ -155,6 +208,15 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
+        /*
+         * delete_project_item
+         * 
+         * Funkcia zmaze polozku projektu
+         * 
+         * @param project_id ID projektu
+         * @param project_item_id ID projektovej polozky
+         * 
+         */
         public function delete_project_item( $project_id, $project_item_id)
         {
             if( $project_id == '')

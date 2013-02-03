@@ -3,29 +3,35 @@
 class Io extends MY_Controller
 {
     
-    /*
-     * Constructor
-     * 
-     * @return      void
-     * 
-     */
-    function __construct() 
-    {
-        parent::__construct();
-        if( !$this->userdata->is_admin() )
-                redirect(base_url());
-        $data = array(
-            'title' 		=> 'Export'   //Title na aktualnej stranke
-        );
-            
-        $this->data = array_merge($this->data, $data);
-    }
-    
-    public function import()
-    {
-        
-    }
+        /*
+         * Constructor
+         * 
+         * @return      void
+         * 
+         */
+        function __construct() 
+        {
+            parent::__construct();
+            if( !$this->userdata->is_admin() )
+                    redirect(base_url());
+            $data = array(
+                'title' 		=> 'Export'   //Title na aktualnej stranke
+            );
+
+            $this->data = array_merge($this->data, $data);
+        }
 	
+        /*
+         * array_to_csv
+         * 
+         * Funkcia upravi vystupny array do CSV formatu
+         * 
+         * @param source vstupne udaje
+         * @param filename meno suboru
+         * @param header hlavicka suboru
+         * @param remove_from_export stlpce ktore nechceme v exporte
+         * 
+         */
 	private function array_to_csv($source, $filename, $header = null, $remove_from_export = array())
 	{
 		$export_text = '';
@@ -52,8 +58,14 @@ class Io extends MY_Controller
 		print $export_text;
 	}
     
-    public function export()
-    {
+        /*
+         * export
+         * 
+         * Funkcia vyexportuje udaje
+         *  
+         */
+        public function export()
+        {
 		if( !$this->userdata->is_admin() )
 			redirect(base_url());
 			

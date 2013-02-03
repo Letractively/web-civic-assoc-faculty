@@ -80,6 +80,11 @@ class Correspondence extends MY_Controller
             }
         }
 
+        /*
+         * review
+         * 
+         * Funkcia zobraziu pouzivatelov ktori vyhovuju filtracnej podmienke
+         */
         public function review()
         {
             $data = array(

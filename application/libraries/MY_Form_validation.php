@@ -45,11 +45,27 @@ class MY_Form_validation extends CI_Form_validation
 		return $str >= $min;
 	}
         
+        /*
+         * valid_date
+         * 
+         * Funkcia validuje na platny date format
+         * 
+         * @param str String
+         * 
+         */
         public function valid_date($str)
         {
             return ( ! preg_match('/^[0-9]{2}.[0-9]{2}.[0-9]{4}$/', $str)) ? FALSE : TRUE;
         }
         
+        /*
+         * valid_datetime
+         * 
+         * Funkcia validuje na platny datetime format
+         * 
+         * @param str String
+         * 
+         */
         public function valid_datetime($str)
         {
             return ( ! preg_match('/^[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}:[0-9]{2}$/', $str)) ? FALSE : TRUE;
@@ -68,6 +84,12 @@ class MY_Form_validation extends CI_Form_validation
 
 	}
         
+        /*
+         * natural_no_zero
+         * 
+         * Vacsie ako 0 
+         * 
+         */
         public function natural_no_zero($str)
         {
             if(numeric($str))

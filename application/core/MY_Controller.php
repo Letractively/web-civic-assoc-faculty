@@ -148,11 +148,6 @@ abstract class MY_Controller extends CI_Controller
                 $this->load->model('inserter');
                 $this->inserter->$method( $this->input->post() );
                 redirect($this->router->class);
-                //array_debug($this->input->post());
-                /*if( $this->router->class == 'project_categories' )
-                    redirect($this->router->class.'/detail/'.$this->input->post('pr_cat'));
-                else
-                    redirect($this->router->class);*/
             }
         }
         

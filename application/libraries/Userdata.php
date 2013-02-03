@@ -173,6 +173,14 @@ class Userdata
                 return true;
         }
         
+        /*
+         * get_user_activated_time
+         * 
+         * Funkca vrati cas kedy user uhradil poslednu platbu
+         * 
+         * @param user_id ID pouzivatela
+         * 
+         */
         public function get_user_activated_time( $user_id )
         {
             $query =    $this->CI->db->query("  SELECT user_activated
@@ -182,6 +190,12 @@ class Userdata
             return $query->row()->user_activated;
         }
         
+        /*
+         * root_email
+         * 
+         * Funkcia vrati email hlavneho administratora
+         * 
+         */
         public function root_email()
         {
             $query =    $this->CI->db->query("  SELECT user_email

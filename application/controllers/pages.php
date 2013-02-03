@@ -49,6 +49,14 @@ class Pages extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
+        /*
+         * edit
+         * 
+         * Funkcia upravy danu stranku
+         * 
+         * @param page_name meno stranky ktore sa ma upravit
+         * 
+         */
         public function edit( $page_name )
         {
             if(!in_array($page_name, array('rules','contact','about')))
