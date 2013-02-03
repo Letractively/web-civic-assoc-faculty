@@ -236,9 +236,42 @@ class Users extends MY_Controller
             {
                 if( $this->form_validation->run("{$this->router->class}/{$this->router->method}") )
                 {
-                    $this->load->model('updater');
-                    $this->updater->edit_user( $user_id, $this->input->post() );
-                    redirect( $this->router->class );
+                    switch( $this->input->post('role') )
+                    {
+                        case 1:                         
+                        case 3:
+                            break;
+                        case 2:
+                            if( $this->input->post('checkbox') == 1 )
+                               $this->form_validation->set_rules('vs','lang:label_vs','trim|required|integer|min_length[4]|max_length[10]');
+                               $this->form_validation->set_rules('total_sum','lang:label_total_sum','trim|required|xss_clean|greater_or_equal_than[5]|numeric');
+                               foreach ($this->input->post('categories') as $cat_id => $ratio)
+                               {
+                                   $this->form_validation->set_rules('categories['.$cat_id.']','lang:label_proj_category','trim|xss_clean|numeric|is_natural');
+                               } 
+                            break;               
+                    }
+                    $this->form_validation->set_rules('role','lang:label_role','trim|required|xss_clean|is_natural|numeric');
+                    if( $this->form_validation->run() )
+                    {
+                        $this->load->model('updater');
+                        $this->updater->edit_user( $user_id, $this->input->post() );
+                        
+                        if( $this->input->post('vs') != '' )
+                        {
+                            $this->load->library('email');
+                            $this->email->from( $this->userdata->root_email(), $this->lang->line('reset_sender') );
+                            $this->email->to( $this->input->post('email') ); 
+                            $this->email->subject( $this->lang->line('pay_payment') );
+                            $this->email->message(  $this->input->post('email_message').'<br /><br />
+                                                    <strong>'.$this->lang->line('label_vs').': </strong>'.$this->input->post('vs').'<br />
+                                                    <strong>'.$this->lang->line('label_total_sum').': </strong>'.$this->input->post('total_sum').'<br />'.
+                                                    $this->lang->line('reset_message_end')
+                                                 );
+                            $this->email->send();
+                        }
+                        redirect( $this->router->class );
+                    } 
                 }
             }
         }
@@ -264,7 +297,12 @@ class Users extends MY_Controller
         if( $user_id == '')
             redirect( $this->router->class );
         
-        parent::delete( 'remove_user', $user_id );
+        $user = $this->selecter->get_user_detail($user_id);
+        
+        if($user[0]->user_username != 'root')
+            parent::delete( 'remove_user', $user_id );
+        else
+            redirect('show_message/index/removeAdmin');
         
         $data = array(
             'view'            => 'confirm_view',

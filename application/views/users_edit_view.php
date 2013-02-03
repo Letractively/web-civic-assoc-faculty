@@ -154,7 +154,7 @@
                                           );
                             echo '<div class="inputitem">';
                                 echo '<p class="label"><label for="role" >'.$this->lang->line('label_role').'</label></p>';
-                                echo form_dropdown('role', $roles, set_value('role'), 'id="role" class="dropdown_year" onchange="hidecheckbox(\'payments\',\'oddil1\')" style="cursor: pointer"');
+                                echo form_dropdown('role', $roles, set_value('role',$obj[0]->user_role), 'id="role" class="dropdown_year" onchange="hidecheckbox(\'payments\',\'oddil1\')" style="cursor: pointer"');
                             echo '</div>';
                         }
                     ?>
@@ -189,7 +189,12 @@
                                         echo '<td>'.form_input(array('name' => 'categories['.$cat_id.']', 'value' => '1', 'size'=> 3, 'class' => 'input_data_reg' ), set_value('project_category_'.$cat_id)).'</td>';
                                     echo '</tr>';
                                 }
-                            echo '</table>';            
+                            echo '</table>';
+                            
+                            echo '<div class="inputitem">';
+                                echo '<p class="label"> <label for="email_message">'.$this->lang->line('email_message').'</label></p>';
+                                echo form_textarea(array('name' => 'email_message', 'id' => 'email_message', 'class' => 'input_data_date' ), set_value('email_message', $this->lang->line('default_email')));
+                            echo '</div>';
                         echo '</div>';
                     ?><br />
                     

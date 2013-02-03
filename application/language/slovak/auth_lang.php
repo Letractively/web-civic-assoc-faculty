@@ -24,5 +24,13 @@ $lang['table_th_ratio']             =   'Pomer';
 $lang['button_register']            =   'Registruj';
 
 
+$lang['reset_subject']              =   'Nove heslo na Alumni FMFI';
+$lang['reset_message_start']        =   'Dobrý deň,<br /><br /> zaznamenali sme 
+                                         žiadosť o zaslanie nového hesla na stránke: 
+                                         '.base_url().'.<br /><br />Vaše nové heslo je: ';
+
+$lang['reset_title']                =   'Strata hesla';
+$lang['reset_send']                 =   'Odoslať';
+
 /* End of file auth_lang.php */
 /* Location: ./application/language/slovak/auth_lang.php */

@@ -68,7 +68,7 @@ $config = array(
     'auth/login'                    => array(
         array(
             'field'     => 'username',
-            'label'     => 'lang:labelusername',
+            'label'     => 'lang:label_username',
             'rules'     => 'required|trim|xss_clean'
         ),
         array(
@@ -77,7 +77,12 @@ $config = array(
             'rules'     => 'required|trim|xss_clean'
         )
     ),
-    'correspondence'          => array(
+    'auth/reset_password'           => array(
+            'field'     => 'email',
+            'label'     => 'label_email',
+            'rules'     => 'required|trim|xss_clean|valid_email'
+    ),
+    'correspondence'                => array(
         array(
             'field'     => 'correspondence_sender',
             'label'     => 'lang:label_correspondence_sender',

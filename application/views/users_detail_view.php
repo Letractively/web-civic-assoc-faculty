@@ -142,8 +142,8 @@
                 $dayAndMonth = day_month($date);
                 $year = year($date) + 1;
 
-                if(isset($lp->payment_accepted))
-                {
+                //if(isset($lp->payment_accepted))
+                //{
                     if (date("Y-m-d", time() - (365 * 86400)) <= $userActivationDate[0]) 
                     {
                         echo '<div class="inputitem">' . $this->lang->line('pay_limited_in') . ': <strong>' . $dayAndMonth . '.' . $year . '</strong></div>';
@@ -164,9 +164,9 @@
                         if ($user_id == $this->userdata->get_user_id())
                             echo '<p class="button_edit">' . anchor('payments/add', $this->lang->line('entry_fee')) . '</p>';
                     }
-                }
+                /*}
                 else
-                    echo '<div class="inputitem"><p><strong>' . $this->lang->line('payment_not_found') . '</strong></p></div>';
+                    echo '<div class="inputitem"><p><strong>' . $this->lang->line('payment_not_found') . '</strong></p></div>';*/
             }    
     }
     ?>
