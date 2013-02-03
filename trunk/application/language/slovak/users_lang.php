@@ -38,6 +38,7 @@ $lang['edit_item']                  =   'Upraviť profil';
 $lang['pay_unlimited']              =   'Vaše členstvo v OZ je <strong>neobmedzené</strong>';
 $lang['pay_limited_in']             =   'Členstvo platné do';
 $lang['pay_limited_out']            =   'Členské vypršalo';
+$lang['pay_please']                 =   'Prosím uhradťe členský poplatok.';
 
 $lang['acc_enabled_until']          =   'V prípade neúhrady členského, je účet platný do';      
 
