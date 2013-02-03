@@ -601,6 +601,7 @@ class Grid
 						}
 						else if ($this->headCols[$index]->type == 'numformat')
 						{
+							//if ($cell_value == '') $cell_value = '0';
 							echo $this->get_formatted_number($this->headCols[$index]->options['format'], $cell_value);
 						}
 						else // ak to ma byt iba cisty text (alebo nejaky iny nedefinovany typ)

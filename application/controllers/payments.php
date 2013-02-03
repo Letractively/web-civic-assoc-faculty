@@ -234,7 +234,7 @@ class Payments extends MY_Controller
          * @param payment_id ID-cko platby ktora sa bude kontrolovat ci bola v plnej miere uhradena
          * 
          */
-        function __edit_payments_payment($payment_id)
+        private function __edit_payments_payment($payment_id)
         {
             $payment_detail = $this->selecter->get_payment_detail($payment_id);
             $this->load->model('updater');
