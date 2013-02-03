@@ -95,14 +95,7 @@ class Deleter extends MY_Model
         public function remove_payments($payment_id)
         {
             $this->db->query("DELETE FROM fin_redistributes WHERE fin_redistribute_payment_id=$payment_id");
-
-            if($this->db->affected_rows()>0)
-            {
-                $this->db->query("DELETE FROM payments WHERE payment_id=$payment_id");
-                return TRUE;
-            }
-            else
-                return FALSE;
+            $this->db->query("DELETE FROM payments WHERE payment_id=$payment_id");
         }
 
         /*
