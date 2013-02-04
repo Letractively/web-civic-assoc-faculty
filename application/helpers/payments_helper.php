@@ -20,9 +20,20 @@ function updatePaymentsData($payments)
 	foreach ($payments->result() as $payment)
 	{
 		$arr = get_object_vars($payment);
+		unset($arr['payment_accepted']);
 		$paid = $payment->payment_paid_sum;
 		$total = $payment->payment_total_sum;
-		$arr['stav'] = ($paid == 0) ? $CI->lang->line('nopaid') : ((($total - $paid) > 0) ? $CI->lang->line('partly_paid') : $CI->lang->line('paid'));
+		if ($payment->payment_accepted == 1)
+			$arr['payment_state'] = $CI->lang->line('accepted');
+		else
+		{
+			if ($payment->payment_paid_sum == 0)
+				$arr['payment_state'] = $CI->lang->line('nopaid');
+			else if ( ($payment->payment_total_sum - $payment->payment_paid_sum) > 0)
+				$arr['payment_state'] = $CI->lang->line('partly_paid');
+			else
+				$arr['payment_state'] = $CI->lang->line('paid');
+		}
 		$arr['payment_type'] = in_array($arr['payment_type'],array(1,2)) ? $pTypes[$arr['payment_type']] : '-';
 		$result[] = $arr;
 	}

@@ -70,13 +70,14 @@
                 break;
         }
         
-        //array_debug();
         $paymentsData = array();
         if($payments->num_rows == 0)
-            $paymentsData = $payments;
+            $paymentsData = $payments->result();
         else
             $paymentsData = updatePaymentsData($payments);
         
+		//array_debug($paymentsData);
+		
         if( $grid->bind($paymentsData, 'payment_id') )
         {
             $grid->header('payment_id')->editable = false;
@@ -96,9 +97,8 @@
             $grid->header('payment_paid_sum')->set_numformat('{2:,: } €');
             $grid->header('payment_paid_time')->text = $this->lang->line('label_date'); 
             $grid->header('payment_paid_time')->set_datetime();
-            $grid->header('payment_type')->text = $this->lang->line('label_paidtype'); 
-				
-            $grid->add_url = "payments/add";
+            $grid->header('payment_type')->text = $this->lang->line('label_paidtype');
+			$grid->header('payment_state')->text = $this->lang->line('label_status'); 
 
             foreach ($payments->result() as $pay)
             {
@@ -110,15 +110,18 @@
             
             $grid->edit_url = "payments/edit";
             $grid->edit_mode = "external";
-            $grid->add_mode = "external";
             
             if($this->userdata->is_admin())
                 $grid->remove_url = "payments/delete";
             
 				
-            //$grid->display();
+            $grid->display();
         }
-		$grid->display();
+
+		echo '<p class="button_back">'; 
+		echo anchor('payments/add', 'Pridať platbu'); 
+        echo '</p>';
+		
 	echo pagination($pagination);
     ?>
 </div>

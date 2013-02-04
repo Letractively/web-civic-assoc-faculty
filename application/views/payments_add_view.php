@@ -1,4 +1,74 @@
-﻿<div id="content_wrapper_small">
+﻿<?php
+	$this->load->model('selecter');
+	
+	function object_to_array($arr_of_obj)
+	{
+		$res = array();
+		foreach ($arr_of_obj as $obj)
+			$res[] = get_object_vars($obj);
+		return $res;
+	}
+	
+	if ( $this->userdata->is_admin() )
+	{
+		$users = object_to_array( $this->selecter->get_users_for_add_payments() );
+		/*$indexedUsers = array();
+		foreach ($users as $user)
+			$indexedUsers[$user['id']] = $user;*/
+	?>
+	<script type="text/javascript" charset="UTF-8">
+		var base_url = '<?=base_url()?>';
+		
+		function User(id,name,account,voluntary)
+		{
+			this.id = id;
+			this.name = name;
+			this.account = account;
+			this.voluntary = voluntary;
+		}
+		
+		var label_account = '<?=$this->lang->line('payment_type_account')?>';
+		var label_voluntary = '<?=$this->lang->line('payment_type_voluntary')?>';
+		
+		var users = new Array();
+		<?php
+			foreach ($users as $user)
+				echo 'users['.$user['id'].'] = new User('.$user['id'].',"'.$user['name'].'",'.$user['account'].','.$user['voluntary'].');'."\n";
+		?>
+		
+		function createOption(index,text)
+		{
+			var op = document.createElement("option");
+			op.text = text;
+			op.value = index;
+			return op;
+		}
+
+		function changeUser(sender)
+		{
+			var id = sender.options[sender.selectedIndex].value;
+			var userdata = users[id];
+			
+			var combo_type = document.getElementById('payment_type');
+			combo_type.options.length = 0;
+
+			if (userdata.account == 1)
+			{
+				var o = createOption('1', label_account);
+				combo_type.add(o);
+			}
+			if (userdata.voluntary == 1)
+			{
+				var o = createOption('2', label_voluntary);
+				combo_type.add(o);
+			}
+		}
+	</script>
+	<?php
+	}
+?>
+
+<div id="content_wrapper_small">
 
 	<div class="errors">
 		<?php echo validation_errors(); ?>
@@ -6,42 +76,23 @@
 
 	<?= form_open("payments/add") ?>
 	
-            <?php
-		$totalRows = $this->selecter->UsersInDatabase('users', 'user_id', 0);
-		$users = $this->selecter->get_users($totalRows,0,0);
-		$userlist = array();
-		if ( $this->userdata->is_admin() )
-		{
-			foreach ($users as $user)
-			{
-				$userlist[] = array(
-					'id' => $user->user_id,
-					'name' => $user->user_name
-				);
-			}
-		}
-		else
+    <?php
+		if ( !$this->userdata->is_admin() )
 		{
 			$userID = $this->userdata->get_user_id();
-                        $userName = $this->userdata->full_name($userID);
+            $userName = $this->userdata->full_name($userID);
 		}
-		
-		$payment_types = array(
-			array('id' => '1', 'value' => $this->lang->line('payment_type_account')),
-			array('id' => '2', 'value' => $this->lang->line('payment_type_voluntary'))
-		);
-		
 	?>
 			<div class="inputitem">	
 				<span class="label"> Používateľ: </span>
 				<?php
-								if( $this->userdata->is_admin() )
-									echo gen_dropdown('user_id', 0, $userlist, 'id', 'name', 'dropdown','id="user_id" onchange="changeFilter(this);"'); 
-								else
-								{
-									echo form_input(array('name' => 'user', 'value' => $userName,'disabled'=>'disabled')); 
-									echo form_hidden('user_id', $userID);
-								}
+					if( $this->userdata->is_admin() )
+						echo gen_dropdown('user_id', 0, $users, 'id', 'name', 'dropdown','id="user_id" onchange="changeUser(this);"'); 
+					else
+					{
+						echo form_input(array('name' => 'user', 'value' => $userName,'disabled'=>'disabled')); 
+						echo form_hidden('user_id', $userID);
+					}
 				?>
 			</div>
 			
@@ -50,7 +101,11 @@
 				<?php
 					if( $this->userdata->is_admin() ) 
 					{    
-						echo gen_dropdown('payment_type', 1, $payment_types, 'id', 'value', 'dropdown','id="payment_type" onchange="changeFilter(this);"');
+						$payment_types = array();
+						if ($users[0]['account'] == 1) $payment_types [] = array('id' => '1', 'value' => $this->lang->line('payment_type_account'));
+						if ($users[0]['voluntary'] == 1) $payment_types [] = array('id' => '2', 'value' => $this->lang->line('payment_type_voluntary'));
+						
+						echo gen_dropdown('payment_type', 1, $payment_types, 'id', 'value', 'dropdown','id="payment_type" ');
 						echo '<div class="inputitem"> <span class="label">'.$this->lang->line('label_total_sum').':</span>';
 						echo form_input(array('name' => 'total_sum', 'type' => 'text', 'class' => 'input_data_date'),  set_value('total_sum'));
 						echo '<span class="label"> €</span> </div>';

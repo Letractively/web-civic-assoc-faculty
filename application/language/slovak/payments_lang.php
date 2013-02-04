@@ -18,6 +18,7 @@ $lang['label_paidtype']             =   'Typ platby';
 $lang['payment_type_account']       =   'Členský';
 $lang['payment_type_voluntary']     =   'Dobrovoľný';
 
+$lang['accepted']                   =   'potvrdená';
 $lang['paid']                       =   'zaplatená';
 $lang['partly_paid']                =   'čiastočne zaplatená';
 $lang['nopaid']                     =   'nezaplatená';
