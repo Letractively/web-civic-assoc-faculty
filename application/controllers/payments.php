@@ -168,8 +168,12 @@ class Payments extends MY_Controller
                 if( $this->form_validation->run() )
                 {
                     $this->load->model('inserter');
-                    $this->inserter->add_payments( $this->input->post() );
-                    redirect('users/detail/'.$this->userdata->get_user_id());
+                    if( $this->inserter->add_payments( $this->input->post() ) == TRUE )
+                    {
+                        redirect($this->router->class);
+                    }
+                    else
+                        redirect('show_message/index/error_payments');
                 }
             }
             

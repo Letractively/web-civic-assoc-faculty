@@ -67,20 +67,25 @@ class Inserter extends MY_Model
     
     public function add_payments($values)
     {
-        $this->db->query("INSERT INTO payments
-                           ( payment_vs, payment_user_id, payment_total_sum, payment_paid_sum, payment_type, payment_accepted)
-                           VALUES ('".$values['payment_vs']."','".$values['user_id']."','".$values['total_sum']."','0','".$values['payment_type']."', 0)
-                         ");
-        $payment_id = $this->db->insert_id();
-        foreach($values['categories'] as $key=>$value )
+        if(isset($values['payment_type']))
         {
-            $this->db->query("INSERT INTO fin_redistributes
-                               (fin_redistribute_payment_id,fin_redistribute_project_category_id, fin_redistribute_ratio)
-                               VALUES ('".$payment_id."', '".$key."', '".$value."')
+            $this->db->query("INSERT INTO payments
+                               ( payment_vs, payment_user_id, payment_total_sum, payment_paid_sum, payment_type, payment_accepted)
+                               VALUES ('".$values['payment_vs']."','".$values['user_id']."','".$values['total_sum']."','0','".$values['payment_type']."', 0)
                              ");
+            $payment_id = $this->db->insert_id();
+            foreach($values['categories'] as $key=>$value )
+            {
+                $this->db->query("INSERT INTO fin_redistributes
+                                   (fin_redistribute_payment_id,fin_redistribute_project_category_id, fin_redistribute_ratio)
+                                   VALUES ('".$payment_id."', '".$key."', '".$value."')
+                                 ");
+            }
+            if( $this->db->affected_rows() > 0 )
+                return TRUE;
+            else
+                return FALSE;
         }
-        if( $this->db->affected_rows() > 0 )
-            return TRUE;
         else
             return FALSE;
     }
