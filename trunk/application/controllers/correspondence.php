@@ -82,7 +82,7 @@ class Correspondence extends MY_Controller
             
             if($users != '')
             {
-                /*foreach ($users as $user) 
+                foreach ($users as $user) 
                 {
                     array_push($ids, $user->user_id);
 
@@ -93,7 +93,7 @@ class Correspondence extends MY_Controller
                     $this->email->message( parse_bbcode($post_params['correspondence_content']) );
                     $this->email->send();
                 }
-                return $this->inserter->add_email_log($post_params['email_type_id'], $ids);*/
+                return $this->inserter->add_email_log($post_params['email_type_id'], $ids);
             }
         }
 

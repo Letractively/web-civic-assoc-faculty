@@ -273,7 +273,7 @@ class Users extends MY_Controller
                      if($this->inserter->add_user( $this->input->post() ) == TRUE)
                         redirect($this->router->class);
                     else
-                        echo 'problem';
+                        redirect('show_message/index/error_addUser');
                  }
              }
         }

@@ -428,7 +428,7 @@ $config = array(
         array(
             'field'     => 'username',
             'label'     => 'lang:label_username',
-            'rules'     => 'trim|required|xss_clean|is_unique[users.user_username]'
+            'rules'     => 'trim|required|xss_clean'
         ),
         array(
             'field'     => 'password',

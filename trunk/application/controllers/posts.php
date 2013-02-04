@@ -4,7 +4,7 @@ class Posts extends MY_Controller
 {
         protected $c_pagination         = array();
         protected $get_query 		= array();
-        protected $per_page             = 3;
+        protected $per_page             = 10;
         protected $totalRows            = 0;
         
         /*

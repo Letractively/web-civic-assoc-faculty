@@ -18,8 +18,8 @@ class Inserter extends MY_Model
     {
        foreach($user_ids as $user_id){
          $this->db->query("INSERT INTO user_email_evidence
-                           (user_email_evidence_email_type_id, user_email_evidence_user_id, user_email_evidence_date)
-                           VALUES ('".$email_typ_id."','".$user_id."', NOW())
+                           (user_email_evidence_email_type_id, user_email_evidence_user_id)
+                           VALUES ('".$email_typ_id."','".$user_id."')
                          ");
        }
       if($this->db->affected_rows()>0){ 
