@@ -266,6 +266,7 @@ class Updater extends MY_Model
                                     SET user_password=sha1('".$values['password']."')
                                     WHERE user_id = '".$user_id."'");
               }
+              
               $q = $this->db->query("SELECT user_role FROM users WHERE user_id = '".$user_id."'");
               $user_role = $q->row()->user_role;
               
@@ -302,11 +303,37 @@ class Updater extends MY_Model
                                     user_degree_year='".$values['degree_year']."',
                                     user_role='".$values['role']."',
                                     user_exempted='".$is_exempted."',
-                                    user_activated=null    
+                                    user_activated=NULL    
                                 WHERE user_id=$user_id");
-                  
+                  if( $values['role'] == 2 && isset($values['checkbox']) )
+                  {
+                        $this->db->query("  INSERT INTO payments
+                                            (payment_vs, payment_total_sum, payment_user_id, payment_type)
+                                            VALUES
+                                            ('".$values['vs']."','".$values['total_sum']."', '".$user_id."', 1)
+                                        ");
+            
+                        $payment_id = $this->db->insert_id();
+                        $q = 'INSERT INTO fin_redistributes (fin_redistribute_payment_id, fin_redistribute_project_category_id, fin_redistribute_ratio) VALUES ';
+                            $first = true;
+                            foreach ($values['categories'] as $cat_id => $ratio)
+                            {
+                                    if (!$first) $q .= ', ';
+                                    $q .= "('".$payment_id."', '".$cat_id."', '".$ratio."')";
+                                    $first = false;
+                            }
+                            $q .= ';';
+
+                            return $this->db->query($q);
+                    }
+                    else
+                        if( $this->db->affected_rows() > 0 ) 
+                            return TRUE;
+                        else
+                            return FALSE;
               }
               else
+              {
                   $this->db->query("UPDATE users 
                                 SET user_username='".$values['username']."',
                                     user_name='".$values['name']."',
@@ -319,13 +346,11 @@ class Updater extends MY_Model
                                     user_postcode='".$values['postcode']."',
                                     user_degree_year='".$values['degree_year']."'  
                                 WHERE user_id=$user_id");
-              
-              
-              
-          if($this->db->affected_rows()>0)
-            return TRUE;
-          else
-              return FALSE;
+              }
+              if($this->db->affected_rows()>0)
+                return TRUE;
+              else
+                return FALSE;
         }
 }
 
