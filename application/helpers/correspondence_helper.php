@@ -5,7 +5,9 @@
  * 
  * Funkcia doplni stlpec typ emailu do gridu kde sa nachadza medzi vysledok filtra
  * 
+ * @access      public
  * @param users Array of objects s udajmi o useroch ktori vyhovuju filtru
+ * @return Vrati upraveny zoznam userov pre grid
  * 
  */
 function updateCorUserList($users)

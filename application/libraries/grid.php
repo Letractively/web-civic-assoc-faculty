@@ -4,6 +4,7 @@
 * Row
 * 
 * Trieda popisuje jeden riadok/zaznam gridu. Obsahuje bunky riadka, atributy či je viditeľný, editovateľný, mazateľný.
+* 
 */
 class Row
 {
@@ -17,6 +18,7 @@ class Row
 * Component
 * 
 * Trieda popisuje typ komponentu pre daný stĺpec. Tento komponent sa zobrazí na danom stĺpci a konkrétnom riadku pri pridávaní alebo editovaní záznamu.
+* 
 */
 class Component
 {
@@ -28,6 +30,7 @@ class Component
 	* 
 	* Metóda binduje dáta pre combobox. Tieto dáta sa potom zobrazia v comboboxe na výber pri pridávaní alebo editovaní.
 	* 
+        * @access	public
 	* @param datasource Dvojrozmerné pole dát vo formáte array of object alebo array of array. V prípade array of array musí mať pole nižšej úrovne indexy ako string, ktoré zároveň definujú kľúče pre combobox.
 	* @param id V ktorom stĺpci/atribúte objektu sa nachádza id-čko, ktoré sa použije ako identifikátor vybraného záznamu v comboboxe.
 	* @param value V ktorom stĺpci/atribúte objektu sa nachádza hodnota, ktorá sa zobrazuje reálne v comboboxe.
@@ -64,6 +67,7 @@ class Col
 	* 
 	* Vytvára stĺpec gridu a inicializuje ho na predvolené nastavenia.
 	* 
+        * @access	public
 	* @param text Text, ktorý sa zobrazuje v hlavičke stĺpca.
 	*/
 	public function __construct($text)
@@ -79,6 +83,7 @@ class Col
 	* 
 	* Metóda nastavuje, aby sa dáta v tomto stĺpci zobrazili ako link na controller.
 	* 
+        * @access	public
 	* @param controller Názov controlleru, na ktorý má link odkazovať.
 	* @param id Názov stĺpca, ktorý obsahuje id-čko - id-čko z tohto stĺpca sa pripisuje ku controlleru, aby bolo možné ďalej identifikovať kliknutý záznam.
 	*/
@@ -94,6 +99,7 @@ class Col
 	* 
 	* Metóda nastavuje formátovanie dátumu. V prípade, že text nezodpovedá dátumu, nezobrazí sa nič.
 	*
+        * @access	public
 	* @param inputFormat Formátovací reťazec, podľa ktorého sa parsuje string na vytvorenie štruktúry datetime.
 	* @param outputFormat Formátovací reťazec, podľa ktorého sa formátuje čas a dátum na výstupe.
 	*
@@ -111,6 +117,7 @@ class Col
 	* 
 	* Metóda nastavuje formátovanie čísla. V prípade nevalidného formátovacieho reťazca na pri display zobrazí varovanie.
 	*
+        * @access	public
 	* @param format Formátovací reťazec, podľa ktorého sa formátuje číslo.
 	*
 	* @code
@@ -159,6 +166,7 @@ class Grid
 	 * 
 	 * Metóda napĺňa grid dátami.
 	 * 
+         * @access	public
 	 * @param table Dvojrozmerné pole dát vo formáte array of object alebo array of array. V prípade array of array musí mať pole nižšej úrovne indexy ako string, ktoré zároveň definujú názvy stĺpcov gridu.
 	 * @param unique_key Názov stĺpca, ktorý obsahuje IDčko záznamu.
 	 */
@@ -216,6 +224,7 @@ class Grid
 	 * 
 	 * Metóda vracia atribúty vybraného stĺpca gridu.
 	 *
+         * @access	public
 	 * @param head_id Názov stĺpca.
 	 *
 	 * @return Objekt ktorý obsahuje atribúty stĺpca. Ak neexistuje, vracia null.
@@ -230,11 +239,12 @@ class Grid
 	 * 
 	 * Metóda vracia atribúty vybraného riadka gridu.
 	 *
+         * @access	public
 	 * @param unique_key IDčko záznamu.
 	 *
 	 * @return Objekt ktorý obsahuje atribúty riadku. Ak neexistuje, vracia null.
 	 */
-    public function row($unique_key)
+        public function row($unique_key)
 	{
 		return $this->rows[$unique_key];
 	}
@@ -244,6 +254,7 @@ class Grid
 	 * 
 	 * Metóda nastaví príslušnú viditelnosť pre všetky stĺpce gridu.
 	 *
+         * @access	public
 	 * @param state true/false.
 	 */
 	public function all_cols_visible($state)
@@ -538,6 +549,8 @@ class Grid
 	 * 
 	 * Metóda zobrazuje grid s vopred nastavenými atribútami.
 	 *
+         * @access	public
+         * 
 	 */
 	public function display()
 	{

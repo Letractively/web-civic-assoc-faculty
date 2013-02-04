@@ -8,7 +8,9 @@ class Deleter extends MY_Model
          * Funkcia zmaze z tabulky degrees zaznam a prislusnym zaznamom v tabulke users 
          * nastavi null
          * 
+         * @access	public
          * @param degree_id ID-cko titulu ktory sa ma zmazat
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_degree($degree_id)
@@ -32,7 +34,9 @@ class Deleter extends MY_Model
          * Funkcia vymaze zaznam z tabulky email_types a prisluchajucim polozkam
          * v tabulke user_email_evidence nastavi null
          * 
+         * @access	public
          * @param e_type_id ID-cko typu emailu ktory sa ma vymazat
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_email_type($e_type_id)
@@ -52,7 +56,9 @@ class Deleter extends MY_Model
          * 
          * Funkcia vymaze zaznam z tabulky events
          * 
+         * @access	public
          * @param ev_id ID-cko eventu ktory sa ma vymazat
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_event($ev_id)
@@ -69,7 +75,9 @@ class Deleter extends MY_Model
          * 
          * Funkcia vymaze eventovu kategoriu z databazy
          * 
+         * @access	public
          * @param ev_cat_id ID-cko prave mazanej kategorie
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_event_category($ev_cat_id)
@@ -89,7 +97,9 @@ class Deleter extends MY_Model
          * 
          * Funkcia zmaze zaznam z tabulky payments a k nemu prisluchajuce zaznamy v tabulke fin_redistributes
          * 
+         * @access	public
          * @param payment_id ID-cko platby
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_payments($payment_id)
@@ -104,7 +114,9 @@ class Deleter extends MY_Model
          * Funkcia vymaze dany prispevok a ak existuju k nemu zaznamy v tabulke 
          * post_modifies tak vymaze aj tie
          * 
+         * @access	public
          * @param post_id ID-cko daneho clanku co sa ma vymazat
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_post($post_id)
@@ -119,7 +131,10 @@ class Deleter extends MY_Model
          * remove_project
          * 
          * zmaze zaznam z tabulky projects a k nemu prislusne zaznamy z tabulky project_items ak existuju
+         * 
+         * @access	public
          * @param pr_id ID-cko projektu
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_project($pr_id)
@@ -134,7 +149,9 @@ class Deleter extends MY_Model
          * 
          * Funkcia vymaze  Projektovu kategoriu z databazy
          * 
+         * @access	public
          * @param pr_cat_id ID-cko prave mazanej kategorie
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_project_category($pr_cat_id)
@@ -205,7 +222,9 @@ class Deleter extends MY_Model
          * 
          * Zmaze zaznam z tabulky project_items
          * 
+         * @access	public
          * @param pr_item_id ID-cko project itemu ktory sa ma zmazat
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_project_item($pr_item_id)
@@ -222,7 +241,9 @@ class Deleter extends MY_Model
          * 
          * Funkcia vymaze zaznam z tabulky study_programs a prislusnym hodnotam v users nastavi null
          * 
+         * @access	public
          * @param study_pr_id ID-cko studijneho programu ktory sa ma zmazat
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
         public function remove_study_program($study_pr_id)
@@ -242,7 +263,9 @@ class Deleter extends MY_Model
          * 
          * Funkcia vymaze pouzivatela zo systemu
          * 
+         * @access	public
          * @param user_id ID pouzivatela ktory sa ma vymazat
+         * @return Vrati boolean ci sa odstranil dany zaznam
          * 
          */
          public function remove_user($user_id)

@@ -7,6 +7,8 @@ class Project_categories extends MY_Controller
          * 
          * Konštruktor triedy
          * 
+         * @access      private
+         * 
          */
         function __construct() 
         {
@@ -38,6 +40,8 @@ class Project_categories extends MY_Controller
          * 
          * Metoda prida novu kategoriu projektov do systemu
          * 
+         * @access      public
+         * 
          */
         public function add()
         {
@@ -49,7 +53,9 @@ class Project_categories extends MY_Controller
          * 
          * Metoda zobrazi podrobnejsie infofmacie o konkretnej projektovej kategorie
          * 
+         * @access      public
          * @param project_category_id ID danej kategorie proejktov
+         * 
          */
         public function detail( $project_category_id )
         {
@@ -72,6 +78,8 @@ class Project_categories extends MY_Controller
          * 
          * Metoda prida novu transakciu do databazy
          * 
+         * @access      public
+         * 
          */
         public function add_transaction()
         {
@@ -93,6 +101,7 @@ class Project_categories extends MY_Controller
          * 
          * Funkcia upravi danu projektovu kategoriu
          * 
+         * @access      public
          * @param project_category_id ID projektovej kategorie ktore chceme upravit
          * 
          */
@@ -106,6 +115,7 @@ class Project_categories extends MY_Controller
          * 
          * Funkcia vymaze z databazy projektovu kategoriu
          * 
+         * @access      public
          * @param project_category_id ID projektovej kategorie ktoru chceme zmazat
          * 
          */

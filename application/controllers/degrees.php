@@ -11,6 +11,9 @@ class Degrees extends MY_Controller
          * 
          * Konštruktor triedy
          * 
+         * @access      private
+         * @return void
+         * 
          */
         function __construct() 
         {
@@ -32,6 +35,9 @@ class Degrees extends MY_Controller
          * 
          * default index metoda, ktora sa vola primarne
          * 
+         * @access      public
+         * @return void
+         * 
          */
         public function index( $page = 0 )
         {   
@@ -48,6 +54,9 @@ class Degrees extends MY_Controller
          * 
          * Funkcia prida novy titul do db
          * 
+         * @access      public
+         * @return void
+         * 
          */
         public function add()
         {     
@@ -59,7 +68,9 @@ class Degrees extends MY_Controller
          * 
          * Funkcia zmeze titul z db
          * 
+         * @access      public
          * @param degree_id ID titulu ktory sa ma vymazat
+         * @return void
          * 
          */
         public function delete( $degree_id )
@@ -82,8 +93,9 @@ class Degrees extends MY_Controller
          * 
          * Funkcia upravi titul v db
          * 
+         * @access      public
          * @param degree_id ID titulu ktory sa upravi
-         * 
+         * @return void
          */
         public function edit( $degree_id )
         {

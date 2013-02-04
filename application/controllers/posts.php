@@ -12,6 +12,8 @@ class Posts extends MY_Controller
          * 
          * Konštruktor triedy
          * 
+         * @access      private
+         * 
          */
         function __construct() 
         {
@@ -29,6 +31,8 @@ class Posts extends MY_Controller
          * index
          * 
          * default index metoda, ktora sa vola primarne, zobrazi vsetky prispevky
+         * 
+         * @access      public
          * 
          */
         public function index($page = 0)
@@ -74,6 +78,7 @@ class Posts extends MY_Controller
          * 
          * Metoda ktora vrati obsah konkretneho prispevku
          * 
+         * @access      public
          * @param post_id ID-prispevku, ktory chceme zobrazit
          * @return object
          * 
@@ -93,6 +98,8 @@ class Posts extends MY_Controller
          * add
          * 
          * Metoda, ktora prida novy prispevok do DB
+         * 
+         * @access      public
          * 
          */
         public function add()
@@ -115,6 +122,7 @@ class Posts extends MY_Controller
          * 
          * Metoda, ktora upravi konkretny prispevok
          * 
+         * @access      public
          * @param post_id ID-prispevku, ktory chceme upravit
          * 
          */
@@ -142,6 +150,7 @@ class Posts extends MY_Controller
          * 
          * Metoda, ktora zmaze konkretny prispevok zo systemu
          * 
+         * @access      public
          * @param post_id ID prispevku, ktory chceme vymazat
          * 
          */
@@ -164,6 +173,7 @@ class Posts extends MY_Controller
          * 
          * Metoda, ktora vrati zoznam vstekych uzivatelov, ktory modifikovali dany prispevok
          * 
+         * @access      public
          * @param post_id ID prispevku pre ktory to chceme zistit
          * @return array of objects
          * 

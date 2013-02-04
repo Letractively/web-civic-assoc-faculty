@@ -3,8 +3,11 @@
 class Projects extends MY_Controller
 {    
         /*
-         * Constructor
+         * __constructor
          * 
+         * Konstruktor triedy
+         * 
+         * @access      public
          * @return      void
          * 
          */
@@ -23,6 +26,7 @@ class Projects extends MY_Controller
         /*
          * index
          * 
+         * @access      public
          * @return      void
          * 
          */
@@ -38,6 +42,7 @@ class Projects extends MY_Controller
         /*
          * Funkcia vrati detajl daneho projektu
          * 
+         * @access      public
          * @param project_id ID projektu ktoreho detajl chceme ziskat
          * 
          */
@@ -58,6 +63,8 @@ class Projects extends MY_Controller
          * 
          * Funkcia prida novy projekt do databazi
          * 
+         * @access      public
+         * 
          */
         public function add()
         {
@@ -77,6 +84,7 @@ class Projects extends MY_Controller
          * 
          * Funkcia prida novu polozku projektu do databazi
          * 
+         * @access      public
          * @param project_id ID projektu ku ktoremu chceme pridat danu polozku
          * 
          */
@@ -92,7 +100,6 @@ class Projects extends MY_Controller
 			$this->load->model('inserter');
 			$this->inserter->add_project_item($project_id, $_POST);
                         redirect('projects/edit/'.$project_id);
-            //parent::add_param('add_project_item', $project_id, 'operation_add');
 
             $data = array(
 				'error'         => $this->form_validation->form_required(array( 'name', 'about', 'priority', 'project_category_id',
@@ -110,6 +117,7 @@ class Projects extends MY_Controller
          * 
          * Funkcia upravi projekt
          * 
+         * @access      public
          * @param project_id ID projektu ktori chceme upravit
          * 
          */
@@ -138,6 +146,7 @@ class Projects extends MY_Controller
          * 
          * Funkcia upravi polozku projektu
          * 
+         * @access      public
          * @param project_id ID projektu
          * @param project_item_id ID polozky
          * 
@@ -172,6 +181,7 @@ class Projects extends MY_Controller
          * 
          * Funkcia uzavre projekt
          * 
+         * @access      public
          * @param project_id ID projektu
          * 
          */
@@ -180,10 +190,6 @@ class Projects extends MY_Controller
             $this->load->model('updater');
             $this->updater->edit_project_closed( $project_id );
             redirect($this->router->class.'/detail/'.$project_id);
-            /*$data = array(
-                'project_id'        => $project_id
-            );
-            $this->load->view('container', array_merge($this->data, $data));*/
         }
 
         /*
@@ -191,6 +197,7 @@ class Projects extends MY_Controller
          * 
          * Funkcia zmaze projekt
          * 
+         * @access      public
          * @param project_id ID projektu
          * 
          */
@@ -213,6 +220,7 @@ class Projects extends MY_Controller
          * 
          * Funkcia zmaze polozku projektu
          * 
+         * @access      public
          * @param project_id ID projektu
          * @param project_item_id ID projektovej polozky
          * 

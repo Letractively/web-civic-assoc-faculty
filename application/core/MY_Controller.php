@@ -20,7 +20,7 @@ abstract class MY_Controller extends CI_Controller
      * tak najprv zavola konstruktor jej nadradenej classy (CI_Controller)
      * 
      * @access      private
-     * 
+     * @return void
      */
     public function __construct()
     {
@@ -47,6 +47,9 @@ abstract class MY_Controller extends CI_Controller
      * Treti lang file zabezpecuje nacitanie databazovych hlasok, ktore su 
      * dostupne, skrz celu aplikaciu, sluzia na logovanie udalosti do databazy
      * 
+     * @access      protected
+     * @return void
+     * 
      */
     protected function load_languages()
     {
@@ -62,11 +65,11 @@ abstract class MY_Controller extends CI_Controller
      * sa pouziva v comboboxe na view (form_dropdown()). Pricom kluc je zvacsa
      * daka ciselna hodnota (integer - ID z DB).
      * 
-     * @access      public
+     * @access      protected
      * @param       array Vstupne pole udajov
      * @param       key Kluc vo vyslednom zazname
      * @param       value hodnota premennej vo vyslednom zazname
-     * 
+     * @return array vysledkov
      */
     protected function recompile_into_array($array, $key, $value)
     {
@@ -86,10 +89,11 @@ abstract class MY_Controller extends CI_Controller
      * Tato funkcia sluzi na vygenerovanie rokov v urcitom casovom useku. Aky
      * velky bude tento casovy usek, zalezi od vstupnych parametrov
      * 
-     * @access      public
+     * @access      protected
      * @param       back Ciselna hodnota poctu rokov ktore sa vygeneruje od aktualneho roku dozadu 
      * @param       default pociatocny rok od ktoreho sa budu generovat dopredu a dozadu roky
      * @param       forward Ciselna hodnota poctu rokov ktore sa vygeneruje od aktualneho roku dopredu
+     * @return Vygenerovane roky
      * 
      */
     protected function generate_years($back, $default, $forward)
@@ -111,8 +115,9 @@ abstract class MY_Controller extends CI_Controller
      * 
      * Funkcia vygeneruje urcity pocet priorit
      * 
+     * @access      protected
      * @param how_much pocet priorit ktore sa maju vygenerovat
-     * 
+     * @return Vygenerovane priority
      */
     protected function generate_priorities( $how_much )
     {
@@ -131,8 +136,10 @@ abstract class MY_Controller extends CI_Controller
      * 
      * Funkcia vola modelovu funkciu na pridanie zaznamu do databazy
      * 
+     * @access      protected
      * @param method Nazov modelovej funkcie ktora sa ma zavolat
      * @param submit Hodnota odosielacieho tlacidla
+     * @return void
      * 
      */
     protected function add( $method, $submit = 'submit')
@@ -158,9 +165,11 @@ abstract class MY_Controller extends CI_Controller
      * 
      * Funkcia vola modelovu funkciu na pridanie zaznamu do databazy
      * 
+     * @access      protected
      * @param method Nazov modelovej funkcie ktora sa ma zavolat
      * @param id vacsinou foreign key na inu tabulku aby boli udaje konzistentne
      * @param submit Hodnota odosielacieho tlacidla
+     * @return void
      * 
      */
     protected function add_param( $method, $id, $submit = 'submit')
@@ -185,9 +194,11 @@ abstract class MY_Controller extends CI_Controller
      * 
      * Funkcia vola prislusnu modelovu funkciu na upravenie zaznamu v databaze
      * 
+     * @access      protected
      * @param method Nazov metody ktora sa ma zavolat
      * @param id ID zaznamu ktory sa ma upravit
      * @param submit Hodnota odosielacieho submit buttonu defaultne je submit
+     * @return void
      * 
      */
     protected function edit( $method, $id, $submit = 'submit' )
@@ -217,8 +228,10 @@ abstract class MY_Controller extends CI_Controller
      * 
      * Funkcia vola prislusnu modelovu funkciu na vymazaie zaznamu z databazy
      * 
+     * @access      protected
      * @param method Nazov prislusnej modelovej funkcie ktora sa ma vykonat
      * @param id ID zaznamu ktory sa ma vymazat
+     * @return void
      * 
      */
     protected function delete( $method, $id )

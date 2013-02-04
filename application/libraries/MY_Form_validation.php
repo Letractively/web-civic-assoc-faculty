@@ -30,10 +30,11 @@ class MY_Form_validation extends CI_Form_validation
         }
 
         /*
-	 * Greather or equal than
+	 * greater_or_equal_than
 	 *
 	 * @access	public
-	 * @param	string
+	 * @param	str string
+         * @param       min minimalny pocet
 	 * @return	bool
 	 */
 	public function greater_or_equal_than($str, $min)
@@ -50,6 +51,7 @@ class MY_Form_validation extends CI_Form_validation
          * 
          * Funkcia validuje na platny date format
          * 
+         * @access	public
          * @param str String
          * 
          */
@@ -63,6 +65,7 @@ class MY_Form_validation extends CI_Form_validation
          * 
          * Funkcia validuje na platny datetime format
          * 
+         * @access	public
          * @param str String
          * 
          */
@@ -75,7 +78,7 @@ class MY_Form_validation extends CI_Form_validation
 	 * Numeric
 	 *
 	 * @access	public
-	 * @param	string
+	 * @param	str string
 	 * @return	bool
 	 */
 	public function numeric($str)
@@ -88,6 +91,9 @@ class MY_Form_validation extends CI_Form_validation
          * natural_no_zero
          * 
          * Vacsie ako 0 
+         * 
+         * @access	public
+         * @param str string
          * 
          */
         public function natural_no_zero($str)

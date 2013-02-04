@@ -4,8 +4,11 @@ class Correspondence extends MY_Controller
 {
     
         /*
-         * Constructor
+         * __construct
          * 
+         * Konstruktor triedy
+         * 
+         * @access      public
          * @return      void
          * 
          */
@@ -25,8 +28,12 @@ class Correspondence extends MY_Controller
         }
 
         /*
-         *  Index
+         *  index
          * 
+         * Index funkcia triedy
+         * 
+         * @access      public
+         * @return void
          * 
          */
         public function index()
@@ -56,6 +63,16 @@ class Correspondence extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
         
+        /*
+         * send_email
+         * 
+         * Funkcia posle hromadny email
+         * 
+         * @access      public
+         * @param post_params Polozky odoslane POST-om
+         * @return void
+         * 
+         */
         public function send_email( $post_params )
         {
             $users = $this->selecter->get_users_filter( $post_params );
@@ -84,6 +101,9 @@ class Correspondence extends MY_Controller
          * review
          * 
          * Funkcia zobraziu pouzivatelov ktori vyhovuju filtracnej podmienke
+         * 
+         * @access      public
+         * @return void
          */
         public function review()
         {
