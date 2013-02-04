@@ -10,6 +10,7 @@ $lang['inactive_registration']      =   'Váša žiadosť o členostvo ešte neb
 $lang['error_validation']           =   'Zle zadané údaje';
 $lang['error_input']                =   'Zadal si zlé meno alebo heslo';
 $lang['error_logged']               =   'Prihlásený používateľ sa nemôže registrovať';
+$lang['error_registration']         =   'Pri registrácií nastala neznáma chyba';
 
 $lang['removeAdmin']                =   'Nie je možné odstrániť hlavného administrátora';
 
