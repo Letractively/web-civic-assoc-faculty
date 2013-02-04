@@ -4,8 +4,11 @@ class Io extends MY_Controller
 {
     
         /*
-         * Constructor
+         * __construct
          * 
+         * Konstruktor triedy
+         * 
+         * @access      private
          * @return      void
          * 
          */
@@ -26,6 +29,7 @@ class Io extends MY_Controller
          * 
          * Funkcia upravi vystupny array do CSV formatu
          * 
+         * @access      public
          * @param source vstupne udaje
          * @param filename meno suboru
          * @param header hlavicka suboru
@@ -63,6 +67,8 @@ class Io extends MY_Controller
          * 
          * Funkcia vyexportuje udaje
          *  
+         * @access      public
+         * 
          */
         public function export()
         {

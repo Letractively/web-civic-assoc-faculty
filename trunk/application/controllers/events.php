@@ -12,6 +12,9 @@ class Events extends MY_Controller
          * 
          * Konštruktor triedy
          * 
+         * @access      private
+         * @return void
+         * 
          */
         function __construct() 
         {
@@ -32,7 +35,10 @@ class Events extends MY_Controller
          * 
          * default index metoda, ktora sa vola primarne
          * 
+         * @access      public
          * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
+         * @return void
+         * 
          */
         public function index( $event_cat_id = 0, $page = 0 )
         {
@@ -59,7 +65,9 @@ class Events extends MY_Controller
          * 
          * Funkcia vyfiltruje eventy od najnovsich po najstarsie
          * 
+         * @access      public
          * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
+         * @return Najnovsie udalosti
          * 
          */
         public function newest( $event_cat_id = 0, $page = 0 )
@@ -87,7 +95,9 @@ class Events extends MY_Controller
          * 
          * Funkcia vyfiltruje eventy od najviac prioritnych po najmenej priritne
          * 
+         * @access      public
          * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
+         * @return Udalosti s najvyssou priritou
          * 
          */
         public function prior( $event_cat_id = 0, $page = 0 )
@@ -115,7 +125,9 @@ class Events extends MY_Controller
          * 
          * Funkcia zobrazi detail daneho eventu
          * 
+         * @access      public
          * @param event_id ID eventu ktoreho detail sa ma zobrazit
+         * @return Detajl udalosti
          * 
          */
         public function detail( $event_id )
@@ -134,6 +146,9 @@ class Events extends MY_Controller
          * add
          * 
          * Funkcia prida novy event do DB
+         * 
+         * @access      public
+         * @return void
          * 
          */
         public function add()
@@ -157,7 +172,9 @@ class Events extends MY_Controller
          * 
          * Funkcia zedituje konkretny event
          * 
+         * @access      public
          * @param event_id ID eventu ktory sa ma upravit
+         * @return void
          * 
          */
         public function edit( $event_id )
@@ -188,7 +205,9 @@ class Events extends MY_Controller
          * 
          * Funkcia vymaze dany event z DB
          * 
+         * @access      public
          * @param event_id ID eventu ktory sa ma vymazat
+         * @return void
          * 
          */
         public function delete( $event_id )

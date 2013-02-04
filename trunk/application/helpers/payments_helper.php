@@ -5,7 +5,9 @@
  * 
  * Funkcia doplni stlpec 'stav' do gridu kde sa nachadzaju payments
  * 
+ * @access      public
  * @param payments Array of objects s paymentmi
+ * @return Array of objects platieb
  * 
  */
 function updatePaymentsData($payments)

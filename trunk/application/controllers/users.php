@@ -14,6 +14,7 @@ class Users extends MY_Controller
     /*
      * Constructor
      * 
+     * @access      private
      * @return      void
      * 
      */
@@ -33,6 +34,7 @@ class Users extends MY_Controller
     /*
      * index
      * 
+     * @access      public
      * @return      void
      * 
      */
@@ -61,6 +63,7 @@ class Users extends MY_Controller
      * 
      * Funkcia vrati vsetkych adminov
      * 
+     * @access      public
      * @param page cislo aktualnej strany
      * 
      */
@@ -89,6 +92,7 @@ class Users extends MY_Controller
      * 
      * Funkcia vrati vsetkych clenov zdruzenia
      * 
+     * @access      public
      * @param page cislo aktualnej strany
      * 
      */
@@ -117,6 +121,7 @@ class Users extends MY_Controller
      * 
      * Funkcia vrati vsetkych potencialnych clenov
      * 
+     * @access      public
      * @param page cislo aktualnej strany
      * 
      */
@@ -147,6 +152,7 @@ class Users extends MY_Controller
      * 
      * Funkcia vrati vsetkych cakajucich clenov
      * 
+     * @access      public
      * @param page cislo aktualnej strany
      * 
      */
@@ -177,6 +183,7 @@ class Users extends MY_Controller
      * 
      * Funkcia vrati vsetkych zablokovanych clenov
      * 
+     * @access      public
      * @param page cislo aktualnej strany
      * 
      */
@@ -207,6 +214,7 @@ class Users extends MY_Controller
      * 
      * Funkcia vrati detajl pouzivatela
      * 
+     * @access      public
      * @param user_id ID pouzivatela
      * 
      */
@@ -229,6 +237,8 @@ class Users extends MY_Controller
      * add
      * 
      * Funkcia prida noveho pouzivatela do databazi
+     * 
+     * @access      public
      * 
      */
     public function add()
@@ -283,6 +293,7 @@ class Users extends MY_Controller
      * 
      * Funkcia upravi daneho pouzivatela
      * 
+     * @access      public
      * @param user_id ID pouzivatela
      */
     public function edit( $user_id )
@@ -356,6 +367,7 @@ class Users extends MY_Controller
      * 
      * Funkcia vymaze daneho pouzivatela z databazi
      * 
+     * @access      public
      * @param user_id ID pozivatela
      * 
      */

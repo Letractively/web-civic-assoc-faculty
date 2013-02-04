@@ -8,6 +8,7 @@ class Studies extends MY_Controller
          * 
          * Konštruktor triedy
          * 
+         * @access      private
          */
         function __construct() 
         {
@@ -28,6 +29,8 @@ class Studies extends MY_Controller
          * 
          * default index metoda, ktora sa vola primarne
          * 
+         * @access      public
+         * 
          */
         public function index()
         {
@@ -38,6 +41,8 @@ class Studies extends MY_Controller
          * add
          * 
          * Funkcia prida novy studijny program do db
+         * 
+         * @access      public
          * 
          */
         public function add()
@@ -50,6 +55,7 @@ class Studies extends MY_Controller
          * 
          * Funkcia upravi studijny program v db
          * 
+         * @access      public
          * @param study_id ID studijneho programu ktory sa upravi
          * 
          */
@@ -63,6 +69,7 @@ class Studies extends MY_Controller
          * 
          * Funkcia zmeze studijny program z db
          * 
+         * @access      public
          * @param study_id ID studijneho programu ktory sa ma vymazat
          * 
          */

@@ -8,6 +8,9 @@ class Email_types extends MY_Controller
          * 
          * Konštruktor triedy
          * 
+         * @access      private
+         * @return void
+         * 
          */
         function __construct() 
         {
@@ -30,6 +33,8 @@ class Email_types extends MY_Controller
          * 
          * default index metoda, ktora sa vola primarne
          * 
+         * @access      public
+         * @return void
          */
         public function index()
         {            
@@ -40,6 +45,9 @@ class Email_types extends MY_Controller
          * add
          * 
          * Funkcia prida novy typ emailu do db
+         * 
+         * @access      public
+         * @return void
          * 
          */
         public function add()
@@ -52,8 +60,9 @@ class Email_types extends MY_Controller
          * 
          * Funkcia upravi typ emailu v db
          * 
+         * @access      public
          * @param email_type_id ID typu emailu ktory sa upravi
-         * 
+         * @return void
          */
         public function edit( $email_type_id )
         {
@@ -65,8 +74,9 @@ class Email_types extends MY_Controller
          * 
          * Funkcia zmeze typ emailu z db
          * 
+         * @access      public
          * @param email_type_id ID typu emailu ktory sa ma vymazat
-         * 
+         * @return void
          */
         public function delete( $email_type_id )
         {     

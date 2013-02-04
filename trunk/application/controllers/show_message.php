@@ -7,6 +7,8 @@ class Show_message extends MY_Controller
          * 
          * Konštruktor triedy
          * 
+         * @access      private
+         * 
          */
         function __construct() {
             parent::__construct();
@@ -26,6 +28,8 @@ class Show_message extends MY_Controller
          * index
          * 
          * default index metoda, ktora sa vola primarne a zobrazi confirm inform message
+         * 
+         * @access      public
          * 
          */
         public function index($url)

@@ -6,7 +6,9 @@
  * Funkcia premapuje stlpec project_active v gride s project_categories na textovu podobu
  * 0 zmeni na uzavrety projekt, a 1 zmeni na prebiehajuci projekt
  * 
+ * @access      public
  * @param projects Array of objects projektov
+ * @return Array of objects projektovych kategorii pre grid
  * 
  */
 function updateProjCatDetailData($projects)

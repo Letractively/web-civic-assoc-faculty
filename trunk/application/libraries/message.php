@@ -13,6 +13,8 @@ class Message
          * 
          * Konštruktor triedy
          * 
+         * @access	private
+         * @return void
          */
         public function __construct(){}
         
@@ -21,7 +23,9 @@ class Message
          * 
          * Metoda nacita jazykove popisky pre tlacidla
          * 
+         * @access	private
          * @param lang_array Vstupom je pole jazykovych popiskov, pole obsahuje jeden alebo dva lang popisky
+         * @return void
          * 
          */
         private function load_lang($lang_array)
@@ -37,8 +41,9 @@ class Message
          * 
          * Metoda vygeneruje ovladacie buttony do message
          * 
+         * @access	private
          * @param type Typ spravy, na jeho zaklade sa vygeneruju vhodne buttony
-         * 
+         * @return void
          */
         private function generate_buttons( $type )
         {
@@ -64,8 +69,9 @@ class Message
          * 
          * Funkcia nastavi titulok pre správu
          * 
+         * @access	private
          * @param title Titulok ktory sa ma zobrazit
-         * 
+         * @return void
          */
         private function set_title( $title )
         {
@@ -77,7 +83,9 @@ class Message
          * 
          * Funkcia nastavi piktogrami do spravy
          * 
+         * @access	private
          * @param type Typ o aku spravu sa jedna
+         * @return void
          * 
          */
         private function set_image( $type )
@@ -97,8 +105,9 @@ class Message
          * 
          * Funkcia nastavi meno triedy odkial bola volana
          * 
+         * @access	private
          * @param suffix url fragment
-         * 
+         * @return void
          */
         private function set_class( $suffix )
         {
@@ -111,8 +120,9 @@ class Message
          * 
          * Funkcia nastavi text, ktory sa ma zobrazit v tele spravy
          * 
+         * @access	private
          * @param text Text ktory sa ma vypisat
-         * 
+         * @return void
          */
         private function set_text( $text )
         {
@@ -124,12 +134,13 @@ class Message
          * 
          * Metoda vygeneruje spravu
          * 
+         * @access	public
          * @param type Typ spravy
          * @param text Text, ktory sa ma vypisat
          * @param suffix Url fragment
          * @param title Titulok spravy
          * @param langs Jazykove popisky pre buttony
-         * 
+         * @return object typu sprava
          */
         public function generate_message( $type, $text, $suffix, $title, $langs )
         {

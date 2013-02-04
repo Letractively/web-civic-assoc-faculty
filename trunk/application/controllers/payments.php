@@ -6,10 +6,13 @@ class Payments extends MY_Controller
         protected $get_query 		= array();
         protected $per_page             = 20;
         protected $totalRows            = 0;
+        
         /*
          * __construct
          * 
          * Konštruktor triedy
+         * 
+         * @access      private
          * 
          */
         function __construct() 
@@ -36,6 +39,7 @@ class Payments extends MY_Controller
          * 
          * default index metoda, ktora sa vola primarne
          * 
+         * @access      public
          * @param pay_id    ak je ID 0 co je dafaultne tak sa zobrazia platby vsetkych 
          *                  userov ak daco ine tak konkretneho usera
          * @return array
@@ -68,6 +72,7 @@ class Payments extends MY_Controller
          * 
          * Metoda vrati zaplatene platby
          * 
+         * @access      public
          * @param pay_id    defaultne je 0 co symbolizuej vsetkych userov, 
          *                  v inom pripade su to platby konkretneho usera
          * @return array
@@ -100,6 +105,7 @@ class Payments extends MY_Controller
          * 
          * Metoda vrati nezaplatene platby
          * 
+         * @access      public
          * @param pay_id    defaultne je 0 co symbolizuej vsetkych userov, 
          *                  v inom pripade su to platby konkretneho usera
          * @return array
@@ -132,6 +138,8 @@ class Payments extends MY_Controller
          * 
          * Metoda zaeviduje platbu do systemu
          * 
+         * @access      public
+         * 
          */
         public function add()
         {
@@ -147,7 +155,6 @@ class Payments extends MY_Controller
             
             if ( $this->input->post('submit') )
             {
-                //array_debug($this->input->post());
                 if( $this->input->post('payment_type') == 1 )
                     $this->form_validation->set_rules('total_sum','lang:label_total_sum','trim|required|xss_clean|numeric|greater_or_equal_than[5]');
                 else
@@ -178,6 +185,7 @@ class Payments extends MY_Controller
          * 
          * Metoda upravi platbu v systeme
          * 
+         * @access      public
          * @param pay_id ID platby ktoru treba upravit
          * 
          */
@@ -230,6 +238,7 @@ class Payments extends MY_Controller
          * Funkcia zisti ci bola skutocne uhradena suma a ak ano tak vykona pripisanie
          * financnych prostriedkov na jednotlive kategorie a zmaze zaznamy z fin_redistributers
          * 
+         * @access      private
          * @param result informacia otom ci sa uskutocnila zmena v payments
          * @param payment_id ID-cko platby ktora sa bude kontrolovat ci bola v plnej miere uhradena
          * 
@@ -247,6 +256,7 @@ class Payments extends MY_Controller
          * 
          * Metoda zmaze platbu zo systemu
          * 
+         * @access      public
          * @param pay_id ID platby ktora sa vymaze
          * 
          */

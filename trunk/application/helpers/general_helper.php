@@ -5,6 +5,7 @@
  * 
  * Debugovacia funkcia, ktora sluzi na kontrolny vypis vysledku z DB, vrati formatovany vypis pola
  * 
+ * @access      public
  * @param arr Array of objects alebo string je vstupnym parametrom
  * @param return ak je true tak sa nic nevypise
  * @return array
@@ -73,7 +74,7 @@ function gen_dropdown($name, $id_selected, $data, $id_index, $value_index, $css_
  * Funkcia vrati iba ciselnu podobu roku
  * 
  * @param date datetime v tvare xx.xx.xxxx xx:xx:xx
- * 
+ * @return rok
  */
 function year($date){
     $input 		= explode(' ', $date);
@@ -88,7 +89,7 @@ function year($date){
  * Funkcia vrati iba ciselnu podobu dna a mesiaca
  * 
  * @param date datetime v tvare xx.xx.xxxx xx:xx:xx
- * 
+ * @return den a mesiac
  */
 function day_month($date){
     $input 		= explode(' ', $date);
@@ -104,8 +105,8 @@ function day_month($date){
  * 
  * @param datetime datum vo formate xxxx-xx-xx
  * @param all ak je true vrati aj cas
- * @return string
- * 
+ * @return datetime
+
  */
 function datetime($datetime, $all = TRUE)
 {
@@ -125,7 +126,7 @@ function datetime($datetime, $all = TRUE)
  * Funkcia vrati cas bez sekund
  * 
  * @param input datetime vo formate xxxx-xx-xx xx:xx:xx
- * @return string
+ * @return Cas bez sekund
  * 
  */
 function time_withou_seconds($input)
@@ -140,7 +141,7 @@ function time_withou_seconds($input)
  * Funkcia vrati cast textu zo vstupneho stringu
  * 
  * @param input vstupny retazec ktory ma byt skrateny na dlzky 165znakov
- * @return string
+ * @return 165znakovy uvodny text
  * 
  */
 function perex_from_content($input)
@@ -154,7 +155,7 @@ function perex_from_content($input)
  * Funkcia naformatuje datum z formatu xx.xx.xxxx na xxxx-xx-xx
  * 
  * @param input date vo formate xx.xx.xxxx
- * @return string
+ * @return naformatovany datum
  * 
  */
 function format_date($input)
@@ -170,6 +171,7 @@ function format_date($input)
  * xxxx-xx-xx xx:xx:xx
  * 
  * @param input slovensky datetime v tvare xx.xx.xxxx xx:xx
+ * @return naformatovany datetime
  * 
  */
 function format_datetime($input)
@@ -186,6 +188,7 @@ function format_datetime($input)
  * vrati spat.
  * 
  * @param pagination url odkazy spolu so strong formatom
+ * @return strankovanie
  * 
  */
 function pagination( $pagination )

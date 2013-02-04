@@ -7,8 +7,10 @@ class Userdata
          * 
          * Konstruktor
          * 
+         * @access	private
+         * @return void
          */
-        public function __construct()
+        function __construct()
         {
             $this->CI =& get_instance();
         }
@@ -18,8 +20,10 @@ class Userdata
          * 
          * Funkcia vrati vsetky pouzivatelske role pouzivane v aplikacii
          * 
+         * @access	public
          * @param all ak je true tak nastavi aj default rolu na 0-ty index
-         * @return array of array
+         * @return array of array pouzivatelskych roli
+         * 
          */
         public function roles( $all = TRUE )
 	{	
@@ -44,7 +48,8 @@ class Userdata
          * 
          * Funkcia vrati boolean ci je alebo nieje prihlaseny pouzivatel
          * 
-         * @return boolean
+         * @access	public
+         * @return boolean ci je user prihlaseny
          * 
          */
         public function is_logged()
@@ -62,7 +67,8 @@ class Userdata
          * 
          * Funkcia vrati boolean ci je alebo nieje prihlaseny pouzivatel admin
          * 
-         * @return boolean
+         * @access	public
+         * @return boolean ci je dany user admin
          * 
          */
 	public function is_admin()
@@ -80,8 +86,9 @@ class Userdata
          * 
          * Funkcia vrati pozivatelsku rolu pouzivatela z jeho ID
          * 
+         * @access	public
          * @param user_id ID pouzivatela
-         * @return integer
+         * @return vrati pouzivatelsku rolu
          * 
          */
         public function get_role( $user_id )
@@ -97,8 +104,9 @@ class Userdata
          * 
          * Funkcia vrati pozivatelsku rolu pouzivatela z jeho ID
          * 
+         * @access	public
          * @param user_id ID pouzivatela
-         * @return integer
+         * @return vrati meno pouzivatelskej roli
          * 
          */
         public function get_role_name( $role_number )
@@ -124,8 +132,9 @@ class Userdata
          * 
          * Funkcia vrati cele meno pouzivatela na zaklade jeho id
          * 
+         * @access	public
          * @param user_id ID pouzivatela ktoreho meno ma vratit
-         * @return string
+         * @return vrati cele meno usera
          * 
          */
         public function full_name( $user_id )
@@ -141,7 +150,8 @@ class Userdata
          * 
          * Funkcia vrati ID aktualne prihlaseneho pouzivatela
          * 
-         * @return integer
+         * @access	public
+         * @return vrai ID pouzivatela
          * 
          */
         public function get_user_id()
@@ -155,11 +165,13 @@ class Userdata
         }
         
         /*
-         * is_ecempted
+         * is_exempted
          * 
          * Funkcia zisti ci je user s danym ID oslobodeny od platby
          * 
+         * @access	public
          * @param user_id ID-pouzivatela
+         * @return vrati boolean ci je dany user oslobodeny od platby
          * 
          */
         public function is_exempted( $user_id )
@@ -178,7 +190,9 @@ class Userdata
          * 
          * Funkca vrati cas kedy user uhradil poslednu platbu
          * 
+         * @access	public
          * @param user_id ID pouzivatela
+         * @return vrati cas kedy userovi bola pripisana platba
          * 
          */
         public function get_user_activated_time( $user_id )
@@ -194,6 +208,9 @@ class Userdata
          * root_email
          * 
          * Funkcia vrati email hlavneho administratora
+         * 
+         * @access	public
+         * @return vrtai pouzivatelsky mail
          * 
          */
         public function root_email()

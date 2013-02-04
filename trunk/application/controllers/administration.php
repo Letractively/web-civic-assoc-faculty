@@ -8,6 +8,9 @@ class Administration extends MY_Controller
          * 
          * Konstruktor triedy
          * 
+         * @access      private
+         * @return void
+         * 
          */
         function __construct() 
         {           
@@ -18,6 +21,9 @@ class Administration extends MY_Controller
          * index
          * 
          * default index metoda, ktora sa vola primarne
+         * 
+         * @access      public
+         * @return void
          * 
          */
         public function index()

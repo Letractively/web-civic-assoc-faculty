@@ -8,6 +8,9 @@ class Auth extends MY_Controller
          * 
          * Konštruktor triedy
          * 
+         * @access      private
+         * @return void
+         * 
          */
         function __construct() 
         {
@@ -27,6 +30,8 @@ class Auth extends MY_Controller
          * 
          * default index metoda, ktora sa vola primarne
          * 
+         * @access      public
+         * @return void
          */
         public function index()
         {               
@@ -45,11 +50,13 @@ class Auth extends MY_Controller
          * schvali manualne ked pride platba. Taktiez prerozdeli jeho peniaze medzi
          * kategorie tak ako si on zelal
          * 
+         * @access      public
+         * @return void
+         * 
          */
         public function registration()
         {
             if( $this->userdata->is_logged() )
-                //redirect(base_url ());
                 redirect ('show_message/index/error_logged');
             
             if( $this->input->post('submit') )
@@ -87,6 +94,9 @@ class Auth extends MY_Controller
          * login
          * 
          * Funkcia prihlasi navstevnika stranky do aplikacie
+         * 
+         * @access      public
+         * @return void
          *    
          */
         public function login()
@@ -122,6 +132,9 @@ class Auth extends MY_Controller
          * 
          * Funkcia odhlasi pouzivatela z aplikacie
          * 
+         * @access      public
+         * @return void
+         * 
          */
         public function logout()
         {
@@ -136,6 +149,9 @@ class Auth extends MY_Controller
          * 
          * Funkcia zresetuje heslo pouzivatela  a posle mu nove na emailovu adresu
          * uvedenu pri registracii
+         * 
+         * @access      public
+         * @return void
          * 
          */
         public function reset_password()

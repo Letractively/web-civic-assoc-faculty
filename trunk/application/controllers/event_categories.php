@@ -8,6 +8,9 @@ class Event_categories extends MY_Controller
          * 
          * Konštruktor triedy
          * 
+         * @access      private
+         * @return void
+         * 
          */
         function __construct() 
         {
@@ -30,6 +33,9 @@ class Event_categories extends MY_Controller
          * 
          * default index metoda, ktora sa vola primarne
          * 
+         * @access      public
+         * @return void
+         * 
          */
         public function index()
         {       
@@ -40,6 +46,9 @@ class Event_categories extends MY_Controller
          * add
          * 
          * Funkcia prida novy typ eventovej kategorie do db
+         * 
+         * @access      public
+         * @return void
          * 
          */
         public function add()
@@ -52,7 +61,9 @@ class Event_categories extends MY_Controller
          * 
          * Funkcia upravi typ eventovej kategorie v db
          * 
+         * @access      public
          * @param event_category_id ID typ eventovej kategorie ktora sa upravi
+         * @return void
          * 
          */
         public function edit( $event_category_id )
@@ -65,7 +76,9 @@ class Event_categories extends MY_Controller
          * 
          * Funkcia zmeze typ eventovej kategorie z db
          * 
+         * @access      public
          * @param event_category_id ID typu eventovej kategorie ktora sa ma vymazat
+         * @return void
          * 
          */
         public function delete( $event_category_id )

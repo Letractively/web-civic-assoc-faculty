@@ -7,6 +7,7 @@ class MY_Model extends CI_Model
          * 
          * Konštruktor triedy
          * 
+         * @access      public
          * @return      void
          */
         public function __construct()
@@ -19,10 +20,11 @@ class MY_Model extends CI_Model
          * 
          * Funkcia vrati pocet eventov v kategorii alebo celkovy pocet eventov
          * 
+         * @access      public
          * @param table tabulka event_categories
          * @param id stlpec nad ktorym vykonavam sucet
          * @param event_cat id-kategorie v ktorej chcem zistit pocet eventov
-         * 
+         * @return Pocet udalosti v kategorii
          */
         public function EventRowsInCategory($table, $id, $event_cat)
         {
@@ -44,9 +46,11 @@ class MY_Model extends CI_Model
          * Funkcia kontroluje na zaklade vstupnych udajov ci sa dany zaznam nachadza
          * v databaze ak ano vrati TRUE.
          * 
+         * @access      public
          * @param table tabulka v ktorej sa kontroluje existencia
          * @param column stlpec nad ktorym sa kontrulje existencia
          * @param id ID-cko zaznamu ktoreho existenciu chcem zistit
+         * @return Boolean ci existuje dany zaznam
          * 
          */
         public function exists($table, $column, $id)
@@ -67,10 +71,11 @@ class MY_Model extends CI_Model
          * Funkcia zisti vsetky udaje o danom zaznamu na zaklade vstupnych
          * parametrov
          * 
+         * @access      public
          * @param id ciselna hodnota zaznamu
          * @param table tabulka z ktorej zistujem udaje
          * @param column stlpec nad ktorym zistujem hodnotu
-         * 
+         * @return object
          */
         public function id($id, $table, $column)
         {
@@ -86,7 +91,9 @@ class MY_Model extends CI_Model
          * 
          * Funkcia zisti ci pouzivatel ma aktivny ucet alebo nie
          * 
+         * @access      public
          * @param param Array vstupnych udajov [username] a [password]
+         * @return Boolean ci je aktivovany user
          * 
          */
         public function is_activated( $param )
@@ -116,6 +123,7 @@ class MY_Model extends CI_Model
          * Funkcia vykonava logovanie udalosti, ktore sa stali s databazou do jednej
          * samostatnej tabulky v databaze
          * 
+         * @access      public
          * @param       params Pole údajov ktore sa vlozia do tabulky databse_logs
          * @return      void
          * 
@@ -134,7 +142,6 @@ class MY_Model extends CI_Model
                                     VALUES
                                     ('".$params['event']."')
                                 ");
-            return TRUE;
         }
         
         /*
@@ -142,9 +149,11 @@ class MY_Model extends CI_Model
          * 
          * Funkcia vrati pocet userov danej pouzivatelskej roli
          * 
+         * @access      public
          * @param table Vstupnym udajom je users
          * @param id lubovolny stlpec z tabulky users nad ktorym sa vykona sucet riadkov
          * @param role ciselna hodnota pouzivatelskej roli ktorej pocet userov chcem vratit
+         * @return Pocet userov v databaze
          * 
          */
         public function UsersInDatabase( $table, $id, $role )
@@ -180,7 +189,9 @@ class MY_Model extends CI_Model
          * 
          * Funkcia vrati casovy udaj na zaklade flagu ktory konkretne sa ma vratit
          * 
+         * @access      public
          * @param flag flag na zaklade ktoreho sa vrati urcity casovy udaj spatneho charakteru
+         * @return Datum na zaklade vstupneho flagu
          * 
          */
         public function returnDate( $flag )
@@ -212,8 +223,10 @@ class MY_Model extends CI_Model
          * 
          * Funkcia vrati pocet zaznamov v tabulke xyz
          * 
+         * @access      public
          * @param table Nazov tabulky
          * @param id nazov stlpca nad ktorym sa ma vykonat sucet riadkov v tabulke
+         * @return pocet zaznamov v DB
          * 
          */
         public function rows( $table, $id )
@@ -229,7 +242,9 @@ class MY_Model extends CI_Model
          * 
          * Funkcia vrati stav v akom sa nachadza projekt
          * 
+         * @access      public
          * @param project_id ID projektu
+         * @return Stadium v akom sa nachadza projekt
          * 
          */
         public function project_state( $project_id )
