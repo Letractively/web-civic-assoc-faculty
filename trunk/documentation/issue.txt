@@ -6,3 +6,5 @@ users_detail - èlen:
 	je platné èlenské - má sa vypísa "Vaše èlensvo je platné do ... "
 payments - nejde vymaza uhradená èlenská platba
 users_edit - validova rolu, prejde aj prázdna (-1)
+
+correspondence - filter "úhrada" ak je bez periódy - sql error

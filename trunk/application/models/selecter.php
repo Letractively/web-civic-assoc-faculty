@@ -800,6 +800,20 @@ class Selecter extends MY_Model
                                    ");
             return $q->result();
         }
+		
+		public function get_users_for_add_payments()
+		{
+			$q = $this->db->query('SELECT
+				u.user_id as id,
+					CONCAT(u.user_name, " ", u.user_surname) as name,
+					( u.user_role = 2 AND u.user_exempted = 0 AND
+					NOT EXISTS(SELECT * FROM payments p WHERE p.payment_user_id = u.user_id AND p.payment_type = 1 AND p.payment_accepted = 0)
+					AND(u.user_activated IS NULL OR DATEDIFF(NOW(), u.user_activated) >= 365) )
+				as account,
+				(u.user_role <> 3) as voluntary
+				FROM users u');
+			return $q->result();
+		}
     
         /*
          * get_users

@@ -605,16 +605,21 @@ class Grid
 						echo '<td id="'.$index.$row->cells[$this->unique].'" class="grid_cell'.$css_class_postfix.'">';
 						if ($this->headCols[$index]->type == 'anchor') // ak to ma byt link
 						{
-							echo '<a href="'.base_url().$this->headCols[$index]->options['controller'].'/'.$row->cells[ $this->headCols[$index]->options['id'] ].'">'.$cell_value.'</a>';
+							$postfix_id = $row->cells[ $this->headCols[$index]->options['id'] ];
+							if ($postfix_id != '')
+								echo '<a href="'.base_url().$this->headCols[$index]->options['controller'].'/'.$postfix_id.'">'.$cell_value.'</a>';
+							else
+								echo $cell_value;
 						}
 						else if ($this->headCols[$index]->type == 'datetime') // ak to ma byt formatovany datum a cas
 						{
 							$date = date_create_from_format($this->headCols[$index]->options['inputFormat'], $cell_value);
 							if ($date) echo $date->format($this->headCols[$index]->options['outputFormat']);
+							else echo '&nbsp';
 						}
 						else if ($this->headCols[$index]->type == 'numformat')
 						{
-							//if ($cell_value == '') $cell_value = '0';
+							if ($cell_value == '&nbsp;') $cell_value = '0';
 							echo $this->get_formatted_number($this->headCols[$index]->options['format'], $cell_value);
 						}
 						else // ak to ma byt iba cisty text (alebo nejaky iny nedefinovany typ)

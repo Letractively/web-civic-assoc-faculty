@@ -29,7 +29,7 @@
 
 	<?php
         //echo $category_id;
-	//	array_debug($this->selecter->get_projects($category_id));
+		//array_debug($this->selecter->get_projects($category_id));
 		
         $this->load->library('grid');
 
