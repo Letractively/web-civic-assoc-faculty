@@ -137,35 +137,63 @@ class Inserter extends MY_Model
     
     public function add_register($param)
     {
-       $this->db->query("  INSERT INTO users 
-                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
-                            user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
-                            VALUES
-                            ('".$param['name']."', '".$param['surname']."', 2, '".$param['username']."',
-                             '".sha1($param['password'])."', '".$param['email']."', '".$param['phone']."',
-                             '".$param['study_program_id']."', '".$param['degree_id']."', 
-                             '".$param['place_of_birth']."', '".$param['postcode']."', '".$param['degree_year']."')
-                         ");
-        
-        
-        $user_id = $this->db->insert_id();
-        $this->db->query("  INSERT INTO payments
-                            (payment_vs, payment_total_sum, payment_user_id, payment_type)
-                            VALUES
-                            ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$user_id."', 1)
-                         ");
-        $payment_id = $this->db->insert_id();
-		$q = 'INSERT INTO fin_redistributes (fin_redistribute_payment_id, fin_redistribute_project_category_id, fin_redistribute_ratio) VALUES ';
-		$first = true;
-		foreach ($param['categories'] as $cat_id => $ratio)
-		{
-			if (!$first) $q .= ', ';
-			$q .= "('".$payment_id."', '".$cat_id."', '".$ratio."')";
-			$first = false;
-		}
-		$q .= ';';
+        $q  = $this->db->query("SELECT user_id FROM users WHERE user_username = '".$param['username']."' AND user_role = 3");
+        $q2 = $this->db->query("SELECT user_username FROM users WHERE user_username = '".$param['username']."' AND user_role != 3");
+        $user_id = 0;
+        if( $q->num_rows() > 0)
+        {
+            $this->db->query("UPDATE users 
+                                SET user_username='".$param['username']."',
+                                    user_name='".$param['name']."',
+                                    user_password='".sha1($param['password'])."',
+                                    user_surname='".$param['surname']."',
+                                    user_email='".$param['email']."',
+                                    user_phone='".$param['phone']."',
+                                    user_study_program_id='".$param['study_program_id']."',
+                                    user_degree_id='".$param['degree_id']."',
+                                    user_place_of_birth='".$param['place_of_birth']."',
+                                    user_postcode='".$param['postcode']."',
+                                    user_role='2',
+                                    user_degree_year='".$param['degree_year']."',
+                                    user_activated = NULL
+                                WHERE user_id='".$q->row()->user_id."'");
+            $user_id = $q->row()->user_id;
+        }   
+        else
+        {
+            if($q2->row()->user_username != $param['username'])
+            {
+                $this->db->query("  INSERT INTO users 
+                                (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
+                                user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year)
+                                VALUES
+                                ('".$param['name']."', '".$param['surname']."', 2, '".$param['username']."',
+                                 '".sha1($param['password'])."', '".$param['email']."', '".$param['phone']."',
+                                 '".$param['study_program_id']."', '".$param['degree_id']."', 
+                                 '".$param['place_of_birth']."', '".$param['postcode']."', '".$param['degree_year']."')
+                             ");
+                $user_id = $this->db->insert_id();
+            }
+            else
+                return FALSE;
+        }   
+            $this->db->query("  INSERT INTO payments
+                                (payment_vs, payment_total_sum, payment_user_id, payment_type)
+                                VALUES
+                                ('".$this->input->post('vs')."','".$this->input->post('total_sum')."', '".$user_id."', 1)
+                             ");
+            $payment_id = $this->db->insert_id();
+            $q = 'INSERT INTO fin_redistributes (fin_redistribute_payment_id, fin_redistribute_project_category_id, fin_redistribute_ratio) VALUES ';
+            $first = true;
+            foreach ($param['categories'] as $cat_id => $ratio)
+            {
+            	if (!$first) $q .= ', ';
+            	$q .= "('".$payment_id."', '".$cat_id."', '".$ratio."')";
+		$first = false;
+            }
+            $q .= ';';
 		
-		return $this->db->query($q);
+            return $this->db->query($q);
     }
     
     public function add_study_program($values)
@@ -193,34 +221,67 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
-    public function add_user($values)
+    public function add_user( $values )
     {
+        $q  = $this->db->query("SELECT user_id FROM users WHERE user_username = '".$values['username']."' AND user_role = 3");
+        $q2 = $this->db->query("SELECT user_username FROM users WHERE user_username = '".$values['username']."' AND user_role != 3");
+        $user_id = 0;
         $is_exempted = 0;
         
-        switch( $values['role'] )
+        if( $q->num_rows() > 0 )
         {
-            case 1:
-                $is_exempted = 1;
-                break;
-            case 2:
-                if( !isset($values['checkbox']) )
-                    $is_exempted = 1;
-                break;
+            $this->db->query("UPDATE users 
+                                SET user_username='".$values['username']."',
+                                    user_name='".$values['name']."',
+                                    user_password='".sha1($values['password'])."',
+                                    user_surname='".$values['surname']."',
+                                    user_email='".$values['email']."',
+                                    user_phone='".$values['phone']."',
+                                    user_study_program_id='".$values['study_program_id']."',
+                                    user_degree_id='".$values['degree_id']."',
+                                    user_place_of_birth='".$values['place_of_birth']."',
+                                    user_postcode='".$values['postcode']."',
+                                    user_role='2',
+                                    user_degree_year='".$values['degree_year']."',
+                                    user_activated = NULL  
+                                WHERE user_id='".$q->row()->user_id."'");
+            $user_id = $q->row()->user_id;
+        }
+        else
+        {
+            if( $q2->row()->user_username != $values['username'] )
+            {
+                switch( $values['role'] )
+                {
+                    case 1:
+                        $is_exempted = 1;
+                        break;
+                    case 2:
+                        if( !isset($values['checkbox']) )
+                            $is_exempted = 1;
+                        break;
+                }
+
+                $this->db->query("  INSERT INTO users 
+                                (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
+                                user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year,
+                                user_exempted)
+                                VALUES
+                                ('".$values['name']."', '".$values['surname']."','".$values['role']."', '".$values['username']."',
+                                 '".sha1($values['password'])."', '".$values['email']."', '".$values['phone']."',
+                                 '".$values['study_program_id']."', '".$values['degree_id']."', 
+                                 '".$values['place_of_birth']."', '".$values['postcode']."', '".$values['degree_year']."',
+                                 '".$is_exempted."')
+                             ");
+
+                $user_id = $this->db->insert_id();
+            }
+            else
+            {
+                return FALSE;
+            }
         }
         
-        $this->db->query("  INSERT INTO users 
-                            (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
-                            user_study_program_id, user_degree_id, user_place_of_birth, user_postcode, user_degree_year,
-                            user_exempted)
-                            VALUES
-                            ('".$values['name']."', '".$values['surname']."','".$values['role']."', '".$values['username']."',
-                             '".sha1($values['password'])."', '".$values['email']."', '".$values['phone']."',
-                             '".$values['study_program_id']."', '".$values['degree_id']."', 
-                             '".$values['place_of_birth']."', '".$values['postcode']."', '".$values['degree_year']."',
-                             '".$is_exempted."')
-                         ");
-        
-        $user_id = $this->db->insert_id();
         if( $values['checkbox'] == 1 )
         {
             $this->db->query("  INSERT INTO payments

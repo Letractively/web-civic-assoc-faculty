@@ -270,8 +270,10 @@ class Users extends MY_Controller
                  if( $this->form_validation->run() )
                  {
                      $this->load->model('inserter');
-                     $this->inserter->add_user( $this->input->post() );
-                     redirect($this->router->class);
+                     if($this->inserter->add_user( $this->input->post() ) == TRUE)
+                        redirect($this->router->class);
+                    else
+                        echo 'problem';
                  }
              }
         }

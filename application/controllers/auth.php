@@ -31,7 +31,7 @@ class Auth extends MY_Controller
          * default index metoda, ktora sa vola primarne
          * 
          * @access      public
-         * @return void
+         * @return      void
          */
         public function index()
         {               
@@ -51,7 +51,7 @@ class Auth extends MY_Controller
          * kategorie tak ako si on zelal
          * 
          * @access      public
-         * @return void
+         * @return      void
          * 
          */
         public function registration()
@@ -74,6 +74,8 @@ class Auth extends MY_Controller
                         {
                             redirect('show_message/index/success_registration');
                         }
+                        else
+                            redirect('show_message/index/error_registration');
                     }                           
                 }      
             }
