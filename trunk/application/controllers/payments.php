@@ -1,4 +1,29 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Payments class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Payments
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Payments extends MY_Controller
 {
@@ -7,14 +32,9 @@ class Payments extends MY_Controller
         protected $per_page             = 20;
         protected $totalRows            = 0;
         
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -34,16 +54,15 @@ class Payments extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne
          * 
          * @access      public
-         * @param pay_id    ak je ID 0 co je dafaultne tak sa zobrazia platby vsetkych 
+         * @param       integer $pay_id    ak je ID 0 co je dafaultne tak sa zobrazia platby vsetkych 
          *                  userov ak daco ine tak konkretneho usera
          * @return array
-         * 
          */
         public function index( $pay_id = 0, $page = 0 )
         {   
@@ -67,16 +86,15 @@ class Payments extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
-        /*
+        /**
          * paid
          * 
          * Metoda vrati zaplatene platby
          * 
          * @access      public
-         * @param pay_id    defaultne je 0 co symbolizuej vsetkych userov, 
+         * @param       integer $pay_id    defaultne je 0 co symbolizuej vsetkych userov, 
          *                  v inom pripade su to platby konkretneho usera
          * @return array
-         * 
          */
         public function paid( $pay_id = 0, $page = 0 )
         {
@@ -100,16 +118,15 @@ class Payments extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
-        /*
+        /**
          * nopaid
          * 
          * Metoda vrati nezaplatene platby
          * 
          * @access      public
-         * @param pay_id    defaultne je 0 co symbolizuej vsetkych userov, 
+         * @param       integer $pay_id    defaultne je 0 co symbolizuej vsetkych userov, 
          *                  v inom pripade su to platby konkretneho usera
          * @return array
-         * 
          */
         public function nopaid( $pay_id = 0, $page = 0 )
         {
@@ -133,13 +150,12 @@ class Payments extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
-        /*
+        /**
          * add
          * 
          * Metoda zaeviduje platbu do systemu
          * 
          * @access      public
-         * 
          */
         public function add()
         {
@@ -184,14 +200,13 @@ class Payments extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * edit
          * 
          * Metoda upravi platbu v systeme
          * 
          * @access      public
-         * @param pay_id ID platby ktoru treba upravit
-         * 
+         * @param       integer $pay_id ID platby ktoru treba upravit
          */
         public function edit($pay_id)
         {
@@ -236,16 +251,14 @@ class Payments extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
-        /*
+        /**
          * __edit_payments_payment
          * 
          * Funkcia zisti ci bola skutocne uhradena suma a ak ano tak vykona pripisanie
          * financnych prostriedkov na jednotlive kategorie a zmaze zaznamy z fin_redistributers
          * 
          * @access      private
-         * @param result informacia otom ci sa uskutocnila zmena v payments
-         * @param payment_id ID-cko platby ktora sa bude kontrolovat ci bola v plnej miere uhradena
-         * 
+         * @param       integer $payment_id ID-cko platby ktora sa bude kontrolovat ci bola v plnej miere uhradena
          */
         private function __edit_payments_payment($payment_id)
         {
@@ -255,14 +268,13 @@ class Payments extends MY_Controller
             redirect($this->router->class);
         }
 
-        /*
+        /**
          * delete
          * 
          * Metoda zmaze platbu zo systemu
          * 
          * @access      public
-         * @param pay_id ID platby ktora sa vymaze
-         * 
+         * @param       integer $pay_id ID platby ktora sa vymaze
          */
         public function delete( $pay_id )
         {

@@ -1,14 +1,38 @@
 ﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
 
-/*
+// ------------------------------------------------------------------------
+
+/**
+ *  Payments helper
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Helpers
+ * @category            Payments
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
+
+/**
  * updatePaymentsData
  * 
  * Funkcia doplni stlpec 'stav' do gridu kde sa nachadzaju payments
  * 
  * @access      public
- * @param payments Array of objects s paymentmi
- * @return Array of objects platieb
- * 
+ * @param       array $payments Array of objects s paymentmi
+ * @return      array Array of objects platieb
  */
 function updatePaymentsData($payments)
 {	

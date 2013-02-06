@@ -415,7 +415,7 @@ body {
 }
 
 .content_title {
-	margin: 15px 50px -25px 50px;
+	margin: 35px 50px -25px 50px;
 	font-size: 25px;
 	font-weight: bold;
 }
@@ -425,7 +425,7 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 55px;
-	margin-top: 25px;
+	margin-top: 45px;
 	padding: 15px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
 	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
@@ -437,7 +437,7 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 55px;
-	margin-top: 25px;
+	margin-top: 45px;
 	padding: 15px 30px 15px 30px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
 	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
@@ -449,7 +449,7 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 55px;
-	margin-top: 25px;
+	margin-top: 45px;
 	padding: 15px 30px 15px 30px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
 	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
@@ -463,7 +463,7 @@ body {
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 55px;
-	margin-top: 25px;
+	margin-top: 45px;
 	padding: 25px 10px 25px 10px;
 	-moz-box-shadow: 5px 5px 20px 10px #2e2e2e;
 	-webkit-box-shadow: 5px 5px 20px 10px #2e2e2e;
@@ -645,6 +645,20 @@ label.error {
 	max-width: 665px;
 	min-height: 350px;
 	max-height: 350px;
+	border-radius: 5px;
+	padding: 5px 10px;
+	font-size: 15px;
+	border-left: solid 3px #2e2e2e;
+	border-top: solid 3px #2e2e2e;
+	border-bottom: solid 2px gray;
+	border-right: solid 2px gray;
+}
+
+.textarea_data5 {
+	min-width: 275px;
+	max-width: 275px;
+	min-height: 150px;
+	max-height: 150px;
 	border-radius: 5px;
 	padding: 5px 10px;
 	font-size: 15px;

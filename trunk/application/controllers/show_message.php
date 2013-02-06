@@ -1,15 +1,35 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Show Message class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Show Message
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Show_message extends MY_Controller
 {
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() {
             parent::__construct();
 
@@ -24,13 +44,13 @@ class Show_message extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne a zobrazi confirm inform message
          * 
          * @access      public
-         * 
+         * @return      void
          */
         public function index($url)
         {

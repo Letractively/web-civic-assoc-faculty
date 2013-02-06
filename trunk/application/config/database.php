@@ -48,22 +48,12 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-define("LOCAL", true);
 
-if (LOCAL == false) {
-// ---------- SERVER ----------
+
 $db['default']['hostname'] = 'kempelen.ii.fmph.uniba.sk';
 $db['default']['username'] = 'obcania';
 $db['default']['password'] = 'VanitasVanitatum';
 $db['default']['database'] = 'fmfi';
-// ----------------------------
-} else {
-// ---------- LOCAL ----------
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'fmfi'; }
-// ---------------------------
 $db['default']['dbdriver'] = 'mysql';
 //$db['default']['dbprefix'] = 'tis_';
 $db['default']['pconnect'] = TRUE;

@@ -1,4 +1,29 @@
 ﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Controller class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Core
+ * @category            Controller
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 abstract class MY_Controller extends CI_Controller
 {
@@ -13,14 +38,8 @@ abstract class MY_Controller extends CI_Controller
                                             'Nizka'
                                           );
 
-    /*
-     * __construct
-     * 
-     * Konstruktor, ktory sa zavola po nacitani aplikacie, ked sa spusti
-     * tak najprv zavola konstruktor jej nadradenej classy (CI_Controller)
-     * 
-     * @access      private
-     * @return void
+    /**
+     * Constructor
      */
     public function __construct()
     {
@@ -35,7 +54,7 @@ abstract class MY_Controller extends CI_Controller
         $this->load_languages();
     }
     
-    /*
+    /**
      * load_languages
      * 
      * Tato funkcia nacita vsetky potrebne language files z priecinku language
@@ -48,8 +67,7 @@ abstract class MY_Controller extends CI_Controller
      * dostupne, skrz celu aplikaciu, sluzia na logovanie udalosti do databazy
      * 
      * @access      protected
-     * @return void
-     * 
+     * @return      void
      */
     protected function load_languages()
     {
@@ -58,7 +76,7 @@ abstract class MY_Controller extends CI_Controller
         $this->lang->load('db_message',$this->language);
     }
     
-    /*
+    /**
      * recompile_into_array
      * 
      * Tato funkcia prerobi vstupne pole objektov na pole kluc => hodnota, ktore
@@ -66,10 +84,10 @@ abstract class MY_Controller extends CI_Controller
      * daka ciselna hodnota (integer - ID z DB).
      * 
      * @access      protected
-     * @param       array Vstupne pole udajov
-     * @param       key Kluc vo vyslednom zazname
-     * @param       value hodnota premennej vo vyslednom zazname
-     * @return array vysledkov
+     * @param       array $array Vstupne pole udajov
+     * @param       integer $key Kluc vo vyslednom zazname
+     * @param       string $value hodnota premennej vo vyslednom zazname
+     * @return      array vysledkov
      */
     protected function recompile_into_array($array, $key, $value)
     {
@@ -83,18 +101,17 @@ abstract class MY_Controller extends CI_Controller
         return $result;
     }
     
-    /*
+    /**
      * generate_years
      * 
      * Tato funkcia sluzi na vygenerovanie rokov v urcitom casovom useku. Aky
      * velky bude tento casovy usek, zalezi od vstupnych parametrov
      * 
      * @access      protected
-     * @param       back Ciselna hodnota poctu rokov ktore sa vygeneruje od aktualneho roku dozadu 
-     * @param       default pociatocny rok od ktoreho sa budu generovat dopredu a dozadu roky
-     * @param       forward Ciselna hodnota poctu rokov ktore sa vygeneruje od aktualneho roku dopredu
-     * @return Vygenerovane roky
-     * 
+     * @param       integer $back Ciselna hodnota poctu rokov ktore sa vygeneruje od aktualneho roku dozadu 
+     * @param       integer $default pociatocny rok od ktoreho sa budu generovat dopredu a dozadu roky
+     * @param       integer $forward Ciselna hodnota poctu rokov ktore sa vygeneruje od aktualneho roku dopredu
+     * @return      array Vygenerovane roky
      */
     protected function generate_years($back, $default, $forward)
     {
@@ -110,14 +127,14 @@ abstract class MY_Controller extends CI_Controller
         return $result;
     }
     
-    /*
+    /**
      * generete_priorities
      * 
      * Funkcia vygeneruje urcity pocet priorit
      * 
      * @access      protected
-     * @param how_much pocet priorit ktore sa maju vygenerovat
-     * @return Vygenerovane priority
+     * @param       integer $how_much pocet priorit ktore sa maju vygenerovat
+     * @return      array Vygenerovane priority
      */
     protected function generate_priorities( $how_much )
     {
@@ -131,16 +148,15 @@ abstract class MY_Controller extends CI_Controller
         return $result;
     }
     
-    /*
+    /**
      * add
      * 
      * Funkcia vola modelovu funkciu na pridanie zaznamu do databazy
      * 
      * @access      protected
-     * @param method Nazov modelovej funkcie ktora sa ma zavolat
-     * @param submit Hodnota odosielacieho tlacidla
-     * @return void
-     * 
+     * @param       string $method Nazov modelovej funkcie ktora sa ma zavolat
+     * @param       string $submit Hodnota odosielacieho tlacidla
+     * @return      void
      */
     protected function add( $method, $submit = 'submit')
     {
@@ -160,17 +176,16 @@ abstract class MY_Controller extends CI_Controller
         
     }
     
-    /*
+    /**
      * add
      * 
      * Funkcia vola modelovu funkciu na pridanie zaznamu do databazy
      * 
      * @access      protected
-     * @param method Nazov modelovej funkcie ktora sa ma zavolat
-     * @param id vacsinou foreign key na inu tabulku aby boli udaje konzistentne
-     * @param submit Hodnota odosielacieho tlacidla
-     * @return void
-     * 
+     * @param       string $method Nazov modelovej funkcie ktora sa ma zavolat
+     * @param       integer $id vacsinou foreign key na inu tabulku aby boli udaje konzistentne
+     * @param       string $submit Hodnota odosielacieho tlacidla
+     * @return      void
      */
     protected function add_param( $method, $id, $submit = 'submit')
     {
@@ -189,17 +204,16 @@ abstract class MY_Controller extends CI_Controller
         }
     }
     
-    /*
+    /**
      * edit
      * 
      * Funkcia vola prislusnu modelovu funkciu na upravenie zaznamu v databaze
      * 
      * @access      protected
-     * @param method Nazov metody ktora sa ma zavolat
-     * @param id ID zaznamu ktory sa ma upravit
-     * @param submit Hodnota odosielacieho submit buttonu defaultne je submit
-     * @return void
-     * 
+     * @param       string $method Nazov metody ktora sa ma zavolat
+     * @param       integer $id ID zaznamu ktory sa ma upravit
+     * @param       string $submit Hodnota odosielacieho submit buttonu defaultne je submit
+     * @return      void
      */
     protected function edit( $method, $id, $submit = 'submit' )
     {
@@ -223,16 +237,15 @@ abstract class MY_Controller extends CI_Controller
         }   
     }
 
-    /*
+    /**
      * delete
      * 
      * Funkcia vola prislusnu modelovu funkciu na vymazaie zaznamu z databazy
      * 
      * @access      protected
-     * @param method Nazov prislusnej modelovej funkcie ktora sa ma vykonat
-     * @param id ID zaznamu ktory sa ma vymazat
-     * @return void
-     * 
+     * @param       string $method Nazov prislusnej modelovej funkcie ktora sa ma vykonat
+     * @param       integer $id ID zaznamu ktory sa ma vymazat
+     * @return      void
      */
     protected function delete( $method, $id )
     {

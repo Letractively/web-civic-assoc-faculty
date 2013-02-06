@@ -1,4 +1,29 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Posts class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Posts
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Posts extends MY_Controller
 {
@@ -7,14 +32,9 @@ class Posts extends MY_Controller
         protected $per_page             = 10;
         protected $totalRows            = 0;
         
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -27,13 +47,14 @@ class Posts extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne, zobrazi vsetky prispevky
          * 
          * @access      public
-         * 
+         * @param       inteher $page Cislo strany
+         * @return      void 
          */
         public function index($page = 0)
         {
@@ -73,15 +94,14 @@ class Posts extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * detail
          * 
          * Metoda ktora vrati obsah konkretneho prispevku
          * 
          * @access      public
-         * @param post_id ID-prispevku, ktory chceme zobrazit
-         * @return object
-         * 
+         * @param       integer $post_id ID-prispevku, ktory chceme zobrazit
+         * @return      void
          */
         public function detail( $post_id )
         {
@@ -94,13 +114,13 @@ class Posts extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * add
          * 
          * Metoda, ktora prida novy prispevok do DB
          * 
          * @access      public
-         * 
+         * @return      void
          */
         public function add()
         {
@@ -117,14 +137,14 @@ class Posts extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * edit
          * 
          * Metoda, ktora upravi konkretny prispevok
          * 
          * @access      public
-         * @param post_id ID-prispevku, ktory chceme upravit
-         * 
+         * @param       integer $post_id ID-prispevku, ktory chceme upravit
+         * @return      void
          */
         public function edit( $post_id )
         {
@@ -145,14 +165,14 @@ class Posts extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * delete
          * 
          * Metoda, ktora zmaze konkretny prispevok zo systemu
          * 
          * @access      public
-         * @param post_id ID prispevku, ktory chceme vymazat
-         * 
+         * @param       integer $post_id ID prispevku, ktory chceme vymazat
+         * @return      void
          */
         public function delete( $post_id )
         {
@@ -168,15 +188,14 @@ class Posts extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * modifiers
          * 
          * Metoda, ktora vrati zoznam vstekych uzivatelov, ktory modifikovali dany prispevok
          * 
          * @access      public
-         * @param post_id ID prispevku pre ktory to chceme zistit
-         * @return array of objects
-         * 
+         * @param       integer $post_id ID prispevku pre ktory to chceme zistit
+         * @return      array of objects
          */
         public function modifiers( $post_id )
         {

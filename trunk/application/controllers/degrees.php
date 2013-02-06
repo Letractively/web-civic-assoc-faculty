@@ -1,4 +1,29 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Degrees class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Degrees
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Degrees extends MY_Controller
 {
@@ -6,15 +31,9 @@ class Degrees extends MY_Controller
         protected $get_query 		= array();
         protected $per_page             = 3;
         
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         * @return void
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -30,14 +49,13 @@ class Degrees extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne
          * 
          * @access      public
-         * @return void
-         * 
+         * @return      void
          */
         public function index( $page = 0 )
         {   
@@ -49,29 +67,27 @@ class Degrees extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
-        /*
+        /**
          * add
          * 
          * Funkcia prida novy titul do db
          * 
          * @access      public
-         * @return void
-         * 
+         * @return      void
          */
         public function add()
         {     
             parent::add('add_degree', 'operation_add');
         }
         
-        /*
+        /**
          * delete
          * 
          * Funkcia zmeze titul z db
          * 
          * @access      public
-         * @param degree_id ID titulu ktory sa ma vymazat
-         * @return void
-         * 
+         * @param       integer $degree_id ID titulu ktory sa ma vymazat
+         * @return      void
          */
         public function delete( $degree_id )
         {   
@@ -88,14 +104,14 @@ class Degrees extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
-        /*
+        /**
          * edit
          * 
          * Funkcia upravi titul v db
          * 
          * @access      public
-         * @param degree_id ID titulu ktory sa upravi
-         * @return void
+         * @param       integer $degree_id ID titulu ktory sa upravi
+         * @return      void
          */
         public function edit( $degree_id )
         {

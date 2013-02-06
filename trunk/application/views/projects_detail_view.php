@@ -1,4 +1,4 @@
-﻿<?php $obj = $this->selecter->get_project_detail($project_id); ?>
+<?php $obj = $this->selecter->get_project_detail($project_id); ?>
 
 <div id="content_wrapper_medium">
 	<div class="project_name">

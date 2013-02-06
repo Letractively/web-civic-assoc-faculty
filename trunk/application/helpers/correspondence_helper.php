@@ -1,13 +1,38 @@
 ﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
 
-/*
+// ------------------------------------------------------------------------
+
+/**
+ * Correspondence helpers
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Helpers
+ * @category            Correspondence
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
+
+/**
  * updateCorUserList
  * 
  * Funkcia doplni stlpec typ emailu do gridu kde sa nachadza medzi vysledok filtra
  * 
  * @access      public
- * @param users Array of objects s udajmi o useroch ktori vyhovuju filtru
- * @return Vrati upraveny zoznam userov pre grid
+ * @param       array $users Array of objects s udajmi o useroch ktori vyhovuju filtru
+ * @return      array Vrati upraveny zoznam userov pre grid
  * 
  */
 function updateCorUserList($users)

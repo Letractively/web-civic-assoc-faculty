@@ -1,8 +1,32 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ *  Form validation class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Libraries
+ * @category            Form Validation
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
 
 class MY_Form_validation extends CI_Form_validation 
 {  
-        /*
+        /**
          * form_required
          * 
          * Funkcia skontroluje required polozky, ktore boli vyplnene. Vpripade ak
@@ -12,8 +36,8 @@ class MY_Form_validation extends CI_Form_validation
          * elegantne nastylovanie cez css.
          * 
          * @access      public
-         * @param       array
-         * @param       string
+         * @param       array $input
+         * @param       string $value
          * @return      array
          */
         public function form_required( $input = array(), $value = ' error' )
@@ -29,13 +53,13 @@ class MY_Form_validation extends CI_Form_validation
             }
         }
 
-        /*
+        /**
 	 * greater_or_equal_than
 	 *
 	 * @access	public
-	 * @param	str string
-         * @param       min minimalny pocet
-	 * @return	bool
+	 * @param	string $str
+         * @param       integer $min minimalny pocet
+	 * @return	boolean
 	 */
 	public function greater_or_equal_than($str, $min)
 	{
@@ -46,28 +70,28 @@ class MY_Form_validation extends CI_Form_validation
 		return $str >= $min;
 	}
         
-        /*
+        /**
          * valid_date
          * 
          * Funkcia validuje na platny date format
          * 
          * @access	public
-         * @param str String
-         * 
+         * @param       string $str
+         * @return	boolean
          */
         public function valid_date($str)
         {
             return ( ! preg_match('/^[0-9]{2}.[0-9]{2}.[0-9]{4}$/', $str)) ? FALSE : TRUE;
         }
         
-        /*
+        /**
          * valid_datetime
          * 
          * Funkcia validuje na platny datetime format
          * 
          * @access	public
-         * @param str String
-         * 
+         * @param       string $str String
+         * @return	boolean
          */
         public function valid_datetime($str)
         {
@@ -78,8 +102,8 @@ class MY_Form_validation extends CI_Form_validation
 	 * Numeric
 	 *
 	 * @access	public
-	 * @param	str string
-	 * @return	bool
+	 * @param	string $str string
+	 * @return	boolean
 	 */
 	public function numeric($str)
 	{
@@ -87,14 +111,14 @@ class MY_Form_validation extends CI_Form_validation
 
 	}
         
-        /*
+        /**
          * natural_no_zero
          * 
          * Vacsie ako 0 
          * 
          * @access	public
-         * @param str string
-         * 
+         * @param       string $str string
+         * @return	boolean
          */
         public function natural_no_zero($str)
         {

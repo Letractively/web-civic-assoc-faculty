@@ -1,17 +1,36 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Email types class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Email types
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Email_types extends MY_Controller
 {
     
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         * @return void
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -28,55 +47,54 @@ class Email_types extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne
          * 
          * @access      public
-         * @return void
+         * @return      void
          */
         public function index()
         {            
             $this->load->view('container', $this->data);
         }
 
-        /*
+        /**
          * add
          * 
          * Funkcia prida novy typ emailu do db
          * 
          * @access      public
-         * @return void
-         * 
+         * @return      void
          */
         public function add()
         {        
             parent::add('add_email_type', 'operation_add');
         }
 
-        /*
+        /**
          * edit
          * 
          * Funkcia upravi typ emailu v db
          * 
          * @access      public
-         * @param email_type_id ID typu emailu ktory sa upravi
-         * @return void
+         * @param       integer $email_type_id ID typu emailu ktory sa upravi
+         * @return      void
          */
         public function edit( $email_type_id )
         {
             parent::edit('edit_email_type', $email_type_id, 'operation_edit');
         }
 
-        /*
+        /**
          * delete
          * 
          * Funkcia zmeze typ emailu z db
          * 
          * @access      public
-         * @param email_type_id ID typu emailu ktory sa ma vymazat
-         * @return void
+         * @param       integer $email_type_id ID typu emailu ktory sa ma vymazat
+         * @return      void
          */
         public function delete( $email_type_id )
         {     

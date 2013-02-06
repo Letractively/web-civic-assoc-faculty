@@ -1,17 +1,40 @@
 ﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ *  Deleter class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Models
+ * @category            Deleter
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
 
 class Deleter extends MY_Model
 {
-        /*
+        /**
          * remove_degree
          * 
          * Funkcia zmaze z tabulky degrees zaznam a prislusnym zaznamom v tabulke users 
          * nastavi null
          * 
          * @access	public
-         * @param degree_id ID-cko titulu ktory sa ma zmazat
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integeer $degree_id ID-cko titulu ktory sa ma zmazat
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_degree($degree_id)
         {   
@@ -28,16 +51,15 @@ class Deleter extends MY_Model
                 return FALSE;
         }
 
-        /*
+        /**
          * remove_email_type
          * 
          * Funkcia vymaze zaznam z tabulky email_types a prisluchajucim polozkam
          * v tabulke user_email_evidence nastavi null
          * 
          * @access	public
-         * @param e_type_id ID-cko typu emailu ktory sa ma vymazat
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $e_type_id ID-cko typu emailu ktory sa ma vymazat
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_email_type($e_type_id)
         {
@@ -51,15 +73,14 @@ class Deleter extends MY_Model
             else{ return FALSE; }
         }
 
-        /*
+        /**
          * remove_event
          * 
          * Funkcia vymaze zaznam z tabulky events
          * 
          * @access	public
-         * @param ev_id ID-cko eventu ktory sa ma vymazat
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $ev_id ID-cko eventu ktory sa ma vymazat
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_event($ev_id)
         {
@@ -70,15 +91,14 @@ class Deleter extends MY_Model
                 return FALSE;
         }
 
-        /*
+        /**
          * remove_event_category
          * 
          * Funkcia vymaze eventovu kategoriu z databazy
          * 
          * @access	public
-         * @param ev_cat_id ID-cko prave mazanej kategorie
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $ev_cat_id ID-cko prave mazanej kategorie
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_event_category($ev_cat_id)
         {
@@ -92,15 +112,14 @@ class Deleter extends MY_Model
             else{ return FALSE; }
         }
 
-        /*
+        /**
          * remove_payments
          * 
          * Funkcia zmaze zaznam z tabulky payments a k nemu prisluchajuce zaznamy v tabulke fin_redistributes
          * 
          * @access	public
-         * @param payment_id ID-cko platby
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $payment_id ID-cko platby
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_payments($payment_id)
         {
@@ -108,16 +127,15 @@ class Deleter extends MY_Model
             $this->db->query("DELETE FROM payments WHERE payment_id=$payment_id");
         }
 
-        /*
+        /**
          * remove_post
          * 
          * Funkcia vymaze dany prispevok a ak existuju k nemu zaznamy v tabulke 
          * post_modifies tak vymaze aj tie
          * 
          * @access	public
-         * @param post_id ID-cko daneho clanku co sa ma vymazat
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $post_id ID-cko daneho clanku co sa ma vymazat
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_post($post_id)
         {
@@ -127,15 +145,14 @@ class Deleter extends MY_Model
             return TRUE;
         }
 
-        /*
+        /**
          * remove_project
          * 
          * zmaze zaznam z tabulky projects a k nemu prislusne zaznamy z tabulky project_items ak existuju
          * 
          * @access	public
-         * @param pr_id ID-cko projektu
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $pr_id ID-cko projektu
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_project($pr_id)
         {
@@ -144,15 +161,14 @@ class Deleter extends MY_Model
             return TRUE;
         }
 
-        /*
+        /**
          * remove_project_category
          * 
          * Funkcia vymaze  Projektovu kategoriu z databazy
          * 
          * @access	public
-         * @param pr_cat_id ID-cko prave mazanej kategorie
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $pr_cat_id ID-cko prave mazanej kategorie
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_project_category($pr_cat_id)
         {
@@ -199,9 +215,6 @@ class Deleter extends MY_Model
               $this->db->query("UPDATE projects
                                 SET project_project_category_id=NULL 
                                 WHERE project_project_category_id=$pr_cat_id");
-              $this->db->query("UPDATE history_paids
-                                SET history_paids_project_category_id=NULL 
-                                WHERE history_paids_project_category_id=$pr_cat_id");
               $this->db->query("UPDATE fin_category_transactions
                                 SET fin_category_transaction_cat_from_id=NULL 
                                 WHERE fin_category_transaction_cat_from_id=$pr_cat_id");
@@ -217,15 +230,14 @@ class Deleter extends MY_Model
                 return FALSE;
         }
 
-        /*
+        /**
          * remove_project_item
          * 
          * Zmaze zaznam z tabulky project_items
          * 
          * @access	public
-         * @param pr_item_id ID-cko project itemu ktory sa ma zmazat
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $pr_item_id ID-cko project itemu ktory sa ma zmazat
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_project_item($pr_item_id)
         {
@@ -236,15 +248,14 @@ class Deleter extends MY_Model
             else{ return FALSE; }
         }
 
-        /*
+        /**
          * remove_study_program
          * 
          * Funkcia vymaze zaznam z tabulky study_programs a prislusnym hodnotam v users nastavi null
          * 
          * @access	public
-         * @param study_pr_id ID-cko studijneho programu ktory sa ma zmazat
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $study_pr_id ID-cko studijneho programu ktory sa ma zmazat
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
         public function remove_study_program($study_pr_id)
         {
@@ -258,21 +269,17 @@ class Deleter extends MY_Model
             else{ return FALSE; }
         }
 
-        /*
+        /**
          * remove_user
          * 
          * Funkcia vymaze pouzivatela zo systemu
          * 
          * @access	public
-         * @param user_id ID pouzivatela ktory sa ma vymazat
-         * @return Vrati boolean ci sa odstranil dany zaznam
-         * 
+         * @param       integer $user_id ID pouzivatela ktory sa ma vymazat
+         * @return      boolean Vrati boolean ci sa odstranil dany zaznam
          */
          public function remove_user($user_id)
          {
-              $this->db->query("INSERT INTO user_cleans (user_clean_date) VALUES (CURRENT_TIMESTAMP)");
-              $id= $this->db->insert_id();
-
               $this->db->query("DELETE FROM payments
                                 WHERE payment_user_id=$user_id AND payment_accepted = 0");
               
@@ -283,7 +290,6 @@ class Deleter extends MY_Model
               $this->db->query("DELETE FROM user_email_evidence
                                 WHERE user_email_evidence_user_id=$user_id");
 
-
               $this->db->query("UPDATE events
                                 SET event_author_id=NULL 
                                 WHERE event_author_id=$user_id");
@@ -291,9 +297,11 @@ class Deleter extends MY_Model
               $this->db->query("UPDATE project_items
                                 SET project_item_user_id=NULL 
                                 WHERE project_item_user_id=$user_id");
+              
               $this->db->query("UPDATE posts
                                 SET post_author_id=NULL 
                                 WHERE post_author_id=$user_id");
+              
               $this->db->query("UPDATE post_modifies
                                 SET post_modifie_author_id=NULL 
                                 WHERE post_modifie_author_id=$user_id");

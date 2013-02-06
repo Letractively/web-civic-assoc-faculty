@@ -1,15 +1,35 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Project Categories class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Project Categories
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Project_categories extends MY_Controller
 {
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -24,38 +44,40 @@ class Project_categories extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne, zobrazi vsetky kategorie projektov
          * 
+         * @access      public
+         * @return      void
          */
         public function index()
         {
             $this->load->view('container', $this->data); 
         }
 
-        /*
+        /**
          * add
          * 
          * Metoda prida novu kategoriu projektov do systemu
          * 
          * @access      public
-         * 
+         * @return      void 
          */
         public function add()
         {
             parent::add('add_project_category', 'operation_add');
         }
 
-        /*
+        /**
          * detail
          * 
          * Metoda zobrazi podrobnejsie infofmacie o konkretnej projektovej kategorie
          * 
          * @access      public
-         * @param project_category_id ID danej kategorie proejktov
-         * 
+         * @param       integer $project_category_id ID danej kategorie proejktov
+         * @return      void 
          */
         public function detail( $project_category_id )
         {
@@ -73,13 +95,13 @@ class Project_categories extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
-        /*
+        /**
          * add_transaction
          * 
          * Metoda prida novu transakciu do databazy
          * 
          * @access      public
-         * 
+         * @return      void 
          */
         public function add_transaction()
         {
@@ -96,28 +118,28 @@ class Project_categories extends MY_Controller
             }
         }
 
-        /*
+        /**
          * edit
          * 
          * Funkcia upravi danu projektovu kategoriu
          * 
          * @access      public
-         * @param project_category_id ID projektovej kategorie ktore chceme upravit
-         * 
+         * @param       integer $project_category_id ID projektovej kategorie ktore chceme upravit
+         * @return      void 
          */
         public function edit( $project_category_id )
         {
             parent::edit('edit_project_category', $project_category_id, 'operation_edit');
         }
 
-        /*
+        /**
          * delete
          * 
          * Funkcia vymaze z databazy projektovu kategoriu
          * 
          * @access      public
-         * @param project_category_id ID projektovej kategorie ktoru chceme zmazat
-         * 
+         * @param       integer $project_category_id ID projektovej kategorie ktoru chceme zmazat
+         * @return      void 
          */
         public function delete( $project_category_id )
         {

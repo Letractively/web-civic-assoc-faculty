@@ -1,4 +1,4 @@
-﻿<script type="text/javascript" charset="UTF-8">
+<script type="text/javascript" charset="UTF-8">
 	var base_url = '<?=base_url()?>';
 
 	function changeFilter(sender)
@@ -65,6 +65,7 @@
             $grid->header('user_name')->text = $this->lang->line('label_name');
             $grid->header('study_program_name')->text = $this->lang->line('label_study_program_id');
             $grid->header('user_degree_year')->text = $this->lang->line('label_degree_year');
+			$grid->header('user_postcode')->text = $this->lang->line('label_postcode');
             
             if( $this->userdata->is_admin() )
             {	

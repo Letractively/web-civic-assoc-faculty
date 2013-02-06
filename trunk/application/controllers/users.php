@@ -1,4 +1,29 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Users class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Users
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Users extends MY_Controller
 {
@@ -11,12 +36,8 @@ class Users extends MY_Controller
     protected $per_page             = 20;
     protected $totalRows            = 0;
     
-    /*
+    /**
      * Constructor
-     * 
-     * @access      private
-     * @return      void
-     * 
      */
     function __construct() 
     {
@@ -35,8 +56,8 @@ class Users extends MY_Controller
      * index
      * 
      * @access      public
+     * @param       integer $page aktualne cislo strany
      * @return      void
-     * 
      */
     public function index( $page = 0 )
     {
@@ -64,8 +85,8 @@ class Users extends MY_Controller
      * Funkcia vrati vsetkych adminov
      * 
      * @access      public
-     * @param page cislo aktualnej strany
-     * 
+     * @param       integer $page cislo aktualnej strany 
+     * @return      void
      */
     public function admins( $page = 0 )
     {
@@ -93,8 +114,8 @@ class Users extends MY_Controller
      * Funkcia vrati vsetkych clenov zdruzenia
      * 
      * @access      public
-     * @param page cislo aktualnej strany
-     * 
+     * @param       integer $page cislo aktualnej strany
+     * @param       void
      */
     public function members( $page = 0 )
     {
@@ -122,8 +143,8 @@ class Users extends MY_Controller
      * Funkcia vrati vsetkych potencialnych clenov
      * 
      * @access      public
-     * @param page cislo aktualnej strany
-     * 
+     * @param       integer $page cislo aktualnej strany
+     * @return      void
      */
     public function potentials( $page = 0 )
     {
@@ -153,8 +174,8 @@ class Users extends MY_Controller
      * Funkcia vrati vsetkych cakajucich clenov
      * 
      * @access      public
-     * @param page cislo aktualnej strany
-     * 
+     * @param       integer $page cislo aktualnej strany
+     * @return      void
      */
     public function innactive( $page = 0 )
     {
@@ -184,8 +205,8 @@ class Users extends MY_Controller
      * Funkcia vrati vsetkych zablokovanych clenov
      * 
      * @access      public
-     * @param page cislo aktualnej strany
-     * 
+     * @param       integer $page cislo aktualnej strany
+     * @return      void
      */
     public function blocked( $page = 0 )
     {
@@ -215,8 +236,8 @@ class Users extends MY_Controller
      * Funkcia vrati detajl pouzivatela
      * 
      * @access      public
-     * @param user_id ID pouzivatela
-     * 
+     * @param       integer $user_id ID pouzivatela
+     * @return      void
      */
     public function detail( $user_id )
     {
@@ -239,7 +260,7 @@ class Users extends MY_Controller
      * Funkcia prida noveho pouzivatela do databazi
      * 
      * @access      public
-     * 
+     * @return      void
      */
     public function add()
     {
@@ -296,7 +317,8 @@ class Users extends MY_Controller
      * Funkcia upravi daneho pouzivatela
      * 
      * @access      public
-     * @param user_id ID pouzivatela
+     * @param       integer $user_id ID pouzivatela
+     * @return      void
      */
     public function edit( $user_id )
     {
@@ -370,8 +392,8 @@ class Users extends MY_Controller
      * Funkcia vymaze daneho pouzivatela z databazi
      * 
      * @access      public
-     * @param user_id ID pozivatela
-     * 
+     * @param       integer $user_id ID pozivatela
+     * @return      void
      */
     public function delete( $user_id )
     {

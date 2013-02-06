@@ -17,7 +17,7 @@ $config = array(
         array(
             'field'     => 'username',
             'label'     => 'lang:label_username',
-            'rules'     => 'trim|required|xss_clean'
+            'rules'     => 'trim|required|xss_clean|is_unique[users.user_username]'
         ),
         array(
             'field'     => 'password',
@@ -32,7 +32,7 @@ $config = array(
         array(
             'field'     => 'email',
             'label'     => 'lang:label_email',
-            'rules'     => 'trim|required|xss_clean|is_unique[users.user_email]|valid_email'
+            'rules'     => 'trim|required|xss_clean|valid_email'
         ),
         array(
             'field'     => 'phone',
@@ -428,7 +428,7 @@ $config = array(
         array(
             'field'     => 'username',
             'label'     => 'lang:label_username',
-            'rules'     => 'trim|required|xss_clean'
+            'rules'     => 'trim|required|xss_clean|is_unique[users.user_username]'
         ),
         array(
             'field'     => 'password',
@@ -443,7 +443,7 @@ $config = array(
         array(
             'field'     => 'email',
             'label'     => 'lang:label_email',
-            'rules'     => 'trim|required|xss_clean|is_unique[users.user_email]|valid_email'
+            'rules'     => 'trim|required|xss_clean|valid_email'
         ),
         array(
             'field'     => 'phone',

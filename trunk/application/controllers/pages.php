@@ -1,25 +1,49 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Pages class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Pages
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Pages extends MY_Controller
 {
     
-        /*
-         * __construct
-         * 
-         * Konstruktor triedy
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
             $this->load->model('selecter');
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne
          * 
+         * @access public
+         * @param string $page_name Meno stranky
          */
         public function index($page_name = 'rules')
         {
@@ -49,12 +73,12 @@ class Pages extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
-        /*
+        /**
          * edit
          * 
          * Funkcia upravy danu stranku
          * 
-         * @param page_name meno stranky ktore sa ma upravit
+         * @param string $page_name meno stranky ktore sa ma upravit
          * 
          */
         public function edit( $page_name )

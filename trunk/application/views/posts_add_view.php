@@ -1,9 +1,8 @@
-﻿<div id="content_wrapper">
+<div id="content_wrapper_large">
 
 	<div class="errors">
 		<?php
 		echo validation_errors();
-		//array_debug($programs) 
 		?>
 	</div>
 
@@ -27,12 +26,12 @@
             }
             ?>
         </div> 
-        <?= form_textarea(array('name' => 'content', 'id' => 'textarea', 'class' => 'textarea_data' . $error['content']), set_value('content')) ?>
+        <?= form_textarea(array('name' => 'content', 'id' => 'textarea', 'class' => 'textarea_data3' . $error['content']), set_value('content')) ?>
     </div>  
 
     <div class="inputitem">
         <p class="label"><label for="post_published" ><?= $this->lang->line('published') ?></label> </p>
-        <?= form_checkbox(array('value' => '1', 'name' => 'post_published', 'class' => 'post_published', 'id' => 'post_published','onchange'=>'zmenstav()')) ?>
+        <?= form_checkbox(array('value' => '0', 'name' => 'post_published', 'class' => 'post_published', 'id' => 'post_published','onchange'=>'zmenstav()')) ?>
     </div>
 
     <div class="inputitem">

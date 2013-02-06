@@ -1,8 +1,41 @@
 ﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ *  Updater class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Models
+ * @category            Updater
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
 
 class Updater extends MY_Model
 {
-        public function edit_degree($degree_id, $values)
+        /**
+         * edit_degree
+         * 
+         * Funkcia upravi zaznam v tabulke degrees
+         * 
+         * @param       integer $degree_id ID zaznamu, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_degree( $degree_id, $values )
         {
             $this->db->query("UPDATE degrees SET degree_name='".$values['degree_name']."',
                                                   degree_grade='".$values['degree_grade']."'
@@ -13,17 +46,35 @@ class Updater extends MY_Model
               return FALSE;
         }
 
-        public function edit_email_type($e_type_id, $values)
+        /**
+         * edit_email_type
+         * 
+         * Funkcia upravi zaznam v tabulke email_types
+         * 
+         * @param       integer $e_type_id ID zaznamu, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_email_type( $e_type_id, $values )
         {
               $this->db->query("UPDATE email_types SET email_type_name='".$values['email_type_name']."'
                                 WHERE email_type_id=$e_type_id");
-          if($this->db->affected_rows()>0)
+          if( $this->db->affected_rows() > 0 )
             return TRUE;
           else
               return FALSE;
         }
 
-        public function edit_event($ev_id, $values)
+        /**
+         * edit_event
+         * 
+         * Funkcia upravi zaznam v tabulke events
+         * 
+         * @param       integer $ev_id ID zaznamu, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_event( $ev_id, $values )
         {
             $this->db->query("UPDATE events 
                               SET event_event_category_id='".$values['event_category_id']."', 
@@ -34,25 +85,43 @@ class Updater extends MY_Model
                                   event_about='".$values['about']."'
                               WHERE event_id=$ev_id");
 
-          if($this->db->affected_rows()>0)
+          if( $this->db->affected_rows()> 0 )
             return TRUE;
           else
               return FALSE;
         }
 
-        public function edit_event_category($ev_cat_id, $values)
+        /**
+         * edit_event_category
+         * 
+         * Funkcia upravi zaznam v tabulke event_categories
+         * 
+         * @param       integer $ev_cat_id ID zaznamu, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_event_category( $ev_cat_id, $values )
         {
             $this->db->query("UPDATE event_categories
                               SET event_category_name='".$values['event_category_name']."'
                               WHERE event_category_id=$ev_cat_id");
 
-          if($this->db->affected_rows() > 0)
+          if( $this->db->affected_rows() > 0 )
             return TRUE;
           else
               return FALSE;
         }
 
-        public function edit_page_text($page_name, $values)
+        /**
+         * edit_page_text
+         * 
+         * Funkcia upravi zaznam v tabulke pages
+         * 
+         * @param       string $page_name meno stranky, ktora sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_page_text( $page_name, $values )
         {
             $text = $values['page_text'];
             $column = 'page_'.$page_name;
@@ -60,13 +129,24 @@ class Updater extends MY_Model
                                 SET ".$column."='".$text."'
                                 WHERE '".$column."'='".$column."'
                              ");
-            if($this->db->affected_rows()>0)
+            if( $this->db->affected_rows() > 0 )
                return TRUE;
             else
                 return FALSE; 
         }
 
-        public function edit_payments($payment_id, $values)
+        /**
+         * edit_payments
+         * 
+         * Funkcia upravi zaznam v tabulke payments ak ju pouziva administrator.
+         * Ak ju pouziva niekto iny ale aj administrator tak sa upravia jedine 
+         * zaznamy v tabulke fin_redistributes.
+         * 
+         * @param       integer $payment_id ID zaznamu, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_payments( $payment_id, $values )
         {
             if( $this->userdata->is_admin() )
                 $this->db->query("  UPDATE payments
@@ -86,7 +166,20 @@ class Updater extends MY_Model
                 return FALSE;
         }
     
-        public function edit_payments_payment($payment_id, $values)
+        /**
+         * edit_payments_payment
+         * 
+         * Funkcia zmeni platbu na uhradenu, nastavi aktualny datum ako casovu
+         * peciatku danemu userovi, ktory platbu posielal. Tymto sa pouzivatelovi
+         * aktivuje clenske. Dana suma penazi sa v pomere akom zadal pouzivatel
+         * rozdeli medzi jednotlive projektove kategorie. Ked sa tak stane tak 
+         * sa vymazu zaznamy z fin_redistributes kedze uz niesu potrebne.
+         * 
+         * @param       integer $payment_id ID zaznamy, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z POSTu
+         * @return      void
+         */
+        public function edit_payments_payment( $payment_id, $values )
         {
             $this->db->query(" UPDATE payments
                                SET payment_accepted = 1
@@ -136,7 +229,17 @@ class Updater extends MY_Model
             }
         }
 
-        public function edit_post($post_id, $values)
+        /**
+         * edit_post
+         * 
+         * Funkcia upravi zaznam v tabulke posts a prida novy zaznam do tabulky
+         * post_modifiers o tom ze bola vykonana daka zmena a kto ju vykonal.
+         * 
+         * @param       integer $post_id ID zaznamu ktory sa ma upravit
+         * @param       array $values Vstupne udaje z POST-u
+         * @return      boolean
+         */
+        public function edit_post( $post_id, $values )
         {
             $this->db->query("UPDATE posts
                               SET post_priority='".$values['priority']."',
@@ -157,7 +260,16 @@ class Updater extends MY_Model
               return FALSE;
         }
 
-        public function edit_project($pr_id, $values)
+        /**
+         * edit_project
+         * 
+         * Funkcia upravi zaznam v tabulke projects
+         * 
+         * @param       integer $pr_id ID zaznamu, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_project( $pr_id, $values )
         {
             $this->db->query("UPDATE projects
                               SET project_name='".$values['name']."',
@@ -170,25 +282,43 @@ class Updater extends MY_Model
                               WHERE project_id=$pr_id
                                   ");
 
-          if($this->db->affected_rows()>0)
+          if( $this->db->affected_rows > 0 )
             return TRUE;
           else
               return FALSE;
         }
 
-        public function edit_project_category($pr_cat_id, $values)
+        /**
+         * edit_project_category
+         * 
+         * Funkcia upravi zaznam v tabulke project_categories
+         * 
+         * @param       integer $pr_cat_id ID zaznamu, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_project_category( $pr_cat_id, $values )
         {
             $this->db->query("UPDATE project_categories
                               SET project_category_name='".$values['project_category_name']."'
                               WHERE project_category_id=$pr_cat_id
                                   ");
 
-          if($this->db->affected_rows()>0)
+          if( $this->db->affected_rows() > 0 )
               return TRUE;
           else
               return FALSE;
         }
 
+        /**
+         * edit_project_category_transactions
+         * 
+         * Funkcia upravi penaznu hodnotu na danych kategoriach. Z jednej kategorie
+         * pripise peniaze na druhu kategoriu.
+         * 
+         * @param       array $values Vstupne udaje z POST-u
+         * @return      boolean
+         */
         public function edit_project_category_transactions($values)
         {
             $this->db->query("UPDATE project_categories
@@ -205,7 +335,17 @@ class Updater extends MY_Model
                 return FALSE;
         }
 
-        public function edit_project_closed($pr_id)
+        /**
+         * edit_project_closed
+         * 
+         * Funkcia uzavre projekt. A odpise sumu ktora bola pouzita na polozky
+         * projektu z celkovej sumy ktora je na projektovej kategorie pod ktoru
+         * patri dany projekt.
+         * 
+         * @param       type $pr_id ID zaznamu ktory sa ma upravit
+         * @return      void
+         */
+        public function edit_project_closed( $pr_id )
         {
             $q = $this->db->query(" SELECT sum(project_item_price) as project_item_total_price
                                     FROM project_items
@@ -219,7 +359,7 @@ class Updater extends MY_Model
                                                   ");
             $projectCategoryID = $q->row()->project_project_category_id;
 
-            if(isset($totalProjectPrice))
+            if( isset($totalProjectPrice) )
             {
                 $this->db->query("UPDATE project_categories
                                   SET project_category_cash = project_category_cash - $totalProjectPrice
@@ -232,7 +372,16 @@ class Updater extends MY_Model
                              ");
         }
 
-        public function edit_project_item($pr_item_id, $values)
+        /**
+         * edit_project_item
+         * 
+         * Funkcia upravi zaznam v tabulke project_items
+         * 
+         * @param       integer $pr_item_id ID zaznamu, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_project_item( $pr_item_id, $values )
         {
             $this->db->query("UPDATE project_items
                               SET project_item_name='".$values['name']."',
@@ -242,25 +391,51 @@ class Updater extends MY_Model
                               WHERE project_item_id=$pr_item_id
                                   ");
 
-          if($this->db->affected_rows()>0) 
+          if( $this->db->affected_rows() > 0 ) 
             return TRUE;
           else
               return FALSE;
         }
 
-        public function edit_study_program($study_pr_id, $values)
+        /**
+         * edit_study_program
+         * 
+         * Funkcia upravi zaznam v tabulke study_programs
+         * 
+         * @param       integer $study_pr_id ID zaznamu, ktory sa ma upravit
+         * @param       array $values Vstupne udaje z postu
+         * @return      boolean
+         */
+        public function edit_study_program( $study_pr_id, $values )
         {
-              $this->db->query("UPDATE study_programs SET study_program_name='".$values['study_program_name']."'
+              $this->db->query("UPDATE study_programs 
+                                SET study_program_name='".$values['study_program_name']."'
                                 WHERE study_program_id=$study_pr_id");
-          if($this->db->affected_rows()>0)
+          if( $this->db->affected_rows() > 0 )
             return TRUE;
           else
               return FALSE;
         }
 
-        public function edit_user($user_id, $values)
+        /**
+         * edit_user
+         * 
+         * Funkcia upravi zaznam v tabulke users nasledovne. Ak je vyplnene heslo
+         * tak sa danemu userovi zmeni heslo. Ak nie nic sa nedeje ostava mu stare.
+         * Ak si udaje upravuje sam pouzivatel tak sa vykona zmena v tabulke users
+         * na danom zazname. Ak vsak zmenu vykonava administrator, ktory zmeni
+         * pouzivatelsku rolu pouzivatelovi pricom tato pouzivatelska rola by bola
+         * zmenena na rolu Clen zdruzenia pricom by mal uhradit aj clenske tak
+         * administrator moze vyplnit aj sumu, variabilny symbol a prerozdelenie
+         * financii.
+         * 
+         * @param integer $user_id ID zaznamu ktory sa ma upravit
+         * @param array $values Vstupne udaje z POST-u
+         * @return boolean
+         */
+        public function edit_user( $user_id, $values )
         {
-              if($values['password'] != '')
+              if( $values['password'] != '' )
               {
                   $this->db->query("UPDATE users 
                                     SET user_password=sha1('".$values['password']."')
@@ -304,10 +479,11 @@ class Updater extends MY_Model
                                     user_role='".$values['role']."',
                                     user_exempted='".$is_exempted."',
                                     user_activated=NULL    
-                                WHERE user_id=$user_id");
-                  if( $values['role'] == 2 && isset($values['checkbox']) )
+                                WHERE user_id=$user_id
+								");
+                  if( $values['role'] == 2 && $values['checkbox'] = 1 )
                   {
-                        $this->db->query("  INSERT INTO payments
+                       $this->db->query("  INSERT INTO payments
                                             (payment_vs, payment_total_sum, payment_user_id, payment_type)
                                             VALUES
                                             ('".$values['vs']."','".$values['total_sum']."', '".$user_id."', 1)

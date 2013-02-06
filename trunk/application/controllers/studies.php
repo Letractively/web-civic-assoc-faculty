@@ -1,15 +1,36 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Studies class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Studies
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Studies extends MY_Controller
 {
     
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -24,54 +45,54 @@ class Studies extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne
          * 
          * @access      public
-         * 
+         * @return      void
          */
         public function index()
         {
             $this->load->view('container', $this->data);
         }
 
-        /*
+        /**
          * add
          * 
          * Funkcia prida novy studijny program do db
          * 
          * @access      public
-         * 
+         * @return      void
          */
         public function add()
         {
            parent::add('add_study_program', 'operation_add');
         }
 
-        /*
+        /**
          * edit
          * 
          * Funkcia upravi studijny program v db
          * 
          * @access      public
-         * @param study_id ID studijneho programu ktory sa upravi
-         * 
+         * @param       integer $study_id ID studijneho programu ktory sa upravi
+         * @return      void
          */
         public function edit( $study_id )
         {
             parent::edit('edit_study_program', $study_id, 'operation_edit');
         }
 
-        /*
+        /**
          * delete
          * 
          * Funkcia zmeze studijny program z db
          * 
          * @access      public
-         * @param study_id ID studijneho programu ktory sa ma vymazat
-         * 
+         * @param       integer $study_id ID studijneho programu ktory sa ma vymazat
+         * @return      void
          */
         public function delete( $study_id )
         {

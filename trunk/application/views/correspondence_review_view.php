@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $this->load->library('grid');
 $this->load->helper('correspondence');
 
