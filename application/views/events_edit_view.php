@@ -1,6 +1,3 @@
-﻿<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/dhtmlxcalendar.css" />
-<link rel="stylesheet" type="text/css" href="../../../assets/js/calendar/skins/dhtmlxcalendar_omega.css" />
-<script src="../../../assets/js/calendar/dhtmlxcalendar.js"></script>
 <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/js/calendar/dhtmlxcalendar.css" />
 <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/js/calendar/skins/dhtmlxcalendar_omega.css" />
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/calendar/dhtmlxcalendar.js"></script>

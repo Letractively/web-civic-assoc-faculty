@@ -1,16 +1,35 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Projects class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Projects
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Projects extends MY_Controller
 {    
-        /*
-         * __constructor
-         * 
-         * Konstruktor triedy
-         * 
-         * @access      public
-         * @return      void
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -23,12 +42,12 @@ class Projects extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * @access      public
+         * @param       integer  $pr_cat_id Cislo strany
          * @return      void
-         * 
          */
 	public function index($pr_cat_id = 0)
         {
@@ -39,12 +58,12 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * Funkcia vrati detajl daneho projektu
          * 
          * @access      public
-         * @param project_id ID projektu ktoreho detajl chceme ziskat
-         * 
+         * @param       integer $project_id ID projektu ktoreho detajl chceme ziskat
+         * @return      void
          */
         public function detail($project_id)
         {
@@ -58,13 +77,13 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * add
          * 
          * Funkcia prida novy projekt do databazi
          * 
          * @access      public
-         * 
+         * @return      void
          */
         public function add()
         {
@@ -79,14 +98,14 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
-        /*
+        /**
          * add_project_item
          * 
          * Funkcia prida novu polozku projektu do databazi
          * 
          * @access      public
-         * @param project_id ID projektu ku ktoremu chceme pridat danu polozku
-         * 
+         * @param       integer $project_id ID projektu ku ktoremu chceme pridat danu polozku
+         * @return      void
          */
         public function add_project_item( $project_id )
         {
@@ -112,14 +131,14 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * edit
          * 
          * Funkcia upravi projekt
          * 
          * @access      public
-         * @param project_id ID projektu ktori chceme upravit
-         * 
+         * @param       integer $project_id ID projektu ktori chceme upravit
+         * @return      void
          */
         public function edit( $project_id )
         {
@@ -141,15 +160,15 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
-        /*
+        /**
          * edit_project_item
          * 
          * Funkcia upravi polozku projektu
          * 
          * @access      public
-         * @param project_id ID projektu
-         * @param project_item_id ID polozky
-         * 
+         * @param       integer $project_id ID projektu
+         * @param       integer $project_item_id ID polozky
+         * @return      void
          */
         public function edit_project_item($project_id, $project_item_id )
         {
@@ -176,14 +195,14 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
-        /*
+        /**
          * edit_project_closed
          * 
          * Funkcia uzavre projekt
          * 
          * @access      public
-         * @param project_id ID projektu
-         * 
+         * @param       integer $project_id ID projektu
+         * @return      void
          */
         public function edit_project_closed( $project_id )
         {
@@ -192,14 +211,14 @@ class Projects extends MY_Controller
             redirect($this->router->class.'/detail/'.$project_id);
         }
 
-        /*
+        /**
          * delete
          * 
          * Funkcia zmaze projekt
          * 
          * @access      public
-         * @param project_id ID projektu
-         * 
+         * @param       integer $project_id ID projektu
+         * @return      void
          */
         public function delete( $project_id )
         {
@@ -215,15 +234,15 @@ class Projects extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
         
-        /*
+        /**
          * delete_project_item
          * 
          * Funkcia zmaze polozku projektu
          * 
          * @access      public
-         * @param project_id ID projektu
-         * @param project_item_id ID projektovej polozky
-         * 
+         * @param       integer $project_id ID projektu
+         * @param       integer $project_item_id ID projektovej polozky
+         * @return      void
          */
         public function delete_project_item( $project_id, $project_item_id)
         {

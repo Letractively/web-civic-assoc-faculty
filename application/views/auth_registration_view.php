@@ -1,4 +1,4 @@
-﻿<div id="content_wrapper_small">
+<div id="content_wrapper_small">
 	
 	<div class="errors">
 		<?php 

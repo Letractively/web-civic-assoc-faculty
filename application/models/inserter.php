@@ -1,7 +1,38 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
 
+// ------------------------------------------------------------------------
+
+/**
+ *  Inserter class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Models
+ * @category            Inserter
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
 class Inserter extends MY_Model
 {
+    /**
+     * add_degree
+     * 
+     * Funkcia prida novy zaznam do tabulky degrees
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_degree($values)
     {
         $this->db->query("INSERT INTO degrees
@@ -14,6 +45,15 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
+    /**
+     * add_email_log
+     * 
+     * Funkcia prida novy zaznam do tabulky user_email_evidence
+     * 
+     * @param       integer $email_typ_id ID typu emaila
+     * @param       integer $user_ids zoznam IDciek pouzivatelov
+     * @return      boolean
+     */
     public function add_email_log($email_typ_id, $user_ids)
     {
        foreach($user_ids as $user_id){
@@ -28,6 +68,14 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
+    /**
+     * add_email_type
+     * 
+     * Funkcia prida novy zaznam do tabulky email_types
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_email_type($values)
     {
         $this->db->query("INSERT INTO email_types
@@ -40,6 +88,14 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
+    /**
+     * add_event
+     * 
+     * Funkcia prida novy zaznam do tabulky events
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_event($values)
     {
          $this->db->query("INSERT INTO events
@@ -53,6 +109,14 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
+    /**
+     * add_event_category
+     * 
+     * Funkcia prida novy zaznam do tabulky event_categories
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_event_category($values)
     {
         $this->db->query("INSERT INTO event_categories
@@ -65,6 +129,16 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
+    /**
+     * add_payments
+     * 
+     * Funkcia zaeviduje novu platbu do tabulky payments a taktiez vykona zapis
+     * do tabulky fin_redistributes kde zapise v akom pomere sa maju rozdelit
+     * peniaze od pouzivatelov
+     * 
+     * @param       array $values
+     * @return      boolean
+     */
     public function add_payments($values)
     {
         if(isset($values['payment_type']))
@@ -90,6 +164,14 @@ class Inserter extends MY_Model
             return FALSE;
     }
     
+    /**
+     * add_post
+     * 
+     * Funkcia prida novy zaznam do tabulky posts
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_post( $values )
     {
         $this->db->query("INSERT INTO posts
@@ -104,6 +186,14 @@ class Inserter extends MY_Model
             return FALSE;
     }
     
+    /**
+     * add_project
+     * 
+     * Funkcia prida novy zaznam do tabulky projects
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_project($values)
     {
       $this->db->query("INSERT INTO projects
@@ -116,6 +206,14 @@ class Inserter extends MY_Model
           return FALSE;
     }
     
+    /**
+     * add_project_category
+     * 
+     * Funkcia prida novy zaznam do tabulky project_categories
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_project_category($values)
     {
         $this->db->query("INSERT INTO project_categories
@@ -128,6 +226,14 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
+    /**
+     * add_project_item
+     * 
+     * Funkcia prida novy zaznam do tabulky project_items
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_project_item($pr_id, $values)
     {
        $this->db->query("INSERT INTO project_items
@@ -140,10 +246,28 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
+    /**
+     * add_register
+     * 
+     * Funkcia prida novy zaznam do tabulky users ak sa v nej este nevyskytuje 
+     * z pohladu registacie na frontende. Ak sa dany pouzivatel s emailov 
+     * adresou uz nachadza v databaze tak sa iba aktualizuju jeho udaje a prida 
+     * sa nova platba do tabulky payments a prerozdelenie jeho penazi do tabulky 
+     * fin_redistributes.
+     * 
+     * @param       array $param Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_register($param)
     {
-        $q  = $this->db->query("SELECT user_id FROM users WHERE user_username = '".$param['username']."' AND user_role = 3");
-        $q2 = $this->db->query("SELECT user_username FROM users WHERE user_username = '".$param['username']."' AND user_role != 3");
+        $q  = $this->db->query("SELECT user_id FROM users WHERE user_name = '".$param['name']."' AND 
+                                                                user_surname = '".$param['surname']."' AND 
+                                                                user_email = '".$param['email']."' AND
+                                                                user_role = 3");
+        $q2 = $this->db->query("SELECT user_username FROM users WHERE user_name = '".$param['name']."' AND 
+                                                                user_surname = '".$param['surname']."' AND 
+                                                                user_email = '".$param['email']."' AND
+                                                                user_role != 3");
         $user_id = 0;
         if( $q->num_rows() > 0)
         {
@@ -166,7 +290,7 @@ class Inserter extends MY_Model
         }   
         else
         {
-            if($q2->row()->user_username != $param['username'])
+            if($q2->row()->user_email != $param['email'])
             {
                 $this->db->query("  INSERT INTO users 
                                 (user_name, user_surname, user_role, user_username, user_password, user_email, user_phone,
@@ -201,6 +325,14 @@ class Inserter extends MY_Model
             return $this->db->query($q);
     }
     
+    /**
+     * add_study_program
+     * 
+     * Funkcia prida novy zaznam do tabulky study_programs
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_study_program($values)
     {
         $this->db->query("INSERT INTO study_programs
@@ -213,6 +345,14 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
+    /**
+     * add_transaction
+     * 
+     * Funkcia prida novy zaznam do tabulky fin_category_transactions
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_transaction($values)
     {
         $this->db->query("INSERT INTO fin_category_transactions
@@ -226,11 +366,30 @@ class Inserter extends MY_Model
       else{ return FALSE;}
     }
     
+    /**
+     * add_user
+     * 
+     * Funkcia sluzi na manualne pridanie noveho zaznam do tabulky users ak sa 
+     * v nej este nevyskytuje z administratorskeho rozhrania. Ak sa dany 
+     * s emailov adresou uz nachadza v databaze tak sa iba aktualizuju jeho udaje 
+     * prida sa nova platba do tabulky payments a prerozdelenie jeho penazi do 
+     * tabulky fin_redistributes. Uzivatel taktiez moze byt oslobodeny od platenia
+     * clenskeho v pripade ak tak ucini administrator stranky. V takom pripade sa
+     * pridanie zaznamu do payments a fin_redistributes ignoruje.
+     * 
+     * @param       array $values Vstupne údaje z POSTu
+     * @return      boolean
+     */
     public function add_user( $values )
     {
-        $q  = $this->db->query("SELECT user_id FROM users WHERE user_username = '".$values['username']."' AND user_role = 3");
-        $q2 = $this->db->query("SELECT user_username FROM users WHERE user_username = '".$values['username']."' AND user_role != 3");
-        $user_id = 0;
+        $q  = $this->db->query("SELECT user_id FROM users WHERE user_name = '".$param['name']."' AND 
+                                                                user_surname = '".$param['surname']."' AND 
+                                                                user_email = '".$param['email']."' AND
+                                                                user_role = 3");
+        $q2 = $this->db->query("SELECT user_username FROM users WHERE user_name = '".$param['name']."' AND 
+                                                                user_surname = '".$param['surname']."' AND 
+                                                                user_email = '".$param['email']."' AND
+                                                                user_role != 3");$user_id = 0;
         $is_exempted = 0;
         
         if( $q->num_rows() > 0 )
@@ -254,7 +413,7 @@ class Inserter extends MY_Model
         }
         else
         {
-            if( $q2->row()->user_username != $values['username'] )
+            if( $q2->row()->user_email != $values['email'] )
             {
                 switch( $values['role'] )
                 {

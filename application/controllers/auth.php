@@ -1,17 +1,35 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Auth class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Auth
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
 
 class Auth extends MY_Controller
 {
  
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         * @return void
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -25,7 +43,7 @@ class Auth extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne
@@ -42,7 +60,7 @@ class Auth extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
-        /*
+        /**
          * registration
          * 
          * Tato funkcia registruje navstevnika stranky do systemu obcianskeho
@@ -52,7 +70,6 @@ class Auth extends MY_Controller
          * 
          * @access      public
          * @return      void
-         * 
          */
         public function registration()
         {
@@ -92,14 +109,13 @@ class Auth extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data)); 
         }
 
-        /*
+        /**
          * login
          * 
          * Funkcia prihlasi navstevnika stranky do aplikacie
          * 
          * @access      public
-         * @return void
-         *    
+         * @return      void   
          */
         public function login()
         {
@@ -129,14 +145,13 @@ class Auth extends MY_Controller
            redirect('auth');
         }
 
-        /*
+        /**
          * logout
          * 
          * Funkcia odhlasi pouzivatela z aplikacie
          * 
          * @access      public
-         * @return void
-         * 
+         * @return      void
          */
         public function logout()
         {
@@ -146,15 +161,14 @@ class Auth extends MY_Controller
             redirect(base_url());
         }
         
-        /*
+        /**
          * reset_password
          * 
          * Funkcia zresetuje heslo pouzivatela  a posle mu nove na emailovu adresu
          * uvedenu pri registracii
          * 
          * @access      public
-         * @return void
-         * 
+         * @return      void
          */
         public function reset_password()
         {
@@ -182,7 +196,6 @@ class Auth extends MY_Controller
             
             $this->load->view('container', array_merge($this->data, $data)); 
         }
-
 }
 
 /* End of file auth.php */

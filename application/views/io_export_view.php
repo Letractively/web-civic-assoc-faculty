@@ -1,5 +1,3 @@
-﻿
-
 <?php
 	$tables = array(
 		array('id' => 'users', 'name' => $this->lang->line('users')),

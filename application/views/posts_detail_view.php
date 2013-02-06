@@ -1,6 +1,5 @@
-﻿<?php
+<?php
 $obj = $this->selecter->get_post_detail($post_id);
-//array_debug($obj);
 ?>
 
 <div id="content_wrapper_large">

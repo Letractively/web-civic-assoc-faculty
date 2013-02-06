@@ -1,30 +1,45 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
 
+// ------------------------------------------------------------------------
+
+/**
+ * Administration class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Adinistration
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
 class Administration extends MY_Controller
 {
-    
-        /*
-         * __construct
-         * 
-         * Konstruktor triedy
-         * 
-         * @access      private
-         * @return void
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {           
             parent::__construct();
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne
          * 
          * @access      public
-         * @return void
-         * 
+         * @return      void
          */
         public function index()
         {
@@ -36,7 +51,6 @@ class Administration extends MY_Controller
                 'view' => "{$this->router->class}_view",
 		'title' => 'Administrácia'
             );
-			
             $this->load->view('container', array_merge($this->data, $data));
         }
 }

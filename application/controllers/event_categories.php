@@ -1,17 +1,36 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Event Categories class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            Event Categories
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Event_categories extends MY_Controller
 {
     
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         * @return void
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -28,58 +47,54 @@ class Event_categories extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne
          * 
          * @access      public
-         * @return void
-         * 
+         * @return      void
          */
         public function index()
         {       
             $this->load->view('container', $this->data);   
         }
 
-        /*
+        /**
          * add
          * 
          * Funkcia prida novy typ eventovej kategorie do db
          * 
          * @access      public
-         * @return void
-         * 
+         * @return      void
          */
         public function add()
         {        
             parent::add('add_event_category', 'operation_add'); 
         }
 
-        /*
+        /**
          * edit
          * 
          * Funkcia upravi typ eventovej kategorie v db
          * 
          * @access      public
-         * @param event_category_id ID typ eventovej kategorie ktora sa upravi
-         * @return void
-         * 
+         * @param       integer $event_category_id ID typ eventovej kategorie ktora sa upravi
+         * @return      void
          */
         public function edit( $event_category_id )
         {
             parent::edit('edit_event_category', $event_category_id, 'operation_edit'); 
         }
 
-        /*
+        /**
          * delete
          * 
          * Funkcia zmeze typ eventovej kategorie z db
          * 
          * @access      public
-         * @param event_category_id ID typu eventovej kategorie ktora sa ma vymazat
-         * @return void
-         * 
+         * @param       integer $event_category_id ID typu eventovej kategorie ktora sa ma vymazat
+         * @return      void
          */
         public function delete( $event_category_id )
         {

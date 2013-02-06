@@ -192,7 +192,7 @@
                             
                             echo '<div class="inputitem">';
                                 echo '<p class="label"> <label for="email_message">'.$this->lang->line('email_message').'</label></p>';
-                                echo form_textarea(array('name' => 'email_message', 'id' => 'email_message', 'class' => 'input_data_date' ), set_value('email_message', $this->lang->line('default_email')));
+                                echo form_textarea(array('name' => 'email_message', 'id' => 'email_message', 'class' => 'textarea_data5' ), set_value('email_message', $this->lang->line('default_email')));
                             echo '</div>';
                         echo '</div>';
                     ?><br />

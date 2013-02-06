@@ -1,4 +1,4 @@
-﻿<div id="grid_wrapper">
+<div id="grid_wrapper">
 	<p class="project_label"> <?= $this->lang->line('label_together').': '.round($this->selecter->get_project_categories_total_cash(),2).' €'; ?> </p>
 
 	<?php

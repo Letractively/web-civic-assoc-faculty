@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -8,9 +8,6 @@
   	<meta name="keywords" content="obcianske zdruzenie, exkurzie, FMFI, uniba" />
         <meta name="author" content="TIS: Tutifruty Team" />
         <title><?= $title ?></title>
-        <link href="../../../assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
-        <link href="<?= base_url(); ?>../assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
-        <link href="<?= base_url(); ?>/assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
         <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
         <script type="text/javascript" src="<?= base_url(); ?>assets/js/custom.js"></script>

@@ -1,4 +1,29 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ *  Message class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Libraries
+ * @category            Message
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Message
 {
@@ -8,25 +33,19 @@ class Message
         public $class   = '';
         public $langs   = array();
 
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access	private
-         * @return void
+        /**
+         * Constructor
          */
         public function __construct(){}
         
-        /*
+        /**
          * load_lang
          * 
          * Metoda nacita jazykove popisky pre tlacidla
          * 
          * @access	private
-         * @param lang_array Vstupom je pole jazykovych popiskov, pole obsahuje jeden alebo dva lang popisky
-         * @return void
-         * 
+         * @param       array $lang_array Vstupom je pole jazykovych popiskov, pole obsahuje jeden alebo dva lang popisky
+         * @return      void
          */
         private function load_lang($lang_array)
         {
@@ -36,14 +55,14 @@ class Message
             }
         }
         
-        /*
+        /**
          * generate_buttons
          * 
          * Metoda vygeneruje ovladacie buttony do message
          * 
          * @access	private
-         * @param type Typ spravy, na jeho zaklade sa vygeneruju vhodne buttony
-         * @return void
+         * @param       string $type Typ spravy, na jeho zaklade sa vygeneruju vhodne buttony
+         * @return      void
          */
         private function generate_buttons( $type )
         {
@@ -64,50 +83,49 @@ class Message
             }
         }
         
-        /*
+        /**
          * set_title
          * 
          * Funkcia nastavi titulok pre správu
          * 
          * @access	private
-         * @param title Titulok ktory sa ma zobrazit
-         * @return void
+         * @param       string $title Titulok ktory sa ma zobrazit
+         * @return      void
          */
         private function set_title( $title )
         {
             echo $title;
         }
         
-        /*
+        /**
          * set_image
          * 
          * Funkcia nastavi piktogrami do spravy
          * 
          * @access	private
-         * @param type Typ o aku spravu sa jedna
-         * @return void
-         * 
+         * @param       string $type Typ o aku spravu sa jedna
+         * @return      void
          */
         private function set_image( $type )
         {
             switch ($type) {
                 case 'delete':
-                    echo '<img src="'.base_url().'../assets/img/confirm_delete.png" id="confirm_image" />';
+                    echo '<img src="'.base_url().'assets/img/confirm_delete.png" id="confirm_image" />';
                     break;
                 case 'inform':
-                    echo '<img src="'.base_url().'../assets/img/confirm_inform.png" id="confirm_image" />';
+                    echo '<img src="'.base_url().'assets/img/confirm_inform.png" id="confirm_image" />';
                     break;
             }
         }
         
-        /*
+        /**
          * set_class
          * 
          * Funkcia nastavi meno triedy odkial bola volana
          * 
          * @access	private
-         * @param suffix url fragment
-         * @return void
+         * @param       string $suffix url fragment
+         * @return      void
          */
         private function set_class( $suffix )
         {
@@ -115,32 +133,32 @@ class Message
             $this->class = $result[0];
         }
         
-        /*
+        /**
          * set_text
          * 
          * Funkcia nastavi text, ktory sa ma zobrazit v tele spravy
          * 
          * @access	private
-         * @param text Text ktory sa ma vypisat
-         * @return void
+         * @param       string $text Text ktory sa ma vypisat
+         * @return      void
          */
         private function set_text( $text )
         {
             echo '<p class="set_text">'.$text.'</p>';
         }
         
-        /*
+        /**
          * generate_message
          * 
          * Metoda vygeneruje spravu
          * 
          * @access	public
-         * @param type Typ spravy
-         * @param text Text, ktory sa ma vypisat
-         * @param suffix Url fragment
-         * @param title Titulok spravy
-         * @param langs Jazykove popisky pre buttony
-         * @return object typu sprava
+         * @param       string $type Typ spravy
+         * @param       string $text Text, ktory sa ma vypisat
+         * @param       string $suffix Url fragment
+         * @param       string $title Titulok spravy
+         * @param       array $langs Jazykove popisky pre buttony
+         * @return      object Objekt typu sprava
          */
         public function generate_message( $type, $text, $suffix, $title, $langs )
         {

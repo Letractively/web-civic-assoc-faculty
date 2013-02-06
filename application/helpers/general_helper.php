@@ -1,15 +1,39 @@
 ﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
 
-/*
+// ------------------------------------------------------------------------
+
+/**
+ *  General helper
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Helpers
+ * @category            General
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
+
+/**
  * array_debug
  * 
  * Debugovacia funkcia, ktora sluzi na kontrolny vypis vysledku z DB, vrati formatovany vypis pola
  * 
  * @access      public
- * @param arr Array of objects alebo string je vstupnym parametrom
- * @param return ak je true tak sa nic nevypise
- * @return array
- * 
+ * @param       mixed $arr Array of objects alebo string je vstupnym parametrom
+ * @param       boolean $return ak je true tak sa nic nevypise
+ * @return      array
  */
 function array_debug($arr, $return = false)
 {
@@ -30,21 +54,20 @@ function array_debug($arr, $return = false)
     }
 }
 
-/*
+/**
  * gen_dropdown
  * 
  * Funkcia vygeneruje uhladne dropdown menu zo vstupneho pola, ktorym moze byt array of obejcts
  * alebo array of array
  * 
- * @param name name atribut pre form_dropdown
- * @param id_selected ID aktualne selektnutej polozky z menu
- * @param data vstupne pole udajov
- * @param id_index key v poli
- * @param value_index value ktora prislucha danemu key
- * @param css_class n�zov class selektora pre css, defaultne sa nepou��va
- * @param attributes dodato�n� atrib�ty pre element, zad�vaju sa vo forme stringu formou 'atribut1="hodnota1", atribut2="hodnota2", ...'
- * @return form_dropdown menu
- *  
+ * @param string $name name atribut pre form_dropdown
+ * @param integer $id_selected ID aktualne selektnutej polozky z menu
+ * @param array $data vstupne pole udajov
+ * @param integer $id_index key v poli
+ * @param integer $value_index value ktora prislucha danemu key
+ * @param string $css_class n�zov class selektora pre css, defaultne sa nepou��va
+ * @param string $attributes dodato�n� atrib�ty pre element, zad�vaju sa vo forme stringu formou 'atribut1="hodnota1", atribut2="hodnota2", ...'
+ * @return array form_dropdown menu
  */
 function gen_dropdown($name, $id_selected, $data, $id_index, $value_index, $css_class = '', $attributes = '')
 {
@@ -68,13 +91,13 @@ function gen_dropdown($name, $id_selected, $data, $id_index, $value_index, $css_
 	else return form_dropdown($name, $options, $id_selected, $attributes);
 }
 
-/*
+/**
  * year
  * 
  * Funkcia vrati iba ciselnu podobu roku
  * 
- * @param date datetime v tvare xx.xx.xxxx xx:xx:xx
- * @return rok
+ * @param string $date datetime v tvare xx.xx.xxxx xx:xx:xx
+ * @return string rok
  */
 function year($date){
     $input 		= explode(' ', $date);
@@ -83,13 +106,13 @@ function year($date){
     return $output;
 }
 
-/*
+/**
  * day_month
  * 
  * Funkcia vrati iba ciselnu podobu dna a mesiaca
  * 
- * @param date datetime v tvare xx.xx.xxxx xx:xx:xx
- * @return den a mesiac
+ * @param string $date datetime v tvare xx.xx.xxxx xx:xx:xx
+ * @return string den a mesiac
  */
 function day_month($date){
     $input 		= explode(' ', $date);
@@ -98,15 +121,14 @@ function day_month($date){
     return $output;
 }
 
-/*
+/**
  * datetime
  * 
  * Funkcia vrati formatovany datum z datetime v tvare xx.xx.xxxx ak je druhy parameter TRUE tak vrati aj cas 
  * 
- * @param datetime datum vo formate xxxx-xx-xx
- * @param all ak je true vrati aj cas
+ * @param string $datetime datum vo formate xxxx-xx-xx
+ * @param boolean $all ak je true vrati aj cas
  * @return datetime
-
  */
 function datetime($datetime, $all = TRUE)
 {
@@ -120,14 +142,13 @@ function datetime($datetime, $all = TRUE)
 	return $output;
 }
 
-/*
+/**
  * time_withou_seconds
  * 
  * Funkcia vrati cas bez sekund
  * 
- * @param input datetime vo formate xxxx-xx-xx xx:xx:xx
- * @return Cas bez sekund
- * 
+ * @param string $input datetime vo formate xxxx-xx-xx xx:xx:xx
+ * @return string Cas bez sekund
  */
 function time_withou_seconds($input)
 {
@@ -135,28 +156,26 @@ function time_withou_seconds($input)
     return substr($time[1], 0, strlen($time[1])-3);
 }
 
-/*
+/**
  * perex_from_content
  * 
  * Funkcia vrati cast textu zo vstupneho stringu
  * 
- * @param input vstupny retazec ktory ma byt skrateny na dlzky 165znakov
- * @return 165znakovy uvodny text
- * 
+ * @param string $input vstupny retazec ktory ma byt skrateny na dlzky 165znakov
+ * @return string 165znakovy uvodny text
  */
 function perex_from_content($input)
 {
     return parse_bbcode(substr($input, 0, 165));
 }
 
-/*
+/**
  * format_date
  * 
  * Funkcia naformatuje datum z formatu xx.xx.xxxx na xxxx-xx-xx
  * 
- * @param input date vo formate xx.xx.xxxx
- * @return naformatovany datum
- * 
+ * @param string $input date vo formate xx.xx.xxxx
+ * @return string naformatovany datum
  */
 function format_date($input)
 {
@@ -164,15 +183,14 @@ function format_date($input)
     return $date[2].'-'.$date[1].'-'.$date[0];
 }
 
-/*
+/**
  * format_datetime
  * 
  * Funkcia vrati naformatovanz datetime aky je standartny tvar pre databazu. Tj
  * xxxx-xx-xx xx:xx:xx
  * 
- * @param input slovensky datetime v tvare xx.xx.xxxx xx:xx
- * @return naformatovany datetime
- * 
+ * @param string $input slovensky datetime v tvare xx.xx.xxxx xx:xx
+ * @return string naformatovany datetime
  */
 function format_datetime($input)
 {
@@ -181,15 +199,14 @@ function format_datetime($input)
     return $date[2].'-'.$date[1].'-'.$date[0].' '.$dateAndTime[1].':00';
 }
 
-/*
+/**
  * pagination
  * 
  * Funkcia vlozi url odkazy strankovania do wrapera, ktory ju obali a takyto obsah
  * vrati spat.
  * 
- * @param pagination url odkazy spolu so strong formatom
- * @return strankovanie
- * 
+ * @param array $pagination url odkazy spolu so strong formatom
+ * @return array strankovanie
  */
 function pagination( $pagination )
 {

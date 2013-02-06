@@ -1,4 +1,4 @@
-﻿<div id="content_wrapper_small">
+<div id="content_wrapper_small">
 	<?= form_open("{$this->router->class}/{$this->router->method}"); ?>
 	<div class="inputitem">
 		<span class="label"> <label for="email" class=" <?= $error['email'] ?>"><?= $this->lang->line('label_email') ?> : </label> </span>

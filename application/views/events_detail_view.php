@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     $obj = $this->selecter->get_event_detail($event_id);    
     $date = datetime($obj->event_created, FALSE);
     $time = time_withou_seconds(datetime($obj->event_created, TRUE));

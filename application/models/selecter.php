@@ -1,16 +1,38 @@
 ﻿<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
 
+// ------------------------------------------------------------------------
+
+/**
+ *  Selecter class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Models
+ * @category            Selecter
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
 class Selecter extends MY_Model
 {
-        /*
+        /**
          * get_category_detail
          * 
          * Funkcia vrati detailne informacie o projektovej kategorie
          * 
          * @access	public
-         * @param cat_id ID ID-kategorie ktorej podrobnosti chceme ziskat
-         * @return Vrati objekt typu detajl projektovej kategorie
-         * 
+         * @param       integer $cat_id ID ID-kategorie ktorej podrobnosti chceme ziskat
+         * @return      object Vrati objekt typu detajl projektovej kategorie
          */
         public function get_category_detail($cat_id)
         {
@@ -26,15 +48,14 @@ class Selecter extends MY_Model
                 return $q->row();   
         }
 
-        /*
+        /**
          * get_degrees
          * 
          * Funkcia vrati vsetky polozky z tabulky degrees
          * 
          * @access	public
-         * @param       grid Ci budu udaje v gride alebo nie
-         * @return      Vrati array of objects titulov
-         * 
+         * @param       boolean $grid Ci budu udaje v gride alebo nie
+         * @return      array Vrati array of objects titulov
          */
         public function get_degrees($grid = false)
         {
@@ -47,15 +68,14 @@ class Selecter extends MY_Model
                 return $q->result();
         }
 
-        /*
+        /**
          * get_email_types
          * 
          * Funkcia vrati vsetky polozky z databazy
          * 
          * @access	public
-         * @param       grid Ci budu udaje v gride alebo nie
-         * @return      Vrati array of objects emailovych typov
-         * 
+         * @param       boolean $grid Ci budu udaje v gride alebo nie
+         * @return      array Vrati array of objects emailovych typov
          */
         public function get_email_types($grid = false)
         {
@@ -68,15 +88,14 @@ class Selecter extends MY_Model
                 return $q->result();
         }
 
-        /*
+        /**
          * get_event_categories
          * 
          * Funkcia vrati vsetky polozky z databazy
          * 
          * @access	public
-         * @param       grid Ci budu udaje v gride alebo nie
-         * @return      Vrati array of objects eventovych kategorii
-         * 
+         * @param       boolean $grid Ci budu udaje v gride alebo nie
+         * @return      array Vrati array of objects eventovych kategorii
          */
         public function get_event_categories($grid = false)
         {
@@ -87,15 +106,14 @@ class Selecter extends MY_Model
                 else return $q->result();
         }
         
-        /*
+        /**
          * get_event_detail
          * 
          * Funkcia vrati podrobne informacie o danom evente
          * 
          * @access	public
-         * @param       event_id ID-eventu o ktorom chceme ziskat detajl
-         * @return      Vrati objekt typu detajl udalosti
-         * 
+         * @param       integer $event_id ID-eventu o ktorom chceme ziskat detajl
+         * @return      object Vrati objekt typu detajl udalosti
          */
         public function get_event_detail($event_id)
         {
@@ -115,18 +133,17 @@ class Selecter extends MY_Model
             return $q->row();
         }
         
-        /*
+        /**
          * get_events
          * 
          * Funkcia vrati vsetky eventy danej kategorie z databazy
          * 
          * @access	public
-         * @param       per_page Pocet udalosti kolko sa ich ma zobrazit na stranu
-         * @param       cur_page Aktualna strana
-         * @param       cat_id ID-cko kategorie ktorej eventy chceme zobrazit
-         * @param       grid Ci budu udaje v gride alebo nie
-         * @return      Vrati array of objects udalosti
-         * 
+         * @param       integer $per_page Pocet udalosti kolko sa ich ma zobrazit na stranu
+         * @param       integer $cur_page Aktualna strana
+         * @param       integer $cat_id ID-cko kategorie ktorej eventy chceme zobrazit
+         * @param       boolean $grid Ci budu udaje v gride alebo nie
+         * @return      array Vrati array of objects udalosti
          */
         public function get_events( $per_page = 0, $cur_page = 0, $cat_id = 0, $grid = false )
         {
@@ -157,18 +174,17 @@ class Selecter extends MY_Model
            }
         }
         
-        /*
+        /**
          * get_events_newest
          * 
          * Funkcia vrati vsetky eventy danej kategorie z databazy usporiadane od najnovsich po najstarsie
          * 
          * @access	public
-         * @param       per_page Pocet udalosti kolko sa ich ma zobrazit na stranu
-         * @param       cur_page Aktualna strana
-         * @param       cat_id ID-cko kategorie ktorej eventy chceme zobrazit
-         * @param       grid Ci budu udaje v gride alebo nie
-         * @return      Vrati array of objects najnovsich udalosti
-         * 
+         * @param       integer $per_page Pocet udalosti kolko sa ich ma zobrazit na stranu
+         * @param       integer $cur_page Aktualna strana
+         * @param       integer $cat_id ID-cko kategorie ktorej eventy chceme zobrazit
+         * @param       boolean $grid Ci budu udaje v gride alebo nie
+         * @return      array Vrati array of objects najnovsich udalosti
          */
         public function get_events_newest( $per_page = 0, $cur_page = 0, $cat_id, $grid = false )
         {
@@ -199,18 +215,17 @@ class Selecter extends MY_Model
            }
         }
 
-        /*
+        /**
          * get_events_prior
          * 
          * Funkcia vrati vsetky eventy danej kategorie z databazy usporiadane podla priority od najvyssej po najnizsiu
          * 
          * @access	public
-         * @param       per_page Pocet udalosti kolko sa ich ma zobrazit na stranu
-         * @param       cur_page Aktualna strana
-         * @param       cat_id ID-cko kategorie ktorej eventy chceme zobrazit
-         * @param       grid Ci budu udaje v gride alebo nie
-         * @return      Vrati array of objects udalosti podla priority
-         * 
+         * @param       integer $per_page Pocet udalosti kolko sa ich ma zobrazit na stranu
+         * @param       integer $cur_page Aktualna strana
+         * @param       integer $cat_id ID-cko kategorie ktorej eventy chceme zobrazit
+         * @param       boolean $grid Ci budu udaje v gride alebo nie
+         * @return      array Vrati array of objects udalosti podla priority 
          */
         public function get_events_prior( $per_page = 0, $cur_page = 0, $cat_id, $grid = false )
         {
@@ -241,17 +256,16 @@ class Selecter extends MY_Model
            }
         }
 
-        /*
+        /**
          * get_fin_redistribution
          * 
          * Funkcia ziska z DB vsetky informacie o tom ako maju byt prerozdelene 
          * peniaze
          * 
          * @access	public
-         * @param       payment_id ID-platby ktorej sa to tyka
-         * @param       pr_cat_id ID-cko kategorie
-         * @return      Vrati array of objects financnej redistribucie penazi
-         * 
+         * @param       integer $payment_id ID-platby ktorej sa to tyka
+         * @param       integer $pr_cat_id ID-cko kategorie
+         * @return      array Vrati array of objects financnej redistribucie penazi
          */
         public function get_fin_redistribution($payment_id,$pr_cat_id)
         {
@@ -262,15 +276,14 @@ class Selecter extends MY_Model
             return $q->result();
         }
         
-        /*
+        /**
          * get_login
          * 
          * Funkcia ziska ID a rolu prihlasovaneho pouzivatela
          * 
          * @access	public
-         * @param       param Informacie vratene POST-om
-         * @return      Vrati objekt typu pouzivatel(user_id,user_role)
-         * 
+         * @param       array $param Informacie vratene POST-om
+         * @return      object Vrati objekt typu pouzivatel(user_id,user_role)
          */
         public function get_login( $param )
         {
@@ -282,15 +295,14 @@ class Selecter extends MY_Model
             return $q->row();
         }
         
-        /*
+        /**
          * get_page
          * 
          * Funkcia ziska zobrazovani text na danej podstranke
          * 
          * @access	public
-         * @param       view nazov podstranky
-         * @return      Vrati objekt typu page
-         * 
+         * @param       string $view nazov podstranky
+         * @return      object Vrati objekt typu page
          */
         public function get_page($view)
         {
@@ -302,15 +314,14 @@ class Selecter extends MY_Model
             return $q->row();
         }
 
-        /*
+        /**
          * get_payment_detail
          * 
          * Funkcia ziska vsetky informacie o detajle platby
          * 
          * @access	public
-         * @param       payment_id ID-cko platby ktorej udaje chceme ziskat
-         * @return      Vrati objekt typu detajl platby
-         * 
+         * @param       integer $payment_id ID-cko platby ktorej udaje chceme ziskat
+         * @return      object Vrati objekt typu detajl platby
          */
         public function get_payment_detail($payment_id)
 	{
@@ -328,18 +339,17 @@ class Selecter extends MY_Model
             return $payment;
 	}
     
-        /*
+        /**
          * get_payments
          * 
          * Funkcia vrati vsetky platby alebo vsteky platby daneho usera
          * 
          * @access	public
-         * @param       per_page Pocet platieb zobrazenych na stranu
-         * @param       cur_page Aktualna strana
-         * @param       user_id ID-cko pouzivatela ktoreho platby chceme ziskat
-         * @param       grid Default false. Ci chceme udaje zobrazit v gride alebo nie
-         * @return      Vrati array of objects platieb
-         * 
+         * @param       integer $per_page Pocet platieb zobrazenych na stranu
+         * @param       integer $cur_page Aktualna strana
+         * @param       integer $user_id ID-cko pouzivatela ktoreho platby chceme ziskat
+         * @param       boolean $grid Default false. Ci chceme udaje zobrazit v gride alebo nie
+         * @return      array Vrati array of objects platieb
          */
         public function get_payments( $per_page = 0, $cur_page = 0, $user_id, $grid = false)
         {
@@ -371,15 +381,14 @@ class Selecter extends MY_Model
             }
         }
 
-        /*
+        /**
          * get_payments_lastpaid
          * 
          * Funkcia vrati poslednu platbu daneho usera
          * 
          * @access	public
-         * @param       user_id ID usera ktoreho platbu chceme ziskat
-         * @return      Vrati objekt typu posledna uhradena clenska platba
-         * 
+         * @param       integer $user_id ID usera ktoreho platbu chceme ziskat
+         * @return      object Vrati objekt typu posledna uhradena clenska platba
          */
          public function get_payments_lastpaid($user_id)
          {
@@ -394,18 +403,17 @@ class Selecter extends MY_Model
                 return $q->row();
         }
 
-        /*
+        /**
          * get_payments_nopaid
          * 
          * Funkcia vrati vsetky nezaplatene platby alebo vsteky nezaplatene platby daneho usera
          * 
          * @access	public
-         * @param       per_page Pocet platieb zobrazenych na stranu
-         * @param       cur_page Aktualna strana
-         * @param       user_id ID-cko pouzivatela ktoreho platby chceme ziskat
-         * @param       grid Default false. Ci chceme udaje zobrazit v gride alebo nie
-         * @return      Vrati array of objects nezaplatenych platieb
-         * 
+         * @param       integer $per_page Pocet platieb zobrazenych na stranu
+         * @param       integer $cur_page Aktualna strana
+         * @param       integer $user_id ID-cko pouzivatela ktoreho platby chceme ziskat
+         * @param       boolean $grid Default false. Ci chceme udaje zobrazit v gride alebo nie
+         * @return      array Vrati array of objects nezaplatenych platieb
          */
         public function get_payments_nopaid( $per_page = 0, $cur_page = 0, $user_id, $grid = false )
         {
@@ -435,18 +443,17 @@ class Selecter extends MY_Model
                             else return $q->result();
         }
 
-        /*
+        /**
          * get_payments_paid
          * 
          * Funkcia vrati vsetky zaplatene platby alebo vsteky zaplatene platby daneho usera
          * 
          * @access	public
-         * @param       per_page Pocet platieb zobrazenych na stranu
-         * @param       cur_page Aktualna strana
-         * @param       user_id ID-cko pouzivatela ktoreho platby chceme ziskat
-         * @param       grid Default false. Ci chceme udaje zobrazit v gride alebo nie
-         * @return      Vrati array of objects zaplatenych platieb
-         * 
+         * @param       integer $per_page Pocet platieb zobrazenych na stranu
+         * @param       integer $cur_page Aktualna strana
+         * @param       integer $user_id ID-cko pouzivatela ktoreho platby chceme ziskat
+         * @param       boolean $grid Default false. Ci chceme udaje zobrazit v gride alebo nie
+         * @return      array Vrati array of objects zaplatenych platieb
          */
         public function get_payments_paid( $per_page = 0, $cur_page = 0, $user_id, $grid = false )
         {
@@ -480,15 +487,14 @@ class Selecter extends MY_Model
                 return $q->result();
         }
     
-        /*
+        /**
          * get_post_detail
          * 
          * Funkcia vrati detail o danom prispevku
          * 
          * @access	public
-         * @param       post_id ID prispevku ktoreho deily chceme ziskat
-         * @return      Vrati objekt typu detajl prispevku
-         * 
+         * @param       integer $post_id ID prispevku ktoreho deily chceme ziskat
+         * @return      object Vrati objekt typu detajl prispevku
          */
         public function get_post_detail($post_id)
         {
@@ -506,15 +512,14 @@ class Selecter extends MY_Model
                  return $q->row();
         }
 
-        /*
+        /**
          * get_post_modifiers
          * 
          * Funkcia vrati vsetkych pouzivatelov ktori modifikovali dani prispevok
          * 
          * @access	public
-         * @param       post_id ID prispevku ktorych modifikatorov chceme ziskat
-         * @return      Vrati array of objects modifikatorov daneho prispevku
-         * 
+         * @param       integer $post_id ID prispevku ktorych modifikatorov chceme ziskat
+         * @return      array Vrati array of objects modifikatorov daneho prispevku
          */
         public function get_post_modifiers($post_id)
         {
@@ -531,17 +536,16 @@ class Selecter extends MY_Model
                  return $q->result();
         }
 
-        /*
+        /**
          * get_posts
          * 
          * Funkcia vrati vsetky prispevky
          * 
          * @access	public
-         * @param       per_page Pocet prispevkov zobrazenych na stranu
-         * @param       cur_page Aktualna strana
-         * @param       unpublished Default false. Ziskavame publikovane alebo nepublikovane clanky
-         * @return      Vrati array of objects vsetkych prispevkov
-         * 
+         * @param       integer $per_page Pocet prispevkov zobrazenych na stranu
+         * @param       integer $cur_page Aktualna strana
+         * @param       boolean $unpublished Default false. Ziskavame publikovane alebo nepublikovane clanky
+         * @return      array Vrati array of objects vsetkych prispevkov
          */
         public function get_posts( $per_page = 0, $cur_page = 0, $unpublished = false )
         {
@@ -585,13 +589,13 @@ class Selecter extends MY_Model
                  return $q->result();
         }
     
-        /*
+        /**
          * get_project_categories
          * 
          * Funkcia vrati vsetky projektove kategorie z databazy
          * 
          * @access	public
-         * @return      Vrati array of objects projektovych kategorii
+         * @return      array Vrati array of objects projektovych kategorii
          */
         public function get_project_categories($grid = false)
         {
@@ -608,14 +612,13 @@ class Selecter extends MY_Model
                     else return $q->result();
         }
 
-        /*
+        /**
          * get_project_categories_total_cash
          * 
          * Funkcia vrati celkovu sumu na kategoriach
          * 
          * @access	public
-         * @return      Vrati objekt typu suma na projektovej kategorii
-         * 
+         * @return      array Vrati objekt typu suma na projektovej kategorii
          */
         public function get_project_categories_total_cash()
         {
@@ -625,15 +628,14 @@ class Selecter extends MY_Model
                 return $q->row()->total_sum;
         }
         
-        /*
+        /**
          * get_project_detail
          * 
          * Funkcia vrati vsetky informacie o danom projekte
          * 
          * @access	public
-         * @param       project_id ID projektu ktoreho informacie chceme
-         * @return      Vrati objekt typu detajl projektu
-         * 
+         * @param       integer $project_id ID projektu ktoreho informacie chceme
+         * @return      object Vrati objekt typu detajl projektu
          */
         public function get_project_detail($project_id)
         {
@@ -650,16 +652,15 @@ class Selecter extends MY_Model
                 return $q->result();
         }
 
-        /*
+        /**
          * get_project_items
          * 
          * Funkcia vrati vsetky polozky ktore sa viazu na dany projekt
          * 
          * @access	public
-         * @param       project_id ID projektu
-         * @param       grid Default false, zalezi kam chceme vysledok zobrazit
-         * @return      Vrati array of objects projektovych poloziek
-         * 
+         * @param       integer $project_id ID projektu
+         * @param       integer $grid Default false, zalezi kam chceme vysledok zobrazit
+         * @return      array Vrati array of objects projektovych poloziek
          */
         public function get_project_items( $project_id, $grid = false )
         {
@@ -676,16 +677,15 @@ class Selecter extends MY_Model
                     return $q->result();
         }
     
-        /*
+        /**
          * get_projects
          * 
          * Funkcia vrati vsetky projekty danej kategorie
          * 
          * @access	public
-         * @param       cat_id ID-kategorie
-         * @param       grid Default false, pojednava ci sa maju zobrazit do gridu
-         * @return      Vrati array of objects projektov
-         * 
+         * @param       integer $cat_id ID-kategorie
+         * @param       boolean $grid Default false, pojednava ci sa maju zobrazit do gridu
+         * @return      array Vrati array of objects projektov
          */
         public function get_projects($cat_id, $grid = false)
         {
@@ -718,15 +718,14 @@ class Selecter extends MY_Model
                     else return $q->result();
         }
 
-        /*
+        /**
          * get_study_programs
          * 
          * Funkcia vrati vsetky polozky z databazy
          * 
          * @access	public
-         * @param       grid default false, hovori otocm ci sa maju polozky zobrazit do gridu
-         * @return      array of objects studijnych programov
-         * 
+         * @param       boolean $grid default false, hovori otocm ci sa maju polozky zobrazit do gridu
+         * @return      array Array of objects studijnych programov
          */
         public function get_study_programs($grid = false)
         {
@@ -737,15 +736,14 @@ class Selecter extends MY_Model
                     else return $q->result();    
         }
         
-        /*
+        /**
          * get_transactions
          * 
          * Funkcia vrati vsetky tranzakcie ktore boli vykonane and danou kategoriou
          * 
          * @access	public
-         * @param       pr_cat_id ID kateogire ktorej sa to tyka
-         * @return      Vrati array of objects tranzakcii na kategoriach
-         * 
+         * @param       integer $pr_cat_id ID kateogire ktorej sa to tyka
+         * @return      array Vrati array of objects tranzakcii na kategoriach
          */
         public function get_transactions($pr_cat_id)
         {
@@ -780,15 +778,14 @@ class Selecter extends MY_Model
                 return $q1->result();
         }
 
-        /*
+        /**
          * get_user_detail
          * 
          * Funkcia vrati vsetky informacie o danom pouzivatelovi
          * 
          * @access	public
-         * @param       user_id ID pouzivatela
-         * @return      Vrati array of object detajlu na pouzivatela
-         * 
+         * @param       integer $user_id ID pouzivatela
+         * @return      array Vrati array of object detajlu na pouzivatela
          */
         public function get_user_detail($user_id)
         {
@@ -815,18 +812,17 @@ class Selecter extends MY_Model
 			return $q->result();
 		}
     
-        /*
+        /**
          * get_users
          * 
          * Funkcia vrati vsetky polozky z databazy z tabulky pouzivatelov
          * 
          * @access	public
-         * @param       per_page celkovy pocet zaznamov
-         * @param       cur_page aktualna strana
-         * @param       role Pouzivatelska rola
-         * @param       grid Defaultne je false. Hovori o tom ci sa maju udaje zobrazit do gridu
-         * @return      Vrati array of objects pouzivatelov
-         * 
+         * @param       integer $per_page celkovy pocet zaznamov
+         * @param       integer $cur_page aktualna strana
+         * @param       integer $role Pouzivatelska rola
+         * @param       boolean $grid Defaultne je false. Hovori o tom ci sa maju udaje zobrazit do gridu
+         * @return      array Vrati array of objects pouzivatelov
          */
         public function get_users( $per_page = 0, $cur_page = 0, $role, $grid = false )
         {
@@ -893,15 +889,14 @@ class Selecter extends MY_Model
                 return $q->result();
         }
         
-        /*
+        /**
          * get_users_filter
          * 
          * Funkcia vrati userom ktori vzhovuju filtracnzm podmienkam
          * 
          * @access	public
-         * @param       values Informacie ktoru vrati POST
-         * @return      Vrati array of objects vyfiltrovanych pouzivatelov
-         * 
+         * @param       array $values Informacie ktoru vrati POST
+         * @return      array Vrati array of objects vyfiltrovanych pouzivatelov 
          */
         public function get_users_filter($values)
         {
@@ -1025,16 +1020,15 @@ class Selecter extends MY_Model
             }
         }
         
-        /*
+        /**
          * get_users_filter_on_payments
          * 
          * Funkcia vrati vyfiltrovanych userov nazakalde ci uhradili alebo neuhradili clensky poplatok
          * 
          * @access	public
-         * @param       users Array of objects pouzivatelov
-         * @param       paymenent_value Suma penazi
-         * @return      Vrati array of objects vyfiltrovanych pouzivatelov aj s platbami
-         * 
+         * @param       array $users Array of objects pouzivatelov
+         * @param       integer $paymenent_value Suma penazi
+         * @return      array Vrati array of objects vyfiltrovanych pouzivatelov aj s platbami
          */
         public function get_users_filter_on_payments($users, $payments_value)
         {
@@ -1097,18 +1091,17 @@ class Selecter extends MY_Model
         }
         
         
-        /*
+        /**
          * PaymentsInDatabase
          * 
          * Funkcia vrati pocet zaznamov z platieb daneho typu zaplatene, nezaplatene, vsetky
          * 
          * @access	public
-         * @param       table Nazov tabulky
-         * @param       id ID zaznamu platby
-         * @param       user_id ID pouzivatela
-         * @param       pay_type Typ platby
-         * @return      Vrati pocet platieb danheo usera
-         * 
+         * @param       string $table Nazov tabulky
+         * @param       string $id ID zaznamu platby
+         * @param       integer $user_id ID pouzivatela
+         * @param       integer $pay_type Typ platby
+         * @return      integer Vrati pocet platieb danheo usera
          */
         public function PaymentsInDatabase( $table, $id, $user_id, $pay_type )
         {

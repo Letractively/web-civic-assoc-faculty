@@ -1,6 +1,31 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
 
-/*
+// ------------------------------------------------------------------------
+
+/**
+ *  Grid class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Libraries
+ * @category            Grid
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
+
+/**
 * Row
 * 
 * Trieda popisuje jeden riadok/zaznam gridu. Obsahuje bunky riadka, atributy či je viditeľný, editovateľný, mazateľný.
@@ -14,7 +39,7 @@ class Row
 	public $removable = true;
 }
 
-/*
+/**
 * Component
 * 
 * Trieda popisuje typ komponentu pre daný stĺpec. Tento komponent sa zobrazí na danom stĺpci a konkrétnom riadku pri pridávaní alebo editovaní záznamu.
@@ -25,15 +50,15 @@ class Component
 	public $type = 'textbox'; // textbox, combobox
 	public $data = array(); // doplnujuce data, nemaju pevnu strukturu, zavisle od kontretneho komponentu
 	
-	/*
+	/**
 	* bind
 	* 
 	* Metóda binduje dáta pre combobox. Tieto dáta sa potom zobrazia v comboboxe na výber pri pridávaní alebo editovaní.
 	* 
         * @access	public
-	* @param datasource Dvojrozmerné pole dát vo formáte array of object alebo array of array. V prípade array of array musí mať pole nižšej úrovne indexy ako string, ktoré zároveň definujú kľúče pre combobox.
-	* @param id V ktorom stĺpci/atribúte objektu sa nachádza id-čko, ktoré sa použije ako identifikátor vybraného záznamu v comboboxe.
-	* @param value V ktorom stĺpci/atribúte objektu sa nachádza hodnota, ktorá sa zobrazuje reálne v comboboxe.
+	* @param        array $datasource Dvojrozmerné pole dát vo formáte array of object alebo array of array. V prípade array of array musí mať pole nižšej úrovne indexy ako string, ktoré zároveň definujú kľúče pre combobox.
+	* @param        string $id V ktorom stĺpci/atribúte objektu sa nachádza id-čko, ktoré sa použije ako identifikátor vybraného záznamu v comboboxe.
+	* @param        string $value V ktorom stĺpci/atribúte objektu sa nachádza hodnota, ktorá sa zobrazuje reálne v comboboxe.
 	*/
 	public function bind($datasource, $id, $value)
 	{
@@ -48,7 +73,7 @@ class Component
 	}
 }
 
-/*
+/**
 * Col
 * 
 * Trieda popisuje stĺpec gridu. Popisuje jeho vlastnosti a správanie sa pri jednotlivých operáciach. Umožňuje zobraziť dáta ako text, datetime alebo link, prípadne je možné označiť stĺpec ako neviditeľný alebo needitovateľný. DateTime je mozne formatovat.
@@ -62,13 +87,13 @@ class Col
 	public $visible = true;
 	public $component; // atributy pre komponent: Component
 	
-	/*
+	/**
 	* contructor
 	* 
 	* Vytvára stĺpec gridu a inicializuje ho na predvolené nastavenia.
 	* 
         * @access	public
-	* @param text Text, ktorý sa zobrazuje v hlavičke stĺpca.
+	* @param        string $text Text, ktorý sa zobrazuje v hlavičke stĺpca.
 	*/
 	public function __construct($text)
 	{
@@ -78,14 +103,14 @@ class Col
 		$this->options = null;
 	}
 	
-	/*
+	/**
 	* set_anchor
 	* 
 	* Metóda nastavuje, aby sa dáta v tomto stĺpci zobrazili ako link na controller.
 	* 
         * @access	public
-	* @param controller Názov controlleru, na ktorý má link odkazovať.
-	* @param id Názov stĺpca, ktorý obsahuje id-čko - id-čko z tohto stĺpca sa pripisuje ku controlleru, aby bolo možné ďalej identifikovať kliknutý záznam.
+	* @param        string $controller Názov controlleru, na ktorý má link odkazovať.
+	* @param        string $id Názov stĺpca, ktorý obsahuje id-čko - id-čko z tohto stĺpca sa pripisuje ku controlleru, aby bolo možné ďalej identifikovať kliknutý záznam.
 	*/
 	public function set_anchor($controller, $id)
 	{
@@ -94,14 +119,14 @@ class Col
 		$this->options['id'] = $id;
 	}
 	
-	/*
+	/**
 	* set_datetime
 	* 
 	* Metóda nastavuje formátovanie dátumu. V prípade, že text nezodpovedá dátumu, nezobrazí sa nič.
 	*
         * @access	public
-	* @param inputFormat Formátovací reťazec, podľa ktorého sa parsuje string na vytvorenie štruktúry datetime.
-	* @param outputFormat Formátovací reťazec, podľa ktorého sa formátuje čas a dátum na výstupe.
+	* @param        string $inputFormat Formátovací reťazec, podľa ktorého sa parsuje string na vytvorenie štruktúry datetime.
+	* @param        string $outputFormat Formátovací reťazec, podľa ktorého sa formátuje čas a dátum na výstupe.
 	*
 	* @link Bližšie informácie o formátovacích značkách na http://php.net/manual/en/function.date.php @endlink
 	*/
@@ -112,13 +137,13 @@ class Col
 		$this->options['outputFormat'] = $outputFormat;
 	}
 	
-	/*
+	/**
 	* set_format
 	* 
 	* Metóda nastavuje formátovanie čísla. V prípade nevalidného formátovacieho reťazca na pri display zobrazí varovanie.
 	*
         * @access	public
-	* @param format Formátovací reťazec, podľa ktorého sa formátuje číslo.
+	* @param        string $format Formátovací reťazec, podľa ktorého sa formátuje číslo.
 	*
 	* @code
 	*	Syntax: set_numformat( {<desatinnych_miest>:<desatinna_bodka>:<separator_tisiciek>} )
@@ -145,7 +170,7 @@ class Col
 	}
 }
 
-/*
+/**
 * Grid
 * 
 * Trieda zapúzdruje celý komponent grid. Cez túto triedu sa grid nastavuje, napĺňa dátami a zobrazuje.
@@ -161,14 +186,14 @@ class Grid
 	public $edit_mode = "internal";
 	public $remove_url = ""; // controller na mazanie, existuje len externý
 
-	/*
+	/**
 	 * bind
 	 * 
 	 * Metóda napĺňa grid dátami.
 	 * 
          * @access	public
-	 * @param table Dvojrozmerné pole dát vo formáte array of object alebo array of array. V prípade array of array musí mať pole nižšej úrovne indexy ako string, ktoré zároveň definujú názvy stĺpcov gridu.
-	 * @param unique_key Názov stĺpca, ktorý obsahuje IDčko záznamu.
+	 * @param       array $table Dvojrozmerné pole dát vo formáte array of object alebo array of array. V prípade array of array musí mať pole nižšej úrovne indexy ako string, ktoré zároveň definujú názvy stĺpcov gridu.
+	 * @param       string $unique_key Názov stĺpca, ktorý obsahuje IDčko záznamu.
 	 */
 	public function bind($table, $unique_key) // ocakava array of object alebo array of array alebo CI_DB_mysql_result
 	{	
@@ -219,43 +244,41 @@ class Grid
 		else return false;
 	}
 
-	/*
+	/**
 	 * header
 	 * 
 	 * Metóda vracia atribúty vybraného stĺpca gridu.
 	 *
          * @access	public
-	 * @param head_id Názov stĺpca.
-	 *
-	 * @return Objekt ktorý obsahuje atribúty stĺpca. Ak neexistuje, vracia null.
+	 * @param       string $head_id Názov stĺpca.
+	 * @return      object Objekt ktorý obsahuje atribúty stĺpca. Ak neexistuje, vracia null.
 	 */
 	public function header($head_id)
 	{
 		return $this->headCols[$head_id];
 	}
 	
-	/*
+	/**
 	 * row
 	 * 
 	 * Metóda vracia atribúty vybraného riadka gridu.
 	 *
          * @access	public
-	 * @param unique_key IDčko záznamu.
-	 *
-	 * @return Objekt ktorý obsahuje atribúty riadku. Ak neexistuje, vracia null.
+	 * @param       integer $unique_key IDčko záznamu.
+	 * @return      object Objekt ktorý obsahuje atribúty riadku. Ak neexistuje, vracia null.
 	 */
         public function row($unique_key)
 	{
 		return $this->rows[$unique_key];
 	}
 	
-	/*
+	/**
 	 * all_cols_visible
 	 * 
 	 * Metóda nastaví príslušnú viditelnosť pre všetky stĺpce gridu.
 	 *
          * @access	public
-	 * @param state true/false.
+	 * @param       boolean $state true/false.
 	 */
 	public function all_cols_visible($state)
 	{
@@ -263,7 +286,7 @@ class Grid
 			$col->visible = $state;
 	}
 	
-	/*
+	/**
 	 * genjs
 	 * 
 	 * Metóda je volaná automaticky metódou display(). Jej úlohou je vygenerovať javascript, ktorý grid používa na add a edit priamo v gride.
@@ -395,7 +418,7 @@ class Grid
 			new_confirm.setAttribute('name','operation_'+operation);
 			new_confirm.setAttribute('value','operation_'+operation);
 			var new_img = document.createElement('img');
-			new_img.setAttribute('src','<?=base_url()?>../assets/img/confirm.png');
+			new_img.setAttribute('src','<?=base_url()?>assets/img/confirm.png');
 			new_img.setAttribute('alt',text);
 			new_confirm.appendChild(new_img);
 			return new_confirm;
@@ -407,7 +430,7 @@ class Grid
 			var new_cancel = document.createElement('div');
 			new_cancel.setAttribute('onclick','document.location.reload(true);');
 			var new_img = document.createElement('img');
-			new_img.setAttribute('src','<?=base_url()?>../assets/img/cancel.png');
+			new_img.setAttribute('src','<?=base_url()?>assets/img/cancel.png');
 			new_img.setAttribute('alt',text);
 			new_cancel.appendChild(new_img);
 			return new_cancel;
@@ -544,13 +567,13 @@ class Grid
 		return $strBefore.number_format($number, $decimal, $decMark, $thousandMark).$strAfter;
 	}
 	
-	/*
+	/**
 	 * display
 	 * 
 	 * Metóda zobrazuje grid s vopred nastavenými atribútami.
 	 *
          * @access	public
-         * 
+         * @return      void
 	 */
 	public function display()
 	{
@@ -631,12 +654,12 @@ class Grid
 				if ($this->edit_url != "" && $row->editable == true) // ak mame zadany controller na edit a dany riadok je editovatelny - zobrazi tlacitko edit
 				{
 					if ($this->edit_mode == "internal") // ak sa ma pouzit editacia v gride
-						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><img class="aaa" src="'.base_url().'../assets/img/edit.png" alt="edit" onclick="changeToForm('.$unique_key.')" /></td>';
+						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><img class="aaa" src="'.base_url().'assets/img/edit.png" alt="edit" onclick="changeToForm('.$unique_key.')" /></td>';
 					else if ($this->edit_mode == "external") // ak sa ma pouzit editacia na vlastnom forme
-						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.base_url().$this->edit_url.'/'.$unique_key.'"><img src="'.base_url().'../assets/img/edit.png" alt="edit" /></a></td>';
+						echo '<td id="edit'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.base_url().$this->edit_url.'/'.$unique_key.'"><img src="'.base_url().'assets/img/edit.png" alt="edit" /></a></td>';
 				}
 				if ($this->remove_url != "" && $row->removable == true) // ak mame zadany controller na delete a dany riadok je mazatelny - zobrazi tlacitko delete
-					echo '<td id="delete'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.base_url().$this->remove_url.'/'.$unique_key.'"><img src="'.base_url().'../assets/img/delete.png" alt="delete" /></a></td>';
+					echo '<td id="delete'.$unique_key.'btn" class="grid_row_btn_cell"><a href="'.base_url().$this->remove_url.'/'.$unique_key.'"><img src="'.base_url().'assets/img/delete.png" alt="delete" /></a></td>';
 				echo '</tr>'."\n";
 			}
 		}
@@ -653,9 +676,9 @@ class Grid
 						echo '<td id="'.$index.'0"></td>';
 				}
 				if ($this->add_mode == "internal")
-					echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="'.base_url().'../assets/img/add.png" alt="add" /></div></td>';
+					echo '<td id="addbtn" class="grid_row_btn_cell"><div onclick="changeToForm(0)"><img src="'.base_url().'assets/img/add.png" alt="add" /></div></td>';
 				else if ($this->add_mode == "external")
-					echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.base_url().$this->add_url.'"><img src="'.base_url().'../assets/img/add.png" alt="add" /></a></td>';
+					echo '<td id="addbtn" class="grid_row_btn_cell"><a href="'.base_url().$this->add_url.'"><img src="'.base_url().'assets/img/add.png" alt="add" /></a></td>';
 				echo '</tr>'."\n";
 			}
 		}

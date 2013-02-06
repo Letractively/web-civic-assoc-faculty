@@ -1,17 +1,36 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * IO class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            IO
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Io extends MY_Controller
 {
     
-        /*
-         * __construct
-         * 
-         * Konstruktor triedy
-         * 
-         * @access      private
-         * @return      void
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -24,17 +43,17 @@ class Io extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 	
-        /*
+        /**
          * array_to_csv
          * 
          * Funkcia upravi vystupny array do CSV formatu
          * 
          * @access      public
-         * @param source vstupne udaje
-         * @param filename meno suboru
-         * @param header hlavicka suboru
-         * @param remove_from_export stlpce ktore nechceme v exporte
-         * 
+         * @param       array $source vstupne udaje
+         * @param       string $filename meno suboru
+         * @param       mixed $header hlavicka suboru
+         * @param       array $remove_from_export stlpce ktore nechceme v exporte
+         * @return      void
          */
 	private function array_to_csv($source, $filename, $header = null, $remove_from_export = array())
 	{
@@ -62,13 +81,13 @@ class Io extends MY_Controller
 		print $export_text;
 	}
     
-        /*
+        /**
          * export
          * 
          * Funkcia vyexportuje udaje
          *  
          * @access      public
-         * 
+         * @return      void
          */
         public function export()
         {

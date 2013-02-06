@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	$this->load->model('selecter');
 	
 	function object_to_array($arr_of_obj)

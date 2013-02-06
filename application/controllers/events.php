@@ -1,4 +1,29 @@
 ﻿<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Alumni FMFI
+ * 
+ * Aplikacia na spravu OZ Alumni FMFI
+ *
+ * @package		AlumniFMFI
+ * @author		Tutifruty Team
+ * @link		http://kempelen.ii.fmph.uniba.sk
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Events class
+ *
+ * @package		AlumniFMFI
+ * @subpackage          Controllers
+ * @category            
+ * @author		Tutifruty Team
+ */
+
+// ------------------------------------------------------------------------
+
 
 class Events extends MY_Controller
 {
@@ -7,15 +32,9 @@ class Events extends MY_Controller
         protected $per_page             = 10;
         protected $totalRows            = 0;
         
-        /*
-         * __construct
-         * 
-         * Konštruktor triedy
-         * 
-         * @access      private
-         * @return void
-         * 
-         */
+        /**
+	 * Constructor
+	 */
         function __construct() 
         {
             parent::__construct();
@@ -30,15 +49,15 @@ class Events extends MY_Controller
             $this->data = array_merge($this->data, $data);
         }
 
-        /*
+        /**
          * index
          * 
          * default index metoda, ktora sa vola primarne
          * 
          * @access      public
-         * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
-         * @return void
-         * 
+         * @param       integer $event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
+         * @param       integer $page Cislo strany
+         * @return      void Vsetky udalosti
          */
         public function index( $event_cat_id = 0, $page = 0 )
         {
@@ -60,15 +79,15 @@ class Events extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * newest
          * 
          * Funkcia vyfiltruje eventy od najnovsich po najstarsie
          * 
          * @access      public
-         * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
-         * @return Najnovsie udalosti
-         * 
+         * @param       integer $event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
+         * @param       integer $page Cislo strany
+         * @return      void Najnovsie udalosti
          */
         public function newest( $event_cat_id = 0, $page = 0 )
         {
@@ -90,15 +109,15 @@ class Events extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * prior
          * 
          * Funkcia vyfiltruje eventy od najviac prioritnych po najmenej priritne
          * 
          * @access      public
-         * @param event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
-         * @return Udalosti s najvyssou priritou
-         * 
+         * @param       integer $event_cat_id ID kategorie na ktoru sa to vztahuje default 0-vsetky
+         * @param       integer $page Cislo strany
+         * @return      void Udalosti s najvyssou priritou
          */
         public function prior( $event_cat_id = 0, $page = 0 )
         {
@@ -120,15 +139,14 @@ class Events extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * detail
          * 
          * Funkcia zobrazi detail daneho eventu
          * 
          * @access      public
-         * @param event_id ID eventu ktoreho detail sa ma zobrazit
-         * @return Detajl udalosti
-         * 
+         * @param       integer $event_id ID eventu ktoreho detail sa ma zobrazit
+         * @return      void Detajl udalosti
          */
         public function detail( $event_id )
         {
@@ -142,14 +160,13 @@ class Events extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data) );
         }
 
-        /*
+        /**
          * add
          * 
          * Funkcia prida novy event do DB
          * 
          * @access      public
-         * @return void
-         * 
+         * @return      void
          */
         public function add()
         {   
@@ -167,15 +184,14 @@ class Events extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * edit
          * 
          * Funkcia zedituje konkretny event
          * 
          * @access      public
-         * @param event_id ID eventu ktory sa ma upravit
-         * @return void
-         * 
+         * @param       integer $event_id ID eventu ktory sa ma upravit
+         * @return      void
          */
         public function edit( $event_id )
         {   
@@ -200,15 +216,14 @@ class Events extends MY_Controller
             $this->load->view('container', array_merge($this->data, $data));
         }
 
-        /*
+        /**
          * delete
          * 
          * Funkcia vymaze dany event z DB
          * 
          * @access      public
-         * @param event_id ID eventu ktory sa ma vymazat
-         * @return void
-         * 
+         * @param       integer $event_id ID eventu ktory sa ma vymazat
+         * @return      void
          */
         public function delete( $event_id )
         {
