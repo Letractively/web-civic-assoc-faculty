@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
--- Hostiteľ: localhost
--- Vygenerované: Po 04.Feb 2013, 01:37
--- Verzia serveru: 5.5.24-log
--- Verzia PHP: 5.4.3
+-- Host: localhost
+-- Generation Time: Feb 05, 2013 at 11:22 PM
+-- Server version: 5.5.28
+-- PHP Version: 5.3.10-1ubuntu3.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Databáza: `fmfi`
+-- Database: `fmfi`
 --
 
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `degrees`
+-- Table structure for table `degrees`
 --
 
 CREATE TABLE IF NOT EXISTS `degrees` (
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `degrees` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Sťahujem dáta pre tabuľku `degrees`
+-- Dumping data for table `degrees`
 --
 
 INSERT INTO `degrees` (`degree_id`, `degree_name`, `degree_grade`) VALUES
@@ -44,24 +44,7 @@ INSERT INTO `degrees` (`degree_id`, `degree_name`, `degree_grade`) VALUES
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `deleted_users`
---
-
-CREATE TABLE IF NOT EXISTS `deleted_users` (
-  `deleted_user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `deleted_user_user_clean_id` int(11) DEFAULT NULL,
-  `deleted_user_name` varchar(255) DEFAULT NULL,
-  `deleted_user_surname` varchar(255) DEFAULT NULL,
-  `deleted_user_email` varchar(255) DEFAULT NULL,
-  `deleted_user_birth_day` date DEFAULT NULL,
-  PRIMARY KEY (`deleted_user_id`),
-  KEY `fk_deleted_users_user_clean_id` (`deleted_user_user_clean_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Štruktúra tabuľky pre tabuľku `email_types`
+-- Table structure for table `email_types`
 --
 
 CREATE TABLE IF NOT EXISTS `email_types` (
@@ -73,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `email_types` (
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `events`
+-- Table structure for table `events`
 --
 
 CREATE TABLE IF NOT EXISTS `events` (
@@ -94,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `events` (
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `event_categories`
+-- Table structure for table `event_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `event_categories` (
@@ -104,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `event_categories` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Sťahujem dáta pre tabuľku `event_categories`
+-- Dumping data for table `event_categories`
 --
 
 INSERT INTO `event_categories` (`event_category_id`, `event_category_name`) VALUES
@@ -113,7 +96,7 @@ INSERT INTO `event_categories` (`event_category_id`, `event_category_name`) VALU
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `fin_category_transactions`
+-- Table structure for table `fin_category_transactions`
 --
 
 CREATE TABLE IF NOT EXISTS `fin_category_transactions` (
@@ -129,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `fin_category_transactions` (
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `fin_redistributes`
+-- Table structure for table `fin_redistributes`
 --
 
 CREATE TABLE IF NOT EXISTS `fin_redistributes` (
@@ -145,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `fin_redistributes` (
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `pages`
+-- Table structure for table `pages`
 --
 
 CREATE TABLE IF NOT EXISTS `pages` (
@@ -155,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Sťahujem dáta pre tabuľku `pages`
+-- Dumping data for table `pages`
 --
 
 INSERT INTO `pages` (`page_rules`, `page_about`, `page_contact`) VALUES
@@ -164,7 +147,7 @@ INSERT INTO `pages` (`page_rules`, `page_about`, `page_contact`) VALUES
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `payments`
+-- Table structure for table `payments`
 --
 
 CREATE TABLE IF NOT EXISTS `payments` (
@@ -183,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE IF NOT EXISTS `posts` (
@@ -201,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `post_modifies`
+-- Table structure for table `post_modifies`
 --
 
 CREATE TABLE IF NOT EXISTS `post_modifies` (
@@ -217,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `post_modifies` (
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `projects`
+-- Table structure for table `projects`
 --
 
 CREATE TABLE IF NOT EXISTS `projects` (
@@ -238,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `project_categories`
+-- Table structure for table `project_categories`
 --
 
 CREATE TABLE IF NOT EXISTS `project_categories` (
@@ -249,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `project_categories` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Sťahujem dáta pre tabuľku `project_categories`
+-- Dumping data for table `project_categories`
 --
 
 INSERT INTO `project_categories` (`project_category_id`, `project_category_name`, `project_category_cash`) VALUES
@@ -258,7 +241,7 @@ INSERT INTO `project_categories` (`project_category_id`, `project_category_name`
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `project_items`
+-- Table structure for table `project_items`
 --
 
 CREATE TABLE IF NOT EXISTS `project_items` (
@@ -276,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `project_items` (
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `study_programs`
+-- Table structure for table `study_programs`
 --
 
 CREATE TABLE IF NOT EXISTS `study_programs` (
@@ -286,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `study_programs` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Sťahujem dáta pre tabuľku `study_programs`
+-- Dumping data for table `study_programs`
 --
 
 INSERT INTO `study_programs` (`study_program_id`, `study_program_name`) VALUES
@@ -295,7 +278,7 @@ INSERT INTO `study_programs` (`study_program_id`, `study_program_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -316,12 +299,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_exempted` tinyint(4) DEFAULT '0',
   `user_activated` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_username` (`user_username`),
+  UNIQUE KEY `user_email` (`user_email`),
   KEY `fk_users_study_program_id` (`user_study_program_id`),
   KEY `fk_users_degree_id` (`user_degree_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Sťahujem dáta pre tabuľku `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_date`, `user_postcode`, `user_study_program_id`, `user_degree_id`, `user_place_of_birth`, `user_degree_year`, `user_role`, `user_username`, `user_name`, `user_surname`, `user_password`, `user_email`, `user_phone`, `user_exempted`, `user_activated`) VALUES
@@ -330,19 +315,7 @@ INSERT INTO `users` (`user_id`, `user_date`, `user_postcode`, `user_study_progra
 -- --------------------------------------------------------
 
 --
--- Štruktúra tabuľky pre tabuľku `user_cleans`
---
-
-CREATE TABLE IF NOT EXISTS `user_cleans` (
-  `user_clean_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_clean_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_clean_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Štruktúra tabuľky pre tabuľku `user_email_evidence`
+-- Table structure for table `user_email_evidence`
 --
 
 CREATE TABLE IF NOT EXISTS `user_email_evidence` (
@@ -356,77 +329,71 @@ CREATE TABLE IF NOT EXISTS `user_email_evidence` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- Obmedzenie pre exportované tabuľky
+-- Constraints for dumped tables
 --
 
 --
--- Obmedzenie pre tabuľku `deleted_users`
---
-ALTER TABLE `deleted_users`
-  ADD CONSTRAINT `deleted_users_ibfk_1` FOREIGN KEY (`deleted_user_user_clean_id`) REFERENCES `user_cleans` (`user_clean_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
-
---
--- Obmedzenie pre tabuľku `events`
+-- Constraints for table `events`
 --
 ALTER TABLE `events`
   ADD CONSTRAINT `events_ibfk_1` FOREIGN KEY (`event_author_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   ADD CONSTRAINT `events_ibfk_2` FOREIGN KEY (`event_event_category_id`) REFERENCES `event_categories` (`event_category_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
--- Obmedzenie pre tabuľku `fin_category_transactions`
+-- Constraints for table `fin_category_transactions`
 --
 ALTER TABLE `fin_category_transactions`
   ADD CONSTRAINT `fin_category_transactions_ibfk_1` FOREIGN KEY (`fin_category_transaction_cat_from_id`) REFERENCES `project_categories` (`project_category_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   ADD CONSTRAINT `fin_category_transactions_ibfk_2` FOREIGN KEY (`fin_category_transaction_cat_to_id`) REFERENCES `project_categories` (`project_category_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
--- Obmedzenie pre tabuľku `fin_redistributes`
+-- Constraints for table `fin_redistributes`
 --
 ALTER TABLE `fin_redistributes`
   ADD CONSTRAINT `fin_redistributes_ibfk_2` FOREIGN KEY (`fin_redistribute_project_category_id`) REFERENCES `project_categories` (`project_category_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   ADD CONSTRAINT `fin_redistributes_ibfk_7` FOREIGN KEY (`fin_redistribute_payment_id`) REFERENCES `payments` (`payment_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Obmedzenie pre tabuľku `payments`
+-- Constraints for table `payments`
 --
 ALTER TABLE `payments`
   ADD CONSTRAINT `payments_ibfk_4` FOREIGN KEY (`payment_user_id`) REFERENCES `users` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Obmedzenie pre tabuľku `posts`
+-- Constraints for table `posts`
 --
 ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`post_author_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
--- Obmedzenie pre tabuľku `post_modifies`
+-- Constraints for table `post_modifies`
 --
 ALTER TABLE `post_modifies`
   ADD CONSTRAINT `post_modifies_ibfk_1` FOREIGN KEY (`post_modifie_author_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   ADD CONSTRAINT `post_modifies_ibfk_2` FOREIGN KEY (`post_modifie_post_id`) REFERENCES `posts` (`post_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
--- Obmedzenie pre tabuľku `projects`
+-- Constraints for table `projects`
 --
 ALTER TABLE `projects`
   ADD CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`project_project_category_id`) REFERENCES `project_categories` (`project_category_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
--- Obmedzenie pre tabuľku `project_items`
+-- Constraints for table `project_items`
 --
 ALTER TABLE `project_items`
   ADD CONSTRAINT `project_items_ibfk_1` FOREIGN KEY (`project_item_project_id`) REFERENCES `projects` (`project_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   ADD CONSTRAINT `project_items_ibfk_2` FOREIGN KEY (`project_item_user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
--- Obmedzenie pre tabuľku `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_7` FOREIGN KEY (`user_study_program_id`) REFERENCES `study_programs` (`study_program_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
   ADD CONSTRAINT `users_ibfk_8` FOREIGN KEY (`user_degree_id`) REFERENCES `degrees` (`degree_id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
--- Obmedzenie pre tabuľku `user_email_evidence`
+-- Constraints for table `user_email_evidence`
 --
 ALTER TABLE `user_email_evidence`
   ADD CONSTRAINT `user_email_evidence_ibfk_1` FOREIGN KEY (`user_email_evidence_email_type_id`) REFERENCES `email_types` (`email_type_id`) ON DELETE SET NULL ON UPDATE NO ACTION,
