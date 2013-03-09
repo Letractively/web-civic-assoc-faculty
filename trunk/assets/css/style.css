@@ -341,6 +341,7 @@ body {
    background: -moz-linear-gradient(top, black, #880d0d); /* Firefox 3.6+ */
    background: -ms-linear-gradient(top, black, #880d0d); /* IE 10 */
    background: -o-linear-gradient(top, black, #880d0d); /* Opera 11.10+ */
+   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='black', endColorstr='#880d0d')"; /* IE 8 */
 }
 
 #secondary_navigation {
@@ -351,6 +352,7 @@ body {
    background: -moz-linear-gradient(top, #fecc78, #880d0d); /* Firefox 3.6+ */
    background: -ms-linear-gradient(top, #fecc78, #880d0d); /* IE 10 */
    background: -o-linear-gradient(top, #fecc78, #880d0d); /* Opera 11.10+ */
+   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fecc78', endColorstr='#880d0d')"; /* IE 8 */
 }
 
 #navigation a {
@@ -372,19 +374,24 @@ body {
 }
 
 #main_navigation a:hover {
-	color: white;
-	background: -webkit-linear-gradient(top, black, #880d0d, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
+   color: white;
+   background: -webkit-linear-gradient(top, black, #880d0d, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
    background: -moz-linear-gradient(top, black, #880d0d, #fecc78); /* Firefox 3.6+ */
    background: -ms-linear-gradient(top, black, #880d0d, #fecc78); /* IE 10 */
    background: -o-linear-gradient(top, black, #880d0d, #fecc78); /* Opera 11.10+ */
+   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='black', endColorstr='#fecc78')"; /* IE 8 */
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='black', endColorstr='#fecc78'); /* IE 5.5 - 7 */
 }
 
 #main_navigation .selected {
-	color: black;
-	background: -webkit-linear-gradient(top, black, #fecc78, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
+   color: black;
+   background: -webkit-linear-gradient(top, black, #fecc78, #fecc78); /* Safari 5.1+ ; Chrome 10+ */ 
    background: -moz-linear-gradient(top, black, #fecc78, #fecc78); /* Firefox 3.6+ */
    background: -ms-linear-gradient(top, black, #fecc78, #fecc78); /* IE 10 */
-   background: -o-linear-gradient(top, black, #fecc78, #fecc78); /* Opera 11.10+ */	
+   background: -o-linear-gradient(top, black, #fecc78, #fecc78); /* Opera 11.10+ */
+   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#880d0d', endColorstr='#fecc78')"; /* IE 8 */
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#880d0d', endColorstr='#fecc78'); /* IE 5.5 - 7 */
+	
 }
 
 #secondary_navigation a:hover {
@@ -1042,7 +1049,7 @@ User detail view ******/
 
 .post, .event {
 	float: left;
-	width: 380px;
+	width: 380px;	
 	height: 80px;
 	overflow: hidden;
 	margin-top: 20px;
