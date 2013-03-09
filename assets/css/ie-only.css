@@ -1,0 +1,22 @@
+/****** Auth view ******/
+.auth_view_column {
+	width: 380px;
+	margin: 10px 10px 25px 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.auth_view_title {
+	color: #880d0d;
+	font-weight: bolder;
+	font-size: 22px;
+	text-decoration: none;
+}
+
+.post, .event {
+	float: left;
+	width: 380px;	
+	height: 75px;
+	overflow: hidden;
+	margin-top: 20px;
+}
