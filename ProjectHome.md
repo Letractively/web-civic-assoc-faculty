@@ -1,0 +1,1 @@
+Zadávateľkou je Dr. Gažáková. Cieľom projektu je spojenie dvoch už vypracovaných projektov (web občianskeho združenia, exkurzie na fmfi) do jedného funkčného celku s rovnakým dizajnom. Tieto dva projekty budú pred zlúčením doplnené o funkcionalitu podľa požiadaviek zadávateľa.
